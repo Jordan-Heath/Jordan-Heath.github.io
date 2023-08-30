@@ -1,3 +1,13 @@
+// Variables for storing randomly chosen character details
+let chosenRace = "";
+let chosenClass = "";
+let chosenBackground = "";
+
+// Constants for storing data read from files
+const races = readTextFile("data/races.txt");
+const classes = readTextFile("data/classes.txt");
+const backgrounds = readTextFile("data/backgrounds.txt");
+
 // Function to read a text file and return its content as an array of lines
 async function readTextFile(file) {
     const response = await fetch(file);
@@ -11,29 +21,24 @@ function getRandomElement(array) {
     return array[randomIndex];
 }
 
-// Array to hold the paths of your text files
-//const textFiles = ["data/races.txt", "data/classes.txt", "data/backgrounds.txt"];
+// Function to load and display a random character details
+function generateRandomCharacter() {
+    chosenRace = getRandomElement(races);
+    chosenClass = getRandomElement(classes);
+    chosenBackground = getRandomElement(backgrounds);
 
-// Function to load and display a random line from a random text file
-async function loadRandomLine() {
-    //const randomFile = getRandomElement(textFiles);
-    const races = await readTextFile("data/races.txt");
-    const classes = await readTextFile("data/classes.txt");
-    const backgrounds = await readTextFile("data/backgrounds.txt");
+    updateCharacterDetails();
+}
 
-    let chosenRace = getRandomElement(races);
-    let chosenClass = getRandomElement(classes);
-    let chosenBackground = getRandomElement(backgrounds);
-
-    // Replace 'output' with the ID of the HTML element where you want to display the line
+// Function to update the character details on the HTML page
+function updateCharacterDetails() {
     document.getElementById('race').textContent = chosenRace;
     document.getElementById('class').textContent = chosenClass;
     document.getElementById('background').textContent = chosenBackground;
 }
 
-// Attach the loadRandomLine function to a button click event or any other trigger
-// For example, assuming you have a button with the ID 'generateButton':
-document.getElementById('generateButton').addEventListener('click', loadRandomLine);
+// Attach the generateRandomCharacter function to the button click event
+document.getElementById('generateButton').addEventListener('click', generateRandomCharacter);
 
-// Call the function initially to display a random line when the page loads
-loadRandomLine();
+// Call the function initially to display a random character when the page loads
+generateRandomCharacter();
