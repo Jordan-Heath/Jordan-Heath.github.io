@@ -1,0 +1,42 @@
+body {
+    font-family: "Courier New", monospace;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    background-color: #f9ecc4;
+  }
+  
+  h1 {
+    color: #774c25;
+  }
+  
+  button {
+    background-color: #774c25;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background-color: #936732;
+  }
+  
+  #characterInfo {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff6e0;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  p {
+    color: #403023;
+    margin: 10px 0;
+  }
+  
+  strong {
+    color: #774c25;
+  }
+  
