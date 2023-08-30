@@ -14,7 +14,7 @@ body {
     background-color: #774c25;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 20px ;
     cursor: pointer;
     font-size: 16px;
   }
@@ -25,6 +25,7 @@ body {
   
   #characterInfo {
     margin-top: 20px;
+    margin-bottom: 20px;
     padding: 20px;
     background-color: #fff6e0;
     border-radius: 8px;
@@ -33,7 +34,7 @@ body {
   
   p {
     color: #403023;
-    margin: 10px 0;
+    margin: 10px 10px;
   }
   
   strong {

@@ -55,3 +55,5 @@ function generateCharacter() {
 
     document.getElementById("characterInfo").innerHTML = characterInfo;
 }
+
+generateCharacter();
