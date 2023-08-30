@@ -33,7 +33,7 @@ async function loadRandomLine() {
 
 // Attach the loadRandomLine function to a button click event or any other trigger
 // For example, assuming you have a button with the ID 'generateButton':
-// document.getElementById('generateButton').addEventListener('click', loadRandomLine);
+document.getElementById('generateButton').addEventListener('click', loadRandomLine);
 
 // Call the function initially to display a random line when the page loads
 loadRandomLine();
