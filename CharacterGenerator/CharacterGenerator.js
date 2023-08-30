@@ -21,9 +21,9 @@ async function loadRandomLine() {
     const classes = await readTextFile("data/classes.txt");
     const backgrounds = await readTextFile("data/backgrounds.txt");
 
-    const chosenRace = getRandomElement(races);
-    const chosenClass = getRandomElement(classes);
-    const chosenBackground = getRandomElement(backgrounds);
+    let chosenRace = getRandomElement(races);
+    let chosenClass = getRandomElement(classes);
+    let chosenBackground = getRandomElement(backgrounds);
 
     // Replace 'output' with the ID of the HTML element where you want to display the line
     document.getElementById('race').textContent = chosenRace;
