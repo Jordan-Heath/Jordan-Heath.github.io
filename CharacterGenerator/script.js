@@ -14,8 +14,8 @@ async function fetchData(url) {
 
 async function generateCharacter() {
     try {
-        const firstNameData = await fetchData('data/names.txt');
-        const lastNameData = await fetchData('data/lastNames.txt');
+        const firstNameData = await fetchData('data/first-names.txt');
+        const lastNameData = await fetchData('data/last-names.txt');
         const raceData = await fetchData('data/races.txt');
         const charClassData = await fetchData('data/classes.txt');
         const backgroundData = await fetchData('data/backgrounds.txt');
@@ -26,14 +26,20 @@ async function generateCharacter() {
         const charClass = getRandomElement(charClassData);
         const background = getRandomElement(backgroundData);
 
+        /*
         const characterInfo = `
         <h2>${firstName} ${lastName}</h2>
         <p><strong>Race:</strong> ${race}</p>
         <p><strong>Class:</strong> ${charClass}</p>
         <p><strong>Background:</strong> ${background}</p>
         `;
-
         document.getElementById("characterInfo").innerHTML = characterInfo;
+        */
+
+        document.getElementById("characterName").textContent = firstName + " " + lastName;
+        document.getElementById("characterRace").textContent = race;
+        document.getElementById("characterClass").textContent = charClass;
+        document.getElementById("characterBackground").textContent = background;
     } catch (error) {
         console.error('Error:', error);
     }
