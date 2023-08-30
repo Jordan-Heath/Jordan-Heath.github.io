@@ -12,17 +12,23 @@ function getRandomElement(array) {
 }
 
 // Array to hold the paths of your text files
-const textFiles = ["data/races.txt", "data/classes.txt", "data/backgrounds.txt"];
+//const textFiles = ["data/races.txt", "data/classes.txt", "data/backgrounds.txt"];
 
 // Function to load and display a random line from a random text file
 async function loadRandomLine() {
-    const randomFile = getRandomElement(textFiles);
-    const lines = await readTextFile(randomFile);
-    const randomLine = getRandomElement(lines);
+    //const randomFile = getRandomElement(textFiles);
+    const races = await readTextFile("data/races.txt");
+    const classes = await readTextFile("data/classes.txt");
+    const backgrounds = await readTextFile("data/backgrounds.txt");
+
+    const chosenRace = getRandomElement(races);
+    const chosenClass = getRandomElement(classes);
+    const chosenBackground = getRandomElement(backgrounds);
 
     // Replace 'output' with the ID of the HTML element where you want to display the line
-    const outputElement = document.getElementById('output');
-    outputElement.textContent = randomLine;
+    document.getElementById('race').textContent = chosenRace;
+    document.getElementById('class').textContent = chosenClass;
+    document.getElementById('background').textContent = chosenBackground;
 }
 
 // Attach the loadRandomLine function to a button click event or any other trigger
