@@ -1,0 +1,5 @@
+Warrior
+Mage
+Rogue
+Cleric
+Ranger

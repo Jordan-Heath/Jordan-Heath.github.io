@@ -1,0 +1,5 @@
+Human
+Elf
+Dwarf
+Orc
+Halfling

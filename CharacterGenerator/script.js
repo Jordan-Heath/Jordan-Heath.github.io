@@ -1,59 +1,42 @@
-const firstNames = [
-    "Aleron", 
-    "Elysia", 
-    "Grom", 
-    "Lorelei", 
-    "Finn"
-];
-const lastNames = [
-    "Blackwood", 
-    "Fireforge", 
-    "Bloodfang", 
-    "Moonshadow", 
-    "Holloway"
-];
-const races = [
-    "Human", 
-    "Elf", 
-    "Dwarf", 
-    "Orc", 
-    "Halfling"
-];
-const classes = [
-    "Warrior", 
-    "Mage", 
-    "Rogue", 
-    "Cleric", 
-    "Ranger"
-];
-const backgrounds = [
-    "Noble", 
-    "Peasant", 
-    "Outlaw", 
-    "Scholar", 
-    "Adventurer"
-];
-
 function getRandomElement(array) {
     const randomIndex = Math.floor(Math.random() * array.length);
     return array[randomIndex];
 }
 
-function generateCharacter() {
-    const firstName = getRandomElement(firstNames);
-    const lastName = getRandomElement(lastNames);
-    const race = getRandomElement(races);
-    const charClass = getRandomElement(classes);
-    const background = getRandomElement(backgrounds);
+async function fetchData(url) {
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`Failed to fetch data from ${url}`);
+    }
+    const textData = await response.text();
+    return textData.trim().split('\n');
+}
 
-    const characterInfo = `
-<h2>${firstName} ${lastName}</h2>
-<p><strong>Race:</strong> ${race}</p>
-<p><strong>Class:</strong> ${charClass}</p>
-<p><strong>Background:</strong> ${background}</p>
-`;
+async function generateCharacter() {
+    try {
+        const firstNameData = await fetchData('data/names.txt');
+        const lastNameData = await fetchData('data/lastNames.txt');
+        const raceData = await fetchData('data/races.txt');
+        const charClassData = await fetchData('data/classes.txt');
+        const backgroundData = await fetchData('data/backgrounds.txt');
 
-    document.getElementById("characterInfo").innerHTML = characterInfo;
+        const firstName = getRandomElement(firstNameData);
+        const lastName = getRandomElement(lastNameData);
+        const race = getRandomElement(raceData);
+        const charClass = getRandomElement(charClassData);
+        const background = getRandomElement(backgroundData);
+
+        const characterInfo = `
+        <h2>${firstName} ${lastName}</h2>
+        <p><strong>Race:</strong> ${race}</p>
+        <p><strong>Class:</strong> ${charClass}</p>
+        <p><strong>Background:</strong> ${background}</p>
+        `;
+
+        document.getElementById("characterInfo").innerHTML = characterInfo;
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }
 
 generateCharacter();
