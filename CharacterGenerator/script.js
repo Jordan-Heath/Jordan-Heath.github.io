@@ -8,11 +8,11 @@ let lastNames = [];
 // Function to load data from text documents
 async function loadData() {
     try {
-        const raceResponse = await fetch('races.txt');
-        const classResponse = await fetch('classes.txt');
-        const backgroundResponse = await fetch('backgrounds.txt');
-        const firstNamesResponse = await fetch('firstnames.txt');
-        const lastNamesResponse = await fetch('lastnames.txt');
+        const raceResponse = await fetch('data/races.txt');
+        const classResponse = await fetch('data/classes.txt');
+        const backgroundResponse = await fetch('data/backgrounds.txt');
+        const firstNamesResponse = await fetch('data/first-names.txt');
+        const lastNamesResponse = await fetch('data/last-names.txt');
 
         races = (await raceResponse.text()).split('\n');
         classes = (await classResponse.text()).split('\n');
