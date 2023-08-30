@@ -1,14 +1,9 @@
 let chosenRace;
 let chosenClass;
 let chosenBackground;
-/*
-const races = ["mock1", "mock2", "mock3"];
-const classes = ["mock1", "mock2", "mock3"];
-const backgrounds = ["mock1", "mock2", "mock3"];
-*/
-const races = readTextFile("data/races.txt");
-const classes = readTextFile("data/classes.txt");
-const backgrounds = readTextFile("data/backgrounds.txt");
+let races = readTextFile("data/races.txt");
+let classes = readTextFile("data/classes.txt");
+let backgrounds = readTextFile("data/backgrounds.txt");
 
 // Function to read a text file and return its content as an array of lines
 async function readTextFile(file) {
@@ -44,6 +39,11 @@ function initialise() {
     chosenRace = "";
     chosenClass = "";
     chosenBackground = "";
+
+    races = readTextFile("data/races.txt");
+    classes = readTextFile("data/classes.txt");
+    backgrounds = readTextFile("data/backgrounds.txt");
+
 
     // Attach the generateRandomCharacter function to the button click event
     document.getElementById('generateButton').addEventListener('click', generateRandomCharacter);
