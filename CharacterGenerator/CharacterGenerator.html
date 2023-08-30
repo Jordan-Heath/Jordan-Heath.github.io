@@ -10,15 +10,27 @@
 </head>
 
 <body>
-    <h1>Random Fantasy Character Generator</h1>
+    <article class="character-sheet">
+        <h1>Random Fantasy Character Generator</h1>
 
-    <h2 id="characterName"></h2>
-    <p><strong>Race:</strong> <span id="characterRace"></span>></p>
-    <p><strong>Class:</strong> <span id="characterClass"></span></p>
-    <p><strong>Background:</strong> <span id="characterBackground"></span></p>
-    <!-- <div id="characterInfo"></div> -->
+        <h2 id="characterName"></h2>
+        <table>
+            <tr>
+                <th>Race</th>
+                <td id="characterRace"></td>
+            </tr>
+            <tr>
+                <th>Class</th>
+                <td id="characterClass"></td>
+            </tr>
+            <tr>
+                <th>Background</th>
+                <td id="characterBackground"></td>
+            </tr>
+        </table>
 
-    <button onclick="generateCharacter()">Generate Character</button>
+        <button onclick="generateCharacter()">Generate Character</button>
+    </article>
 </body>
 
 </html>

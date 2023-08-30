@@ -1,43 +1,64 @@
 body {
-    font-family: "Courier New", monospace;
-    text-align: center;
-    margin: 0;
-    padding: 20px;
-    background-color: #f9ecc4;
-  }
-  
-  h1 {
-    color: #774c25;
-  }
-  
-  button {
-    background-color: #774c25;
-    color: white;
-    border: none;
-    padding: 10px 20px ;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  button:hover {
-    background-color: #936732;
-  }
-  
-  #characterInfo {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 20px;
-    background-color: #fff6e0;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  p {
-    color: #403023;
-    margin: 10px 10px;
-  }
-  
-  strong {
-    color: #774c25;
-  }
-  
+  background-color: #f0d9c0; /* Lighter body color */
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.character-sheet {
+  background-color: #8a654b; /* Medium dark for article */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  font-family: 'Georgia', serif; /* New font for the character sheet */
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 36px;
+  color: #fff;
+}
+
+h2 {
+  margin: 10px 0;
+  font-size: 24px;
+  color: #f0e0d0;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 20px auto;
+  background-color: #543518; /* Darker background for table */
+  border: 2px solid #3a2513; /* Even darker border for table */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #3a2513; /* Darker border for table rows */
+  color: #f0e0d0;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #4caf50; /* Nice green button color */
+  border: none;
+  color: #f0e0d0;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Drop shadow */
+}
+
+button:hover {
+  background-color: #388e3c; /* Darker green on hover */
+  transform: scale(1.05);
+}
