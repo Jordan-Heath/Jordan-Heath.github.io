@@ -1,9 +1,11 @@
-// Variables for storing randomly chosen character details
-let chosenRace = "";
-let chosenClass = "";
-let chosenBackground = "";
-
-// Constants for storing data read from files
+let chosenRace;
+let chosenClass;
+let chosenBackground;
+/*
+const races = ["mock1", "mock2", "mock3"];
+const classes = ["mock1", "mock2", "mock3"];
+const backgrounds = ["mock1", "mock2", "mock3"];
+*/
 const races = readTextFile("data/races.txt");
 const classes = readTextFile("data/classes.txt");
 const backgrounds = readTextFile("data/backgrounds.txt");
@@ -30,6 +32,7 @@ function generateRandomCharacter() {
     updateCharacterDetails();
 }
 
+
 // Function to update the character details on the HTML page
 function updateCharacterDetails() {
     document.getElementById('race').textContent = chosenRace;
@@ -37,8 +40,16 @@ function updateCharacterDetails() {
     document.getElementById('background').textContent = chosenBackground;
 }
 
-// Attach the generateRandomCharacter function to the button click event
-document.getElementById('generateButton').addEventListener('click', generateRandomCharacter);
+function initialise() {
+    chosenRace = "";
+    chosenClass = "";
+    chosenBackground = "";
 
-// Call the function initially to display a random character when the page loads
-generateRandomCharacter();
+    // Attach the generateRandomCharacter function to the button click event
+    document.getElementById('generateButton').addEventListener('click', generateRandomCharacter);
+
+    // Call the function initially to display a random character when the page loads
+    //generateRandomCharacter();
+}
+
+initialise();
