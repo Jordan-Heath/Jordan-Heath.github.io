@@ -1,0 +1,12 @@
+acolyte
+charlatan
+criminal
+entertainer
+folk hero
+guild artisan
+noble
+hermit
+outlander
+sage
+soldier
+urchin
