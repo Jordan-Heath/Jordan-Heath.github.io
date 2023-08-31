@@ -7,6 +7,12 @@ body {
   align-items: center;
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+  margin: 10px; /* Minimum margin */
+}
+
 article {
   background-color: #8a654b;
   padding: 20px;
@@ -14,18 +20,7 @@ article {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
   text-align: center;
   font-family: 'Georgia', serif;
-
-  /* Set maximum width and add margin for responsive design */
   max-width: 600px; /* Adjust this value to your desired maximum width */
-  margin: 2px auto; /* Adjust this value to your desired maximum width */
-}
-
-@keyframes sillyAnimation {
-  0% { transform: rotate(0); }
-  25% { transform: rotate(5deg); }
-  50% { transform: rotate(-5deg); }
-  75% { transform: rotate(5deg); }
-  100% { transform: rotate(0); }
 }
 
 h1 {
@@ -81,6 +76,14 @@ button {
 button:hover {
   background-color: #388e3c; /* Darker green on hover */
   transform: scale(1.05);
+}
+
+@keyframes sillyAnimation {
+  0% { transform: rotate(0); }
+  25% { transform: rotate(5deg); }
+  50% { transform: rotate(-5deg); }
+  75% { transform: rotate(5deg); }
+  100% { transform: rotate(0); }
 }
 
 /* Define animation */
