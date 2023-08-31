@@ -6,7 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Random Fantasy Character Generator</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <script src="script.js"></script>
+    <script src="model.js"></script>
+    <script src="view.js"></script>
+    <script src="controller.js"></script>
+    <script src="main.js"></script>
+    <script src="utils.js"></script>
+    <script src="constants.js"></script>
+
 </head>
 
 <body>
@@ -16,19 +22,13 @@
     <div class="container">
         <article>
             <h2 id="characterName"></h2>
+
             <table id="characterInfo">
-                <tr>
-                    <th>Race</th>
-                    <td id="characterRace"></td>
-                </tr>
-                <tr>
-                    <th>Class</th>
-                    <td id="characterClass"></td>
-                </tr>
-                <tr>
-                    <th>Background</th>
-                    <td id="characterBackground"></td>
-                </tr>
+                <!-- Character info will be generated here -->
+            </table>
+
+            <table id="characterAbilities">
+                <!-- Abilities table content will be generated here -->
             </table>
 
             <button id="generateButton">Generate Character</button>

@@ -61,6 +61,32 @@ td {
   width: 25%; /* Divide by the number of columns */
 }
 
+/* Apply this style to the characterAbilities table */
+#characterAbilities {
+  border-collapse: collapse;
+  width: 50%;
+  min-width: 100px;
+  margin: 20px auto;
+  background-color: #a97c57;
+  border: 1px solid #8e6348;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  table-layout: auto; /* Use automatic table layout */
+}
+
+/* Apply this style to the characterAbilities table cells */
+#characterAbilities th,
+#characterAbilities td {
+  padding: 6px;
+  text-align: left;
+  border-bottom: 1px solid #8e6348;
+  color: #d9c1a8;
+}
+
+/* Optional: Increase contrast for the last column */
+#characterAbilities td:last-child {
+  color: #f0e0d0;
+}
+
 button {
   padding: 10px 20px;
   background-color: #4caf50; /* Nice green button color */
