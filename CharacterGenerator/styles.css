@@ -3,25 +3,38 @@ body {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-  display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
 }
 
-.character-sheet {
-  background-color: #8a654b; /* Medium dark for article */
+article {
+  background-color: #8a654b;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
   text-align: center;
-  font-family: 'Georgia', serif; /* New font for the character sheet */
+  font-family: 'Georgia', serif;
+
+  /* Set maximum width and add margin for responsive design */
+  max-width: 600px; /* Adjust this value to your desired maximum width */
+  margin: 2px auto; /* Adjust this value to your desired maximum width */
+}
+
+@keyframes sillyAnimation {
+  0% { transform: rotate(0); }
+  25% { transform: rotate(5deg); }
+  50% { transform: rotate(-5deg); }
+  75% { transform: rotate(5deg); }
+  100% { transform: rotate(0); }
 }
 
 h1 {
-  margin-top: 0;
+  margin: 30px;
   font-size: 36px;
   color: #fff;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Text shadow */
+  animation: sillyAnimation 3s infinite;
 }
 
 h2 {
@@ -37,13 +50,20 @@ table {
   background-color: #543518; /* Darker background for table */
   border: 2px solid #3a2513; /* Even darker border for table */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+
+  /* Add this line to set table layout */
+  table-layout: fixed;
 }
 
-th, td {
+th,
+td {
   padding: 10px;
   text-align: left;
   border-bottom: 1px solid #3a2513; /* Darker border for table rows */
   color: #f0e0d0;
+
+  /* Add this line to ensure equal width */
+  width: 25%; /* Divide by the number of columns */
 }
 
 button {
@@ -61,4 +81,15 @@ button {
 button:hover {
   background-color: #388e3c; /* Darker green on hover */
   transform: scale(1.05);
+}
+
+/* Define animation */
+@keyframes bulgeAnimation {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Apply animation class */
+.animate {
+  animation: bulgeAnimation 0.5s ease-in-out forwards;
 }

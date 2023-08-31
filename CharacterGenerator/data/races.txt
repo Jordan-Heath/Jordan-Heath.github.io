@@ -1,5 +1,10 @@
-Human
-Elf
+Dragonborn
+Drow
 Dwarf
-Orc
+Elf
+Gnome
+Half-Elf
+Half-Orc
 Halfling
+Human
+Tiefling

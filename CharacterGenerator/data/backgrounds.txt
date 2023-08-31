@@ -1,5 +1,47 @@
+Adventurer's Guild Member
+Sorcerer's Apprentice
+Dragon Tamer
+Cursed Knight
+Forest Guardian
+Wandering Bard
+Shadow Assassin
+Royal Court Jester
+Treasure Hunter
+Elven Diplomat
+Alchemy Scholar
+Shipwreck Survivor
+Celestial Ambassador
+Fey Enchanter
+Rogue Archeologist
+Arcane Librarian
+Nomadic Druid
+Undead Slayer
+Gladiator Champion
+Professional Pillow Fighter
+Grandmaster of Hide-and-Seek
+Unicorn Whisperer
+Pie Eating Contest Champion
+Chief Pumpkin Carver
+Master of Puddle Jumping
+Extreme Cloud Watcher
+World's Best Lint Collector
+Professional Rubber Duck Racer
+Supreme Doodler of Stick Figures
+Potioneer
+Minstrel
+Scribe
+Blacksmith
+Archmage
+Tracker
+Enchanter
+Alchemist
+Artisan
+Charlatan
+Entertainer
+Folk Hero
+Guild Artisan
 Noble
-Peasant
-Outlaw
-Scholar
-Adventurer
+Hermit
+Outlander
+Sage
+Soldier
