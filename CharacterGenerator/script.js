@@ -29,21 +29,14 @@ class CharacterModel {
         this.nameMiddles = [];
         this.nameSuffixes = [];
         this.lastNames = [];
+        this.abilityNames = [];
 
         this.selectedRace = "";
         this.selectedClass = "";
         this.selectedBackground = "";
         this.selectedFirstName = "";
         this.selectedLastName = "";
-
-        this.abilityScores = {
-            Strength: 5,
-            Dexterity: 5,
-            Constitution: 5,
-            Intelligence: 5,
-            Wisdom: 5,
-            Charisma: 5
-        };
+        this.abilityScores = "";
     }
 
     // Function to load data from text documents
@@ -56,7 +49,8 @@ class CharacterModel {
                 'https://grumpypurple.github.io/CharacterGenerator/data/last-names.txt',
                 'https://grumpypurple.github.io/CharacterGenerator/data/races.txt',
                 'https://grumpypurple.github.io/CharacterGenerator/data/classes.txt',
-                'https://grumpypurple.github.io/CharacterGenerator/data/backgrounds.txt'
+                'https://grumpypurple.github.io/CharacterGenerator/data/backgrounds.txt',
+                'https://grumpypurple.github.io/CharacterGenerator/data/abilities.txt'
             ];
 
             const fetchResponses = await Promise.all(fetchUrls.map(url => fetch(url)));
@@ -69,7 +63,8 @@ class CharacterModel {
                 this.lastNames,
                 this.races,
                 this.classes,
-                this.backgrounds
+                this.backgrounds//,
+                //this.abilityNames
             ] = fetchTexts.map(text => text.split('\n'));
         } catch (error) {
             console.error("Error loading data:", error);
