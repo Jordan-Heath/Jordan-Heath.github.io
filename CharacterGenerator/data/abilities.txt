@@ -3,4 +3,4 @@ Dexterity
 Constitution
 Intelligence
 Wisdom
-Charism
+Charisma
