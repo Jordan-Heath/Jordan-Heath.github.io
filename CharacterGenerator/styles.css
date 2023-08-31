@@ -123,3 +123,10 @@ button:hover {
 .animate {
   animation: bulgeAnimation 0.5s ease-in-out forwards;
 }
+
+.footer {
+  text-align: center;
+  padding: 10px;
+  position: sticky;
+  bottom: 0;
+}
