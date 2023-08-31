@@ -89,6 +89,7 @@ td {
 
 button {
   padding: 10px 20px;
+  margin: 30px;
   background-color: #4caf50; /* Nice green button color */
   border: none;
   color: #f0e0d0;

@@ -1,5 +1,6 @@
 class CharacterView {
     constructor() {
+        this.articleElement = document.getElementById("article");
         this.nameElement = document.getElementById("characterName");
         this.characterInfo = document.getElementById("characterInfo");
         this.raceElement = document.getElementById("characterRace");
@@ -9,15 +10,11 @@ class CharacterView {
     }
 
     animateRandomise() {
-        this.nameElement.classList.add('animate');
-        this.characterInfo.classList.add('animate');
-        this.abilitiesElement.classList.add('animate');
+        this.articleElement.classList.add('animate');
 
         // Remove animation class after animation completes
         setTimeout(() => {
-            this.nameElement.classList.remove('animate');
-            this.characterInfo.classList.remove('animate');
-            this.abilitiesElement.classList.remove('animate');
+            this.articleElement.classList.remove('animate');
         }, 500); // Match animation duration
     }
 
