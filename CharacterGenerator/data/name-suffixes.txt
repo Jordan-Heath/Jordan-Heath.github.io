@@ -19,3 +19,5 @@ ko
 zu
 ji
 dan
+va
+son
