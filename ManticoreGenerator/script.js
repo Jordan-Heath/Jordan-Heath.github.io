@@ -41,9 +41,36 @@ async function LoadAsync() {
             tails,
             wings
         ] = fetchTexts.map(text => text.split('\n'));
+
+        UpdateResult();
     } catch (error) {
         console.error("Error loading data:", error);
     }
+}
+
+function UpdateResult() {
+    SelectedHead = randomArrayValue(heads);
+    SelectedBody = randomArrayValue(torsos);
+    SelectedHind = randomArrayValue(hinds);
+    SelectedTail = randomArrayValue(tails);
+    SelectedWing = randomArrayValue(wings);
+    //SelectedMentalIllness = randomArrayValue(mentalIllnesses);
+
+    // Example result:
+    let manticoreContent = "";
+    manticoreContent += "<table>";
+    manticoreContent += `<tr><th>Head</th><td>${SelectedHead}</td></tr>`
+    manticoreContent += `<tr><th>Body</th><td>${SelectedBody}</td></tr>`
+    manticoreContent += `<tr><th>Hind</th><td>${SelectedHind}</td></tr>`
+    if (getRandomNumber(0, 10) > 3) {
+        manticoreContent += `<tr><th>Tail</th><td>${SelectedTail}</td></tr>`
+    }
+    if (getRandomNumber(0, 10) > 7) {
+        manticoreContent += `<tr><th>Wings</th><td>${SelectedWing}</td></tr>`
+    }
+    manticoreContent += "</table>";
+    
+    resultDisplay.innerHTML = manticoreContent;
 }
 
 const generateButton = document.getElementById("generateButton");
@@ -53,27 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
     LoadAsync();
 
     generateButton.addEventListener("click", () => {
-        SelectedHead = randomArrayValue(heads);
-        SelectedBody = randomArrayValue(torsos);
-        SelectedHind = randomArrayValue(hinds);
-        SelectedTail = randomArrayValue(tails);
-        SelectedWing = randomArrayValue(wings);
-        //SelectedMentalIllness = randomArrayValue(mentalIllnesses);
-
-        // Example result:
-        let manticoreContent = "";
-        manticoreContent += "<table>";
-        manticoreContent += `<tr><th>Head</th><td>${SelectedHead}</td></tr>`
-        manticoreContent += `<tr><th>Body</th><td>${SelectedBody}</td></tr>`
-        manticoreContent += `<tr><th>Hind</th><td>${SelectedHind}</td></tr>`
-        if (getRandomNumber(0, 10) > 3) {
-            manticoreContent += `<tr><th>Tail</th><td>${SelectedTail}</td></tr>`
-        }
-        if (getRandomNumber(0, 10) > 7) {
-            manticoreContent += `<tr><th>Wings</th><td>${SelectedWing}</td></tr>`
-        }
-        manticoreContent += "</table>";
-        
-        resultDisplay.innerHTML = manticoreContent;
+        UpdateResult();
     });
 });
