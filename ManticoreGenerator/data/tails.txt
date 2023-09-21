@@ -1,2 +1,12 @@
-Scorpion
-Tails the Echidna
+2 Tails
+lion/cat
+scorpion
+lykoi
+monkey
+horse
+giraffe
+dragon
+goat
+snake
+tiger
+fish
