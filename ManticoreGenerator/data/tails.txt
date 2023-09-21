@@ -1,12 +1,13 @@
 2 Tails
-lion/cat
-scorpion
-lykoi
-monkey
-horse
-giraffe
-dragon
-goat
-snake
-tiger
-fish
+Lion
+Cat
+Scorpion
+Lykoi
+Monkey
+Horse
+Giraffe
+Dragon
+Goat
+Snake
+Tiger
+Fish
