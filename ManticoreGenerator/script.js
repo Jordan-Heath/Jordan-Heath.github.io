@@ -1,17 +1,29 @@
-//Constants
+// Constants
+//data
 let heads = [];
-let torsos = [];
+let bodies = [];
 let hinds = [];
 let tails = [];
 let wings =[];
-//mentalIllnesses = [];
-
+//values
 let SelectedHead = "";
 let SelectedBody = "";
 let SelectedHind = "";
 let SelectedTail = "";
 let SelectedWing = "";
-//let SelectedMentalIllness = "";
+//page elements
+const generateButton = document.getElementById("generateButton");
+const resultDisplay = document.getElementById("result");
+const headElement = document.getElementById("head");
+const bodyElement = document.getElementById("body");
+const hindElement = document.getElementById("hind");
+const tailElement = document.getElementById("tail");
+const wingElement = document.getElementById("wings");
+const headCheckboxElement = document.getElementById("headCheckbox")
+const bodyCheckboxElement = document.getElementById("bodyCheckbox")
+const hindCheckboxElement = document.getElementById("hindCheckbox")
+const tailCheckboxElement = document.getElementById("tailCheckbox")
+const wingCheckboxElement = document.getElementById("wingCheckbox")
 
 function randomArrayValue(array) {
     return array[Math.floor(Math.random() * array.length)];
@@ -25,7 +37,7 @@ async function LoadAsync() {
     try {
         const fetchUrls = [
             'https://jordan-heath.github.io/ManticoreGenerator/data/heads.txt',
-            'https://jordan-heath.github.io/ManticoreGenerator/data/torsos.txt',
+            'https://jordan-heath.github.io/ManticoreGenerator/data/bodies.txt',
             'https://jordan-heath.github.io/ManticoreGenerator/data/hinds.txt',
             'https://jordan-heath.github.io/ManticoreGenerator/data/tails.txt',
             'https://jordan-heath.github.io/ManticoreGenerator/data/wings.txt'
@@ -36,7 +48,7 @@ async function LoadAsync() {
 
         [
             heads,
-            torsos,
+            bodies,
             hinds,
             tails,
             wings
@@ -49,32 +61,42 @@ async function LoadAsync() {
 }
 
 function UpdateResult() {
-    SelectedHead = randomArrayValue(heads);
-    SelectedBody = randomArrayValue(torsos);
-    SelectedHind = randomArrayValue(hinds);
-    SelectedTail = randomArrayValue(tails);
-    SelectedWing = randomArrayValue(wings);
-    //SelectedMentalIllness = randomArrayValue(mentalIllnesses);
+    if (!headCheckboxElement.checked) {
+        SelectedHead = randomArrayValue(heads);
+    }
+    if (!bodyCheckboxElement.checked) {
+        SelectedBody = randomArrayValue(bodies);
+    }
+    if (!hindCheckboxElement.checked) {
+        SelectedHind = randomArrayValue(hinds);
+    }
+    if (!tailCheckboxElement.checked) {
+        if (getRandomNumber(0, 100) > 30)
+        {
+            SelectedTail = randomArrayValue(tails);
+        }
+        else
+        {
+            SelectedTail = "None";
+        }
+    }
+    if (!wingCheckboxElement.checked) {
+        if (getRandomNumber(0, 100) > 70)
+        {
+            SelectedWing = randomArrayValue(wings);
+        }
+        else
+        {
+            SelectedWing = "None";
+        }
+    }
 
-    // Example result:
-    let manticoreContent = "";
-    manticoreContent += "<table>";
-    manticoreContent += `<tr><th>Head</th><td>${SelectedHead}</td></tr>`
-    manticoreContent += `<tr><th>Body</th><td>${SelectedBody}</td></tr>`
-    manticoreContent += `<tr><th>Hind</th><td>${SelectedHind}</td></tr>`
-    if (getRandomNumber(0, 10) > 3) {
-        manticoreContent += `<tr><th>Tail</th><td>${SelectedTail}</td></tr>`
-    }
-    if (getRandomNumber(0, 10) > 7) {
-        manticoreContent += `<tr><th>Wings</th><td>${SelectedWing}</td></tr>`
-    }
-    manticoreContent += "</table>";
-    
-    resultDisplay.innerHTML = manticoreContent;
+    headElement.innerText = SelectedHead;
+    bodyElement.innerText = SelectedBody;
+    hindElement.innerText = SelectedHind;
+    tailElement.innerText = SelectedTail;
+    wingElement.innerText = SelectedWing;
 }
-
-const generateButton = document.getElementById("generateButton");
-const resultDisplay = document.getElementById("result");
 
 document.addEventListener("DOMContentLoaded", () => {
     LoadAsync();

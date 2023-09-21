@@ -20,3 +20,4 @@ Rooster
 Bear
 Tiger
 Fish
+Bug

@@ -12,15 +12,46 @@
     </header>
     <main>
         <div class="generator">
-            <button id="generateButton">Generate Manticore</button>
-            
+            <table>
+                <tr>
+                    <th>Body Part</th>
+                    <th>Animal</th>
+                    <th>Lock</th>
+                </tr>
+                <tr>
+                    <th>Head</th>
+                    <td id="head"></td>
+                    <td><input type="checkbox" id="headCheckbox"></td>
+                </tr>
+                <tr>
+                    <th>Body</th>
+                    <td id="body"></td>
+                    <td><input type="checkbox" id="bodyCheckbox"></td>
+                </tr>
+                <tr>
+                    <th>Hind</th>
+                    <td id="hind"></td>
+                    <td><input type="checkbox" id="hindCheckbox"></td>
+                </tr>
+                <tr>
+                    <th>Tail</th>
+                    <td id="tail"></td>
+                    <td><input type="checkbox" id="tailCheckbox"></td>
+                </tr>
+                <tr>
+                    <th>Wings</th>
+                    <td id="wings"></td>
+                    <td><input type="checkbox" id="wingCheckbox"></td>
+                </tr>
+            </table>
             <div id="result"></div>
+            <button id="generateButton">Generate Manticore</button>
         </div>
     </main>
     <script src="script.js"></script>
 
-    <div class="footer">
+    <footer>
         <a href="../index.html">Back</a>
-    </div>
+    <footer>
 </body>
 </html>

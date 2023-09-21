@@ -60,7 +60,8 @@ table {
     table-layout: fixed;
 }
 
-th, td {
+th,
+td {
     padding: 8px;
     border-bottom: 1px solid #ddd;
     text-align: left;
@@ -81,4 +82,27 @@ tr:nth-child(even) {
 
 tr:hover {
     background-color: #ddd;
+}
+
+/* Set specific widths for each column */
+th:nth-child(1),
+td:nth-child(1) {
+    width: 45%;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+    width: 45%;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+    width: 10%;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    position: sticky;
+    bottom: 0;
 }

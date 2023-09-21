@@ -11,3 +11,5 @@ Goat
 Snake
 Tiger
 Fish
+Peacock
+Bug
