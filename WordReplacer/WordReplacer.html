@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Word Replacement Tool</title>
+</head>
+<body>
+    <h1>Word Replacement Tool</h1>
+
+    <label for="textInput">Enter your text:</label>
+    <textarea id="textInput" rows="6" cols="40"></textarea>
+
+    <br>
+
+    <label for="replacementWord">Word to replace:</label>
+    <input type="text" id="replacementWord" placeholder="cookie">
+    
+    <label for="replaceWith">Replace with:</label>
+    <input type="text" id="replaceWith" placeholder="poo">
+    
+    <button onclick="replaceWords()">Replace</button>
+
+    <div id="output"></div>
+
+    <script>
+        function replaceWords() {
+            const textInput = document.getElementById("textInput").value;
+            const replacementWord = document.getElementById("replacementWord").value;
+            const replaceWith = document.getElementById("replaceWith").value;
+            
+            // Filter inappropriate content (e.g., "poo")
+            /*if (textInput.includes("poo")) {
+                alert("Inappropriate content detected. Please refrain from using offensive words.");
+                return;
+            }*/
+
+            const replacedText = textInput.replace(new RegExp(replacementWord, 'gi'), replaceWith);
+            document.getElementById("output").textContent = replacedText;
+        }
+    </script>
+</body>
+</html>
