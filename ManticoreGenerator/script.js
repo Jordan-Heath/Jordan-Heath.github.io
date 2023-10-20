@@ -4,7 +4,7 @@ let heads = [];
 let bodies = [];
 let hinds = [];
 let tails = [];
-let wings =[];
+let wings = [];
 //values
 let SelectedHead = "";
 let SelectedBody = "";
@@ -12,18 +12,18 @@ let SelectedHind = "";
 let SelectedTail = "";
 let SelectedWing = "";
 //page elements
-const generateButton = document.getElementById("generateButton");
-const resultDisplay = document.getElementById("result");
-const headElement = document.getElementById("head");
-const bodyElement = document.getElementById("body");
-const hindElement = document.getElementById("hind");
-const tailElement = document.getElementById("tail");
-const wingElement = document.getElementById("wings");
-const headCheckboxElement = document.getElementById("headCheckbox")
-const bodyCheckboxElement = document.getElementById("bodyCheckbox")
-const hindCheckboxElement = document.getElementById("hindCheckbox")
-const tailCheckboxElement = document.getElementById("tailCheckbox")
-const wingCheckboxElement = document.getElementById("wingCheckbox")
+let generateButton = document.getElementById("generateButton");
+let resultDisplay = document.getElementById("result");
+let headElement = document.getElementById("head");
+let bodyElement = document.getElementById("body");
+let hindElement = document.getElementById("hind");
+let tailElement = document.getElementById("tail");
+let wingElement = document.getElementById("wings");
+let headCheckboxElement = document.getElementById("headCheckbox");
+let bodyCheckboxElement = document.getElementById("bodyCheckbox");
+let hindCheckboxElement = document.getElementById("hindCheckbox");
+let tailCheckboxElement = document.getElementById("tailCheckbox");
+let wingCheckboxElement = document.getElementById("wingCheckbox");
 
 function randomArrayValue(array) {
     return array[Math.floor(Math.random() * array.length)];
@@ -71,22 +71,18 @@ function UpdateResult() {
         SelectedHind = randomArrayValue(hinds);
     }
     if (!tailCheckboxElement.checked) {
-        if (getRandomNumber(0, 100) > 30)
-        {
+        if (getRandomNumber(0, 100) > 30) {
             SelectedTail = randomArrayValue(tails);
         }
-        else
-        {
+        else {
             SelectedTail = "None";
         }
     }
     if (!wingCheckboxElement.checked) {
-        if (getRandomNumber(0, 100) > 70)
-        {
+        if (getRandomNumber(0, 100) > 70) {
             SelectedWing = randomArrayValue(wings);
         }
-        else
-        {
+        else {
             SelectedWing = "None";
         }
     }
@@ -99,6 +95,19 @@ function UpdateResult() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    generateButton = document.getElementById("generateButton");
+    resultDisplay = document.getElementById("result");
+    headElement = document.getElementById("head");
+    bodyElement = document.getElementById("body");
+    hindElement = document.getElementById("hind");
+    tailElement = document.getElementById("tail");
+    wingElement = document.getElementById("wings");
+    headCheckboxElement = document.getElementById("headCheckbox")
+    bodyCheckboxElement = document.getElementById("bodyCheckbox")
+    hindCheckboxElement = document.getElementById("hindCheckbox")
+    tailCheckboxElement = document.getElementById("tailCheckbox")
+    wingCheckboxElement = document.getElementById("wingCheckbox")
+
     LoadAsync();
 
     generateButton.addEventListener("click", () => {
