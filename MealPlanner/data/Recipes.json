@@ -1,0 +1,19 @@
+Recipes
+{
+    {
+        title = "macaroni salad";
+        ingredients = {
+            macaroni, 500g
+        }
+        description = "";
+        method = "";
+    },
+    {
+        title = recipe 2;
+        ingredients = {
+            ingredient, measurement
+        }
+        description = "";
+        method = "";
+    }
+}

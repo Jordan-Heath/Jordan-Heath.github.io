@@ -1,0 +1,8 @@
+Products
+{
+    Macaroni Packet
+    {
+        ingredients = "macaroni"
+        measure = 500g
+    }
+}
