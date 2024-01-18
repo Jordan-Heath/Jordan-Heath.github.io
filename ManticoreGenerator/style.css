@@ -46,6 +46,7 @@ button {
     color: var(--Black);
     border: none;
     padding: 10px 20px;
+    margin: 10px 0px;
     cursor: pointer;
 }
 
@@ -139,4 +140,8 @@ a:hover {
     font-size: 16px;
     user-select: none;
     width: 50px;
+}
+
+details:hover {
+    cursor: pointer;
 }

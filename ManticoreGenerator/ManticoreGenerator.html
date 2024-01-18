@@ -51,18 +51,22 @@
                 </tr>
             </table>
 
-            <div class="TailChanceControl">
-                <label for="TailChance">Chance of Tail: </label>
-                <input type="number" id="TailChance" class="numeric-input" min="0" max="100" value="70" onkeydown="return false;">%
-            </div>
-
-            <div class="WingChanceControl">
-                <label for="WingsChance">Chance of Wings: </label>
-                <input type="number" id="WingsChance" class="numeric-input" min="0" max="100" value="30" onkeydown="return false;">%
-            </div>
-
             <div id="result"></div>
             <button id="generateButton">Generate Manticore</button>
+
+            <details>
+                <summary>Settings</summary>
+                <div class="TailChanceControl">
+                    <label for="TailChance">Chance of Tail: </label>
+                    <input type="number" id="TailChance" class="numeric-input" min="0" max="100" value="70" onkeydown="return false;">%
+                </div>
+    
+                <div class="WingChanceControl">
+                    <label for="WingsChance">Chance of Wings: </label>
+                    <input type="number" id="WingsChance" class="numeric-input" min="0" max="100" value="30" onkeydown="return false;">%
+                </div>
+            </details>
+            
         </div>
     </main>
 
