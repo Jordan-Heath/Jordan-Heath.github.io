@@ -7,6 +7,25 @@ body {
   align-items: center;
 }
 
+.homebtn {
+  margin: 0px;
+  width: 55px;
+}
+
+header {
+  background-color: var(--IndigoDye);
+  padding: 1rem 0;
+}
+
+.header-container {
+  margin: auto;
+  width: 640px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -24,7 +43,7 @@ article {
 }
 
 h1 {
-  margin: 40px 0;
+  margin: 10px 140px 0 0;
   font-size: 36px;
   color: #fff;
   text-align: center;
