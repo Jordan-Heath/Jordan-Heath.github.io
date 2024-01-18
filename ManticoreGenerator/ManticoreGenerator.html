@@ -14,7 +14,10 @@
 
 <body>
     <header>
-        <h1>Manticore Generator</h1>
+        <div class="header-container">
+            <button onclick="location.href='../index.html'" type="button" class="homebtn">&#8592;</button>
+            <h1>Manticore Generator</h1>
+        </div>
     </header>
     <main>
         <div class="generator">
@@ -58,21 +61,25 @@
                 <summary>Settings</summary>
                 <div class="TailChanceControl">
                     <label for="TailChance">Chance of Tail: </label>
-                    <input type="number" id="TailChance" class="numeric-input" min="0" max="100" value="70" onkeydown="return false;">%
+                    <input type="number" id="TailChance" class="numeric-input" min="0" max="100" value="70"
+                        onkeydown="return false;">%
                 </div>
-    
+
                 <div class="WingChanceControl">
                     <label for="WingsChance">Chance of Wings: </label>
-                    <input type="number" id="WingsChance" class="numeric-input" min="0" max="100" value="30" onkeydown="return false;">%
+                    <input type="number" id="WingsChance" class="numeric-input" min="0" max="100" value="30"
+                        onkeydown="return false;">%
                 </div>
             </details>
-            
+
         </div>
     </main>
 
+    <!--
     <footer>
         <a href="../index.html">Back</a>
-        <footer>
+    </footer>
+    -->
 </body>
 
 </html>

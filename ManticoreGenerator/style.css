@@ -17,14 +17,26 @@ body {
     padding: 0;
 }
 
+.homebtn {
+    width: 55px;
+}
+
 header {
     background-color: var(--IndigoDye);
-    text-align: center;
     padding: 1rem 0;
 }
 
+.header-container {
+    margin: auto;
+    width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+
 h1 {
-    margin: 0;
+    margin: 0 140px 0 0;
 }
 
 main {
