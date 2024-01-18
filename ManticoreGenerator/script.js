@@ -23,6 +23,8 @@ let bodyCheckboxElement = document.getElementById("bodyCheckbox");
 let hindCheckboxElement = document.getElementById("hindCheckbox");
 let tailCheckboxElement = document.getElementById("tailCheckbox");
 let wingCheckboxElement = document.getElementById("wingCheckbox");
+let TailChanceElement = document.getElementById("TailChance");
+let WingChanceElement = document.getElementById("WingsChance");
 
 function randomArrayValue(array) {
     return array[Math.floor(Math.random() * array.length)];
@@ -79,7 +81,7 @@ function UpdateResult() {
         SelectedHind = randomArrayValue(hinds);
     }
     if (!tailCheckboxElement.checked) {
-        if (getRandomNumber(0, 100) > 30) {
+        if (getRandomNumber(0, 100) < TailChanceElement.value) {
             SelectedTail = randomArrayValue(tails);
         }
         else {
@@ -87,7 +89,7 @@ function UpdateResult() {
         }
     }
     if (!wingCheckboxElement.checked) {
-        if (getRandomNumber(0, 100) > 70) {
+        if (getRandomNumber(0, 100) < WingChanceElement.value) {
             SelectedWing = randomArrayValue(wings);
         }
         else {
@@ -110,11 +112,14 @@ document.addEventListener("DOMContentLoaded", () => {
     hindElement = document.getElementById("hind");
     tailElement = document.getElementById("tail");
     wingElement = document.getElementById("wings");
-    headCheckboxElement = document.getElementById("headCheckbox")
-    bodyCheckboxElement = document.getElementById("bodyCheckbox")
-    hindCheckboxElement = document.getElementById("hindCheckbox")
-    tailCheckboxElement = document.getElementById("tailCheckbox")
-    wingCheckboxElement = document.getElementById("wingCheckbox")
+    headCheckboxElement = document.getElementById("headCheckbox");
+    bodyCheckboxElement = document.getElementById("bodyCheckbox");
+    hindCheckboxElement = document.getElementById("hindCheckbox");
+    tailCheckboxElement = document.getElementById("tailCheckbox");
+    wingCheckboxElement = document.getElementById("wingCheckbox");
+    TailChanceElement = document.getElementById("TailChance");
+    WingChanceElement = document.getElementById("WingsChance");
+
 
     LoadAsync();
 

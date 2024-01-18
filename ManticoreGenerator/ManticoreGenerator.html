@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3533406510685034"
-     crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -49,6 +50,17 @@
                     <td><input title="wingCheckbox" type="checkbox" id="wingCheckbox"></td>
                 </tr>
             </table>
+
+            <div class="TailChanceControl">
+                <label for="TailChance">Chance of Tail: </label>
+                <input type="number" id="TailChance" class="numeric-input" min="0" max="100" value="70" onkeydown="return false;">%
+            </div>
+
+            <div class="WingChanceControl">
+                <label for="WingsChance">Chance of Wings: </label>
+                <input type="number" id="WingsChance" class="numeric-input" min="0" max="100" value="30" onkeydown="return false;">%
+            </div>
+
             <div id="result"></div>
             <button id="generateButton">Generate Manticore</button>
         </div>
@@ -56,6 +68,7 @@
 
     <footer>
         <a href="../index.html">Back</a>
-    <footer>
+        <footer>
 </body>
+
 </html>

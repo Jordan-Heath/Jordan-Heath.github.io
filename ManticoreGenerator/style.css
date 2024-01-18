@@ -1,6 +1,6 @@
 :root {
     --Black: #000;
-    --SpaceCadet: #1B2845; 
+    --SpaceCadet: #1B2845;
     --IndigoDye: #274060;
     --LapisLazuli: #335C81;
     --SteelBlue: #467EAF;
@@ -124,4 +124,19 @@ a {
 a:hover {
     text-decoration: underline;
     cursor: pointer;
+}
+
+.TailChanceControl,
+.WingChanceControl {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.TailChanceControl input,
+.WingChanceControl input {
+    padding: 5px;
+    font-size: 16px;
+    user-select: none;
+    width: 50px;
 }
