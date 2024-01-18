@@ -19,22 +19,65 @@
         <div class="navigationbar">
             <button onclick="location.href='index.html'" type="button" class="homebtn">Home</button>
             <div class="dropdown">
-                <button onclick="location.href='projects.html'" class="dropbtn">Projects</button>
+                <button class="dropbtn">Projects &#9776;</button>
                 <div class="dropdown-content">
                     <a href="CharacterGenerator/CharacterGenerator.html">Character Generator</a>
                     <a href="PercentageClock/PercentageClock.html">Percentage Clock</a>
                     <a href="ManticoreGenerator/ManticoreGenerator.html">Manticore Generator</a>
                     <a href="WordScrambler/WordScrambler.html">WordScrambler</a>
                 </div>
-            </div>
-            <button onclick="location.href='https://github.com/Jordan-Heath'" type="button"
+            </div>            
+            <button onclick="location.href='https\://github.com/Jordan-Heath'" type="button"
                 class="gitbtn">Github</button>
         </div>
 
         <div class="container">
-            <h2>Welcome!</h2>
-            <p>Hi there, I'm a software developer experimenting and building a few apps.</p>
-            <p>I use this site to host a collection of projects. You can find me via the github link on the navigation bar.</p>
+            <h2>Explore my collection of projects!</h2>
+            <p>Most of my work I am not sharing publicly. This is not a thorough representation of my work.</p>
+
+            <h3 onclick="location.href='CharacterGenerator/CharacterGenerator.html'">Character Generator</h3>
+            <p>I was familiar with name generators, but i wanted to have my own spin on it by adding a few extra
+                features.</p>
+            <ul>
+                <li>Names composed of different sylabols</li>
+                <li>A few demographic details about the character</li>
+                <li>A stat list for each character</li>
+            </ul>
+            <p>The characters come out pretty silly, but I thought it was fun.</p>
+
+            <h3 onclick="location.href='PercentageClock/PercentageClock.html'">Percentage Clock</h3>
+            <p>On hard days its nice to know how much of the day you need to get through before its over. Percentage
+                clock gives it in a simple number. It doesn't provide much comfort as i got a little carried away with
+                the css animation library. A few features are:</p>
+            <ul>
+                <li>Kind of tells you the time</li>
+                <li>Transitions from red to green throughout the day</li>
+                <li>Pulses like your heart does</li>
+                <li>You can press on the number and it makes an annoying noise that raises in pitch and makes you feel
+                    uneasy</li>
+            </ul>
+            <p>Wouldn't recommend this one</p>
+
+            <h3 onclick="location.href='ManticoreGenerator/ManticoreGenerator.html'">Manticore Generator</h3>
+            <p>A friend of mine saw the character generator and was working on making some manticores for a personal
+                project. they asked if i could make something similar to help them with the process. I added a few extra
+                features to help them:</p>
+            <ul>
+                <li>Random chance of not adding tail/wings</li>
+                <li>Able to lock body parts so they aren't randomised</li>
+            </ul>
+            <p>Otherwise it is very similar to CharacterGenerator</p>
+
+            <h3 onclick="location.href='WordScrambler/WordScrambler.html'">Word Scrambler</h3>
+            <p>Incomplete. I made this a while ago to try and replicate a horrible mode of speech I was exposed to. I
+                just need to port it over</p>
+
+            <h3 onclick="location.href='MealPlanner/MealPlanner.html'">Meal Planner</h3>
+            <p>Incomplete. Intended to help me plan out my meals. I plan on storing a lot of regular meals in json, then
+                allowing to search by criteria.</p>
+
+            <!--<h3 onclick="location.href=''"></h3>-->
+
         </div>
 
     </main>
