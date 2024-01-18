@@ -1,13 +1,24 @@
+:root {
+    --Black: #000;
+    --SpaceCadet: #1B2845; 
+    --IndigoDye: #274060;
+    --LapisLazuli: #335C81;
+    --SteelBlue: #467EAF;
+    --UnitedNationsBlue: #659cda;
+    --UranianBlue: #81b6f0;
+    --White: #fff;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: var(--SpaceCadet);
+    color: var(--White);
     margin: 0;
     padding: 0;
 }
 
 header {
-    background-color: #333;
-    color: #fff;
+    background-color: var(--IndigoDye);
     text-align: center;
     padding: 1rem 0;
 }
@@ -20,7 +31,7 @@ main {
     max-width: 600px;
     margin: 2rem auto;
     padding: 1rem;
-    background-color: #fff;
+    background-color: var(--SteelBlue);
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -30,27 +41,16 @@ main {
     flex-direction: column;
 }
 
-label {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
 button {
-    background-color: #333;
-    color: #fff;
+    background-color: var(--UnitedNationsBlue);
+    color: var(--Black);
     border: none;
     padding: 10px 20px;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #555;
-}
-
-#result {
-    margin-top: 20px;
-    font-weight: bold;
-    text-align: center;
+    background-color: var(--UranianBlue);
 }
 
 table {
@@ -63,40 +63,48 @@ table {
 th,
 td {
     padding: 8px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--UranianBlue);
     text-align: left;
 }
 
 th {
-    background-color: #333;
-    color: #fff;
-}
-
-td {
+    background-color: var(--SpaceCadet);
+    color: var(--White);
     text-align: center;
 }
 
+td {
+    text-align: left;
+}
+
+tr:nth-child(odd) {
+    background-color: var(--LapisLazuli);
+}
+
 tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: var(--IndigoDye);
 }
 
 tr:hover {
-    background-color: #ddd;
+    background-color: var(--SteelBlue);
 }
 
 /* Set specific widths for each column */
 th:nth-child(1),
 td:nth-child(1) {
-    width: 45%;
+    min-width: 20px;
+    width: 25%;
 }
 
 th:nth-child(2),
 td:nth-child(2) {
-    width: 45%;
+    min-width: 50px;
+    width: 65%;
 }
 
 th:nth-child(3),
 td:nth-child(3) {
+    min-width: 10px;
     width: 10%;
 }
 
@@ -105,4 +113,15 @@ footer {
     padding: 10px;
     position: sticky;
     bottom: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: text;
+}
+
+a:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }

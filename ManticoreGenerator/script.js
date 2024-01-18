@@ -13,7 +13,6 @@ let SelectedTail = "";
 let SelectedWing = "";
 //page elements
 let generateButton = document.getElementById("generateButton");
-let resultDisplay = document.getElementById("result");
 let headElement = document.getElementById("head");
 let bodyElement = document.getElementById("body");
 let hindElement = document.getElementById("hind");
@@ -31,6 +30,15 @@ function randomArrayValue(array) {
 
 function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function convertToBingImagesLink(animal, bodypart) {
+    if (animal == "None") {
+        return "None";
+    }
+    // I dont want to include the specific part of the body in the image search
+    //return "<a href=\"https://www.bing.com/images/search?q=" + animal.replace(/\s/g, '+') + "+" + bodypart + "+animal\" target=\"_blank\">" + animal + "</a>";
+    return "<a href=\"https://www.bing.com/images/search?q=" + animal.replace(/\s/g, '+') + "+animal\" target=\"_blank\">" + animal + "</a>";
 }
 
 async function LoadAsync() {
@@ -87,16 +95,16 @@ function UpdateResult() {
         }
     }
 
-    headElement.innerText = SelectedHead;
-    bodyElement.innerText = SelectedBody;
-    hindElement.innerText = SelectedHind;
-    tailElement.innerText = SelectedTail;
-    wingElement.innerText = SelectedWing;
+    //"<a href=\"https://www.bing.com/images/search?q=" +  + "\" target=\"_blank\">" +  + "</a>";
+    headElement.innerHTML = convertToBingImagesLink(SelectedHead, "Head");
+    bodyElement.innerHTML = convertToBingImagesLink(SelectedBody, "Body");
+    hindElement.innerHTML = convertToBingImagesLink(SelectedHind, "Hind");
+    tailElement.innerHTML = convertToBingImagesLink(SelectedTail, "Tail");
+    wingElement.innerHTML = convertToBingImagesLink(SelectedWing, "Wing");
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     generateButton = document.getElementById("generateButton");
-    resultDisplay = document.getElementById("result");
     headElement = document.getElementById("head");
     bodyElement = document.getElementById("body");
     hindElement = document.getElementById("hind");
