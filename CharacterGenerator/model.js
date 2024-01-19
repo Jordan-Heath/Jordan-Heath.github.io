@@ -23,6 +23,7 @@ class CharacterModel {
     async loadData() {
         try {
             const fetchUrls = [
+                //'https://jordan-heath.github.io/CharacterGenerator/data/first-names.txt',
                 'https://jordan-heath.github.io/CharacterGenerator/data/name-prefixes.txt',
                 'https://jordan-heath.github.io/CharacterGenerator/data/name-middles.txt',
                 'https://jordan-heath.github.io/CharacterGenerator/data/name-suffixes.txt',
@@ -57,7 +58,7 @@ class CharacterModel {
         this.selectedRace = randomArrayValue(this.races);
         this.selectedClass = randomArrayValue(this.classes);
         this.selectedBackground = randomArrayValue(this.backgrounds);
-        this.selectedAge = 10 * weightedRandom([2, 3, 4, 5, 6, 7, 8, 9], [14, 12, 10, 8, 6, 4, 2, 1]) + getRandomNumber(0, 9);
+        this.selectedAge = 10 * weightedRandom([2, 3, 4, 5, 6, 7, 8, 9], [128, 64, 32, 16, 8, 4, 2, 1]) + getRandomNumber(0, 9);
         this.selectedHeight = `${getRandomNumber(heightFeetMinimum, heightFeetMaximum)}ft ${getRandomNumber(0, 11)}inches`;
         this.selectedWeight = `${getRandomNumber(weightKiloMinimum, weightKiloMaximum)}kgs`;
         this.abilityScores = this.generateAbilityScores();
@@ -66,12 +67,15 @@ class CharacterModel {
     generateAbilityScores() {
         const abilityScores = {};
 
+        //set abilities to minimum
         this.abilityNames.forEach((abilityName) => {
             abilityScores[abilityName] = abilityScoreMinimum;
         });
 
+        //set the remaining score to total MINUS minimums assigned
         let remainingPoints = abilityScoreTotal - abilityScoreMinimum * this.abilityNames.length;
 
+        //select random ability, give it a point, subtract from remaining
         while (remainingPoints > 0) {
             const randomAbilityIndex = getRandomNumber(0, this.abilityNames.length - 1);
             const abilityName = this.abilityNames[randomAbilityIndex];

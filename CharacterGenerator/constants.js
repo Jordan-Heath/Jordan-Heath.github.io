@@ -1,7 +1,7 @@
 //consts
-const abilityScoreTotal = 75;
-const abilityScoreMinimum = 8;
-const abilityScoreMaximum = 20;
+const abilityScoreTotal = 72; 
+const abilityScoreMinimum = 8; //default 8
+const abilityScoreMaximum = 20; //default 20
 
 const ageMinimum = 18;
 const ageMaximum = 100;
