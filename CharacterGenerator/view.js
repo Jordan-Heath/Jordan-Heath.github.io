@@ -15,7 +15,7 @@ class CharacterView {
         // Remove animation class after animation completes
         setTimeout(() => {
             this.characterSheetElement.classList.remove('animate');
-        }, 500); // Match animation duration
+        }, 400); // Match animation duration
     }
 
     updateCharacterSheet(model) {

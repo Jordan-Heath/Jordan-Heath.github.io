@@ -17,7 +17,7 @@
 
 body {
   /*background-color: var(--Almond);*/
-  background-image: url("background.jpeg");
+  background-image: url("background.jpeg"); /* Source: https://www.pexels.com/photo/empty-brown-canvas-235985/ */
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
@@ -99,18 +99,18 @@ td {
 button {
   padding: 10px 20px;
   margin: 30px 0px;
-  background-color: var(--PigmentGreen); /* Nice green button color */
+  background-color: var(--PigmentGreen);
   border: none;
   color: var(--Almond);
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
   border-radius: 6px;
-  box-shadow: 0 4px 6px var(--DropShadow); /* Drop shadow */
+  box-shadow: 0 4px 6px var(--DropShadow);
 }
 
 button:hover {
-  background-color: var(--ForestGreen); /* Darker green on hover */
+  background-color: var(--ForestGreen);
   transform: scale(1.05);
 }
 
@@ -119,15 +119,13 @@ button:hover {
   50% { transform: rotate(-5deg); }
 }
 
-/* Define animation */
-@keyframes bulgeAnimation {
+@keyframes randomiseAnimation {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.1); }
 }
 
-/* Apply animation class */
 .animate {
-  animation: bulgeAnimation 0.5s ease-in-out forwards;
+  animation: randomiseAnimation 0.4s ease-in-out forwards;
 }
 
 .footer {
