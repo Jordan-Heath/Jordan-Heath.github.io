@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Teller</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <script src="story.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3533406510685034"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <button onclick="location.href='../index.html'" type="button" class="homebtn">&#8592;</button>
+            <h1>Story Teller</h1>
+        </div>
+    </header>
+    <!-- <h3>inspired by madlibs</h3> -->
+
+    <main>
+        <div id="storySelect">
+            <label for="storySelector">Choose a story:</label>
+            <select id="storySelector" onchange="storySelected()">
+                <option value="" disabled selected>Select a story</option>
+                <!-- The stories are loaded in Javascript on page load -->
+            </select>
+        </div>
+
+        <div id="storyDetails">
+            <!-- create inputs based on the details needed to complete the story -->
+        </div>
+
+        <div id="storyOutput">
+
+        </div>
+    </main>
+
+</body>
+
+</html>

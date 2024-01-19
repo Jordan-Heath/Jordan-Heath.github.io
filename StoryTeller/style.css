@@ -1,0 +1,21 @@
+header {
+    padding: 1rem 0;
+}
+
+.header-container {
+    margin: auto;
+    max-width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.homebtn {
+    margin: 0px;
+    width: 10%;
+}
+
+h1 {
+    margin: 0 20% 0 5%;
+}
