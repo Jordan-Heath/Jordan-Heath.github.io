@@ -1,6 +1,6 @@
 class CharacterView {
     constructor() {
-        this.articleElement = document.getElementById("article");
+        this.characterSheetElement = document.getElementById("characterSheet");
         this.nameElement = document.getElementById("characterName");
         this.characterInfo = document.getElementById("characterInfo");
         this.raceElement = document.getElementById("characterRace");
@@ -10,11 +10,11 @@ class CharacterView {
     }
 
     animateRandomise() {
-        this.articleElement.classList.add('animate');
+        this.characterSheetElement.classList.add('animate');
 
         // Remove animation class after animation completes
         setTimeout(() => {
-            this.articleElement.classList.remove('animate');
+            this.characterSheetElement.classList.remove('animate');
         }, 500); // Match animation duration
     }
 
@@ -40,10 +40,10 @@ class CharacterView {
 
     printAbilities(abilityScores) {
         let tableHTML = '';
-        tableHTML += '<tr><th>Ability</th><th>Score</th></tr>';
+        //tableHTML += '<tr><th>Ability</th><th>Score</th></tr>';
 
         for (const ability in abilityScores) {
-            tableHTML += `<tr><td>${ability}</td><td>${abilityScores[ability]}</td></tr>`;
+            tableHTML += `<tr><th>${ability}</th><td>${abilityScores[ability]}</td></tr>`;
         }
 
         tableHTML += '';

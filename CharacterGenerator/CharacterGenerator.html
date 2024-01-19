@@ -14,38 +14,29 @@
     <script src="utils.js"></script>
     <script src="constants.js"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3533406510685034"
-    crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <div class="content">
-        <header>
-            <div class="header-container">
-                <button onclick="location.href='../index.html'" type="button" class="homebtn">&#8592;</button>
-                <h1>Character Generator</h1>
-            </div>
-        </header>
-        <div class="container">
-            <article id="article">
-                <h2 id="characterName"></h2>
-    
-                <table id="characterInfo">
-                    <!-- Character info will be generated here -->
-                </table>
-    
-                <table id="characterAbilities">
-                    <!-- Abilities table content will be generated here -->
-                </table>
-    
-                
-            </article>
-            
+    <header>
+        <div class="header-container">
+            <button onclick="location.href='../index.html'" type="button" class="homebtn">&#8592;</button>
+            <h1>Character Generator</h1>
         </div>
-        <div class="container">
-            <button id="generateButton">Generate Character</button>
-        </div>
+    </header>
+    <div id="characterSheet">
+        <h2 id="characterName"></h2>
+
+        <table id="characterInfo">
+            <!-- Character info will be generated here -->
+        </table>
+
+        <table id="characterAbilities">
+            <!-- Abilities table content will be generated here -->
+        </table>
     </div>
-    
+    <button id="generateButton">Generate Character</button>
+
     <!--
     <div class="footer">
         <a href="../index.html">Back</a>
