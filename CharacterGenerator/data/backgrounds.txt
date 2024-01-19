@@ -1,47 +1,47 @@
 Adventurer's Guild Member
-Sorcerer's Apprentice
-Dragon Tamer
-Cursed Knight
-Forest Guardian
-Wandering Bard
-Shadow Assassin
-Royal Court Jester
-Treasure Hunter
-Elven Diplomat
-Alchemy Scholar
-Shipwreck Survivor
-Celestial Ambassador
-Fey Enchanter
-Rogue Archeologist
-Arcane Librarian
-Nomadic Druid
-Undead Slayer
-Gladiator Champion
-Professional Pillow Fighter
-Grandmaster of Hide-and-Seek
-Unicorn Whisperer
-Pie Eating Contest Champion
-Chief Pumpkin Carver
-Master of Puddle Jumping
-Extreme Cloud Watcher
-World's Best Lint Collector
-Professional Rubber Duck Racer
-Supreme Doodler of Stick Figures
-Potioneer
-Minstrel
-Scribe
-Blacksmith
-Archmage
-Tracker
-Enchanter
 Alchemist
+Alchemy Scholar
+Arcane Librarian
+Archmage
 Artisan
+Blacksmith
+Celestial Ambassador
 Charlatan
+Chief Pumpkin Carver
+Cursed Knight
+Dragon Tamer
+Elven Diplomat
+Enchanter
 Entertainer
+Extreme Cloud Watcher
+Fey Enchanter
 Folk Hero
+Forest Guardian
+Gladiator Champion
+Grandmaster of Hide-and-Seek
 Guild Artisan
-Noble
 Hermit
+Master of Puddle Jumping
+Minstrel
+Noble
+Nomadic Druid
 Outlander
+Pie Eating Contest Champion
+Potioneer
+Professional Pillow Fighter
+Professional Rubber Duck Racer
+Rogue Archeologist
+Royal Court Jester
 Sage
+Scribe
+Shadow Assassin
+Shipwreck Survivor
 Soldier
+Sorcerer's Apprentice
+Supreme Doodler of Stick Figures
+Tracker
+Treasure Hunter
+Undead Slayer
+Unicorn Whisperer
+Wandering Bard
+World's Best Lint Collector
