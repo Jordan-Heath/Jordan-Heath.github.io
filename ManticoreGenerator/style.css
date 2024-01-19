@@ -1,12 +1,15 @@
 :root {
     --Black: #000;
+    --White: #fff;
+
     --SpaceCadet: #1B2845;
     --IndigoDye: #274060;
     --LapisLazuli: #335C81;
     --SteelBlue: #467EAF;
     --UnitedNationsBlue: #659cda;
     --UranianBlue: #81b6f0;
-    --White: #fff;
+    
+    --DropShadow: rgba(0, 0, 0, 0.4);
 }
 
 body {
@@ -17,10 +20,6 @@ body {
     padding: 0;
 }
 
-.homebtn {
-    width: 55px;
-}
-
 header {
     background-color: var(--IndigoDye);
     padding: 1rem 0;
@@ -28,42 +27,46 @@ header {
 
 .header-container {
     margin: auto;
-    width: 600px;
+    max-width: 600px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     text-align: center;
 }
 
-h1 {
-    margin: 0 140px 0 0;
+.homebtn {
+    margin: 0px;
+    width: 10%;
 }
 
-main {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 1rem;
-    background-color: var(--SteelBlue);
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+h1 {
+    margin: 0 20% 0 5%;
 }
 
 .generator {
+    max-width: 568px;
+    margin: 2rem auto;
+    padding: 16px;
+    background-color: var(--SteelBlue);
+    border-radius: 5px;
+    box-shadow: 0 0 10px var(--DropShadow);
     display: flex;
     flex-direction: column;
 }
 
 button {
     background-color: var(--UnitedNationsBlue);
-    color: var(--Black);
+    color: var(--White);
     border: none;
+    border-radius: 6px;
     padding: 10px 20px;
-    margin: 10px 0px;
+    margin: 10px auto;
     cursor: pointer;
 }
 
 button:hover {
     background-color: var(--UranianBlue);
+    transform: scale(1.05);
 }
 
 table {
@@ -102,22 +105,18 @@ tr:hover {
     background-color: var(--SteelBlue);
 }
 
-/* Set specific widths for each column */
 th:nth-child(1),
 td:nth-child(1) {
-    min-width: 20px;
     width: 25%;
 }
 
 th:nth-child(2),
 td:nth-child(2) {
-    min-width: 50px;
     width: 65%;
 }
 
 th:nth-child(3),
 td:nth-child(3) {
-    min-width: 10px;
     width: 10%;
 }
 
@@ -148,12 +147,12 @@ a:hover {
 
 .TailChanceControl input,
 .WingChanceControl input {
-    padding: 5px;
+    padding: 0 0 0 0;
     font-size: 16px;
     user-select: none;
-    width: 50px;
+    min-width: 100px;
 }
 
-details:hover {
+summary:hover {
     cursor: pointer;
 }

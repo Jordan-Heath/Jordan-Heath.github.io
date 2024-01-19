@@ -19,67 +19,56 @@
             <h1>Manticore Generator</h1>
         </div>
     </header>
-    <main>
-        <div class="generator">
-            <table>
-                <tr>
-                    <th>Body Part</th>
-                    <th>Animal</th>
-                    <th>Lock</th>
-                </tr>
-                <tr>
-                    <th>Head</th>
-                    <td id="head"></td>
-                    <td><input title="headCheckbox" type="checkbox" id="headCheckbox"></td>
-                </tr>
-                <tr>
-                    <th>Body</th>
-                    <td id="body"></td>
-                    <td><input title="bodyCheckbox" type="checkbox" id="bodyCheckbox"></td>
-                </tr>
-                <tr>
-                    <th>Hind</th>
-                    <td id="hind"></td>
-                    <td><input title="hindCheckbox" type="checkbox" id="hindCheckbox"></td>
-                </tr>
-                <tr>
-                    <th>Tail</th>
-                    <td id="tail"></td>
-                    <td><input title="tailCheckbox" type="checkbox" id="tailCheckbox"></td>
-                </tr>
-                <tr>
-                    <th>Wings</th>
-                    <td id="wings"></td>
-                    <td><input title="wingCheckbox" type="checkbox" id="wingCheckbox"></td>
-                </tr>
-            </table>
+    <div class="generator">
+        <table>
+            <tr>
+                <th>Body Part</th>
+                <th>Animal</th>
+                <th>Lock</th>
+            </tr>
+            <tr>
+                <th>Head</th>
+                <td id="head"></td>
+                <td><input title="headCheckbox" type="checkbox" id="headCheckbox"></td>
+            </tr>
+            <tr>
+                <th>Body</th>
+                <td id="body"></td>
+                <td><input title="bodyCheckbox" type="checkbox" id="bodyCheckbox"></td>
+            </tr>
+            <tr>
+                <th>Hind</th>
+                <td id="hind"></td>
+                <td><input title="hindCheckbox" type="checkbox" id="hindCheckbox"></td>
+            </tr>
+            <tr>
+                <th>Tail</th>
+                <td id="tail"></td>
+                <td><input title="tailCheckbox" type="checkbox" id="tailCheckbox"></td>
+            </tr>
+            <tr>
+                <th>Wings</th>
+                <td id="wings"></td>
+                <td><input title="wingCheckbox" type="checkbox" id="wingCheckbox"></td>
+            </tr>
+        </table>
 
-            <div id="result"></div>
-            <button id="generateButton">Generate Manticore</button>
+        <div id="result"></div>
+        <button id="generateButton">Generate Manticore</button>
 
-            <details>
-                <summary>Settings</summary>
-                <div class="TailChanceControl">
-                    <label for="TailChance">Chance of Tail: </label>
-                    <input type="number" id="TailChance" class="numeric-input" min="0" max="100" value="70"
-                        onkeydown="return false;">%
-                </div>
+        <details>
+            <summary>Settings</summary>
+            <div class="TailChanceControl">
+                <label for="TailChance">Chance of Tail: </label>
+                <input type="range" id="TailChance" class="numeric-input" min="0" max="100" value="70">
+            </div>
 
-                <div class="WingChanceControl">
-                    <label for="WingsChance">Chance of Wings: </label>
-                    <input type="number" id="WingsChance" class="numeric-input" min="0" max="100" value="30"
-                        onkeydown="return false;">%
-                </div>
-            </details>
-
-        </div>
-    </main>
-
-    <!--
-    <footer>
-        <a href="../index.html">Back</a>
-    </footer>
-    -->
+            <div class="WingChanceControl">
+                <label for="WingsChance">Chance of Wings: </label>
+                <input type="range" id="WingsChance" class="numeric-input" min="0" max="100" value="30">
+            </div>
+        </details>
+    </div>
 </body>
 
 </html>
