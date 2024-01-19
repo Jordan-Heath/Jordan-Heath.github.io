@@ -4,10 +4,12 @@ var selectedStory = new Story("none", "none", "none");
 
 //Page Elements
 var storySelector = document.getElementById("storySelector");
+var storyDetails = document.getElementById("storyDetails");
 var storyOutput = document.getElementById("storyOutput");
 
 function refreshPageElements() {
     storySelector = document.getElementById("storySelector");
+    storyDetails = document.getElementById("storyDetails");
     storyOutput = document.getElementById("storyOutput");
 }
 
@@ -28,21 +30,18 @@ function loadData() {
             });
         })
         .catch(error => console.error('Error fetching stories:', error));
-
-    //fill the story selector
 }
 
 function storySelected() {
-    // Get the selected value
-    var selectedStoryName = storySelector.value;
+    selectedStory = stories.find(story => story.name === storySelector.value);
 
-    // Find the selected story from the global stories array
-    var selectedStory = stories.find(story => story.name === selectedStoryName);
-
-    // Display the selected story
-    storyOutput.innerHTML = "<h2>" + selectedStory.name + "</h2><p><strong>Theme:</strong> " + selectedStory.theme + "</p><p>" + selectedStory.story + "</p>";
+    //test
+    //printStory();
 
     //populate the storyDetails form
+    var heading = document.createElement("h2");
+    heading.textContent = selectedStory.name;
+    storyDetails.appendChild(heading);
 }
 
 //when the user has filled out the details on the story details
@@ -52,6 +51,8 @@ function printStory() {
     //print the story in an animated way?
     //play music?
     //read the story with tts?
+
+    storyOutput.innerHTML = selectedStory.displayStory();
 }
 
 

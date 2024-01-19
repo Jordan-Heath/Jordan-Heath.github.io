@@ -1,0 +1,19 @@
+{
+    "stories": [
+        {
+            "name": "The Enchanted Forest",
+            "theme": "Fantasy",
+            "story": "Once upon a time, in the mystical land of Eldoria, there existed an enchanted forest where the trees whispered secrets to those who dared to listen. A brave adventurer named Elara, drawn by the allure of ancient magic, ventured into the heart of the forest. Little did she know, the trees had a quest for her that would change the destiny of Eldoria forever."
+        },
+        {
+            "name": "Echoes of Time",
+            "theme": "Science Fiction",
+            "story": "In the year 2250, humanity had mastered the art of time travel. Professor Alexander Hayes, a brilliant scientist, discovered a way to communicate with the past. Sending messages through time, he uncovered forgotten wisdom and warned civilizations of impending disasters. However, meddling with the fabric of time had consequences, and Alexander found himself entwined in a temporal paradox that challenged the very essence of reality."
+        },
+        {
+            "name": "Whispers in the Mist",
+            "theme": "Mystery",
+            "story": "On a fog-shrouded island, where secrets clung to the air like invisible threads, Detective Olivia Rivers was called to investigate a series of mysterious disappearances. As she delved into the eerie mist, the whispers of the lost souls guided her toward an ancient lighthouse. There, she uncovered a haunting tale of betrayal and revenge, revealing a truth that had been obscured for centuries."
+        }
+    ]
+}
