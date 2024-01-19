@@ -1,11 +1,18 @@
-class Story {
+class MissingWord {
     constructor(id) {
         this.id = id;
-        this.type = "Noun"; //remove number from id, and make sentence case for "type"
+        this.type = this.convertIdToType(id);
         this.value = ""; //what this will be replaced with in the output
     }
 
-    displayStory() {
-        return `<h2>${this.name}</h2><p><strong>Theme:</strong> ${this.theme}</p><p>${this.story}</p>`;
+    convertIdToType(text) {
+        // Remove < > tags
+        let textWithoutTags = text.slice(1, -1);
+        // Convert to sentence case
+        let lowerCaseText = textWithoutTags.toLowerCase();
+        let sentenceCaseText = lowerCaseText.charAt(0).toUpperCase() + lowerCaseText.slice(1);
+        // Remove numbers
+        let textWithoutNumbers = sentenceCaseText.replace(/\d+/g, '');
+        return textWithoutNumbers;
     }
 };

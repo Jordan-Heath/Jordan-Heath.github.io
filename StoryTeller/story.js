@@ -4,11 +4,26 @@ class Story {
         this.theme = theme;
         this.story = story;
 
-        this.missingWords = this.findMissingWords();
+        if (this.story !== undefined)
+        {
+            this.missingWords = this.findMissingWords();
+        }
     }
 
     displayStory() {
-        return `<h2>${this.name}</h2><p><strong>Theme:</strong> ${this.theme}</p><p>${this.story}</p>`;
+        //var printableStory = `${this.name}\n `;
+        var printableStory = this.story;
+        
+        //replace placeholder text with inputted values
+        this.missingWords.forEach(missingWord => {
+            if (missingWord.value.length === 0) {
+                missingWord.value = "Whoops";
+            }
+            var regex = new RegExp(missingWord.id, 'g');
+            printableStory = printableStory.replace(regex, missingWord.value.toUpperCase());
+        });
+
+        return printableStory;
     }
 
     findMissingWords() {
@@ -16,13 +31,15 @@ class Story {
         var regex = /<([^>]+)>/g;
 
         // Extract words inside triangle brackets
-        var matches = this.story.match(regex);
+        var rawmatches = this.story.match(regex);
 
         // Filter out duplicates and return as an array
-        matches ? [...new Set(matches)] : [];
+        var matches = rawmatches ? [...new Set(rawmatches)] : [];
+
+        var missingWords = [];
+        matches.forEach(missingWord => {
+            missingWords.push(new MissingWord(missingWord))
+        });
+        return missingWords;
     }
 };
-
-// Usage example:
-//const exampleStory = new Story("enchantedForest", "The Enchanted Forest", "Fantasy", "Once upon a time...");
-//console.log(exampleStory.displayStory());

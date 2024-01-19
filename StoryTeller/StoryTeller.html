@@ -7,6 +7,7 @@
     <title>Story Teller</title>
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link rel="stylesheet" href="style.css">
+    <script src="missingWord.js"></script>
     <script src="story.js"></script>
     <script src="script.js"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3533406510685034"
@@ -26,7 +27,7 @@
         <div id="storySelect">
             <label for="storySelector">Choose a story:</label>
             <select id="storySelector" onchange="storySelected()">
-                <option value="" selected disabled>Select a story</option>
+                <option value="placeholder" selected disabled>Select a story</option>
                 <!-- The stories are loaded in Javascript on page load -->
             </select>
         </div>
@@ -35,8 +36,8 @@
             <!-- create inputs based on the details needed to complete the story -->
         </div>
 
-        <div id="storyOutput">
-
+        <div id="storyOutput" hidden="true">
+            <!-- The story is written here -->
         </div>
     </main>
 

@@ -1,8 +1,34 @@
-body {
-    align-items: center;
+/* General */
+:root {
+    --white: #fff;
+    --grey: #333;
+
+    --primary-background: #1a1a1a; /* Dark background color */
+    --text-color: #ffffff; /* White text color */
+    --accent-color: #ff6600; /* Orange accent color */
+
+    --button-background: #333333; /* Dark button background */
+    --button-text: #ffffff; /* White button text color */
+    --button-hover: #555555; /* Darker button background on hover */
+
+    --input-background: #222222; /* Dark input background */
+    --input-text: #ffffff; /* White input text color */
 }
 
+body {
+    background-color: var(--primary-background);
+    color: var(--text-color);
+    font-family: 'Courier New', monospace;
+}
+
+main {
+    margin: auto;
+    max-width: 600px;
+}
+
+/* Header Related */
 header {
+    background-color: var(--primary-background);
     padding: 1rem 0;
 }
 
@@ -21,5 +47,58 @@ header {
 }
 
 h1 {
-    margin: 0 20% 0 5%;
+    margin: 0 30% 0 10%;
+}
+
+/* Story Selector */
+#storySelect {
+    margin-top: 20px;
+}
+
+#storySelector {
+    font-size: x-large;
+    display: block;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/*Story Details*/
+#storyDetails {
+    max-width: 300px;
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    background-color: var(--input-background);
+    color: var(--input-text);
+    padding: 8px;
+    border: 1px solid #555555; /* Add a border for better visibility */
+    max-width: 300px;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: var(--button-background);
+    color: var(--button-text);
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    max-width: 80px;
+    margin: auto;
+}
+
+.button:hover {
+    background-color: var(--button-hover);
+}
+
+/* Story Output */
+#storyOutput {
+    font-size: 24px;
+    font-family: 'Courier New', monospace;
+    margin: auto;
+    margin-top: 20px;
 }
