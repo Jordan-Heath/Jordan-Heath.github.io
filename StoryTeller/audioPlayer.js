@@ -46,7 +46,7 @@ class AudioPlayer {
             this.setVolume(100);
             this.audio.play();
             this.audio.currentTime = 0;
-            this.button.innerHTML = `&square;`;
+            this.button.innerHTML = `&#9632;`;
         }
     }
 
@@ -54,7 +54,7 @@ class AudioPlayer {
         if (this.isEnabled() && this.isPlaying()) {
             this.audio.pause();
             this.audio.currentTime = 0;
-            this.button.innerHTML = `&raquo;`;
+            this.button.innerHTML = `&#9654;`;
         }
     }
 };

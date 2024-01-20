@@ -1,133 +1,109 @@
-/* General */
 :root {
+    --night: #1a1a1a;
+    --eerie-black: #222222;
+    --jet: #333;
+    --davys-gray: #555555;
     --white: #fff;
-    --grey: #333;
-
-    --primary-background: #1a1a1a;
-    /* Dark background color */
-    --text-color: #ffffff;
-    /* White text color */
-    --accent-color: #ff6600;
-    /* Orange accent color */
-
-    --button-background: #333333;
-    /* Dark button background */
-    --button-text: #ffffff;
-    /* White button text color */
-    --button-hover: #555555;
-    /* Darker button background on hover */
-
-    --input-background: #222222;
-    /* Dark input background */
-    --input-text: #ffffff;
-    /* White input text color */
-}
-
-body {
-    background-color: var(--primary-background);
-    color: var(--text-color);
-}
-
-main {
+    --pumpkin: #ff6600;
+    --drop-shadow: rgba(0, 0, 0, 0.4);
+  }
+  
+  body {
+    background: var(--night);
+    color: var(--white);
+  }
+  
+  main {
     margin: auto;
     padding: 30px;
     max-width: 540px;
-}
-
-/* Header Related */
-header {
-    background-color: var(--primary-background);
+  }
+  
+  header {
+    background: var(--night);
     padding: 1rem 0;
-}
-
-.header-container {
+    margin-bottom: 10px;
+  }
+  
+  .header-container {
     margin: auto;
     max-width: 600px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     text-align: center;
-}
-
-#homeButton, #settingsButton {
-    margin: 0px;
+  }
+  
+  #homeButton,
+  #settingsButton {
+    margin: 0;
     width: 10%;
-}
-
-h1 {
-    margin: 0 10% 0 10%;
-}
-
-/* Story Selector */
-#storySelect {
+  }
+  
+  h1 {
+    margin: 0 10%;
+  }
+  
+  #storySelect {
     margin-top: 20px;
-}
-
-#storySelector {
+  }
+  
+  #storySelector {
     font-size: x-large;
     display: block;
     font-family: 'Times New Roman', Times, serif;
-}
-
-/*Story Details*/
-#storyDetails {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  #storyDetailsForm,
+  #storyDetailsControls {
     max-width: 300px;
     margin: auto;
     margin-top: 20px;
+  }
+  
+  #storyDetailsControls {
     display: none;
-    flex-direction: column;
-}
-
-#storyDetailsForm {
-    max-width: 300px;
-    margin: auto;
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-#storyDetailsControls {
-    max-width: 300px;
-    margin: auto;
-    margin-top: 20px;
-    display: flex;
     flex-direction: row;
-}
-
-input[type="text"] {
-    background-color: var(--input-background);
-    color: var(--input-text);
+    justify-content: center;
+  }
+  
+  input[type="text"] {
+    background: var(--eerie-black);
+    color: var(--white);
     padding: 8px;
     border: 1px solid #555555;
-    min-width: 300px;
+    width: 100%;
     margin-bottom: 10px;
-}
-
-#submitButton,
-audioButton {
-    margin: 0 5px 0 5px;
-}
-
-button {
+  }
+  
+  #submitButton,
+  #audioButton {
+    margin: 0 10px;
+  }
+  
+  button {
     display: inline;
-    background-color: var(--button-background);
-    color: var(--button-text);
+    background: var(--jet);
+    color: var(--white);
     border: none;
     padding: 10px 15px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-
-    max-width: 80px;
+    transition: background 0.3s ease, transform 0.3s ease;
+    max-width: 90px;
     margin: auto;
-}
-
-.button:hover {
-    background-color: var(--button-hover);
-}
-
-/* Story Output */
-#storyOutput {
+  }
+  
+  button:hover {
+    transform: scale(1.05);
+    background: var(--davys-gray);
+  }
+  
+  #storyOutput {
     font-size: 24px;
     margin: auto;
     margin-top: 20px;
-}
+  }
+  

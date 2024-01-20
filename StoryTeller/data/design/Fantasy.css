@@ -1,14 +1,33 @@
 body {
     font-family: 'Cinzel Decorative', cursive;
-    background-color: #f0f3bd; /* Light yellow background color */
+    background-color: #4a332e; /* Light yellow background color */
     color: #2a2829; /* Dark gray text color */
 }
 
+h1 {
+    color: #e0d1b2;
+    text-shadow: 0 1px 2px var(--drop-shadow);
+}
+
 header {
-    background-color: #bfada3; /* Light brown color for the header */
+    background-color: #303030;
 }
 
 main {
-    background-color: #d8c3a5; /* Coffee-stained color for the main content */
-    color: #2a2829; /* Dark gray text color for the main content */
+    background: radial-gradient(ellipse at center, #e0d1b2, #957848);
+    border-radius: 4px;
+    box-shadow: 20px 20px 20px var(--drop-shadow);
+}
+
+button {
+    background-color: #6a483a;
+}
+
+button:hover {
+    background-color: #835644;
+}
+
+input[type="text"] {
+    background-color: #e0d1b2;
+    color: #000;
 }

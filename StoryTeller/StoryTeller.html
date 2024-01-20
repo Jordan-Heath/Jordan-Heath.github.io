@@ -31,13 +31,13 @@
             <div class="typeSpeed">
                 <input type="checkbox" id="typeEffectSetting" checked="true" onchange="updateSettings()">
                 <label for="typeSpeedSetting"><span id="typeSpeedValue">20</span> Letters per second:</label>
-                <input type="range" id="typeSpeedSetting" class="numeric-input" min="1" max="100" value="20" onchange="updateSettings()">
+                <input type="range" id="typeSpeedSetting" min="1" max="100" value="20" onchange="updateSettings()">
             </div>
 
             <div class="fadeSpeed">
                 <input type="checkbox" id="fadeEffectSetting" checked="true" onchange="updateSettings()">
                 <label for="fadeSpeedSetting"><span id="fadeSpeedValue">5</span>sec Audio fade time: </label>
-                <input type="range" id="fadeSpeedSetting" class="numeric-input" min="1" max="10" value="5" onchange="updateSettings()">
+                <input type="range" id="fadeSpeedSetting" min="1" max="10" value="5" onchange="updateSettings()">
             </div>
         </div>
 
@@ -49,18 +49,17 @@
             </select>
         </div>
 
+        <div id="storyDetailsForm">
+            <!-- create inputs based on the details needed to complete the story -->
+        </div>
+
         <div id="storyOutput" hidden="true">
             <!-- The story is written here -->
         </div>
 
-        <div id="storyDetails">
-            <div id="storyDetailsForm">
-                <!-- create inputs based on the details needed to complete the story -->
-            </div>
-            <div id="storyDetailsControls">
-                <button id="submitButton" onclick="submitDetails()">Submit</button>
-                <button id="audioButton" onclick="toggleAudio()">&raquo;</button>
-            </div>
+        <div id="storyDetailsControls">
+            <button id="submitButton" onclick="submitDetails()">Submit</button>
+            <button id="audioButton" onclick="toggleAudio()"><!--&raquo;-->&#9654;</button>
         </div>
     </main>
 

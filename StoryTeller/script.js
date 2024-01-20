@@ -23,7 +23,7 @@ var fadeEffectSetting;
 var fadeSpeedSetting;
 var storySelect;
 var storySelector;
-var storyDetails;
+//var storyDetails;
 var storyDetailsForm;
 var storyDetailsControls;
 var submitButton;
@@ -45,7 +45,7 @@ function loadPageElements() {
     storySelect = document.getElementById("storySelect");
     storySelector = document.getElementById("storySelector");
 
-    storyDetails = document.getElementById("storyDetails");
+    //storyDetails = document.getElementById("storyDetails");
     storyDetailsForm = document.getElementById("storyDetailsForm");
     storyDetailsControls = document.getElementById("storyDetailsControls");
     submitButton = document.getElementById("submitButton");
@@ -75,7 +75,8 @@ function loadData() {
 function storySelected() {
     //load new story, purge old story
     selectedStory = stories.find(story => story.name === storySelector.value);
-    storyDetails.style.display = "flex";
+    //storyDetails.style.display = "flex";
+    storyDetailsControls.style.display = "flex";
     storyDetailsForm.innerHTML = "";
     clearStory();
 
@@ -162,7 +163,6 @@ function clearStory() {
 //Music functions
 function fadeMusic() {
     if (audioPlayer.volume() > 0 && audioPlayer.isPlaying() && isTyping === false) {
-        console.log(`setting volume to ${audioPlayer.volume() - 1}`);
         audioPlayer.setVolume(audioPlayer.volume() - 1);
         setTimeout(fadeMusic, fadeSpeed);
     }
