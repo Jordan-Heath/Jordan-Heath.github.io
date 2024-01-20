@@ -26,12 +26,12 @@
 body {
     background-color: var(--primary-background);
     color: var(--text-color);
-    font-family: 'Courier New', monospace;
 }
 
 main {
     margin: auto;
-    max-width: 600px;
+    padding: 30px;
+    max-width: 540px;
 }
 
 /* Header Related */
@@ -99,7 +99,6 @@ input[type="text"] {
     color: var(--input-text);
     padding: 8px;
     border: 1px solid #555555;
-    /* Add a border for better visibility */
     min-width: 300px;
     margin-bottom: 10px;
 }
@@ -129,7 +128,6 @@ button {
 /* Story Output */
 #storyOutput {
     font-size: 24px;
-    font-family: 'Courier New', monospace;
     margin: auto;
     margin-top: 20px;
 }

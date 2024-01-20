@@ -14,6 +14,7 @@ var typedLetter;
 var isTyping = false;
 
 //Page Elements
+var customStylesheet;
 var settings;
 var typeEffectSetting;
 var typeSpeedSetting;
@@ -32,6 +33,8 @@ var storyOutput;
 
 //Step 0: load page
 function loadPageElements() {
+    customStylesheet = document.getElementById("customStylesheet");
+
     settings = document.getElementById("settings");
     typeEffectSetting = document.getElementById("typeEffectSetting");
     typeSpeedSetting = document.getElementById("typeSpeedSetting");
@@ -100,6 +103,9 @@ function storySelected() {
     audioPlayer.pause();
     audioPlayer.loadNewAudio(new Audio(`data/music/${selectedStory.theme}.mp3`));
     audioPlayer.attachButton(audioButton);
+
+    //change design
+    customStylesheet.href = `data/design/${selectedStory.theme}.css`;
 }
 
 //Step 2: submit details to story

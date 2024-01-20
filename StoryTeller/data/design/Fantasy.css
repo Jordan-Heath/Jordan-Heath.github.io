@@ -1,0 +1,14 @@
+body {
+    font-family: 'Cinzel Decorative', cursive;
+    background-color: #f0f3bd; /* Light yellow background color */
+    color: #2a2829; /* Dark gray text color */
+}
+
+header {
+    background-color: #bfada3; /* Light brown color for the header */
+}
+
+main {
+    background-color: #d8c3a5; /* Coffee-stained color for the main content */
+    color: #2a2829; /* Dark gray text color for the main content */
+}
