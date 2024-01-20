@@ -28,17 +28,31 @@ Wouldn't particularly recommend this one.
 A friend of mine saw the character generator and was working on creating some manticores for a personal project. They asked if I could make something similar to assist them in the process. I added a few extra features to help them:
 
 - Random chance of not adding a tail/wings
+- Settings to decide the chance of tail/wings
 - Ability to lock body parts to prevent randomization
+- NEW: 461 Animals! Sourced from [Here](https://gist.github.com/atduskgreg/3cf8ef48cb0d29cf151bedad81553a54), sorted, and reduced.
+- NEW: Click the name of an animal to be redirected to bing images in a new tab!
 
 Otherwise, it is very similar to the Character Generator.
 
 ### [Story Teller](StoryTeller/StoryTeller.html)
 
-I developed an app that emulates the game Madlibs. I experimented with a more noir feeling, including music, a typing effect, and a significant amount of string manipulation. Music sourced from [fesliyanstudios](https://www.fesliyanstudios.com/):
+I developed an app that emulates the game Madlibs. Features:
 
-- Fantasy song is Elven Forest
-- Science Fiction song is Final Descent
-- Mystery song is Fallen Petals
+- 6 different stories
+- Let the themed page design set the mood
+- Complete the story by filling in the missing words
+- Watch as the story unfolds keystroke at a time accompanied by theme-music
+- Adjustable Text-speed and audiofade
+
+Music sourced from [fesliyanstudios](https://www.fesliyanstudios.com/):
+
+- Fantasy: Rolling Hills Of Ireland by Alex Zachariou
+- Science Fiction: Final Descent by David Robson
+- Mystery: Shady Business by David Renda
+- Horror: Ghost stories by Steve Oxen
+- Western: Prairie Evening by Steve Oxen
+- Non-Fiction: Retro News At Nine by Steve Oxen
 
 ### [Word Scrambler](WordScrambler/WordScrambler.html)
 

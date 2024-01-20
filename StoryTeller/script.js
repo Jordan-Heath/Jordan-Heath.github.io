@@ -64,7 +64,7 @@ function loadData() {
                 stories.push(new Story(story.name, story.theme, story.story))
                 var option = document.createElement("option");
                 option.value = story.name;
-                option.textContent = story.name;
+                option.textContent = `${story.theme}: ${story.name}`;
                 storySelector.appendChild(option);
             });
         })
@@ -81,9 +81,9 @@ function storySelected() {
     clearStory();
 
     //populate the storyDetails form
-    var heading = document.createElement("h3");
-    heading.textContent = `Theme: ${selectedStory.theme}`;
-    storyDetailsForm.appendChild(heading);
+    //var heading = document.createElement("h3");
+    //heading.textContent = `Theme: ${selectedStory.theme}`;
+    //storyDetailsForm.appendChild(heading);
 
     //madlibs words
     selectedStory.missingWords.forEach(missingWord => {
