@@ -3,16 +3,24 @@
     --white: #fff;
     --grey: #333;
 
-    --primary-background: #1a1a1a; /* Dark background color */
-    --text-color: #ffffff; /* White text color */
-    --accent-color: #ff6600; /* Orange accent color */
+    --primary-background: #1a1a1a;
+    /* Dark background color */
+    --text-color: #ffffff;
+    /* White text color */
+    --accent-color: #ff6600;
+    /* Orange accent color */
 
-    --button-background: #333333; /* Dark button background */
-    --button-text: #ffffff; /* White button text color */
-    --button-hover: #555555; /* Darker button background on hover */
+    --button-background: #333333;
+    /* Dark button background */
+    --button-text: #ffffff;
+    /* White button text color */
+    --button-hover: #555555;
+    /* Darker button background on hover */
 
-    --input-background: #222222; /* Dark input background */
-    --input-text: #ffffff; /* White input text color */
+    --input-background: #222222;
+    /* Dark input background */
+    --input-text: #ffffff;
+    /* White input text color */
 }
 
 body {
@@ -41,7 +49,7 @@ header {
     text-align: center;
 }
 
-.homebtn {
+#homeButton, #settingsButton {
     margin: 0px;
     width: 10%;
 }
@@ -66,20 +74,43 @@ h1 {
     max-width: 300px;
     margin: auto;
     margin-top: 20px;
+    display: none;
+    flex-direction: column;
+}
+
+#storyDetailsForm {
+    max-width: 300px;
+    margin: auto;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
+}
+
+#storyDetailsControls {
+    max-width: 300px;
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
 }
 
 input {
     background-color: var(--input-background);
     color: var(--input-text);
     padding: 8px;
-    border: 1px solid #555555; /* Add a border for better visibility */
-    max-width: 300px;
+    border: 1px solid #555555;
+    /* Add a border for better visibility */
+    min-width: 300px;
     margin-bottom: 10px;
 }
 
+#submitButton,
+audioButton {
+    margin: 0 5px 0 5px;
+}
+
 button {
+    display: inline;
     background-color: var(--button-background);
     color: var(--button-text);
     border: none;

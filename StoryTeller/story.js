@@ -3,6 +3,7 @@ class Story {
         this.name = name;
         this.theme = theme;
         this.story = story;
+        this.completeStory;
 
         if (this.story !== undefined)
         {
@@ -10,9 +11,9 @@ class Story {
         }
     }
 
-    displayStory() {
+    composeStory() {
         //var printableStory = `${this.name}\n `;
-        var printableStory = this.story;
+        var completeStory = this.story;
         
         //replace placeholder text with inputted values
         this.missingWords.forEach(missingWord => {
@@ -20,10 +21,11 @@ class Story {
                 missingWord.value = "Whoops";
             }
             var regex = new RegExp(missingWord.id, 'g');
-            printableStory = printableStory.replace(regex, missingWord.value.toUpperCase());
+            completeStory = completeStory.replace(regex, missingWord.value.toUpperCase());
         });
 
-        return printableStory;
+        this.completeStory = completeStory;
+        return completeStory;
     }
 
     findMissingWords() {

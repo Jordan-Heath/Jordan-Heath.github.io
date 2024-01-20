@@ -7,6 +7,7 @@
     <title>Story Teller</title>
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link rel="stylesheet" href="style.css">
+    <script src="audioPlayer.js"></script>
     <script src="missingWord.js"></script>
     <script src="story.js"></script>
     <script src="script.js"></script>
@@ -17,8 +18,9 @@
 <body>
     <header>
         <div class="header-container">
-            <button onclick="location.href='../index.html'" type="button" class="homebtn">&#8592;</button>
+            <button onclick="location.href='../index.html'" id="homeButton">&#8592;</button>
             <h1>Story Teller</h1>
+            <!--<button onclick="toggleSettings()" id="settingsButton">&#8801;</button>-->
         </div>
     </header>
     <!-- <h3>inspired by madlibs</h3> -->
@@ -32,12 +34,18 @@
             </select>
         </div>
 
-        <div id="storyDetails">
-            <!-- create inputs based on the details needed to complete the story -->
-        </div>
-
         <div id="storyOutput" hidden="true">
             <!-- The story is written here -->
+        </div>
+
+        <div id="storyDetails">
+            <div id="storyDetailsForm">
+                <!-- create inputs based on the details needed to complete the story -->
+            </div>
+            <div id="storyDetailsControls">
+                <button id="submitButton" onclick="submitDetails()">Submit</button>
+                <button id="audioButton" onclick="toggleAudio()">&raquo;</button>
+            </div>
         </div>
     </main>
 

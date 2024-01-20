@@ -1,20 +1,36 @@
+//constants
+// typespeed = milliseconds in a second / letters per second
+const typeSpeed = 1000 / 20; //default 20
+// fadespeed = seconds to fade * milliseconds in a second / loops to completely fade
+const fadeSpeed = 5 * 1000 / 100; //default 5
+
 //variables
 var stories = [];
 var selectedStory = new Story();
-var typeSpeed = 50; //milliseconds per character typed
+var audioPlayer = new AudioPlayer();
+var typedLetter = 0;
 var isTyping = false;
 
 //Page Elements
-var storySelector = document.getElementById("storySelector");
-var storyDetails = document.getElementById("storyDetails");
-var storyOutput = document.getElementById("storyOutput");
+var storySelect;
+var storySelector;
+var storyDetails;
+var storyDetailsForm;
+var storyDetailsControls;
+var submitButton;
+var audioButton;
+var storyOutput;
 
-//Asset
-var storyMusic = new Audio('data/music.mp3');
 
-function refreshPageElements() {
+
+function loadPageElements() {
+    storySelect = document.getElementById("storySelect");
     storySelector = document.getElementById("storySelector");
     storyDetails = document.getElementById("storyDetails");
+    storyDetailsForm = document.getElementById("storyDetailsForm");
+    storyDetailsControls = document.getElementById("storyDetailsControls");
+    submitButton = document.getElementById("submitButton");
+    audioButton = document.getElementById("audioButton");
     storyOutput = document.getElementById("storyOutput");
 }
 
@@ -36,40 +52,36 @@ function loadData() {
 }
 
 function storySelected() {
+    //load new story, purge old story
     selectedStory = stories.find(story => story.name === storySelector.value);
-    storyMusic.pause();
-    storyMusic = new Audio(`data/music/${selectedStory.theme}.mp3`)
-
-    //test
-    //printStory();
-
-    storyDetails.innerHTML = "";
+    storyDetails.style.display = "flex";
+    storyDetailsForm.innerHTML = "";
     clearStory();
 
     //populate the storyDetails form
     var heading = document.createElement("h3");
     heading.textContent = `Theme: ${selectedStory.theme}`;
-    storyDetails.appendChild(heading);
+    storyDetailsForm.appendChild(heading);
 
-    var labelControl;
-    var inputControl;
+    //madlibs words
     selectedStory.missingWords.forEach(missingWord => {
-        labelControl = document.createElement("label")
-        inputControl = document.createElement("input")
+        var labelControl = document.createElement("label")
+        var inputControl = document.createElement("input")
         labelControl.innerText = missingWord.type + ":";
-        labelControl.for, inputControl.id = missingWord.id + "input";
+        labelControl.htmlFor = missingWord.id + "input";
+        inputControl.id = missingWord.id + "input";
         inputControl.type = "text";
 
         //inputControl.value = "TEST WORD"; //test line
 
-        storyDetails.appendChild(labelControl);
-        storyDetails.appendChild(inputControl);
+        storyDetailsForm.appendChild(labelControl);
+        storyDetailsForm.appendChild(inputControl);
     });
 
-    var submitButton = document.createElement("button");
-    submitButton.innerText = "Submit";
-    storyDetails.appendChild(submitButton);
-    submitButton.addEventListener("click", submitDetails)
+    //Manage audio
+    audioPlayer.pause();
+    audioPlayer.loadNewAudio(new Audio(`data/music/${selectedStory.theme}.mp3`));
+    audioPlayer.attachButton(audioButton);
 }
 
 function submitDetails() {
@@ -81,44 +93,61 @@ function submitDetails() {
     printStory();
 }
 
-//when the user has filled out the details on the story details
 function printStory() {
-    //produce story
+    //compose story
     selectedStory.missingWords.forEach(missingWord => {
         var input = document.getElementById(missingWord.id + "input");
         missingWord.value = input.value;
     });
-    let retrievedStory = selectedStory.displayStory();
+    selectedStory.composeStory();
+
+    //tts?
 
     //play music?
-    if (storyMusic.readyState >= 2) {
-        storyMusic.play();
-    }
+    audioPlayer.play();
 
-    //print the story in an animated way?
+    //typewriter effect
     storyOutput.hidden = false;
-    var i = 0;
-    function typeWriter() {
-        if (i < retrievedStory.length && isTyping) {
-            storyOutput.innerHTML += retrievedStory.charAt(i);
-            i++;
-            setTimeout(typeWriter, typeSpeed);
-        } else {
-            isTyping = false;
-        }
-    }
+    typedLetter = 0;
     typeWriter();
 }
 
+function typeWriter() {
+    if (!isTyping) {
+        return;
+    } else if (typedLetter >= selectedStory.completeStory.length) {
+        isTyping = false;
+        fadeMusic();
+    } else {
+        storyOutput.innerHTML += selectedStory.completeStory.charAt(typedLetter);
+        typedLetter++;
+        setTimeout(typeWriter, typeSpeed);
+    }
+}
+
+function fadeMusic() {
+    if (audioPlayer.volume() > 0 && audioPlayer.isPlaying() && isTyping === false) {
+        console.log(`setting volume to ${audioPlayer.volume() - 1}`);
+        audioPlayer.setVolume(audioPlayer.volume() - 1);
+        setTimeout(fadeMusic, fadeSpeed);
+    }
+}
+
+function toggleAudio() {
+    audioPlayer.isPlaying() ? audioPlayer.pause() : audioPlayer.play();
+}
+
 function clearStory() {
-    storyOutput.innerHTML = "";
-    storyOutput.hidden = true;
-    storyMusic.pause();
-    storyMusic.currentTime = 0;
+    if (storyOutput.hidden !== true) {
+        storyOutput.innerHTML = "";
+        storyOutput.hidden = true;
+        audioPlayer.pause();
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    refreshPageElements();
-    storySelector.value = 'placeholder';
+    loadPageElements();
     loadData();
+    storySelector.value = 'placeholder';
+    audioPlayer = new AudioPlayer();
 });
