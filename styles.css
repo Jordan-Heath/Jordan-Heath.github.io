@@ -1,151 +1,81 @@
 :root {
-    --background-primary: #1e2122;
-    --background-secondary: #181a1b;
-    --foreground-primary: #65451F;
-    --foreground-secondary: #765827;
-    --foreground-tertiary: #C8AE7D;
-    --text-primary: #EAC696;
-    --text-secondary: #f0e9db;
+    --bg-primary: #1e2122;
+    --bg-secondary: #181a1b;
+    --fg-primary: #65451F;
+    --fg-secondary: #765827;
+    --fg-tertiary: #C8AE7D;
+    --text-primary: #f0e9db;
+    --text-secondary: #EAC696;
+    --drop-shadow: rgba(0, 0, 0, 0.2);
 }
 
-
+/* Body / Main */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
-    background-color: var(--background-primary);
-    color: var(--text-primary)
+    background: var(--bg-primary);
+    color: var(--text-primary);
 }
-
 main {
-    margin: 2rem auto;
-    padding: 1rem;
-}
-
-.container {
-    background-color: var(--background-secondary);
+    background: var(--bg-secondary);
     max-width: 800px;
     padding: 10px;
-    margin: 20px;
+    margin: auto;
     border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px var(--drop-shadow);
 }
 
-h1,
-h2 {
+/* headings */
+h1, h2 {
     text-align: center;
     font-family: 'Verdana', sans-serif;
-    color: var(--text-primary);
+    color: var(--text-secondary);
 }
-
 h1 {
-    font-size: 3em;
-    animation: fadeInUp 1s ease-in-out forwards;
+    font-size: 3.5em;
     animation: pulse 2s ease-in-out infinite;
 }
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-        color: var(--text-primary);
-    }
-
-    50% {
-        transform: scale(1.1);
-        color: var(--text-secondary);
-    }
-
-    100% {
-        transform: scale(1);
-        color: var(--text-primary);
-    }
-}
-
-h3,
-a {
+h3, a {
     font-family: 'Verdana', sans-serif;
-    text-decoration: underline;
-    cursor: pointer;
-    color: var(--text-primary);
-}
-
-p,
-li {
-    font-family: 'Arial', sans-serif;
     color: var(--text-secondary);
-    text-decoration: none;
 }
 
-a:hover {
-    text-decoration: underline;
-}
-
-table {
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 300px;
-    margin: auto;
-    background-color: var(--foreground-primary);
-}
-
-table td {
-    padding: 10px;
-    border: 1px solid #3e4446;
-    text-align: center;
-}
-
-table tr:hover {
-    background-color: var(--foreground-secondary);
-}
-
-table a {
-    display: block;
-}
-
-footer {
-    text-align: center;
-    padding: 10px;
-    position: sticky;
-    bottom: 0;
-}
-
+/* nav bar */
 .navigationbar {
     text-align: center;
+    margin-bottom: 20px;
 }
 
-/* Dropdown Button */
+/* buttons */
 button {
-    background-color: var(--foreground-primary);
+    background: var(--fg-primary);
     color: var(--text-primary);
     padding: 16px;
     font-size: 16px;
     border: none;
+    height: 53px;
 }
-
 button:hover {
-    background-color: var(--foreground-secondary);
+    background: var(--fg-secondary);
     cursor: pointer;
 }
 
-/* The container <div> - needed to position the dropdown content */
+/* dropdown menu */
 .dropdown {
     position: relative;
     display: inline-block;
 }
-
-/* Dropdown Content (Hidden by Default) */
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: var(--foreground-secondary);
+    background: var(--fg-secondary);
     min-width: 200px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px 0 var(--drop-shadow);
     z-index: 1;
 }
-
-/* Links inside the dropdown */
 .dropdown-content a {
     color: var(--text-secondary);
     padding: 12px 16px;
@@ -153,18 +83,25 @@ button:hover {
     display: block;
     text-align: left;
 }
-
-/* Change color of dropdown links on hover */
 .dropdown-content a:hover {
-    background-color: var(--foreground-tertiary);
+    background: var(--fg-tertiary);
 }
-
-/* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
     display: block;
 }
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
-    background-color: var(--foreground-secondary);
+    background: var(--fg-secondary);
+}
+
+/* animation */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(0.9);
+        color: var(--text-secondary);
+    }
+
+    50% {
+        transform: scale(1);
+        color: var(--text-primary);
+    }
 }
