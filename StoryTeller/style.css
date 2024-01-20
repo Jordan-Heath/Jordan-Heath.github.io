@@ -55,7 +55,7 @@ header {
 }
 
 h1 {
-    margin: 0 30% 0 10%;
+    margin: 0 10% 0 10%;
 }
 
 /* Story Selector */
@@ -94,7 +94,7 @@ h1 {
     flex-direction: row;
 }
 
-input {
+input[type="text"] {
     background-color: var(--input-background);
     color: var(--input-text);
     padding: 8px;

@@ -20,12 +20,26 @@
         <div class="header-container">
             <button onclick="location.href='../index.html'" id="homeButton">&#8592;</button>
             <h1>Story Teller</h1>
-            <!--<button onclick="toggleSettings()" id="settingsButton">&#8801;</button>-->
+            <button onclick="toggleSettings()" id="settingsButton">&#8801;</button>
         </div>
     </header>
     <!-- <h3>inspired by madlibs</h3> -->
 
     <main>
+        <div id="settings" hidden="true">
+            <div class="typeSpeed">
+                <input type="checkbox" id="typeEffectSetting" checked="true" onchange="updateSettings()">
+                <label for="typeSpeedSetting"><span id="typeSpeedValue">20</span> Letters per second:</label>
+                <input type="range" id="typeSpeedSetting" class="numeric-input" min="1" max="100" value="20" onchange="updateSettings()">
+            </div>
+
+            <div class="fadeSpeed">
+                <input type="checkbox" id="fadeEffectSetting" checked="true" onchange="updateSettings()">
+                <label for="fadeSpeedSetting"><span id="fadeSpeedValue">5</span>sec Audio fade time: </label>
+                <input type="range" id="fadeSpeedSetting" class="numeric-input" min="1" max="10" value="5" onchange="updateSettings()">
+            </div>
+        </div>
+
         <div id="storySelect">
             <label for="storySelector">Choose a story:</label>
             <select id="storySelector" onchange="storySelected()">

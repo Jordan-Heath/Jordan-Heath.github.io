@@ -1,17 +1,25 @@
-//constants
+//settings
+var typeEffectEnabled = true;
+var fadeEffectEnabled = true;
 // typespeed = milliseconds in a second / letters per second
-const typeSpeed = 1000 / 20; //default 20
+var typeSpeed = 1000 / 20; //default 20
 // fadespeed = seconds to fade * milliseconds in a second / loops to completely fade
-const fadeSpeed = 5 * 1000 / 100; //default 5
+var fadeSpeed = 5 * 1000 / 100; //default 5
 
 //variables
 var stories = [];
-var selectedStory = new Story();
-var audioPlayer = new AudioPlayer();
-var typedLetter = 0;
+var selectedStory;
+var audioPlayer;
+var typedLetter;
 var isTyping = false;
 
 //Page Elements
+var settings;
+var typeEffectSetting;
+var typeSpeedSetting;
+var typeSpeedValue
+var fadeEffectSetting;
+var fadeSpeedSetting;
 var storySelect;
 var storySelector;
 var storyDetails;
@@ -22,15 +30,24 @@ var audioButton;
 var storyOutput;
 
 
-
+//Step 0: load page
 function loadPageElements() {
+    settings = document.getElementById("settings");
+    typeEffectSetting = document.getElementById("typeEffectSetting");
+    typeSpeedSetting = document.getElementById("typeSpeedSetting");
+    typeSpeedValue = document.getElementById("typeSpeedValue");
+    fadeEffectSetting = document.getElementById("fadeEffectSetting");
+    fadeSpeedSetting = document.getElementById("fadeSpeedSetting");
+
     storySelect = document.getElementById("storySelect");
     storySelector = document.getElementById("storySelector");
+
     storyDetails = document.getElementById("storyDetails");
     storyDetailsForm = document.getElementById("storyDetailsForm");
     storyDetailsControls = document.getElementById("storyDetailsControls");
     submitButton = document.getElementById("submitButton");
     audioButton = document.getElementById("audioButton");
+
     storyOutput = document.getElementById("storyOutput");
 }
 
@@ -51,6 +68,7 @@ function loadData() {
         .catch(error => console.error('Error fetching stories:', error));
 }
 
+//Step 1: choose a story
 function storySelected() {
     //load new story, purge old story
     selectedStory = stories.find(story => story.name === storySelector.value);
@@ -84,6 +102,7 @@ function storySelected() {
     audioPlayer.attachButton(audioButton);
 }
 
+//Step 2: submit details to story
 function submitDetails() {
     isTyping = !isTyping;
     clearStory();
@@ -109,7 +128,7 @@ function printStory() {
     //typewriter effect
     storyOutput.hidden = false;
     typedLetter = 0;
-    typeWriter();
+    typeEffectEnabled ? typeWriter() : storyOutput.innerHTML = selectedStory.completeStory;
 }
 
 function typeWriter() {
@@ -117,7 +136,8 @@ function typeWriter() {
         return;
     } else if (typedLetter >= selectedStory.completeStory.length) {
         isTyping = false;
-        fadeMusic();
+        storyOutput.innerHTML = selectedStory.completeStory;
+        if (fadeSpeedEnabled) { fadeMusic(); }
     } else {
         storyOutput.innerHTML += selectedStory.completeStory.charAt(typedLetter);
         typedLetter++;
@@ -125,6 +145,15 @@ function typeWriter() {
     }
 }
 
+function clearStory() {
+    if (storyOutput.hidden !== true) {
+        storyOutput.innerHTML = "";
+        storyOutput.hidden = true;
+        audioPlayer.pause();
+    }
+}
+
+//Music functions
 function fadeMusic() {
     if (audioPlayer.volume() > 0 && audioPlayer.isPlaying() && isTyping === false) {
         console.log(`setting volume to ${audioPlayer.volume() - 1}`);
@@ -137,13 +166,28 @@ function toggleAudio() {
     audioPlayer.isPlaying() ? audioPlayer.pause() : audioPlayer.play();
 }
 
-function clearStory() {
-    if (storyOutput.hidden !== true) {
-        storyOutput.innerHTML = "";
-        storyOutput.hidden = true;
-        audioPlayer.pause();
-    }
+//Settings
+function toggleSettings() {
+    settings.hidden = !settings.hidden;
 }
+
+function updateSettings() {
+    //update values
+    typeEffectEnabled = typeEffectSetting.checked;
+    typeSpeed = 1000 / typeSpeedSetting.value;
+    fadeSpeedEnabled = fadeEffectSetting.checked;
+    fadeSpeed = 10 * fadeSpeedSetting.value;
+
+    //enable/disable controls
+    typeSpeedSetting.disabled = !typeEffectEnabled;
+    fadeEffectSetting.disabled = !typeEffectEnabled;
+    fadeSpeedSetting.disabled = !typeEffectEnabled || !fadeSpeedEnabled;
+
+    //update values
+    typeSpeedValue.innerHTML = typeSpeedSetting.value;
+    fadeSpeedValue.innerHTML = fadeSpeedSetting.value;
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
     loadPageElements();
