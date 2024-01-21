@@ -2,6 +2,17 @@
 
 Most of my work is not shared publicly. This collection does not comprehensively represent my work.
 
+### [Story Teller](StoryTeller/StoryTeller.html)
+
+I developed an app that emulates the game Madlibs. Features:
+
+- 16 different stories
+- Page design to match the mood of the story
+- Complete the story by filling in the missing words
+- Watch as the story unfolds keystroke at a time accompanied by [7 differnt musical tracks](StoryTeller/README.md)
+- Adjustable Text-speed and audiofade
+- NEW: support for making and importing custom stories via the [Story Maker](https://jordan-heath.github.io/StoryTeller/StoryMaker/StoryMaker.html)
+
 ### [Character Generator](CharacterGenerator/CharacterGenerator.html)
 
 I was familiar with name generators, but I wanted to put my own spin on it by adding a few extra features.
@@ -11,17 +22,6 @@ I was familiar with name generators, but I wanted to put my own spin on it by ad
 - A stat list for each character
 
 The characters may come out as a bit whimsical, but I found it enjoyable.
-
-### [Percentage Clock](PercentageClock/PercentageClock.html)
-
-On challenging days, it's helpful to know how much of the day is left. Percentage Clock provides this information in a simple number. It might not offer much comfort as I got a bit carried away with the CSS animation library. A few features include:
-
-- Indicates the current time
-- Transitions from red to green throughout the day
-- Pulses like your heart
-- You can press on the number, and it produces an annoying noise that increases in pitch, creating a sense of unease
-
-Wouldn't particularly recommend this one.
 
 ### [Manticore Generator](ManticoreGenerator/ManticoreGenerator.html)
 
@@ -35,15 +35,16 @@ A friend of mine saw the character generator and was working on creating some ma
 
 Otherwise, it is very similar to the Character Generator.
 
-### [Story Teller](StoryTeller/StoryTeller.html)
+### [Percentage Clock](PercentageClock/PercentageClock.html)
 
-I developed an app that emulates the game Madlibs. Features:
+On challenging days, it's helpful to know how much of the day is left. Percentage Clock provides this information in a simple number. It might not offer much comfort as I got a bit carried away with the CSS animation library. A few features include:
 
-- 6 different stories
-- Let the themed page design set the mood
-- Complete the story by filling in the missing words
-- Watch as the story unfolds keystroke at a time accompanied by [theme-music](StoryTeller/README.md)
-- Adjustable Text-speed and audiofade
+- Indicates the current time
+- Transitions from red to green throughout the day
+- Pulses like your heart
+- You can press on the number, and it produces an annoying noise that increases in pitch, creating a sense of unease
+
+Wouldn't particularly recommend this one.
 
 ### [Word Scrambler](WordScrambler/WordScrambler.html)
 
