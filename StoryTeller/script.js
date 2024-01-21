@@ -60,15 +60,20 @@ function loadData() {
         .then(response => response.json())
         .then(data => {
             // Populate select options dynamically
-            data.stories.forEach(story => {
-                stories.push(new Story(story.name, story.theme, story.story))
-                var option = document.createElement("option");
-                option.value = story.name;
-                option.textContent = `${story.theme}: ${story.name} (${stories[stories.length - 1].missingWords.length})`;
-                storySelector.appendChild(option);
+            data.stories.forEach(jsonStory => {
+                var story = new Story(jsonStory.name, jsonStory.theme, jsonStory.story);
+                addStory(story);
             });
         })
         .catch(error => console.error('Error fetching stories:', error));
+}
+
+function addStory(story) {
+    stories.push(story)
+    var option = document.createElement("option");
+    option.value = story.name;
+    option.textContent = `${story.theme}: ${story.name} (${story.missingWords.length})`;
+    storySelector.appendChild(option);
 }
 
 //Step 1: choose a story
@@ -196,6 +201,45 @@ function updateSettings() {
     //update values
     typeSpeedValue.innerHTML = typeSpeedSetting.value;
     fadeSpeedValue.innerHTML = fadeSpeedSetting.value;
+}
+
+function selectFile() {
+    var fileInput = document.getElementById('fileInput');
+    fileInput.click();
+    fileInput.addEventListener('change', loadFile);
+}
+
+function loadFile() {
+    var fileInput = document.getElementById('fileInput');
+    var file = fileInput.files[0];
+
+    if (file) {
+        var reader = new FileReader();
+
+        reader.onload = function (event) {
+            var fileContent = event.target.result;
+
+            try {
+                var jsonData = JSON.parse(fileContent);
+
+                // Create a new Story instance using the loaded JSON data
+                var story = new Story(jsonData.name, jsonData.theme, jsonData.story);
+
+                //add and select story
+                addStory(story);
+                storySelector.value = story.name;
+                storySelected();
+
+            } catch (error) {
+                console.error('Error parsing JSON content:', error);
+                alert('Error parsing JSON content. Please check the format.');
+            }
+        };
+
+        reader.readAsText(file);
+    } else {
+        alert('Please select a file.');
+    }
 }
 
 

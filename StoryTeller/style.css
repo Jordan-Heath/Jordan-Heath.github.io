@@ -43,7 +43,7 @@ header {
   margin: auto;
   text-align: center;
 }
-#storyMakerButton {
+#settings button {
   margin-top: 5px;
   max-width: 120px;
 }
