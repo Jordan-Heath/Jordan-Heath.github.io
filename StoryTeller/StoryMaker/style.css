@@ -1,0 +1,115 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+}
+
+.header-container {
+    margin: auto;
+    max-width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#homeButton {
+    margin-right: 50px;
+    background-color: #555;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+h1 {
+    margin: 0;
+}
+
+form, #jsonOutputContainer, #replacementPairsContainer, #controls {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#controls {
+    margin: auto;
+    display: flex;
+    max-width: 400px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+select,
+textarea {
+    width: 100%;
+    padding: 6px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 10px;
+    margin-bottom: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#jsonOutput, #story {
+    width: 100%;
+    height: 200px;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-top: 10px;
+    resize: vertical;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.replacementPair {
+    padding: 8px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    background-color: #f5f5f5;
+}
+
+.replacementPair input {
+    margin: 0 10px 0 10px;
+    width: flex; /* Take up remaining space */
+}
+
+.replacementPair button {
+    width: 6%; /* Minimum size for the button */
+    background-color: #e00000;
+    padding: 8px;
+}
+
+.replacementPair button:hover {
+    background-color: #c50000;
+}

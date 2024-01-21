@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Maker</title>
+    <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <button onclick="location.href='../StoryTeller.html'" id="homeButton">&#8592;</button>
+            <h1>Story Maker</h1>
+        </div>
+    </header>
+
+    <form id="storyForm">
+        <h2>Story Input</h2>
+        <p>Step 1: Start by entering the name, theme and body of the story.</p>
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Ballet of the Moonlit Abyss" required><br>
+
+        <label for="theme">Theme:</label>
+        <!--<input type="text" id="theme" required><br> -->
+        <select id="theme">
+            <option value="" selected disabled>Select a theme</option>
+        </select>
+
+        <label for="story">Story:</label>
+        <textarea id="story" rows="5" placeholder="In the moonlit depths of the ocean, an octopus named Luna orchestrated a mesmerizing ballet of iridescent colors with her eight graceful arms, leaving a trail of enchanted onlookers among the coral reef." required></textarea>
+    </form>
+
+    <div id="replacementPairsContainer">
+        <h2>Word Replacement:</h2>
+        <p>Step 2: Choose a few keywords to replace. The left column represents the word you will be replacing and the right column represents the prompt you will give the user.</p>
+        <div id="replacementPairs">
+            <div class="replacementPair">
+                <label for="replaceWord">Replace Word</label>
+                <input type="text" class="replaceWord" placeholder="Octopus" required>
+
+                <label for="replacement"> with a </label>
+                <input type="text" class="replacement" placeholder="Animal" required>
+
+                <button type="button" onclick="removeReplacementPair(this)">-</button>
+            </div>
+        </div>
+        <div id="controls">
+            <button type="button" onclick="addReplacementPair()">+ Replacement</button><br>
+            <button type="button" onclick="convertToJSON()">Convert</button>
+        </div>
+    </div>
+
+    <div id="jsonOutputContainer">
+        <h2>JSON Output:</h2>
+        <textarea id="jsonOutput" rows="10"></textarea>
+    </div>
+</body>
+
+</html>
