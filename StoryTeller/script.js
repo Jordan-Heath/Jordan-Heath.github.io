@@ -1,10 +1,8 @@
-//settings
+// Settings
 var typeEffectEnabled = true;
 var fadeEffectEnabled = true;
-// typespeed = milliseconds in a second / letters per second
-var typeSpeed = 1000 / 20; //default 20
-// fadespeed = seconds to fade * milliseconds in a second / loops to completely fade
-var fadeSpeed = 5 * 1000 / 100; //default 5
+var typeSpeed = 1000 / 20; // milliseconds in a second / letters per second
+var fadeSpeed = 5 * 1000 / 100; // seconds to fade * milliseconds in a second / loops to completely fade
 
 //variables
 var stories = [];
@@ -13,23 +11,11 @@ var audioPlayer;
 var typedLetter;
 var isTyping = false;
 
-//Page Elements
-var customStylesheet;
-var settings;
-var typeEffectSetting;
-var typeSpeedSetting;
-var typeSpeedValue
-var fadeEffectSetting;
-var fadeSpeedSetting;
-var storySelect;
-var storySelector;
-//var storyDetails;
-var storyDetailsForm;
-var storyDetailsControls;
-var submitButton;
-var audioButton;
-var storyOutput;
-
+// Page Elements
+var customStylesheet, settings, typeEffectSetting, typeSpeedSetting, typeSpeedValue,
+    fadeEffectSetting, fadeSpeedSetting, storySelect, storySelector,
+    storyDetailsForm, storyDetailsControls, submitButton, clearButton, audioButton, 
+    storyOutput;
 
 //Step 0: load page
 function loadPageElements() {
@@ -45,26 +31,20 @@ function loadPageElements() {
     storySelect = document.getElementById("storySelect");
     storySelector = document.getElementById("storySelector");
 
-    //storyDetails = document.getElementById("storyDetails");
     storyDetailsForm = document.getElementById("storyDetailsForm");
     storyDetailsControls = document.getElementById("storyDetailsControls");
     submitButton = document.getElementById("submitButton");
+    clearButton = document.getElementById("clearButton");
     audioButton = document.getElementById("audioButton");
 
     storyOutput = document.getElementById("storyOutput");
 }
 
+// Step 1: Load data
 function loadData() {
-    // Load stories from external JSON file
     fetch('https://jordan-heath.github.io/StoryTeller/data/stories.json')
         .then(response => response.json())
-        .then(data => {
-            // Populate select options dynamically
-            data.stories.forEach(jsonStory => {
-                var story = new Story(jsonStory.name, jsonStory.theme, jsonStory.story);
-                addStory(story);
-            });
-        })
+        .then(data => data.stories.forEach(jsonStory => addStory(new Story(jsonStory.name, jsonStory.theme, jsonStory.story))))
         .catch(error => console.error('Error fetching stories:', error));
 }
 
@@ -78,17 +58,11 @@ function addStory(story) {
 
 //Step 1: choose a story
 function storySelected() {
-    //load new story, purge old story
     selectedStory = stories.find(story => story.name === storySelector.value);
-    //storyDetails.style.display = "flex";
     storyDetailsControls.style.display = "flex";
     storyDetailsForm.innerHTML = "";
     if (storyOutput.innerText !== "") clearStory();
 
-    //populate the storyDetails form
-    //var heading = document.createElement("h3");
-    //heading.textContent = `Theme: ${selectedStory.theme}`;
-    //storyDetailsForm.appendChild(heading);
 
     //madlibs words
     selectedStory.missingWords.forEach(missingWord => {
@@ -98,8 +72,6 @@ function storySelected() {
         labelControl.htmlFor = missingWord.id + "input";
         inputControl.id = missingWord.id + "input";
         inputControl.type = "text";
-
-        //inputControl.value = "TEST WORD"; //test line
 
         storyDetailsForm.appendChild(labelControl);
         storyDetailsForm.appendChild(inputControl);
@@ -115,32 +87,47 @@ function storySelected() {
 }
 
 //Step 2: submit details to story
-function submitDetails() {
-    if (storyOutput.innerText !== "") {
-        clearStory();
-        return;
-    }
-    printStory();
-    submitButton.innerHTML = "Clear";
+function submitStory() {
+    selectedStory.composeStory();
+    writeStory();
+    audioPlayer.play();
+    storyDetailsForm.style.display = "none";
+    storyOutput.style.display = "block";
+    submitButton.style.display = "none";
+    clearButton.style.display = "inline";
 }
 
-function printStory() {
-    clearStory();
+function clearStory() {
+    storyOutput.innerHTML = "";
+    audioPlayer.pause();
+    storyDetailsForm.style.display = "flex";
+    storyOutput.style.display = "none";
+    submitButton.style.display = "inline";
+    clearButton.style.display = "none";
+}
 
-    //compose story
-    selectedStory.missingWords.forEach(missingWord => {
-        var input = document.getElementById(missingWord.id + "input");
-        missingWord.value = input.value;
-    });
-    selectedStory.composeStory();
+function writeStory() {
+    function fadeMusic() {
+        if (audioPlayer.volume() > 0 && audioPlayer.isPlaying()) {
+            audioPlayer.setVolume(audioPlayer.volume() - 1);
+            setTimeout(fadeMusic, fadeSpeed);
+        }
+    }
 
-    //tts?
-
-    //play music?
-    audioPlayer.play();
+    function typeWriter() {
+        if (typedLetter > 0 && storyOutput.innerText === "") {
+            return;
+        } else if (typedLetter >= selectedStory.completeStory.length) {
+            storyOutput.innerHTML = selectedStory.completeStory;
+            if (fadeEffectEnabled) fadeMusic();
+        } else {
+            storyOutput.innerHTML += selectedStory.completeStory.charAt(typedLetter);
+            typedLetter++;
+            setTimeout(typeWriter, typeSpeed);
+        }
+    }
 
     //typewriter effect
-    storyOutput.hidden = false;
     typedLetter = 0;
     if (typeEffectEnabled) {
         typeWriter();
@@ -149,37 +136,7 @@ function printStory() {
     }
 }
 
-function typeWriter() {
-    if (typedLetter > 0 && storyOutput.innerText === "") {
-        return;
-    } else if (typedLetter >= selectedStory.completeStory.length) {
-        storyOutput.innerHTML = selectedStory.completeStory;
-        if (fadeEffectEnabled) { fadeMusic(); }
-    } else {
-        storyOutput.innerHTML += selectedStory.completeStory.charAt(typedLetter);
-        typedLetter++;
-        setTimeout(typeWriter, typeSpeed);
-    }
-}
 
-function clearStory() {
-    storyOutput.innerHTML = "";
-    storyOutput.hidden = true;
-    submitButton.innerHTML = "Submit";
-    audioPlayer.pause();
-}
-
-//Music functions
-function fadeMusic() {
-    if (audioPlayer.volume() > 0 && audioPlayer.isPlaying()) {
-        audioPlayer.setVolume(audioPlayer.volume() - 1);
-        setTimeout(fadeMusic, fadeSpeed);
-    }
-}
-
-function toggleAudio() {
-    audioPlayer.isPlaying() ? audioPlayer.pause() : audioPlayer.play();
-}
 
 //Settings
 function toggleSettings() {
@@ -240,6 +197,10 @@ function loadFile() {
     } else {
         alert('Please select a file.');
     }
+}
+
+function toggleAudio() {
+    audioPlayer.isPlaying() ? audioPlayer.pause() : audioPlayer.play();
 }
 
 

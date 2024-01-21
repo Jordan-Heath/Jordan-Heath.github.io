@@ -3,41 +3,43 @@ class Story {
         this.name = name;
         this.theme = theme;
         this.story = story;
-        this.completeStory;
-        if (this.story !== undefined) this.missingWords = this.findMissingWords();
+        this.completeStory = null;
+        this.missingWords = this.findMissingWords();
+    }
+
+    populateMissingWords() {
+        this.missingWords.forEach(missingWord => {
+            var input = document.getElementById(`${missingWord.id}input`);
+            missingWord.value = input.value;
+        });
+    }
+
+    replacePlaceholderWithValue(completeStory, missingWord) {
+        if (missingWord.value.length === 0) {
+            missingWord.value = missingWord.type;
+        }
+        const regex = new RegExp(missingWord.id, 'g');
+        return completeStory.replace(regex, missingWord.value.toUpperCase());
     }
 
     composeStory() {
-        //var printableStory = `${this.name}\n `;
-        var completeStory = this.story;
-        
-        //replace placeholder text with inputted values
+        this.populateMissingWords();
+
+        let completeStory = this.story;
+
+        // Replace placeholder text with inputted values
         this.missingWords.forEach(missingWord => {
-            if (missingWord.value.length === 0) {
-                missingWord.value = missingWord.type;
-            }
-            var regex = new RegExp(missingWord.id, 'g');
-            completeStory = completeStory.replace(regex, missingWord.value.toUpperCase());
+            completeStory = this.replacePlaceholderWithValue(completeStory, missingWord);
         });
 
         this.completeStory = completeStory;
-        return completeStory;
     }
 
     findMissingWords() {
-        // Regular expression to match words inside triangle brackets
-        var regex = /<([^>]+)>/g;
+        const regex = /<([^>]+)>/g;
+        const rawMatches = this.story.match(regex);
+        const matches = rawMatches ? [...new Set(rawMatches)] : [];
 
-        // Extract words inside triangle brackets
-        var rawmatches = this.story.match(regex);
-
-        // Filter out duplicates and return as an array
-        var matches = rawmatches ? [...new Set(rawmatches)] : [];
-
-        var missingWords = [];
-        matches.forEach(missingWord => {
-            missingWords.push(new MissingWord(missingWord))
-        });
-        return missingWords;
+        return matches.map(missingWord => new MissingWord(missingWord));
     }
-};
+}

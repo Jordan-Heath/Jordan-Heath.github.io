@@ -57,12 +57,13 @@
             <!-- create inputs based on the details needed to complete the story -->
         </div>
 
-        <div id="storyOutput" hidden="true">
+        <div id="storyOutput" display="none">
             <!-- The story is written here -->
         </div>
 
         <div id="storyDetailsControls">
-            <button id="submitButton" onclick="submitDetails()">Submit</button>
+            <button class="submitButton" id="submitButton" onclick="submitStory()">Submit</button>
+            <button class="submitButton" id="clearButton" onclick="clearStory()" style="display: none;">Clear</button>
             <button id="audioButton" onclick="toggleAudio()"><!--&raquo;-->&#9654;</button>
         </div>
     </main>
