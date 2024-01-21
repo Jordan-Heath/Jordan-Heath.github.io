@@ -42,17 +42,8 @@ I developed an app that emulates the game Madlibs. Features:
 - 6 different stories
 - Let the themed page design set the mood
 - Complete the story by filling in the missing words
-- Watch as the story unfolds keystroke at a time accompanied by theme-music
+- Watch as the story unfolds keystroke at a time accompanied by [theme-music](StoryTeller/README.md)
 - Adjustable Text-speed and audiofade
-
-Music sourced from [fesliyanstudios](https://www.fesliyanstudios.com/):
-
-- Fantasy: Rolling Hills Of Ireland by Alex Zachariou
-- Science Fiction: Final Descent by David Robson
-- Mystery: Shady Business by David Renda
-- Horror: Ghost stories by Steve Oxen
-- Western: Prairie Evening by Steve Oxen
-- Non-Fiction: Retro News At Nine by Steve Oxen
 
 ### [Word Scrambler](WordScrambler/WordScrambler.html)
 

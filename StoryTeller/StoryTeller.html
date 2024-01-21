@@ -23,10 +23,6 @@
             <h1>Story Teller</h1>
             <button onclick="toggleSettings()" id="settingsButton">&#8801;</button>
         </div>
-    </header>
-    <!-- <h3>inspired by madlibs</h3> -->
-
-    <main>
         <div id="settings" hidden="true">
             <div class="typeSpeed">
                 <input type="checkbox" id="typeEffectSetting" checked="true" onchange="updateSettings()">
@@ -40,7 +36,10 @@
                 <input type="range" id="fadeSpeedSetting" min="1" max="10" value="5" onchange="updateSettings()">
             </div>
         </div>
+    </header>
+    <!-- <h3>inspired by madlibs</h3> -->
 
+    <main>
         <div id="storySelect">
             <label for="storySelector">Choose a story:</label>
             <select id="storySelector" onchange="storySelected()">

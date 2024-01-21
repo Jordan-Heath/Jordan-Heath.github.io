@@ -1,109 +1,109 @@
+/*body*/
 :root {
-    --night: #1a1a1a;
-    --eerie-black: #222222;
-    --jet: #333;
-    --davys-gray: #555555;
-    --white: #fff;
-    --pumpkin: #ff6600;
-    --drop-shadow: rgba(0, 0, 0, 0.4);
-  }
-  
-  body {
-    background: var(--night);
-    color: var(--white);
-  }
-  
-  main {
-    margin: auto;
-    padding: 30px;
-    max-width: 540px;
-  }
-  
-  header {
-    background: var(--night);
-    padding: 1rem 0;
-    margin-bottom: 10px;
-  }
-  
-  .header-container {
-    margin: auto;
-    max-width: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-align: center;
-  }
-  
-  #homeButton,
-  #settingsButton {
-    margin: 0;
-    width: 10%;
-  }
-  
-  h1 {
-    margin: 0 10%;
-  }
-  
-  #storySelect {
-    margin-top: 20px;
-  }
-  
-  #storySelector {
-    font-size: x-large;
-    display: block;
-    font-family: 'Times New Roman', Times, serif;
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-  }
-  
-  #storyDetailsForm,
-  #storyDetailsControls {
-    max-width: 300px;
-    margin: auto;
-    margin-top: 20px;
-  }
-  
-  #storyDetailsControls {
-    display: none;
-    flex-direction: row;
-    justify-content: center;
-  }
-  
-  input[type="text"] {
-    background: var(--eerie-black);
-    color: var(--white);
-    padding: 8px;
-    border: 1px solid #555555;
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  
-  #submitButton,
-  #audioButton {
-    margin: 0 10px;
-  }
-  
-  button {
-    display: inline;
-    background: var(--jet);
-    color: var(--white);
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.3s ease;
-    max-width: 90px;
-    margin: auto;
-  }
-  
-  button:hover {
-    transform: scale(1.05);
-    background: var(--davys-gray);
-  }
-  
-  #storyOutput {
-    font-size: 24px;
-    margin: auto;
-    margin-top: 20px;
-  }
-  
+  --night: #1a1a1a;
+  --eerie-black: #222222;
+  --jet: #333;
+  --davys-gray: #555555;
+  --white: #fff;
+  --pumpkin: #ff6600;
+  --drop-shadow: rgba(0, 0, 0, 0.4);
+}
+body {
+  background: var(--night);
+  color: var(--white);
+  min-height: 98vh;
+}
+main {
+  margin: auto;
+  padding: 30px;
+  max-width: 540px;
+}
+
+/* Header */
+header {
+  background: var(--night);
+  padding: 1rem 0;
+  margin-bottom: 10px;
+}
+.header-container {
+  margin: auto;
+  max-width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+#homeButton,
+#settingsButton {
+  margin: 0;
+  width: 10%;
+}
+#settings {
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+/* Story Select */
+#storySelector {
+  font-size: x-large;
+  display: block;
+  font-family: 'Times New Roman', Times, serif;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/*Story Details */
+#storyDetailsForm {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: auto;
+  margin-top: 20px;
+}
+input[type="text"] {
+  background: var(--eerie-black);
+  color: var(--white);
+  padding: 8px;
+  border: 1px solid #555555;
+  margin-bottom: 10px;
+}
+
+/* Story Output */
+#storyOutput {
+  font-size: 24px;
+  margin: auto;
+  margin-top: 20px;
+}
+
+/* Story Controls */
+#storyDetailsControls {
+  margin: auto;
+  margin-top: 10px;
+  display: none;
+  flex-direction: row;
+  justify-content: center;
+  max-width: 150px;
+}
+#submitButton,
+#audioButton {
+  margin: 0 10px;
+}
+
+/* Buttons */
+button {
+  display: inline;
+  background: var(--jet);
+  color: var(--white);
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  max-width: 90px;
+  margin: auto;
+}
+button:hover {
+  transform: scale(1.05);
+  background: var(--davys-gray);
+}

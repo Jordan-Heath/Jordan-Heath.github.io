@@ -64,7 +64,7 @@ function loadData() {
                 stories.push(new Story(story.name, story.theme, story.story))
                 var option = document.createElement("option");
                 option.value = story.name;
-                option.textContent = `${story.theme}: ${story.name}`;
+                option.textContent = `${story.theme}: ${story.name} (${stories[stories.length - 1].missingWords.length})`;
                 storySelector.appendChild(option);
             });
         })
@@ -78,7 +78,7 @@ function storySelected() {
     //storyDetails.style.display = "flex";
     storyDetailsControls.style.display = "flex";
     storyDetailsForm.innerHTML = "";
-    clearStory();
+    if (storyOutput.innerText !== "") clearStory();
 
     //populate the storyDetails form
     //var heading = document.createElement("h3");
@@ -111,15 +111,17 @@ function storySelected() {
 
 //Step 2: submit details to story
 function submitDetails() {
-    isTyping = !isTyping;
-    clearStory();
-    if (!isTyping) {
+    if (storyOutput.innerText !== "") {
+        clearStory();
         return;
     }
     printStory();
+    submitButton.innerHTML = "Clear";
 }
 
 function printStory() {
+    clearStory();
+
     //compose story
     selectedStory.missingWords.forEach(missingWord => {
         var input = document.getElementById(missingWord.id + "input");
@@ -135,16 +137,19 @@ function printStory() {
     //typewriter effect
     storyOutput.hidden = false;
     typedLetter = 0;
-    typeEffectEnabled ? typeWriter() : storyOutput.innerHTML = selectedStory.completeStory;
+    if (typeEffectEnabled) {
+        typeWriter();
+    } else {
+        storyOutput.innerText = selectedStory.completeStory;
+    }
 }
 
 function typeWriter() {
-    if (!isTyping) {
+    if (typedLetter > 0 && storyOutput.innerText === "") {
         return;
     } else if (typedLetter >= selectedStory.completeStory.length) {
-        isTyping = false;
         storyOutput.innerHTML = selectedStory.completeStory;
-        if (fadeSpeedEnabled) { fadeMusic(); }
+        if (fadeEffectEnabled) { fadeMusic(); }
     } else {
         storyOutput.innerHTML += selectedStory.completeStory.charAt(typedLetter);
         typedLetter++;
@@ -153,16 +158,15 @@ function typeWriter() {
 }
 
 function clearStory() {
-    if (storyOutput.hidden !== true) {
-        storyOutput.innerHTML = "";
-        storyOutput.hidden = true;
-        audioPlayer.pause();
-    }
+    storyOutput.innerHTML = "";
+    storyOutput.hidden = true;
+    submitButton.innerHTML = "Submit";
+    audioPlayer.pause();
 }
 
 //Music functions
 function fadeMusic() {
-    if (audioPlayer.volume() > 0 && audioPlayer.isPlaying() && isTyping === false) {
+    if (audioPlayer.volume() > 0 && audioPlayer.isPlaying()) {
         audioPlayer.setVolume(audioPlayer.volume() - 1);
         setTimeout(fadeMusic, fadeSpeed);
     }
@@ -181,13 +185,13 @@ function updateSettings() {
     //update values
     typeEffectEnabled = typeEffectSetting.checked;
     typeSpeed = 1000 / typeSpeedSetting.value;
-    fadeSpeedEnabled = fadeEffectSetting.checked;
+    fadeEffectEnabled = fadeEffectSetting.checked;
     fadeSpeed = 10 * fadeSpeedSetting.value;
 
     //enable/disable controls
     typeSpeedSetting.disabled = !typeEffectEnabled;
     fadeEffectSetting.disabled = !typeEffectEnabled;
-    fadeSpeedSetting.disabled = !typeEffectEnabled || !fadeSpeedEnabled;
+    fadeSpeedSetting.disabled = !typeEffectEnabled || !fadeEffectEnabled;
 
     //update values
     typeSpeedValue.innerHTML = typeSpeedSetting.value;
@@ -198,6 +202,8 @@ function updateSettings() {
 document.addEventListener('DOMContentLoaded', () => {
     loadPageElements();
     loadData();
+    updateSettings();
     storySelector.value = 'placeholder';
     audioPlayer = new AudioPlayer();
+    clearStory();
 });

@@ -1,7 +1,6 @@
 body {
     font-family: 'Cinzel Decorative', cursive;
     background-color: #4a332e; /* Light yellow background color */
-    color: #2a2829; /* Dark gray text color */
 }
 
 h1 {
@@ -14,6 +13,7 @@ header {
 }
 
 main {
+    color: #2a2829; /* Dark gray text color */
     background: radial-gradient(ellipse at center, #e0d1b2, #957848);
     border-radius: 4px;
     box-shadow: 20px 20px 20px var(--drop-shadow);

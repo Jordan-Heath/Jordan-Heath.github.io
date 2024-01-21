@@ -4,11 +4,7 @@ class Story {
         this.theme = theme;
         this.story = story;
         this.completeStory;
-
-        if (this.story !== undefined)
-        {
-            this.missingWords = this.findMissingWords();
-        }
+        if (this.story !== undefined) this.missingWords = this.findMissingWords();
     }
 
     composeStory() {
@@ -18,7 +14,7 @@ class Story {
         //replace placeholder text with inputted values
         this.missingWords.forEach(missingWord => {
             if (missingWord.value.length === 0) {
-                missingWord.value = "Whoops";
+                missingWord.value = missingWord.type;
             }
             var regex = new RegExp(missingWord.id, 'g');
             completeStory = completeStory.replace(regex, missingWord.value.toUpperCase());
