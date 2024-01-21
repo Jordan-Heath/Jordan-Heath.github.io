@@ -1,3 +1,27 @@
+// Function to check if a string is empty
+function isEmpty(str) {
+    return str === "";
+}
+
+// Function to fetch themes from JSON file and populate the select menu
+function populateThemes() {
+    var selectMenu = document.getElementById('theme');
+
+    // Fetch the themes.json file
+    fetch('https://jordan-heath.github.io/StoryTeller/data/themes.json')
+        .then(response => response.json())
+        .then(data => {
+            // Iterate through the themes and add options to the select menu
+            data.themes.forEach(theme => {
+                var option = document.createElement('option');
+                option.value = theme;
+                option.text = theme;
+                selectMenu.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error fetching themes:', error));
+}
+
 function addReplacementPair() {
     var replacementPairsDiv = document.getElementById('replacementPairs');
 
@@ -61,11 +85,6 @@ function convertToJSON() {
     // Get word replacement pairs
     var replacementPairs = document.querySelectorAll('.replacementPair');
 
-    // Function to check if a string is empty
-    function isEmpty(str) {
-        return str === "";
-    }
-
     // Function to apply red background if a pair is empty
     function applyRedBackground(pair) {
         var replaceWord = pair.querySelector('.replaceWord').value;
@@ -118,24 +137,40 @@ function convertToJSON() {
     document.getElementById('jsonOutput').value = jsonOutput;
 }
 
+function downloadFile() {
+    var jsonOutput = document.getElementById('jsonOutput');
+    var jsonOutputContent = jsonOutput.value;
+    if (isEmpty(jsonOutputContent)) {
+        jsonOutput.style.backgroundColor = '#ffcccc';
+        return;
+    }
+    jsonOutput.style.backgroundColor = '';
 
-// Function to fetch themes from JSON file and populate the select menu
-function populateThemes() {
-    var selectMenu = document.getElementById('theme');
+    try {
+        // Parse the JSON content
+        var jsonData = JSON.parse(jsonOutputContent);
 
-    // Fetch the themes.json file
-    fetch('https://jordan-heath.github.io/StoryTeller/data/themes.json')
-        .then(response => response.json())
-        .then(data => {
-            // Iterate through the themes and add options to the select menu
-            data.themes.forEach(theme => {
-                var option = document.createElement('option');
-                option.value = theme;
-                option.text = theme;
-                selectMenu.appendChild(option);
-            });
-        })
-        .catch(error => console.error('Error fetching themes:', error));
+        // Extract the "name" field
+        var fileName = jsonData.name || 'downloaded_file';
+
+        // Create a Blob from the textarea content
+        var blob = new Blob([jsonOutputContent], { type: 'application/json' });
+
+        // Create a download link
+        var downloadLink = document.createElement('a');
+        downloadLink.href = window.URL.createObjectURL(blob);
+        downloadLink.download = fileName + '.json';
+
+        // Append the link to the body and trigger the download
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+
+        // Remove the link from the body
+        document.body.removeChild(downloadLink);
+    } catch (error) {
+        console.error('Error parsing JSON content:', error);
+        alert('Error parsing JSON content. Please check the format.');
+    }
 }
 
 // Call the function to populate themes when the page loads
