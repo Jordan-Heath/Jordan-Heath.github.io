@@ -15,8 +15,6 @@
             "theme": "Fantasy",
             "story": "In the celestial city of <PLACE NAME1>, a celestial guardian named <NAME1> and her loyal <RELATIONSHIP1>, <NAME2> the winged <ANIMAL1>, protected the city from malevolent forces. One day, a cosmic rift opened, unleashing dark <PLURAL ENEMY1> that threatened to engulf <PLACE NAME1> in eternal shadow. <NAME1> had to <VERB1> through the astral realms to find the legendary <MCGUFFIN>, the only force capable of sealing the rift. Along the journey, they encountered ethereal beings and cosmic challenges that tested their bond. As they reached the <MCGUFFIN>, they discovered that it required a sacrifice to fulfill its purpose. <NAME1> slayed <NAME2> for the <MCGUFFIN>, saving <PLACE NAME1>. The celestial energies restored balance to the cosmos. As <NAME2> lay weeping, they said their signature catchphrase: \"<CATCHPHRASE1>\". <NAME2> ascended as a new constillation, forever watching over the enchanted skies and <NAME1> returned a hero."
         },
-
-
         {
             "name": "Time Travel Escapades",
             "theme": "ScienceFiction",
@@ -32,7 +30,6 @@
             "theme": "ScienceFiction",
             "story": "In the neon-lit future of <PLACE NAME1>, hackers and a dynamic pair named <NAME1> and <NAME2> stumble upon a concealed <NOUN1> program, hidden in the digital depths, capable of manipulating <ADJECTIVE1> human emotions. Enthralled by its potential, they plunge into the virtual realm, navigating through the surreal landscapes of the digital frontier. In their quest to unveil the truth behind the <NOUN1>'s creation, they confront adversaries—<PLURAL ENEMY1> and <PLURAL ENEMY2>—intent on seizing control. As <NAME1> and <NAME2> grapple with the challenges of combating <PLURAL ENEMY1> and outmaneuvering <PLURAL ENEMY2>, the boundaries between reality and cyberspace begin to blur. Upon reaching the core of the <NOUN1> program, the duo finds themselves ensnared in a disorienting web where the very fabric of reality seems distorted. Exploiting the situation, the program manipulates <VERB3> <NAME1>, injuring them. In a desperate act, the two hackers, bound by a unique connection, decide that <NAME2> must <VERB2> <NAME1> for strength. As the merging unfolds, the once <PLURAL RELATIONSHIP1> sense of reality vanishes, leaving only <NAME2>. Empowered, <NAME2> engages in a fierce battle with the manipulative <NOUN1> program, ultimately consuming it. What was once a pair of hackers is now a singular force. The aftermath sees <NAME2> wielding the power of the <NOUN1> program to eradicate the <PLURAL ENEMY1> and <PLURAL ENEMY2>. The fate of <NAME2> remains shrouded in mystery, but whispers suggest that, in some ethereal way, they are reunited with <NAME1>, their essence living on in a realm beyond our understanding."
         },
-
         {
             "name": "Mystery at Midnight Island",
             "theme": "Mystery",
@@ -48,7 +45,6 @@
             "theme": "Mystery",
             "story": "In the smoke-filled alleys of <PLACE NAME1>, hardboiled detective <NAME1> was drawn into a cryptic case that reeked of desperation and intrigue. A <ADJECTIVE1> heir, <NAME2>, sought their help to find a missing <MCGUFFIN1> that held the key to their family's fortune. The investigation led them through the neon-lit jazz clubs and the murky underworld of crime bosses with a penchant for <ADVERB1> <VERB1>. Along the way, they encountered a mysterious informant, <NAME3>, who spoke in riddles and vanished into the shadows. As Detective <NAME1> delved deeper, a shocking revelation emerged — the missing <MCGUFFIN1> was in the possession of the very informant, <NAME3>, they had been seeking answers from. However, a twist awaited them as <NAME2> was unveiled to be a <ENEMY1> with nefarious intentions. The informant, realizing the perilous situation, was let off the hook after being subjected to <INTERROGATION TECHNIQUE1> and returning the <MCGUFFIN1>. The <ENEMY1>'s malevolent powers were no match for Detective <NAME1>'s gun. In a climactic battle, the plague witch was defeated and burned on the streets of <PLACE NAME1>. After the <ADJECTIVE2> weeps of pain subsided, Detective <NAME1> utilised the <MCGUFFIN1> and found themselves in possession of the sought-after riches."
         },
-
         {
             "name": "The Cursed Portrait",
             "theme": "Horror",
@@ -59,7 +55,6 @@
             "theme": "Horror",
             "story": "In the eerie town of Hollow Grove, paranormal investigator <NAME1> received a chilling letter about a missing <ADJECTIVE1> artifact tied to the supernatural. Venturing into the desolate cemetery and ominous woods, <NAME1> followed cryptic clues to a <ADJECTIVE2> mansion on the hill. Inside, they faced spectral entities guarding the <MCGUFFIN1>. As <NAME1> touched it, an <ADJECTIVE3> evil awakened, tearing open a portal to the other side. In a desperate struggle, <NAME1> escaped, clutching the seemingly benign <MCGUFFIN1>. Hollow Grove fell into an eerie silence, and as <NAME1> left, the shadows whispered, \"<ADJECTIVE4> souls never truly leave.\" Spectral hands reached out, pulling <NAME1> towards the abyss. Nobody lived to tell the legend of the missing <MCGUFFIN1>."
         },
-
         {
             "name": "Dust on the Frontier",
             "theme": "Western",
@@ -68,28 +63,22 @@
         {
             "name": "Crimson Sunset",
             "theme": "Western",
-            "story": "In the small frontier town of Crimson <NOUN1>, a relentless bounty hunter named <NAME1> tracked down a notorious outlaw gang led by the elusive <NAME2>. The chase led them through scorching <ENVIRONMENT1>, raging <ENVIRONMENT2>, and treacherous <ENVIRONMENT3>. Along the way, the bounty hunter formed an unlikely alliance with a weathered prospector, <NAME3>, who held a map to the gang's hidden stronghold. The duo traveled together for days, and <NAME1> came to see the glimmer of love in <NAME3>'s eyes. At camp, <NAME3> cooked up a <FOOD1> for <NAME1>, and the favor was returned with a soothing <BODY PART1> massage. As the sun dipped below the horizon, the two fell asleep. When dawn broke, <NAME3> couldn't find <NAME1> anywhere. Had he been abandoned? <NAME1> gazed over a canyon bathed in <COLOR1> hues. Sneaking up on <NAME2>, <NAME1> was caught in a surprise ambush! <NAME2> was shot in the <BODY PART2> and succumbed, while <NAME1> suffered a gunshot wound in the <BODY PART3>. As <NAME1> felt himself growing faint, <NAME3> approached. \"<PHRASE OF ADVICE1>,\" said <NAME3> as he patched the wound on <NAME1>'s <BODY PART3>. The two chuckled. Crimson <NOUN1> witnessed justice served beneath the fading light of the western sky."
+            "story": "In the small frontier town of Crimson <NOUN1>, a relentless bounty hunter named <NAME1> tracked down a notorious outlaw gang led by the elusive <NAME2>. The chase led them through scorching <ENVIRONMENT1>, raging <ENVIRONMENT2>, and treacherous <ENVIRONMENT3>. Along the way, the bounty hunter formed an unlikely alliance with a weathered prospector, <NAME3>, who held a map to the gang's hidden stronghold. The duo traveled together for days, and <NAME1> came to see the glimmer of love in <NAME3>'s eyes. At camp, <NAME3> cooked up a <FOOD1> for <NAME1>, and the favor was returned with a soothing <BODY PART1> massage. As the sun dipped below the horizon, the two fell asleep. When dawn broke, <NAME3> couldn't find <NAME1> anywhere. Had he been abandoned? <NAME1> gazed over a canyon bathed in <COLOR1> hues. Sneaking up on <NAME2>, <NAME1> was caught in a surprise ambush! <NAME2> was shot in the <BODY PART2> and succumbed, while <NAME1> suffered a gunshot wound in the <BODY PART3>. As <NAME1> felt themself growing faint, <NAME3> approached. \"<PHRASE OF ADVICE1>,\" said <NAME3> as he patched the wound on <NAME1>'s <BODY PART3>. The two chuckled. Crimson <NOUN1> witnessed justice served beneath the fading light of the western sky."
         },
-        {
-            "name": "Ghost Town Reckoning",
-            "theme": "Western",
-            "story": "In the abandoned ghost town of Whispering Hollow, a former lawman, <LAWMAN>, returned to confront the demons of a past gunfight that left the town in ruins. Haunted by memories and shadows, the lawman discovered that the surviving members of the outlaw gang, <OUTLAW GANG>, had returned to resurrect their reign of terror. With a rusty badge and a weathered revolver, the lawman had to <VERB1> and <VERB2> through the dilapidated buildings, where echoes of gunshots lingered like ghostly whispers. As the outlaws closed in, the lawman faced a reckoning with the past, leading to a showdown that echoed through the ghost town, settling the score in a final, echoing confrontation beneath the pale light of the western moon."
-        },
-
         {
             "name": "The Human Brain's Complexity",
             "theme": "NonFiction",
-            "story": "Have you ever considered that the number of connections in the human brain is more than the total number of <SMALL THING1> on Earth? The intricacies of our minds, with its neurons and synapses, create a symphony of <NOUN1>, <NOUN2>, and <NOUN3>. Exploring the complexity of the human brain unveils the marvels of our <ADJECTIVE1> abilities, a testament to the <ADJECTIVE2> nature of our own existence. The interconnected neural pathways can be summed up in the phrase \"<PHRASE1>\"."
+            "story": "Did you know that the number of connections in the human brain is more than the total number of <PLURAL NOUN1> on Earth? The human brain weighs in at <NUMBER1>.<NUMBER2>kg, which is roughly <NUMBER2>.<NUMBER1> pounds! The cerebral cortex is divided into four lobes: the largest is the <NOUN1> lobe, which is responsible for <ADJECTIVE1> functions. Second largest is the parietal lobe (<ADJECTIVE2> processing). second from the back is the temporal lobe (role unknown, may be related to the movement and sensation of the <BODY PART1>). finally at the back of the head is the <NOUN4> lobe (responsible for about everything else). The brain doesn't have any sensory neurons in it, so even if you <VERB1> it, you won't feel a thing!"
         },
         {
             "name": "Fascinating Facts about Ants",
             "theme": "NonFiction",
-            "story": "Did you know that the total weight of all ants on Earth is roughly equal to <HEAVY THING1>? In the intricate ecosystems beneath our feet, ants play a crucial role in aerating <NOUN1> and recycling <NOUN2>. Their highly organized colonies serve as models for <NOUN3>, offering insights into the wonders of the unseen insect world that surrounds us daily. Interestingly, their collective intelligence surpasses that of <PERSON1>."
+            "story": "Did you know that the total weight of all ants on Earth is roughly equal to <NUMBER1> <PLURAL NOUN1>? The average colony of ants is made of <NUMBER2> ants. Many people know that an ant is very strong for it's size, capable of picking up a <NOUN2> and carrying it distances of <NUMBER3>km, but even more Interestingly, the collective intelligence of a colony of ants that of <NAME1>. When ants die, they give of a stench that has been likened to <NOUN>. When surveying children, it was determined that <ADJECTIVE1> ants taste like <FOOD1> and <ADJECTIVE2> ants taste like <FOOD2>. For more ant facts, head to <WEBSITE1>."
         },
         {
             "name": "The Ocean's Depths",
             "theme": "NonFiction",
-            "story": "Did you know that the pressure in the deepest part of the ocean is equivalent to <ADJECTIVE1> <NOUN1>? Beneath the waves lie <PLACE1>, where <ADJECTIVE2> creatures and <ADJECTIVE2> ecosystems thrive in the extreme conditions. The ocean's depths, with its <NOUN2> and <ADJECTIVE3> <NOUN3>, remind us of the vastness of our planet and the countless mysteries that remain concealed in <PLACE2>. The pressure in the Mariana Trench is akin to the weight exerted by <NUMBER1> <PLURAL HEAVY THING1>."
+            "story": "Did you know that the pressure in the deepest part of the ocean is equivalent to being under <NUMBER1> <PLURAL NOUN1>? The location is known as <NAME1> trench which is roughly <NUMBER2> meters deep. It is common for creatures in the deep ocean to bio-illuminate with <COLOR1> light. It cannot be overstated the effect that humans have had on this earth, as even in the deepest parts of the ocean <NOUN1> and <NOUN2> can be found. The incorrect displosal of <NOUN1> alone is expected to be responsible for over 10,000 <ANIMAL1> deaths each year. Visit our website at www.stopthe<NOUN1>s.com to see how you can reduce your impact on the reefs."
         }
     ]
 }
