@@ -1,20 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Idle Landlord</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <script src="js/constants.js" defer></script>
+    <script src="js/property.js" defer></script>
+    <script src="js/save.js" defer></script>
+    <script src="js/script.js" defer></script>
+    <title>Idle Landlord</title>
 </head>
+
 <body>
 
-  <h1>Idle Landlord</h1>
-  <p id="income">Income: $<span id="incomeValue">0</span>/s</p>
-  <p id="money">Money: $<span id="moneyValue">0</span></p>
-  <button id="workButton" onclick="work()">Work</button>
-  <div id="propertyButtons"></div>
+    <main class="container">
+        <div class="column" id="leftColumn">
+            <h2>Properties</h2>
+            <div id="propertyButtons"></div>
+        </div>
 
-  <script src="script.js"></script>
+        <div class="column" id="middleColumn">
+            <h2>Your Business</h2>
+            <p id="income">Income: $<span id="incomeValue">0</span>/s</p>
+            <p id="money">Money: $<span id="moneyValue">0</span></p>
+            <button id="workButton" onclick="work()">Work</button>
+
+            <div id="saveControls">
+                <button id="exportButton" onclick="exportSave()">Export Save</button>
+                <button id="importButton" onclick="document.getElementById('importInput').click();">Import Save</button>
+                <input type="file" id="importInput" accept=".json" style="display:none;" onchange="importSave()">
+            </div>
+        </div>
+
+        <div class="column" id="rightColumn">
+            <h2>Upgrades</h2>
+            <!-- Add upgrade buttons or content here -->
+        </div>
+    </main>
 
 </body>
+
 </html>
