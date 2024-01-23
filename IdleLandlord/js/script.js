@@ -1,25 +1,29 @@
-const save = new Save();
 const properties = [];
 const incomeInterval = 50;
 const DATA_URL = 'https://jordan-heath.github.io/IdleLandlord/data/data.json';
+const data = new Data();
+
+var workRate
 
 function exportSave() {
     const saveData = {
-        money: save.money,
-        income: save.income,
-        propertyOwnership: Object.fromEntries(save.propertyOwnership.entries())
+        version: data.version,
+        name: data.name,
+        money: data.money,
+        ownedProperties: Object.fromEntries(data.properties.entries())//,
+        //ownedUpgrades: Object.fromEntries(data.upgrades.entries())
     };
 
     const blob = new Blob([JSON.stringify(saveData)], { type: 'application/json' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = 'save.json';
+    link.download = `${data.name === "" ? "save" : data.name}.json`;
     link.click();
 }
 
-function importSave(event) {
-    const input = event.target;
-    const file = input.files[0];
+function importSave() {
+    var fileInput = document.getElementById('fileInput');
+    var file = fileInput.files[0];
 
     if (file) {
         const reader = new FileReader();
@@ -27,9 +31,17 @@ function importSave(event) {
         reader.onload = function () {
             try {
                 const importedSave = JSON.parse(reader.result);
-                save.money = importedSave.money;
-                save.income = importedSave.income;
-                save.propertyOwnership = new Map(Object.entries(importedSave.propertyOwnership));
+                if(importedSave.version != data.version) {
+                    alert("Save version is outdated and may have issues.");
+                }
+                data.baseWorkRate = importedSave
+                data.name = importedSave.name;
+                data.money = importedSave.money;
+
+                //TODO: create a process to merge the owned numbers over the owned numbers
+                data.properties = new Map(Object.entries(importedSave.ownedProperties));
+                //TODO: implement upgrades
+                //data.upgrades = new Map(Object.entries(importedSave.ownedUpgrades));
 
                 updateDisplay();
                 updateButtons();
@@ -42,36 +54,48 @@ function importSave(event) {
     }
 }
 
-function loadData() {
-    fetch(DATA_URL)
-        .then(response => response.json())
-        .then(data => {
-            // Update the work rate
-            save.workRate = parseInt(data.Work);
+function editBusinessName() {
+    const businessNameElement = document.getElementById('businessName');
 
-            // Load properties
-            properties.push(...data.properties);
+    // Create an input field
+    const inputElement = document.createElement('input');
+    inputElement.value = businessNameElement.innerText;
+    
+    // Add an event listener to save changes on Enter key press
+    inputElement.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            saveBusinessName(inputElement.value);
+        }
+    });
 
-            // Initialize propertyOwnership with all properties set to 0
-            properties.forEach(property => {
-                save.propertyOwnership.set(property.name, 0);
-            });
+    // Replace the h2 with the input field
+    businessNameElement.replaceWith(inputElement);
 
-            updateButtons();
-            startIncomeInterval();
-        })
-        .catch(error => console.error('Error loading data:', error));
+    // Focus the input field
+    inputElement.focus();
+}
+
+function saveBusinessName(newName) {
+    // Update the business name wherever necessary
+    // For now, let's just update the h2 element
+    const businessNameElement = document.createElement('h2');
+    businessNameElement.id = 'businessName';
+    businessNameElement.innerText = newName;
+
+    // Add the event listener back to the updated h2
+    businessNameElement.addEventListener('click', editBusinessName);
+
+    // Replace the input field with the updated h2
+    const inputElement = document.querySelector('input');
+    inputElement.replaceWith(businessNameElement);
 }
 
 function startIncomeInterval() {
-    setInterval(updateIncome, incomeInterval);
+    setInterval(earnIncome, incomeInterval);
 }
 
-function updateIncome() {
-    for (const [property, count] of save.propertyOwnership.entries()) {
-        var profit = properties.find(p => p.name === property).income * count
-        save.money += profit * incomeInterval / 1000;
-    }
+function earnIncome() {
+    data.money += data.income() * incomeInterval / 1000;
     updateDisplay();
 }
 
@@ -79,15 +103,15 @@ function updateButtons() {
     const propertyButtonsContainer = document.getElementById('propertyButtons');
     propertyButtonsContainer.innerHTML = ''; // Clear existing buttons
 
-    properties.forEach(property => {
+    data.properties.forEach(property => {
         const propertyContainer = document.createElement('div');
         propertyContainer.classList.add('property-container');
 
         const propertyName = document.createElement('p');
-        if (save.propertyOwnership.get(property.name)) {
-            propertyName.innerText = `${save.propertyOwnership.get(property.name)} `;
+        if (property.owned > 0) {
+            propertyName.innerText = `${property.owned} `;
             propertyName.innerText += `${property.name} `;
-            propertyName.innerText += `($${save.propertyOwnership.get(property.name) * property.income}/s)`;
+            propertyName.innerText += `($${property.owned * property.income}/s)`;
         } else {
             propertyName.innerText = property.name;
         }
@@ -104,22 +128,21 @@ function updateButtons() {
 }
 
 function updateDisplay() {
-    document.getElementById('moneyValue').innerText = save.money;
-    document.getElementById('incomeValue').innerText = save.income;
+    document.getElementById('moneyValue').innerText = data.money;
 }
 
 function work() {
-    save.money += workRate;
+    data.money += data.baseWorkRate;
     updateDisplay();
 }
 
 function buyProperty(propertyName) {
-    const property = properties.find(p => p.name === propertyName);
+    const property = data.properties.find(p => p.name === propertyName);
 
-    if (property && save.money >= property.cost) {
-        save.money -= property.cost;
-        save.propertyOwnership.set(propertyName, save.propertyOwnership.get(propertyName) + 1);
-        save.income += property.income;
+    if (property && data.money >= property.cost) {
+        data.money -= property.cost;
+        property.owned += 1;
+        document.getElementById('incomeValue').innerText = data.income();
         updateDisplay();
         updateButtons();
     } else {
@@ -130,10 +153,8 @@ function buyProperty(propertyName) {
 // Load properties when the script is executed
 
 document.addEventListener('DOMContentLoaded', function () {
-    //document.getElementById('exportButton').addEventListener('click', exportSave);
-    //document.getElementById('importButton').addEventListener('click', () => {
-        //document.getElementById('importInput').click();
-    //});
-    //document.getElementById('importInput').addEventListener('change', importSave);
-    loadData();
+    const businessNameElement = document.getElementById('businessName');
+    businessNameElement.addEventListener('click', editBusinessName);
+
+    data.loadData();
 });

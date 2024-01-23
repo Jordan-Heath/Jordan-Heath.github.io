@@ -1,5 +1,6 @@
 {
-    "Work": 10,
+    "version": "Alpha 1.0",
+    "baseWorkRate": 10,
     "properties": [
         {
             "name": "Caravan",

@@ -9,6 +9,7 @@
     <script src="js/constants.js" defer></script>
     <script src="js/property.js" defer></script>
     <script src="js/save.js" defer></script>
+    <script src="js/data.js" defer></script>
     <script src="js/script.js" defer></script>
     <title>Idle Landlord</title>
 </head>
@@ -22,15 +23,15 @@
         </div>
 
         <div class="column" id="middleColumn">
-            <h2>Your Business</h2>
+            <h2 id="businessName">Your Business</h2>
             <p id="income">Income: $<span id="incomeValue">0</span>/s</p>
             <p id="money">Money: $<span id="moneyValue">0</span></p>
             <button id="workButton" onclick="work()">Work</button>
 
             <div id="saveControls">
                 <button id="exportButton" onclick="exportSave()">Export Save</button>
-                <button id="importButton" onclick="document.getElementById('importInput').click();">Import Save</button>
-                <input type="file" id="importInput" accept=".json" style="display:none;" onchange="importSave()">
+                <button id="importButton" onclick="document.getElementById('fileInput').click();">Import Save</button>
+                <input type="file" id="fileInput" accept=".json" style="display:none;" onchange="importSave()">
             </div>
         </div>
 
