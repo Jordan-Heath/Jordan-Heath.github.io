@@ -1,0 +1,19 @@
+{
+    "properties": [
+        {
+            "name": "Caravan",
+            "cost": 500,
+            "income": 20
+        },
+        {
+            "name": "Cabin",
+            "cost": 1500,
+            "income": 50
+        },
+        {
+            "name": "Cottage",
+            "cost": 3000,
+            "income": 100
+        }
+    ]
+}

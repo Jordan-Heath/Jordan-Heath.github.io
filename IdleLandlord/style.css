@@ -1,0 +1,52 @@
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background-color: #e6e6e6; /* Light gray background */
+    padding: 20px;
+  }
+  
+  h1 {
+    color: #ff9900; /* Orange text color */
+  }
+  
+  #income, #money {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+  
+  #workButton, button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    background-color: #3366cc; /* Blue button color */
+    color: #fff; /* White text color */
+    border: none;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #004080; /* Darker blue on hover */
+  }
+  
+  #propertyButtons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  /* Give a retro feel to the buttons */
+  #propertyButtons button {
+    background-color: #993399; /* Purple button color */
+    color: #fff; /* White text color */
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    margin: 5px;
+    cursor: pointer;
+  }
+  
+  #propertyButtons button:hover {
+    background-color: #800080; /* Darker purple on hover */
+  }
+  
