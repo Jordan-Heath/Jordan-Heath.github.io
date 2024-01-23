@@ -43,14 +43,14 @@ class Data {
     }
 
     updateJob() {
-        if (player.xp >= this.xpGoal && player.xp !== -1) {
+        if (player.xp >= this.xpGoal && data.xpGoal !== -1) {
             this.jobs.forEach(job => {
                 if (player.xp >= job.xpRequirement) {
-                    this.workExperienceSubtract = job.xpRequirement;
+                    this.xpSubstract = job.xpRequirement;
                     this.job = job;
-                    this.workExperienceGoal = -1;
-                } else if (this.workExperienceGoal === -1) {
-                    this.workExperienceGoal = job.xpRequirement;
+                    this.xpGoal = -1;
+                } else if (this.xpGoal === -1) {
+                    this.xpGoal = job.xpRequirement;
                 }
             });
         }

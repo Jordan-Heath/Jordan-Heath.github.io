@@ -3,12 +3,11 @@ class Property {
         this.id = id;
         this.description = description;
         this.baseCost = baseCost;
-        this.income = income
-        //variable values
-        this.inflatedCost = this.inflateCost();
+        this.income = income;
+        this.cost = this.recalculateCost();
     }
 
-    inflateCost() {
-        this.inflatedCost = this.baseCost + (this.baseCost * player.ownedProperties[this.id] * INFLATION_RATE);
+    recalculateCost() {
+        this.cost = this.baseCost + (this.baseCost * player.ownedProperties[this.id] * INFLATION_RATE);
     }
 }

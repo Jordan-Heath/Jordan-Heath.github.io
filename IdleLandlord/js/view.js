@@ -21,7 +21,8 @@ function createPropertyContainer(property) {
     columnView.appendChild(propertyDescription);
     propertyContainer.appendChild(columnView);
 
-    const buyButton = createButtonElement(`$${property.inflatedCost}`, () => buyProperty(property.id));
+    property.recalculateCost();
+    const buyButton = createButtonElement(`$${property.cost}`, () => buyProperty(property.id));
     propertyContainer.appendChild(buyButton);
 
     return propertyContainer;
@@ -50,8 +51,18 @@ function updateJobView() {
     updateElementText('jobDescription', data.job.description);
     updateElementText('payRate', data.job.payRate);
 
-    const workExperienceFill = document.getElementById('workExperienceFill');
-    workExperienceFill.style.width = `${(data.workExperience - data.workExperienceSubtract) / data.workExperienceGoal * 100}%`;
+    workExperienceBar = document.getElementById('workExperienceBar');
+    workExperienceBar.innerHTML = "";
+
+    const workExperienceNumber = document.createElement('span');
+    workExperienceNumber.id = 'workExperienceNumber';
+    workExperienceNumber.innerText = player.xp
+    workExperienceBar.appendChild(workExperienceNumber);
+
+    const workExperienceFill = document.createElement('div');
+    workExperienceFill.id = 'workExperienceFill';
+    workExperienceFill.style.width = `${(player.xp - data.xpSubstract) / data.xpGoal * 100}%`;
+    workExperienceBar.appendChild(workExperienceFill);
 }
 
 function updateNameView() {
