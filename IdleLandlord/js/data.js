@@ -12,18 +12,51 @@ class Data {
         fetch(DATA_URL)
             .then(response => response.json())
             .then(data => {
-                this.version = data.version;
-                this.baseWorkRate = data.baseWorkRate;
-                this.properties = data.properties.map(propertyData => {
-                    return new Property(propertyData.name, propertyData.cost, propertyData.income);
-                });
-                /*this.upgrades = data.upgrades.map(upgradeData => {
-                    return new Property(upgradeData.name, upgradeData.cost, upgradeData.effectedBuilding, upgradeData.multiplier);
-                });*/
-                updateButtons();
-                startIncomeInterval();
+                if (this.version !== data.version) {
+                    this.version = data.version;
+                    this.baseWorkRate = data.baseWorkRate;
+                    this.properties = data.properties;
+                    this.upgrades = data.upgrades;
+
+                    updateButtons();
+                    startIntervals();
+                }
             })
             .catch(error => console.error('Error loading data:', error));
+    }
+
+    saveToCookies() {
+        // Convert the data to a JSON string
+        const dataString = JSON.stringify({
+            version: this.version,
+            baseWorkRate: this.baseWorkRate,
+            properties: this.properties,
+            upgrades: this.upgrades,
+            name: this.name,
+            money: this.money
+        });
+
+        // Save the JSON string in a cookie named 'userData'
+        document.cookie = `userData=${dataString}; expires=${new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toUTCString()}; path=/`;
+    }
+
+    loadFromCookies() {
+        // Retrieve the cookie named 'userData'
+        const cookieData = document.cookie.split('; ').find(row => row.startsWith('userData='));
+
+        if (cookieData) {
+            // Parse the JSON string from the cookie
+            const dataString = cookieData.split('=')[1];
+            const data = JSON.parse(dataString);
+
+            // Update the properties with the values from the cookie
+            this.version = data.version;
+            this.baseWorkRate = data.baseWorkRate;
+            this.properties = data.properties;
+            this.upgrades = data.upgrades;
+            this.name = data.name;
+            this.money = data.money;
+        }
     }
 
     income() {

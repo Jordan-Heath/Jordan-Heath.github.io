@@ -1,5 +1,6 @@
 const properties = [];
 const incomeInterval = 50;
+const autosaveInterval = 60;
 const DATA_URL = 'https://jordan-heath.github.io/IdleLandlord/data/data.json';
 const data = new Data();
 
@@ -10,7 +11,7 @@ function exportSave() {
         version: data.version,
         name: data.name,
         money: data.money,
-        ownedProperties: Object.fromEntries(data.properties.entries())//,
+        properties: data.properties
         //ownedUpgrades: Object.fromEntries(data.upgrades.entries())
     };
 
@@ -31,15 +32,20 @@ function importSave() {
         reader.onload = function () {
             try {
                 const importedSave = JSON.parse(reader.result);
-                if(importedSave.version != data.version) {
+                if (importedSave.version !== data.version) {
                     alert("Save version is outdated and may have issues.");
                 }
-                data.baseWorkRate = importedSave
                 data.name = importedSave.name;
                 data.money = importedSave.money;
 
-                //TODO: create a process to merge the owned numbers over the owned numbers
-                data.properties = new Map(Object.entries(importedSave.ownedProperties));
+                importedSave.properties.forEach(property => {
+                    const matchingProperty = data.properties.find(p => p.name === property.name);
+
+                    if (matchingProperty) {
+                        matchingProperty.owned = property.owned;
+                    }
+                });
+
                 //TODO: implement upgrades
                 //data.upgrades = new Map(Object.entries(importedSave.ownedUpgrades));
 
@@ -60,7 +66,7 @@ function editBusinessName() {
     // Create an input field
     const inputElement = document.createElement('input');
     inputElement.value = businessNameElement.innerText;
-    
+
     // Add an event listener to save changes on Enter key press
     inputElement.addEventListener('keydown', function (event) {
         if (event.key === 'Enter') {
@@ -90,12 +96,13 @@ function saveBusinessName(newName) {
     inputElement.replaceWith(businessNameElement);
 }
 
-function startIncomeInterval() {
+function startIntervals() {
     setInterval(earnIncome, incomeInterval);
+    setInterval(data.saveToCookies, autosaveInterval*1000);
 }
 
 function earnIncome() {
-    data.money += data.income() * incomeInterval / 1000;
+    data.money += Math.round(data.income() * incomeInterval / 1000);
     updateDisplay();
 }
 
@@ -150,11 +157,12 @@ function buyProperty(propertyName) {
     }
 }
 
-// Load properties when the script is executed
-
 document.addEventListener('DOMContentLoaded', function () {
     const businessNameElement = document.getElementById('businessName');
     businessNameElement.addEventListener('click', editBusinessName);
 
+    //data.loadFromCookies();
     data.loadData();
+    updateButtons();
+    startIntervals();
 });

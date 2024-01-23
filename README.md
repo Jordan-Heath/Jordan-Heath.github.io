@@ -48,12 +48,14 @@ Wouldn't particularly recommend this one.
 
 ### [Idle Landlord](IdleLandlord/IdleLandlord.html)
 
-WORK IN PROGRESS. I've wanted to make a clicker game for a while. The king of passive income is landlording, so I really wanted to make 'Idle Landlord' the 1980s aesthetic clicker game. Features:
+WORK IN PROGRESS. I've wanted to make a clicker game for a while. The king of passive income is landlording, so I really wanted to make 'Idle Landlord' the 1970s aesthetic clicker game. Features:
 
-- [x] 1980s aesthetic
+- [x] 1970s aesthetic
 - [ ] Gambling-style feedback
 - [ ] Auto-save and manual saving to cookies
-- [ ] Importing/Exporting saves to json
+- [x] Importing/Exporting saves to json
+- [ ] Upgrade Properties
+- [ ] 
 
 ### [Word Scrambler](WordScrambler/WordScrambler.html)
 

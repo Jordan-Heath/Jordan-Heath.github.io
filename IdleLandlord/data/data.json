@@ -1,21 +1,24 @@
 {
-    "version": "Alpha 1.0",
+    "version": "Alpha 1.1",
     "baseWorkRate": 10,
     "properties": [
         {
             "name": "Caravan",
             "cost": 500,
-            "income": 20
+            "income": 10,
+            "owned" : 0
         },
         {
             "name": "Cabin",
             "cost": 1500,
-            "income": 50
+            "income": 25,
+            "owned" : 0
         },
         {
             "name": "Cottage",
             "cost": 3000,
-            "income": 100
+            "income": 50,
+            "owned" : 0
         }
     ]
 }
