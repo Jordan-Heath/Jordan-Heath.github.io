@@ -1,3 +1,4 @@
+/* General */
 body {
     font-family: 'Arial', sans-serif;
     text-align: center;
@@ -34,11 +35,29 @@ body {
     flex-direction: row;
 }
 
-#propertyButtons {
+.title {
+    margin: 5px;
+    padding: 5px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+    color: #594f42;
+}
+
+.description {
+    margin: 5px;
+    padding: 5px;
+    text-align: left;
+}
+
+/* Left/Right Column */
+
+#propertiesView,
+#upgradesView {
     margin-top: 20px;
 }
 
-.property-container {
+.purchaseable-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -49,7 +68,7 @@ body {
     background-color: #e4d9cb;
 }
 
-.property-container button {
+.purchaseable-container button {
     margin-top: 5px;
     padding: 8px 15px;
     font-size: 14px;
@@ -60,9 +79,11 @@ body {
     cursor: pointer;
 }
 
-.property-container button:hover {
+.purchaseable-container button:hover {
     background-color: #8c6d4f;
 }
+
+/* Middle Column */
 
 #businessName {
     font-size: 32px;
@@ -87,20 +108,6 @@ body {
     padding: 10px;
     margin-bottom: 10px;
     background-color: #e4d9cb;
-}
-
-#jobContainer p,
-.title,
-.description {
-    margin: 5px;
-    padding: 5px;
-    text-align: left;
-}
-
-.title {
-    font-size: 16px;
-    font-weight: bold;
-    color: #594f42;
 }
 
 #workExperienceBar {
@@ -131,7 +138,6 @@ body {
     z-index: 2;
     /* Set a positive z-index to place it in front of other elements */
 }
-
 
 #messageOutput {
     margin-top: auto;

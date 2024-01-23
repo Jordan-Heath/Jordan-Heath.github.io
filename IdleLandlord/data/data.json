@@ -1,5 +1,5 @@
 {
-    "version": "Alpha 1.1",
+    "version": "Alpha 1.2",
     "properties": [
         {
             "id": "Tent",
@@ -36,9 +36,51 @@
         },
         {
             "propertyId": "Tent",
-            "id": "Patched Canvas",
+            "id": "Throw in a blanket",
             "description": "Barely keeps you warm, barely keeps you dry",
-            "cost": 200,
+            "cost": 400,
+            "multiplier": 2
+        },
+        {
+            "propertyId": "Caravan",
+            "id": "CARAVAN1",
+            "description": "",
+            "cost": 2000,
+            "multiplier": 2
+        },
+        {
+            "propertyId": "Caravan",
+            "id": "CARAVAN2",
+            "description": "",
+            "cost": 4000,
+            "multiplier": 2
+        },
+        {
+            "propertyId": "Cabin",
+            "id": "CABIN1",
+            "description": "",
+            "cost": 20000,
+            "multiplier": 2
+        },
+        {
+            "propertyId": "Cabin",
+            "id": "CABIN2",
+            "description": "",
+            "cost": 40000,
+            "multiplier": 2
+        },
+        {
+            "propertyId": "Cottage",
+            "id": "COTTAGE1",
+            "description": "",
+            "cost": 200000,
+            "multiplier": 2
+        },
+        {
+            "propertyId": "Cottage",
+            "id": "COTTAGE2",
+            "description": "",
+            "cost": 400000,
             "multiplier": 2
         }
     ],
@@ -47,36 +89,37 @@
             "id": "Sh*t shoveler",
             "description": "Well we can't just leave it there...",
             "xpRequirement": 0,
-            "payRate": 0.75,
-            "earned": true
+            "payRate": 0.75
         },
         {
             "id": "Smear cleaner",
             "description": "You left a spot and nobody else has volunteered.",
             "xpRequirement": 200,
-            "payRate": 1.5,
-            "earned": false
+            "payRate": 1.5
         },
         {
-            "id": "THIRD TIER",
-            "description": "THIRD TIER",
+            "id": "Floor polisher",
+            "description": "You've become rather apt at cleaning that mess, now you just keep it spotless.",
             "xpRequirement": 400,
-            "payRate": 3,
-            "earned": false
+            "payRate": 3
         },
         {
-            "id": "FOURTH TIER",
-            "description": "FOURTH TIER",
+            "id": "Janitor",
+            "description": "Finally gainful employment at the bottom rung.",
             "xpRequirement": 800,
-            "payRate": 6,
-            "earned": false
+            "payRate": 6
         },
         {
-            "id": "FIFTH TIER",
-            "description": "FIFTH TIER",
+            "id": "Sanitation Officer",
+            "description": "The shiny new badge almost hides that it's the same job.",
             "xpRequirement": 1600,
-            "payRate": 12,
-            "earned": false
+            "payRate": 12
+        },
+        {
+            "id": "Injured",
+            "description": "Well there goes the career",
+            "xpRequirement": 2000,
+            "payRate": 1
         }
     ]
 }

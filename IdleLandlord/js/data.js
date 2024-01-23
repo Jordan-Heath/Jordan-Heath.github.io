@@ -39,7 +39,11 @@ class Data {
     }
 
     updateIncome() {
-        this.income = this.properties.reduce((totalIncome, property) => totalIncome + property.income * player.ownedProperties[property.id], 0);
+        this.income = 0;
+        data.properties.forEach(property => {
+            property.recalculateIncome();
+            this.income += property.income * player.ownedProperties[property.id];
+        });
     }
 
     updateJob() {

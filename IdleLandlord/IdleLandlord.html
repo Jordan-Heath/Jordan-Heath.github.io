@@ -23,7 +23,7 @@
     <main class="container">
         <div class="page-column" id="leftColumn">
             <h2>Properties</h2>
-            <div id="propertyButtons"></div>
+            <div id="propertiesView"></div>
         </div>
 
         <div class="page-column" id="middleColumn">
@@ -50,18 +50,18 @@
             <div id="messageOutput"></div>
 
             <div id="saveControls">
-                <button id="exportButton" onclick="data.exportSave()">Export Save</button>
+                <button id="exportButton" onclick="player.exportSave()">Export Save</button>
                 <button id="importButton" onclick="document.getElementById('fileInput').click();">Import
                     Save</button>
-                <input type="file" id="fileInput" accept=".json" style="display:none;" onchange="data.importSave()">
-                <button onclick="data.saveToCookies()">save</button>
-                <button onclick="data.loadFromCookies()">load</button>
+                <input type="file" id="fileInput" accept=".json" style="display:none;" onchange="player.importSave()">
+                <button onclick="player.saveToCookies()">save</button>
+                <button onclick="player.loadFromCookies()">load</button>
             </div>
         </div>
 
         <div class="page-column" id="rightColumn">
             <h2>Upgrades</h2>
-            <!-- Add upgrade buttons or content here -->
+            <div id="upgradesView"></div>
         </div>
     </main>
 

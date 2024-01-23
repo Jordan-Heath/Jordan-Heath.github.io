@@ -38,6 +38,23 @@ function buyProperty(propertyId) {
     }
 }
 
+function buyUpgrade(upgradeid) {
+    //find the upgrade
+    const upgrade = data.upgrades.find((u) => u.id === upgradeid);
+
+    //make the transaction
+    if (upgrade && player.money >= upgrade.cost) {
+        player.money -= upgrade.cost;
+        player.ownedUpgrades[upgradeid] = true;
+
+        //upgrade data/page
+        data.updateIncome();
+        updatePageView();
+    } else {
+        sendMessage("Not enough money to buy the upgrade!");
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     data.loadData();
 });
