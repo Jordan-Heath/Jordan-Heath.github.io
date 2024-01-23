@@ -1,15 +1,14 @@
 class Property {
-    constructor(id, description, baseCost, income, owned) {
+    constructor(id, description, baseCost, income) {
         this.id = id;
         this.description = description;
         this.baseCost = baseCost;
-        this.income = income;
-        this.owned = owned;
+        this.income = income
         //variable values
         this.inflatedCost = this.inflateCost();
     }
 
     inflateCost() {
-        return round(this.baseCost + (this.cost * this.owned * INFLATION_RATE));
+        this.inflatedCost = this.baseCost + (this.baseCost * player.ownedProperties[this.id] * INFLATION_RATE);
     }
 }

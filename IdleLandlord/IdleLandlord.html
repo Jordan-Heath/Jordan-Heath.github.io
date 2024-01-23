@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="style.css">
     <script src="js/utils.js"></script>
     <script src="js/constants.js"></script>
+    <script src="js/upgrade.js"></script>
     <script src="js/property.js" defer></script>
     <script src="js/job.js"></script>
     <script src="js/data.js" defer></script>
+    <script src="js/player.js"></script>
     <script src="js/view.js"></script>
     <script src="js/script.js" defer></script>
     <title>Idle Landlord</title>
@@ -19,29 +21,44 @@
 <body>
 
     <main class="container">
-        <div class="column" id="leftColumn">
+        <div class="page-column" id="leftColumn">
             <h2>Properties</h2>
             <div id="propertyButtons"></div>
         </div>
 
-        <div class="column" id="middleColumn">
+        <div class="page-column" id="middleColumn">
             <input type="text" id="businessName" placeholder="your name" onchange="saveBusinessName()">
-            <p id="income">Income: $<span id="incomeValue">0</span>/s</p>
-            <p id="money">Money: $<span id="moneyValue">0</span></p>
+            <p id="income"></p>
+            <p id="money"></p>
+
+            <div id="jobContainer">
+                <div class="row" style="justify-content: space-between;">
+                    <div class="column">
+                        <p class="title" id="jobTitle"></p>
+                        <p class="description" id="jobDescription"></p>
+                    </div>
+                    <p id="payRate"></p>
+                </div>
+                <div id="workExperienceBar">
+                    <div id="workExperienceFill"></div>
+                </div>
+            </div>
+
             <button id="workButton" onclick="work()">Work</button>
 
             <div id="messageOutput"></div>
 
             <div id="saveControls">
                 <button id="exportButton" onclick="data.exportSave()">Export Save</button>
-                <button id="importButton" onclick="document.getElementById('fileInput').click();">Import Save</button>
+                <button id="importButton" onclick="document.getElementById('fileInput').click();">Import
+                    Save</button>
                 <input type="file" id="fileInput" accept=".json" style="display:none;" onchange="data.importSave()">
                 <button onclick="data.saveToCookies()">save</button>
                 <button onclick="data.loadFromCookies()">load</button>
             </div>
         </div>
 
-        <div class="column" id="rightColumn">
+        <div class="page-column" id="rightColumn">
             <h2>Upgrades</h2>
             <!-- Add upgrade buttons or content here -->
         </div>

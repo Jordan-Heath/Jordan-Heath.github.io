@@ -1,34 +1,43 @@
-function saveBusinessName(newName) {
-    data.name = document.getElementById("businessName").value;
+function playerBusinessName() {
+    data.name = document.getElementById('businessName').value;
 }
 
 function startIntervals() {
     setInterval(earnIncome, incomeInterval);
-    //setInterval(() => data.saveToCookies(), autosaveInterval*1000);
+    // setInterval(() => player.saveToCookies(), autoSaveInterval * 1000);
 }
 
 function earnIncome() {
-    data.money += round(data.checkIncome() * incomeInterval / 1000);
-    updateMoney();
+    data.money += data.income * (incomeInterval / 1000);
+    updateMoneyView();
 }
 
 function work() {
-    data.money += data.checkWorkRate();
-    updateMoney();
+    player.money += data.job.payRate;
+    updateMoneyView();
+
+    player.xp += 1;
+    data.updateJob();
 }
 
-function buyProperty(propertyName) {
-    const property = data.properties.find(p => p.name === propertyName);
+function buyProperty(propertyId) {
+    //find the property
+    const property = data.properties.find((p) => p.id === propertyId);
 
-    if (property && data.money >= property.cost) {
-        data.money -= property.cost;
-        property.owned += 1;
+    //make the transaction
+    if (property && player.money >= property.inflatedCost) {
+        player.money -= property.inflatedCost;
+        player[propertyId] += 1;
+
+        //update data/page
+        property.inflateCost();
+        data.checkIncome();
         updatePage();
     } else {
         sendMessage("Not enough money to buy the property!");
     }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
     data.loadData();
 });

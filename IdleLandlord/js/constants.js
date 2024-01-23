@@ -1,5 +1,5 @@
 const incomeInterval = 100; // 0.1 seconds
-const autosaveInterval = 60; //60 seconds
+const autoSaveInterval = 60; //60 seconds
 const MESSAGE_TIMEOUT = 3000; //3 seconds
 
 const INFLATION_RATE = 0.1;

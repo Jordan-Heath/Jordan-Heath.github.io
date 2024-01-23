@@ -1,48 +1,43 @@
 {
     "version": "Alpha 1.1",
-    "workRate": 0.75,
     "properties": [
         {
             "id": "Tent",
             "description" : "Doesn't keep you warm, doesn't keep you dry.",
             "baseCost": 50,
-            "income": 1,
-            "owned" : 0
+            "income": 1
         },
         {
             "id": "Caravan",
             "description": "Theres no landtax if its on wheels.",
             "baseCost": 500,
-            "income": 10,
-            "owned" : 0
+            "income": 10
         },
         {
             "id": "Cabin",
             "description": "Balsa wood never looked so good.",
             "baseCost": 5000,
-            "income": 100,
-            "owned" : 0
+            "income": 100
         },
         {
             "id": "Cottage",
             "description": "Special deal as it may be haunted.",
             "baseCost": 50000,
-            "income": 1000,
-            "owned" : 0
+            "income": 1000
         }
     ],
     "upgrades": [
         {
             "propertyId": "Tent",
             "id": "Patched Canvas",
-            "description": "Doesn't keep you warm, does keey you dry",
+            "description": "Doesn't keep you warm, barely keeps you dry",
             "cost": 200,
             "multiplier": 2
         },
         {
             "propertyId": "Tent",
             "id": "Patched Canvas",
-            "description": "Doesn't keep you warm, does keey you dry",
+            "description": "Barely keeps you warm, barely keeps you dry",
             "cost": 200,
             "multiplier": 2
         }
@@ -52,31 +47,36 @@
             "id": "Sh*t shoveler",
             "description": "Well we can't just leave it there...",
             "xpRequirement": 0,
-            "payRate": 0.75
+            "payRate": 0.75,
+            "earned": true
         },
         {
             "id": "Smear cleaner",
             "description": "You left a spot and nobody else has volunteered.",
             "xpRequirement": 200,
-            "payRate": 1.5
+            "payRate": 1.5,
+            "earned": false
         },
         {
             "id": "THIRD TIER",
             "description": "THIRD TIER",
             "xpRequirement": 400,
-            "payRate": 3
+            "payRate": 3,
+            "earned": false
         },
         {
             "id": "FOURTH TIER",
             "description": "FOURTH TIER",
             "xpRequirement": 800,
-            "payRate": 6
+            "payRate": 6,
+            "earned": false
         },
         {
             "id": "FIFTH TIER",
             "description": "FIFTH TIER",
             "xpRequirement": 1600,
-            "payRate": 12
+            "payRate": 12,
+            "earned": false
         }
     ]
 }

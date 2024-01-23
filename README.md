@@ -51,11 +51,11 @@ Wouldn't particularly recommend this one.
 WORK IN PROGRESS. I've wanted to make a clicker game for a while. The king of passive income is landlording, so I really wanted to make 'Idle Landlord' the 1970s aesthetic clicker game. Features:
 
 - [x] 1970s aesthetic
+- [x] 4 properties you can buy
 - [ ] Gambling-style feedback
 - [ ] Auto-save and manual saving to cookies
-- [x] Importing/Exporting saves to json
+- [ ] Importing/Exporting saves to json
 - [ ] Upgrade Properties
-- [ ] 
 
 ### [Word Scrambler](WordScrambler/WordScrambler.html)
 
