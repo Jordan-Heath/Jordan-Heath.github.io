@@ -60,10 +60,26 @@ body {
     background-color: #8c6d4f; /* Darker brown on hover */
 }
 
+#businessName {
+    font-size: 32px;
+    text-align: center;
+    background: none;
+    border: none;
+}
+
 #income, #money {
     font-size: 18px;
     margin-top: 10px;
     color: #594f42; /* Darker brown text color */
+}
+
+#messageOutput {
+    opacity: 1;
+    transition: opacity 3s ease-in-out;
+}
+
+#messageOutput.fade {
+    opacity: 0;
 }
 
 #workButton {
