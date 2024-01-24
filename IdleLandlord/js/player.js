@@ -58,6 +58,7 @@ class Player {
 
         data.updateIncome();
         data.updateJob();
+        updatePageView();
     }
 
     // Manual Saves
