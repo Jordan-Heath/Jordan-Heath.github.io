@@ -1,15 +1,68 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "chrome",
+            "name": "Main Page",
+            "type": "firefox",
             "request": "launch",
-            "name": "Launch Chrome against localhost",
-            "url": "http://localhost:8080",
-            "webRoot": "${workspaceFolder}"
+            "reAttach": true,
+            "file": "${workspaceFolder}index.html"
+        },
+        {
+            "name": "Character Generator",
+            "type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "file": "${workspaceFolder}/CharacterGenerator/CharacterGenerator.html"
+        },
+        {
+            "name": "Idle Landlord",
+            "type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "file": "${workspaceFolder}/IdleLandlord/IdleLandlord.html"
+        },
+        {
+            "name": "Manticore Generator",
+            "type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "file": "${workspaceFolder}/ManticoreGenerator/ManticoreGenerator.html"
+        },
+        {
+            "name": "Meal Planner",
+            "type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "file": "${workspaceFolder}/MealPlanner/MealPlanner.html"
+        },
+        {
+            "name": "Percentage Clock",
+            "type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "file": "${workspaceFolder}/PercentageClock/PercentageClock.html"
+        },
+        {
+            "name": "Story Teller",
+            "type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "file": "${workspaceFolder}/StoryTeller/StoryTeller.html"
+        },
+        {
+            "name": "Story Maker",
+            "type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "file": "${workspaceFolder}/StoryTeller/StoryMaker/StoryMaker.html"
+        },
+        {
+            "name": "Word Scrambler",
+            "type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "file": "${workspaceFolder}/WordScrambler/WordScrambler.html"
         }
     ]
 }
