@@ -13,26 +13,44 @@ class Data {
     }
 
     loadData() {
-        fetch(DATA_URL)
-            .then(response => response.json())
+        const loadJsonData = (url) => fetch(url).then(response => response.json());
+
+        // Load version number and other data from data.json
+        loadJsonData(DATA_URL)
             .then(data => {
-                this.version = data.version;
-                this.properties = data.properties.map(propertyData => {
+                player.version = data.version;
+                console.log('Version data loaded:', data);
+                return Promise.all([
+                    loadJsonData(PROPERTIES_URL),
+                    loadJsonData(UPGRADES_URL),
+                    loadJsonData(JOBS_URL)
+                ]);
+            })
+            .then(([propertiesData, upgradesData, jobsData]) => {
+                // Process properties data
+                this.properties = propertiesData.properties.map(propertyData => {
                     player.ownedProperties[propertyData.id] = 0;
                     return new Property(propertyData.id, propertyData.description, propertyData.baseCost, propertyData.income);
                 });
-                this.upgrades = data.upgrades.map(upgradeData => {
+
+                // Process upgrades data
+                this.upgrades = upgradesData.upgrades.map(upgradeData => {
                     player.ownedUpgrades[upgradeData.id] = false;
                     return new Upgrade(upgradeData.propertyId, upgradeData.id, upgradeData.description, upgradeData.cost, upgradeData.multiplier);
                 });
-                this.jobs = data.jobs.map(jobsData => {
+
+                // Process jobs data
+                this.jobs = jobsData.jobs.map(jobsData => {
                     return new Job(jobsData.id, jobsData.description, jobsData.xpRequirement, jobsData.payRate);
                 });
-                
-                console.log(data);
 
-                this.updateJob();
-                updatePageView();
+                console.log('Data loaded successfully:', { propertiesData, upgradesData, jobsData });
+
+                if (!player.loadFromCookies()) {
+                    this.updateJob();
+                    updatePageView();
+                }
+
                 startIntervals();
             })
             .catch(error => console.error('Error loading data:', error));

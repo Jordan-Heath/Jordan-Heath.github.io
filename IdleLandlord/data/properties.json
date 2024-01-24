@@ -1,0 +1,35 @@
+{
+    "version": "Alpha 1.3",
+    "properties": [
+        {
+            "id": "Tent",
+            "description" : "Doesn't keep you warm, doesn't keep you dry.",
+            "baseCost": 25,
+            "income": 0.25
+        },
+        {
+            "id": "Camping Trailer",
+            "description": "There's no land tax if it's on wheels.",
+            "baseCost": 600,
+            "income": 5
+        },
+        {
+            "id": "Small Cabin",
+            "description": "Balsa wood never looked so good.",
+            "baseCost": 5000,
+            "income": 50
+        },
+        {
+            "id": "Fixer-Upper House",
+            "description": "Special deal as it may be haunted.",
+            "baseCost": 10000,
+            "income": 450
+        },
+        {
+            "id": "Small Rural Homestead",
+            "description": "Escape to the quiet... quiet solitude of rural living.",
+            "baseCost": 45000,
+            "income": 900
+        }
+    ]
+}

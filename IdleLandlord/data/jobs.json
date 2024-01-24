@@ -1,0 +1,53 @@
+{
+    "version": "Alpha 1.3",
+    "jobs": [
+        {
+            "id": "Sh*t shoveler",
+            "description": "Well we can't just leave it there...",
+            "xpRequirement": 0,
+            "payRate": 0.75
+        },
+        {
+            "id": "Smear cleaner",
+            "description": "You left a spot and nobody else has volunteered.",
+            "xpRequirement": 200,
+            "payRate": 1.5
+        },
+        {
+            "id": "Floor polisher",
+            "description": "You've become rather apt at cleaning that mess; now you just keep it spotless.",
+            "xpRequirement": 400,
+            "payRate": 3
+        },
+        {
+            "id": "Janitor",
+            "description": "Finally gainful employment at the bottom rung.",
+            "xpRequirement": 800,
+            "payRate": 6
+        },
+        {
+            "id": "Sanitation Officer",
+            "description": "The shiny new badge almost hides that it's the same job.",
+            "xpRequirement": 1600,
+            "payRate": 12
+        },
+        {
+            "id": "Injured",
+            "description": "Disability Pension doesn't pay quite the same.",
+            "xpRequirement": 2000,
+            "payRate": 1
+        },
+        {
+            "id": "Suing Employer",
+            "description": "Lawyers aren't cheap, but retirement seems worth it.",
+            "xpRequirement": 2500,
+            "payRate": -117.5
+        },
+        {
+            "id": "WorkCover Retiree",
+            "description": "My tenants don't know how hard I worked.",
+            "xpRequirement": 3000,
+            "payRate": 100
+        }
+    ]
+}

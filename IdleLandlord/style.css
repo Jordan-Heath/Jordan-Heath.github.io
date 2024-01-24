@@ -81,6 +81,7 @@ body {
 
 .purchaseable-container button:hover {
     background-color: #8c6d4f;
+    cursor: pointer;
 }
 
 /* Middle Column */
@@ -163,6 +164,7 @@ body {
 
 #workButton:hover {
     background-color: #735c3f;
+    cursor: pointer;
 }
 
 #saveControls {

@@ -1,4 +1,4 @@
-function playerBusinessName() {
+function saveBusinessName() {
     player.name = document.getElementById('businessName').value;
 }
 

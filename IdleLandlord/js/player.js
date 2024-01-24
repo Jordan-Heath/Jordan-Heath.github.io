@@ -7,25 +7,70 @@ class Player {
         this.ownedProperties = [];
         this.ownedUpgrades = [];
     }
-    
-    exportplayer() {
-        const playerData = {
+
+    // Conversion Tools
+    toJson() {
+        const serializedProperties = {};
+        for (const propertyName in this.ownedProperties) {
+            if (this.ownedProperties.hasOwnProperty(propertyName)) {
+                serializedProperties[propertyName] = this.ownedProperties[propertyName];
+            }
+        }
+
+        const serializedUpgrades = {};
+        for (const upgradeName in this.ownedUpgrades) {
+            if (this.ownedUpgrades.hasOwnProperty(upgradeName)) {
+                serializedUpgrades[upgradeName] = this.ownedUpgrades[upgradeName];
+            }
+        }
+
+        return JSON.stringify({
             version: this.version,
             name: this.name,
             money: this.money,
             xp: this.xp,
-            ownedProperties: ownedProperties,
-            ownedUpgrades: this.ownedUpgrades
-        };
+            ownedProperties: serializedProperties,
+            ownedUpgrades: serializedUpgrades
+        });
+    }
 
-        const blob = new Blob([JSON.stringify(playerData)], { type: 'application/json' });
+    updateFromJson(jsonString) {
+        const jsonData = JSON.parse(jsonString);
+
+        if (this.version !== jsonData.version) {
+            alert("There has been an update since your last save. Thing may have broken.")
+        }
+        this.version = jsonData.version || this.version;
+
+        this.name = jsonData.name || this.name;
+        this.money = jsonData.money || this.money;
+        this.xp = jsonData.xp || this.xp;
+
+        // Update ownedProperties
+        if (jsonData.ownedProperties) {
+            this.ownedProperties = { ...jsonData.ownedProperties };
+        }
+
+        // Update ownedUpgrades
+        if (jsonData.ownedUpgrades) {
+            this.ownedUpgrades = { ...jsonData.ownedUpgrades };
+        }
+
+        data.updateIncome();
+        data.updateJob();
+        updatePageView();
+    }
+
+    // Manual Saves
+    exportPlayer() {
+        const blob = new Blob([this.toJson()], { type: 'application/json' });
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
         link.download = `${this.name === "" ? "player" : this.name}.json`;
         link.click();
     }
 
-    importplayer() {
+    importPlayer() {
         const fileInput = document.getElementById('fileInput');
         const file = fileInput.files[0];
 
@@ -34,22 +79,7 @@ class Player {
 
             reader.onload = () => {
                 try {
-                    const importedplayer = JSON.parse(reader.result);
-                    if (importedplayer.version !== this.version) {
-                        alert("player version is outdated and may have issues.");
-                    }
-                    this.name = importedplayer.name;
-                    this.money = importedplayer.money;
-
-                    importedplayer.properties.forEach(importedProperty => {
-                        const matchingProperty = this.properties.find(p => p.id === importedProperty.id);
-
-                        if (matchingProperty) {
-                            matchingProperty.owned = importedProperty.owned;
-                        }
-                    });
-
-                    updatePage();
+                    this.updateFromJson(reader.result)
                 } catch (error) {
                     console.error('Error importing player:', error);
                 }
@@ -59,16 +89,17 @@ class Player {
         }
     }
 
-    playerToCookies() {
-        const dataString = JSON.stringify({
-            version: this.version,
-            properties: this.properties.map(property => property.serialize()),
-            name: this.name,
-            money: this.money
-        });
+    // Cookie Saves
+    saveToCookies() {
+        const dataString = this.toJson();
+        const expirationDate = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toUTCString();
 
-        document.cookie = `userData=${dataString}; expires=${new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toUTCString()}; path=/`;
-        sendMessage("autosaving...");
+        // Set secure flag if running over HTTPS
+        const secureFlag = window.location.protocol === 'https:' ? '; secure' : '';
+
+        document.cookie = `userData=${encodeURIComponent(dataString)}; expires=${expirationDate}; path=/${secureFlag}; samesite=strict`;
+
+        sendMessage("Autosaving...");
     }
 
     loadFromCookies() {
@@ -76,24 +107,15 @@ class Player {
 
         try {
             if (cookieData) {
-                const dataString = cookieData.split('=')[1];
-                const data = JSON.parse(dataString);
-
-                if (data.version === this.version) {
-                    data.properties.forEach(importedProperty => {
-                        const matchingProperty = this.properties.find(p => p.id === importedProperty.id);
-
-                        if (matchingProperty) {
-                            matchingProperty.owned = importedProperty.owned;
-                        }
-                    });
-                    this.name = data.name;
-                    this.money = data.money;
-
-                    updatePage();
-                }
+                const dataString = decodeURIComponent(cookieData.split('=')[1]);
+                this.updateFromJson(dataString);
+                return true;
             }
-        } catch { }
+        } catch (error) {
+            console.error('Error loading data from cookies:', error);
+        }
+        
+        return false;
     }
 }
 

@@ -50,10 +50,10 @@
             <div id="messageOutput"></div>
 
             <div id="saveControls">
-                <button id="exportButton" onclick="player.exportSave()">Export Save</button>
+                <button id="exportButton" onclick="player.exportPlayer()">Export Save</button>
                 <button id="importButton" onclick="document.getElementById('fileInput').click();">Import
                     Save</button>
-                <input type="file" id="fileInput" accept=".json" style="display:none;" onchange="player.importSave()">
+                <input type="file" id="fileInput" accept=".json" style="display:none;" onchange="player.importPlayer()">
                 <button onclick="player.saveToCookies()">save</button>
                 <button onclick="player.loadFromCookies()">load</button>
             </div>
