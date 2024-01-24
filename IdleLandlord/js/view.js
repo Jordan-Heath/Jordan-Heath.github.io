@@ -6,6 +6,15 @@ function initialiseViews() {
     updatePageView();
 }
 
+function updatePageView() {
+    updatePropertiesView();
+    updateNameView();
+    updateIncomeView();
+    updateMoneyView();
+    updateJobView();
+    updateUpgradesView();
+}
+
 // Header
 function toggleSettings() {
     settings = document.getElementById("settings");
@@ -16,9 +25,7 @@ function toggleSettings() {
 function createPropertiesView() {
     const propertiesView = document.getElementById('propertiesView');
 
-    // create if unloaded
     data.properties.forEach(property => {
-        property.createView();
         propertiesView.appendChild(property.view);
     });
 
@@ -35,9 +42,7 @@ function updatePropertiesView() {
 function createUpgradesView() {
     const upgradesView = document.getElementById('upgradesView');
 
-    // create if unloaded
     data.upgrades.forEach(upgrade => {
-        upgrade.createView();
         upgradesView.appendChild(upgrade.view);
     });
 
@@ -56,11 +61,11 @@ function updateNameView() {
 }
 
 function updateIncomeView() {
-    document.getElementById('income').innerText = `Income: $${round(data.income)}/s`
+    document.getElementById('income').innerText = `$${round(data.income)}/s`
 }
 
 function updateMoneyView() {
-    document.getElementById('money').innerText = `Money: $${round(player.money)}`
+    document.getElementById('money').innerText = `$${round(player.money)}`
 }
 
 function updateJobView() {
@@ -73,7 +78,7 @@ function updateJobView() {
 
     //update xp bar
     const workExperienceFill = document.getElementById('workExperienceFill');
-    workExperienceFill.style.width = `${calculateWorkExperienceWidth(player.xp, data.xpSubstract, data.xpGoal)}%`;
+    workExperienceFill.style.width = `${(player.xp - data.xpSubstract) / (data.xpGoal - data.xpSubstract) * 100}%`;
 }
 
 function sendMessage(message) {
@@ -88,15 +93,27 @@ function sendMessage(message) {
     setTimeout(clearMessage, MESSAGE_TIMEOUT);
 }
 
-function updatePageView() {
-    updatePropertiesView();
-    updateNameView();
-    updateIncomeView();
-    updateMoneyView();
-    updateJobView();
-    updateUpgradesView();
-}
+// Mobile Control
+function showMenu(menu){
+    //load columns
+    leftColumn = document.getElementById('leftColumn');
+    middleColumn = document.getElementById('middleColumn');
+    rightColumn = document.getElementById('rightColumn');
 
-function calculateWorkExperienceWidth(xp, xpSubstract, xpGoal) {
-    return (xp - xpSubstract) / (xpGoal - xpSubstract) * 100;
+    //reset columns
+    leftColumn.style.display = 'none';
+    middleColumn.style.display = 'none';
+    rightColumn.style.display = 'none';
+
+    switch (menu) {
+        case 'properties':
+            leftColumn.style.display = 'flex';
+            break;
+        case 'home':
+            middleColumn.style.display = 'flex';
+            break;
+        case 'upgrades':
+            rightColumn.style.display = 'flex';
+            break;
+    }
 }

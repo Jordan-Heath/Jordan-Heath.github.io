@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/mobile.css" media="screen and (max-width: 1200px)">
+
+
     <script src="js/utils.js"></script>
     <script src="js/constants.js"></script>
     <script src="js/upgrade.js"></script>
@@ -14,7 +17,7 @@
     <script src="js/data.js" defer></script>
     <script src="js/player.js"></script>
     <script src="js/view.js"></script>
-    <script src="js/script.js" defer></script>
+    <script src="js/main.js" defer></script>
     <title>Idle Landlord</title>
 </head>
 
@@ -38,41 +41,65 @@
             </div>
         </div>
     </header>
-    <main class="container">
+    <main>
         <div class="page-column" id="leftColumn">
-            <h2>Properties</h2>
-            <div id="propertiesView"></div>
+            <div class="column-container">
+                <h2>Properties</h2>
+                <div id="propertiesView"></div>
+            </div>
         </div>
 
         <div class="page-column" id="middleColumn">
-            <input type="text" id="businessName" placeholder="your name" onchange="saveBusinessName()">
-            <p id="income"></p>
-            <p id="money"></p>
+            <div class="column-container">
+                <input type="text" id="businessName" placeholder="your name" onchange="saveBusinessName()">
 
-            <div id="jobContainer">
-                <div class="row" style="justify-content: space-between;">
-                    <div class="column">
-                        <p class="title" id="jobTitle"></p>
-                        <p class="description" id="jobDescription"></p>
+                <table id="propertyPortfolio"></table>
+
+                <table>
+                    <tr>
+                        <th>Income: </th>
+                        <td id="income"></td>
+                    </tr>
+                    <tr>
+                        <th>Money:</th>
+                        <td id="money"></td>
+                    </tr>
+                </table>
+
+                <div id="messageOutput"></div>
+
+                <div id="jobContainer">
+                    <div class="row" style="justify-content: space-between;">
+                        <div class="column">
+                            <p class="title" id="jobTitle"></p>
+                            <p class="description" id="jobDescription"></p>
+                        </div>
+                        <p id="payRate"></p>
                     </div>
-                    <p id="payRate"></p>
+                    <div id="workExperienceBar">
+                        <span id="workExperienceNumber"></span>
+                        <div id="workExperienceFill"></div>
+                    </div>
                 </div>
-                <div id="workExperienceBar">
-                    <span id="workExperienceNumber"></span>
-                    <div id="workExperienceFill"></div>
-                </div>
+
+                <button id="workButton" onclick="work()">Work</button>
             </div>
 
-            <div id="messageOutput"></div>
-
-            <button id="workButton" onclick="work()">Work</button>
         </div>
 
         <div class="page-column" id="rightColumn">
-            <h2>Upgrades</h2>
-            <div id="upgradesView"></div>
+            <div class="column-container">
+                <h2>Upgrades</h2>
+                <div id="upgradesView"></div>
+            </div>
         </div>
     </main>
+
+    <footer>
+        <button onclick="showMenu('properties')" id="leftFooterButton">properties</button>
+        <button onclick="showMenu('home')" id="middleFooterButton">home</button>
+        <button onclick="showMenu('upgrades')" id="rightFooterButton">upgrades</button>
+    </footer>
 
 </body>
 

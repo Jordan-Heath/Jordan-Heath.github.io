@@ -15,9 +15,10 @@ body {
     background-size: cover;
     padding: 20px;
     margin: 0;
+    overflow-y: hidden;
 }
 
-.container {
+main {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
@@ -26,6 +27,13 @@ body {
 
 .page-column {
     display: flex;
+    flex: 1;
+    margin: 0;
+    padding: 0;
+}
+
+.column-container {
+    display: flex;
     flex-direction: column;
     flex: 1;
     padding: 20px;
@@ -33,6 +41,11 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     margin: 10px;
+    max-height: 80vh;
+
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .column {
@@ -51,13 +64,15 @@ body {
     text-align: left;
     font-size: 16px;
     font-weight: bold;
-    color: #594f42;
+    color: #423b31;
 }
 
 .description {
+    font-size: 12px;
     margin: 5px;
-    padding: 5px;
+    padding: 0 5px 5px 5px;
     text-align: left;
+    color: #594f42;
 }
 
 button {
@@ -77,6 +92,9 @@ button:hover {
 }
 
 /* Header */
+header {
+    max-height: 20vh;
+}
 
 #headerContainer {
     margin: auto;
@@ -88,7 +106,9 @@ button:hover {
 }
 
 #headerImage{
-    scale: 75%;
+    max-width: 400px;
+    width: 100%;
+    height: auto;
 }
 
 .header-button {
@@ -131,17 +151,41 @@ button:hover {
 /* Middle Column */
 
 #businessName {
+    width: 100%;
     font-size: 32px;
     text-align: center;
     background: none;
     border: none;
+    margin-bottom: 20px;
 }
 
 #income,
 #money {
     font-size: 18px;
-    margin-top: 10px;
+    margin-top: 5px;
     color: #594f42;
+}
+
+table {
+    min-width: 75%;
+    align-self: center;
+}
+
+th {
+    text-decoration: solid;
+    text-align: left;
+    color: #423b31;
+}
+
+td {
+    color: #594f42;
+    text-align: right;
+}
+
+#messageOutput {
+    margin: auto;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
 }
 
 #jobContainer {
@@ -151,6 +195,7 @@ button:hover {
     border: 1px solid #a38769;
     border-radius: 5px;
     padding: 10px;
+    margin-top: auto;
     margin-bottom: 10px;
     background-color: #e4d9cb;
 }
@@ -184,12 +229,6 @@ button:hover {
     /* Set a positive z-index to place it in front of other elements */
 }
 
-#messageOutput {
-    margin: auto;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
 #workButton {
     padding: 20px;
     font-size: 18px;
@@ -198,11 +237,16 @@ button:hover {
     color: #fff;
     border: none;
     border-radius: 5px;
-    margin-top: auto;
 }
 
 #workButton:hover {
     background-color: #735c3f;
     cursor: pointer;
     scale: 1.05;
+}
+
+
+/* footer */
+footer {
+    display: none;
 }
