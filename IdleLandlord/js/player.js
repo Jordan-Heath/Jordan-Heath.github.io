@@ -40,7 +40,7 @@ class Player {
         if (this.version !== jsonData.version) {
             alert("Your save is outdated, things may break.")
         }
-        this.version = jsonData.version || this.version;
+        //this.version = jsonData.version || this.version; //don't load the save's version
 
         this.name = jsonData.name || this.name;
         this.money = jsonData.money || this.money;
