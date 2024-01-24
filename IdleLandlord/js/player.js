@@ -61,6 +61,7 @@ class Player {
         data.xpSubstract = 0;
         data.updateJob();
         updatePageView();
+        sendMessage("Loaded Save")
     }
 
     // Manual Saves
@@ -125,7 +126,7 @@ class Player {
 
         document.cookie = `userData=${encodeURIComponent(dataString)}; expires=${expirationDate}; path=/${secureFlag}; samesite=strict`;
 
-        sendMessage("Autosaving...");
+        sendMessage("Progress Saved");
     }
 
     loadFromCookies() {
@@ -135,7 +136,6 @@ class Player {
             if (cookieData) {
                 const dataString = decodeURIComponent(cookieData.split('=')[1]);
                 this.updateFromJson(dataString);
-                sendMessage("Save Successfully Loaded");
                 return true;
             }
         } catch (error) {

@@ -189,6 +189,7 @@ td {
     margin: auto;
     opacity: 0;
     transition: opacity 1s ease-in-out;
+    color: #594f42;
 }
 
 #jobContainer {
@@ -233,6 +234,7 @@ td {
 }
 
 #workButton {
+    max-height: 25%;
     height: 25%;
     font-size: 18px;
     cursor: pointer;

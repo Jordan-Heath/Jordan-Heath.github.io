@@ -35,8 +35,8 @@
                 <button id="importButton" onclick="document.getElementById('fileInput').click();">Import
                     Save</button>
                 <input type="file" id="fileInput" accept=".json" style="display:none;" onchange="player.import()">
-                <button onclick="player.saveToCookies()">save</button>
-                <button onclick="player.loadFromCookies()">load</button>
+                <button onclick="player.saveToCookies()">Save</button>
+                <!-- <button onclick="player.loadFromCookies()">Load</button> -->
                 <button onclick="player.reset()" style="background-color: red;">reset</button>
             </div>
         </div>
@@ -53,7 +53,9 @@
             <div class="column-container">
                 <input type="text" id="businessName" placeholder="your name" onchange="saveBusinessName()">
 
-                <table id="propertyPortfolio"></table>
+                <!-- Maybe add a property portfolio here one day -->
+
+                <!-- Maybe add random events here one day -->
 
                 <table id="incomeTable">
                     <tr>

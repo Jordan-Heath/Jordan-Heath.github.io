@@ -73,7 +73,7 @@ function updateMoneyView() {
 function updateJobView() {
     document.getElementById('jobTitle').innerText = data.job.id;
     document.getElementById('jobDescription').innerText = data.job.description;
-    document.getElementById('payRate').innerText = data.job.payRate;
+    document.getElementById('payRate').innerText = `${round(data.job.payRate)}/click`;
 
     //update xp number
     document.getElementById('workExperienceNumber').innerText = player.xp;
