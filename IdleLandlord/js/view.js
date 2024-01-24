@@ -96,23 +96,36 @@ function sendMessage(message) {
 // Mobile Control
 function showMenu(menu){
     //load columns
-    leftColumn = document.getElementById('leftColumn');
-    middleColumn = document.getElementById('middleColumn');
-    rightColumn = document.getElementById('rightColumn');
+    var leftColumn = document.getElementById('leftColumn');
+    var middleColumn = document.getElementById('middleColumn');
+    var rightColumn = document.getElementById('rightColumn');
+
+    //load buttons 
+    var leftButton = document.getElementById('leftFooterButton');
+    var middleButton = document.getElementById('middleFooterButton');
+    var rightButton = document.getElementById('rightFooterButton');
 
     //reset columns
     leftColumn.style.display = 'none';
     middleColumn.style.display = 'none';
     rightColumn.style.display = 'none';
 
+    //reset buttons
+    leftButton.style.backgroundColor = '';
+    middleButton.style.backgroundColor = '#a38769';
+    rightButton.style.backgroundColor = '';
+
     switch (menu) {
         case 'properties':
+            leftButton.style.backgroundColor = '#8c6d4f';
             leftColumn.style.display = 'flex';
             break;
         case 'home':
+            middleButton.style.backgroundColor = '#8c6d4f'
             middleColumn.style.display = 'flex';
             break;
         case 'upgrades':
+            rightButton.style.backgroundColor = '#8c6d4f'
             rightColumn.style.display = 'flex';
             break;
     }

@@ -38,7 +38,7 @@ class Player {
         const jsonData = JSON.parse(jsonString);
 
         if (this.version !== jsonData.version) {
-            alert("There has been an update since your last save. Thing may have broken.")
+            alert("Your save is outdated, things may break.")
         }
         this.version = jsonData.version || this.version;
 

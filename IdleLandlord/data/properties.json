@@ -1,35 +1,47 @@
 {
-    "version": "Alpha 1.4",
+    "version": "Beta 1.0",
     "properties": [
         {
             "id": "Tent",
             "description" : "Doesn't keep you warm, doesn't keep you dry.",
-            "baseCost": 25,
-            "income": 0.25
+            "baseCost": 5,
+            "income": 0.05
         },
         {
             "id": "Camping Trailer",
             "description": "There's no land tax if it's on wheels.",
-            "baseCost": 600,
-            "income": 5
+            "baseCost": 300,
+            "income": 1.75
         },
         {
             "id": "Small Cabin",
             "description": "Balsa wood never looked so good.",
-            "baseCost": 5000,
+            "baseCost": 2100,
+            "income": 15
+        },
+        {
+            "id": "Student Accomodation",
+            "description": "Gratious little sardines.",
+            "baseCost": 6800,
             "income": 50
         },
         {
             "id": "Fixer-Upper House",
             "description": "Special deal as it may be haunted.",
-            "baseCost": 10000,
-            "income": 450
+            "baseCost": 15000,
+            "income": 90
         },
         {
             "id": "Small Rural Homestead",
             "description": "Escape to the quiet... quiet solitude of rural living.",
             "baseCost": 45000,
-            "income": 900
+            "income": 180
+        },
+        {
+            "id": "Suburban Townhouse",
+            "description": "Premium land and densely packed.",
+            "baseCost": 90000,
+            "income": 320
         }
     ]
 }

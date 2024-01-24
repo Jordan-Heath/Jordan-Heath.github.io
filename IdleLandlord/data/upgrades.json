@@ -1,18 +1,18 @@
 {
-    "version": "Alpha 1.4",
+    "version": "Beta 1.0",
     "upgrades": [
         {
             "propertyId": "Tent",
             "id": "Patched Canvas",
             "description": "Now it barely keeps you dry!",
-            "cost": 200,
+            "cost": 20,
             "multiplier": 2
         },
         {
             "propertyId": "Tent",
             "id": "Extra Blanket",
             "description": "Now it barely keeps you warm!",
-            "cost": 400,
+            "cost": 40,
             "multiplier": 2
         },
         {
@@ -38,37 +38,65 @@
         },
         {
             "propertyId": "Small Cabin",
-            "id": "",
-            "description": "",
+            "id": "Electricity!",
+            "description": "This thing seems to be catching on; I'll buy in.",
             "cost": 40000,
+            "multiplier": 2
+        },
+        {
+            "propertyId": "Student Accomodation",
+            "id": "Add a bed",
+            "description": "Double the occupancy while maintaining the same floorspace.",
+            "cost": 80000,
+            "multiplier": 2
+        },
+        {
+            "propertyId": "Student Accomodation",
+            "id": "Install Bunks",
+            "description": "Quadruple the occupancy, hope nobody still wets the bed.",
+            "cost": 160000,
+            "multiplier": 2
+        },
+        {
+            "propertyId": "Fixer-Upper House",
+            "id": "Bug bomb",
+            "description": "Those bastards weren't paying rent!",
+            "cost": 200000,
             "multiplier": 2
         },
         {
             "propertyId": "Fixer-Upper House",
             "id": "Paint Job",
             "description": "A bit of white paint really hides the mould.",
-            "cost": 200000,
-            "multiplier": 2
-        },
-        {
-            "propertyId": "Fixer-Upper House",
-            "id": "COTTAGE2",
-            "description": "",
-            "cost": 0,
+            "cost": 400000,
             "multiplier": 2
         },
         {
             "propertyId": "Small Rural Homestead",
-            "id": "COTTAGE2",
-            "description": "",
-            "cost": 0,
+            "id": "Empty Septic Tank",
+            "description": "I can smell that thing all the way from here.",
+            "cost": 800000,
             "multiplier": 2
         },
         {
             "propertyId": "Small Rural Homestead",
-            "id": "COTTAGE2",
-            "description": "",
-            "cost": 0,
+            "id": "Gravel Driveway",
+            "description": "The agent was complaining it can be difficult to collect rent.",
+            "cost": 1200000,
+            "multiplier": 2
+        },
+        {
+            "propertyId": "Suburban Townhouse",
+            "id": "Sublease the Garage",
+            "description": "My brothers son's friend said he needed a place to stay.",
+            "cost": 2400000,
+            "multiplier": 2
+        },
+        {
+            "propertyId": "Suburban Townhouse",
+            "id": "Install Security Camera",
+            "description": "Repairs can be minimised if we can show it's the tenants fault.",
+            "cost": 4800000,
             "multiplier": 2
         }
     ]
