@@ -62,10 +62,12 @@ function updateNameView() {
 
 function updateIncomeView() {
     document.getElementById('income').innerText = `$${round(data.income)}/s`
+    document.getElementById('footerIncome').innerText = `$${round(data.income)}/s`;
 }
 
 function updateMoneyView() {
     document.getElementById('money').innerText = `$${round(player.money)}`
+    document.getElementById('footerMoney').innerText = `$${round(player.money)}`
 }
 
 function updateJobView() {

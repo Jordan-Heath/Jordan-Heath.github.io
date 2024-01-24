@@ -55,7 +55,7 @@
 
                 <table id="propertyPortfolio"></table>
 
-                <table>
+                <table id="incomeTable">
                     <tr>
                         <th>Income: </th>
                         <td id="income"></td>
@@ -96,11 +96,24 @@
     </main>
 
     <footer>
-        <button onclick="showMenu('properties')" id="leftFooterButton">&#128176;</button>
-        <button onclick="showMenu('home')" id="middleFooterButton">&#127968;</button>
-        <button onclick="showMenu('upgrades')" id="rightFooterButton">&#128295;</button>
+        <div class="column">
+            <table>
+                <tr>
+                    <th>Income: </th>
+                    <td id="footerIncome"></td>
+                </tr>
+                <tr>
+                    <th>Money:</th>
+                    <td id="footerMoney"></td>
+                </tr>
+            </table>
+            <div class="row">
+                <button onclick="showMenu('properties')" id="leftFooterButton">&#128176;</button>
+                <button onclick="showMenu('home')" id="middleFooterButton">&#127968;</button>
+                <button onclick="showMenu('upgrades')" id="rightFooterButton">&#128295;</button>
+            </div>
+        </div>
     </footer>
-
 </body>
 
 </html>

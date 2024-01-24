@@ -57,6 +57,8 @@ class Player {
         }
 
         data.updateIncome();
+        data.xpGoal = 0;
+        data.xpSubstract = 0;
         data.updateJob();
         updatePageView();
     }

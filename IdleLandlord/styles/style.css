@@ -167,8 +167,6 @@ header {
 #income,
 #money {
     font-size: 18px;
-    margin-top: 5px;
-    color: #594f42;
 }
 
 table {
@@ -235,7 +233,7 @@ td {
 }
 
 #workButton {
-    padding: 20px;
+    height: 25%;
     font-size: 18px;
     cursor: pointer;
     background-color: #8c6d4f;

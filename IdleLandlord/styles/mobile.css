@@ -7,18 +7,17 @@ body {
     overflow-y: hidden;
     overflow-x: hidden;
 }
+
 .page-column {
-    height: 80vh;
+    height: 75vh;
     width: 100%;
     margin: 0;
-}
-main {
-    width: 100vw;
 }
 
 /* header */
 header {
-    height: 5vh;
+    min-height: 43px;
+    max-height: 5vh;
     max-width: 100vw;
     margin: 0;
 }
@@ -29,8 +28,6 @@ header {
     position: absolute;
     width: 100%;
 }
-
-
 
 #headerImage {
     max-width: 250px;
@@ -43,9 +40,17 @@ header {
 #leftColumn {
     display: none;
 }
+
+/* middle column */
 #middleColumn {
     display: flex;
 }
+
+#incomeTable {
+    display: none;
+}
+
+/* right column */
 #rightColumn {
     display: none;
 }
@@ -53,21 +58,26 @@ header {
 
 /* footer */
 footer {
-    max-height: 10vh;
-    min-height: 50px;
+    max-height: 15vh;
+    min-height: 125px;
     width: 100%;
     margin: 0;
     margin-top: auto;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    background: radial-gradient(ellipse at center, #e8d9c2, #d3c7aa, #bfae8b);
+}
+
+footer .column, footer .row {
+    width: 100%;
 }
 
 footer button {
     padding: 12px;
-    font-size: 24px;
-    min-height: 50px;
-    height: 100%;
+    font-size: 20px;
+    min-height: 60px;
+    height: 50%;
     margin-top: 0;
     margin-bottom: 0;
     width: 33%;
