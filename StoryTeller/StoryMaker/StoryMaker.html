@@ -35,7 +35,11 @@
     </form>
 
     <div id="replacementPairsContainer">
-        <h2>Word Replacement:</h2>
+        <div class="row">
+            <h2>Word Replacement:</h2>
+            <button type="button" onclick="convertToJSON()">Convert Story</button>
+        </div>
+        
         <p>Step 2: Choose a few keywords to replace. The left column represents the word you will be replacing and the right column represents the prompt you will give the user.</p>
         <div id="replacementPairs">
             <div class="replacementPair">
@@ -47,17 +51,19 @@
 
                 <button type="button" onclick="removeReplacementPair(this)">-</button>
             </div>
+            <button id="addReplacementPairButton" type="button" onclick="addReplacementPair()">+</button><br>
         </div>
         <div id="controls">
-            <button type="button" onclick="addReplacementPair()">Add Replacement</button><br>
-            <button type="button" onclick="convertToJSON()">Convert Story</button>
-            <button onclick="downloadFile()">Download Story</button>
+            
         </div>
     </div>
 
     <div id="jsonOutputContainer">
-        <h2>JSON Output:</h2>
-        <textarea id="jsonOutput" rows="10"></textarea>
+        <div class="row">
+            <h2>JSON Output:</h2>
+            <button onclick="downloadFile()">Download Story</button>
+        </div>
+        <textarea readonly id="jsonOutput" rows="10"></textarea>
     </div>
 </body>
 

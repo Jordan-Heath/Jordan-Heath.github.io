@@ -151,7 +151,7 @@ function downloadFile() {
         var jsonData = JSON.parse(jsonOutputContent);
 
         // Extract the "name" field
-        var fileName = jsonData.name || 'downloaded_file';
+        var fileName = jsonData.name || 'untitled_story';
 
         // Create a Blob from the textarea content
         var blob = new Blob([jsonOutputContent], { type: 'application/json' });
