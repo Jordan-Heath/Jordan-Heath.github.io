@@ -1,7 +1,7 @@
 class Player {
     constructor() {
         this.version = "";
-        this.name = "Your Business";
+        this.name = "Your Name";
         this.money = 0;
         this.xp = 0;
         this.ownedProperties = [];
@@ -58,11 +58,10 @@ class Player {
 
         data.updateIncome();
         data.updateJob();
-        updatePageView();
     }
 
     // Manual Saves
-    exportPlayer() {
+    export() {
         const blob = new Blob([this.toJson()], { type: 'application/json' });
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
@@ -70,7 +69,7 @@ class Player {
         link.click();
     }
 
-    importPlayer() {
+    import() {
         const fileInput = document.getElementById('fileInput');
         const file = fileInput.files[0];
 
@@ -86,6 +85,30 @@ class Player {
             };
 
             reader.readAsText(file);
+        }
+    }
+
+    reset() {
+        const userConfirmed = window.confirm("Are you sure you wish to reset?");
+        if (userConfirmed) {
+            this.version = this.version;
+            this.name = "Your Name";
+            this.money = 0;
+            this.xp = 0;
+            this.ownedProperties = [];
+            this.ownedUpgrades = [];
+
+            data.properties.forEach(property => {
+                this.ownedProperties[property.id] = 0;
+            });
+
+            data.upgrades.forEach(upgrade => {
+                this.ownedProperties[upgrade.id] = false;
+            });
+
+            data.updateIncome();
+            data.updateJob();
+            updatePageView();
         }
     }
 
@@ -109,12 +132,13 @@ class Player {
             if (cookieData) {
                 const dataString = decodeURIComponent(cookieData.split('=')[1]);
                 this.updateFromJson(dataString);
+                sendMessage("Save Successfully Loaded");
                 return true;
             }
         } catch (error) {
             console.error('Error loading data from cookies:', error);
         }
-        
+
         return false;
     }
 }

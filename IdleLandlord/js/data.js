@@ -16,17 +16,17 @@ class Data {
         const loadJsonData = (url) => fetch(url).then(response => response.json());
 
         // Load version number and other data from data.json
-        loadJsonData(DATA_URL)
-            .then(data => {
-                player.version = data.version;
-                console.log('Version data loaded:', data);
-                return Promise.all([
-                    loadJsonData(PROPERTIES_URL),
-                    loadJsonData(UPGRADES_URL),
-                    loadJsonData(JOBS_URL)
-                ]);
-            })
-            .then(([propertiesData, upgradesData, jobsData]) => {
+        return Promise.all([
+            loadJsonData(VERSION_URL ),
+            loadJsonData(PROPERTIES_URL),
+            loadJsonData(UPGRADES_URL),
+            loadJsonData(JOBS_URL)
+        ])
+            .then(([versionData, propertiesData, upgradesData, jobsData]) => {
+                // Process version data
+                player.version = versionData.version;
+                //console.log('Version data loaded:', data);
+
                 // Process properties data
                 this.properties = propertiesData.properties.map(propertyData => {
                     player.ownedProperties[propertyData.id] = 0;
@@ -44,13 +44,13 @@ class Data {
                     return new Job(jobsData.id, jobsData.description, jobsData.xpRequirement, jobsData.payRate);
                 });
 
-                console.log('Data loaded successfully:', { propertiesData, upgradesData, jobsData });
+                //console.log('Data loaded successfully:', { propertiesData, upgradesData, jobsData });
 
                 if (!player.loadFromCookies()) {
                     this.updateJob();
-                    updatePageView();
                 }
-
+                
+                initialiseViews();
                 startIntervals();
             })
             .catch(error => console.error('Error loading data:', error));

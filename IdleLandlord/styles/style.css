@@ -1,8 +1,18 @@
 /* General */
+:root {
+    --UpgradeZero: #e4d9cb;
+    --UpgradeOne: #cd7f32;
+    --UpgradeTwo: #ffd700;
+}
+
 body {
     font-family: 'Arial', sans-serif;
     text-align: center;
-    background-color: #d2b48c;
+    /*background-color: #d2b48c;*/
+    background-image: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
     padding: 20px;
     margin: 0;
 }
@@ -19,7 +29,7 @@ body {
     flex-direction: column;
     flex: 1;
     padding: 20px;
-    background-color: #dad1c4;
+    background: radial-gradient(ellipse at center, #dad1c4, #b4a286);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     margin: 10px;
@@ -50,6 +60,56 @@ body {
     text-align: left;
 }
 
+button {
+    margin-top: 5px;
+    padding: 8px 15px;
+    font-size: 14px;
+    background-color: #a38769;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #8c6d4f;
+    cursor: pointer;
+}
+
+/* Header */
+
+#headerContainer {
+    margin: auto;
+    max-width: 600px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+    background: radial-gradient(ellipse at center, #e8d9c2, #d3c7aa, #bfae8b);
+}
+
+#headerImage{
+    scale: 75%;
+}
+
+.header-button {
+    margin: auto;
+    min-width: 40px;
+    min-height: 40px;
+}
+
+#settings {
+    padding: 10px;
+    margin: auto;
+    width: fit-content;
+    display: block;
+    border-radius: 5px;
+    background-color: #d3c7aa;
+}
+
+#saveControls {
+    width: 100%;
+}
+
 /* Left/Right Column */
 
 #propertiesView,
@@ -66,22 +126,6 @@ body {
     padding: 10px;
     margin-bottom: 10px;
     background-color: #e4d9cb;
-}
-
-.purchaseable-container button {
-    margin-top: 5px;
-    padding: 8px 15px;
-    font-size: 14px;
-    background-color: #a38769;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.purchaseable-container button:hover {
-    background-color: #8c6d4f;
-    cursor: pointer;
 }
 
 /* Middle Column */
@@ -141,14 +185,9 @@ body {
 }
 
 #messageOutput {
-    margin-top: auto;
-    margin-bottom: auto;
-    opacity: 1;
-    transition: opacity 3s ease-in-out;
-}
-
-#messageOutput.fade {
+    margin: auto;
     opacity: 0;
+    transition: opacity 1s ease-in-out;
 }
 
 #workButton {
@@ -159,15 +198,11 @@ body {
     color: #fff;
     border: none;
     border-radius: 5px;
-    margin-top: 20px;
+    margin-top: auto;
 }
 
 #workButton:hover {
     background-color: #735c3f;
     cursor: pointer;
-}
-
-#saveControls {
-    margin-top: auto;
-    width: 100%;
+    scale: 1.05;
 }

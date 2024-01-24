@@ -4,7 +4,7 @@ function saveBusinessName() {
 
 function startIntervals() {
     setInterval(earnIncome, incomeInterval);
-    // setInterval(() => player.saveToCookies(), autoSaveInterval * 1000);
+    setInterval(() => player.saveToCookies(), autoSaveInterval * 1000);
 }
 
 function earnIncome() {

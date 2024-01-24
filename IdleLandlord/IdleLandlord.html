@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/style.css">
     <script src="js/utils.js"></script>
     <script src="js/constants.js"></script>
     <script src="js/upgrade.js"></script>
@@ -19,7 +19,25 @@
 </head>
 
 <body>
+    <header>
+        <div id="headerContainer">
+            <button class="header-button" onclick="location.href='../index.html'">&#8592;</button>
+            <img id="headerImage" src="images/title.png" alt="title">
+            <button class="header-button" onclick="toggleSettings()">&#8801;</button>
+        </div>
 
+        <div id="settings" style="display: none;">
+            <div id="saveControls">
+                <button id="exportButton" onclick="player.export()">Export Save</button>
+                <button id="importButton" onclick="document.getElementById('fileInput').click();">Import
+                    Save</button>
+                <input type="file" id="fileInput" accept=".json" style="display:none;" onchange="player.import()">
+                <button onclick="player.saveToCookies()">save</button>
+                <button onclick="player.loadFromCookies()">load</button>
+                <button onclick="player.reset()" style="background-color: red;">reset</button>
+            </div>
+        </div>
+    </header>
     <main class="container">
         <div class="page-column" id="leftColumn">
             <h2>Properties</h2>
@@ -45,18 +63,9 @@
                 </div>
             </div>
 
-            <button id="workButton" onclick="work()">Work</button>
-
             <div id="messageOutput"></div>
 
-            <div id="saveControls">
-                <button id="exportButton" onclick="player.exportPlayer()">Export Save</button>
-                <button id="importButton" onclick="document.getElementById('fileInput').click();">Import
-                    Save</button>
-                <input type="file" id="fileInput" accept=".json" style="display:none;" onchange="player.importPlayer()">
-                <button onclick="player.saveToCookies()">save</button>
-                <button onclick="player.loadFromCookies()">load</button>
-            </div>
+            <button id="workButton" onclick="work()">Work</button>
         </div>
 
         <div class="page-column" id="rightColumn">
