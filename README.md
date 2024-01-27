@@ -9,8 +9,8 @@ I developed an app that emulates the game Madlibs. Features:
 - [x] 16 different stories
 - [x] Page design to match the mood of the story
 - [x] Complete the story by filling in the missing words
-- [x] Watch as the story unfolds keystroke at a time accompanied by [7 differnt musical tracks](StoryTeller/README.md)
-- [x] Adjustable Text-speed and audiofade
+- [x] Watch as the story unfolds keystroke at a time accompanied by [7 different musical tracks](StoryTeller/README.md)
+- [x] Adjustable Text-speed and audio fade
 - [x] NEW: support for making and importing custom stories via the [Story Maker](https://jordan-heath.github.io/StoryTeller/StoryMaker/StoryMaker.html)
 
 ### [Character Generator](CharacterGenerator/CharacterGenerator.html)
@@ -31,7 +31,7 @@ A friend of mine saw the character generator and was working on creating some ma
 - [x] Settings to decide the chance of tail/wings
 - [x] Ability to lock body parts to prevent randomization
 - [x] NEW: 461 Animals! Sourced from [Here](https://gist.github.com/atduskgreg/3cf8ef48cb0d29cf151bedad81553a54), sorted, and reduced.
-- [x] NEW: Click the name of an animal to be redirected to bing images in a new tab!
+- [x] NEW: Click the name of an animal to be redirected to Bing images in a new tab!
 
 Otherwise, it is very similar to the Character Generator.
 
@@ -53,15 +53,15 @@ WORK IN PROGRESS. I've wanted to make a clicker game for a while. The king of pa
 - [x] 1970s aesthetic
 - [x] 4 properties you can buy
 - [ ] Gambling-style feedback
-- [ ] Auto-save and manual saving to cookies
-- [ ] Importing/Exporting saves to json
-- [ ] Upgrade Properties
+- [x] Auto-save and manual saving to cookies
+- [x] Importing/Exporting saves to JSON
+- [x] Upgrade Properties
 
 ### [Word Scrambler](WordScrambler/WordScrambler.html)
 
 WORK IN PROGRESS. I created this a while ago to replicate a peculiar mode of speech I was exposed to. I just need to port it over. Features:
 
-- [x] Scrambles input text into incomprehensible mess
+- [x] Scrambles input text into an incomprehensible mess
 
 ### [Meal Planner](MealPlanner/MealPlanner.html)
 

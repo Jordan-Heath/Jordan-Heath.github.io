@@ -1,11 +1,12 @@
 :root {
-    --primary-background: #1e2122;
-    --secondary-background: #181a1b;
-    --primary: #2E282A;
-    --secondary: #065143;
-    --tertiary: #278A91;
+    --primary-background: #39484d;
+    --secondary-background: #30393d;
+    --primary: #426451;
+    --secondary: #1c8871;
+    --tertiary: #3c949b;
     --text-primary: #94BFBE;
-    --text-secondary: #2DD881;
+    --text-secondary: #25db7d;
+    --text-tertiary: #2eff93;
     --drop-shadow: rgba(0, 0, 0, 0.2);
 }
 
@@ -41,6 +42,9 @@ h1 {
 h3, a {
     font-family: 'Verdana', sans-serif;
     color: var(--text-secondary);
+}
+a:hover {
+    color: var(--text-tertiary);
 }
 
 /* nav bar */
