@@ -1,40 +1,296 @@
 {
     "recipes" : [
         {
-            "title" : "",
-            "description" : "",
-            "ingredients" : [
-                {
-                    "Ingredient" : "Measurement"
-                }
+            "title": "Macaroni Salad",
+            "description": "A classic cold macaroni salad with a creamy mayo dressing.",
+            "tags": ["Lazy", "Western", "Pasta", "Salad"],
+            "ingredients": [
+                {"Macaroni": "500g"},
+                {"Mayonnaise": "1 cup"},
+                {"Carrot": "1, grated"},
+                {"Celery": "2 stalks, finely chopped"},
+                {"Red bell pepper": "1, diced"},
+                {"Green onions": "1/2 cup, thinly sliced"},
+                {"Dijon mustard": "1 tablespoon"},
+                {"White vinegar": "1 tablespoon"},
+                {"Sugar": "1 teaspoon"},
+                {"Salt": "to taste"},
+                {"Black pepper": "to taste"}
             ],
-            "method" : [
-                "",
-                "",
-                ""
+            "method": [
+                "Cook the macaroni according to package instructions. Aim for al dente texture.",
+                "Strain the pasta and rinse it under cold water to stop the cooking process. Allow it to cool completely.",
+                "In a large mixing bowl, combine the cooled macaroni, grated carrot, chopped celery, diced red bell pepper, and sliced green onions.",
+                "In a separate bowl, whisk together mayonnaise, Dijon mustard, white vinegar, sugar, salt, and black pepper to create the dressing.",
+                "Pour the dressing over the macaroni mixture and toss until all ingredients are evenly coated.",
+                "Chill the macaroni salad in the refrigerator for at least 1-2 hours before serving to allow the flavors to meld.",
+                "Serve chilled and enjoy your classic Macaroni Salad!"
             ]
         },
         {
-            "title" : "Macaroni Salad",
-            "description" : "A cold macaroni salad with macaroni and mayo",
-            "tags" : [
-                "Lazy",
-                "Western",
-                "Pasta"
+            "title": "Osso Bucco",
+            "description": "Slow-cooked Italian dish with braised veal shanks.",
+            "tags": ["Italian", "Braised", "Veal"],
+            "ingredients": [
+                {"Veal shanks": "4 pieces"},
+                {"Tomato": "1 cup, chopped"},
+                {"Carrot": "1, diced"},
+                {"Celery": "1 stalk, diced"},
+                {"Onion": "1, chopped"},
+                {"Garlic": "2 cloves, minced"},
+                {"White wine": "1 cup"},
+                {"Beef broth": "2 cups"},
+                {"Flour": "1/4 cup"},
+                {"Salt": "to taste"},
+                {"Pepper": "to taste"},
+                {"Olive oil": "2 tablespoons"},
+                {"Fresh parsley": "for garnish"}
             ],
-            "ingredients" : [
-                {
-                    "Macaroni" : "500g"
-                },
-                {
-                    "Mayonaise" : "1 cup"
-                }
+            "method": [
+                "Dust veal shanks with flour, salt, and pepper.",
+                "In a large skillet, heat olive oil and brown veal on all sides.",
+                "Transfer veal to a slow cooker.",
+                "In the same skillet, sauté onion, garlic, carrot, and celery until softened.",
+                "Add chopped tomatoes, white wine, and beef broth. Bring to a boil.",
+                "Pour the mixture over veal in the slow cooker.",
+                "Cook on low for 6-8 hours until veal is tender.",
+                "Serve Osso Bucco over risotto or mashed potatoes, garnished with fresh parsley."
+            ]
+        },
+        {
+            "title": "Chicken & Egg on Rice (Oyakodon)",
+            "description": "A classic Japanese one-bowl meal with chicken, egg, and rice.",
+            "tags": ["Japanese", "Rice Bowl", "Chicken", "Egg"],
+            "ingredients": [
+                {"Chicken thighs": "1 cup, sliced"},
+                {"Onion": "1, thinly sliced"},
+                {"Dashi": "1 cup"},
+                {"Soy sauce": "2 tablespoons"},
+                {"Mirin": "2 tablespoons"},
+                {"Sugar": "1 tablespoon"},
+                {"Eggs": "2, beaten"},
+                {"Green onions": "for garnish"},
+                {"Cooked rice": "2 cups"}
             ],
-            "method" : [
-                "Step 1: Cook the macaroni according to package instructions.",
-                "Step 2: Strain the pasta and allow it to cool.",
-                "Step 3: Add the mayonaise to the pasta",
-                "Step 4: Serve"
+            "method": [
+                "In a skillet, combine dashi, soy sauce, mirin, and sugar. Bring to a simmer.",
+                "Add sliced chicken and onion. Cook until chicken is cooked through.",
+                "Slowly pour beaten eggs over the chicken and onion. Cover and cook until eggs are set.",
+                "Serve over a bowl of hot cooked rice, garnished with green onions."
+            ]
+        },
+        {
+            "title": "Meatballs",
+            "description": "Homemade meatballs with a savory blend of ground meat and seasonings.",
+            "tags": ["Meat", "Italian", "Comfort Food"],
+            "ingredients": [
+                {"Ground beef": "500g"},
+                {"Ground pork": "250g"},
+                {"Breadcrumbs": "1/2 cup"},
+                {"Milk": "1/4 cup"},
+                {"Egg": "1, beaten"},
+                {"Onion": "1, finely chopped"},
+                {"Garlic": "2 cloves, minced"},
+                {"Parmesan cheese": "1/4 cup, grated"},
+                {"Parsley": "2 tablespoons, chopped"},
+                {"Salt": "1 teaspoon"},
+                {"Black pepper": "1/2 teaspoon"},
+                {"Tomato sauce": "for serving, optional"}
+            ],
+            "method": [
+                "Preheat the oven to 375°F (190°C).",
+                "In a bowl, combine breadcrumbs and milk. Let it sit for a few minutes to soften.",
+                "In a large mixing bowl, combine the softened breadcrumbs, ground beef, ground pork, beaten egg, chopped onion, minced garlic, grated Parmesan cheese, chopped parsley, salt, and black pepper.",
+                "Mix the ingredients until well combined. Shape the mixture into meatballs.",
+                "Place the meatballs on a baking sheet lined with parchment paper. Bake in the preheated oven for 20-25 minutes or until cooked through.",
+                "Serve the meatballs on their own or with your favorite tomato sauce. Enjoy!"
+            ]
+        },
+        {
+            "title": "Sausages",
+            "description": "Grilled or pan-fried sausages with a delicious blend of spices.",
+            "tags": ["Meat", "Grilling", "Comfort Food"],
+            "ingredients": [
+                {"Sausages": "your favorite variety"},
+                {"Olive oil": "1 tablespoon"},
+                {"Garlic powder": "1 teaspoon"},
+                {"Onion powder": "1 teaspoon"},
+                {"Paprika": "1/2 teaspoon"},
+                {"Salt": "to taste"},
+                {"Black pepper": "to taste"}
+            ],
+            "method": [
+                "Preheat a grill or a pan over medium heat.",
+                "In a small bowl, mix together olive oil, garlic powder, onion powder, paprika, salt, and black pepper to create a spice mixture.",
+                "Brush the sausages with the spice mixture, ensuring they are well coated.",
+                "Grill or pan-fry the sausages until browned and cooked through, turning occasionally.",
+                "Serve the sausages hot, either on a bun or with your favorite sides. Enjoy!"
+            ]
+        },
+        {
+            "title": "Chicken & Salad",
+            "description": "A refreshing and healthy salad topped with grilled chicken.",
+            "tags": ["Chicken", "Salad", "Healthy"],
+            "ingredients": [
+                {"Chicken breasts": "2, boneless and skinless"},
+                {"Lettuce": "1 head, torn into bite-sized pieces"},
+                {"Cherry tomatoes": "1 cup, halved"},
+                {"Cucumber": "1, sliced"},
+                {"Red onion": "1/2, thinly sliced"},
+                {"Avocado": "1, diced"},
+                {"Feta cheese": "1/2 cup, crumbled"},
+                {"Olive oil": "2 tablespoons"},
+                {"Balsamic vinegar": "1 tablespoon"},
+                {"Dijon mustard": "1 teaspoon"},
+                {"Honey": "1 teaspoon"},
+                {"Salt": "to taste"},
+                {"Black pepper": "to taste"}
+            ],
+            "method": [
+                "Season chicken breasts with salt and black pepper. Grill or pan-cook until fully cooked.",
+                "In a large salad bowl, combine torn lettuce, halved cherry tomatoes, sliced cucumber, thinly sliced red onion, diced avocado, and crumbled feta cheese.",
+                "In a small bowl, whisk together olive oil, balsamic vinegar, Dijon mustard, honey, salt, and black pepper to create the dressing.",
+                "Slice the grilled chicken and place it on top of the salad.",
+                "Drizzle the dressing over the salad and chicken. Toss gently to combine.",
+                "Serve the Chicken & Salad immediately. Enjoy your healthy and delicious meal!"
+            ]
+        },
+        {
+            "title": "Teriyaki Salmon",
+            "description": "Grilled or baked salmon glazed with a sweet and savory teriyaki sauce.",
+            "tags": ["Seafood", "Asian", "Healthy"],
+            "ingredients": [
+                {"Salmon fillets": "4, skin-on"},
+                {"Soy sauce": "1/4 cup"},
+                {"Mirin": "2 tablespoons"},
+                {"Brown sugar": "2 tablespoons"},
+                {"Garlic": "2 cloves, minced"},
+                {"Ginger": "1 teaspoon, grated"},
+                {"Green onions": "2, chopped (for garnish)"},
+                {"Toasted sesame seeds": "1 tablespoon (for garnish)"}
+            ],
+            "method": [
+                "Preheat the grill or oven to medium-high heat.",
+                "In a small saucepan, combine soy sauce, mirin, brown sugar, minced garlic, and grated ginger. Bring to a simmer and cook until the sauce thickens slightly.",
+                "Brush the salmon fillets with the teriyaki sauce.",
+                "Grill the salmon skin-side down or bake in the oven until the salmon is cooked to your liking, basting with the teriyaki sauce occasionally.",
+                "Garnish with chopped green onions and toasted sesame seeds before serving.",
+                "Serve the Teriyaki Salmon over rice or with your favorite side dishes. Enjoy!"
+            ]
+        },
+        {
+            "title": "Takeaway",
+            "description": "Enjoy your favorite takeout from your preferred restaurant or cuisine.",
+            "tags": ["Takeaway", "Convenience"],
+            "ingredients": ["Order from your favorite restaurant or takeaway place."]
+        },
+        {
+            "title": "Dinner Out",
+            "description": "Experience a delightful evening dining at a restaurant of your choice.",
+            "tags": ["Dining Out", "Restaurant"],
+            "ingredients": ["Visit a restaurant of your choice."]
+        },
+        {
+            "title": "Nuggets and Salad",
+            "description": "A quick and easy meal featuring crispy chicken nuggets paired with a fresh salad.",
+            "tags": ["Chicken", "Salad", "Quick Meal"],
+            "ingredients": [
+                {"Chicken nuggets": "as desired"},
+                {"Mixed greens": "2 cups"},
+                {"Cherry tomatoes": "1 cup, halved"},
+                {"Cucumber": "1, sliced"},
+                {"Carrot": "1, shredded"},
+                {"Ranch dressing": "for serving"}
+            ],
+            "method": [
+                "Bake or fry the chicken nuggets according to package instructions.",
+                "In a large bowl, toss together mixed greens, halved cherry tomatoes, sliced cucumber, and shredded carrot.",
+                "Arrange the crispy chicken nuggets on top of the salad.",
+                "Serve the Nuggets and Salad with your favorite ranch dressing. Enjoy!"
+            ]
+        },
+        {
+            "title": "Noodle Cups",
+            "description": "A convenient and customizable noodle cup meal for a quick lunch or snack.",
+            "tags": ["Noodles", "Quick Meal"],
+            "ingredients": [
+                {"Instant noodles": "1 cup, cooked and drained"},
+                {"Vegetables": "your choice, sliced"},
+                {"Protein (optional)": "chicken, tofu, shrimp, etc."},
+                {"Soy sauce": "1 tablespoon"},
+                {"Sesame oil": "1 teaspoon"},
+                {"Sriracha (optional)": "to taste"}
+            ],
+            "method": [
+                "Prepare instant noodles according to package instructions. Drain and set aside.",
+                "In a heatproof cup or container, layer the cooked noodles, sliced vegetables, and protein of your choice.",
+                "Drizzle with soy sauce, sesame oil, and Sriracha (if desired).",
+                "When ready to eat, add hot water to the cup, cover, and let it sit for a few minutes.",
+                "Stir well and enjoy your customizable Noodle Cups!"
+            ]
+        },
+        {
+            "title": "Roast Chicken, Rolls, Coleslaw",
+            "description": "A classic meal featuring succulent roast chicken, fresh rolls, and crisp coleslaw.",
+            "tags": ["Chicken", "Roast", "Bread", "Coleslaw"],
+            "ingredients": [
+                {"Whole chicken": "1, about 4-5 lbs"},
+                {"Olive oil": "2 tablespoons"},
+                {"Garlic": "4 cloves, minced"},
+                {"Rosemary": "1 tablespoon, chopped"},
+                {"Thyme": "1 tablespoon, chopped"},
+                {"Salt": "1 teaspoon"},
+                {"Black pepper": "1/2 teaspoon"},
+                {"Soft rolls": "as needed"},
+                {"Coleslaw": "store-bought or homemade"}
+            ],
+            "method": [
+                "Preheat the oven to 425°F (220°C).",
+                "Rub the whole chicken with olive oil, minced garlic, chopped rosemary, chopped thyme, salt, and black pepper.",
+                "Place the seasoned chicken in a roasting pan and roast in the preheated oven for about 1 hour or until the internal temperature reaches 165°F (74°C).",
+                "While the chicken is roasting, prepare soft rolls and coleslaw.",
+                "Once the chicken is done, let it rest for a few minutes before carving.",
+                "Serve Roast Chicken with fresh rolls and a side of coleslaw. Enjoy!"
+            ]
+        },
+        {
+            "title": "Chicken Soup",
+            "description": "A comforting and nourishing chicken soup perfect for any day.",
+            "tags": ["Chicken", "Soup", "Comfort Food"],
+            "ingredients": [
+                {"Chicken thighs": "2, boneless and skinless"},
+                {"Carrot": "2, sliced"},
+                {"Celery": "2 stalks, sliced"},
+                {"Onion": "1, diced"},
+                {"Garlic": "2 cloves, minced"},
+                {"Chicken broth": "6 cups"},
+                {"Egg noodles": "1 cup, cooked"},
+                {"Fresh dill": "2 tablespoons, chopped"},
+                {"Salt": "to taste"},
+                {"Black pepper": "to taste"}
+            ],
+            "method": [
+                "In a large pot, combine chicken thighs, sliced carrots, sliced celery, diced onion, minced garlic, and chicken broth.",
+                "Bring the mixture to a boil, then reduce the heat and simmer until the chicken is cooked through and vegetables are tender.",
+                "Remove the chicken, shred it, and return it to the pot. Add cooked egg noodles and chopped fresh dill.",
+                "Season the soup with salt and black pepper to taste. Simmer for an additional 10 minutes.",
+                "Serve the comforting Chicken Soup hot. Enjoy!"
+            ]
+        },
+        {
+            "title": "Sauce Sachet on Rice",
+            "description": "A simple and convenient meal with a sauce sachet drizzled over cooked rice.",
+            "tags": ["Quick Meal", "Convenience"],
+            "ingredients": [
+                {"Instant rice": "1 cup, cooked"},
+                {"Sauce sachet": "your favorite flavor"}
+            ],
+            "method": [
+                "Cook instant rice according to package instructions.",
+                "Place the cooked rice in a bowl or plate.",
+                "Drizzle your favorite sauce sachet over the rice.",
+                "Toss or stir to evenly coat the rice with the sauce.",
+                "Sauce Sachet on Rice is ready to be enjoyed!"
             ]
         }
     ]

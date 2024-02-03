@@ -2,3 +2,42 @@ body {
     font-family: Arial, sans-serif;
     margin: 20px;
 }
+
+#meal-planner-form {
+    max-width: 600px;
+    margin: auto;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+button {
+    padding: 10px;
+    cursor: pointer;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+header {
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-between;
+    max-width: 600px;
+    margin: 0 auto 20px;
+}

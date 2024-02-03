@@ -37,6 +37,13 @@
             "file": "${workspaceFolder}/MealPlanner/MealPlanner.html"
         },
         {
+            "name": "Recipe Maker",
+            "type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "file": "${workspaceFolder}/MealPlanner/RecipeMaker/RecipeMaker.html"
+        },
+        {
             "name": "Percentage Clock",
             "type": "firefox",
             "request": "launch",
