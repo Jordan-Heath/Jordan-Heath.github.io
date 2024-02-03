@@ -1,8 +1,16 @@
-Products
 {
-    Macaroni Packet
-    {
-        ingredients = "macaroni"
-        measure = 500g
-    }
+    "products" : [
+        {
+            "id" : "",
+            "Ingredient" : "",
+            "measure" : "",
+            "price" : 0
+        },
+        {
+            "id" : "Macaroni Packet",
+            "Ingredient" : "Macaroni",
+            "measure" : "500g",
+            "price" : 2.0
+        }
+    ]
 }

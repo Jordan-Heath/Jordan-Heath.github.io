@@ -1,5 +1,6 @@
-Ingredients
 {
-    macaroni,
-    bread,
+    "ingredients" : [
+        "Macaroni",
+        "Mayonaise"
+    ]
 }

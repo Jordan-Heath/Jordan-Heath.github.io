@@ -1,19 +1,41 @@
-Recipes
 {
-    {
-        title = "macaroni salad";
-        ingredients = {
-            macaroni, 500g
+    "recipes" : [
+        {
+            "title" : "",
+            "description" : "",
+            "ingredients" : [
+                {
+                    "Ingredient" : "Measurement"
+                }
+            ],
+            "method" : [
+                "",
+                "",
+                ""
+            ]
+        },
+        {
+            "title" : "Macaroni Salad",
+            "description" : "A cold macaroni salad with macaroni and mayo",
+            "tags" : [
+                "Lazy",
+                "Western",
+                "Pasta"
+            ],
+            "ingredients" : [
+                {
+                    "Macaroni" : "500g"
+                },
+                {
+                    "Mayonaise" : "1 cup"
+                }
+            ],
+            "method" : [
+                "Step 1: Cook the macaroni according to package instructions.",
+                "Step 2: Strain the pasta and allow it to cool.",
+                "Step 3: Add the mayonaise to the pasta",
+                "Step 4: Serve"
+            ]
         }
-        description = "";
-        method = "";
-    },
-    {
-        title = recipe 2;
-        ingredients = {
-            ingredient, measurement
-        }
-        description = "";
-        method = "";
-    }
+    ]
 }
