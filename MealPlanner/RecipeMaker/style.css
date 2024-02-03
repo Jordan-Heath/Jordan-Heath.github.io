@@ -1,0 +1,105 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 5px 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+label,
+input,
+textarea,
+button {
+    display: block;
+    margin-bottom: 10px;
+}
+
+button {
+    cursor: pointer;
+}
+
+.tagEntry,
+.ingredientEntry,
+.methodEntry,
+.jsonOutput,
+.descriptionEntry {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.tagEntry input,
+.ingredientEntry input,
+.ingredientEntry textarea,
+.methodEntry textarea,
+.jsonOutput textarea,
+.descriptionEntry textarea {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.jsonOutput {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.removeButton {
+    background-color: #e00000;
+}
+
+.removeButton:hover {
+    background-color: #c50000;
+}
+
+@media (max-width: 600px) {
+    .tagEntry,
+    .ingredientEntry,
+    .methodEntry,
+    .jsonOutput,
+    .descriptionEntry {
+        flex-direction: column;
+    }
+}
+
+#jsonOutputField {
+    min-height: 200px;
+}
+
+/* Style textareas for a nicer appearance */
+textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    height: fit-content;
+}
+
+/* Style input type="text" for a nicer appearance */
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
