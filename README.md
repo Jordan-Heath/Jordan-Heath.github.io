@@ -76,6 +76,6 @@ WORK IN PROGRESS. Intended to be a short interactive story with procedural eleme
 
 ### [Word Scrambler](WordScrambler/WordScrambler.html)
 
-WORK IN PROGRESS. I created this a while ago to replicate a peculiar mode of speech I was exposed to. I just need to port it over. Features:
+I created this a while ago to replicate a peculiar mode of speech I was exposed to. I just need to port it over. Features:
 
-- [x] Scrambles input text into an incomprehensible mess
+- [x] Scrambles input text into a semi-comprehensible mess

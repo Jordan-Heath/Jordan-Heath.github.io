@@ -18,16 +18,24 @@
 
 
 <body>
-    <article>
-        <label for="textInput">Input:</label>
-        <br />
-        <textarea id="textInput" name="textInput" rows="10" cols="80"></textarea>
-        <br />
+    <header>
+        <button onclick="location.href='../index.html'" id="homeButton">&#8592;</button>
+        <h1>Word Scrambler</h1>
+        <p></p>
+    </header>
 
-        <label for="textOutput">Output:</label>
-        <br />
-        <textarea id="textOutput" name="textOutput" rows="10" cols="80"></textarea>
-        <br />
+    <article>
+        <div class="container" id="inputContainer">
+            <label for="textInput">Input:</label>
+            <textarea id="textInput" name="textInput"></textarea>
+        </div>
+        
+
+        <div class="container" id="output Container">
+            <label for="textOutput">Output:</label>
+            <textarea id="textOutput" name="textOutput"></textarea>
+        </div>
+        
 
         <button onclick="submit()">Submit</button>
     </article>
