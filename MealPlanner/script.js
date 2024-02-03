@@ -1,5 +1,5 @@
 // Replace "YOUR_JSON_FILE_URL" with the actual URL of your JSON file
-const recipesJSON = "https://jordan-heath.github.io/MealPlanner/data/Recipes.json";
+const recipesJSON = "https://jordan-heath.github.io/MealPlanner/data/recipes.json";
 const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
 const mealPlan = new MealPlan();
