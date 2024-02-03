@@ -1,5 +1,13 @@
+const tagsContainer = document.getElementById('tagsContainer');
+const ingredientsContainer = document.getElementById('ingredientsContainer');
+const methodContainer = document.getElementById('methodContainer');
+const recipeForm = document.getElementById('recipeForm');
+const jsonOutputField = document.getElementById('jsonOutputField');
+const exportButton = document.getElementById("exportButton");
+
+let formData = new FormData(recipeForm);
+
 function addTag() {
-    const tagsContainer = document.getElementById('tagsContainer');
     const tagEntry = document.createElement('div');
     tagEntry.classList.add('tagEntry');
     tagEntry.innerHTML = `
@@ -10,7 +18,6 @@ function addTag() {
 }
 
 function addIngredient() {
-    const ingredientsContainer = document.getElementById('ingredientsContainer');
     const ingredientEntry = document.createElement('div');
     ingredientEntry.classList.add('ingredientEntry');
     ingredientEntry.innerHTML = `
@@ -22,7 +29,6 @@ function addIngredient() {
 }
 
 function addMethod() {
-    const methodContainer = document.getElementById('methodContainer');
     const methodEntry = document.createElement('div');
     methodEntry.classList.add('methodEntry');
     methodEntry.innerHTML = `
@@ -38,8 +44,7 @@ function removeEntry(button) {
 }
 
 function convertToJson() {
-    const recipeForm = document.getElementById('recipeForm');
-    const formData = new FormData(recipeForm);
+    formData = new FormData(recipeForm);
 
     const recipe = {
         title: formData.get('title'),
@@ -54,8 +59,6 @@ function convertToJson() {
         const measurement = entry.querySelector('.measurement').value;
         recipe.ingredients.push({ [ingredient]: measurement });
     });
-
-    const jsonOutputField = document.getElementById('jsonOutputField');
     
     // Clear existing content
     jsonOutputField.value = '';
@@ -64,3 +67,22 @@ function convertToJson() {
     jsonOutputField.value = JSON.stringify({ recipes: [recipe] }, null, 2);
 }
 
+function exportJSON() {
+    convertToJson()
+    const jsonData = jsonOutputField.value;
+
+    if (jsonData) {
+        const blob = new Blob([jsonData], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${formData.get('title')}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    } else {
+        alert("No JSON data to export.");
+    }
+}

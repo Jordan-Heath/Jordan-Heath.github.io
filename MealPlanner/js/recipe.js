@@ -5,7 +5,6 @@ class Recipe {
         this.tags = tags;
         this.ingredients = ingredients;
         this.method = method;
-        //this.products; generateProducts();
     }
 
     generateRecipeHTML() {

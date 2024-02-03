@@ -13,6 +13,28 @@ I developed an app that emulates the game Madlibs. Features:
 - [x] Adjustable Text-speed and audio fade
 - [x] NEW: support for making and importing custom stories via the [Story Maker](https://jordan-heath.github.io/StoryTeller/StoryMaker/StoryMaker.html)
 
+### [Idle Landlord](IdleLandlord/IdleLandlord.html)
+
+I've wanted to make a clicker game for a while. The king of passive income is landlording, so I really wanted to make 'Idle Landlord' the 1970s aesthetic clicker game. Features:
+
+- [x] 1970s aesthetic
+- [x] 4 properties you can buy
+- [x] Auto-save and manual saving to cookies
+- [x] Importing/Exporting saves to JSON
+- [x] Upgrade Properties
+
+### [Meal Planner](MealPlanner/MealPlanner.html)
+
+Intended to help me plan out my meals.
+
+- [x] 33 different meals of varying quality
+- [x] Creates a Meal Plan
+- [x] Can view full recipes by selecting the meals
+- [x] Creates a Shopping list
+- [x] Can tick off items on the shopping list
+- [x] Includes Recipe Maker - a tool for making the json recipes the app uses.
+- [x] Includes Recipe Browser - for if you want to search for a recipe instead of being assigned.
+
 ### [Character Generator](CharacterGenerator/CharacterGenerator.html)
 
 I was familiar with name generators, but I wanted to put my own spin on it by adding a few extra features.
@@ -46,23 +68,14 @@ On challenging days, it's helpful to know how much of the day is left. Percentag
 
 Wouldn't particularly recommend this one.
 
-### [Idle Landlord](IdleLandlord/IdleLandlord.html)
+### [RPG Chat](RPGChat/RPGchat.html)
 
-WORK IN PROGRESS. I've wanted to make a clicker game for a while. The king of passive income is landlording, so I really wanted to make 'Idle Landlord' the 1970s aesthetic clicker game. Features:
+WORK IN PROGRESS. Intended to be a short interactive story with procedural elements.
 
-- [x] 1970s aesthetic
-- [x] 4 properties you can buy
-- [ ] Gambling-style feedback
-- [x] Auto-save and manual saving to cookies
-- [x] Importing/Exporting saves to JSON
-- [x] Upgrade Properties
+- [x] RPG elements
 
 ### [Word Scrambler](WordScrambler/WordScrambler.html)
 
 WORK IN PROGRESS. I created this a while ago to replicate a peculiar mode of speech I was exposed to. I just need to port it over. Features:
 
 - [x] Scrambles input text into an incomprehensible mess
-
-### [Meal Planner](MealPlanner/MealPlanner.html)
-
-WORK IN PROGRESS. Intended to help me plan out my meals. I plan on storing a variety of regular meals in JSON, then allowing for search by criteria.

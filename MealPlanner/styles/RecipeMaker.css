@@ -1,5 +1,6 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #1e1e1e;
 }
 
 header {
@@ -11,6 +12,7 @@ header {
 }
 
 h1 {
+    color: #66dd56;
     text-align: center;
 }
 
@@ -20,8 +22,7 @@ form {
 }
 
 button {
-    background-color: #4caf50;
-    color: white;
+    background-color: #47b94d;
     border: none;
     padding: 5px 5px;
     font-size: 16px;
@@ -29,7 +30,7 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #66dd56;
 }
 
 label,
@@ -51,17 +52,12 @@ button {
 .descriptionEntry {
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
 }
 
-.tagEntry input,
-.ingredientEntry input,
-.ingredientEntry textarea,
-.methodEntry textarea,
-.jsonOutput textarea,
-.descriptionEntry textarea {
+input, textarea {
     flex: 1;
     margin-right: 10px;
+    background-color: #e0e0e0;
 }
 
 .jsonOutput {
@@ -75,6 +71,12 @@ button {
 
 .removeButton:hover {
     background-color: #c50000;
+}
+
+.container {
+    padding: 20px;
+    background-color: #424242;
+    border-radius: 15px;
 }
 
 @media (max-width: 600px) {
@@ -98,7 +100,6 @@ textarea {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    margin-bottom: 10px;
     height: fit-content;
 }
 
@@ -109,5 +110,4 @@ input[type="text"] {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    margin-bottom: 10px;
 }

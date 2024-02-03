@@ -5,17 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meal Planner</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <script src="js/recipe.js" defer></script>
     <script src="js/mealPlan.js" defer></script>
-    <script src="script.js" defer></script>
+    <script src="js/MealPlanner.js" defer></script>
 </head>
 
 <body>
     <header>
         <button onclick="location.href='../index.html'" id="homeButton">&#8592;</button>
         <h1>Meal Planner</h1>
-        <button onclick="location.href='RecipeMaker/RecipeMaker.html'" id="RecipeMakerButton">?</button>
+        <div style="display: flex; flex-direction: column;">
+            <button onclick="location.href='RecipeMaker.html'" id="RecipeMakerButton">Make</button>
+            <button onclick="location.href='RecipeBrowser.html'" id="RecipeBrowserButton">Browse</button>
+        </div>
     </header>
 
     <div id="meal-planner-form">
