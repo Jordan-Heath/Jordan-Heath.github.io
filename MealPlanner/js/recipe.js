@@ -9,11 +9,9 @@ class Recipe {
     }
 
     generateRecipeHTML() {
-        return `
-                <div class="recipe">
+        return `<div class="recipe">
                     <h2>${this.title}</h2>
                     <p>${this.description}</p>
-                    <p>Tags: [${this.tags}]</p>
                     <h3>Ingredients:</h3>
                     <ul>
                         ${this.ingredients.map(ingredient => `<li>${Object.keys(ingredient)[0]}: ${ingredient[Object.keys(ingredient)[0]]}</li>`).join('')}
@@ -22,7 +20,6 @@ class Recipe {
                     <ol>
                         ${this.method.map(step => `<li>${step}</li>`).join('')}
                     </ol>
-                </div>
-            `;
+                </div>`;
     }
 }

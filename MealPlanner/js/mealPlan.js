@@ -39,32 +39,52 @@ class MealPlan {
     }
 
     generateIngredientsTable() {
-        const allIngredients = this.savedMeals.flatMap(savedMeal => savedMeal.meal.ingredients);
+        // Create a map to store recipes for each ingredient
+        const ingredientRecipesMap = new Map();
     
-        // Sort the ingredients alphabetically by their names
-        const sortedIngredients = allIngredients.slice().sort((a, b) => {
-            const ingredientNameA = Object.keys(a)[0].toLowerCase();
-            const ingredientNameB = Object.keys(b)[0].toLowerCase();
-            return ingredientNameA.localeCompare(ingredientNameB);
+        this.savedMeals.forEach(savedMeal => {
+            savedMeal.meal.ingredients.forEach(ingredient => {
+                const ingredientName = Object.keys(ingredient)[0];
+                const measurement = ingredient[ingredientName];
+    
+                // Check if the ingredientRecipesMap already has this ingredient
+                if (ingredientRecipesMap.has(ingredientName)) {
+                    ingredientRecipesMap.get(ingredientName).push({
+                        measurement,
+                        recipeTitle: savedMeal.meal.title,
+                        showIngredient: false  // Flag to indicate whether to show the ingredient name
+                    });
+                } else {
+                    ingredientRecipesMap.set(ingredientName, [{
+                        measurement,
+                        recipeTitle: savedMeal.meal.title,
+                        showIngredient: true  // Show ingredient name on the first occurrence
+                    }]);
+                }
+            });
         });
     
+        // Sort the ingredients alphabetically
+        const sortedIngredients = Array.from(ingredientRecipesMap.keys()).sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+    
+        // Compose HTML
         let ingredientsTableHtml = "<table><tr><th>Ingredient</th><th>Measurement</th></tr>";
     
-        sortedIngredients.forEach(ingredient => {
-            const [ingredientName, measurement] = Object.entries(ingredient)[0];
-            ingredientsTableHtml += `
-                <tr onclick="changeBackgroundColor(this)">
-                    <td>${ingredientName}</td>
-                    <td>${measurement}</td>
-                </tr>
-            `;
+        sortedIngredients.forEach(ingredientName => {
+            const ingredientInfos = ingredientRecipesMap.get(ingredientName);
+    
+            ingredientInfos.forEach((info) => {
+                ingredientsTableHtml += `<tr onclick="changeBackgroundColor(this)">
+                                            <td>${info.showIngredient ? ingredientName : ''}</td>
+                                            <td>${info.measurement} <br> (${info.recipeTitle})</td>
+                                        </tr>`;
+            });
         });
     
         ingredientsTableHtml += "</table>";
     
         return ingredientsTableHtml;
     }
-    
 }
 
 
@@ -76,12 +96,10 @@ class savedMeal {
     }
 
     generateTableLineHTML() {
-        return `
-            <tr>
-                <td>${this.weekDay}</td>
-                <td><a href="#" onclick="toggleRecipeView(${this.mealNumber})">${this.meal.title}</td>
-                ${`<td><button onclick="refreshMeal(${this.mealNumber})">Refresh</button></td>`}
-            </tr>
-        `;
+        return `<tr>
+                    <td>${this.weekDay}</td>
+                    <td><a href="#" onclick="toggleRecipeView(${this.mealNumber})">${this.meal.title}</td>
+                    ${`<td><button onclick="refreshMeal(${this.mealNumber})">Refresh</button></td>`}
+                </tr>`;
     }
 }

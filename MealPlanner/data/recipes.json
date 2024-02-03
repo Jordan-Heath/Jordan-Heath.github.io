@@ -182,14 +182,14 @@
             "title": "Takeaway",
             "description": "Enjoy your favorite takeout from your preferred restaurant or cuisine.",
             "tags": ["Takeaway", "Convenience"],
-            "ingredients": [{"":""}],
+            "ingredients": [{"none":"none"}],
             "method": ["Order from your favorite restaurant or takeaway place."]
         },
         {
             "title": "Dinner Out",
             "description": "Experience a delightful evening dining at a restaurant of your choice.",
             "tags": ["Dining Out", "Restaurant"],
-            "ingredients": [{"":""}],
+            "ingredients": [{"none":"none"}],
             "method": ["Visit a restaurant of your choice."]
         },
         {
@@ -236,22 +236,12 @@
             "description": "A classic meal featuring succulent roast chicken, fresh rolls, and crisp coleslaw.",
             "tags": ["Chicken", "Roast", "Bread", "Coleslaw"],
             "ingredients": [
-                {"Whole chicken": "1, about 4-5 lbs"},
-                {"Olive oil": "2 tablespoons"},
-                {"Garlic": "4 cloves, minced"},
-                {"Rosemary": "1 tablespoon, chopped"},
-                {"Thyme": "1 tablespoon, chopped"},
-                {"Salt": "1 teaspoon"},
-                {"Black pepper": "1/2 teaspoon"},
-                {"Soft rolls": "as needed"},
+                {"Roast chicken": "1"},
+                {"Bread rolls": "1 bag"},
                 {"Coleslaw": "store-bought or homemade"}
             ],
             "method": [
-                "Preheat the oven to 425°F (220°C).",
-                "Rub the whole chicken with olive oil, minced garlic, chopped rosemary, chopped thyme, salt, and black pepper.",
-                "Place the seasoned chicken in a roasting pan and roast in the preheated oven for about 1 hour or until the internal temperature reaches 165°F (74°C).",
-                "While the chicken is roasting, prepare soft rolls and coleslaw.",
-                "Once the chicken is done, let it rest for a few minutes before carving.",
+                "When cooled, carve the whole roast chicken.",
                 "Serve Roast Chicken with fresh rolls and a side of coleslaw. Enjoy!"
             ]
         },

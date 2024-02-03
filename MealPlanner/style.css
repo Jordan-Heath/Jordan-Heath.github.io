@@ -1,5 +1,7 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #1e1e1e;
+    color: #ffffff;
     margin: 20px;
 }
 
@@ -11,6 +13,7 @@ body {
 #displayWindow {
     display: none;
 }
+
 #dismissRecipeButton {
     align-items: center;
 }
@@ -26,9 +29,21 @@ form {
     gap: 10px;
 }
 
+a {
+    color: #61dafb;
+}
+
 button {
     padding: 10px;
     cursor: pointer;
+    background-color: #4fa3d1;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #61dafb;
 }
 
 table {
@@ -37,35 +52,43 @@ table {
 }
 
 th, td {
-    border: 1px solid #ddd;
+    border: 1px solid #333; /* Dark gray border */
     padding: 8px;
     text-align: left;
 }
 
 th {
-    background-color: #f2f2f2;
+    background-color: #2d2d2d;
+    color: #ffffff;
+    font-weight: bold;
 }
 
 header {
-    display: flex; 
-    flex-direction: row; 
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
     max-width: 600px;
     margin: 0 auto 20px;
 }
 
+h1 {
+    text-align: center;
+    color: #61dafb; /* Heading color */
+    margin-bottom: 20px; /* Increased margin for separation from other elements */
+}
+
 tr:nth-child(odd) {
-    background-color: rgb(255, 255, 255);
+    background-color: #292929;
 }
 
 tr:nth-child(even) {
-    background-color: rgb(233, 233, 233);
+    background-color: #1e1e1e;
 }
 
 tr:hover {
-    background-color: rgb(218, 218, 218);
+    background-color: #383838;
 }
 
 tr.clicked {
-    background-color: rgb(191, 230, 173);
+    background-color: #37a10d;
 }
