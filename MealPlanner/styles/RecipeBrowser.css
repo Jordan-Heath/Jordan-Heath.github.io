@@ -16,7 +16,7 @@ header {
     margin: 0 auto 20px;
 }
 
-h1 {
+h1, h2, h3 {
     color: #FFD700;
 }
 
@@ -55,4 +55,27 @@ button:hover {
 
 .recipe-container p {
     color: #CCCCCC;
+}
+
+ol, ul {
+    padding: 10px;
+    margin: 0;
+    list-style-position: inside;
+    background-color: #1E1E1E;
+}
+
+ol li:nth-child(even),
+ul li:nth-child(even) {
+    color: #CCCCCC;
+    background-color: #2D2D2D;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+ol li:nth-child(odd),
+ul li:nth-child(odd) {
+    color: #CCCCCC;
+    background-color: #333333;
+    padding: 8px;
+    border-radius: 5px;
 }

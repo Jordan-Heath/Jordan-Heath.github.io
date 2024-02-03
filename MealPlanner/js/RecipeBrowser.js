@@ -5,32 +5,57 @@ const recipeDetailsDiv = document.getElementById("recipeDetails");
 
 let recipesData; // Store recipes data globally
 
-// Fetch the JSON file
-fetch(recipesJSON)
-    .then(response => response.json())
-    .then(data => {
-        recipesData = data; // Save data globally
 
-        // Populate the tag select menu
-        const allTags = ["VIEW ALL", ...Array.from(new Set(data.recipes.flatMap(recipe => recipe.tags)))];
-        allTags.forEach(tag => {
-            const tagOption = document.createElement("option");
-            tagOption.value = tag;
-            tagOption.textContent = tag;
-            tagSelect.appendChild(tagOption);
-        });
+// Function to fetch and load data
+function loadData() {
+    fetch(recipesJSON)
+        .then(response => response.json())
+        .then(data => {
+            recipesData = data; // Save data globally
 
-        // Populate the recipe select menu with "VIEW ALL" option and all recipes
-        populateRecipeSelect(data.recipes);
+            // Sort recipesData alphabetically by recipe.title
+            sortRecipesByTitle();
 
-        // Add event listeners
-        tagSelect.addEventListener("change", displayRecipesByTag);
-        recipeSelect.addEventListener("change", displayRecipeDetails);
+            // Extract all tags from recipes
+            const allTags = recipesData.recipes.flatMap(recipe => recipe.tags);
 
-        displayRecipeDetails();
-    })
-    .catch(error => console.error("Error fetching recipes:", error));
+            // Remove duplicates and sort tags alphabetically (without "VIEW ALL")
+            const uniqueSortedTags = Array.from(new Set(allTags)).sort();
 
+            // Add "VIEW ALL" at the beginning
+            const tagsWithViewAll = ["VIEW ALL", ...uniqueSortedTags];
+
+            // Populate the tag select menu
+            populateTagsSelect(tagsWithViewAll);
+
+            // Populate the recipe select menu with "VIEW ALL" option and all recipes
+            populateRecipeSelect(recipesData.recipes);
+
+            // Add event listeners
+            tagSelect.addEventListener("change", displayRecipesByTag);
+            recipeSelect.addEventListener("change", displayRecipeDetails);
+
+            displayRecipeDetails();
+        })
+        .catch(error => console.error("Error fetching recipes:", error));
+}
+
+// Function to sort recipes alphabetically by title
+function sortRecipesByTitle() {
+    recipesData.recipes.sort((a, b) => a.title.localeCompare(b.title));
+}
+
+// Function to populate the tag select menu
+function populateTagsSelect(tags) {
+    tags.forEach(tag => {
+        const tagOption = document.createElement("option");
+        tagOption.value = tag;
+        tagOption.textContent = tag;
+        tagSelect.appendChild(tagOption);
+    });
+}
+
+// Function to populate the recipe select menu
 function populateRecipeSelect(recipes) {
     // Clear previous options
     recipeSelect.innerHTML = "";
@@ -113,11 +138,33 @@ function displaySingleRecipeDetails(recipe) {
     const recipeTagsElement = document.createElement("p");
     recipeTagsElement.textContent = "Tags: " + recipe.tags.join(", ");
 
-    const recipeIngredientsElement = document.createElement("p");
-    recipeIngredientsElement.textContent = "Ingredients: " + recipe.ingredients.map(ingredient => Object.keys(ingredient)[0] + ": " + Object.values(ingredient)[0]).join(", ");
+    const recipeIngredientsElement = document.createElement("div");
+    recipeIngredientsElement.classList.add("recipe-section");
+    const ingredientsHeading = document.createElement("h3");
+    ingredientsHeading.textContent = "Ingredients";
+    recipeIngredientsElement.appendChild(ingredientsHeading);
 
-    const recipeMethodElement = document.createElement("p");
-    recipeMethodElement.textContent = "Method: " + recipe.method.join("\n");
+    const ingredientsList = document.createElement("ul");
+    recipe.ingredients.forEach(ingredient => {
+        const li = document.createElement("li");
+        li.textContent = Object.keys(ingredient)[0] + ": " + Object.values(ingredient)[0];
+        ingredientsList.appendChild(li);
+    });
+    recipeIngredientsElement.appendChild(ingredientsList);
+
+    const recipeMethodElement = document.createElement("div");
+    recipeMethodElement.classList.add("recipe-section");
+    const methodHeading = document.createElement("h3");
+    methodHeading.textContent = "Method";
+    recipeMethodElement.appendChild(methodHeading);
+
+    const methodList = document.createElement("ol");
+    recipe.method.forEach(step => {
+        const li = document.createElement("li");
+        li.textContent = step;
+        methodList.appendChild(li);
+    });
+    recipeMethodElement.appendChild(methodList);
 
     // Append the new recipe details to the recipeDetailsDiv
     recipeContainerElement.appendChild(recipeTitleElement);
@@ -128,3 +175,6 @@ function displaySingleRecipeDetails(recipe) {
 
     recipeDetailsDiv.appendChild(recipeContainerElement);
 }
+
+
+loadData();
