@@ -54,5 +54,26 @@ function updatePage() {
     document.getElementById("ingredients-table").innerHTML = mealPlan.generateIngredientsTable();
 }
 
+function toggleRecipeView(mealNumber) {
+    mealPlannerForm = document.getElementById("meal-planner-form");
+    displayWindow = document.getElementById("displayWindow");
+    
+    if (mealNumber !== undefined) {
+        document.getElementById("recipeView").innerHTML = mealPlan.savedMeals[mealNumber].meal.generateRecipeHTML();
+        displayWindow.style.display = "block";
+        mealPlannerForm.style.display = "none";
+    } else {
+        displayWindow.style.display = "none";
+        mealPlannerForm.style.display = "block";
+    }
+
+    
+}
+
+function changeBackgroundColor(row) {
+    // Toggle the 'clicked' class to change the background color
+    row.classList.toggle('clicked');
+}
+
 // Initial load of recipes
 loadRecipes();

@@ -15,7 +15,7 @@
     <header>
         <button onclick="location.href='../index.html'" id="homeButton">&#8592;</button>
         <h1>Meal Planner</h1>
-        <button onclick="location.href='RecipeMaker/RecipeMaker.html'" id="RecipeMakerButton">&#8801;</button>
+        <button onclick="location.href='RecipeMaker/RecipeMaker.html'" id="RecipeMakerButton">?</button>
     </header>
 
     <div id="meal-planner-form">
@@ -40,6 +40,11 @@
         <div id="meal-plan-table"></div>
 
         <div id="ingredients-table"></div>
+    </div>
+
+    <div id="displayWindow">
+        <div id="recipeView"></div>
+        <button id="dismissRecipeButton" onclick="toggleRecipeView()">Dismiss</button>
     </div>
 </body>
 

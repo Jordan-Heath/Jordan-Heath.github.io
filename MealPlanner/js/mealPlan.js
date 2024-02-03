@@ -53,7 +53,7 @@ class MealPlan {
         sortedIngredients.forEach(ingredient => {
             const [ingredientName, measurement] = Object.entries(ingredient)[0];
             ingredientsTableHtml += `
-                <tr>
+                <tr onclick="changeBackgroundColor(this)">
                     <td>${ingredientName}</td>
                     <td>${measurement}</td>
                 </tr>
@@ -64,8 +64,6 @@ class MealPlan {
     
         return ingredientsTableHtml;
     }
-    
-    
     
 }
 
@@ -81,7 +79,7 @@ class savedMeal {
         return `
             <tr>
                 <td>${this.weekDay}</td>
-                <td>${this.meal.title}</td>
+                <td><a href="#" onclick="toggleRecipeView(${this.mealNumber})">${this.meal.title}</td>
                 ${`<td><button onclick="refreshMeal(${this.mealNumber})">Refresh</button></td>`}
             </tr>
         `;
