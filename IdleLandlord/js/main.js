@@ -1,5 +1,6 @@
 function saveBusinessName() {
     player.name = document.getElementById('businessName').value;
+    updateNameView();
 }
 
 function startIntervals() {

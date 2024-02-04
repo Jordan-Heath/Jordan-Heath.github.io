@@ -2,7 +2,6 @@ class Data {
     constructor() {
         //game data
         this.properties = [];
-        this.upgrades = [];
         this.jobs = [];
 
         //cached variables
@@ -30,13 +29,14 @@ class Data {
                 // Process properties data
                 this.properties = propertiesData.properties.map(propertyData => {
                     player.ownedProperties[propertyData.id] = 0;
-                    return new Property(propertyData.id, propertyData.description, propertyData.baseCost, propertyData.income);
-                });
+                    var upgrades = [];
+                    propertyData.upgrades.forEach(upgradeData => {
+                        var upgrade = new Upgrade(propertyData.id, upgradeData.id, upgradeData.description, upgradeData.cost, upgradeData.multiplier)
+                        upgrades.push(upgrade);
+                    });
 
-                // Process upgrades data
-                this.upgrades = upgradesData.upgrades.map(upgradeData => {
-                    player.ownedUpgrades[upgradeData.id] = false;
-                    return new Upgrade(upgradeData.propertyId, upgradeData.id, upgradeData.description, upgradeData.cost, upgradeData.multiplier);
+                    var property =  new Property(propertyData.id, propertyData.description, propertyData.baseCost, propertyData.income, upgrades);
+                    return property;
                 });
 
                 // Process jobs data

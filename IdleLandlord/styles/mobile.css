@@ -56,7 +56,6 @@ header {
     display: none;
 }
 
-
 /* footer */
 footer {
     max-height: 15vh;
@@ -87,4 +86,12 @@ footer button {
 
 #middleFooterButton {
     background-color: #8c6d4f;
+}
+
+#footerIncomeDetails {
+    margin: auto;
+    justify-content: space-between;
+    max-width: 300px;
+    margin-bottom: 0;
+    padding: 0;
 }

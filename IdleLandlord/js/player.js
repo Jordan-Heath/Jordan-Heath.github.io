@@ -104,10 +104,9 @@ class Player {
 
             data.properties.forEach(property => {
                 this.ownedProperties[property.id] = 0;
-            });
-
-            data.upgrades.forEach(upgrade => {
-                this.ownedProperties[upgrade.id] = false;
+                property.upgrades.forEach(upgrade => {
+                    this.ownedProperties[upgrade.id] = false;
+                });
             });
 
             data.updateIncome();

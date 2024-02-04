@@ -1,16 +1,14 @@
 class Property {
-    constructor(id, description, baseCost, baseIncome) {
+    constructor(id, description, baseCost, baseIncome, upgrades) {
         this.id = id;
         this.description = description;
-
         this.baseCost = baseCost;
-        this.cost; this.recalculateCost();
-
         this.baseIncome = baseIncome;
+        this.upgrades = upgrades;
+
+        this.cost; this.recalculateCost();
         this.income; this.recalculateIncome();
-
         this.owned; this.recalculateOwned();
-
         this.view; this.createView();
     }
 
@@ -21,8 +19,8 @@ class Property {
 
     recalculateIncome() {
         var upgradeMultiplier = 1;
-        data.upgrades.forEach(upgrade => {
-            if (upgrade.propertyId === this.id && player.ownedUpgrades[upgrade.id])
+        this.upgrades.forEach(upgrade => {
+            if (player.ownedUpgrades[upgrade.id])
                 upgradeMultiplier = upgradeMultiplier * upgrade.multiplier;
         });
 
@@ -35,8 +33,8 @@ class Property {
 
     numberOfUpgrades() {
         var number = 0;
-        data.upgrades.forEach(upgrade => {
-            if (upgrade.propertyId === this.id && player.ownedUpgrades[upgrade.id])
+        this.upgrades.forEach(upgrade => {
+            if (player.ownedUpgrades[upgrade.id])
                 number += 1;
         });
         return number;
@@ -94,6 +92,16 @@ class Property {
                 this.view.style.backgroundColor = 'var(--UpgradeTwo)';
                 break;
         }
+
+        //update upgrades
+        this.upgrades.forEach(upgrade => {
+            if (player.ownedUpgrades[upgrade.id] ||
+                player.ownedProperties[this.id] === 0) {
+                    upgrade.view.style.display = 'none';
+            } else {
+                upgrade.view.style.display = 'flex';
+            }
+        });
     }
 
     getPropertyTitle() {

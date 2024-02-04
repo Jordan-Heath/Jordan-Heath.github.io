@@ -1,7 +1,6 @@
 //initialise Page
 function initialiseViews() {
     createPropertiesView();
-    createUpgradesView();
 
     updatePageView();
 }
@@ -12,7 +11,6 @@ function updatePageView() {
     updateIncomeView();
     updateMoneyView();
     updateJobView();
-    updateUpgradesView();
 }
 
 // Header
@@ -27,6 +25,11 @@ function createPropertiesView() {
 
     data.properties.forEach(property => {
         propertiesView.appendChild(property.view);
+
+        //upgrades
+        property.upgrades.forEach(upgrade => {
+            upgradesView.appendChild(upgrade.view);
+        });
     });
 
     updatePropertiesView();
@@ -38,26 +41,28 @@ function updatePropertiesView() {
     });
 }
 
-// Right Column
-function createUpgradesView() {
-    const upgradesView = document.getElementById('upgradesView');
-
-    data.upgrades.forEach(upgrade => {
-        upgradesView.appendChild(upgrade.view);
-    });
-
-    updateUpgradesView();
-}
-
-function updateUpgradesView() {
-    data.upgrades.forEach(upgrade => {
-        upgrade.updateView();
-    });
-}
-
 // Middle Column
 function updateNameView() {
-    document.getElementById('businessName').value = player.name;
+    var businessNameView = document.getElementById('businessName');
+
+    if (player.name === "Your Name") {
+        /* #businessName {
+            width: 100%;
+            font-size: 32px;
+            text-align: center;
+            background: none;
+            border: none;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        } */
+        businessNameView.style.background = "white";
+        businessNameView.style.border = "1px";
+    } else {
+        businessNameView.style.background = "none";
+        businessNameView.style.border = "none";
+    }
+
+    businessNameView.value = player.name;
 }
 
 function updateIncomeView() {

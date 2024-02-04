@@ -39,13 +39,4 @@ class Upgrade {
         this.view.appendChild(columnView);
         this.view.appendChild(buyButton);
     }
-
-    updateView() {
-        if (player.ownedUpgrades[this.id] ||
-            player.ownedProperties[this.propertyId] === 0) {
-                this.view.style.display = 'none';
-        } else {
-            this.view.style.display = 'flex';
-        }
-    }
 }
