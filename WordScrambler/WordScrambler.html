@@ -9,36 +9,39 @@
     <title>Word Scrambler</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/styles.css">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
-    <script type="text/javascript" src="script.js"></script>
+    <script src="js/constants.js"></script>
+    <script src="js/script.js"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3533406510685034"
         crossorigin="anonymous"></script>
 </head>
 
 
 <body>
-    <header>
-        <button onclick="location.href='../index.html'" id="homeButton">&#8592;</button>
-        <h1>Word Scrambler</h1>
-        <p></p>
-    </header>
-
-    <article>
-        <div class="container" id="inputContainer">
-            <label for="textInput">Input:</label>
-            <textarea id="textInput" name="textInput"></textarea>
-        </div>
-        
-
-        <div class="container" id="output Container">
-            <label for="textOutput">Output:</label>
-            <textarea id="textOutput" name="textOutput"></textarea>
-        </div>
-        
-
-        <button onclick="submit()">Submit</button>
-    </article>
+    <main>
+        <header>
+            <button onclick="location.href='../index.html'" id="homeButton">&#8592;</button>
+            <h1>Word Scrambler</h1>
+            <p></p>
+        </header>
+    
+        <article>
+            <div class="container" id="inputContainer">
+                <label for="textInput">Input:</label>
+                <textarea id="textInput" name="textInput"></textarea>
+            </div>
+            
+    
+            <div class="container" id="output Container">
+                <label for="textOutput">Output:</label>
+                <textarea id="textOutput" name="textOutput"></textarea>
+            </div>
+            
+    
+            <button onclick="submit()">Submit</button>
+        </article>
+    </main>
 </body>
 
 </html>

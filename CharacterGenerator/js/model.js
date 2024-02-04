@@ -23,15 +23,15 @@ class CharacterModel {
     async loadData() {
         try {
             const fetchUrls = [
-                //'https://jordan-heath.github.io/CharacterGenerator/data/first-names.txt',
-                'https://jordan-heath.github.io/CharacterGenerator/data/name-prefixes.txt',
-                'https://jordan-heath.github.io/CharacterGenerator/data/name-middles.txt',
-                'https://jordan-heath.github.io/CharacterGenerator/data/name-suffixes.txt',
-                'https://jordan-heath.github.io/CharacterGenerator/data/last-names.txt',
-                'https://jordan-heath.github.io/CharacterGenerator/data/races.txt',
-                'https://jordan-heath.github.io/CharacterGenerator/data/classes.txt',
-                'https://jordan-heath.github.io/CharacterGenerator/data/backgrounds.txt',
-                'https://jordan-heath.github.io/CharacterGenerator/data/abilities.txt'
+                //FIRSTNAMESLINK,
+                NAMEPREFIXESLINK,
+                NAMEMIDDLESLINK,
+                NAMESUFFICESLINK,
+                LASTNAMESLINK,
+                RACESLINK,
+                CLASSESLINK,
+                BACKGROUNDSLINK,
+                ABILITIESLINK
             ];
 
             const fetchResponses = await Promise.all(fetchUrls.map(url => fetch(url)));

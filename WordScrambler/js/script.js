@@ -1,7 +1,3 @@
-COPYCHANCE = 0.8
-DELETECHANCE = 0.99
-
-
 function submit() {
 
     //console.log(document.getElementById("textInput").value)

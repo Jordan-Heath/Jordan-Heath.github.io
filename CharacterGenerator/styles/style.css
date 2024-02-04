@@ -16,8 +16,8 @@
 }
 
 body {
-  /*background-color: var(--Almond);*/
-  background-image: url("background.jpeg"); /* Source: https://www.pexels.com/photo/empty-brown-canvas-235985/ */
+  background-color: var(--Almond); /* Backup color */
+  background-image: url("../data/background.jpeg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;

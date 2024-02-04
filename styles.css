@@ -12,6 +12,7 @@
 
 /* Body / Main */
 body {
+    min-height: 100vh;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -24,26 +25,30 @@ main {
     background: var(--secondary-background);
     max-width: 800px;
     padding: 10px;
-    margin: auto;
+    margin: 0 auto;
     border-radius: 8px;
     box-shadow: 0 4px 8px var(--drop-shadow);
 }
 
 /* headings */
-h1, h2 {
+h1 {
+    text-align: center;
+    font-family: 'Verdana', sans-serif;
+    color: var(--text-secondary);
+    font-size: 3.5em;
+    animation: titleAnimation 2s ease-in-out infinite;
+}
+
+main h1, main h2 {
     text-align: center;
     font-family: 'Verdana', sans-serif;
     color: var(--text-secondary);
 }
-h1 {
-    font-size: 3.5em;
-    animation: pulse 2s ease-in-out infinite;
-}
-h3, a {
+main h3, main a {
     font-family: 'Verdana', sans-serif;
     color: var(--text-secondary);
 }
-a:hover {
+main a:hover {
     color: var(--text-tertiary);
 }
 
@@ -98,7 +103,7 @@ button:hover {
 }
 
 /* animation */
-@keyframes pulse {
+@keyframes titleAnimation {
     0%, 100% {
         transform: scale(0.9);
         color: var(--text-secondary);

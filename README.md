@@ -1,6 +1,8 @@
-## Explore My Collection of Projects
+# Welcome
 
-Most of my work is not shared publicly. This collection does not comprehensively represent my work.
+Explore My Collection of Projects. Most of my work is not shared publicly. This collection does not comprehensively represent my work.
+
+## Completed Projects
 
 ### [Story Teller](StoryTeller/StoryTeller.html)
 
@@ -18,10 +20,12 @@ I developed an app that emulates the game Madlibs. Features:
 I've wanted to make a clicker game for a while. The king of passive income is landlording, so I really wanted to make 'Idle Landlord' the 1970s aesthetic clicker game. Features:
 
 - [x] 1970s aesthetic
-- [x] 4 properties you can buy
+- [x] Work a job and get promoted
+- [x] 7 properties you can buy
+- [x] Upgrade Properties to earn more
 - [x] Auto-save and manual saving to cookies
 - [x] Importing/Exporting saves to JSON
-- [x] Upgrade Properties
+- [x] Unique mobile layout
 
 ### [Meal Planner](MealPlanner/MealPlanner.html)
 
@@ -32,8 +36,8 @@ Intended to help me plan out my meals.
 - [x] Can view full recipes by selecting the meals
 - [x] Creates a Shopping list
 - [x] Can tick off items on the shopping list
-- [x] Includes Recipe Maker - a tool for making the json recipes the app uses.
-- [x] Includes Recipe Browser - for if you want to search for a recipe instead of being assigned.
+- [x] Includes [Recipe Maker](MealPlanner/RecipeMaker.html) - a tool for making the json recipes the app uses.
+- [x] Includes [Recipe Browser](MealPlanner/RecipeBrowser.html) - for if you want to search for a recipe instead of being assigned.
 
 ### [Character Generator](CharacterGenerator/CharacterGenerator.html)
 
@@ -68,14 +72,16 @@ On challenging days, it's helpful to know how much of the day is left. Percentag
 
 Wouldn't particularly recommend this one.
 
-### [RPG Chat](RPGChat/RPGchat.html)
-
-WORK IN PROGRESS. Intended to be a short interactive story with procedural elements.
-
-- [x] RPG elements
-
 ### [Word Scrambler](WordScrambler/WordScrambler.html)
 
 I created this a while ago to replicate a peculiar mode of speech I was exposed to. I just need to port it over. Features:
 
 - [x] Scrambles input text into a semi-comprehensible mess
+
+## Incomplete Projects
+
+### [RPG Chat](RPGChat/RPGchat.html)
+
+WORK IN PROGRESS. Intended to be a short interactive story with procedural elements.
+
+- [x] RPG elements
