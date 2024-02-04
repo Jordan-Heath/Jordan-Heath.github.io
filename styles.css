@@ -31,7 +31,7 @@ main {
 }
 
 /* headings */
-h1 {
+header h1 {
     text-align: center;
     font-family: 'Verdana', sans-serif;
     color: var(--text-secondary);
