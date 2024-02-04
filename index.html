@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome Jordan-Heath</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3533406510685034"
         crossorigin="anonymous"></script>
 
@@ -15,44 +13,27 @@
 
 <body>
     <header>
+        <!-- background image -->
         <h1>Jordan Heath</h1>
-        <div class="navigationbar">
-            <button onclick="location.href='index.html'">Home</button>
-            <div class="dropdown">
-                <button class="dropbtn">Projects &#9776;</button>
-                <div class="dropdown-content">
-                    <a href="StoryTeller/StoryTeller.html">Story Teller</a>
-                    <a href="IdleLandlord/IdleLandlord.html">Idle Landlord</a>
-                    <a href="MealPlanner/MealPlanner.html">Meal Planner</a>
-                    <a href="CharacterGenerator/CharacterGenerator.html">Character Generator</a>
-                    <a href="ManticoreGenerator/ManticoreGenerator.html">Manticore Generator</a>
-                    <a href="PercentageClock/PercentageClock.html">Percentage Clock</a>
-                    <a href="WordScrambler/WordScrambler.html">Word Scrambler</a>
-                </div>
-            </div>
-            <button onclick="window.open('https://github.com/Jordan-Heath/Jordan-Heath.github.io', '_blank')">View
-                Repo</button>
-            <button onclick="window.open('https://github.com/Jordan-Heath', '_blank')">Github</button>
-        </div>
+        <h2>a portfolio of silly projects</h2>
     </header>
 
-    <main id="readmeContainer">
-        <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
-        <script>
-            // Fetch the README.md content from GitHub using the GitHub API
-            fetch('https://raw.githubusercontent.com/Jordan-Heath/Jordan-Heath.github.io/main/README.md')
-                .then(response => response.text())
-                .then(markdownContent => {
-                    // Convert Markdown to HTML using showdown.js
-                    const converter = new showdown.Converter();
-                    const htmlContent = converter.makeHtml(markdownContent);
-
-                    // Display the HTML content in a div
-                    document.getElementById('readmeContainer').innerHTML = htmlContent;
-                })
-                .catch(error => console.error('Error fetching README:', error));
-        </script>
+    <main>
+        <img class="link-img" src="favicon.ico" onclick="location.href='MealPlanner/MealPlanner.html'"/>
+        <img class="link-img" src="favicon.ico" onclick="location.href='IdleLandlord/IdleLandlord.html'"/>
+        <img class="link-img" src="favicon.ico" onclick="location.href='StoryTeller/StoryTeller.html'"/>
+        <img class="link-img" src="favicon.ico" onclick="location.href='ManticoreGenerator/ManticoreGenerator.html'"/>
+        <img class="link-img" src="favicon.ico" onclick="location.href='CharacterGenerator/CharacterGenerator.html'"/>
+        <img class="link-img" src="favicon.ico" onclick="location.href='PercentageClock/PercentageClock.html'"/>
+        <img class="link-img" src="favicon.ico" onclick="location.href='WordScrambler/WordScrambler.html'"/>
     </main>
+
+    <footer>
+        <p>thanks for visiting!</p>
+        <button onclick="window.open('https://github.com/Jordan-Heath', '_blank')">My Github</button>
+        <button onclick="window.open('https://github.com/Jordan-Heath/Jordan-Heath.github.io', '_blank')">How it's made</button>
+        <a href="privacypolicy.html">Privacy Policy</a>
+    </footer>
 </body>
 
 </html>
