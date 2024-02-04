@@ -64,11 +64,19 @@ th {
 }
 
 header {
+    align-items: center;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     max-width: 600px;
+    width: 100%;
     margin: 0 auto 20px;
+}
+
+header button {
+    max-width: 60px;
+    max-height: 40px;
+    width: 100%;
 }
 
 h1 {

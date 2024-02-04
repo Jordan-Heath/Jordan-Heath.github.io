@@ -3,24 +3,24 @@
         {
             "title": "Macaroni Salad",
             "description": "A classic cold macaroni salad with a creamy mayo dressing.",
-            "tags": ["Lazy", "Western", "Pasta", "Salad"],
+            "tags": ["Easy / Quick", "Western", "Pasta", "Seafood / Fish"],
             "ingredients": [
                 {"Macaroni": "500g"},
                 {"Mayonnaise": "1 cup"},
                 {"Carrot": "1, grated"},
                 {"Celery": "2 stalks, finely chopped"},
-                {"Red bell pepper": "1, diced"},
-                {"Green onions": "1/2 cup, thinly sliced"},
-                {"Dijon mustard": "1 tablespoon"},
-                {"White vinegar": "1 tablespoon"},
+                {"Red Capsicum": "1, diced"},
+                {"Green Onion": "1/2 cup, thinly sliced"},
+                {"Dijon Mustard": "1 tablespoon"},
+                {"White Vinegar": "1 tablespoon"},
                 {"Sugar": "1 teaspoon"},
                 {"Salt": "to taste"},
-                {"Black pepper": "to taste"}
+                {"Black Pepper": "to taste"}
             ],
             "method": [
                 "Cook the macaroni according to package instructions. Aim for al dente texture.",
                 "Strain the pasta and rinse it under cold water to stop the cooking process. Allow it to cool completely.",
-                "In a large mixing bowl, combine the cooled macaroni, grated carrot, chopped celery, diced red bell pepper, and sliced green onions.",
+                "In a large mixing bowl, combine the cooled macaroni, grated carrot, chopped celery, diced red capsicum, and sliced green onions.",
                 "In a separate bowl, whisk together mayonnaise, Dijon mustard, white vinegar, sugar, salt, and black pepper to create the dressing.",
                 "Pour the dressing over the macaroni mixture and toss until all ingredients are evenly coated.",
                 "Chill the macaroni salad in the refrigerator for at least 1-2 hours before serving to allow the flavors to meld.",
@@ -30,21 +30,21 @@
         {
             "title": "Osso Bucco",
             "description": "Slow-cooked Italian dish with braised veal shanks.",
-            "tags": ["Italian", "Braised", "Veal"],
+            "tags": ["Beef", "Meat", "Italian"],
             "ingredients": [
-                {"Veal shanks": "4 pieces"},
+                {"Veal Shank": "4 pieces"},
                 {"Tomato": "1 cup, chopped"},
                 {"Carrot": "1, diced"},
                 {"Celery": "1 stalk, diced"},
                 {"Onion": "1, chopped"},
                 {"Garlic": "2 cloves, minced"},
-                {"White wine": "1 cup"},
-                {"Beef broth": "2 cups"},
+                {"White Wine": "1 cup"},
+                {"Beef Broth": "2 cups"},
                 {"Flour": "1/4 cup"},
                 {"Salt": "to taste"},
                 {"Pepper": "to taste"},
-                {"Olive oil": "2 tablespoons"},
-                {"Fresh parsley": "for garnish"}
+                {"Olive Oil": "2 tablespoons"},
+                {"Fresh Parsley": "for garnish"}
             ],
             "method": [
                 "Dust veal shanks with flour, salt, and pepper.",
@@ -60,17 +60,17 @@
         {
             "title": "Chicken & Egg on Rice (Oyakodon)",
             "description": "A classic Japanese one-bowl meal with chicken, egg, and rice.",
-            "tags": ["Japanese", "Rice Bowl", "Chicken", "Egg"],
+            "tags": ["Chicken", "Japanese", "Rice", "Meat"],
             "ingredients": [
-                {"Chicken thighs": "1 cup, sliced"},
+                {"Chicken Thigh": "1 cup, sliced"},
                 {"Onion": "1, thinly sliced"},
                 {"Dashi": "1 cup"},
-                {"Soy sauce": "2 tablespoons"},
+                {"Soy Sauce": "2 tablespoons"},
                 {"Mirin": "2 tablespoons"},
                 {"Sugar": "1 tablespoon"},
                 {"Eggs": "2, beaten"},
-                {"Green onions": "for garnish"},
-                {"Cooked rice": "2 cups"}
+                {"Green Onion": "for garnish"},
+                {"Rice": "2 cups"}
             ],
             "method": [
                 "In a skillet, combine dashi, soy sauce, mirin, and sugar. Bring to a simmer.",
@@ -80,9 +80,9 @@
             ]
         },
         {
-            "title": "Meatballs",
+            "title": "Spaghetti and Meatballs",
             "description": "Homemade meatballs with a savory blend of ground meat and seasonings.",
-            "tags": ["Meat", "Italian", "Comfort Food"],
+            "tags": ["Beef", "Pasta", "Meat", "Italian", "Western"],
             "ingredients": [
                 {"Ground beef": "500g"},
                 {"Ground pork": "250g"},
@@ -91,11 +91,11 @@
                 {"Egg": "1, beaten"},
                 {"Onion": "1, finely chopped"},
                 {"Garlic": "2 cloves, minced"},
-                {"Parmesan cheese": "1/4 cup, grated"},
+                {"Parmesan Cheese": "1/4 cup, grated"},
                 {"Parsley": "2 tablespoons, chopped"},
                 {"Salt": "1 teaspoon"},
-                {"Black pepper": "1/2 teaspoon"},
-                {"Tomato sauce": "for serving, optional"}
+                {"Black Pepper": "1/2 teaspoon"},
+                {"Tomato Sauce": "for serving, optional"}
             ],
             "method": [
                 "Preheat the oven to 375°F (190°C).",
@@ -107,17 +107,17 @@
             ]
         },
         {
-            "title": "Sausages",
+            "title": "Sausages in bread",
             "description": "Grilled or pan-fried sausages with a delicious blend of spices.",
-            "tags": ["Meat", "Grilling", "Comfort Food"],
+            "tags": ["Meat", "Western", "Bread", "Beef", "Pork"],
             "ingredients": [
                 {"Sausages": "your favorite variety"},
-                {"Olive oil": "1 tablespoon"},
-                {"Garlic powder": "1 teaspoon"},
-                {"Onion powder": "1 teaspoon"},
+                {"Olive Oil": "1 tablespoon"},
+                {"Garlic Powder": "1 teaspoon"},
+                {"Onion Powder": "1 teaspoon"},
                 {"Paprika": "1/2 teaspoon"},
                 {"Salt": "to taste"},
-                {"Black pepper": "to taste"}
+                {"Black Pepper": "to taste"}
             ],
             "method": [
                 "Preheat a grill or a pan over medium heat.",
@@ -130,21 +130,21 @@
         {
             "title": "Chicken & Salad",
             "description": "A refreshing and healthy salad topped with grilled chicken.",
-            "tags": ["Chicken", "Salad", "Healthy"],
+            "tags": ["Chicken", "Healthy", "Meat"],
             "ingredients": [
-                {"Chicken breasts": "2, boneless and skinless"},
+                {"Chicken Breast": "2, boneless and skinless"},
                 {"Lettuce": "1 head, torn into bite-sized pieces"},
-                {"Cherry tomatoes": "1 cup, halved"},
+                {"Cherry Tomatoes": "1 cup, halved"},
                 {"Cucumber": "1, sliced"},
-                {"Red onion": "1/2, thinly sliced"},
+                {"Red Onion": "1/2, thinly sliced"},
                 {"Avocado": "1, diced"},
-                {"Feta cheese": "1/2 cup, crumbled"},
-                {"Olive oil": "2 tablespoons"},
-                {"Balsamic vinegar": "1 tablespoon"},
-                {"Dijon mustard": "1 teaspoon"},
+                {"Feta Cheese": "1/2 cup, crumbled"},
+                {"Olive Oil": "2 tablespoons"},
+                {"Balsamic Vinegar": "1 tablespoon"},
+                {"Dijon Mustard": "1 teaspoon"},
                 {"Honey": "1 teaspoon"},
                 {"Salt": "to taste"},
-                {"Black pepper": "to taste"}
+                {"Black Pepper": "to taste"}
             ],
             "method": [
                 "Season chicken breasts with salt and black pepper. Grill or pan-cook until fully cooked.",
@@ -158,16 +158,17 @@
         {
             "title": "Teriyaki Salmon",
             "description": "Grilled or baked salmon glazed with a sweet and savory teriyaki sauce.",
-            "tags": ["Seafood", "Asian", "Healthy"],
+            "tags": ["Seafood / Fish", "Japanese", "Rice"],
             "ingredients": [
-                {"Salmon fillets": "4, skin-on"},
-                {"Soy sauce": "1/4 cup"},
+                {"Salmon Fillets": "4, skin-on"},
+                {"Soy Sauce": "1/4 cup"},
                 {"Mirin": "2 tablespoons"},
-                {"Brown sugar": "2 tablespoons"},
+                {"Brown Sugar": "2 tablespoons"},
                 {"Garlic": "2 cloves, minced"},
                 {"Ginger": "1 teaspoon, grated"},
-                {"Green onions": "2, chopped (for garnish)"},
-                {"Toasted sesame seeds": "1 tablespoon (for garnish)"}
+                {"Green Onion": "2, chopped (for garnish)"},
+                {"Toasted Sesame Seed": "1 tablespoon (for garnish)"},
+                {"Rice":"1 cup each, cooked"}
             ],
             "method": [
                 "Preheat the grill or oven to medium-high heat.",
@@ -181,21 +182,21 @@
         {
             "title": "Takeaway",
             "description": "Enjoy your favorite takeout from your preferred restaurant or cuisine.",
-            "tags": ["Takeaway", "Convenience"],
+            "tags": ["Dinner Out / Takeaway"],
             "ingredients": [{"none":"none"}],
             "method": ["Order from your favorite restaurant or takeaway place."]
         },
         {
             "title": "Dinner Out",
             "description": "Experience a delightful evening dining at a restaurant of your choice.",
-            "tags": ["Dining Out", "Restaurant"],
+            "tags": ["Dinner Out / Takeaway"],
             "ingredients": [{"none":"none"}],
             "method": ["Visit a restaurant of your choice."]
         },
         {
             "title": "Bowl of Coke",
             "description": "I came up with this lovely meal when I was trying to make something my kids would eat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            "tags": ["Easy", "Funny"],
+            "tags": ["Easy / Quick"],
             "ingredients": [
               {"Coke": "1 Bottle"},
               {"Bowl": "For serving the coke"}
@@ -207,14 +208,14 @@
         {
             "title": "Nuggets and Salad",
             "description": "A quick and easy meal featuring crispy chicken nuggets paired with a fresh salad.",
-            "tags": ["Chicken", "Salad", "Quick Meal"],
+            "tags": ["Chicken", "Salad", "Easy / Quick"],
             "ingredients": [
-                {"Chicken nuggets": "as desired"},
-                {"Mixed greens": "2 cups"},
-                {"Cherry tomatoes": "1 cup, halved"},
+                {"Chicken Nuggets": "as desired"},
+                {"Mixed Greens": "2 cups"},
+                {"Cherry Tomatoes": "1 cup, halved"},
                 {"Cucumber": "1, sliced"},
                 {"Carrot": "1, shredded"},
-                {"Ranch dressing": "for serving"}
+                {"Ranch Dressing": "for serving"}
             ],
             "method": [
                 "Bake or fry the chicken nuggets according to package instructions.",
@@ -226,14 +227,14 @@
         {
             "title": "Noodle Cups",
             "description": "A convenient and customizable noodle cup meal for a quick lunch or snack.",
-            "tags": ["Noodles", "Quick Meal"],
+            "tags": ["Noodles", "Asian", "Soup", "Easy / Quick"],
             "ingredients": [
-                {"Instant noodles": "1 cup, cooked and drained"},
+                {"Instant Noodles": "1 cup, cooked and drained"},
                 {"Vegetables": "your choice, sliced"},
                 {"Protein (optional)": "chicken, tofu, shrimp, etc."},
-                {"Soy sauce": "1 tablespoon"},
-                {"Sesame oil": "1 teaspoon"},
-                {"Sriracha (optional)": "to taste"}
+                {"Soy Sauce": "1 tablespoon"},
+                {"Sesame Oil": "1 teaspoon"},
+                {"Siracha (optional)": "to taste"}
             ],
             "method": [
                 "Prepare instant noodles according to package instructions. Drain and set aside.",
@@ -246,10 +247,10 @@
         {
             "title": "Roast Chicken, Rolls, Coleslaw",
             "description": "A classic meal featuring succulent roast chicken, fresh rolls, and crisp coleslaw.",
-            "tags": ["Chicken", "Roast", "Bread", "Coleslaw"],
+            "tags": ["Chicken", "Roast", "Bread", "Side-dish", "Western", "Dinner Out / Takeaway"],
             "ingredients": [
-                {"Roast chicken": "1"},
-                {"Bread rolls": "1 bag"},
+                {"Roast Chicken": "1"},
+                {"Bread Rolls": "1 bag"},
                 {"Coleslaw": "store-bought or homemade"}
             ],
             "method": [
@@ -260,18 +261,18 @@
         {
             "title": "Chicken Soup",
             "description": "A comforting and nourishing chicken soup perfect for any day.",
-            "tags": ["Chicken", "Soup", "Comfort Food"],
+            "tags": ["Chicken", "Soup"],
             "ingredients": [
-                {"Chicken thighs": "2, boneless and skinless"},
+                {"Chicken Thigh": "2, boneless and skinless"},
                 {"Carrot": "2, sliced"},
                 {"Celery": "2 stalks, sliced"},
                 {"Onion": "1, diced"},
                 {"Garlic": "2 cloves, minced"},
-                {"Chicken broth": "6 cups"},
-                {"Egg noodles": "1 cup, cooked"},
-                {"Fresh dill": "2 tablespoons, chopped"},
+                {"Chicken Broth": "6 cups"},
+                {"Egg Noodles": "1 cup, cooked"},
+                {"Dill": "2 tablespoons, chopped"},
                 {"Salt": "to taste"},
-                {"Black pepper": "to taste"}
+                {"Black Pepper": "to taste"}
             ],
             "method": [
                 "In a large pot, combine chicken thighs, sliced carrots, sliced celery, diced onion, minced garlic, and chicken broth.",
@@ -284,10 +285,10 @@
         {
             "title": "Sauce Sachet on Rice",
             "description": "A simple and convenient meal with a sauce sachet drizzled over cooked rice.",
-            "tags": ["Quick Meal", "Convenience"],
+            "tags": ["Rice", "Asian", "Easy / Quick"],
             "ingredients": [
-                {"Instant rice": "1 cup, cooked"},
-                {"Sauce sachet": "your favorite flavor"}
+                {"Rice": "1 cup, cooked"},
+                {"Sauce Sachet": "your favorite flavor"}
             ],
             "method": [
                 "Cook instant rice according to package instructions.",
@@ -300,17 +301,17 @@
         {
             "title": "Fried Rice",
             "description": "Delicious fried rice with a mix of vegetables and protein.",
-            "tags": ["Asian", "Quick", "Easy"],
+            "tags": ["Rice", "Asian", "Easy / Quick"],
             "ingredients": [
-              { "Cooked Rice": "3 cups" },
-              { "Vegetable Oil": "2 tablespoons" },
+              { "Rice": "3 cups" },
+              { "Oil": "2 tablespoons" },
               { "Onion": "1, finely chopped" },
               { "Carrots": "1 cup, diced" },
               { "Peas": "1/2 cup" },
               { "Corn": "1/2 cup" },
               { "Soy Sauce": "2 tablespoons" },
               { "Eggs": "2, beaten" },
-              { "Green Onions": "2, chopped" },
+              { "Green Onion": "2, chopped" },
               { "Salt": "to taste" },
               { "Black Pepper": "to taste" }
             ],
@@ -329,10 +330,10 @@
         {
             "title": "Rice and Asian Greens",
             "description": "A healthy and flavorful combination of rice and assorted Asian greens.",
-            "tags": ["Asian", "Healthy", "Vegetarian"],
+            "tags": ["Rice", "Asian", "Vegetarian"],
             "ingredients": [
-              { "Cooked Rice": "2 cups" },
-              { "Sesame Oil": "1 tablespoon" },
+              { "Rice": "2 cups" },
+              { "Sesame oil": "1 tablespoon" },
               { "Garlic": "3 cloves, minced" },
               { "Ginger": "1 tablespoon, grated" },
               { "Bok Choy": "2 cups, chopped" },
@@ -341,7 +342,7 @@
               { "Rice Vinegar": "1 tablespoon" },
               { "Salt": "to taste" },
               { "Black Pepper": "to taste" },
-              { "Sesame Seeds": "1 tablespoon, toasted (optional)" }
+              { "Sesame Seed": "1 tablespoon, toasted (optional)" }
             ],
             "method": [
               "Heat sesame oil in a large pan over medium heat.",
@@ -357,7 +358,7 @@
         {
             "title": "Tuna and Greens",
             "description": "A light and nutritious dish featuring tuna and a variety of fresh greens.",
-            "tags": ["Seafood", "Healthy", "Quick"],
+            "tags": ["Seafood / Fish", "Healthy", "Rice"],
             "ingredients": [
               { "Canned Tuna": "1 can (5 oz), drained" },
               { "Mixed Greens": "4 cups" },
@@ -383,13 +384,13 @@
         {
             "title": "Rice Paper Rolls",
             "description": "Fresh and light Vietnamese-style rice paper rolls filled with veggies, rice noodles, and your choice of protein.",
-            "tags": ["Asian", "Vegetarian", "Healthy"],
+            "tags": ["Vietnamese", "Asian", "Healthy", "Vegetarian"],
             "ingredients": [
               { "Rice Paper Sheets": "10 sheets" },
-              { "Rice Vermicelli Noodles": "100g, cooked and cooled" },
+              { "Vermicelli Noodles": "100g, cooked and cooled" },
               { "Carrots": "1, julienned" },
               { "Cucumber": "1, julienned" },
-              { "Red Bell Pepper": "1, thinly sliced" },
+              { "Red Capsicum": "1, thinly sliced" },
               { "Lettuce Leaves": "10 leaves" },
               { "Fresh Mint Leaves": "1/2 cup" },
               { "Cooked Shrimp or Tofu (optional)": "10 pieces" },
@@ -398,7 +399,7 @@
             "method": [
               "Fill a shallow dish with warm water. Dip one rice paper sheet at a time into the water for a few seconds until softened.",
               "Place the softened rice paper sheet on a clean surface.",
-              "Layer lettuce leaves, rice noodles, julienned carrots, cucumber, bell pepper, fresh mint leaves, and your choice of protein (shrimp or tofu) on the lower third of the rice paper.",
+              "Layer lettuce leaves, rice noodles, julienned carrots, cucumber, capsicum, fresh mint leaves, and your choice of protein (shrimp or tofu) on the lower third of the rice paper.",
               "Fold the sides of the rice paper inwards and then tightly roll the sheet from the bottom to the top to form a roll.",
               "Repeat with the remaining ingredients.",
               "Serve the rice paper rolls with peanut sauce for dipping.",
@@ -408,7 +409,7 @@
         {
             "title": "Army Stew",
             "description": "A hearty Korean army stew (Budae Jjigae) with a mix of ingredients including instant noodles, spam, sausages, and kimchi.",
-            "tags": ["Korean", "Spicy", "Comfort Food"],
+            "tags": ["Korean", "Soup", "Meat"],
             "ingredients": [
               { "Spam": "200g, sliced" },
               { "Sausages": "2, sliced diagonally" },
@@ -416,11 +417,11 @@
               { "Kimchi": "1 cup, chopped" },
               { "Canned Baked Beans": "1/2 cup" },
               { "Soy Sauce": "2 tablespoons" },
-              { "Gochugaru (Korean Red Pepper Flakes)": "1 tablespoon" },
-              { "Gochujang (Korean Red Pepper Paste)": "2 tablespoons" },
+              { "Gochugaru": "1 tablespoon" },
+              { "Gochujang": "2 tablespoons" },
               { "Chicken Broth": "4 cups" },
               { "Tofu": "1/2 cup, sliced" },
-              { "Green Onions": "2, chopped" }
+              { "Green Onion": "2, chopped" }
             ],
             "method": [
               "In a large pot, combine spam, sausages, kimchi, baked beans, soy sauce, gochugaru, and gochujang.",
@@ -433,18 +434,18 @@
         {
             "title": "Tteokbokki",
             "description": "Spicy and sweet Korean rice cakes (tteokbokki) with fish cakes in a gochujang-based sauce.",
-            "tags": ["Korean", "Spicy", "Street Food"],
+            "tags": ["Korean", "Spicy", "Vegetarian", "Seafood / Fish"],
             "ingredients": [
-              { "Rice Cakes (Tteok)": "200g, soaked in water" },
-              { "Fish Cakes": "100g, sliced" },
-              { "Gochujang (Korean Red Pepper Paste)": "3 tablespoons" },
-              { "Gochugaru (Korean Red Pepper Flakes)": "1 tablespoon" },
+              { "Rice Cake": "200g, soaked in water" },
+              { "Fish Cake": "100g, sliced" },
+              { "Gochujang": "3 tablespoons" },
+              { "Gochugaru": "1 tablespoon" },
               { "Soy Sauce": "2 tablespoons" },
               { "Sugar": "2 tablespoons" },
               { "Garlic": "2 cloves, minced" },
               { "Water": "2 cups" },
-              { "Green Onions": "2, chopped" },
-              { "Sesame Seeds": "1 tablespoon, toasted" }
+              { "Green Onion": "2, chopped" },
+              { "Sesame Seed": "1 tablespoon, toasted" }
             ],
             "method": [
               "In a pot, combine gochujang, gochugaru, soy sauce, sugar, minced garlic, and water. Bring to a simmer.",
@@ -456,18 +457,18 @@
         {
             "title": "Udon Soup",
             "description": "A comforting Japanese udon soup with thick udon noodles, vegetables, and a flavorful broth.",
-            "tags": ["Japanese", "Comfort Food", "Soup"],
+            "tags": ["Noodles", "Asian", "Soup"],
             "ingredients": [
               { "Udon Noodles": "200g, cooked according to package instructions" },
               { "Vegetable Broth": "4 cups" },
               { "Soy Sauce": "2 tablespoons" },
               { "Mirin": "1 tablespoon" },
               { "Sesame Oil": "1 teaspoon" },
-              { "Shiitake Mushrooms": "1/2 cup, sliced" },
+              { "Shiitake Mushroom": "1/2 cup, sliced" },
               { "Bok Choy": "1 cup, chopped" },
               { "Carrot": "1, julienned" },
-              { "Green Onions": "2, chopped" },
-              { "Nori Sheets": "2, torn into pieces" }
+              { "Green Onion": "2, chopped" },
+              { "Nori Sheet": "2, torn into pieces" }
             ],
             "method": [
               "In a pot, bring vegetable broth to a simmer.",
@@ -482,15 +483,15 @@
         {
             "title": "Wonton Soup",
             "description": "A classic Chinese wonton soup with delicate wontons filled with a savory mixture, served in a clear and flavorful broth.",
-            "tags": ["Chinese", "Dim Sum", "Soup"],
+            "tags": ["Asian", "Chinese", "Soup"],
             "ingredients": [
-              { "Wonton Wrappers": "1 pack" },
+              { "Wonton Wrapper": "1 pack" },
               { "Ground Pork": "1/2 pound" },
               { "Shrimp": "1/2 cup, finely chopped" },
-              { "Water Chestnuts": "1/4 cup, finely chopped" },
+              { "Water Chestnut": "1/4 cup, finely chopped" },
               { "Soy Sauce": "2 tablespoons" },
               { "Sesame Oil": "1 tablespoon" },
-              { "Green Onions": "2, finely chopped" },
+              { "Green Onion": "2, finely chopped" },
               { "Ginger": "1 teaspoon, minced" },
               { "Chicken Broth": "4 cups" },
               { "Bok Choy": "2 cups, chopped" }
@@ -507,61 +508,55 @@
         },
         {
             "title": "Salad Rolls",
-            "description": "Fresh Vietnamese-style salad rolls filled with rice vermicelli, vegetables, and your choice of protein, served with a dipping sauce.",
-            "tags": ["Asian", "Healthy", "Vegetarian"],
+            "description": "Turkish rolls or a bagguete filled with salad (Optionally) a meat, wrapped in tinfoil",
+            "tags": ["Bread", "Healthy", "Vegetarian", "Meat"],
             "ingredients": [
-              { "Rice Paper Sheets": "10 sheets" },
-              { "Rice Vermicelli Noodles": "100g, cooked and cooled" },
-              { "Carrots": "1, julienned" },
+              { "Bread": "Per Serve - usually a Turkish Roll each or Baguette to share" },
+              { "Lettuce": "50g per serve" },
+              { "Carrot": "1, julienned" },
               { "Cucumber": "1, julienned" },
-              { "Bell Pepper": "1, thinly sliced" },
-              { "Lettuce Leaves": "10 leaves" },
-              { "Fresh Mint Leaves": "1/2 cup" },
-              { "Cooked Shrimp, Tofu, or Chicken (optional)": "10 pieces" },
-              { "Peanut Dipping Sauce": "1/2 cup" }
+              { "Mayonaise": "Spread" },
+              { "Hoisin": "Spread"},
+              { "Sandwich Meat": "Optional" }
             ],
             "method": [
-              "Fill a shallow dish with warm water. Dip one rice paper sheet at a time into the water for a few seconds until softened.",
-              "Place the softened rice paper sheet on a clean surface.",
-              "Layer lettuce leaves, rice vermicelli noodles, julienned carrots, cucumber, bell pepper, fresh mint leaves, and your choice of protein (shrimp, tofu, or chicken) on the lower third of the rice paper.",
-              "Fold the sides of the rice paper inwards and then tightly roll the sheet from the bottom to the top to form a roll.",
-              "Repeat with the remaining ingredients.",
-              "Serve the salad rolls with peanut dipping sauce.",
-              "Enjoy these light and refreshing Vietnamese-style salad rolls!"
+              "Prepare vegatables and meat",
+              "Cut the bread into portions, then open the bread up for filling",
+              "Spread butter, mayonaise and hoisin over the bread",
+              "Fill first with the meat, then with the salad",
+              "Wrap the bread in foil to keep it fresh and prevent salad from spilling out"
             ]
         },
         {
             "title": "Grilled Cheese",
             "description": "A classic and comforting grilled cheese sandwich with melty cheese between slices of buttered and toasted bread.",
-            "tags": ["American", "Comfort Food", "Sandwich"],
+            "tags": ["Western", "Bread", "Easy / Quick"],
             "ingredients": [
-              { "Bread Slices": "4" },
-              { "Butter": "2 tablespoons, softened" },
-              { "Cheddar Cheese": "1 cup, shredded" },
-              { "American Cheese": "1 cup, shredded" }
+              { "Bread Slices": "2 per serve" },
+              { "Butter": "Spread" },
+              { "Cheese": "1-2 slices per serve" }
             ],
             "method": [
               "Butter one side of each bread slice with softened butter.",
               "Place a non-stick skillet or griddle over medium heat.",
-              "On the non-buttered side of a bread slice, add a layer of shredded cheddar cheese and a layer of shredded American cheese.",
+              "On the non-buttered side of a bread slice, add slice(s) of cheese.",
               "Top with another bread slice, buttered side facing out.",
               "Place the sandwich on the skillet and cook until the bread is golden brown and the cheese is melted.",
               "Flip and cook the other side until golden brown and the cheese is fully melted.",
-              "Repeat for additional sandwiches.",
-              "Serve the grilled cheese sandwiches hot and enjoy the gooey goodness!"
+              "Repeat for additional sandwiches."
             ]
         },
         {
             "title": "Burgers",
             "description": "Homemade burgers with juicy beef patties, fresh toppings, and your favorite condiments.",
-            "tags": ["American", "Grilling", "Burger"],
+            "tags": ["Western", "Meat", "Bread", "Dinner Out / Takeaway"],
             "ingredients": [
               { "Ground Beef": "1 pound" },
               { "Burger Buns": "4" },
               { "Lettuce Leaves": "4" },
               { "Tomato": "1, sliced" },
               { "Red Onion": "1, thinly sliced" },
-              { "Cheese Slices (optional)": "4" },
+              { "Cheese Slices": "4 (optional)" },
               { "Ketchup": "4 tablespoons" },
               { "Mustard": "4 tablespoons" },
               { "Mayonnaise": "4 tablespoons" },
@@ -583,13 +578,13 @@
         {
             "title": "Homemade Garlic Bread",
             "description": "Delicious and aromatic homemade garlic bread made with fresh baguette, butter, garlic, and herbs.",
-            "tags": ["Italian", "Side Dish", "Bread"],
+            "tags": ["Bread", "Side-dish", "Western", "Italian"],
             "ingredients": [
               { "Baguette": "1, sliced in half lengthwise" },
               { "Butter": "1/2 cup, softened" },
               { "Garlic Cloves": "4, minced" },
               { "Fresh Parsley": "2 tablespoons, chopped" },
-              { "Parmesan Cheese (optional)": "1/4 cup, grated" }
+              { "Parmesan Cheese": "1/4 cup, grated (optional)" }
             ],
             "method": [
               "Preheat the oven to 375°F (190°C).",
@@ -604,22 +599,21 @@
         {
             "title": "Can of Soup",
             "description": "A quick and convenient meal made by heating a can of your favorite soup.",
-            "tags": ["Quick", "Convenient", "Soup"],
+            "tags": ["Soup", "Easy / Quick"],
             "ingredients": [
-              { "Canned Soup": "1 can" }
+              { "Canned Soup": "1 can" },
+              { "Bread" : "2 slices (optional)"}
             ],
             "method": [
-              "Open the can of soup.",
-              "Pour the contents into a saucepan or microwave-safe bowl.",
+              "If having toast, start cooking the toast before preparing the soup.",
               "Heat the soup on the stovetop or in the microwave according to the package instructions.",
-              "Stir, if needed, and serve hot.",
-              "Enjoy the warm and comforting canned soup!"
+              "Stir, if needed, and serve hot."
             ]
         },          
         {
             "title": "Tempura",
             "description": "Light and crispy tempura made with a variety of vegetables or seafood, served with a dipping sauce.",
-            "tags": ["Japanese", "Fried", "Tempura"],
+            "tags": ["Japanese", "Asian", "Deep Fried", "Seafood / Fish"],
             "ingredients": [
               { "Vegetables or Seafood": "Assorted (e.g., shrimp, sweet potato, zucchini)" },
               { "Tempura Batter Mix": "1 cup" },
@@ -641,12 +635,12 @@
         {
             "title": "Pasta Bake",
             "description": "A comforting baked pasta dish with a rich and flavorful sauce, topped with melted cheese.",
-            "tags": ["Italian", "Baked", "Pasta"],
+            "tags": ["Pasta", "Italian", "Meat", "Beef"],
             "ingredients": [
               { "Pasta": "12 ounces (e.g., penne, rigatoni)" },
               { "Ground Beef": "1 pound" },
               { "Onion": "1, finely chopped" },
-              { "Garlic Cloves": "2, minced" },
+              { "Garlic Clove": "2, minced" },
               { "Tomato Sauce": "2 cups" },
               { "Tomato Paste": "2 tablespoons" },
               { "Italian Seasoning": "1 teaspoon" },
@@ -669,12 +663,12 @@
         {
             "title": "Homemade Pizza",
             "description": "A classic homemade pizza with a crispy crust, savory tomato sauce, gooey cheese, and your favorite toppings.",
-            "tags": ["Italian", "Pizza", "Homemade"],
+            "tags": ["Italian", "Pizza", "Bread", "Meat"],
             "ingredients": [
               { "Pizza Dough": "1 ball (store-bought or homemade)" },
               { "Tomato Sauce": "1 cup" },
               { "Mozzarella Cheese": "1 1/2 cups, shredded" },
-              { "Your Favorite Toppings": "e.g., pepperoni, mushrooms, bell peppers, olives" },
+              { "Your Favorite Toppings": "e.g., pepperoni, mushrooms, capsicum, olives" },
               { "Olive Oil": "1 tablespoon" },
               { "Dried Oregano": "1 teaspoon" },
               { "Salt and Pepper": "To taste" }
@@ -693,7 +687,7 @@
         {
             "title": "French Toast",
             "description": "Classic French toast made with slices of bread soaked in a sweetened egg mixture and cooked to golden perfection.",
-            "tags": ["Breakfast", "Brunch", "Comfort Food"],
+            "tags": ["Breakfast", "Bread", "Western"],
             "ingredients": [
               { "Bread Slices": "4-6 slices (e.g., white or brioche)" },
               { "Eggs": "2" },
@@ -716,16 +710,16 @@
         {
             "title": "Gyoza",
             "description": "Japanese pan-fried dumplings filled with a tasty mixture of ground pork, cabbage, and seasonings.",
-            "tags": ["Japanese", "Dumplings", "Pork"],
+            "tags": ["Asian", "Chinese", "Meat", "Japanese"],
             "ingredients": [
               { "Gyoza Wrappers": "20-30" },
               { "Ground Pork": "1/2 pound" },
               { "Cabbage": "1 cup, finely chopped" },
-              { "Garlic Cloves": "2, minced" },
+              { "Garlic Clove": "2, minced" },
               { "Ginger": "1 teaspoon, grated" },
               { "Soy Sauce": "2 tablespoons" },
               { "Sesame Oil": "1 tablespoon" },
-              { "Green Onions": "2, finely chopped" },
+              { "Green Onion": "2, finely chopped" },
               { "Water": "For sealing the wrappers" },
               { "Vegetable Oil": "For pan-frying" },
               { "Dipping Sauce": "Soy sauce, rice vinegar, and sesame oil mixed to taste" }
@@ -743,7 +737,7 @@
         {
             "title": "Pre-made Arancini Balls",
             "description": "Convenient pre-made arancini balls, perfect for a quick and tasty appetizer or snack.",
-            "tags": ["Italian", "Appetizer", "Convenience"],
+            "tags": ["Italian", "Deep Fried", "Side-dish"],
             "ingredients": [
               { "Pre-made Arancini Balls": "As needed (store-bought)" },
               { "Marinara Sauce": "For dipping" },
