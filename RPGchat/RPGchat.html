@@ -4,23 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="js/script.js"></script>
     <title>RPG Browser Game</title>
+
+    <!-- Controls -->
+    <script defer src="js/controls/characterInfo;js"></script>
+    <script defer src="js/controls/questBox.js"></script>
+
+    <!-- Models -->
+    <script src="js/constants.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/questChoice.js"></script>
+    <script src="js/quest.js"></script>
+    
 </head>
 <body>
-    <div id="game-container">
-        <div id="dialogue-box">
-            <p id="npc-dialogue"></p>
-            <button id="continue-button" onclick="continueDialogue()">Continue</button>
+    <main>
+        <div id="questBox">
+            <p id="questDialog"></p>
+            <div id="questControlBar">
+                <button id="continueButton" onclick="continue_clicked()">Continue</button>
+            </div>
         </div>
-        <div id="character-info">
+        <div id="characterInfo">
             <h2>Character Info</h2>
-            <p id="character-name">Player</p>
-            <p id="character-level">Level: 1</p>
-            <p id="character-health">Health: 100</p>
+            <div id="characterInfoLines">
+                <p id="playerNameElement">Player</p>
+                <p id="playerHealthElement">Health: 100</p>
+                <!--<p id="playerManaElement">Mana: 100</p>-->
+                <p id="playerGoldElement">Gold: 0</p>
+                <div class="XPBar" id="XPBar"></div>
+                <div id="playerStatElements"></div>
+            </div>
         </div>
-    </div>
-
-    <script src="script.js"></script>
+    </main>
 </body>
 </html>

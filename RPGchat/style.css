@@ -5,7 +5,7 @@ body {
     background-color: #f0f0f0;
 }
 
-#game-container {
+main {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -17,7 +17,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-#dialogue-box {
+#questBox {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -25,14 +25,20 @@ body {
     background-color: #eee;
     padding: 15px;
     border-radius: 5px;
-    margin-bottom: 15px;
 }
 
-#npc-dialogue {
+#questDialog {
     margin: 0;
 }
 
-#continue-button {
+#questControlBar {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#continueButton {
     background-color: #3498db;
     color: #fff;
     border: none;
@@ -40,9 +46,10 @@ body {
     font-size: 16px;
     cursor: pointer;
     border-radius: 3px;
+    width: 100%;
 }
 
-#character-info {
+#characterInfo {
     float: right;
     width: 30%;
     padding: 15px;
@@ -51,6 +58,41 @@ body {
     border-radius: 5px;
 }
 
-#character-info h2 {
+#characterInfo h2 {
     margin-top: 0;
+}
+
+#characterInfo #playerStatElements {
+    background-color: #39a6f0;
+    width: 100%;
+    border-radius: 5px;
+    padding: 15px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.XPBar {
+    text-align: center;
+    position: relative;
+    width: 100%;
+    height: 20px;
+    border-radius: 5px;
+    border: 1px solid #ffffff44;
+    overflow: hidden;
+}
+
+.XPFill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #4CAF50;
+    transition: width 0.5s ease;
+    z-index: 1;
+}
+
+.XPText {
+    position: relative;
+    z-index: 2;
 }
