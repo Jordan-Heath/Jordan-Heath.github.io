@@ -2,6 +2,16 @@
 
 Explore My Collection of Projects. Most of my work is not shared publicly. This collection does not comprehensively represent my work.
 
+
+## Incomplete Projects
+
+### [RPG Chat](RPGchat/RPGchat.html)
+
+WORK IN PROGRESS. Intended to be a short interactive story with procedural elements.
+
+- [x] RPG elements
+
+
 ## Completed Projects
 
 ### [Meal Planner](MealPlanner/MealPlanner.html)
@@ -85,15 +95,6 @@ I created this a while ago to replicate a peculiar mode of speech I was exposed 
 - [x] Scrambles input text into a semi-comprehensible mess
 
 
-## Incomplete Projects
-
-### [RPG Chat](RPGChat/RPGchat.html)
-
-WORK IN PROGRESS. Intended to be a short interactive story with procedural elements.
-
-- [x] RPG elements
-
-
 ## Credits
 
 ### Main Page
@@ -102,16 +103,20 @@ WORK IN PROGRESS. Intended to be a short interactive story with procedural eleme
 - [Manticore Image](https://pixabay.com/vectors/manticore-monster-line-art-beast-5292617/)
 - [Dice Image](https://pixabay.com/vectors/dice-games-play-1294902/)
 
+
 ### Character Generator
 - [Background Image](https://www.pexels.com/photo/empty-brown-canvas-235985/)
 - Races, Classes and some backgrounds are from D&D.
 
+
 ### Idle Landlord
 - [background Image](https://pixabay.com/photos/peeling-paint-abstract-old-aged-3562445/)
+
 
 ### Manticore Generator
 - Original Concept : Brin
 - [Original Animal List](https://gist.github.com/atduskgreg/3cf8ef48cb0d29cf151bedad81553a54)
+
 
 ### Story Teller
 Music sourced from [fesliyanstudios](https://www.fesliyanstudios.com/):
