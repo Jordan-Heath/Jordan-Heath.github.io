@@ -19,6 +19,7 @@ body {
     background-color: var(--body-background);
     color: var(--body-text);
     font-family: monaco, Consolas, Lucida Console, monospace;
+    font-size: 16pt;
 }
 
 /* Header */
@@ -127,7 +128,8 @@ footer button {
     height: 50px;
     color: white;
     background-color: var(--button-background1);
-    transition: all 100ms ease-in-out;
+    font-family: monaco, Consolas, Lucida Console, monospace;
+    font-size: 14pt;
 }
 
 footer button:hover {
