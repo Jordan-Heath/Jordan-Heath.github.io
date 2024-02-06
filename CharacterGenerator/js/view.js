@@ -2,11 +2,12 @@ class CharacterView {
     constructor() {
         this.characterSheetElement = document.getElementById("characterSheet");
         this.nameElement = document.getElementById("characterName");
-        this.characterInfo = document.getElementById("characterInfo");
-        this.raceElement = document.getElementById("characterRace");
-        this.classElement = document.getElementById("characterClass");
-        this.backgroundElement = document.getElementById("characterBackground");
-        this.abilitiesElement = document.getElementById("characterAbilities");
+        this.raceElement = document.getElementById("raceElement");
+        this.classElement = document.getElementById("classElement");
+        this.backgroundElement = document.getElementById("backgroundElement");
+        this.ageElement = document.getElementById("ageElement");
+        this.heightElement = document.getElementById("heightElement");
+        this.abilitiesElement = document.getElementById("abilitiesElement");
     }
 
     animateRandomise() {
@@ -26,24 +27,19 @@ class CharacterView {
     }
 
     printCharacterSheet(model) {
-        let tableHTML = '';
-
-        tableHTML += `<tr><th>Race</th><td>${model.selectedRace}</td>`;
-        tableHTML += `<tr><th>Class</th><td>${model.selectedClass}</td>`;
-        tableHTML += `<tr><th>Background</th><td>${model.selectedBackground}</td>`;
-        tableHTML += `<tr><th>Age</th><td>${model.selectedAge}</td>`;
-        tableHTML += `<tr><th>Height</th><td>${model.selectedHeight}</td>`;
+        raceElement.innerText = model.selectedRace;
+        classElement.innerText = model.selectedClass;
+        backgroundElement.innerText = model.selectedBackground;
+        ageElement.innerText =model.selectedAge;
+        heightElement.innerText = model.selectedHeight;
         //tableHTML += `<tr><th>Weight</th><td>${model.selectedWeight}</td>`;
-
-        this.characterInfo.innerHTML = tableHTML;
     }
 
     printAbilities(abilityScores) {
         let tableHTML = '';
-        //tableHTML += '<tr><th>Ability</th><th>Score</th></tr>';
 
         for (const ability in abilityScores) {
-            tableHTML += `<tr><th>${ability}</th><td>${abilityScores[ability]}</td></tr>`;
+            tableHTML += `<table><tr><th>${ability}</th></tr><tr><td>${abilityScores[ability]}</td></tr></table>`;
         }
 
         tableHTML += '';

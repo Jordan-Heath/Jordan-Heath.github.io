@@ -1,3 +1,4 @@
+/* General */
 :root {
   --Black: #000;
   --White: #fff;
@@ -11,89 +12,41 @@
   --Almond: #F0D9C0;
   --ForestGreen: #388E3C;
   --PigmentGreen: #4CAF50;
-  
+
   --DropShadow: rgba(0, 0, 0, 0.4);
 }
 
 body {
-  background-color: var(--Almond); /* Backup color */
+  background-color: var(--Almond);
+  /* Backup color */
   background-image: url("../data/background.jpeg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Georgia', serif;
   margin: 0;
   padding: 0;
   text-align: center;
-}
-
-.homebtn {
-  margin: 0px;
-  width: 10%;
-}
-
-header {
-  padding: 1rem 0;
-}
-
-.header-container {
-  margin: auto;
-  max-width: 600px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  text-align: center;
-}
-
-#characterSheet {
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-
-  background-color: var(--Coffee);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px var(--DropShadow);
-  font-family: 'Georgia', serif;
-  max-width: 560px;
-}
-
-h1 {
-  margin: 10px 20% 0 5%;
-  font-size: 36px;
-  color: #fff;
-  text-align: center;
-  text-shadow: 2px 2px 4px var(--DropShadow);
-  animation: headingAnimation 2s infinite;
-}
-
-h2 {
-  margin: 10px 0;
-  font-size: 24px;
-  color: var(--Almond);
+  color: var(--Dun);
+  overflow: hidden;
 }
 
 table {
   border-collapse: collapse;
-  min-width: 70%;
-  max-width: 100%;
-  margin: 20px auto;
-  background-color: var(--Chamoisee);
   border: 1px solid var(--RawUmber);
   box-shadow: 0 1px 2px var(--DropShadow);
-  table-layout: auto;
+}
+
+th, td {
+  padding: 6px;
+  border-bottom: 1px solid var(--RawUmber);
 }
 
 th {
   background-color: var(--RawUmber);
 }
-
-th,
 td {
-  padding: 6px;
-  text-align: left;
-  border-bottom: 1px solid var(--RawUmber);
-  color: var(--Dun);
+  background-color: var(--Chamoisee);
 }
 
 button {
@@ -114,35 +67,126 @@ button:hover {
   transform: scale(1.05);
 }
 
+/* header */
+header button,
+#buttonFiller {
+  margin: 0px;
+  width: 60px;
+}
+
+header {
+  padding: 10px 0;
+  margin: auto;
+  max-width: 600px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 36px;
+  color: #fff;
+  font-family: 'Luminari', 'Georgia', Fantasy;
+  text-align: center;
+  text-shadow: 2px 2px 4px var(--DropShadow);
+  animation: headingAnimation 2s infinite;
+}
+
 @keyframes headingAnimation {
-  0%, 100% { transform: rotate(5deg); }
-  50% { transform: rotate(-5deg); }
+
+  0%,
+  100% {
+    transform: rotate(5deg);
+  }
+
+  50% {
+    transform: rotate(-5deg);
+  }
+}
+
+/* main window */
+main {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  background-color: var(--Coffee);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px var(--DropShadow);
+  max-width: 560px;
 }
 
 @keyframes randomiseAnimation {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
 }
 
 .animate {
   animation: randomiseAnimation 0.4s ease-in-out forwards;
 }
 
-.footer {
+main h2 {
+  padding: 10px 20px;
+  border-radius: 15px;
+  margin: auto;
   text-align: center;
-  padding: 10px;
-  position: sticky;
-  bottom: 0;
+  font-size: 24px;
+  color: var(--Almond);
+  background-color: var(--Bistre);
 }
 
-th:nth-child(1),
-td:nth-child(1) {
-    min-width: auto;
-    width: 35%;
+/* character info */
+#characterInfo {
+  width: 100%;
+  margin: 20px auto;
+  table-layout: fixed;
+}
+#characterInfo th,
+#characterInfo td {
+  width: 25%;
+  text-align: left;
 }
 
-th:nth-child(2),
-td:nth-child(2) {
-    min-width: auto;
-    width: 65%;
+/* character attributes */
+#abilitiesElement {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 20px;
+}
+#abilitiesElement td {
+  min-height: 60px;
+  font-size: 32pt;
+}
+
+/* mobile options */
+@media only screen and (max-device-width: 480px) {
+  .show-mobile {
+    display: table-cell;
+  }
+  .hide-mobile {
+    display: none;
+  }
+  #abilitiesElement {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 20px;
+  }
+}
+
+@media only screen and (min-device-width: 481px) {
+  .show-mobile {
+    display: none;
+  }
+  .hide-mobile {
+    display: table-cell;
+  }
 }
