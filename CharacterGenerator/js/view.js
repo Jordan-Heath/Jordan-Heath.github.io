@@ -50,11 +50,18 @@ class CharacterView {
 
     printAbilities(abilities) {
         this.abilitiesElement.innerHTML = "";
-        abilities.forEach(ability => {
+        /*abilities.forEach(ability => {
             this.abilitiesElement.innerHTML += `<table>
                                                 <tr><th>${ability.name}</th></tr>
                                                 <tr><td>${ability.modifier() < 0 ? "" : "+"}${ability.modifier()}</td></tr>
                                                 <tr><th>${ability.value}</th></tr>
+                                                </table>`;
+        });*/
+        abilities.forEach(ability => {
+            this.abilitiesElement.innerHTML += `<table>
+                                                <tr><th>${ability.name}</th></tr>
+                                                <tr><td>${ability.value}</td></tr>
+                                                <tr><th>${ability.modifier() < 0 ? "" : "+"}${ability.modifier()}</th></tr>
                                                 </table>`;
         });
     }
@@ -64,12 +71,16 @@ class CharacterView {
 
         this.skillsTable1.innerHTML = "";
         for (let i = 0; i < rows; i++) {
-            this.skillsTable1.innerHTML += `<tr${skills[i].proficient ? 'class="proficient"' : ''}><th>${skills[i].name}</th><td>${skills[i].value}</td></tr>`;
+            let skillRow = this.skillsTable1.insertRow();
+            if (skills[i].proficient) skillRow.classList.add("proficient");
+            skillRow.innerHTML = `<th>${skills[i].name}</th><td>${skills[i].value}</td>`;
         }
 
         this.skillsTable2.innerHTML = "";
         for (let i = rows; i < rows*2; i++) {
-            this.skillsTable2.innerHTML += `<tr${skills[i].proficient ? 'class="proficient"' : ''}><th>${skills[i].name}</th><td>${skills[i].value}</td></tr>`;
+            let skillRow = this.skillsTable2.insertRow();
+            if (skills[i].proficient) skillRow.classList.add("proficient");
+            skillRow.innerHTML = `<th>${skills[i].name}</th><td>${skills[i].value}</td>`;
         }
     }
 };

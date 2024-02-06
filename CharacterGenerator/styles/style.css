@@ -10,7 +10,7 @@
   --Chamoisee: #a97c57;
   --Dun: #d9c1a8;
   --Almond: #F0D9C0;
-  --gold: gold;
+  --gold: #c69e40;
   --ForestGreen: #388E3C;
   --PigmentGreen: #4CAF50;
 
@@ -175,7 +175,15 @@ main h2 {
   grid-gap: 20px;
   margin: 10px 0;
 }
-.proficient {
+#skillsElement th {
+  width: 80%;
+}
+#skillsElement td {
+  width: 20%;
+}
+.proficient th,
+.proficient td {
+  color: var(--Almond);
   background-color: var(--gold);
 }
 
