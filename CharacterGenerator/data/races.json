@@ -1,0 +1,14 @@
+{
+    "races": [
+        "Dragonborn",
+        "Drow",
+        "Dwarf",
+        "Elf",
+        "Gnome",
+        "Half-Elf",
+        "Half-Orc",
+        "Halfling",
+        "Human",
+        "Tiefling"
+    ]
+}

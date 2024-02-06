@@ -1,13 +1,21 @@
-class CharacterView {
+class PageView {
     constructor() {
         this.characterSheetElement = document.getElementById("characterSheet");
+
         this.nameElement = document.getElementById("characterName");
+
         this.raceElement = document.getElementById("raceElement");
         this.classElement = document.getElementById("classElement");
         this.backgroundElement = document.getElementById("backgroundElement");
         this.ageElement = document.getElementById("ageElement");
         this.heightElement = document.getElementById("heightElement");
-        this.abilitiesElement = document.getElementById("abilitiesElement");
+        
+        this.strengthElement = document.getElementById("strengthElement");
+        this.dexterityElement = document.getElementById("dexterityElement");
+        this.constitutionElement = document.getElementById("constitutionElement");
+        this.intelligenceElement = document.getElementById("intelligenceElement");
+        this.wisdomElement = document.getElementById("wisdomElement");
+        this.charismaElement = document.getElementById("charismaElement");
     }
 
     animateRandomise() {
@@ -38,9 +46,7 @@ class CharacterView {
     printAbilities(abilityScores) {
         let tableHTML = '';
 
-        for (const ability in abilityScores) {
-            tableHTML += `<table><tr><th>${ability}</th></tr><tr><td>${abilityScores[ability]}</td></tr></table>`;
-        }
+        abilityScores
 
         tableHTML += '';
         this.abilitiesElement.innerHTML = tableHTML;

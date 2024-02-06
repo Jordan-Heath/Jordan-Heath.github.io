@@ -1,13 +1,11 @@
-class CharacterModel {
+class Model {
     constructor() {
         this.races = [];
         this.classes = [];
         this.backgrounds = [];
-        this.namePrefixes = [];
-        this.nameMiddles = [];
-        this.nameSuffixes = [];
+        this.firstNames = [];
+        this.nameSyllables = [];
         this.lastNames = [];
-        this.abilityNames = [];
 
         this.selectedFirstName = "";
         this.selectedLastName = "";
@@ -17,39 +15,47 @@ class CharacterModel {
         this.selectedAge = "";
         this.selectedHeight = "";
         this.selectedWeight = "";
-        this.abilityScores = {};
+        this.abilities = [];
+        ABILITIES.forEach(ability => {
+            this.abilities.push(new Ability(ability));
+        });
     }
 
     async loadData() {
-        try {
-            const fetchUrls = [
-                //FIRSTNAMESLINK,
-                NAMEPREFIXESLINK,
-                NAMEMIDDLESLINK,
-                NAMESUFFICESLINK,
-                LASTNAMESLINK,
-                RACESLINK,
-                CLASSESLINK,
-                BACKGROUNDSLINK,
-                ABILITIESLINK
-            ];
+        const loadJsonData = (url) => fetch(url).then(response => response.json());
 
-            const fetchResponses = await Promise.all(fetchUrls.map(url => fetch(url)));
-            const fetchTexts = await Promise.all(fetchResponses.map(response => response.text()));
+        // Load version number and other data from data.json
+        return Promise.all([
+            loadJsonData(FIRST_NAMES_URL),
+            loadJsonData(NAME_SYLLABLES_URL),
+            loadJsonData(LAST_NAMES_URL),
+            loadJsonData(RACES_URL),
+            loadJsonData(CLASSES_URL),
+            loadJsonData(BACKGROUNDS_URL),
+        ])
+            .then(([firstNamesData,
+                nameSyllablesData,
+                lastNamesData,
+                racesData,
+                classesData,
+                backgroundsData]) => {
 
-            [
-                this.namePrefixes,
-                this.nameMiddles,
-                this.nameSuffixes,
-                this.lastNames,
-                this.races,
-                this.classes,
-                this.backgrounds,
-                this.abilityNames
-            ] = fetchTexts.map(text => text.split('\n'));
-        } catch (error) {
-            console.error("Error loading data:", error);
-        }
+                this.firstNames = firstNamesData.firstNames;
+                this.nameSyllables = nameSyllablesData.nameSyllables;
+                this.lastNames = lastNamesData.lastNames;
+                racesData.forEach(race => {
+                    //change to making race objects for each
+                    //this.races.push(new Race(race.name, race.maxHeight, race.minHeight, race.maxAge, race.minAge, etc))
+                    this.races.push(race);
+                });
+                classesData.forEach(characterClass => {
+                    //change to making class objects for each
+                    //this.class.push(new Class(class.name, etc))
+                    this.class.push(characterClass);
+                });
+                this.backgrounds = backgroundsData.backgrounds;
+            })
+            .catch(error => console.error('Error loading data:', error));
     }
 
     generateCharacter() {
@@ -65,36 +71,33 @@ class CharacterModel {
     }
 
     generateAbilityScores() {
-        const abilityScores = {};
-
         //set abilities to minimum
-        this.abilityNames.forEach((abilityName) => {
-            abilityScores[abilityName] = abilityScoreMinimum;
+        this.abilities.forEach((ability) => {
+            ability.value = abilityScoreMinimum;
         });
 
         //set the remaining score to total MINUS minimums assigned
-        let remainingPoints = abilityScoreTotal - abilityScoreMinimum * this.abilityNames.length;
+        let remainingPoints = abilityScoreTotal - (abilityScoreMinimum * abilities.length);
 
         //select random ability, give it a point, subtract from remaining
         while (remainingPoints > 0) {
-            const randomAbilityIndex = getRandomNumber(0, this.abilityNames.length - 1);
-            const abilityName = this.abilityNames[randomAbilityIndex];
+            const randomAbilityIndex = getRandomNumber(0, this.abilities.length - 1);
+            const selectedAbility = this.abilities[randomAbilityIndex];
 
-            if (abilityScores[abilityName] < abilityScoreMaximum) {
-                abilityScores[abilityName]++;
+            if (selectedAbility.value < abilityScoreMaximum) {
+                selectedAbility.value++;
                 remainingPoints--;
             }
         }
 
-        return abilityScores;
+        //Class & Race bonuses?
     }
 
     generateName() {
-        let randomPrefix = randomArrayValue(this.namePrefixes);
-        let randomNumberOfMiddles = weightedRandom([0, 1, 2, 3], [4, 3, 2, 1]);
-        let selectedMiddles = Array.from({ length: randomNumberOfMiddles }, () => randomArrayValue(this.nameMiddles));
-        let randomSuffix = randomArrayValue(this.nameSuffixes);
+        const numberOfSyllables = weightedRandom([1, 2, 3, 4, 5], [5, 4, 3, 2, 1]);
+        const syllables = Array.from({ length: numberOfSyllables }, () => randomArrayValue(this.nameSyllables));
+        const name = syllables.join('');
 
-        return randomPrefix + selectedMiddles.join('') + randomSuffix;
+        return name;
     }
 }
