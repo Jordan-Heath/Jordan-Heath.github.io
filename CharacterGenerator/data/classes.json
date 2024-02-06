@@ -1,12 +1,16 @@
-Barbarian
-Bard
-Cleric
-Druid
-Fighter
-Monk
-Paladin
-Ranger
-Rogue
-Sorceror
-Warlock
-Wizard
+{
+    "classes": [
+        "Barbarian",
+        "Bard",
+        "Cleric",
+        "Druid",
+        "Fighter",
+        "Monk",
+        "Paladin",
+        "Ranger",
+        "Rogue",
+        "Sorceror",
+        "Warlock",
+        "Wizard"
+    ]
+}
