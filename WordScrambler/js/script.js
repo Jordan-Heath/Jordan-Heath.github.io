@@ -1,7 +1,11 @@
+const textOutput = document.getElementById("textOutput");
+const textInput = document.getElementById("textInput");
+const background = document.getElementById("background");
+
 function submit() {
 
     //console.log(document.getElementById("textInput").value)
-    var input = document.getElementById("textInput").value
+    var input = textInput.value;
 
     input = input.split(' ');
     //console.log(input)
@@ -18,7 +22,7 @@ function submit() {
     input = randomiseOrder(input);
     //console.log(input)
 
-    document.getElementById("textOutput").value = input.join(' ');
+    textOutput.value = input.join(' ');
 }
 
 function reformat(array) {
@@ -32,18 +36,16 @@ function reformat(array) {
 }
 
 function deleteConjuctions(array) {
-    var conjuctions = ["an", "the", "to", "when", "he", "up", "with", "a", "of", "but", "by", "his", "her", "she", "and"]
-
     // For each word in array
     for (i = 0; i < array.length; i++) {
         // For each word in conjuctions
-        for (j = 0; j < conjuctions.length; j++) {
+        for (j = 0; j < CONJUNCTIONS.length; j++) {
             // Test if a conjuction
-            if (array[i] == conjuctions[j]) {
+            if (array[i] == CONJUNCTIONS[j]) {
                 // delete and iterate
                 array.splice(i, 1);
                 i--;
-                j = conjuctions.length;
+                j = CONJUNCTIONS.length;
             }
         }
     }
@@ -57,7 +59,7 @@ function randomiseLength(array) {
         if (COPYCHANCE < Math.random()) array.push(array[i]);
 
         // Chance to Delete
-        else if (DELETECHANCE < Math.random()) array.splice(i, 1);
+        else if (DELETECHANCE > Math.random()) array.splice(i, 1);
     }
 
     return array;
@@ -81,3 +83,19 @@ function randomiseOrder(array) {
 
     return array;
 }
+
+function onLoad() {
+    //setup background
+    for (let i = 0; i < BACKGROUNDREPEAT; i++) {
+        background.innerHTML += LOREMIPSUM;
+    }
+
+    //preload example text
+    var chosenExample = Math.round(Math.random()*10);
+    textInput.value = EXAMPLETEXT[chosenExample];
+    textOutput.value = "";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    onLoad();
+});
