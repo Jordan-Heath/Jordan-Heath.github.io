@@ -4,6 +4,9 @@ const abilityScoreTotal = 72;
 const abilityScoreMinimum = 8; //default 8
 const abilityScoreMaximum = 20; //default 20
 
+const proficientSkillsBase = 5;
+const proficientSkillsVariance = 2;
+
 const ageMinimum = 18;
 const ageMaximum = 100;
 
@@ -19,3 +22,5 @@ const TITLE_WORDS_URL = 'https://jordan-heath.github.io/CharacterGenerator/data/
 const RACES_URL = 'https://jordan-heath.github.io/CharacterGenerator/data/races.json';
 const CLASSES_URL = 'https://jordan-heath.github.io/CharacterGenerator/data/classes.json';
 const BACKGROUNDS_URL = 'https://jordan-heath.github.io/CharacterGenerator/data/backgrounds.json';
+
+const SKILLS_URL = 'https://jordan-heath.github.io/CharacterGenerator/data/skills.json';

@@ -10,12 +10,16 @@ class CharacterView {
         this.ageElement = document.getElementById("ageElement");
         this.heightElement = document.getElementById("heightElement");
         
+        this.abilitiesElement = document.getElementById("abilitiesElement");
         this.strengthElement = document.getElementById("strengthElement");
         this.dexterityElement = document.getElementById("dexterityElement");
         this.constitutionElement = document.getElementById("constitutionElement");
         this.intelligenceElement = document.getElementById("intelligenceElement");
         this.wisdomElement = document.getElementById("wisdomElement");
         this.charismaElement = document.getElementById("charismaElement");
+
+        this.skillsTable1 = document.getElementById("skillsTable1");
+        this.skillsTable2 = document.getElementById("skillsTable2");
     }
 
     animateRandomise() {
@@ -24,13 +28,14 @@ class CharacterView {
         // Remove animation class after animation completes
         setTimeout(() => {
             this.characterSheetElement.classList.remove('animate');
-        }, 400); // Match animation duration
+        }, 200); // Match animation duration
     }
 
     updateCharacterSheet(model) {
         this.nameElement.textContent = `${model.selectedFirstName} ${model.selectedLastName}`;
         this.printCharacterSheet(model);
-        this.printAbilities(model.abilities);
+        this.printAbilities(model.selectedAbilities);
+        this.printSkills(model.selectedSkills);
         this.animateRandomise();
     }
 
@@ -44,11 +49,27 @@ class CharacterView {
     }
 
     printAbilities(abilities) {
-        this.strengthElement.innerText = abilities.find(ability => ability.name === "Strength").value;
-        this.dexterityElement.innerText = abilities.find(ability => ability.name === "Dexterity").value;
-        this.constitutionElement.innerText = abilities.find(ability => ability.name === "Constitution").value;
-        this.intelligenceElement.innerText = abilities.find(ability => ability.name === "Intelligence").value;
-        this.wisdomElement.innerText = abilities.find(ability => ability.name === "Wisdom").value;
-        this.charismaElement.innerText = abilities.find(ability => ability.name === "Charisma").value;
+        this.abilitiesElement.innerHTML = "";
+        abilities.forEach(ability => {
+            this.abilitiesElement.innerHTML += `<table>
+                                                <tr><th>${ability.name}</th></tr>
+                                                <tr><td>${ability.modifier() < 0 ? "" : "+"}${ability.modifier()}</td></tr>
+                                                <tr><th>${ability.value}</th></tr>
+                                                </table>`;
+        });
+    }
+
+    printSkills(skills) {
+        const rows = skills.length / 2;
+
+        this.skillsTable1.innerHTML = "";
+        for (let i = 0; i < rows; i++) {
+            this.skillsTable1.innerHTML += `<tr${skills[i].proficient ? 'class="proficient"' : ''}><th>${skills[i].name}</th><td>${skills[i].value}</td></tr>`;
+        }
+
+        this.skillsTable2.innerHTML = "";
+        for (let i = rows; i < rows*2; i++) {
+            this.skillsTable2.innerHTML += `<tr${skills[i].proficient ? 'class="proficient"' : ''}><th>${skills[i].name}</th><td>${skills[i].value}</td></tr>`;
+        }
     }
 };
