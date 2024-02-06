@@ -98,10 +98,9 @@ I created this a while ago to replicate a peculiar mode of speech I was exposed 
 ## Credits
 
 ### Main Page
-- [Plates Image](https://pixabay.com/photos/plate-stack-dishes-stack-of-plates-629970/)
-- [Tent Image](https://pixabay.com/vectors/tent-pitched-nature-leisure-312554/)
-- [Manticore Image](https://pixabay.com/vectors/manticore-monster-line-art-beast-5292617/)
-- [Dice Image](https://pixabay.com/vectors/dice-games-play-1294902/)
+- Manticore Image by Brin
+- [Reference Images from Pixabay](https://pixabay.com)
+- [Graphic Design Help by FrostedMonster](https://www.frostedmonster.com/)
 
 
 ### Character Generator
