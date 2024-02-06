@@ -1,4 +1,4 @@
-class PageView {
+class CharacterView {
     constructor() {
         this.characterSheetElement = document.getElementById("characterSheet");
 
@@ -30,7 +30,7 @@ class PageView {
     updateCharacterSheet(model) {
         this.nameElement.textContent = `${model.selectedFirstName} ${model.selectedLastName}`;
         this.printCharacterSheet(model);
-        this.printAbilities(model.abilityScores);
+        this.printAbilities(model.abilities);
         this.animateRandomise();
     }
 
@@ -43,12 +43,12 @@ class PageView {
         //tableHTML += `<tr><th>Weight</th><td>${model.selectedWeight}</td>`;
     }
 
-    printAbilities(abilityScores) {
-        let tableHTML = '';
-
-        abilityScores
-
-        tableHTML += '';
-        this.abilitiesElement.innerHTML = tableHTML;
+    printAbilities(abilities) {
+        this.strengthElement.innerText = abilities.find(ability => ability.name === "Strength").value;
+        this.dexterityElement.innerText = abilities.find(ability => ability.name === "Dexterity").value;
+        this.constitutionElement.innerText = abilities.find(ability => ability.name === "Constitution").value;
+        this.intelligenceElement.innerText = abilities.find(ability => ability.name === "Intelligence").value;
+        this.wisdomElement.innerText = abilities.find(ability => ability.name === "Wisdom").value;
+        this.charismaElement.innerText = abilities.find(ability => ability.name === "Charisma").value;
     }
 };

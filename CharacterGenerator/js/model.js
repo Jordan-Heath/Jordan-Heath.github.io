@@ -1,11 +1,11 @@
-class Model {
+class CharacterModel {
     constructor() {
         this.races = [];
         this.classes = [];
         this.backgrounds = [];
         this.firstNames = [];
         this.nameSyllables = [];
-        this.lastNames = [];
+        this.titleWords = [];
 
         this.selectedFirstName = "";
         this.selectedLastName = "";
@@ -26,33 +26,32 @@ class Model {
 
         // Load version number and other data from data.json
         return Promise.all([
-            loadJsonData(FIRST_NAMES_URL),
             loadJsonData(NAME_SYLLABLES_URL),
-            loadJsonData(LAST_NAMES_URL),
+            loadJsonData(TITLE_WORDS_URL),
             loadJsonData(RACES_URL),
             loadJsonData(CLASSES_URL),
             loadJsonData(BACKGROUNDS_URL),
         ])
-            .then(([firstNamesData,
-                nameSyllablesData,
-                lastNamesData,
+            .then(([nameSyllablesData,
+                titleWordsData,
                 racesData,
                 classesData,
                 backgroundsData]) => {
 
-                this.firstNames = firstNamesData.firstNames;
                 this.nameSyllables = nameSyllablesData.nameSyllables;
-                this.lastNames = lastNamesData.lastNames;
-                racesData.forEach(race => {
+                this.titleWords = titleWordsData.titleWords;
+                this.races = racesData.races;
+                /*racesData.forEach(race => {
                     //change to making race objects for each
                     //this.races.push(new Race(race.name, race.maxHeight, race.minHeight, race.maxAge, race.minAge, etc))
                     this.races.push(race);
-                });
-                classesData.forEach(characterClass => {
+                }); */
+                this.classes = classesData.classes;
+                /*classesData.forEach(characterClass => {
                     //change to making class objects for each
                     //this.class.push(new Class(class.name, etc))
                     this.class.push(characterClass);
-                });
+                });*/
                 this.backgrounds = backgroundsData.backgrounds;
             })
             .catch(error => console.error('Error loading data:', error));
@@ -60,7 +59,7 @@ class Model {
 
     generateCharacter() {
         this.selectedFirstName = this.generateName();
-        this.selectedLastName = randomArrayValue(this.lastNames);
+        this.selectedLastName = this.generateTitle();
         this.selectedRace = randomArrayValue(this.races);
         this.selectedClass = randomArrayValue(this.classes);
         this.selectedBackground = randomArrayValue(this.backgrounds);
@@ -77,7 +76,7 @@ class Model {
         });
 
         //set the remaining score to total MINUS minimums assigned
-        let remainingPoints = abilityScoreTotal - (abilityScoreMinimum * abilities.length);
+        let remainingPoints = abilityScoreTotal - (abilityScoreMinimum * this.abilities.length);
 
         //select random ability, give it a point, subtract from remaining
         while (remainingPoints > 0) {
@@ -96,8 +95,32 @@ class Model {
     generateName() {
         const numberOfSyllables = weightedRandom([1, 2, 3, 4, 5], [5, 4, 3, 2, 1]);
         const syllables = Array.from({ length: numberOfSyllables }, () => randomArrayValue(this.nameSyllables));
-        const name = syllables.join('');
+        let name = capitalizeFirstLetter(syllables.join(''));
 
         return name;
+    }
+
+    generateTitle() {
+        const numberOfWords = weightedRandom([1, 2, 3], [1, 198, 1]);
+        const words = Array.from({length: numberOfWords }, () => capitalizeFirstLetter(randomArrayValue(this.titleWords)));
+        const title = words.join('');
+
+        return title;
+    }
+}
+
+
+class Ability {
+    constructor(name) {
+        this.name = name;
+        this.value = 0;
+    }
+}
+
+class Skill {
+    constructor(name, ability) {
+        this.name = name;
+        this.ability = ability;
+        this.value = 0;
     }
 }

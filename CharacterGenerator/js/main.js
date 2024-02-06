@@ -1,8 +1,13 @@
-async function initialize() {
-    await model.loadData();
-    generateCharacter();
-}
+document.addEventListener('DOMContentLoaded', () => {
+    const model = new CharacterModel();
+    const view = new CharacterView();
+    const controller = new CharacterController(model, view);
 
-const model = new Model();
-const view = new PageView();
-initialize();
+    const generateButton = document.getElementById('generateButton');
+
+    generateButton.addEventListener('click', () => {
+        controller.generateCharacter();
+    });
+
+    controller.initialize();
+});

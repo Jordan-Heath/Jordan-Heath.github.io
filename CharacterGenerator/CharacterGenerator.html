@@ -7,7 +7,12 @@
 	<title>Random Fantasy Character Generator</title>
 	<link rel="icon" type="image/x-icon" href="../data/favicon.ico">
 	<link rel="stylesheet" type="text/css" href="styles/style.css">
-	<script defer src="js/script.js"></script>
+	<script src="js/model.js"></script>
+	<script src="js/view.js"></script>
+	<script src="js/controller.js"></script>
+	<script src="js/utils.js"></script>
+	<script src="js/constants.js"></script>
+	<script defer src="js/main.js"></script>
 	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3533406510685034"
 		crossorigin="anonymous"></script>
 </head>
@@ -43,31 +48,31 @@
 		<div id="abilitiesElement">
 			<table>
 				<tr><th>Strength</th></tr>
-				<tr><th id="strengthElement"></th></tr>
+				<tr><td id="strengthElement"></td></tr>
 			</table>
 			<table>
 				<tr><th>Dexterity</th></tr>
-				<tr><th id="dexterityElement"></th></tr>
+				<tr><td id="dexterityElement"></td></tr>
 			</table>
 			<table>
 				<tr><th>Constitution</th></tr>
-				<tr><th id="constitutionElement"></th></tr>
+				<tr><td id="constitutionElement"></td></tr>
 			</table>
 			<table>
 				<tr><th>Intelligence</th></tr>
-				<tr><th id="intelligenceElement"></th></tr>
+				<tr><td id="intelligenceElement"></td></tr>
 			</table>
 			<table>
 				<tr><th>Wisdom</th></tr>
-				<tr><th id="wisdomElement"></th></tr>
+				<tr><td id="wisdomElement"></td></tr>
 			</table>
 			<table>
 				<tr><th>Charisma</th></tr>
-				<tr><th id="charismaElement"></th></tr>
+				<tr><td id="charismaElement"></td></tr>
 			</table>
 		</div>
 	</main>
-	<button onclick="controller.generateCharacter()">Generate Character</button>
+	<button id="generateButton">Generate Character</button>
 
 	<!--
     <div class="footer">
