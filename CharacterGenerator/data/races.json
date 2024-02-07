@@ -51,7 +51,7 @@
             "heightMax": 109,
             "weightMin": 17,
             "weightMax": 20,
-            "subRaces": ["Forest","Rock",""],
+            "subRaces": ["Forest","Rock"],
             "speed" : 25,
             "languages" : ["Common", "Gnomish"],
             "abilityIncreases" : [{"name" : "Intelligence", "value" : 2}],

@@ -112,7 +112,7 @@ main {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto;
   grid-gap: 20px;
-  margin: auto;
+  margin: auto auto 100px auto;
   background-color: var(--Coffee);
   padding: 20px;
   border-radius: 10px;
@@ -200,6 +200,15 @@ main h2 {
   min-height: 20px;
   height: 30px;
   padding: 0;
+}
+
+/* footer */
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  left: 0;
 }
 
 /* mobile options */

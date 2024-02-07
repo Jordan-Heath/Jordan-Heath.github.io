@@ -45,7 +45,8 @@
 				<tr>
 					<th>Age</th>
 					<td id="ageElement"></td>
-					<th>Alignment</th>
+					<th class="hide-mobile">Alignment</th>
+					<th class="show-mobile">Align.</th>
 					<td id="alignmentElement"></td>
 				</tr>
 				<tr>
@@ -53,6 +54,11 @@
 					<td id="heightElement"></td>
 					<th>Weight</th>
 					<td id="weightElement"></td>
+				</tr>
+				<tr>
+					<th class="hide-mobile">Languages</th>
+					<th class="show-mobile">Langs.</th>
+					<td id="languagesElement" colspan="3"></td>
 				</tr>
 			</table>
 		</div>
@@ -121,7 +127,10 @@
 		<!--<div id="equipment"></div>-->
 		<!--<div id="featuresAndTraits"></div>-->
 	</main>
-	<button id="generateButton">Generate Character</button>
+
+	<footer>
+		<button id="generateButton">Generate Character</button>
+	</footer>
 </body>
 
 </html>

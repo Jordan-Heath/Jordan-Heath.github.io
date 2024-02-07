@@ -51,6 +51,7 @@ class CharacterView {
         alignmentElement.innerText = model.selectedAlignment.toText();
         heightElement.innerText = `${model.selectedHeight}cm`;
         weightElement.innerText = `${model.selectedWeight}kg`;
+        languagesElement.innerText = model.selectedRace.languages.join(', ');
     }
 
     printAbilities(abilities) {
