@@ -26,6 +26,7 @@ class CharacterView {
     }
 
     animateRandomise() {
+        
         this.characterSheetElement.classList.add('animate');
 
         // Remove animation class after animation completes

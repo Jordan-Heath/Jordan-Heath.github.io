@@ -105,6 +105,7 @@ I created this a while ago to replicate a peculiar mode of speech I was exposed 
 
 ### Character Generator
 - [Background Image](https://www.pexels.com/photo/empty-brown-canvas-235985/)
+- [Paper Texture](https://pixabay.com/photos/paper-old-texture-parchment-1074131/)
 - Races, Classes and some backgrounds are from D&D.
 
 
