@@ -11,7 +11,8 @@
             "subRaces": ["Black [Acid]", "Blue [Lightening]", "Brass [Fire]", "Bronze [Lightening]", "Copper [Acid]", "Gold [Fire]", "Green [Poison]", "Red [Fire]", "Silver [Cold]", "White [Cold]"],
             "speed": 30,
             "languages" : ["Common", "Draconic"],
-            "abilityIncreases" : [{"Strength" : 2}, {"Charisma" : 1}],
+            "abilityIncreases" : [  {"name" : "Strength", "value" : 2}, 
+                                    {"name" : "Charisma", "value" : 1}],
             "link" : "http://dnd5e.wikidot.com/lineage:dragonborn"
         },
         {
@@ -25,7 +26,7 @@
             "subRaces": ["Hill","Mountain"],
             "speed" : 25,
             "languages" : ["Common", "Dwarvish"],
-            "abilityIncreases" : [{"Constitution" : 2}],
+            "abilityIncreases" : [{"name" : "Constitution", "value" : 2}],
             "link" : "http://dnd5e.wikidot.com/lineage:dwarf"
         },
         {
@@ -39,7 +40,7 @@
             "subRaces": ["Dark","High","Wood"],
             "speed" : 30,
             "languages" : ["Common", "Elven"],
-            "abilityIncreases" : [{"Dexterity" : 2}],
+            "abilityIncreases" : [{"name" : "Dexterity", "value" : 2}],
             "link" : "http://dnd5e.wikidot.com/lineage:elf"
         },
         {
@@ -53,7 +54,7 @@
             "subRaces": ["Forest","Rock",""],
             "speed" : 25,
             "languages" : ["Common", "Gnomish"],
-            "abilityIncreases" : [{"Intelligence" : 2}],
+            "abilityIncreases" : [{"name" : "Intelligence", "value" : 2}],
             "link" : "http://dnd5e.wikidot.com/lineage:gnome"
         },
         {
@@ -67,7 +68,7 @@
             "subRaces": [],
             "speed" : 30,
             "languages" : ["Common", "Elven"],
-            "abilityIncreases" : [{"Charisma" : 2}],
+            "abilityIncreases" : [{"name" : "Charisma", "value" : 2}],
             "link" : "http://dnd5e.wikidot.com/lineage:half-elf"
         },
         {
@@ -81,7 +82,8 @@
             "subRaces": [],
             "speed" : 30,
             "languages" : ["Common", "Orc"],
-            "abilityIncreases" : [{"Strength" : 2}, {"Constitution" : 1}],
+            "abilityIncreases" : [  {"name" : "Strength", "value" : 2}, 
+                                    {"name" : "Constitution", "value" : 1}],
             "link" : "http://dnd5e.wikidot.com/lineage:half-orc"
         },
         {
@@ -95,7 +97,7 @@
             "subRaces": ["Lightfoot","Stout"],
             "speed" : 25,
             "languages" : ["Common", "Halfling"],
-            "abilityIncreases" : [{"Dexterity" : 2}],
+            "abilityIncreases" : [{"name" : "Dexterity", "value" : 2}],
             "link" : "http://dnd5e.wikidot.com/lineage:halfling"
         },
         {
@@ -109,7 +111,12 @@
             "subRaces": [],
             "speed" : 30,
             "languages" : ["Common"],
-            "abilityIncreases" : [{"Strength" : 1}, {"Dexterity" : 1}, {"Constitution" : 1}, {"Intelligence" : 1}, {"Wisdom" : 1}, {"Charisma" : 1}],
+            "abilityIncreases" : [  {"name" : "Strength", "value" : 1}, 
+                                    {"name" : "Dexterity", "value" : 1}, 
+                                    {"name" : "Constitution", "value" : 1}, 
+                                    {"name" : "Intelligence", "value" : 1}, 
+                                    {"name" : "Wisdom", "value" : 1}, 
+                                    {"name" : "Charisma", "value" : 1}],
             "link" : "http://dnd5e.wikidot.com/lineage:human"
         },
         {
@@ -123,7 +130,7 @@
             "subRaces": ["Bloodline of Asmodeus","Bloodline of Mephistopheles","Bloodline of Zariel"],
             "speed" : 30,
             "languages" : ["Common", "Infernal"],
-            "abilityIncreases" : [{"Charisma " : 2}],
+            "abilityIncreases" : [{"name" : "Charisma ", "value" : 2}],
             "link" : "http://dnd5e.wikidot.com/lineage:tiefling"
         }
     ]
