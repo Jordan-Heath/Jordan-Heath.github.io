@@ -12,6 +12,7 @@ class CharacterModel {
         this.selectedClass = "";
         this.selectedBackground = "";
         this.selectedAge = "";
+        this.selectedAlignment = new Alignment();
         this.selectedHeight = "";
         this.selectedWeight = "";
 
@@ -71,6 +72,7 @@ class CharacterModel {
         this.selectedBackground = this.generateBackground();
 
         this.selectedAge = this.generateAge();
+        this.selectedAlignment = this.generateAlignment();
         this.selectedHeight = this.generateHeight();
         this.selectedWeight = this.generateWeight();
 
@@ -104,7 +106,13 @@ class CharacterModel {
             }
         }
 
-        //Class & Race bonuses?
+        //race bonuses
+        this.selectedRace.abilityIncreases.forEach(increase => {
+            let relatedAbility = abilities.find(ability => ability.name === increase.name)
+            relatedAbility.value += increase.value;
+        });
+        //class bonus?
+        //2 for major ability, 1 for minor ability
 
         return abilities;
     }
@@ -135,6 +143,8 @@ class CharacterModel {
             skill.value = this.selectedAbilities.find(ability => ability.name === skill.relatedAbility).modifier();
             if (skill.proficient) skill.value += 5;
         });
+
+        //class modifiers
 
         return skills;
     }
@@ -169,6 +179,9 @@ class CharacterModel {
     }
     generateAge() {
         return getRandomNumber(this.selectedRace.ageMin, this.selectedRace.ageMax);
+    }
+    generateAlignment() {
+        return new Alignment(getRandomNumber(-100, 100), getRandomNumber(-100, 100));
     }
     generateHeight() {
         return getRandomNumber(this.selectedRace.heightMin, this.selectedRace.heightMax);
@@ -220,5 +233,26 @@ class Race {
         this.abilityIncreases = data.abilityIncreases; //an array of string/int pairs
 
         this.link = data.link;
+    }
+}
+
+class Alignment {
+    constructor(good, lawful) {
+        this.good = good; //100 is good, -100 is evil
+        this.lawful = lawful; //100 is lawful, -100 is chaotic
+    }
+
+    toText() {
+        let description = "";
+
+        if (this.lawful > 45) description += "Lawful"
+        else if (this.lawful < -45) description += "Chaotic"
+        else description += "True"
+
+        if (this.good > 45) description += " Good";
+        else if (this.good < -45) description += " Evil";
+        else description += " Neutral"
+
+        return description;
     }
 }

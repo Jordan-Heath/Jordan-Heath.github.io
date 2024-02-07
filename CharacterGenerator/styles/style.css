@@ -191,6 +191,17 @@ main h2 {
   background-color: var(--gold);
 }
 
+/* Alignment Visual */
+#alignmentVisualElement th,
+#alignmentVisualElement td {
+  text-align: center;
+  min-width: 20px;
+  width: 40px;
+  min-height: 20px;
+  height: 30px;
+  padding: 0;
+}
+
 /* mobile options */
 @media only screen and (max-width: 480px) {
   .show-mobile {

@@ -21,6 +21,8 @@ class CharacterView {
 
         this.skillsTable1 = document.getElementById("skillsTable1");
         this.skillsTable2 = document.getElementById("skillsTable2");
+
+        this.alignmentVisualElement = document.getElementById("alignmentVisualElement");
     }
 
     animateRandomise() {
@@ -37,6 +39,7 @@ class CharacterView {
         this.printCharacterSheet(model);
         this.printAbilities(model.selectedAbilities);
         this.printSkills(model.selectedSkills);
+        this.printAlignmentVisual(model.selectedAlignment);
         this.animateRandomise();
     }
 
@@ -45,6 +48,7 @@ class CharacterView {
         classElement.innerText = model.selectedClass;
         backgroundElement.innerText = model.selectedBackground;
         ageElement.innerText = model.selectedAge;
+        alignmentElement.innerText = model.selectedAlignment.toText();
         heightElement.innerText = `${model.selectedHeight}cm`;
         weightElement.innerText = `${model.selectedWeight}kg`;
     }
@@ -76,5 +80,59 @@ class CharacterView {
             if (skills[i].proficient) skillRow.classList.add("proficient");
             skillRow.innerHTML = `<th>${skills[i].name}</th><td>${skills[i].value}</td>`;
         }
+    }
+
+    printAlignmentVisual(alignment) {
+        const resolution = 10;
+        const xValue = -Math.round((alignment.lawful - 100)/20); //0 is lawful, 10 is chaotic
+        const yValue = -Math.round((alignment.good - 100)/20); //0 is good, 10 is evil
+
+        let table = document.createElement("table");
+
+        let tableRow = document.createElement("tr");
+        let tableHeader = document.createElement("th");
+        tableHeader.innerText="Good";
+        tableHeader.colSpan = "13";
+        tableRow.appendChild(tableHeader);
+        table.appendChild(tableRow);
+
+        for (let y = 0; y <= resolution; y++) {
+            let tableRow = document.createElement("tr");
+            if (y === 0) {
+                let tableHeader = document.createElement("th");
+                tableHeader.rowSpan = "11";
+                tableHeader.innerText = "Lawful";
+                tableHeader.style = "writing-mode: vertical-rl; text-orientation: upright;"
+                tableRow.appendChild(tableHeader);
+            }
+
+            for (let x = 0; x <= resolution; x++) {
+                if (y === yValue && x === xValue) {
+                    let selectedCell = document.createElement("th");
+                    selectedCell.innerText = "X";
+                    tableRow.appendChild(selectedCell);
+                } else tableRow.appendChild(document.createElement("td"));
+            }
+
+            if (y === 0) {
+                let tableHeader = document.createElement("th");
+                tableHeader.rowSpan = "11";
+                tableHeader.innerText = "Chaotic";
+                tableHeader.style = "writing-mode: vertical-rl; text-orientation: upright;"
+                tableRow.appendChild(tableHeader);
+            }
+
+            table.appendChild(tableRow);
+        }
+
+        tableRow = document.createElement("tr");
+        tableHeader = document.createElement("th");
+        tableHeader.innerText="Evil";
+        tableHeader.colSpan = "13";
+        tableRow.appendChild(tableHeader);
+        table.appendChild(tableRow);
+
+        this.alignmentVisualElement.innerHTML = "";
+        this.alignmentVisualElement.appendChild(table);
     }
 };
