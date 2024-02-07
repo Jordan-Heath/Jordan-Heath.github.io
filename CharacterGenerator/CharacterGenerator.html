@@ -24,15 +24,18 @@
 		<img src="data/dice.png" id="buttonFiller"></img>
 	</header>
 	<main id="characterSheet">
-		<h2 id="characterName"></h2>
+		
 
-		<div>
-			<table id="characterInfo">
+		<div id="characterInfo">
+			<h2 id="characterName"></h2>
+			<table>
 				<tr>
 					<th>Race</th>
-					<td id="raceElement"></td>
+					<td id="raceElement" colspan="3"></td>
+				</tr>
+				<tr>
 					<th>Class</th>
-					<td id="classElement"></td>
+					<td id="classElement" colspan="3"></td>
 				</tr>
 				<tr>
 					<th class="hide-mobile">Background</th>
@@ -42,8 +45,14 @@
 				<tr>
 					<th>Age</th>
 					<td id="ageElement"></td>
+					<th>Alignment</th>
+					<td id="alignmentElement"></td>
+				</tr>
+				<tr>
 					<th>Height</th>
 					<td id="heightElement"></td>
+					<th>Weight</th>
+					<td id="weightElement"></td>
 				</tr>
 			</table>
 		</div>
@@ -105,6 +114,10 @@
 				<tr><th></th><td></td><tr></tr>
 			</table>
 		</div>
+
+		<!--<div id="proficiencies"></div>-->
+		<!--<div id="equipment"></div>-->
+		<!--<div id="featuresAndTraits"></div>-->
 	</main>
 	<button id="generateButton">Generate Character</button>
 </body>

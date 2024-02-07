@@ -9,6 +9,7 @@ class CharacterView {
         this.backgroundElement = document.getElementById("backgroundElement");
         this.ageElement = document.getElementById("ageElement");
         this.heightElement = document.getElementById("heightElement");
+        this.weightElement = document.getElementById("weightElement");
         
         this.abilitiesElement = document.getElementById("abilitiesElement");
         this.strengthElement = document.getElementById("strengthElement");
@@ -40,23 +41,16 @@ class CharacterView {
     }
 
     printCharacterSheet(model) {
-        raceElement.innerText = model.selectedRace;
+        raceElement.innerHTML = `<a href="${model.selectedRace.link}" target="_blank">${model.selectedRace.name}${model.selectedSubRace !== undefined ? ` - ${model.selectedSubRace}` : ""}</a>`
         classElement.innerText = model.selectedClass;
         backgroundElement.innerText = model.selectedBackground;
-        ageElement.innerText =model.selectedAge;
-        heightElement.innerText = model.selectedHeight;
-        //tableHTML += `<tr><th>Weight</th><td>${model.selectedWeight}</td>`;
+        ageElement.innerText = model.selectedAge;
+        heightElement.innerText = `${model.selectedHeight}cm`;
+        weightElement.innerText = `${model.selectedWeight}kg`;
     }
 
     printAbilities(abilities) {
         this.abilitiesElement.innerHTML = "";
-        /*abilities.forEach(ability => {
-            this.abilitiesElement.innerHTML += `<table>
-                                                <tr><th>${ability.name}</th></tr>
-                                                <tr><td>${ability.modifier() < 0 ? "" : "+"}${ability.modifier()}</td></tr>
-                                                <tr><th>${ability.value}</th></tr>
-                                                </table>`;
-        });*/
         abilities.forEach(ability => {
             this.abilitiesElement.innerHTML += `<table>
                                                 <tr><th>${ability.name}</th></tr>

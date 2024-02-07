@@ -43,18 +43,15 @@ class CharacterModel {
 
                 this.nameSyllables = nameSyllablesData.nameSyllables;
                 this.titleWords = titleWordsData.titleWords;
-                this.races = racesData.races;
-                /*racesData.forEach(race => {
-                    //change to making race objects for each
-                    //this.races.push(new Race(race.name, race.maxHeight, race.minHeight, race.maxAge, race.minAge, etc))
-                    this.races.push(race);
-                }); */
-                this.classes = classesData.classes;
-                /*classesData.forEach(characterClass => {
-                    //change to making class objects for each
-                    //this.class.push(new Class(class.name, etc))
-                    this.class.push(characterClass);
-                });*/
+
+                racesData.races.forEach(race => {
+                    this.races.push(new Race(race));
+                });
+
+                classesData.classes.forEach(characterClass => {
+                    this.classes.push(characterClass);
+                });
+
                 this.backgrounds = backgroundsData.backgrounds;
 
                 skillsData.skills.forEach(skill => {
@@ -69,6 +66,7 @@ class CharacterModel {
         this.selectedLastName = this.generateTitle();
 
         this.selectedRace = this.generateRace();
+        this.selectedSubRace = this.generateSubRace();
         this.selectedClass = this.generateClass();
         this.selectedBackground = this.generateBackground();
 
@@ -160,6 +158,9 @@ class CharacterModel {
     generateRace() {
         return randomArrayValue(this.races);
     }
+    generateSubRace() {
+        return randomArrayValue(this.selectedRace.subRaces);
+    }
     generateClass() {
         return randomArrayValue(this.classes);
     }
@@ -167,13 +168,13 @@ class CharacterModel {
         return randomArrayValue(this.backgrounds);
     }
     generateAge() {
-        return 10 * weightedRandom([2, 3, 4, 5, 6, 7, 8, 9], [128, 64, 32, 16, 8, 4, 2, 1]) + getRandomNumber(0, 9);
+        return getRandomNumber(this.selectedRace.ageMin, this.selectedRace.ageMax);
     }
     generateHeight() {
-        return `${getRandomNumber(heightFeetMinimum, heightFeetMaximum)}ft ${getRandomNumber(0, 11)}inches`;
+        return getRandomNumber(this.selectedRace.heightMin, this.selectedRace.heightMax);
     }
     generateWeight() {
-        return `${getRandomNumber(weightKiloMinimum, weightKiloMaximum)}kgs`;
+        return getRandomNumber(this.selectedRace.weightMin, this.selectedRace.weightMax);
     }
 }
 
@@ -194,5 +195,30 @@ class Skill {
         this.relatedAbility = ability;
         this.proficient = false;
         this.value = 0;
+    }
+}
+
+class Race {
+    constructor(data) {
+        this.name = data.name;
+
+        this.ageMin = data.ageMin;
+        this.ageMax = data.ageMax;
+
+        this.heightMin = data.heightMin;
+        this.heightMax = data.heightMax;
+
+        this.weightMin = data.weightMin;
+        this.weightMax = data.weightMax;
+
+        this.subRaces = data.subRaces; //an array of strings
+
+        this.speed = data.speed;
+
+        this.languages = data.languages; //an array of strings
+
+        this.abilityIncreases = data.abilityIncreases; //an array of string/int pairs
+
+        this.link = data.link;
     }
 }

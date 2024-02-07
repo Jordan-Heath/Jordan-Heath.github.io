@@ -95,7 +95,6 @@ header h1 {
 }
 
 @keyframes headingAnimation {
-
   0%,
   100% {
     transform: rotate(5deg);
@@ -110,12 +109,15 @@ header h1 {
 main {
   display: flex;
   flex-direction: column;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 20px;
   margin: auto;
   background-color: var(--Coffee);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 6px var(--DropShadow);
-  max-width: 560px;
+  max-width: 1000px;
 }
 
 @keyframes randomiseAnimation {
@@ -143,15 +145,17 @@ main h2 {
 }
 
 /* character info */
-#characterInfo {
+#characterInfo table {
   width: 100%;
   table-layout: fixed;
   margin: 10px 0;
 }
 #characterInfo th,
 #characterInfo td {
-  width: 25%;
   text-align: left;
+}
+#characterInfo a {
+  color: var(--Almond);
 }
 
 /* character attributes */
@@ -188,7 +192,7 @@ main h2 {
 }
 
 /* mobile options */
-@media only screen and (max-device-width: 480px) {
+@media only screen and (max-width: 480px) {
   .show-mobile {
     display: table-cell;
   }
@@ -199,15 +203,22 @@ main h2 {
     grid-template-columns: repeat(2, 1fr);
   }
   #skillsElement {
+    grid-gap: 0px;
     grid-template-columns: repeat(1, 1fr);
   }
 }
 
-@media only screen and (min-device-width: 481px) {
+@media only screen and (min-width: 481px) {
   .show-mobile {
     display: none;
   }
   .hide-mobile {
     display: table-cell;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  main {
+    display: grid;
   }
 }
