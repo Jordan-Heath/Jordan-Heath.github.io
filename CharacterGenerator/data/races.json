@@ -130,7 +130,7 @@
             "subRaces": ["Bloodline of Asmodeus","Bloodline of Mephistopheles","Bloodline of Zariel"],
             "speed" : 30,
             "languages" : ["Common", "Infernal"],
-            "abilityIncreases" : [{"name" : "Charisma ", "value" : 2}],
+            "abilityIncreases" : [{"name" : "Charisma", "value" : 2}],
             "link" : "http://dnd5e.wikidot.com/lineage:tiefling"
         }
     ]
