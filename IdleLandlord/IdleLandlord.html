@@ -22,10 +22,10 @@
 
 <body>
     <header>
-        <div id="headerContainer">
-            <button class="header-button" onclick="location.href='../index.html'">&#8592;</button>
-            <img id="headerImage" src="images/title.png" alt="title">
-            <button class="header-button" onclick="toggleSettings()">&#8801;</button>
+        <div class="row">
+            <button onclick="location.href='../index.html'">&#8592;</button>
+            <h1>Idle Landlord</h1>
+            <button onclick="toggleSettings()">&#8801;</button>
         </div>
 
         <div id="settings" style="display: none;">
@@ -40,73 +40,66 @@
             </div>
         </div>
     </header>
+
     <main>
         <div class="page-column" id="leftColumn">
-            <div class="column-container">
-                <h2>Properties</h2>
-                <div id="propertiesView"></div>
-            </div>
+            <h2>Properties</h2>
+            <div id="propertiesView"></div>
         </div>
 
         <div class="page-column" id="middleColumn">
-            <div class="column-container">
-                <input type="text" id="businessName" placeholder="your name" onchange="saveBusinessName()">
+            <input type="text" id="businessName" placeholder="your name" onchange="saveBusinessName()">
 
-                <!-- Maybe add a property portfolio here one day -->
+            <!-- Maybe add a property portfolio here one day -->
 
-                <!-- Maybe add random events here one day -->
+            <!-- Maybe add random events here one day -->
 
-                <table id="incomeTable">
-                    <tr>
-                        <th>Income: </th>
-                        <td id="income"></td>
-                    </tr>
-                    <tr>
-                        <th>Money:</th>
-                        <td id="money"></td>
-                    </tr>
-                </table>
+            <table id="incomeTable">
+                <tr>
+                    <th>Income: </th>
+                    <td id="income"></td>
+                </tr>
+                <tr>
+                    <th>Money:</th>
+                    <td id="money"></td>
+                </tr>
+            </table>
 
-                <div id="messageOutput"></div>
+            <div id="messageOutput"></div>
 
-                <div id="jobContainer">
-                    <div class="row" style="justify-content: space-between;">
-                        <div class="column">
-                            <p class="title" id="jobTitle"></p>
-                            <p class="description" id="jobDescription"></p>
-                        </div>
-                        <p id="payRate"></p>
+            <div id="jobContainer">
+                <div class="row" style="justify-content: space-between;">
+                    <div class="column">
+                        <p class="title" id="jobTitle"></p>
+                        <p class="description" id="jobDescription"></p>
                     </div>
-                    <div id="workExperienceBar">
-                        <span id="workExperienceNumber"></span>
-                        <div id="workExperienceFill"></div>
-                    </div>
+                    <p id="payRate"></p>
                 </div>
-
-                <button id="workButton" onclick="work()">Work</button>
+                <div id="workExperienceBar">
+                    <span id="workExperienceNumber"></span>
+                    <div id="workExperienceFill"></div>
+                </div>
             </div>
+
+            <button id="workButton" onclick="work()">Work</button>
 
         </div>
 
         <div class="page-column" id="rightColumn">
-            <div class="column-container">
-                <h2>Upgrades</h2>
-                <div id="upgradesView"></div>
-            </div>
+            <h2>Upgrades</h2>
+            <div id="upgradesView"></div>
         </div>
     </main>
 
     <footer>
-        <div class="column">
-            <div class="row" id="footerIncomeDetails">
-                <p>Money: <span id="footerMoney"></span></p>
-                <p>Income: <span id="footerIncome"></span></p>
-            </div>
-            <div class="row">
-                <button onclick="showMenu('properties')" id="leftFooterButton">&#128176;</button>
-                <button onclick="showMenu('home')" id="middleFooterButton">&#127968;</button>
-                <button onclick="showMenu('upgrades')" id="rightFooterButton">&#128295;</button>
-            </div>
+        <div class="row" id="footerIncomeDetails">
+            <p>Money: <span id="footerMoney"></span></p>
+            <p>Income: <span id="footerIncome"></span></p>
+        </div>
+        <div class="row" id="footerNavControls">
+            <button onclick="showMenu('properties')" id="leftFooterButton">&#128176;</button>
+            <button onclick="showMenu('home')" id="middleFooterButton">&#127968;</button>
+            <button onclick="showMenu('upgrades')" id="rightFooterButton">&#128295;</button>
         </div>
     </footer>
 </body>

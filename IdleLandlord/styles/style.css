@@ -6,16 +6,18 @@
 }
 
 body {
+    box-sizing: border-box;
     font-family: 'Arial', sans-serif;
     text-align: center;
-    /*background-color: #d2b48c;*/
+    background-color: #d2b48c;
     background-image: url("../images/background.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    padding: 20px;
+    padding: 10px;
     margin: 0;
-    overflow-y: hidden;
+    overflow: hidden;
+    height: 100vh;
 }
 
 main {
@@ -23,25 +25,20 @@ main {
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
+    height: 90%;
 }
 
 .page-column {
     display: flex;
     flex: 1;
-    margin: 0;
     padding: 0;
-}
-
-.column-container {
-    display: flex;
     flex-direction: column;
-    flex: 1;
     padding: 20px;
     background: radial-gradient(ellipse at center, #dad1c4, #b4a286);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     margin: 10px;
-    max-height: 80vh;
+    margin-bottom: 20px;
 
     box-sizing: border-box;
     overflow-y: auto;
@@ -93,45 +90,40 @@ button:hover {
 
 /* Header */
 header {
-    max-height: 20vh;
-}
-
-#headerContainer {
+    min-height: 70px;
     margin: auto;
     max-width: 1200px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     border-radius: 5px;
     background: radial-gradient(ellipse at center, #e8d9c2, #d3c7aa, #bfae8b);
 }
 
-#headerImage{
-    max-width: 400px;
-    width: 100%;
-    height: auto;
+header h1{
+    font-family: 'Times New Roman', Times, serif;
 }
 
-.header-button {
+header button {
     margin: auto;
-    min-width: 40px;
-    min-height: 40px;
+    width: 60px;
 }
 
 #settings {
-    padding: 10px;
+    display: flex;
+    flex-direction: row;
     margin: auto;
+    padding: 10px;
     width: fit-content;
     display: block;
     border-radius: 5px;
-    background-color: #d3c7aa;
+}
+#settings button {
+    width: 150px;
 }
 
-#saveControls {
-    width: 100%;
-}
 
 /* Left/Right Column */
-
 #propertiesView,
 #upgradesView {
     margin-top: 20px;
