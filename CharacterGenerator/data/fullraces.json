@@ -2,8 +2,8 @@
     "races": [
         {
             "name": "Dragonborn",
-            "maxAge": 80,
-            "minAge": 15,
+            "ageMin": 15,
+            "ageMax": 80,
             "heightMin": 173,
             "heightMax": 208,
             "weightMin": 81,
@@ -16,8 +16,8 @@
         },
         {
             "name": "Dwarf",
-            "maxAge": 350,
-            "minAge": 18,
+            "ageMin": 18,
+            "ageMax": 350,
             "heightMin": 117,
             "heightMax": 142,
             "weightMin": 54,
@@ -30,8 +30,8 @@
         },
         {
             "name": "Elf",
-            "maxAge": 750,
-            "minAge": 100,
+            "ageMin": 100,
+            "ageMax": 750,
             "heightMin": 140,
             "heightMax": 188,
             "weightMin": 35,
@@ -44,8 +44,8 @@
         },
         {
             "name": "Gnome",
-            "maxAge": 400,
-            "minAge": 20,
+            "ageMin": 20,
+            "ageMax": 400,
             "heightMin": 94,
             "heightMax": 109,
             "weightMin": 17,
@@ -58,8 +58,8 @@
         },
         {
             "name": "Half-Elf",
-            "maxAge": 180,
-            "minAge": 20,
+            "ageMin": 20,
+            "ageMax": 180,
             "heightMin": 150,
             "heightMax": 185,
             "weightMin": 65,
@@ -72,8 +72,8 @@
         },
         {
             "name": "Half-Orc",
-            "maxAge": 75,
-            "minAge": 14,
+            "ageMin": 14,
+            "ageMax": 75,
             "heightMin": 152,
             "heightMax": 198,
             "weightMin": 65,
@@ -86,8 +86,8 @@
         },
         {
             "name": "Halfling",
-            "maxAge": 250,
-            "minAge": 20,
+            "ageMin": 20,
+            "ageMax": 250,
             "heightMin": 84,
             "heightMax": 99,
             "weightMin": 17,
@@ -100,8 +100,8 @@
         },
         {
             "name": "Human",
-            "maxAge": 90,
-            "minAge": 18,
+            "ageMin": 18,
+            "ageMax": 90,
             "heightMin": 147,
             "heightMax": 193,
             "weightMin": 52,
@@ -114,8 +114,8 @@
         },
         {
             "name": "Tiefling",
-            "maxAge": 100,
-            "minAge": 18,
+            "ageMin": 18,
+            "ageMax": 100,
             "heightMin": 150,
             "heightMax": 185,
             "weightMin": 65,
