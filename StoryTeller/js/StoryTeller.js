@@ -83,7 +83,7 @@ function storySelected() {
     audioPlayer.attachButton(audioButton);
 
     //change design
-    customStylesheet.href = `data/design/${selectedStory.theme}.css`;
+    customStylesheet.href = `styles/design/${selectedStory.theme}.css`;
 }
 
 //Step 2: submit details to story

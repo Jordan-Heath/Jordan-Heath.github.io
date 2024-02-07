@@ -1,9 +1,10 @@
 body {
-    font-family: 'Cinzel Decorative', cursive;
+    font-family: 'Georgia', fantasy;
     background-color: #4a332e; /* Light yellow background color */
 }
 
 h1 {
+    height: 38px;
     color: #e0d1b2;
     text-shadow: 0 1px 2px var(--drop-shadow);
 }

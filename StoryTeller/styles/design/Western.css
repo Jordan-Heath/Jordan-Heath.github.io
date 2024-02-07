@@ -1,0 +1,64 @@
+body {
+    background: linear-gradient(#faf3e0, #f0e8d0);
+    color: #3a3a3a;
+    font-family: 'Georgia', serif;
+    position: relative;
+}
+
+header {
+    background-color: #5c4033;
+    color: #fff;
+}
+
+h1 {
+    color: #cc9966;
+    font-size: 2em;
+    animation: rotateTitle 2s ease-in-out infinite;
+}
+
+@keyframes rotateTitle {
+    0%, 100% {
+        transform: rotate(5deg);
+    }
+    50% {
+        transform: rotate(-5deg);
+    }
+}
+
+main {
+    padding: 20px;
+}
+
+select,
+option {
+    background-color: #f0e8d0;
+    color: #3a3a3a;
+    font-family: 'Georgia', serif;
+}
+
+button {
+    background-color: #8b4513;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #5c4033;
+}
+
+input[type="text"] {
+    background-color: #d2b48c;
+    color: #3a3a3a;
+    padding: 8px;
+    border: 1px solid #8b4513;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+input[type="text"]:focus {
+    border-color: #5c4033;
+    box-shadow: 0 0 5px rgba(92, 64, 51, 0.5);
+}
