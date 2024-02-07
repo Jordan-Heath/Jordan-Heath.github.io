@@ -8,7 +8,7 @@
             "heightMax": 208,
             "weightMin": 81,
             "weightMax": 166,
-            "subRaces": ["Black [Acid]", "Blue [Lightening]", "Brass [Fire]", "Bronze [Lightening]", "Copper [Acid]", "Gold [Fire]", "Green [Poison]", "Red [Fire]", "Silver [Cold]", "White [Cold]"],
+            "subRaces": ["Black [Acid]", "Blue [Lightning]", "Brass [Fire]", "Bronze [Lightning]", "Copper [Acid]", "Gold [Fire]", "Green [Poison]", "Red [Fire]", "Silver [Cold]", "White [Cold]"],
             "speed": 30,
             "languages" : ["Common", "Draconic"],
             "abilityIncreases" : [  {"name" : "Strength", "value" : 2}, 
