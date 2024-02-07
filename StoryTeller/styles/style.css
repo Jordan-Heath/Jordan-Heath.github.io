@@ -41,7 +41,7 @@ header h1 {
 #homeButton,
 #settingsButton {
   margin: 0;
-  width: 10%;
+  width: 60px;
 }
 #settings {
   max-width: 600px;
