@@ -7,7 +7,7 @@
     <title>Manticore Generator</title>
     <link rel="icon" type="image/x-icon" href="../data/favicon.ico">
     <link rel="stylesheet" href="styles/style.css">
-    <script src="js/script.js"></script>
+    <script defer src="js/script.js"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3533406510685034"
         crossorigin="anonymous"></script>
 </head>
@@ -15,10 +15,24 @@
 <body>
     <header>
         <div class="header-container">
-            <button onclick="location.href='../index.html'" type="button" class="homebtn">&#8592;</button>
+            <button onclick="location.href='../index.html'" type="button">&#8592;</button>
             <h1>Manticore Generator</h1>
+            <button id="settingsButton" onclick="toggleSettings()">&#8801;</button>
+        </div>
+
+        <div id="settingsElement" hidden="true">
+            <div class="TailChanceControl">
+                <label for="TailChance">Chance of Tail: </label>
+                <input type="range" id="tailChance" class="numeric-input" min="0" max="100" value="70">
+            </div>
+
+            <div class="WingChanceControl">
+                <label for="WingsChance">Chance of Wings: </label>
+                <input type="range" id="wingsChance" class="numeric-input" min="0" max="100" value="30">
+            </div>
         </div>
     </header>
+    
     <div class="generator">
         <table>
             <tr>
@@ -54,20 +68,7 @@
         </table>
 
         <div id="result"></div>
-        <button id="generateButton">Generate Manticore</button>
-
-        <details>
-            <summary>Settings</summary>
-            <div class="TailChanceControl">
-                <label for="TailChance">Chance of Tail: </label>
-                <input type="range" id="TailChance" class="numeric-input" min="0" max="100" value="70">
-            </div>
-
-            <div class="WingChanceControl">
-                <label for="WingsChance">Chance of Wings: </label>
-                <input type="range" id="WingsChance" class="numeric-input" min="0" max="100" value="30">
-            </div>
-        </details>
+        <button id="generateButton" onclick="UpdateResult()">Generate Manticore</button>
     </div>
 </body>
 

@@ -5,13 +5,16 @@ let bodies = [];
 let hinds = [];
 let tails = [];
 let wings = [];
+
 //values
 let SelectedHead = "";
 let SelectedBody = "";
 let SelectedHind = "";
 let SelectedTail = "";
 let SelectedWing = "";
+
 //page elements
+let settingsElement = document.getElementById("settingsElement");
 let generateButton = document.getElementById("generateButton");
 let headElement = document.getElementById("head");
 let bodyElement = document.getElementById("body");
@@ -23,8 +26,8 @@ let bodyCheckboxElement = document.getElementById("bodyCheckbox");
 let hindCheckboxElement = document.getElementById("hindCheckbox");
 let tailCheckboxElement = document.getElementById("tailCheckbox");
 let wingCheckboxElement = document.getElementById("wingCheckbox");
-let TailChanceElement = document.getElementById("TailChance");
-let WingChanceElement = document.getElementById("WingsChance");
+let tailChanceElement = document.getElementById("tailChance");
+let wingChanceElement = document.getElementById("wingsChance");
 
 function randomArrayValue(array) {
     return array[Math.floor(Math.random() * array.length)];
@@ -34,13 +37,12 @@ function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function convertToBingImagesLink(animal, bodypart) {
-    if (animal == "None") {
-        return "None";
-    }
-    // I dont want to include the specific part of the body in the image search
-    //return "<a href=\"https://www.bing.com/images/search?q=" + animal.replace(/\s/g, '+') + "+" + bodypart + "+animal\" target=\"_blank\">" + animal + "</a>";
-    return "<a href=\"https://www.bing.com/images/search?q=" + animal.replace(/\s/g, '+') + "+animal\" target=\"_blank\">" + animal + "</a>";
+function toggleSettings() {
+    settingsElement.hidden = !settingsElement.hidden;
+}
+
+function convertToBingImagesLink(animal, bodypart) { // I dont want to include the specific part of the body in the image search
+    return animal !== "None" ? `<a href=\"https://www.bing.com/images/search?q=${animal.replace(/\s/g, '+')}+animal" target="_blank">${animal}</a>` : "None";
 }
 
 async function LoadAsync() {
@@ -81,7 +83,7 @@ function UpdateResult() {
         SelectedHind = randomArrayValue(hinds);
     }
     if (!tailCheckboxElement.checked) {
-        if (getRandomNumber(0, 100) < TailChanceElement.value) {
+        if (getRandomNumber(0, 100) < tailChanceElement.value) {
             SelectedTail = randomArrayValue(tails);
         }
         else {
@@ -89,7 +91,7 @@ function UpdateResult() {
         }
     }
     if (!wingCheckboxElement.checked) {
-        if (getRandomNumber(0, 100) < WingChanceElement.value) {
+        if (getRandomNumber(0, 100) < wingChanceElement.value) {
             SelectedWing = randomArrayValue(wings);
         }
         else {
@@ -97,7 +99,6 @@ function UpdateResult() {
         }
     }
 
-    //"<a href=\"https://www.bing.com/images/search?q=" +  + "\" target=\"_blank\">" +  + "</a>";
     headElement.innerHTML = convertToBingImagesLink(SelectedHead, "Head");
     bodyElement.innerHTML = convertToBingImagesLink(SelectedBody, "Body");
     hindElement.innerHTML = convertToBingImagesLink(SelectedHind, "Hind");
@@ -106,21 +107,6 @@ function UpdateResult() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    generateButton = document.getElementById("generateButton");
-    headElement = document.getElementById("head");
-    bodyElement = document.getElementById("body");
-    hindElement = document.getElementById("hind");
-    tailElement = document.getElementById("tail");
-    wingElement = document.getElementById("wings");
-    headCheckboxElement = document.getElementById("headCheckbox");
-    bodyCheckboxElement = document.getElementById("bodyCheckbox");
-    hindCheckboxElement = document.getElementById("hindCheckbox");
-    tailCheckboxElement = document.getElementById("tailCheckbox");
-    wingCheckboxElement = document.getElementById("wingCheckbox");
-    TailChanceElement = document.getElementById("TailChance");
-    WingChanceElement = document.getElementById("WingsChance");
-
-
     LoadAsync();
 
     generateButton.addEventListener("click", () => {

@@ -1,3 +1,4 @@
+/* General */
 :root {
     --Black: #000;
     --White: #fff;
@@ -20,12 +21,13 @@ body {
     padding: 0;
 }
 
+/* header */
 header {
     background-color: var(--IndigoDye);
-    padding: 1rem 0;
+    padding: 16px 0;
 }
 
-.header-container {
+header .header-container {
     margin: auto;
     max-width: 600px;
     display: flex;
@@ -34,13 +36,33 @@ header {
     text-align: center;
 }
 
-.homebtn {
-    margin: 0px;
-    width: 10%;
+header button,
+#buttonFiller {
+  margin: 0px;
+  width: 60px;
 }
 
-h1 {
-    margin: 0 20% 0 5%;
+header h1 {
+    margin: auto;
+}
+
+header #settings {
+    display: none;
+}
+
+.TailChanceControl,
+.WingChanceControl {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.TailChanceControl input,
+.WingChanceControl input {
+    padding: 0 0 0 0;
+    font-size: 16px;
+    user-select: none;
+    min-width: 100px;
 }
 
 .generator {
@@ -60,7 +82,7 @@ button {
     border: none;
     border-radius: 6px;
     padding: 10px 20px;
-    margin: 10px auto;
+    margin: 10px auto 0px;
     cursor: pointer;
 }
 
@@ -118,13 +140,7 @@ td:nth-child(2) {
 th:nth-child(3),
 td:nth-child(3) {
     width: 10%;
-}
-
-footer {
     text-align: center;
-    padding: 10px;
-    position: sticky;
-    bottom: 0;
 }
 
 a {
@@ -135,24 +151,5 @@ a {
 
 a:hover {
     text-decoration: underline;
-    cursor: pointer;
-}
-
-.TailChanceControl,
-.WingChanceControl {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    text-align: center;
-}
-
-.TailChanceControl input,
-.WingChanceControl input {
-    padding: 0 0 0 0;
-    font-size: 16px;
-    user-select: none;
-    min-width: 100px;
-}
-
-summary:hover {
     cursor: pointer;
 }
