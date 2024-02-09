@@ -1,13 +1,20 @@
+:root {
+    --night-background: linear-gradient(to bottom, rgb(12, 20, 69), rgb(0, 0, 0));
+    --night-text: #f0f0f0;
+
+    --day-background: linear-gradient(to bottom, #87cfeb, #ffffff);
+    --day-text: #000000;
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     overflow: hidden;
-    padding: 0;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    justify-content: center;
-    align-items: center;
+    transition: all 1s ease;
 }
 
 .content {
@@ -17,29 +24,13 @@ body {
     justify-content: center;
 }
 
-.percentage {
-    font-size: 3rem;
-}
-
-.footer {
-    text-align: center;
-    padding: 10px;
-    position: sticky;
-    bottom: 0;
-}
-
-.animated {
-    transition: transform 0.5s ease;
-    background-color: hsl(240, 100%, 50%);
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
-    border-radius: 50%;
-    filter: hue-rotate(45deg) brightness(1.5) contrast(1.2);
-}
-
 #percentage {
+    color: inherit;
     cursor: pointer;
     font-size: 3rem;
-    animation: spinAnimation 8s infinite;
+    font-weight: normal;
+    border-radius: 50%;
+    filter: hue-rotate(45deg) brightness(1.5) contrast(1.2);
 }
 
 @keyframes spinAnimation {
@@ -67,4 +58,49 @@ body {
     87.5% {
         transform: scale(1.0) rotate(-15deg);
     }
+}
+
+/* time effects */
+#moon {
+    position: absolute;
+    transform: translateX(-50%);
+    width: 10vh;
+    height: 10vh;
+    /* background-image: url('../data/moontexture.png');
+    background-blend: multiply;*/
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(240, 240, 240, 0.5);
+    animation: moonAnimation 8s infinite;
+    transition: all 1s ease;
+
+    top: 10vh; /* Adjust the moon's position from the top */
+    left: 50%; /* Place the moon horizontally in the center */
+}
+
+@keyframes moonAnimation {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(240, 240, 240, 0.5);
+    }
+    25%, 75% {
+        box-shadow: 0 0 20px rgba(240, 240, 240, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(240, 240, 240, 0.5);
+    }
+}
+
+
+.dawn {
+    background: radial-gradient(ellipse at left, rgba(255, 230, 0, 0.3) 0%, rgba(255, 255, 255, 0) 75%);
+}
+
+.day {
+    background: var(--day-background);
+    color: var(--day-text);
+}
+
+.night {
+    background: var(--night-background);
+    color: var(--night-text);
 }
