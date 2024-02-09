@@ -41,11 +41,18 @@ function buyProperty(propertyId) {
 
 function buyUpgrade(upgradeid) {
     //find the upgrade
-    const upgrade = data.upgrades.find((u) => u.id === upgradeid);
+    let foundUpgrade;
+    data.properties.forEach(property => {
+        property.upgrades.forEach(upgrade => {
+            if (upgrade.id === upgradeid)
+                foundUpgrade = upgrade;
+        });
+    });
+    
 
     //make the transaction
-    if (upgrade && player.money >= upgrade.cost) {
-        player.money -= upgrade.cost;
+    if (foundUpgrade && player.money >= foundUpgrade.cost) {
+        player.money -= foundUpgrade.cost;
         player.ownedUpgrades[upgradeid] = true;
 
         //upgrade data/page

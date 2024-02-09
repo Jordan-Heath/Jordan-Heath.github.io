@@ -16,7 +16,7 @@ function updatePageView() {
 // Header
 function toggleSettings() {
     settings = document.getElementById("settings");
-    settings.style.display === 'none' ? settings.style.display = 'block' : settings.style.display = 'none';
+    settings.style.display === 'none' ? settings.style.display = 'flex' : settings.style.display = 'none';
 }
 
 // Left Column
@@ -102,6 +102,9 @@ function sendMessage(message) {
 
 // Mobile Control
 function showMenu(menu){
+    //force buttons visible to prevent breaking when resizing
+    //document.getElementById('footer').style.display = "flex";
+
     //load columns
     var leftColumn = document.getElementById('leftColumn');
     var middleColumn = document.getElementById('middleColumn');
@@ -113,27 +116,27 @@ function showMenu(menu){
     var rightButton = document.getElementById('rightFooterButton');
 
     //reset columns
-    leftColumn.style.display = 'none';
-    middleColumn.style.display = 'none';
-    rightColumn.style.display = 'none';
+    leftColumn.classList.add('mobile-hidden');
+    middleColumn.classList.add('mobile-hidden');
+    rightColumn.classList.add('mobile-hidden');
 
     //reset buttons
-    leftButton.style.backgroundColor = '';
-    middleButton.style.backgroundColor = '#a38769';
-    rightButton.style.backgroundColor = '';
+    leftButton.classList.remove('selected-footer-button');
+    middleButton.classList.remove('selected-footer-button');
+    rightButton.classList.remove('selected-footer-button');
 
     switch (menu) {
         case 'properties':
-            leftButton.style.backgroundColor = '#8c6d4f';
-            leftColumn.style.display = 'flex';
+            leftButton.classList.add('selected-footer-button');
+            leftColumn.classList.remove('mobile-hidden');
             break;
         case 'home':
-            middleButton.style.backgroundColor = '#8c6d4f'
-            middleColumn.style.display = 'flex';
+            middleButton.classList.add('selected-footer-button');
+            middleColumn.classList.remove('mobile-hidden');
             break;
         case 'upgrades':
-            rightButton.style.backgroundColor = '#8c6d4f'
-            rightColumn.style.display = 'flex';
+            rightButton.classList.add('selected-footer-button');
+            rightColumn.classList.remove('mobile-hidden');
             break;
     }
 }

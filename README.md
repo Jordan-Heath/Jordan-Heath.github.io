@@ -108,11 +108,6 @@ I created this a while ago to replicate a peculiar mode of speech I was exposed 
 - [Paper Texture](https://pixabay.com/photos/paper-old-texture-parchment-1074131/)
 - Races, Classes and some backgrounds are from D&D.
 
-
-### Idle Landlord
-- [background Image](https://pixabay.com/photos/peeling-paint-abstract-old-aged-3562445/)
-
-
 ### Manticore Generator
 - Original Concept : Brin
 - [Original Animal List](https://gist.github.com/atduskgreg/3cf8ef48cb0d29cf151bedad81553a54)
