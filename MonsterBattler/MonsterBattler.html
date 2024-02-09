@@ -1,0 +1,123 @@
+<html>
+
+<head>
+    <title>Our Funky HTML Page</title>
+    <meta name="description" content="Our first page">
+    <meta name="keywords" content="html tutorial template">
+</head>
+
+<body>
+    <main id="battle">
+        <div id="enemyBattler">
+            <div>
+                <h2 id="monsterName">Monster</h2>
+                <p id="monsterDetails"></p>
+                <div id="monsterHealthBar"></div>
+            </div>
+            <div>
+                <img id="monsterImage">
+            </div>
+        </div>
+        <div id="playerBattler">
+            <div>
+                <img id="playerImage">
+            </div>
+            <div>
+                <h2 id="playerName">PlayerMonster</h2>
+                <p id="playerDetails"></p>
+                <div id="playerHealthBar"></div>
+            </div>
+        </div>
+    </main>
+
+    <main id="lure" style="display: flex; flex-direction: column;">
+        <h2 id="LureHeading">
+            <!--Luring Monster...
+                ${} has joined the party!
+            -->
+        </h2>
+        <img id="luredMonster">
+        <p>${description}</p>
+    </main>
+
+    <main id="menu">
+        <div id="MainMenu">
+            <!--What to do next:
+                Battle,
+                Lure Monsters,
+                Manage Party,
+                View Monsters,
+                View Moncyclopedia
+            -->
+        </div>
+
+        <div id="BattleMenu">
+            <!--Choose Battle Level:
+                Practice (level 1)
+                Beginner (level 1-10)
+                Rookie   (level 11-20)
+                bronze   (level 21-30)
+                silver   (level 31-40)
+                gold     (level 41-50)
+                platinum (level 50)
+                *THIS LEADS TO MAIN.BATTLE*
+            -->
+        </div>
+
+        <div id="LureMenu">
+            <!--Lure Monsters:
+                Apprentice Monster: (1-10)
+                Craftsman Monster: (11-20)
+                Journeyman Monster: (21-30)
+                Master Monster: (31-40)
+                Grandmaster Monster: (41-50)
+                *THIS LEADS TO MAIN.LURE*
+            -->
+        </div>
+
+        <div id="PartyMenu">
+            <!--Player Monster 1
+                Player Monster 2
+                Player Monster 3
+                Player Monster 4
+
+                Back button
+            -->
+        </div>
+
+        <div id="MyMonstersMenu">
+            <!--Monsters:
+                <select sort by>
+                    id number,
+                    level,
+                    evolution status,
+                <div style="display:grid, grid-layout="4 columns, etc"">
+                    monster 1
+                    monster 2...
+                </div>
+
+                Back button
+            -->
+        </div>
+
+        <div id="MoncyclopediaMenu">
+            <!--
+                a grid of all monsters
+                if a monster has been found, show it
+                clicking a monster applies .monster:clicked and shows the monster's type, description, etc
+
+                entry:
+                <div class="monster">
+                    <h3>Monster Name</h3>
+                    <p>Monster Type: ###</p>
+                    <p>description</p>
+                </div>
+                ...
+
+                Back button
+            -->
+        </div>
+    </main>
+</body>
+
+</html>
