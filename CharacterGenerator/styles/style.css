@@ -18,8 +18,8 @@
 }
 
 body {
-  background-color: var(--Almond);
   /* Backup color */
+  background-color: var(--Almond);
   background-image: url("../data/background.jpeg");
   background-repeat: no-repeat;
   background-attachment: fixed;
