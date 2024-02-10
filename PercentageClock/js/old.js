@@ -30,7 +30,7 @@ function toggleOldMode() {
     }
 }
 
-function oldBehaviour (percentage) {
+function oldBehaviour (percentage, totalSeconds) {
     moonElement.style.display = 'none';
     body.style.background = '';
 

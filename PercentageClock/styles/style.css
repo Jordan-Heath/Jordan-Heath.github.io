@@ -20,7 +20,9 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     overflow: hidden;
-    padding: 10px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    padding: 0;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -128,11 +130,18 @@ body {
     }
 }
 
+#mountainsContainer,
+#cloudsContainer,
+#starsContainer {
+    width: 100%;
+    overflow-x: hidden;
+}
+
 .mountains,
 .clouds, 
 #stars {
     position: absolute;
-    width: 200%;
+    width: 100%;
     background-repeat: repeat-x;
     z-index: 1;
 }
@@ -159,7 +168,7 @@ body {
 
     height: 60vh;
     animation: parallax 60s linear infinite;
-    background-size: contain;
+    background-size: 100vh 50vh;
 }
 
 #backMountains,
@@ -167,46 +176,60 @@ body {
     background-position-x: -50vw;
     height: 50vh;
     animation: parallax 40s linear infinite;
-    background-size: contain;
+    background-size: 100vh 50vh;
 }
 
 #frontMountains,
 #frontClouds {
     height: 35vh;
-    animation: parallax 30s linear infinite;
-    background-size: contain;
+    animation: offsetParallax 30s linear infinite;
+    background-size: 100vh 35vh;
 }
 
 @keyframes parallax  {
     from {
-        left: -100%;
+        background-position-x: -100vh;
         /* Initial position */
     }
 
     to {
-        left: 0%;
+        background-position-x: 0vh;
+        /* Move background image to the right */
+    }
+}
+
+@keyframes offsetParallax {
+    from {
+        background-position-x: -50vh;
+        /* Initial position */
+    }
+
+    to {
+        background-position-x: 50vh;
         /* Move background image to the right */
     }
 }
 
 header {
+    margin: 10px;
     z-index: 1000;
 }
 
 
 /* mobile options */
-@media only screen and (max-width: 720px) {
-    .mountains,
-    .clouds,
+@media only screen and (max-width: 1000px) {
+    /*#backMountains,
+    #frontMountains,
+    #backClouds ,
+    #frontClouds ,
     #stars {
-        width: 400%;
-    }
+        background-size: cover;
+    }*/
 }
 
 @media only screen and (max-width: 480px) {
-    .mountains,
-    .clouds,
-    #stars {
-        width: 600%;
+    html {
+        overflow-x: hidden;
+        overflow-y: hidden;
     }
 }

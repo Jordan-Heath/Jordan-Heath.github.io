@@ -28,7 +28,7 @@ let timeoffset;
 function update() {
     //calculate percentage
     const now = new Date();
-    const totalMilliseconds = now.getMilliseconds() + now.getSeconds() * 1000;
+    //const totalMilliseconds = now.getMilliseconds() + now.getSeconds() * 1000;
     //const delay = 1000 - (totalMilliseconds % 1000);
     const totalSeconds = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
     let percentage = (totalSeconds / (24 * 60 * 60)) * 100;
@@ -49,12 +49,19 @@ function update() {
 
     //background color
     if (isOldBehaviour) {
-        oldBehaviour(percentage)
-    } else {
-        updateBackground(percentage);
+        const totalMilliseconds = now.getMilliseconds() + now.getSeconds() * 1000;
+        const delay = 1000 - (totalMilliseconds % 1000);
+
+        oldBehaviour(percentage, totalSeconds)
+
+        percentageElement.textContent = `${percentage.toFixed(3)}%`;
+        setTimeout(update, delay);
+        return;
     }
 
+    updateBackground(percentage);
     percentageElement.textContent = `${percentage.toFixed(3)}%`;
+
     setTimeout(update, updateFrequency);
 }
 
