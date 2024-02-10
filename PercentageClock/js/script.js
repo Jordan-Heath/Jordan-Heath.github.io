@@ -86,24 +86,27 @@ function dawnTime(percentage) {
     dawnPercentage = getDawnPercentage(percentage); //converts 20-25 to 0-100
     inverseDawnPercentage = 1 - dawnPercentage; //inverts 0-100 to 100-0
 
-    let sunsetBrightness = 125 * dawnPercentage; //brighten over time
+    let sunriseBrightness = 60 * dawnPercentage; //brighten over time
     let textBrightness = 256 * inverseDawnPercentage; //darken over time
     let opacity = (-4 * Math.pow(dawnPercentage, 2) + 4 * dawnPercentage) * maxSunsetSunriseIntensity;
     //parabola generated from: https://www.analyzemath.com/parabola/three_points_para_calc.html
 
     body.style.color = `rgb(${textBrightness}, ${textBrightness}, ${textBrightness})`
 
-    //fade in day from 22.5
-    //fade out night time linearly
-    //add a red glow to the middle, peaking at 22.5
+    let fadeInValue = (3*dawnPercentage - 1)/2;
+    let fadeOutValue = (3*inverseDawnPercentage - 1)/2;
+
+    //add a red glow to the middle, peaking at mid-dawn
+    //fade in day
+    //fade out night
     body.style.background = 
-       `linear-gradient(to bottom, #00000000, rgba(255, ${sunsetBrightness}, 0, ${opacity}), #00000000),
-        linear-gradient(to bottom, rgb(135, 207, 235, ${2 * dawnPercentage - 1}), rgb(255, 255, 255, ${2 * dawnPercentage - 1})),
-        linear-gradient(to bottom, rgb(12, 20, 69, ${inverseDawnPercentage}), rgb(0, 0, 0, ${inverseDawnPercentage}))`; 
+       `linear-gradient(to bottom, transparent, rgba(255, ${sunriseBrightness}, 0, ${opacity}), transparent),
+        linear-gradient(to bottom, rgb(135, 207, 235, ${fadeInValue}), rgb(255, 255, 255, ${fadeInValue})),
+        linear-gradient(to bottom, rgb(12, 20, 69, ${fadeOutValue}), rgb(0, 0, 0, ${fadeOutValue}))`; 
 
     //fade in clouds
-    cloudsContainer.style.opacity = `${dawnPercentage}`;
-    starsContainer.style.opacity = `${inverseDawnPercentage}`;
+    cloudsContainer.style.opacity = `${fadeInValue}`;
+    starsContainer.style.opacity = `${fadeOutValue}`;
 }
 
 function dayTime(percentage) {
@@ -120,24 +123,27 @@ function duskTime(percentage) {
     duskPercentage = getDuskPercentage(percentage); //converts 75-80 to 0-100
     inverseDuskPercentage = 1 - duskPercentage; //inverts 0-100 to 100-0
 
-    let brightness = 125 * duskPercentage; //brighten over time
+    let sunsetBrightness = 60 * duskPercentage; //brighten over time
     let textBrightness = 255 * duskPercentage; //brighten over time
     let opacity = -1.2 * Math.pow(duskPercentage, 2) + 1.2 * duskPercentage;
     //parabola generated from: https://www.analyzemath.com/parabola/three_points_para_calc.html
 
     body.style.color = `rgb(${textBrightness}, ${textBrightness}, ${textBrightness})`
 
-    //fade in night time linearly
-    //fade in night from 77.5
-    //add a red glow to the middle, peaking at 77.5
+    let fadeInValue = (3*duskPercentage - 1)/2;
+    let fadeOutValue = (3*inverseDuskPercentage - 1)/2;
+
+    //add a red glow to the middle, peaking at mid-dusk
+    //fade in night
+    //fade out day
     body.style.background = 
-       `linear-gradient(to bottom, #00000000, rgba(255, ${brightness}, 0, ${opacity}), #00000000),
-        linear-gradient(to bottom, rgb(12, 20, 69, ${duskPercentage}), rgb(0, 0, 0, ${duskPercentage})),
-        linear-gradient(to bottom, rgb(135, 207, 235, ${2 * inverseDuskPercentage}), rgb(255, 255, 255, ${2 * inverseDuskPercentage}))`; 
+       `linear-gradient(to bottom, transparent, rgba(255, ${sunsetBrightness}, 0, ${opacity}), transparent),
+        linear-gradient(to bottom, rgb(12, 20, 69, ${fadeInValue}), rgb(0, 0, 0, ${fadeInValue})),
+        linear-gradient(to bottom, rgb(135, 207, 235, ${fadeOutValue}), rgb(255, 255, 255, ${fadeOutValue}))`; 
 
     //fade out clouds
-    cloudsContainer.style.opacity = `${inverseDuskPercentage}`;
-    starsContainer.style.opacity = `${duskPercentage}`;
+    cloudsContainer.style.opacity = `${fadeOutValue}`;
+    starsContainer.style.opacity = `${fadeInValue}`;
 }
 
 function nightTime(percentage) {
@@ -182,7 +188,7 @@ function updateSun(percentage) {
     let y = (0.016 * Math.pow(x, 2)) - (1.6 * x) + 50;
     //parabola generated from: https://www.analyzemath.com/parabola/three_points_para_calc.html
 
-    let size = `${y / 10 + 2}vh`;
+    let size = `${y / 7 + 2}vh`;
 
     //if (size > 200) size = 200;
     sunElement.style.width = size;
