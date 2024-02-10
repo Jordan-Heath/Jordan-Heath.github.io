@@ -24,7 +24,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    transition: all 1s ease;
+    transition: background 1.1s ease;
 }
 
 .content {
@@ -44,27 +44,36 @@ body {
 }
 
 @keyframes textAnimation {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1.1) rotate(15deg);
     }
+
     12.5% {
         transform: scale(1.2) rotate(-15deg);
     }
+
     25% {
         transform: scale(0.9) rotate(375deg);
     }
+
     37.5% {
         transform: scale(1.0) rotate(345deg);
     }
+
     50% {
         transform: scale(1.1) rotate(375deg);
     }
+
     62.5% {
         transform: scale(1.2) rotate(345deg);
     }
+
     75% {
         transform: scale(0.9) rotate(15deg);
     }
+
     87.5% {
         transform: scale(1.0) rotate(-15deg);
     }
@@ -73,40 +82,131 @@ body {
 /* time effects */
 #moon {
     position: absolute;
-    transform: translateX(-50%);
-    width: 10vh;
-    height: 10vh;
-    /* background-image: url('../data/moontexture.png');
-    background-blend: multiply;*/
-    background-color: #f0f0f0;
+    transform: translate(-50%, -50%);
+    background-color: rgb(240, 240, 240);
     border-radius: 50%;
     box-shadow: 0 0 20px rgba(240, 240, 240, 0.5);
     animation: moonAnimation 8s infinite;
-    transition: all 0.1s ease;
-
-    top: 10vh; /* Adjust the moon's position from the top */
-    left: 50%; /* Place the moon horizontally in the center */
+    transition: all 1.1s ease;
 }
 
 @keyframes moonAnimation {
-    0%, 100% {
-        box-shadow: 0 0 10px rgba(240, 240, 240, 0.5);
+    0%,
+    100% {
+        box-shadow: 0 0 10px rgba(200, 240, 240, 0.5);
     }
-    25%, 75% {
-        box-shadow: 0 0 20px rgba(240, 240, 240, 0.5);
+    25%,
+    75% {
+        box-shadow: 0 0 20px rgba(200, 240, 240, 0.5);
     }
     50% {
-        box-shadow: 0 0 30px rgba(240, 240, 240, 0.5);
+        box-shadow: 0 0 30px rgba(200, 240, 240, 0.5);
     }
 }
 
 #sun {
     position: absolute;
-    transform: translateX(-50%);
-    width: 10vh;
-    height: 10vh;
-    background-color: rgb(255, 204, 0); /* Yellow color for sun lens flare */
+    transform: translate(-50%, -50%);
+    background-color: rgb(255, 204, 0);
     border-radius: 50%;
     box-shadow: 0 0 50px rgba(255, 204, 0, 0.5);
-    transition: all 0.1s ease;
+    animation: sunAnimation 8s infinite;
+    transition: all 1.1s ease;
+}
+
+@keyframes sunAnimation {
+    0%,
+    100% {
+        box-shadow: 0 0 50px rgba(255, 204, 0, 0.5);
+    }
+    25%,
+    75% {
+        box-shadow: 0 0 70px rgba(200, 240, 240, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(200, 240, 240, 0.5);
+    }
+}
+
+.mountains,
+.clouds, 
+#stars {
+    position: absolute;
+    width: 200%;
+    background-repeat: repeat-x;
+    z-index: 1;
+}
+
+.mountains {
+    bottom: 0;
+    background: url('../images/mountains.png');
+    background-position: left bottom;
+    opacity: 0.2;
+}
+
+.clouds {
+    top: 0;
+    background: url('../images/clouds.png');
+    background-position: left top;
+    opacity: 0.2;
+}
+
+#stars {
+    top: 0;
+    background: url('../images/stars.png');
+    background-position: left top;
+    opacity: 0.5;
+
+    height: 60vh;
+    animation: parallax 60s linear infinite;
+    background-size: contain;
+}
+
+#backMountains,
+#backClouds {
+    background-position-x: -50vw;
+    height: 50vh;
+    animation: parallax 40s linear infinite;
+    background-size: contain;
+}
+
+#frontMountains,
+#frontClouds {
+    height: 35vh;
+    animation: parallax 30s linear infinite;
+    background-size: contain;
+}
+
+@keyframes parallax  {
+    from {
+        left: -100%;
+        /* Initial position */
+    }
+
+    to {
+        left: 0%;
+        /* Move background image to the right */
+    }
+}
+
+header {
+    z-index: 1000;
+}
+
+
+/* mobile options */
+@media only screen and (max-width: 720px) {
+    .mountains,
+    .clouds,
+    #stars {
+        width: 400%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .mountains,
+    .clouds,
+    #stars {
+        width: 600%;
+    }
 }
