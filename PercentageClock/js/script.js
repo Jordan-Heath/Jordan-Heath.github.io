@@ -154,28 +154,6 @@ function nightTime(percentage) {
     body.classList = 'night';
 }
 
-function updateMoon(percentage) {
-    if (!isNight(percentage)) {
-        moonElement.style.display = 'none';
-        return;
-    }
-    moonElement.style.display = 'block';
-    let nightPercentage = getNightPercentage(percentage);
-
-    let x = nightPercentage * 120 - 10;
-    let y = (0.016 * Math.pow(x, 2)) - (1.6 * x) + 50;
-    //parabola generated from: https://www.analyzemath.com/parabola/three_points_para_calc.html
-
-    let size = `${y / 10 + 2}vh`;
-
-    //if (size > 200) size = 200;
-    moonElement.style.width = size;
-    moonElement.style.height = size;
-    
-    moonElement.style.left = `${x}%`;
-    moonElement.style.top = `${y}vh`;
-}
-
 function updateSun(percentage) {
     if (!isDay(percentage)) {
         sunElement.style.display = 'none';
@@ -188,14 +166,36 @@ function updateSun(percentage) {
     let y = (0.016 * Math.pow(x, 2)) - (1.6 * x) + 50;
     //parabola generated from: https://www.analyzemath.com/parabola/three_points_para_calc.html
 
-    let size = `${y / 7 + 2}vh`;
+    let size = `${20 - (y / 10)}vh`
 
     //if (size > 200) size = 200;
     sunElement.style.width = size;
     sunElement.style.height = size;
     
-    sunElement.style.left = `${x}%`;
+    sunElement.style.left = `${x}vw`;
     sunElement.style.top = `${y}vh`;
+}
+
+function updateMoon(percentage) {
+    if (!isNight(percentage)) {
+        moonElement.style.display = 'none';
+        return;
+    }
+    moonElement.style.display = 'block';
+    let nightPercentage = getNightPercentage(percentage);
+
+    let x = nightPercentage * 110 -5;
+    let y = (0.016 * Math.pow(x, 2)) - (1.6 * x) + 50;
+    //parabola generated from: https://www.analyzemath.com/parabola/three_points_para_calc.html
+
+    let size = `${16 - 0.8*(y / 10)}vh`
+
+    //if (size > 200) size = 200;
+    moonElement.style.width = size;
+    moonElement.style.height = size;
+    
+    moonElement.style.left = `${x}vw`;
+    moonElement.style.top = `${y}vh`;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
