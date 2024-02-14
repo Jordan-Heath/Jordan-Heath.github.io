@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Collector</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+
+    <link rel="icon" type="image/x-icon" href="../data/favicon.ico">
+    <link rel="stylesheet" href="styles/style.css">
+
+    <script src="js/constants.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/model.js"></script>
+    <script src="js/view.js"></script>
+    <script src="js/controller.js"></script>
+    <script defer src="js/main.js"></script>
+</head>
+
+<body>
+    <main id="mainView">
+        <div id="backgroundLayers"></div>
+
+        <button class="topLeftButton" id="menuButton">&#8801;</button>
+
+        <div id="menu" hidden>
+            <button id="collectionMenuButton">View Collection</button>
+            <button id="shopMenuButton">Shop</button>
+            <button id="mapMenuButton">Map</button>
+            <button id="exitButton" onclick="location.href='../index.html'">Exit</button>
+        </div>
+
+        <div id="playerDetails">
+            <p>Money: $<span id="money">0</span></p>
+        </div>
+
+        <div id="messageOutput"></div>
+    </main>
+
+    <!-- displays over collectView -->
+    <main id="collectionView" hidden>
+        <button class="topLeftButton" id="closeCollectionButton">&#8592;</button>
+
+        <div id="collectablesGrid"></div>
+    </main>
+
+    <main id="shopView" hidden>
+        <button class="topLeftButton" id="closeShopButton">&#8592;</button>
+    </main>
+
+    <main id="mapView" hidden>
+        <button class="topLeftButton" id="closeMapButton">&#8592;</button>
+        <!-- lets you travel to new locations -->
+    </main>
+</body>
+
+</html>
+
+<!doctype html>
