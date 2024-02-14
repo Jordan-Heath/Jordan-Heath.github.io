@@ -162,6 +162,8 @@ body {
         right: 0;
 
         padding: 10px;
+
+        background-color: #99999999;
     }
 
     #messageOutput {
@@ -348,7 +350,7 @@ body {
     height: 80vh;
     transform: translate(-50%, -50%);
 
-    background: #fff;
+    background: #555555dd;
 
     .topLeftButton {
         position: inherit;
@@ -368,7 +370,7 @@ body {
     height: 80vh;
     transform: translate(-50%, -50%);
 
-    background: #fff;
+    background: #555555dd;
 
     .topLeftButton {
         position: inherit;

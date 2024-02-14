@@ -54,3 +54,17 @@ function CreateCollectableTable(collectable) {
 
     return table;
 }
+
+
+function convertToCurrency(number) {
+    // Splitting the number into integer and decimal parts
+    const integerPart = Math.floor(number);
+
+    // Converting integer part into gold, silver, and copper
+    const platinum = Math.floor(integerPart / 10000);
+    const gold = Math.floor((integerPart % 10000) / 100);
+    const silver = integerPart % 100;
+    const copper = Math.floor((number - integerPart).toFixed(2) * 100);
+
+    return `${platinum > 0 ? `${platinum} platinum, ` : ''}${gold > 0 ? `${gold} gold, ` : ''}${silver > 0 ? `${silver} silver, ` : ''}${copper > 0 ? `${copper} copper` : ''}`;
+}

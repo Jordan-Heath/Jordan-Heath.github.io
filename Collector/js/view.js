@@ -4,7 +4,7 @@ class View {
     }
 
     Update(model, collectable) {
-        money.innerText = Round(model.money);
+        money.innerText = convertToCurrency(model.money);
 
         messageOutput.innerHTML = "";
         if (collectable.rarity > 2)
