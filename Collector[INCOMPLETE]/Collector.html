@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Our Funky HTML Page</title>
+    <meta name="description" content="Our first page">
+    <meta name="keywords" content="html tutorial template">
+
+    <link rel="stylesheet" href="styles/style.css">
+
+    <script src="js/constants.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/model.js"></script>
+    <script src="js/view.js"></script>
+    <script src="js/controller.js"></script>
+    <script defer src="js/main.js"></script>
+</head>
+
+<body>
+    <main id="mainView">
+        <div id="backgroundLayers"></div>
+
+        <button class="topLeftButton" id="menuButton">&#8801;</button>
+        <div id="menu" hidden>
+            <button id="collectionMenuButton">View Collection</button>
+            <button id="shopMenuButton">Shop</button>
+        </div>
+
+        <div id="playerDetails">
+            <p>Money: $<span id="money">0</span></p>
+        </div>
+
+        <div id="messageOutput"></div>
+    </main>
+
+    <!-- displays over collectView -->
+    <main id="collectionView" hidden>
+        <button class="topLeftButton" id="closeCollectionButton">&#8592;</button>
+
+        <div id="collectablesGrid"></div>
+
+        <div id="collectionViewControls">
+            <button id="sellDuplicatesButton">Sell Duplicates</button>
+            
+        </div>
+    </main>
+
+    <main id="shopView" hidden>
+        <button class="topLeftButton" id="closeShopButton">&#8592;</button>
+    </main>
+</body>
+
+</html>
+
+<!doctype html>
