@@ -5,12 +5,21 @@ Explore My Collection of Projects. Most of my work is not shared publicly. This 
 
 ## Incomplete Projects
 
+### [Collector](Collector/Collector.html)
+
+PLAYABLE ROUGH DRAFT. Intended to be an idle collection game.
+
+### [Monster Battler](MonsterBattler/MonsterBattler.html)
+
+EMPTY PAGE. Intended to be a pokemon type fighter.
+
+### [War Wager](WarWager/WarWager.html)
+
+EMPTY PAGE. Intended to be an autobattler.
+
 ### [RPG Chat](RPGchat/RPGchat.html)
 
-WORK IN PROGRESS. Intended to be a short interactive story with procedural elements.
-
-- [x] RPG elements
-
+ROUGH DESIGN, NOT PLAYABLE. Intended to be a short interactive story with procedural elements.
 
 ## Completed Projects
 
