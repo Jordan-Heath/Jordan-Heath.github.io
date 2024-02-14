@@ -44,7 +44,7 @@ class Controller {
 
     OpenCollectionView() {
         menu.hidden = true;
-        this.view.
+        //this.view.;
         collectionView.hidden = false;
     }
 

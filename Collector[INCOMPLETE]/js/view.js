@@ -57,6 +57,6 @@ class View {
     }
 
     UpdateCollectionView() {
-        if (this.collectables )
+        if (this.collectables );
     }
 }
