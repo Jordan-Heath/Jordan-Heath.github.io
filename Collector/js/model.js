@@ -10,25 +10,35 @@ class Model {
     }
 
     InitializeCollectables() {
-        this.collectables.push(new Collectable("junk", "penny", "Penny", 0, 0.01));
-        this.collectables.push(new Collectable("junk", "stick", "Stick", 0, 0.01));
-        this.collectables.push(new Collectable("junk", "rock", "Rock", 0, 0.01));
+        this.collectables.push(new Collectable("junk", "copper", "Copper", 0, 0.01));
+        this.collectables.push(new Collectable("junk", "twig", "Twig", 0, 0.02));
+        this.collectables.push(new Collectable("junk", "pebble", "Pebble", 0, 0.03));
 
-        this.collectables.push(new Collectable("junk", "nickel", "Nickel", 1, 0.05));
         this.collectables.push(new Collectable("junk", "can", "Can", 1, 0.05));
-        this.collectables.push(new Collectable("junk", "glass", "Glass", 1, 0.05));
+        this.collectables.push(new Collectable("junk", "glass", "Glass", 1, 0.06));
+        this.collectables.push(new Collectable("junk", "chip", "Chip", 1, 0.07));
 
-        this.collectables.push(new Collectable("junk", "dime", "Dime", 2, 0.1));
+        this.collectables.push(new Collectable("junk", "dollar", "Foreign Currency", 2, 0.10));
+        this.collectables.push(new Collectable("junk", "cigbutt", "Ciggerette Butt", 2, 0.12));
+        //this.collectables.push(new Collectable("junk", "", "", 2, 0));
+
+        this.collectables.push(new Collectable("junk", "silver", "Silver", 3, 1));
+        this.collectables.push(new Collectable("junk", "chips", "Chips", 3, 3.20));
+        this.collectables.push(new Collectable("junk", "lottoticket", "Lotto Ticket", 3, 4.40));
+
+        this.collectables.push(new Collectable("junk", "cig", "Full Ciggerette", 4, 10));
+         //this.collectables.push(new Collectable("junk", "", "", 4, 0));
+         //this.collectables.push(new Collectable("junk", "", "", 4, 0));
+
+        this.collectables.push(new Collectable("junk", "gold", "Gold", 5, 100));
+        //this.collectables.push(new Collectable("junk", "", "", 5, 0));
+
+        //this.collectables.push(new Collectable("junk", "", "", 6, 1000));
+        //this.collectables.push(new Collectable("junk", "", "", 6, 0));
+
+        this.collectables.push(new Collectable("junk", "platinum", "Platinum", 7, 10000));
         //this.collectables.push(new Collectable("junk", "", "", 0, 0));
 
-        this.collectables.push(new Collectable("junk", "quarter", "Quarter", 3, 0.25));
-        //this.collectables.push(new Collectable("junk", "", "", 0, 0));
-
-        this.collectables.push(new Collectable("junk", "dollar", "Dollar", 4, 1));
-
-        
-
-        //this.collectables.push(new Collectable("", "", "", 0, 0));
 
         this.weightedRandomValues = [];
         this.weightedRandomChances = [];

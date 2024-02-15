@@ -1,13 +1,21 @@
 :root {
-    --rarity-empty: grey;
-    --rarity-0: grey;
-    --rarity-1: lightgrey;
-    --rarity-2: green;
-    --rarity-3: blue;
-    --rarity-4: purple;
-    --rarity-5: orange;
-    --rarity-6: gold;
-    --rarity-7: aqua;
+    --rarity-empty: #9d9d9d;
+    --rarity-0: #9d9d9d;
+    /* Poor */
+    --rarity-1: #ffffff;
+    /* Common */
+    --rarity-2: #1eff00;
+    /* Uncommon */
+    --rarity-3: #0070dd;
+    /* Rare */
+    --rarity-4: #a335ee;
+    /* Epic */
+    --rarity-5: #ff8000;
+    /* Legendary */
+    --rarity-6: #e6cc80;
+    /* Artifact */
+    --rarity-7: #00ccff;
+    /* Heirloom */
 
     --button-color: #9bff9e;
     --button-border: #4db050;
@@ -21,15 +29,25 @@ body {
     overflow-x: hidden;
     overflow-y: hidden;
 
+    font-size: 1.25rem;
+
     button {
-        padding: 0.5rem;
-        margin: 0.5rem;
         background-color: var(--button-color);
+        border: 2px solid var(--button-border);
     }
 
     th,
     td {
         text-align: center;
+    }
+
+    .collectableTable {
+        width: 120px;
+        height: 160px;
+
+        th {
+            background-color: #ffffff55;
+        }
     }
 }
 
@@ -134,6 +152,11 @@ body {
         }*/
     }
 
+    #menuButton {
+        width: 80px;
+        height: 80px;
+    }
+
     #menu {
         position: absolute;
 
@@ -148,6 +171,7 @@ body {
 
         button {
             margin: 5px 0;
+            padding: 5px;
             width: 160px;
         }
 
@@ -161,6 +185,7 @@ body {
         top: 0;
         right: 0;
 
+        height: 60px;
         padding: 10px;
 
         background-color: #99999999;
@@ -179,7 +204,7 @@ body {
             animation-iteration-count: 1;
             opacity: 0;
 
-            border-collapse: collapse;
+            border: 2pt solid black;
             border-radius: 5px;
         }
 
@@ -189,15 +214,13 @@ body {
             opacity: 0;
 
             border-radius: 5px;
-
-            padding: 2px;
-            background-color: #fff;
+            border: 1pt solid black;
+            padding: 5px;
         }
     }
-
-    
 }
 
+/*#region Animations*/
 @keyframes characterAnimation {
 
     0%,
@@ -298,6 +321,7 @@ body {
         opacity: 0%;
     }
 }
+/*#endregion Animations*/
 
 #collectionView {
     position: absolute;
@@ -310,7 +334,7 @@ body {
 
     background: #555555dd;
 
-    .topLeftButton {
+    #closeCollectionButton {
 
         width: 50px;
         height: 50px;
@@ -330,14 +354,7 @@ body {
         grid-gap: 1px;
         overflow-y: scroll;
 
-        table {
-            width: 120px;
-            height: 160px;
 
-            th {
-                background-color: #ffffff55;
-            }
-        }
     }
 }
 
@@ -352,7 +369,7 @@ body {
 
     background: #555555dd;
 
-    .topLeftButton {
+    #closeShopButton {
         position: inherit;
         top: 0;
         left: 0;
@@ -372,7 +389,7 @@ body {
 
     background: #555555dd;
 
-    .topLeftButton {
+    #closeMapButton {
         position: inherit;
         top: 0;
         left: 0;

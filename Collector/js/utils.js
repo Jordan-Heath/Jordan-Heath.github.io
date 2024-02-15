@@ -27,7 +27,7 @@ function Round(number) {
 }
 
 function CreateCollectableTable(collectable) {
-    const table = document.createElement("table");
+    const table = document.createElement("table");//    table.className = "collectableTable";
     table.style.backgroundColor = `var(--rarity-${collectable.discovered ? collectable.rarity : 'empty'})`
 
     const nameRow = document.createElement("tr");
@@ -66,5 +66,6 @@ function convertToCurrency(number) {
     const silver = integerPart % 100;
     const copper = Math.floor((number - integerPart).toFixed(2) * 100);
 
-    return `${platinum > 0 ? `${platinum} platinum, ` : ''}${gold > 0 ? `${gold} gold, ` : ''}${silver > 0 ? `${silver} silver, ` : ''}${copper > 0 ? `${copper} copper` : ''}`;
+    return `${platinum > 0 ? `${platinum}🔵 ` : ''}${gold > 0 ? `${gold}🟡 ` : ''}${silver > 0 ? `${silver}⚪ ` : ''}${copper > 0 ? `${copper}🟤` : ''}`;
+    //return `${platinum > 0 ? `${platinum} platinum, ` : ''}${gold > 0 ? `${gold} gold, ` : ''}${silver > 0 ? `${silver} silver, ` : ''}${copper > 0 ? `${copper} copper` : ''}`;
 }

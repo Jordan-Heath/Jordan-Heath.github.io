@@ -7,7 +7,9 @@ class View {
         money.innerText = convertToCurrency(model.money);
 
         messageOutput.innerHTML = "";
-        if (collectable.rarity > 2)
+        if (collectable.numberOwned === 1) {
+            this.showNewCollectable(collectable);
+        } else if (collectable.rarity > 1)
             this.showRareCollectable(collectable);
         else
             this.showCommonCollectable(collectable);
@@ -21,6 +23,7 @@ class View {
         const message = document.createElement("p");
         message.innerHTML = collectable.name;
         message.id = "message";
+        message.style.backgroundColor = `var(--rarity-${collectable.discovered ? collectable.rarity : 'empty'})`
 
         messageOutput.appendChild(message);
     }
@@ -29,6 +32,11 @@ class View {
         const collectableTable = CreateCollectableTable(collectable);
         collectableTable.style.boxShadow = `0px 0px 10px 5px var(--rarity-${collectable.rarity})`;
         messageOutput.appendChild(collectableTable);
+    }
+
+    showNewCollectable(collectable) {
+        //temp behaviour
+        this.showRareCollectable(collectable);
     }
 
     DrawCityView() {
