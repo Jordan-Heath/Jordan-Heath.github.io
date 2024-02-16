@@ -3,6 +3,8 @@ class View {
         this.LoadLocation(LOCATIONS[0]);
     }
 
+    /* location */
+    //#region location
     LoadLocation(location) {
         switch(location) {
             case(LOCATIONS[0]):
@@ -20,15 +22,29 @@ class View {
         }
     }
 
+    DrawCityView() {
+        const cityView = CreateDiv("cityView");
+
+        cityView.appendChild(CreateDiv("pavement"));
+        cityView.appendChild(CreateDiv("frontBuildings"));
+        cityView.appendChild(CreateDiv("backBuildings"));
+        cityView.appendChild(CreateDiv("trees"));
+        cityView.appendChild(CreateDiv("characterShadow"));
+        cityView.appendChild(CreateDiv("character"));
+
+        backgroundLayers.innerHTML = "";
+        backgroundLayers.appendChild(cityView);
+    }
+    //#endregion location
+
     Initialize(model) {
         money.innerText = ConvertToCurrency(model.money);
         this.LoadLocation(LOCATIONS[model.currentLocation]);
     }
 
     Update(model, collectable) {
-        money.innerText = ConvertToCurrency(model.money);
+        this.UpdatePlayerDetails(model);
 
-        messageOutput.innerHTML = "";
         if (collectable.numberOwned === 1) {
             this.NewCollectableMessage(collectable);
             //check for combos
@@ -41,6 +57,15 @@ class View {
             this.UpdateCollectionView(model);
     }
 
+    UpdatePlayerDetails(model) {
+        money.innerText = ConvertToCurrency(model.money);
+    }
+
+    /* Message */
+    //#region message
+    ClearMessageOutput() {
+        messageOutput.innerHTML = "";
+    }
 
     CommonCollectableMessage(collectable) {
         const message = document.createElement("p");
@@ -48,6 +73,8 @@ class View {
         message.style.backgroundColor = `var(--rarity-${collectable.rarity})`
 
         messageOutput.appendChild(message);
+
+        setTimeout(this.ClearMessageOutput, 2100);
     }
 
     RareCollectableMessage(collectable) {
@@ -65,20 +92,17 @@ class View {
         messageOutput.appendChild(collectableTable);
     }
 
-    DrawCityView() {
-        const cityView = CreateDiv("cityView");
+    CustomMessage(messageString) {
+        const message = document.createElement("p");
+        message.innerText = messageString;
+        message.style.backgroundColor = `gold`
 
-        cityView.appendChild(CreateDiv("pavement"));
-        cityView.appendChild(CreateDiv("frontBuildings"));
-        cityView.appendChild(CreateDiv("backBuildings"));
-        cityView.appendChild(CreateDiv("trees"));
-        cityView.appendChild(CreateDiv("characterShadow"));
-        cityView.appendChild(CreateDiv("character"));
-
-        backgroundLayers.innerHTML = "";
-        backgroundLayers.appendChild(cityView);
+        messageOutput.appendChild(message);
     }
+    //#endregion message
 
+    /* menues */
+    //#region menues
     UpdateCollectionView(model) {
         collectionViewOutput.innerHTML = "";
 
@@ -108,4 +132,36 @@ class View {
         });
         collectionViewOutput.appendChild(cityCombosGrid)
     }
+
+    UpdateShopView(model) {
+        shopItemsGrid.innerHTML = "";
+
+        model.shopItems.forEach(shopItem => {
+            shopItemsGrid.appendChild(CreateShopItemTable(shopItem));
+        });
+    }
+
+    UpdateMapView(model) {
+        mapViewOutput.innerHTML = "";
+
+        let cityAvailable = true;
+        let forestAvailable = false;
+        let pierAvailable = false;
+        let caveAvailable = false;
+
+        model.shopItems.forEach(shopItem => {
+            if(shopItem.id === 'bugnet' && shopItem.owned)
+                forestAvailable = true;
+            if(shopItem.id === 'fishingrod' && shopItem.owned)
+                pierAvailable = true;
+            if(shopItem.id === 'pickaxe' && shopItem.owned)
+                caveAvailable = true;
+        });
+
+        mapViewOutput.appendChild(CreateMapTable(LOCATIONS[0], cityAvailable));
+        mapViewOutput.appendChild(CreateMapTable(LOCATIONS[1], forestAvailable));
+        mapViewOutput.appendChild(CreateMapTable(LOCATIONS[2], pierAvailable));
+        mapViewOutput.appendChild(CreateMapTable(LOCATIONS[3], caveAvailable));
+    }
+    //#endregion menues
 }

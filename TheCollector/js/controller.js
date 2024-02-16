@@ -35,10 +35,16 @@ class Controller {
             this.OpenMapView();
         });
 
-        exitButton.addEventListener('click', () => {
-            if(window.confirm("Are you sure you wish to quit?")) {
-                window.location.href = '../index.html';
-            }
+        saveMenuButton.addEventListener('click', () => {
+            this.SaveButton();
+        });
+
+        resetMenuButton.addEventListener('click', () => {
+            this.ResetButton();
+        });
+
+        exitMenuButton.addEventListener('click', () => {
+            this.ExitButton();
         });
 
         closeCollectionButton.addEventListener('click', () => {
@@ -61,6 +67,7 @@ class Controller {
 
         setInterval(() => {
             this.model.SaveToCookies();
+            this.view.CustomMessage('Saved');
         }, SAVE_INTERVAL);
     }
 
@@ -84,12 +91,34 @@ class Controller {
 
     OpenShopView() {
         menu.hidden = true;
+        this.view.UpdateShopView(this.model);
         shopView.hidden = false;
     }
 
     OpenMapView() {
         menu.hidden = true;
+        //this.view.UpdateMapView(this.model);
         mapView.hidden = false;
+    }
+
+    SaveButton() {
+        this.model.SaveToCookies();
+        this.view.CustomMessage('Saved');
+    }
+
+    ResetButton() {
+        if(window.confirm("Are you sure you wish to reset?")) {
+            model = new Model();
+            this.model = model;
+            this.model.SaveToCookies();
+            window.location.href = 'TheCollector.html';
+        }
+    }
+    ExitButton() {
+        this.model.SaveToCookies();
+        if(window.confirm("Are you sure you wish to quit?")) {
+            window.location.href = '../index.html';
+        }
     }
     //#endregion MainView
 
@@ -105,12 +134,23 @@ class Controller {
     CloseShopView() {
         shopView.hidden = true;
     }
+
+    Purchase(shopItemId) {
+        this.model.Purchase(shopItemId);
+        this.view.UpdatePlayerDetails(this.model);
+        this.view.UpdateShopView(this.model);
+    }
     //#endregion ShopView
 
     /* Map Button Controls */
     //#region MapView
     CloseMapView() {
         mapView.hidden = true;
+    }
+    Move(location) {
+        mapView.hidden = true;
+        this.model.currentLocation = location;
+        this.view.LoadLocation(location);
     }
     //#endregion MapView
 }

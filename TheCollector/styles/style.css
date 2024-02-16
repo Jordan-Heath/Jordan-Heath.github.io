@@ -1,24 +1,28 @@
 :root {
     --rarity-empty: #9d9d9d;
-    --rarity-0: #9d9d9d;
-    /* Poor */
-    --rarity-1: #ffffff;
-    /* Common */
-    --rarity-2: #1eff00;
-    /* Uncommon */
-    --rarity-3: #0070dd;
-    /* Rare */
-    --rarity-4: #a335ee;
-    /* Epic */
-    --rarity-5: #ff8000;
-    /* Legendary */
-    --rarity-6: #e6cc80;
-    /* Artifact */
-    --rarity-7: #00ccff;
-    /* Heirloom */
+    --rarity-0: #9d9d9d; /* Poor */
+    --rarity-1: #ffffff; /* Common */
+    --rarity-2: #1eff00; /* Uncommon */
+    --rarity-3: #0070dd; /* Rare */
+    --rarity-4: #a335ee; /* Epic */
+    --rarity-5: #ff8000; /* Legendary */
+    --rarity-6: #e6cc80; /* Artifact */
+    --rarity-7: #00ccff; /* Heirloom */
 
     --button-color: #9bff9e;
     --button-border: #4db050;
+    --danger-button-color: #cd5c5c;
+    --danger-button-border: #a84c4c;
+
+    --ui-background-color: #99999999;
+    --menu-background-color: #555555dd;
+    --table-highlight-color: #ffffff55;
+
+
+    --character-shadow-inner: #3f3f3f;
+    --pavement-upper-color: #999;
+    --pavement-bottom-color: #444;
+    --back-buildings-filter: #ace0f5ab;
 }
 
 body {
@@ -44,7 +48,7 @@ body {
         text-align: center;
 
         th, thead, tfoot {
-            background-color: #ffffff55;
+            background-color: var(--table-highlight-color);
         }
     }
 
@@ -54,7 +58,7 @@ body {
         text-align: center;
 
         th, thead, tfoot {
-            background-color: #ffffff55;
+            background-color: var(--table-highlight-color);
         }
     }
 }
@@ -89,7 +93,7 @@ body {
                 translate: -50% -20%;
 
                 border-radius: 100%;
-                background: radial-gradient(ellipse at center, #3f3f3f, transparent, transparent);
+                background: radial-gradient(ellipse at center, var(--character-shadow-inner), transparent, transparent);
                 animation: characterAnimation 2s infinite;
             }
 
@@ -101,7 +105,7 @@ body {
                 width: 100vw;
                 height: 30vh;
 
-                background: linear-gradient(to bottom, #999, #444);
+                background: linear-gradient(to bottom, var(--pavement-upper-color), var(--pavement-bottom-color));
             }
 
             #trees {
@@ -145,7 +149,7 @@ body {
 
                 background-repeat: repeat-x;
                 background-image: url('../images/environments/buildings.png');
-                background-color: #ace0f5ab;
+                background-color: var(--back-buildings-filter);
                 background-blend-mode: multiply;
                 animation: parallaxWobble1 5s ease-in-out infinite;
             }
@@ -183,7 +187,7 @@ body {
 
         padding: 20px;
 
-        background-color: #99999999;
+        background-color: var(--ui-background-color);
 
         button {
             margin: 5px 0;
@@ -191,8 +195,10 @@ body {
             width: 160px;
         }
 
-        #exitButton {
-            background-color: indianred;
+        #resetMenuButton,
+        #exitMenuButton {
+            background-color: var(--danger-button-color);
+            border: 2px solid var(--danger-button-border);
         }
     }
 
@@ -205,7 +211,7 @@ body {
         height: 80px;
         padding: 25px;
 
-        background-color: #99999999;
+        background-color: var(--ui-background-color);
 
         p {
             height: 30px;
@@ -356,13 +362,17 @@ body {
     top: 50vh;
     left: 50vw;
 
-    width: 100vw;
+    width: 95vw;
     height: 80vh;
     transform: translate(-50%, -50%);
 
-    background: #555555dd;
+    background: var(--menu-background-color);
 
     #closeCollectionButton {
+        position: inherit;
+        top: 0;
+        right: 0;
+
         width: 50px;
         height: 50px;
 
@@ -406,18 +416,40 @@ body {
     top: 50vh;
     left: 50vw;
 
-    width: 100vw;
+    width: 95vw;
     height: 80vh;
     transform: translate(-50%, -50%);
 
-    background: #555555dd;
+    background: var(--menu-background-color);
 
     #closeShopButton {
         position: inherit;
         top: 0;
-        left: 0;
+        right: 0;
         width: 50px;
         height: 50px;
+    }
+
+    #shopItemsGrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        grid-gap: 1px;
+
+        .shopItemTable {
+            min-width: 120px;
+            max-width: 240px;
+
+            text-align: center;
+
+            background-color: #ffffffaa;
+
+            th, thead, tfoot {
+                background-color: #ffffff55;
+            }
+            button {
+                width: 100%;
+            }
+        }
     }
 }
 
@@ -426,16 +458,16 @@ body {
     top: 50vh;
     left: 50vw;
 
-    width: 100vw;
+    width: 95vw;
     height: 80vh;
     transform: translate(-50%, -50%);
 
-    background: #555555dd;
+    background: var(--menu-background-color);
 
     #closeMapButton {
         position: inherit;
         top: 0;
-        left: 0;
+        right: 0;
         width: 50px;
         height: 50px;
     }
