@@ -17,7 +17,7 @@
     --ui-background-color: #99999999;
     --menu-background-color: #555555dd;
     --table-highlight-color: #ffffff55;
-
+    --table-background-color: #ffffffaa;
 
     --character-shadow-inner: #3f3f3f;
     --pavement-upper-color: #999;
@@ -41,11 +41,14 @@ body {
         border: 2px solid var(--button-border);
     }
 
-    .collectableTable {
+    .collectableTable,
+    .shopItemTable {
         min-width: 120px;
         max-width: 240px;
 
         text-align: center;
+
+        background-color: var(--table-background-color);
 
         th, thead, tfoot {
             background-color: var(--table-highlight-color);
@@ -375,15 +378,13 @@ body {
 
         width: 50px;
         height: 50px;
-
-        margin: 0;
     }
 
     #collectionViewOutput {
         box-sizing: border-box;
         padding: 15px;
         margin: 0;
-        height: 70vh;
+        height: inherit;
         width: inherit;
 
         overflow-y: scroll;
@@ -426,30 +427,21 @@ body {
         position: inherit;
         top: 0;
         right: 0;
+
         width: 50px;
         height: 50px;
     }
 
     #shopItemsGrid {
+        box-sizing: border-box;
+        padding: 15px;
+        margin: 0;
+        height: inherit;
+        width: inherit;
+
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
         grid-gap: 1px;
-
-        .shopItemTable {
-            min-width: 120px;
-            max-width: 240px;
-
-            text-align: center;
-
-            background-color: #ffffffaa;
-
-            th, thead, tfoot {
-                background-color: #ffffff55;
-            }
-            button {
-                width: 100%;
-            }
-        }
     }
 }
 
@@ -468,7 +460,20 @@ body {
         position: inherit;
         top: 0;
         right: 0;
+
         width: 50px;
         height: 50px;
+    }
+
+    #mapViewOutput {
+        box-sizing: border-box;
+        padding: 15px;
+        margin: 0;
+        height: inherit;
+        width: inherit;
+
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        grid-gap: 1px;
     }
 }
