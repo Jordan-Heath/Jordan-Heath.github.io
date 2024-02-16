@@ -4,9 +4,21 @@ class Controller {
         this.view = view;
 
         this.Initialize();
+        this.view.Initialize(this.model);
     }
 
+    /* Initialization Methods */
+    //#region Inititalize
     Initialize() {
+        this.InitializeButtons();
+
+        //attempt to load from cookies
+        this.model.LoadFromCookies();
+
+        this.StartUpdateInterval();
+    }
+
+    InitializeButtons() {
         menuButton.addEventListener('click', () => {
             this.ToggleMenu();
         });
@@ -23,6 +35,12 @@ class Controller {
             this.OpenMapView();
         });
 
+        exitButton.addEventListener('click', () => {
+            if(window.confirm("Are you sure you wish to quit?")) {
+                window.location.href = '../index.html';
+            }
+        });
+
         closeCollectionButton.addEventListener('click', () => {
             this.CloseCollectionView();
         });
@@ -34,16 +52,23 @@ class Controller {
         closeMapButton.addEventListener('click', () => {
             this.CloseMapView();
         });
-
-        this.startUpdateInterval();
     }
 
-    startUpdateInterval() {
+    StartUpdateInterval() {
         setInterval(() => {
-            let collectable = this.model.Update();
-            this.view.Update(model, collectable);
+            this.Update();
         }, SEARCH_INTERVAL);
+
+        setInterval(() => {
+            this.model.SaveToCookies();
+        }, SAVE_INTERVAL);
     }
+
+    Update() {
+        let collectable = this.model.Update();
+        this.view.Update(model, collectable);
+    }
+    //#endregion Inititalize
 
     /* Main Button Controls */
     //#region MainView
@@ -53,7 +78,7 @@ class Controller {
 
     OpenCollectionView() {
         menu.hidden = true;
-        this.view.UpdateCollectionView(this.model.collectables);
+        this.view.UpdateCollectionView(this.model);
         collectionView.hidden = false;
     }
 
@@ -75,14 +100,14 @@ class Controller {
     }
     //#endregion CollectionView
 
-    /* Shop Button controls */
+    /* Shop Button Controls */
     //#region ShopView
     CloseShopView() {
         shopView.hidden = true;
     }
     //#endregion ShopView
 
-    /* Map Button controls */
+    /* Map Button Controls */
     //#region MapView
     CloseMapView() {
         mapView.hidden = true;

@@ -30,22 +30,30 @@ body {
     overflow-y: hidden;
 
     font-size: 1.25rem;
+    
 
     button {
         background-color: var(--button-color);
         border: 2px solid var(--button-border);
     }
 
-    th,
-    td {
+    .collectableTable {
+        min-width: 120px;
+        max-width: 240px;
+
         text-align: center;
+
+        th, thead, tfoot {
+            background-color: #ffffff55;
+        }
     }
 
-    .collectableTable {
-        width: 120px;
-        height: 160px;
+    .comboTable {
+        width: 240px;
 
-        th {
+        text-align: center;
+
+        th, thead, tfoot {
             background-color: #ffffff55;
         }
     }
@@ -78,10 +86,10 @@ body {
 
                 width: 20vh;
                 height: 10vh;
-                translate: -50% -10%;
+                translate: -50% -20%;
 
                 border-radius: 100%;
-                background: radial-gradient(circle at center, #3f3f3f, transparent);
+                background: radial-gradient(ellipse at center, #3f3f3f, transparent, transparent);
                 animation: characterAnimation 2s infinite;
             }
 
@@ -103,8 +111,9 @@ body {
 
                 width: 100vw;
                 height: 20vh;
-                background-size: auto 20vh;
+                background-size: auto 100%;
 
+                background-repeat: repeat-x;
                 background-image: url('../images/environments/trees.png');
                 background-blend-mode: multiply;
                 animation: parallaxWobble3 5s ease-in-out infinite;
@@ -117,7 +126,7 @@ body {
 
                 width: 100vw;
                 height: 40vh;
-                background-size: auto 40vh;
+                background-size: auto 100%;
 
                 background-repeat: repeat-x;
                 background-image: url('../images/environments/buildings.png');
@@ -132,7 +141,7 @@ body {
 
                 width: 100vw;
                 height: 70vh;
-                background-size: auto 70vh;
+                background-size: auto 100%;
 
                 background-repeat: repeat-x;
                 background-image: url('../images/environments/buildings.png');
@@ -153,12 +162,19 @@ body {
     }
 
     #menuButton {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+
         width: 80px;
         height: 80px;
     }
 
     #menu {
         position: absolute;
+        top: 80px;
+        left: 0;
 
         flex-direction: column;
         justify-content: center;
@@ -185,10 +201,17 @@ body {
         top: 0;
         right: 0;
 
-        height: 60px;
-        padding: 10px;
+        box-sizing: border-box;
+        height: 80px;
+        padding: 25px;
 
         background-color: #99999999;
+
+        p {
+            height: 30px;
+            padding: 0;
+            margin: auto auto;
+        }
     }
 
     #messageOutput {
@@ -197,6 +220,7 @@ body {
         left: 50vw;
 
         padding: 5px;
+        margin: 0;
         translate: -50% -100%;
 
         table {
@@ -204,6 +228,7 @@ body {
             animation-iteration-count: 1;
             opacity: 0;
 
+            margin: 0;
             border: 2pt solid black;
             border-radius: 5px;
         }
@@ -213,6 +238,9 @@ body {
             animation-iteration-count: 1;
             opacity: 0;
 
+            text-align: center;
+
+            margin: 0;
             border-radius: 5px;
             border: 1pt solid black;
             padding: 5px;
@@ -328,33 +356,48 @@ body {
     top: 50vh;
     left: 50vw;
 
-    width: 80vw;
+    width: 100vw;
     height: 80vh;
     transform: translate(-50%, -50%);
 
     background: #555555dd;
 
     #closeCollectionButton {
-
         width: 50px;
         height: 50px;
 
         margin: 0;
     }
 
-    #collectablesGrid {
-        position: relative;
-
+    #collectionViewOutput {
+        box-sizing: border-box;
         padding: 15px;
+        margin: 0;
         height: 70vh;
         width: inherit;
 
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        grid-gap: 1px;
         overflow-y: scroll;
 
+        .collectablesGridTitle {
+            text-align: center;
+            padding: 0;
+        }
 
+        .collectablesGridSubtitle {
+            text-align: left;
+            padding: 0;
+        }
+
+        .collectablesGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            grid-gap: 1px;
+        }
+        .combosGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            grid-gap: 1px;
+        }
     }
 }
 
@@ -363,7 +406,7 @@ body {
     top: 50vh;
     left: 50vw;
 
-    width: 80vw;
+    width: 100vw;
     height: 80vh;
     transform: translate(-50%, -50%);
 
@@ -383,7 +426,7 @@ body {
     top: 50vh;
     left: 50vw;
 
-    width: 80vw;
+    width: 100vw;
     height: 80vh;
     transform: translate(-50%, -50%);
 

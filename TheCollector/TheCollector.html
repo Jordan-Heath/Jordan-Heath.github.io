@@ -27,7 +27,7 @@
             <button id="collectionMenuButton">View Collection</button>
             <button id="shopMenuButton">Shop</button>
             <button id="mapMenuButton">Map</button>
-            <button id="exitButton" onclick="location.href='../index.html'">Exit</button>
+            <button id="exitButton">Exit</button>
         </div>
 
         <div id="playerDetails">
@@ -41,7 +41,13 @@
     <main id="collectionView" hidden>
         <button id="closeCollectionButton">&#8592;</button>
 
-        <div id="collectablesGrid"></div>
+        <div id="collectionViewOutput">
+            <div class="collectablesGridTitle"></div>
+            <div class="collectablesGridSubtitle"></div>
+            <div class="collectablesGrid"></div>
+            <div class="collectablesGridSubtitle"></div>
+            <div class="collectablesGrid"></div>
+        </div>
     </main>
 
     <main id="shopView" hidden>

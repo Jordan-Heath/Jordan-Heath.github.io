@@ -1,7 +1,0 @@
-RARITY_CHANCE = [100, 80, 50, 25, 10, 5, 2, 1]
-               //  0,  1,  2,  3,  4, 5, 6, 7
-
-SEARCH_INTERVAL = 3000; //milliseconds
-
-COMMON_MESSAGE_INTERVAL = 1000;
-RARE_MESSAGE_INTERVAL = 2000;

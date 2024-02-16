@@ -5,7 +5,7 @@ Explore My Collection of Projects. Most of my work is not shared publicly. This 
 
 ## Incomplete Projects
 
-### [Collector](Collector/Collector.html)
+### [The Collector](TheCollector/TheCollector.html)
 
 PLAYABLE ROUGH DRAFT. Intended to be an idle collection game.
 
