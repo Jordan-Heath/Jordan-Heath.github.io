@@ -1,7 +1,5 @@
 class View {
-    constructor() {
-        this.LoadLocation(LOCATIONS[0]);
-    }
+    constructor() { }
 
     /* location */
     //#region location
@@ -11,13 +9,13 @@ class View {
                 this.DrawCityView();
                 break;
             case(LOCATIONS[1]):
-                //forest not implemented
+                this.DrawForestView();
                 break;
             case(LOCATIONS[2]):
-                //pier not implemented
+                this.DrawPierView();
                 break;
             case(LOCATIONS[3]):
-                //cave not implemented
+                this.DrawCaveView();
                 break;
         }
     }
@@ -35,6 +33,55 @@ class View {
         backgroundLayers.innerHTML = "";
         backgroundLayers.appendChild(cityView);
     }
+
+    DrawForestView() {
+        const forestView = CreateDiv("forestView");
+
+        forestView.appendChild(CreateDiv("forestFloor"));
+        forestView.appendChild(CreateDiv("frontTrees"));
+        forestView.appendChild(CreateDiv("backTrees"));
+        forestView.appendChild(CreateDiv("canopy"));
+        let character = CreateDiv("character")
+        character.appendChild(CreateDiv("bugnet"));
+        forestView.appendChild(character);
+
+        backgroundLayers.innerHTML = "";
+        backgroundLayers.appendChild(forestView);
+    }
+
+    DrawPierView() {
+        const pierView = CreateDiv("pierView");
+
+        pierView.appendChild(CreateDiv("sky"));
+        pierView.appendChild(CreateDiv("sun"));
+        pierView.appendChild(CreateDiv("oceanFloor"));
+        pierView.appendChild(CreateDiv("lowerFishLayer"));
+        pierView.appendChild(CreateDiv("upperFishLayer"));
+        pierView.appendChild(CreateDiv("waves")); //transparent layer that goes over everything below
+        pierView.appendChild(CreateDiv('pier'));
+        pierView.appendChild(CreateDiv("characterShadow"));
+        let character = CreateDiv("character")
+        character.appendChild(CreateDiv("fishingrod"));
+        pierView.appendChild(character);
+
+        backgroundLayers.innerHTML = "";
+        backgroundLayers.appendChild(pierView);
+    }
+
+    DrawCaveView() {
+        const caveView = CreateDiv("caveView");
+        
+        caveView.appendChild(CreateDiv('caveWalls'));
+        caveView.appendChild(CreateDiv('caveFloor'));
+        caveView.appendChild(CreateDiv("characterLight"));
+        let character = CreateDiv("character")
+        character.appendChild(CreateDiv("pickaxe"));
+        caveView.appendChild(character);
+        caveView.appendChild(CreateDiv('foregroundRocks'));
+
+        backgroundLayers.innerHTML = "";
+        backgroundLayers.appendChild(caveView);
+    }
     //#endregion location
 
     Initialize(model) {
@@ -42,19 +89,24 @@ class View {
         this.LoadLocation(LOCATIONS[model.currentLocation]);
     }
 
-    Update(model, collectable) {
+    Update(model, collectable, combo) {
         this.UpdatePlayerDetails(model);
 
         if (collectable.numberOwned === 1) {
             this.NewCollectableMessage(collectable);
-            //check for combos
-        } else if (collectable.rarity > 1)
+        } else if (collectable.rarity > 1) {
             this.RareCollectableMessage(collectable);
-        else
+        } else {
             this.CommonCollectableMessage(collectable);
+        }
 
-        if (!collectionView.hidden)
+        if (combo) {
+            this.AchivementMessage(combo);
+        }
+
+        if (!collectionView.hidden) {
             this.UpdateCollectionView(model);
+        }
     }
 
     UpdatePlayerDetails(model) {
@@ -63,82 +115,105 @@ class View {
 
     /* Message */
     //#region message
-    ClearMessageOutput() {
-        messageOutput.innerHTML = "";
-    }
+    NewCollectableMessage(collectable) {
+        collectableMessageOutput.innerHTML = '';
 
-    CommonCollectableMessage(collectable) {
         const message = document.createElement("p");
-        message.innerHTML = `${collectable.name} (${ConvertToCurrency(collectable.value)})`;
-        message.style.backgroundColor = `var(--rarity-${collectable.rarity})`
+        message.innerHTML = 'NEW';
+        collectableMessageOutput.appendChild(message);
 
-        messageOutput.appendChild(message);
+        const collectableTable = CreateCollectableTable(collectable);
+        collectableTable.style.boxShadow = `0px 0px 10px 5px var(--rarity-${collectable.rarity})`;
 
-        setTimeout(this.ClearMessageOutput, 2100);
+        collectableMessageOutput.appendChild(collectableTable);
     }
 
     RareCollectableMessage(collectable) {
+        collectableMessageOutput.innerHTML = '';
+
         const collectableTable = CreateCollectableTable(collectable);
         collectableTable.style.boxShadow = `0px 0px 10px 5px var(--rarity-${collectable.rarity})`;
 
-        messageOutput.appendChild(collectableTable);
+        collectableMessageOutput.appendChild(collectableTable);
     }
 
-    NewCollectableMessage(collectable) {
-        const collectableTable = CreateCollectableTable(collectable);
-        collectableTable.createTFoot().innerHTML = 'NEW';
-        collectableTable.style.boxShadow = `0px 0px 10px 5px var(--rarity-${collectable.rarity})`;
+    CommonCollectableMessage(collectable) {
+        collectableMessageOutput.innerHTML = '';
 
-        messageOutput.appendChild(collectableTable);
+        const message = document.createElement("p");
+        message.innerHTML = collectable.name;
+        message.style.backgroundColor = `var(--rarity-${collectable.rarity})`
+
+        collectableMessageOutput.appendChild(message);
     }
 
-    CustomMessage(messageString) {
+    SaveMessage(messageString) {
+        saveMessageOutput.innerHTML = '';
+
         const message = document.createElement("p");
         message.innerText = messageString;
-        message.style.backgroundColor = `gold`
 
-        messageOutput.appendChild(message);
+        saveMessageOutput.appendChild(message);
+    }
+
+    AchivementMessage(combo) {
+        achievementMessageOutput.innerHTML = '';
+
+        const comboTable = CreateComboTable(combo);
+        comboTable.style.boxShadow = `0px 0px 10px 5px var(--rarity-${combo.rarity})`;
+
+        achievementMessageOutput.appendChild(comboTable);
     }
     //#endregion message
 
     /* menues */
     //#region menues
     UpdateCollectionView(model) {
+        
+        //TODO: rewrite this method to modify the content of the page rather than re-write the page
+        
         collectionViewOutput.innerHTML = "";
 
-        let cityCollectablesTitle = CreateDiv('', 'collectablesGridTitle');
-        cityCollectablesTitle.innerHTML = `<h2>City Collection</h2>`;
-        collectionViewOutput.appendChild(cityCollectablesTitle);
+        collectionViewOutput.appendChild(this.CreateCollectablesSection('City', model.cityCollectables, model.cityCombos));
+        collectionViewOutput.appendChild(this.CreateCollectablesSection('Forest', model.forestCollectables, model.forestCombos));
+        collectionViewOutput.appendChild(this.CreateCollectablesSection('Pier', model.pierCollectables, model.pierCombos));
+        collectionViewOutput.appendChild(this.CreateCollectablesSection('Cave', model.caveCollectables, model.caveCombos));
+    }
 
-        /*
-        let cityCollectablesSubtitle = CreateDiv('', 'collectablesGridSubtitle');
-        cityCollectablesSubtitle.innerHTML = `<h3>Colletion</h3>`;
-        collectionViewOutput.appendChild(cityCollectablesSubtitle);
-        */
+    CreateCollectablesSection(title, collectables, combos) {
+        let collectablesSection = CreateDiv('', 'collectable-section');
 
-        let cityCollectablesGrid = CreateDiv('', 'collectablesGrid');
-        model.cityCollectables.forEach(collectable => {
-            cityCollectablesGrid.appendChild(CreateCollectableTable(collectable));
+        let collectablesTitle = document.createElement("h2");
+        collectablesTitle.innerText = `${title} Collectables`;
+        collectablesSection.appendChild(collectablesTitle);
+
+        let collectablesGrid = CreateDiv('', 'collectables-grid');
+        collectables.forEach(collectable => {
+            collectablesGrid.appendChild(CreateCollectableTable(collectable));
         });
-        collectionViewOutput.appendChild(cityCollectablesGrid)
+        collectablesSection.appendChild(collectablesGrid);
 
-        let cityCombosSubtitle = CreateDiv('', 'collectablesGridSubtitle');
-        cityCombosSubtitle.innerHTML = `<h3>Achievements</h3>`;
-        collectionViewOutput.appendChild(cityCombosSubtitle);
+        let CombosSubtitle = document.createElement("h3");
+        CombosSubtitle.innerText = `${title} Achievements`;
+        collectablesSection.appendChild(CombosSubtitle);
 
-        let cityCombosGrid = CreateDiv('', 'combosGrid');
-        model.cityCombos.forEach(combo => {
-            cityCombosGrid.appendChild(CreateComboTable(combo));
+        let combosGrid = CreateDiv('', 'combos-grid');
+        combos.forEach(combo => {
+            combosGrid.appendChild(CreateComboTable(combo));
         });
-        collectionViewOutput.appendChild(cityCombosGrid)
+        collectablesSection.appendChild(combosGrid)
+
+        return collectablesSection;
     }
 
     UpdateShopView(model) {
-        shopItemsGrid.innerHTML = "";
+        shopViewOutput.innerHTML = "";
 
+        let shopItemsGrid = CreateDiv('', 'shop-items-grid')
         model.shopItems.forEach(shopItem => {
             shopItemsGrid.appendChild(CreateShopItemTable(shopItem));
         });
+        shopViewOutput.appendChild(shopItemsGrid);
     }
 
     UpdateMapView(model) {
@@ -158,10 +233,12 @@ class View {
                 caveAvailable = true;
         });
 
-        mapViewOutput.appendChild(CreateMapTable(LOCATIONS[0], cityAvailable));
-        mapViewOutput.appendChild(CreateMapTable(LOCATIONS[1], forestAvailable));
-        mapViewOutput.appendChild(CreateMapTable(LOCATIONS[2], pierAvailable));
-        mapViewOutput.appendChild(CreateMapTable(LOCATIONS[3], caveAvailable));
+        const mapLocationsGrid = CreateDiv('', 'map-locations-grid');
+        mapLocationsGrid.appendChild(CreateMapTable(LOCATIONS[0], cityAvailable));
+        mapLocationsGrid.appendChild(CreateMapTable(LOCATIONS[1], forestAvailable));
+        mapLocationsGrid.appendChild(CreateMapTable(LOCATIONS[2], pierAvailable));
+        mapLocationsGrid.appendChild(CreateMapTable(LOCATIONS[3], caveAvailable));
+        mapViewOutput.appendChild(mapLocationsGrid);
     }
     //#endregion menues
 }

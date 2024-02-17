@@ -14,6 +14,7 @@ class Controller {
 
         //attempt to load from cookies
         this.model.LoadFromCookies();
+        this.view.LoadLocation(this.model.currentLocation);
 
         this.StartUpdateInterval();
     }
@@ -67,13 +68,19 @@ class Controller {
 
         setInterval(() => {
             this.model.SaveToCookies();
-            this.view.CustomMessage('Saved');
+            this.view.SaveMessage('Saved');
         }, SAVE_INTERVAL);
     }
 
     Update() {
         let collectable = this.model.Update();
-        this.view.Update(model, collectable);
+
+        let combo; 
+        if (collectable.numberOwned === 1) {
+            combo = this.model.CheckCombos();
+        }
+
+        this.view.Update(model, collectable, combo);
     }
     //#endregion Inititalize
 
@@ -97,13 +104,13 @@ class Controller {
 
     OpenMapView() {
         menu.hidden = true;
-        //this.view.UpdateMapView(this.model);
+        this.view.UpdateMapView(this.model);
         mapView.hidden = false;
     }
 
     SaveButton() {
         this.model.SaveToCookies();
-        this.view.CustomMessage('Saved');
+        this.view.SaveMessage('Saved');
     }
 
     ResetButton() {

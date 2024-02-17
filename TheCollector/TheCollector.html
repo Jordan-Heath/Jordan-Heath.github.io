@@ -36,7 +36,11 @@
             <p><span id="money">0🟤</span></p>
         </div>
 
-        <div id="messageOutput"></div>
+        <div id="messages">
+            <div id="collectableMessageOutput"></div>
+            <div id="saveMessageOutput"></div>
+            <div id="achievementMessageOutput"></div>
+        </div>
     </main>
 
     <!-- displays over collectView -->
@@ -54,13 +58,20 @@
 
     <main id="shopView" hidden>
         <button id="closeShopButton">X</button>
-        <div id="shopItemsGrid"></div>
+
+        <h2>Shop</h2>
+        <div id="shopViewOutput">
+            <div class="shopItemsGrid"></div>
+        </div>
     </main>
 
     <main id="mapView" hidden>
         <button id="closeMapButton">X</button>
         <!-- lets you travel to new locations -->
-        <div id="mapViewOutput"></div>
+        <h2>Map</h2>
+        <div id="mapViewOutput">
+            <div class="mapLocationsGrid"></div>
+        </div>
     </main>
 </body>
 

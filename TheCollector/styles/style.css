@@ -20,9 +20,19 @@
     --table-background-color: #ffffffaa;
 
     --character-shadow-inner: #3f3f3f;
+    --character-shadow: radial-gradient(ellipse at center, #3f3f3f, transparent, transparent);
     --pavement-upper-color: #999;
     --pavement-bottom-color: #444;
     --back-buildings-filter: #ace0f5ab;
+
+    --forest-floor: linear-gradient(#000, #050, #090);
+    --canopy-filter: linear-gradient(transparent, #000);
+
+    --wave-filter: linear-gradient(transparent, transparent, #0000ff55, #000022ff);
+    --ocean-floor: linear-gradient(transparent, #00009999, #005);
+    --ocean-sky: linear-gradient(#87cfeb, #ffffff);
+
+    --cave-radial-gradient: radial-gradient(ellipse at bottom, transparent, #3f3f3f);
 }
 
 body {
@@ -41,25 +51,37 @@ body {
         border: 2px solid var(--button-border);
     }
 
-    .collectableTable,
-    .shopItemTable {
-        min-width: 120px;
-        max-width: 240px;
+    .collectable-table {
+        width: 120px;
 
         text-align: center;
-
         background-color: var(--table-background-color);
 
+        tr:nth-child(1) {
+            height: 48px;
+        }
+        tr:nth-child(2) {
+            height: 110px;
+        }
         th, thead, tfoot {
             background-color: var(--table-highlight-color);
         }
     }
 
-    .comboTable {
-        width: 240px;
+    .combo-table,
+    .shop-item-table,
+    .map-table {
+        width: 180px;
 
         text-align: center;
+        background-color: var(--table-background-color);
 
+        tr:nth-child(1) {
+            height: 48px;
+        }
+        tr:nth-child(2) {
+            height: 110px;
+        }
         th, thead, tfoot {
             background-color: var(--table-highlight-color);
         }
@@ -82,7 +104,7 @@ body {
                 background-size: contain;
                 background-repeat: no-repeat;
                 background-image: url('../images/character.png');
-                animation: characterAnimation 2s infinite;
+                animation: cityCharacterAnimation 3s infinite;
             }
 
             #characterShadow {
@@ -96,8 +118,8 @@ body {
                 translate: -50% -20%;
 
                 border-radius: 100%;
-                background: radial-gradient(ellipse at center, var(--character-shadow-inner), transparent, transparent);
-                animation: characterAnimation 2s infinite;
+                background: radial-gradient(ellipse at center, var(--character-shadow), transparent, transparent);
+                animation: cityCharacterAnimation 3s infinite;
             }
 
             #pavement {
@@ -121,7 +143,7 @@ body {
                 background-size: auto 100%;
 
                 background-repeat: repeat-x;
-                background-image: url('../images/environments/trees.png');
+                background-image: url('../images/environments/citytrees.png');
                 background-blend-mode: multiply;
                 animation: parallaxWobble3 5s ease-in-out infinite;
             }
@@ -158,21 +180,332 @@ body {
             }
         }
 
-        /*#forestView {
-            #character {}
-    
+        #forestView {
+            #character {
+                position: absolute;
+                left: 50vw;
+                top: 75vh;
+                z-index: -1;
+
+                width: 20vh;
+                height: 20vh;
+                translate: -50% -50%;
+
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-image: url('../images/character.png');
+                animation: forestCharacterAnimation 3s infinite;
+            }
+
+            #bugnet {
+                position: relative;
+                left: 95%;
+                top: 40%;
+                z-index: 0;
+
+                width: 13vh;
+                height: 13vh;
+                translate: -50% -50%;
+                rotate: 0deg;
+
+                border-radius: 100%;
+                background-size: cover;
+                background-image: url('../images/shop/bugnet.png');
+            }
+
+            #forestFloor {
+                position: absolute;
+                bottom: 0;
+                z-index: -2;
+
+                width: 100vw;
+                height: 30vh;
+
+                background: var(--forest-floor);
+            }
+
+            #frontTrees {
+                position: absolute;
+                top: 50vh;
+                z-index: -3;
+
+                width: 100vw;
+                height: 20vh;
+                background-size: auto 100%;
+
+                background-repeat: repeat-x;
+                background-image: var(--canopy-filter), url('../images/environments/foresttrees.png');
+                background-blend-mode: multiply;
+                animation: parallaxWobble3 5s ease-in-out infinite;
+            }
+
+            #backTrees {
+                position: absolute;
+                top: 30vh;
+                z-index: -4;
+
+                width: 100vw;
+                height: 40vh;
+                background-size: auto 100%;
+
+                background-repeat: repeat-x;
+                background-image: var(--canopy-filter), url('../images/environments/foresttrees.png');
+
+                animation: parallaxWobble2 5s ease-in-out infinite;
+            }
+
+            #canopy {
+                position: absolute;
+                top: 0;
+                z-index: -6;
+
+                width: 100vw;
+                height: 70vh;
+                background-size: auto 100%;
+
+                background-repeat: repeat-x;
+                background-image: var(--canopy-filter), url('../images/environments/canopy.png');
+                animation: parallaxWobble1 5s ease-in-out infinite;
+            }
         }
     
-        #waterView {
-            #character {}
-        }*/
+        #pierView {
+            #fishingrod {
+                position: relative;
+                left: 110%;
+                top: 35%;
+                z-index: 0;
+
+                width: 20vh;
+                height: 20vh;
+                translate: -50% -50%;
+                rotate: 10deg;
+
+                border-radius: 100%;
+                background-size: cover;
+                background-image: url('../images/shop/fishingrod.png');
+            }
+
+            #character {
+                position: absolute;
+                left: 35vw;
+                top: 30vh;
+                z-index: -1;
+
+                width: 20vh;
+                height: 20vh;
+                translate: -50% -50%;
+
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-image: url('../images/character.png');
+                animation: pierCharacterAnimation 3s infinite;
+            }
+
+            #characterShadow {
+                position: absolute;
+                left: 33vw;
+                top: 30vh;
+                z-index: -2;
+
+                width: 30vh;
+                height: 10vh;
+                translate: -50% -20%;
+
+                border-radius: 100%;
+                background: radial-gradient(ellipse at center, var(--character-shadow), transparent, transparent);
+            }
+            
+            #waves {
+                position: absolute;
+                top: 30vh;
+                z-index: -3;
+
+                width: 100vw;
+                height: 80vh;
+                opacity: 0.75;
+
+                background-repeat: repeat-x;
+                background-image: var(--wave-filter), url('../images/environments/waves.png');
+                animation: parallaxWobble3 5s ease-in-out infinite;
+            }
+
+            #pier {
+                position: absolute;
+                top: 10vh;
+                z-index: -4;
+
+                width: 40vw;
+                height: 90vh;
+
+                background-size: 100% 100%;
+                background-image: url('../images/environments/pierlayer.png');
+            }
+
+            #upperFishLayer {
+                position: absolute;
+                top: 55vh;
+                z-index: -5;
+
+                width: 100vw;
+                height: 40vh;
+                background-size: auto 100%;
+
+                background-repeat: repeat-x;
+                background-image: url('../images/environments/fishlayer.png');
+                background-blend-mode: multiply;
+                animation: scroll 10s linear infinite;
+            }
+            
+            #lowerFishLayer {
+                position: absolute;
+                top: 60vh;
+                z-index: -6;
+
+                width: 100vw;
+                height: 40vh;
+                background-size: auto 100%;
+                rotate: 180deg;
+
+                background-repeat: repeat-x;
+                background-image: url('../images/environments/fishlayer.png');
+
+                animation: scroll 10s linear infinite;
+            }
+            
+            #oceanFloor {
+                position: absolute;
+                top: 60vh;
+                z-index: -7;
+
+                width: 100vw;
+                height: 40vh;
+                background-size: auto 100%;
+
+                background: var(--ocean-floor);
+            }
+            
+            #sun {
+                position: absolute;
+                top: 10vh;
+                right: 10vw;
+                z-index: -8;
+
+                width: 10vh;
+                height: 10vh;
+                transform: translate(-50%, -50%);
+                border-radius: 50%;
+
+                background-color: rgb(255, 204, 0);
+                box-shadow: 0 0 50px rgba(255, 204, 0, 0.5);
+            }
+
+            #sky {
+                position: absolute;
+                top: 0vh;
+                z-index: -9;
+
+                width: 100vw;
+                height: 100vh;
+                background-size: auto 100%;
+
+                background: var(--ocean-sky);
+            }
+
+        }
+        
+        #caveView {
+            #foregroundRocks {
+                position: absolute;
+                top: 0;
+                z-index: 0;
+
+                width: 100vw;
+                height: 100vh;
+                background-size: auto 100%;
+
+                background-size: 100% 100%;
+                background-image: var(--cave-radial-gradient), url('../images/environments/caveforeground.png');
+                background-blend-mode: multiply;
+            }
+
+            #pickaxe {
+                position: relative;
+                left: 90%;
+                top: 50%;
+                z-index: -1;
+
+                width: 5vh;
+                height: 5vh;
+                translate: -50% -50%;
+                rotate: 10deg;
+
+                border-radius: 100%;
+                background-size: cover;
+                background-image: url('../images/shop/pickaxe.png');
+            }
+            #character {
+                position: absolute;
+                left: 50vw;
+                top: 90vh;
+                z-index: -2;
+
+                width: 10vh;
+                height: 10vh;
+                translate: -50% -50%;
+
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-image: url('../images/character.png');
+                animation: caveCharacterAnimation 3s infinite;
+            }
+
+            #characterLight {
+                position: absolute;
+                left: 50vw;
+                top: 90vh;
+                z-index: -3;
+
+                width: 40vh;
+                height: 40vh;
+                translate: -50% -50%;
+
+                border-radius: 100%;
+                background: radial-gradient(ellipse at center, #fff78667, transparent, transparent);
+            }
+
+            #caveWalls {
+                position: absolute;
+                top: 0;
+                z-index: -4;
+
+                width: 100vw;
+                height: 140vh;
+                background-size: auto 100%;
+
+                background-size: 100% 100%;
+                background-image: url('../images/environments/cavewalls.png');
+            }
+
+            #caveFloor {
+                position: absolute;
+                top: 60vh;
+                z-index: -5;
+
+                width: 100vw;
+                height: 40vh;
+                background-size: auto 100%;
+
+                background: linear-gradient(#471e02, #421e09);
+            }
+        }
     }
 
     #menuButton {
         position: absolute;
         top: 0;
         left: 0;
-
+        z-index: 2;
 
         width: 80px;
         height: 80px;
@@ -182,6 +515,7 @@ body {
         position: absolute;
         top: 80px;
         left: 0;
+        z-index: 2;
 
         flex-direction: column;
         justify-content: center;
@@ -196,6 +530,7 @@ body {
             margin: 5px 0;
             padding: 5px;
             width: 160px;
+            height: 40px;
         }
 
         #resetMenuButton,
@@ -223,92 +558,146 @@ body {
         }
     }
 
-    #messageOutput {
-        position: absolute;
-        top: 50vh;
-        left: 50vw;
-
-        padding: 5px;
-        margin: 0;
-        translate: -50% -100%;
-
-        table {
-            animation: rareItemAnimation 3s infinite;
-            animation-iteration-count: 1;
-            opacity: 0;
-
-            margin: 0;
-            border: 2pt solid black;
-            border-radius: 5px;
-        }
-
-        p {
-            animation: commonitemAnimation 2s infinite;
-            animation-iteration-count: 1;
-            opacity: 0;
-
-            text-align: center;
-
-            margin: 0;
-            border-radius: 5px;
-            border: 1pt solid black;
+    #messages {
+        #collectableMessageOutput {
+            position: absolute;
+            top: 50vh;
+            left: 50vw;
+            z-index: 2;
+    
             padding: 5px;
+            margin: 0;
+            translate: -50% -100%;
+    
+            table {
+                animation: rareItemAnimation 3s infinite;
+                animation-iteration-count: 1;
+                opacity: 0;
+    
+                margin: 0;
+                border: 2pt solid black;
+                border-radius: 5px;
+            }
+    
+            p {
+                animation: commonitemAnimation 2s infinite;
+                animation-iteration-count: 1;
+                opacity: 0;
+    
+                text-align: center;
+    
+                margin: 0;
+                border-radius: 5px;
+                padding: 5px;
+            }
+        }
+    
+        #saveMessageOutput {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            z-index: 4;
+    
+            padding: 10px;
+            margin: 0;
+
+            p {
+                animation: saveAnimation 3s infinite;
+                animation-iteration-count: 1;
+                opacity: 0;
+    
+                text-align: center;
+                color: white;
+    
+                margin: 0;
+                padding: 5px;
+            }
+        }
+    
+        #achievementMessageOutput {
+            position: absolute;
+            bottom: 30px;
+            right: 0;
+            z-index: 4;
+    
+            padding: 20px;
+            margin: 0;
+    
+            table {
+                animation: achievementAnimation 6s infinite;
+                animation-iteration-count: 1;
+                opacity: 0;
+    
+                margin: 0;
+                border: 2pt solid black;
+                border-radius: 5px;
+            }
         }
     }
 }
 
 /*#region Animations*/
-@keyframes characterAnimation {
-
-    0%,
-    100% {
-        transform: rotate(0deg) scaleX(0.95) scaleY(1.05);
+@keyframes cityCharacterAnimation {
+    10% {
+        transform: translateX(-20px) scaleX(1.1) scaleY(0.9);
     }
-
-    25% {
-        transform: rotate(-5deg) translateX(-5vw) scaleX(1.05) scaleY(0.95);
+    20% {
+        transform: translateX(0px) scaleX(1) scaleY(1);
     }
-
+    30% {
+        transform: translateX(20px) scaleX(1.1) scaleY(0.9);
+    }
+    40% {
+        transform: translateX(40px) scaleX(1) scaleY(1) rotate(10deg);
+    }
+    45% {
+        transform: translateX(40px) scaleX(-1.1) scaleY(0.9) rotate(-10deg);
+    }
     50% {
-        transform: rotate(0deg) scaleX(0.95) scaleY(1.05);
+        transform: translateX(40px) scaleX(-0.9) scaleY(1.1);
     }
-
-    75% {
-        transform: rotate(5deg) translateX(5vw) scaleX(1.05) scaleY(0.95);
+    60% {
+        transform: translateX(20px) scaleX(-1.1) scaleY(0.9);
+    }
+    70% {
+        transform: translateX(0px) scaleX(-1) scaleY(1);
+    }
+    80% {
+        transform: translateX(-20px) scaleX(-1.1) scaleY(0.9);
+    }
+    90% {
+        transform: translateX(-40px) scaleX(-1) scaleY(1) rotate(10deg);
+    }
+    95% {
+        transform: translateX(-40px) scaleX(1.1) scaleY(0.9) rotate(-10deg);
+    }
+    0%, 100% {
+        transform: translateX(-40px) scaleX(1) scaleY(1.1);
     }
 }
 
 @keyframes parallaxWobble1 {
-
-    0%,
-    100% {
+    0%, 100% {
         background-position-x: 0vw;
     }
-
     50% {
         background-position-x: 1vw;
     }
 }
 
 @keyframes parallaxWobble2 {
-
-    0%,
-    100% {
+    0%, 100% {
         background-position-x: 10vw;
     }
-
     50% {
         background-position-x: 12vw;
     }
 }
 
 @keyframes parallaxWobble3 {
-
-    0%,
-    100% {
+    0%, 100% {
         background-position-x: 20vw;
     }
-
     50% {
         background-position-x: 23vw;
     }
@@ -318,16 +707,13 @@ body {
     from {
         opacity: 0%;
     }
-
     20% {
         opacity: 100%;
     }
-
     70% {
         transform: translateY(0);
         opacity: 100%;
     }
-
     to {
         transform: translateY(-50px);
         opacity: 0%;
@@ -339,23 +725,110 @@ body {
         transform: scale(0);
         opacity: 100%;
     }
-
     10% {
         transform: scale(1.1);
     }
-
     20% {
         transform: scale(1);
     }
-
     70% {
         transform: scale(1) translateY(0);
         opacity: 100%;
     }
-
     to {
         transform: scale(1) translateY(-50px);
         opacity: 0%;
+    }
+}
+
+@keyframes achievementAnimation {
+    from {
+        transform: scale(0);
+        opacity: 100%;
+    }
+    5% {
+        transform: scale(1.3);
+    }
+    10% {
+        transform: scale(0.9);
+    }
+    15% {
+        transform: scale(1);
+    }
+    90% {
+        transform: scale(1) translateY(0);
+        opacity: 100%;
+    }
+    to {
+        transform: scale(1) translateY(-100px);
+        opacity: 0%;
+    }
+}
+
+@keyframes saveAnimation {
+    from, to {
+        opacity: 0%;
+    }
+    10%, 70% {
+        opacity: 100%;
+    }
+}
+
+@keyframes forestCharacterAnimation {
+    30% {
+        transform: translateX(40px) rotate(0deg);
+    }
+    40% {
+        transform: translateX(20px) rotate(-5deg);
+    } 
+    50% {
+        transform: translateX(0px) rotate(5deg);
+    }
+    60% {
+        transform: translateX(-20px) rotate(-5deg);
+    }
+    70% {
+        transform: translateX(-50px) rotate(5deg);
+    }
+    90% {
+        transform: translateX(-80px) rotate(-30deg) translateY(-10px);
+    }
+    0%, 100% {
+        transform: translateX(60px) rotate(30deg) translateY(20px);
+    }
+}
+
+@keyframes scroll {
+    from {
+        background-position-x: 0%;
+    }
+    to {
+        background-position-x: 100%;
+    }
+}
+
+@keyframes pierCharacterAnimation {
+    50% {
+        transform: translateX(10px) rotate(10deg) scaleX(1.1);
+    }
+
+    0%, 100% {
+        transform: translateX(-20px) rotate(-20deg) scaleY(1.1);
+    }
+}
+@keyframes caveCharacterAnimation {
+    20%, 40%, 60% {
+        transform: rotate(-5deg);
+    }
+
+    25%, 45%, 65% {
+        transform: rotate(5deg);
+    }
+    95% {
+        transform: rotate(-15deg) translate(-15px, -5px) scaleY(1.1) scaleX(0.9);
+    }
+    0%, 100% {
+        transform: rotate(10deg) translate(10px, -5px);
     }
 }
 /*#endregion Animations*/
@@ -364,6 +837,7 @@ body {
     position: absolute;
     top: 50vh;
     left: 50vw;
+    z-index: 3;
 
     width: 95vw;
     height: 80vh;
@@ -389,25 +863,29 @@ body {
 
         overflow-y: scroll;
 
-        .collectablesGridTitle {
-            text-align: center;
-            padding: 0;
-        }
-
-        .collectablesGridSubtitle {
-            text-align: left;
-            padding: 0;
-        }
-
-        .collectablesGrid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            grid-gap: 1px;
-        }
-        .combosGrid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            grid-gap: 1px;
+        .collectable-section {
+            border: 2px solid black;
+            margin-bottom: 10px;
+            h2 {
+                text-align: center;
+                padding: 0;
+            }
+    
+            h3 {
+                text-align: left;
+                padding: 0 10px;
+            }
+    
+            .collectables-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                grid-gap: 2px;
+            }
+            .combos-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                grid-gap: 2px;
+            }
         }
     }
 }
@@ -416,6 +894,7 @@ body {
     position: absolute;
     top: 50vh;
     left: 50vw;
+    z-index: 3;
 
     width: 95vw;
     height: 80vh;
@@ -432,16 +911,25 @@ body {
         height: 50px;
     }
 
-    #shopItemsGrid {
+    h2 {
+        text-align: center;
+        padding: 0;
+    }
+
+    #shopViewOutput {
         box-sizing: border-box;
         padding: 15px;
         margin: 0;
         height: inherit;
         width: inherit;
 
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        grid-gap: 1px;
+        overflow-y: scroll;
+    
+        .shop-items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            grid-gap: 2px;
+        }
     }
 }
 
@@ -449,6 +937,7 @@ body {
     position: absolute;
     top: 50vh;
     left: 50vw;
+    z-index: 3;
 
     width: 95vw;
     height: 80vh;
@@ -465,6 +954,11 @@ body {
         height: 50px;
     }
 
+    h2 {
+        text-align: center;
+        padding: 0;
+    }
+
     #mapViewOutput {
         box-sizing: border-box;
         padding: 15px;
@@ -472,8 +966,21 @@ body {
         height: inherit;
         width: inherit;
 
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        grid-gap: 1px;
+        overflow-y: scroll;
+
+        .map-locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            grid-gap: 1px;
+
+            button {
+                width: 100%;
+                height: 50px;
+            }
+            button:disabled {
+                background-color: var(--danger-button-color);
+                border: 2px solid var(--danger-button-border);
+            }
+        }
     }
 }
