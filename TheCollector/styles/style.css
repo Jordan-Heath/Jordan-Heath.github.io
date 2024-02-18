@@ -25,7 +25,7 @@
     --back-buildings-filter: #ace0f5ab;
 
     --forest-floor: linear-gradient(#240, #080);
-    --canopy-filter: linear-gradient(transparent, rgb(21, 43, 0));
+    --canopy-filter: linear-gradient(transparent, #152b00);
     --forest-sky: linear-gradient(#87cfeb, #bee0ee);
 
     --wave-filter: linear-gradient(transparent, transparent, #00002255, #000022ff);
@@ -933,7 +933,7 @@ body {
     left: 50vw;
     z-index: 3;
 
-    width: 95vw;
+    width: 99vw;
     height: 80vh;
     transform: translate(-50%, -50%);
 

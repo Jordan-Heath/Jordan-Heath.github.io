@@ -104,9 +104,7 @@ class View {
             this.AchivementMessage(combo);
         }
 
-        if (!collectionView.hidden) {
-            this.UpdateCollectionView(model, collectable, combo);
-        }
+        this.UpdateCollectionView(model, collectable, combo);
     }
 
     UpdatePlayerDetails(model) {
@@ -163,6 +161,7 @@ class View {
         comboTable.style.boxShadow = `0px 0px 10px 5px var(--rarity-${combo.rarity})`;
 
         achievementMessageOutput.appendChild(comboTable);
+        comboTable.removeAttribute("id");
 
         setTimeout(() => {
             achievementMessageOutput.innerHTML = '';
@@ -189,6 +188,7 @@ class View {
                 if (collectableTableElement) {
                     // If collectable table element exists, replace its contents
                     collectableTableElement.innerHTML = CreateCollectableTable(collectable).innerHTML;
+                    collectableTableElement.style.backgroundColor = `var(--rarity-${collectable.discovered ? collectable.rarity : 'empty'})`
                 }
             }
 
@@ -198,6 +198,7 @@ class View {
                 if (comboTableElement) {
                     // If combo table element exists, replace its contents
                     comboTableElement.innerHTML = CreateComboTable(combo).innerHTML;
+                    comboTableElement.style.backgroundColor = `var(--rarity-${combo.discovered ? combo.rarity : 'empty'})`
                 }
             }
         }

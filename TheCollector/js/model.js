@@ -2,9 +2,8 @@ class Model {
     constructor() {
         this.currentLocation = LOCATIONS[0];
 
-        this.cityCollectables = [];
-        this.cityCombos = [];
-        this.InitializeCityCollectables();
+        this.cityCollectables = this.InitializeCollectables(LOCATIONS[0]);
+        this.cityCombos = this.InitializeCombos(LOCATIONS[0]);
 
         this.forestCollectables = [];
         this.forestCombos = [];
@@ -25,59 +24,50 @@ class Model {
     }
 
     //#region initialize
-    InitializeCityCollectables() {
-        //Format: //this.cityCollectables.push(new Collectable("city", "", "", 0, 0));
+    InitializeCollectables(location) {
+        let collectables;
+        try {
+            //fetch the json file
+            //const jsonFile = fetch(`../data/${location}Collectables.json`);
+            const jsonFile = CITY_COLLECTABLE_JSON_DATA;
 
-        // 5-9 poors
-        this.cityCollectables.push(new Collectable("city", "coppercoin", "Copper Coin", 0, 0.01));
-        this.cityCollectables.push(new Collectable("city", "twig", "Twig", 0, 0.02));
-        this.cityCollectables.push(new Collectable("city", "plasticbag", "Plastic Bag", 0, 0.03));
-        this.cityCollectables.push(new Collectable("city", "pebble", "Pebble", 0, 0.04));
-        this.cityCollectables.push(new Collectable("city", "bottlecap", "Bottle Cap", 0, 0.05));
+            const collectableJsonData = JSON.parse(jsonFile);
+            collectables = collectableJsonData.map(collectableData => new Collectable(
+                collectableData.location,
+                collectableData.id,
+                collectableData.name,
+                collectableData.rarity,
+                collectableData.value
+            ));
+            console.log('Initialized cityCollectables from JSON data:', collectables);
+        } catch (error) {
+            console.error(`Error initializing ${location} Data from JSON:`, error);
+        }
+        return collectables;
+    }
 
-        // 4-8 commons
-        this.cityCollectables.push(new Collectable("city", "can", "Can", 1, 0.05));
-        this.cityCollectables.push(new Collectable("city", "glass", "Glass", 1, 0.06));
-        this.cityCollectables.push(new Collectable("city", "gum", "Gum", 1, 0.07));
-        this.cityCollectables.push(new Collectable("city", "cigbutt", "Ciggerette Butt", 1, 0.08));
+    InitializeCombos(location) {
+        let combos = [];
+        try {
+            //fetch the json file
+            //const jsonFile = fetch(`../data/${location}Combos.json`);
+            const jsonFile = CITY_COMBO_JSON_DATA;
 
-        // 4-7 uncommons
-        this.cityCollectables.push(new Collectable("city", "dollar", "Strange Currency", 2, 0.10));
-        this.cityCollectables.push(new Collectable("city", "chip", "Chip", 2, 0.20));
-        this.cityCollectables.push(new Collectable("city", "lottoticket", "Lotto Ticket", 2, 0.30));
-        this.cityCollectables.push(new Collectable("city", "loyaltycard", "Loyalty Card", 2, 0.40));
-
-        // 3-6 rares
-        this.cityCollectables.push(new Collectable("city", "chips", "Chips", 3, 0.50));
-        this.cityCollectables.push(new Collectable("city", "cig", "Full Ciggerette", 3, 0.60));
-        this.cityCollectables.push(new Collectable("city", "cd", "CD", 3, 0.70));
-
-        // 3-5 epics
-        this.cityCollectables.push(new Collectable("city", "silvercoin", "Silver Coin", 4, 1));
-        this.cityCollectables.push(new Collectable("city", "vcr", "VCR", 4, 2));
-        this.cityCollectables.push(new Collectable("city", "lighter", "Lighter", 4, 3));
-
-        // 2-4 legendaries
-        this.cityCollectables.push(new Collectable("city", "cdplayer", "CD Player", 5, 5));
-        this.cityCollectables.push(new Collectable("city", "laptop", "Old Laptop", 5, 6));
-
-        // 2-3 artifacts
-        this.cityCollectables.push(new Collectable("city", "tv", "TV", 6, 10));
-        this.cityCollectables.push(new Collectable("city", "bike", "Bike", 6, 20));
-
-        // 1-2 heirlooms
-        this.cityCollectables.push(new Collectable("city", "goldcoin", "Gold Coin", 7, 100));
-
-        // combos
-        //format //this.cityCombos.push(new CollectableCombo("city", "", "", "", 0, 0, ["", ""]));
-        this.cityCombos.push(new CollectableCombo("city", "stickstone", "Sticks & Stones", "[Twig + Pebble]\nWords cannot compare", 0, 0.40, ["twig", "pebble"]));
-        this.cityCombos.push(new CollectableCombo("city", "garbage", "Garbage Collector", "[Plastic Bag + Bottle Cap + Can + Glass + Ciggerette Butt]\nEww", 1, 0.80, ["plasticbag", "bottlecap", "can", "glass", "cigbutt"]));
-        this.cityCombos.push(new CollectableCombo("city", "gambling", "Gambling", "[Strange Currency + Lotto Ticket]\nToo bad it's worthless", 2, 3, ["dollar", "lottoticket"]));
-        this.cityCombos.push(new CollectableCombo("city", "allchips", "Potato Reuinited", "[Chip + Chips]\nTogether at last", 3, 5, ["chip", "chips"]));
-        this.cityCombos.push(new CollectableCombo("city", "litcig", "Nicotine Addiction", "[Full Ciggerette + Lighter]\nA cigerrete you may puff upon", 4, 30, ["cig", "lighter"]));
-        this.cityCombos.push(new CollectableCombo("city", "music", "Music", "[CD + CD Player]\nA rapturous auditory experience", 5, 50, ["cd", "cdplayer"]));
-        this.cityCombos.push(new CollectableCombo("city", "cinema", "Cinema", "[VCR + TV]\nTape that impresses both the ears and the eyes", 6, 100, ["vcr", "tv"]));
-        this.cityCombos.push(new CollectableCombo("city", "coins", "Coin Collection", "[Copper + Silver + Gold]\nA neat set of funny metals", 7, 1000, ["coppercoin", "silvercoin", "goldcoin"]));
+            const cityCombosData = JSON.parse(jsonFile);
+            combos = cityCombosData.map(comboData => new CollectableCombo(
+                comboData.location,
+                comboData.id,
+                comboData.name,
+                comboData.description,
+                comboData.rarity,
+                comboData.value,
+                comboData.requirements
+            ));
+            console.log('Initialized cityCombos from JSON data:', combos);
+        } catch (error) {
+            console.error(`Error initializing ${location} Data from JSON:`, error);
+        }
+        return combos;
     }
 
     InitializeForestCollectables() {
@@ -325,113 +315,104 @@ class Model {
     //#region SaveFunctions
     ConvertToJson() {
         const serializedCityCollectables = this.SerializeCollectables(this.cityCollectables);
-
         const serializedForestCollectables = this.SerializeCollectables(this.forestCollectables);
-
         const serializedPierCollectables = this.SerializeCollectables(this.pierCollectables);
-
         const serializedCaveCollectables = this.SerializeCollectables(this.caveCollectables);
-
-        const serializedShopItems = {};
-        this.shopItems.forEach(shopItem => {
-            serializedShopItems[shopItem.id] = shopItem.owned;
-        });
-
+    
+        const serializedShopItems = this.SerializeShopItems();
+    
         return JSON.stringify({
             cityCollectables: serializedCityCollectables,
             forestCollectables: serializedForestCollectables,
             pierCollectables: serializedPierCollectables,
             caveCollectables: serializedCaveCollectables,
-
             shopItems: serializedShopItems,
-
             currentLocation: this.currentLocation,
             money: this.money
         });
     }
-
-    SerializeCollectables(colelctables) {
-        const serializedCollectables = {};
-        colelctables.forEach(collectable => {
-            serializedCollectables[collectable.id] = collectable.numberOwned;
-        });
-        return serializedCollectables;
+    
+    SerializeCollectables(collectables) {
+        return collectables.reduce((acc, collectable) => {
+            acc[collectable.id] = collectable.numberOwned;
+            return acc;
+        }, {});
+    }
+    
+    SerializeShopItems() {
+        return this.shopItems.reduce((acc, shopItem) => {
+            acc[shopItem.id] = shopItem.owned;
+            return acc;
+        }, {});
     }
 
     LoadFromJson(jsonString) {
         const jsonData = JSON.parse(jsonString);
-
-        //load the cityCollectables.numberOwned
-        this.DeserializeCollectables(jsonData.cityCollectables, this.cityCollectables);
-        this.DeserializeCollectables(jsonData.forestCollectables, this.forestCollectables);
-        this.DeserializeCollectables(jsonData.pierCollectables, this.pierCollectables);
-        this.DeserializeCollectables(jsonData.caveCollectables, this.caveCollectables);
-
-        //determine the cityCombos off owned
-        this.loadCombos(this.cityCombos, this.cityCollectables);
-        this.loadCombos(this.forestCombos, this.forestCollectables);
-        this.loadCombos(this.pierCombos, this.pierCollectables);
-        this.loadCombos(this.caveCombos, this.caveCollectables);
-
-        //load the shopItems.owned
+    
+        // Load collectables and determine combos for each location
+        this.LoadAndProcessLocationData(jsonData.cityCollectables, this.cityCollectables, this.cityCombos);
+        this.LoadAndProcessLocationData(jsonData.forestCollectables, this.forestCollectables, this.forestCombos);
+        this.LoadAndProcessLocationData(jsonData.pierCollectables, this.pierCollectables, this.pierCombos);
+        this.LoadAndProcessLocationData(jsonData.caveCollectables, this.caveCollectables, this.caveCombos);
+    
+        // Load shop items
         if (jsonData.shopItems) {
             this.shopItems.forEach(item => {
-                if (jsonData.shopItems[item.id]) {
-                    item.owned = jsonData.shopItems[item.id];
-                }
+                item.owned = jsonData.shopItems[item.id] ?? item.owned; // Use optional chaining and nullish coalescing
             });
         }
-
-        if (jsonData.currentLocation !== undefined)
-            this.currentLocation = jsonData.currentLocation;
-        if (jsonData.money !== undefined)
-            this.money = jsonData.money;
+    
+        // Update current location and money if provided
+        this.currentLocation = jsonData.currentLocation ?? this.currentLocation;
+        this.money = jsonData.money ?? this.money;
     }
 
-    DeserializeCollectables(jsonCollectables, collectables) {
+    LoadAndProcessLocationData(jsonCollectables, collectables, combos) {
         if (jsonCollectables) {
             collectables.forEach(collectable => {
-                if (jsonCollectables[collectable.id]) {
-                    collectable.numberOwned = jsonCollectables[collectable.id];
-                    if(collectable.numberOwned > 0) collectable.discovered = true;
-                }
+                collectable.numberOwned = jsonCollectables[collectable.id] ?? collectable.numberOwned; // Use optional chaining and nullish coalescing
+                collectable.discovered = collectable.numberOwned > 0; // Set discovered flag
             });
         }
-    }
-
-    loadCombos(combos, collectables) {
+    
+        // Determine combos for the location
         combos.forEach(combo => {
             combo.requirementsMet(collectables);
         });
     }
 
     SaveToCookies() {
-        const dataString = this.ConvertToJson();
-        const expirationDate = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toUTCString();
-
-        const secureFlag = window.location.protocol === 'https:' ? '; secure' : '';
-
-        document.cookie = `userData=${encodeURIComponent(dataString)}; expires=${expirationDate}; path=/${secureFlag}; samesite=strict`;
-
-        console.log('Saved to cookies');
+        try {
+            const dataString = this.ConvertToJson();
+            const expirationDate = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toUTCString();
+            const secureFlag = this.isSecureProtocol() ? '; secure' : '';
+    
+            document.cookie = `userData=${encodeURIComponent(dataString)}; expires=${expirationDate}; path=/${secureFlag}; samesite=strict`;
+            console.log('Saved to cookies');
+        } catch (error) {
+            console.error('Error saving data to cookies:', error);
+        }
     }
 
     LoadFromCookies() {
-        const cookieData = document.cookie.split('; ').find(row => row.startsWith('userData='));
-
         try {
+            const cookieData = document.cookie.split('; ').find(row => row.startsWith('userData='));
             if (cookieData) {
                 const dataString = decodeURIComponent(cookieData.split('=')[1]);
                 this.LoadFromJson(dataString);
-                console.log("loaded from cookies");
+                console.log('Loaded from cookies');
                 return true;
             }
         } catch (error) {
             console.error('Error loading data from cookies:', error);
         }
-
-        console.log("didn't load from cookies");
+    
+        console.log("Didn't load from cookies");
         return false;
+    }
+    
+    isSecureProtocol() {
+        return window.location.protocol === 'https:';
     }
     //#endregion SaveFunctions
 }
