@@ -1,7 +1,7 @@
 :root {
-    --rarity-empty: #9d9d9d;
-    --rarity-0: #9d9d9d; /* Poor */
-    --rarity-1: #ffffff; /* Common */
+    --rarity-empty: #777;
+    --rarity-0: #aaa; /* Poor */
+    --rarity-1: #eee; /* Common */
     --rarity-2: #1eff00; /* Uncommon */
     --rarity-3: #0070dd; /* Rare */
     --rarity-4: #a335ee; /* Epic */
@@ -44,6 +44,7 @@ body {
     overflow-y: hidden;
 
     font-size: 1.25rem;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     
 
     button {
@@ -852,15 +853,17 @@ body {
         overflow-y: scroll;
 
         .collectable-section {
-            border: 2px solid black;
+            border: 2px solid white;
             margin-bottom: 10px;
             h2 {
                 text-align: center;
+                color: white;
                 padding: 0;
             }
     
             h3 {
                 text-align: left;
+                color: white;
                 padding: 0 10px;
             }
     

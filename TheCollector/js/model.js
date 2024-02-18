@@ -38,12 +38,12 @@ class Model {
         // 4-8 commons
         this.cityCollectables.push(new Collectable("city", "can", "Can", 1, 0.05));
         this.cityCollectables.push(new Collectable("city", "glass", "Glass", 1, 0.06));
-        this.cityCollectables.push(new Collectable("city", "gum", "Unused Gum", 1, 0.07));
-        this.cityCollectables.push(new Collectable("city", "cigbutt", "Ciggerette Butt", 2, 0.08));
+        this.cityCollectables.push(new Collectable("city", "gum", "Gum", 1, 0.07));
+        this.cityCollectables.push(new Collectable("city", "cigbutt", "Ciggerette Butt", 1, 0.08));
 
         // 4-7 uncommons
         this.cityCollectables.push(new Collectable("city", "dollar", "Strange Currency", 2, 0.10));
-        this.cityCollectables.push(new Collectable("city", "chip", "Chip", 1, 0.20));
+        this.cityCollectables.push(new Collectable("city", "chip", "Chip", 2, 0.20));
         this.cityCollectables.push(new Collectable("city", "lottoticket", "Lotto Ticket", 2, 0.30));
         this.cityCollectables.push(new Collectable("city", "loyaltycard", "Loyalty Card", 2, 0.40));
 
@@ -66,12 +66,12 @@ class Model {
         this.cityCollectables.push(new Collectable("city", "bike", "Bike", 6, 20));
 
         // 1-2 heirlooms
-        this.cityCollectables.push(new Collectable("city", "goldcoin", "Gold Coin", 5, 100));
+        this.cityCollectables.push(new Collectable("city", "goldcoin", "Gold Coin", 7, 100));
 
         // combos
         //format //this.cityCombos.push(new CollectableCombo("city", "", "", "", 0, 0, ["", ""]));
         this.cityCombos.push(new CollectableCombo("city", "stickstone", "Sticks & Stones", "[Twig + Pebble]\nWords cannot compare", 0, 0.40, ["twig", "pebble"]));
-        this.cityCombos.push(new CollectableCombo("city", "litter", "Garbage Collector", "[Plastic Bag + Bottle Cap + Can + Glass + Ciggerette Butt]\nEww", 1, 0.80, ["plasticbag", "bottlecap", "can", "glass", "cigbutt"]));
+        this.cityCombos.push(new CollectableCombo("city", "garbage", "Garbage Collector", "[Plastic Bag + Bottle Cap + Can + Glass + Ciggerette Butt]\nEww", 1, 0.80, ["plasticbag", "bottlecap", "can", "glass", "cigbutt"]));
         this.cityCombos.push(new CollectableCombo("city", "gambling", "Gambling", "[Strange Currency + Lotto Ticket]\nToo bad it's worthless", 2, 3, ["dollar", "lottoticket"]));
         this.cityCombos.push(new CollectableCombo("city", "allchips", "Potato Reuinited", "[Chip + Chips]\nTogether at last", 3, 5, ["chip", "chips"]));
         this.cityCombos.push(new CollectableCombo("city", "litcig", "Nicotine Addiction", "[Full Ciggerette + Lighter]\nA cigerrete you may puff upon", 4, 30, ["cig", "lighter"]));
@@ -189,7 +189,7 @@ class Model {
         //Format: //this.caveCollectables.push(new Collectable("cave", "", "", 0, 0));
         // 5-9 poors
         this.caveCollectables.push(new Collectable("cave", "refuse", "Animal refuse", 0, 0.50));
-        this.caveCollectables.push(new Collectable("cave", "ropes", "Ropes", 0, 0.60));
+        this.caveCollectables.push(new Collectable("cave", "rope", "Rope", 0, 0.60));
         this.caveCollectables.push(new Collectable("cave", "lantern", "Oil Latern", 0, 0.70));
         this.caveCollectables.push(new Collectable("cave", "vase", "Broken Vase", 0, 0.80));
         this.caveCollectables.push(new Collectable("cave", "coal", "Coal", 0, 0.90));
@@ -197,13 +197,13 @@ class Model {
         // 4-8 commons
         this.caveCollectables.push(new Collectable("cave", "agate", "Agate", 1, 1));
         this.caveCollectables.push(new Collectable("cave", "obsidian", "Obsidian", 1, 2));
-        this.caveCollectables.push(new Collectable("cave", "tin", "Tin", 1, 3));
-        this.caveCollectables.push(new Collectable("cave", "iron", "Iron", 1, 4));
+        this.caveCollectables.push(new Collectable("cave", "tinore", "Tin Ore", 1, 3));
+        this.caveCollectables.push(new Collectable("cave", "ironore", "Iron Ore", 1, 4));
 
         // 4-7 uncommons
         this.caveCollectables.push(new Collectable("cave", "tigerseye", "Tigers-eye", 2, 5));
-        this.caveCollectables.push(new Collectable("cave", "copper", "Copper Ore", 2, 6));
-        this.caveCollectables.push(new Collectable("cave", "flourite", "Fluorite", 2, 7));
+        this.caveCollectables.push(new Collectable("cave", "copperore", "Copper Ore", 2, 6));
+        this.caveCollectables.push(new Collectable("cave", "fluorite", "Fluorite", 2, 7));
         this.caveCollectables.push(new Collectable("cave", "calcite", "Calcite crystals", 2, 8));
 
         // 3-6 rares
@@ -213,7 +213,7 @@ class Model {
 
         // 3-5 epics
         this.caveCollectables.push(new Collectable("cave", "amethyst", "Amethyst", 4, 50));
-        this.caveCollectables.push(new Collectable("cave", "silver", "Silver Ore", 4, 60));
+        this.caveCollectables.push(new Collectable("cave", "silverore", "Silver Ore", 4, 60));
         this.caveCollectables.push(new Collectable("cave", "sapphire", "Sapphire", 4, 70));
 
         // 2-4 legendaries
@@ -221,20 +221,20 @@ class Model {
         this.caveCollectables.push(new Collectable("cave", "fossil", "Fossil", 5, 200));
 
         // 2-3 artifacts
-        this.caveCollectables.push(new Collectable("cave", "gold", "Gold Ore", 6, 500));
+        this.caveCollectables.push(new Collectable("cave", "goldore", "Gold Ore", 6, 500));
         this.caveCollectables.push(new Collectable("cave", "diamond", "Diamond", 6, 600));
 
         // 1-2 heirlooms
-        this.caveCollectables.push(new Collectable("cave", "platinum", "Platinum Ore", 7, 1000));
+        this.caveCollectables.push(new Collectable("cave", "platinumore", "Platinum Ore", 7, 1000));
 
         // combos
         //format //this.caveCombos.push(new CollectableCombo("cave", "", "", "[]\n", 0, 0, ["", ""]));
-        this.caveCombos.push(new CollectableCombo("cave", "bronze", "Bronze", "[Tin + Copper]\nI learnt that in Runescape", 2, 60, ["tin", "copper"]));
+        this.caveCombos.push(new CollectableCombo("cave", "bronze", "Bronze", "[Tin + Copper]\nI learnt that in Runescape", 2, 60, ["tinore", "copperore"]));
         this.caveCombos.push(new CollectableCombo("cave", "archeology", "Archeology", "[Missing Link + Broken Vase]\nLooks useless to me, I don't get it", 3, 200, ["missinglink", "vase"]));
         //level 4 combo
         //level 5 combo
-        this.caveCombos.push(new CollectableCombo("cave", "minecraft", "Minecraft", "[Coal + Iron + Diamond]\nOn to the nether!", 6, 6000, ["coal", "iron", "diamond"]));
-        this.caveCombos.push(new CollectableCombo("cave", "banking", "Fundamentals Of Banking", "[Copper + Silver + Gold + Platinum]\nThe foundations of our currency", 7, 10000, ["copper", "silver", "gold", "platinum"]));
+        this.caveCombos.push(new CollectableCombo("cave", "minecraft", "Minecraft", "[Coal + Iron + Diamond]\nOn to the nether!", 6, 6000, ["coal", "ironore", "diamond"]));
+        this.caveCombos.push(new CollectableCombo("cave", "banking", "Fundamentals Of Banking", "[Copper + Silver + Gold + Platinum]\nThe foundations of our currency", 7, 10000, ["copperore", "silverore", "goldore", "platinumore"]));
     }
 
     InitializeShop() {
