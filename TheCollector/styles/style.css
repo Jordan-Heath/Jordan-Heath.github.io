@@ -893,7 +893,7 @@ body {
     left: 50vw;
     z-index: 3;
 
-    width: 95vw;
+    width: 99vw;
     height: 80vh;
     transform: translate(-50%, -50%);
 
@@ -910,12 +910,13 @@ body {
 
     h2 {
         text-align: center;
+        color: white;
         padding: 0;
     }
 
     #shopViewOutput {
         box-sizing: border-box;
-        padding: 15px;
+        padding: 5px;
         margin: 0;
         height: inherit;
         width: inherit;
@@ -953,12 +954,13 @@ body {
 
     h2 {
         text-align: center;
+        color: white;
         padding: 0;
     }
 
     #mapViewOutput {
         box-sizing: border-box;
-        padding: 15px;
+        padding: 5px;
         margin: 0;
         height: inherit;
         width: inherit;
