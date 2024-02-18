@@ -40,7 +40,7 @@ class View {
         forestView.appendChild(CreateDiv("forestFloor"));
         forestView.appendChild(CreateDiv("frontTrees"));
         forestView.appendChild(CreateDiv("backTrees"));
-        forestView.appendChild(CreateDiv("canopy"));
+        forestView.appendChild(CreateDiv("sky"));
         let character = CreateDiv("character")
         character.appendChild(CreateDiv("bugnet"));
         forestView.appendChild(character);
@@ -157,12 +157,14 @@ class View {
     }
 
     AchivementMessage(combo) {
-        achievementMessageOutput.innerHTML = '';
-
         const comboTable = CreateComboTable(combo);
         comboTable.style.boxShadow = `0px 0px 10px 5px var(--rarity-${combo.rarity})`;
 
         achievementMessageOutput.appendChild(comboTable);
+
+        setTimeout(() => {
+            achievementMessageOutput.innerHTML = '';
+        }, 6000);
     }
     //#endregion message
 

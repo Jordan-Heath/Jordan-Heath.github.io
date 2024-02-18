@@ -21,14 +21,14 @@
 
     --character-shadow-inner: #3f3f3f;
     --character-shadow: radial-gradient(ellipse at center, #3f3f3f, transparent, transparent);
-    --pavement-upper-color: #999;
-    --pavement-bottom-color: #444;
+    --pavement-color: linear-gradient(#999, #444);
     --back-buildings-filter: #ace0f5ab;
 
-    --forest-floor: linear-gradient(#000, #050, #090);
-    --canopy-filter: linear-gradient(transparent, #000);
+    --forest-floor: linear-gradient(#240, #080);
+    --canopy-filter: linear-gradient(transparent, rgb(21, 43, 0));
+    --forest-sky: linear-gradient(#87cfeb, #bee0ee);
 
-    --wave-filter: linear-gradient(transparent, transparent, #0000ff55, #000022ff);
+    --wave-filter: linear-gradient(transparent, transparent, #00002255, #000022ff);
     --ocean-floor: linear-gradient(transparent, #00009999, #005);
     --ocean-sky: linear-gradient(#87cfeb, #ffffff);
 
@@ -51,27 +51,12 @@ body {
         border: 2px solid var(--button-border);
     }
 
-    .collectable-table {
-        width: 120px;
-
-        text-align: center;
-        background-color: var(--table-background-color);
-
-        tr:nth-child(1) {
-            height: 48px;
-        }
-        tr:nth-child(2) {
-            height: 110px;
-        }
-        th, thead, tfoot {
-            background-color: var(--table-highlight-color);
-        }
-    }
-
+    .collectable-table,
     .combo-table,
     .shop-item-table,
     .map-table {
-        width: 180px;
+        min-width: 150px;
+        max-width: 180px;
 
         text-align: center;
         background-color: var(--table-background-color);
@@ -86,6 +71,12 @@ body {
             background-color: var(--table-highlight-color);
         }
     }
+
+    .collectable-table {
+        min-width: 110px;
+        max-width: 120px;
+    }
+
 }
 
 #mainView {
@@ -118,19 +109,19 @@ body {
                 translate: -50% -20%;
 
                 border-radius: 100%;
-                background: radial-gradient(ellipse at center, var(--character-shadow), transparent, transparent);
+                background: var(--character-shadow);
                 animation: cityCharacterAnimation 3s infinite;
             }
 
             #pavement {
                 position: absolute;
-                bottom: 0;
+                top: 70vh;
                 z-index: -2;
 
                 width: 100vw;
                 height: 30vh;
 
-                background: linear-gradient(to bottom, var(--pavement-upper-color), var(--pavement-bottom-color));
+                background: var(--pavement-color);
             }
 
             #trees {
@@ -140,8 +131,8 @@ body {
 
                 width: 100vw;
                 height: 20vh;
-                background-size: auto 100%;
 
+                background-size: auto 100%;
                 background-repeat: repeat-x;
                 background-image: url('../images/environments/citytrees.png');
                 background-blend-mode: multiply;
@@ -254,18 +245,15 @@ body {
                 animation: parallaxWobble2 5s ease-in-out infinite;
             }
 
-            #canopy {
+            #sky {
                 position: absolute;
                 top: 0;
-                z-index: -6;
+                z-index: -5;
 
                 width: 100vw;
                 height: 70vh;
-                background-size: auto 100%;
 
-                background-repeat: repeat-x;
-                background-image: var(--canopy-filter), url('../images/environments/canopy.png');
-                animation: parallaxWobble1 5s ease-in-out infinite;
+                background-image: var(--forest-sky);
             }
         }
     
@@ -839,7 +827,7 @@ body {
     left: 50vw;
     z-index: 3;
 
-    width: 95vw;
+    width: 99vw;
     height: 80vh;
     transform: translate(-50%, -50%);
 
@@ -856,7 +844,7 @@ body {
 
     #collectionViewOutput {
         box-sizing: border-box;
-        padding: 15px;
+        padding: 5px;
         margin: 0;
         height: inherit;
         width: inherit;
@@ -878,13 +866,13 @@ body {
     
             .collectables-grid {
                 display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-                grid-gap: 2px;
+                grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+                grid-gap: 1px;
             }
             .combos-grid {
                 display: grid;
                 grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-                grid-gap: 2px;
+                grid-gap: 1px;
             }
         }
     }
