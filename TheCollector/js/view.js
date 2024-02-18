@@ -250,7 +250,7 @@ class View {
         const caveAvailable = model.shopItems.some(shopItem => shopItem.id === 'pickaxe' && shopItem.owned);
 
         const mapLocationsGrid = CreateDiv('', 'map-locations-grid');
-        mapLocationsGrid.appendChild(CreateMapTable(LOCATIONS[0], cityAvailable));
+        mapLocationsGrid.appendChild(CreateMapTable(LOCATIONS[0], true));
         mapLocationsGrid.appendChild(CreateMapTable(LOCATIONS[1], forestAvailable));
         mapLocationsGrid.appendChild(CreateMapTable(LOCATIONS[2], pierAvailable));
         mapLocationsGrid.appendChild(CreateMapTable(LOCATIONS[3], caveAvailable));
