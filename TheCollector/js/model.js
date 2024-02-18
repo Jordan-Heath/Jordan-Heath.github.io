@@ -241,8 +241,7 @@ class Model {
         //this.items.push(new ShopItem("", "", "", 0));
         this.shopItems.push(new ShopItem("bugnet", "Bug Net", "Unlock Bughunting in the forest", 75));
         this.shopItems.push(new ShopItem("fishingrod", "Fishing Rod", "Unlock Fishing at the pier", 300));
-        //this.shopItems.push(new ShopItem("pickaxe", "Pick Axe", "Unlock Mining in the cave", 350000));
-            this.shopItems.push(new ShopItem("pickaxe", "Pick Axe", "Unlock Mining in the cave", 1200));
+        this.shopItems.push(new ShopItem("pickaxe", "Pick Axe", "Unlock Mining in the cave", 1200));
         //this.items.push(new ShopItem("coffee", "Coffee Machine", "Unlock your true potential", 40));
     }
     //#endregion initialize
