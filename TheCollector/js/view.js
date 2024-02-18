@@ -57,7 +57,7 @@ class View {
         pierView.appendChild(CreateDiv("oceanFloor"));
         pierView.appendChild(CreateDiv("lowerFishLayer"));
         pierView.appendChild(CreateDiv("upperFishLayer"));
-        pierView.appendChild(CreateDiv("waves")); //transparent layer that goes over everything below
+        pierView.appendChild(CreateDiv("waves"));
         pierView.appendChild(CreateDiv('pier'));
         pierView.appendChild(CreateDiv("characterShadow"));
         let character = CreateDiv("character")
@@ -105,7 +105,7 @@ class View {
         }
 
         if (!collectionView.hidden) {
-            this.UpdateCollectionView(model);
+            this.UpdateCollectionView(model, collectable, combo);
         }
     }
 
@@ -124,6 +124,7 @@ class View {
 
         const collectableTable = CreateCollectableTable(collectable);
         collectableTable.style.boxShadow = `0px 0px 10px 5px var(--rarity-${collectable.rarity})`;
+        collectableTable.removeAttribute("id");
 
         collectableMessageOutput.appendChild(collectableTable);
     }
@@ -133,6 +134,7 @@ class View {
 
         const collectableTable = CreateCollectableTable(collectable);
         collectableTable.style.boxShadow = `0px 0px 10px 5px var(--rarity-${collectable.rarity})`;
+        collectableTable.removeAttribute("id");
 
         collectableMessageOutput.appendChild(collectableTable);
     }
@@ -170,16 +172,35 @@ class View {
 
     /* menues */
     //#region menues
-    UpdateCollectionView(model) {
-        
-        //TODO: rewrite this method to modify the content of the page rather than re-write the page
-        
-        collectionViewOutput.innerHTML = "";
+    UpdateCollectionView(model, collectable, combo) {
+        // Check if collectionViewOutput is empty
+        if (collectionViewOutput.innerHTML === "") {
+            // Run CreateCollectablesSection to populate collectionViewOutput
+            collectionViewOutput.appendChild(this.CreateCollectablesSection('City', model.cityCollectables, model.cityCombos));
+            collectionViewOutput.appendChild(this.CreateCollectablesSection('Forest', model.forestCollectables, model.forestCombos));
+            collectionViewOutput.appendChild(this.CreateCollectablesSection('Pier', model.pierCollectables, model.pierCombos));
+            collectionViewOutput.appendChild(this.CreateCollectablesSection('Cave', model.caveCollectables, model.caveCombos));
+        } else {
+            // If collectionViewOutput is not empty, update the view based on changes in model, collectable, and combo
 
-        collectionViewOutput.appendChild(this.CreateCollectablesSection('City', model.cityCollectables, model.cityCombos));
-        collectionViewOutput.appendChild(this.CreateCollectablesSection('Forest', model.forestCollectables, model.forestCombos));
-        collectionViewOutput.appendChild(this.CreateCollectablesSection('Pier', model.pierCollectables, model.pierCombos));
-        collectionViewOutput.appendChild(this.CreateCollectablesSection('Cave', model.caveCollectables, model.caveCombos));
+            // Update or add collectable in the view
+            if (collectable) {
+                const collectableTableElement = document.getElementById(`${collectable.id}TableElement`);
+                if (collectableTableElement) {
+                    // If collectable table element exists, replace its contents
+                    collectableTableElement.innerHTML = CreateCollectableTable(collectable).innerHTML;
+                }
+            }
+
+            // Update or add combo in the view
+            if (combo) {
+                const comboTableElement = document.getElementById(`${combo.id}TableElement`);
+                if (comboTableElement) {
+                    // If combo table element exists, replace its contents
+                    comboTableElement.innerHTML = CreateComboTable(combo).innerHTML;
+                }
+            }
+        }
     }
 
     CreateCollectablesSection(title, collectables, combos) {
@@ -210,30 +231,23 @@ class View {
 
     UpdateShopView(model) {
         shopViewOutput.innerHTML = "";
-
-        let shopItemsGrid = CreateDiv('', 'shop-items-grid')
+    
+        const shopItemsGrid = CreateDiv('', 'shop-items-grid');
+    
         model.shopItems.forEach(shopItem => {
             shopItemsGrid.appendChild(CreateShopItemTable(shopItem));
         });
+    
         shopViewOutput.appendChild(shopItemsGrid);
     }
+    
 
     UpdateMapView(model) {
         mapViewOutput.innerHTML = "";
 
-        let cityAvailable = true;
-        let forestAvailable = false;
-        let pierAvailable = false;
-        let caveAvailable = false;
-
-        model.shopItems.forEach(shopItem => {
-            if(shopItem.id === 'bugnet' && shopItem.owned)
-                forestAvailable = true;
-            if(shopItem.id === 'fishingrod' && shopItem.owned)
-                pierAvailable = true;
-            if(shopItem.id === 'pickaxe' && shopItem.owned)
-                caveAvailable = true;
-        });
+        const forestAvailable = model.shopItems.some(shopItem => shopItem.id === 'bugnet' && shopItem.owned);
+        const pierAvailable = model.shopItems.some(shopItem => shopItem.id === 'fishingrod' && shopItem.owned);
+        const caveAvailable = model.shopItems.some(shopItem => shopItem.id === 'pickaxe' && shopItem.owned);
 
         const mapLocationsGrid = CreateDiv('', 'map-locations-grid');
         mapLocationsGrid.appendChild(CreateMapTable(LOCATIONS[0], cityAvailable));

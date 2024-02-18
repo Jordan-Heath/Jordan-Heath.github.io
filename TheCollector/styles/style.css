@@ -62,20 +62,23 @@ body {
         text-align: center;
         background-color: var(--table-background-color);
 
+        tr {
+            background-color: var(--table-highlight-color);
+            font-weight: bold;
+        }
         tr:nth-child(1) {
             height: 48px;
         }
         tr:nth-child(2) {
             height: 110px;
+            background: none;
         }
-        th, thead, tfoot {
-            background-color: var(--table-highlight-color);
-        }
+        
     }
 
     .collectable-table {
         min-width: 110px;
-        max-width: 120px;
+        max-width: 140px;
     }
 
 }

@@ -68,20 +68,32 @@ function CapitalizeFirstLetter(str) {
 
 /* itemTable */
 //#region itemTable
+function AppendRowsToTable(rows, table) {
+    for (const rowData of rows) {
+        const tableRow = table.insertRow();
+        for (const cellContent of rowData) {
+            const cell = tableRow.insertCell();
+            cell.innerHTML = cellContent;
+        }
+    }
+}
+
 function CreateCollectableTable(collectable) {
     const table = document.createElement("table");
     table.className = 'collectable-table';
     table.style.backgroundColor = `var(--rarity-${collectable.discovered ? collectable.rarity : 'empty'})`;
 
-    const collectableName = collectable.discovered ?  collectable.name : '?';
-    const collectableValue = collectable.discovered ? ConvertToCurrency(collectable.value) : '?';
-    const collectableImage = `<img src="images/${collectable.discovered ? `${collectable.location}/${collectable.id}` : 'unknown'}.png">`;
-    const collectableCount = `${collectable.numberOwned} owned`;
+    const rows = [
+        [collectable.discovered ? collectable.name : '?'], // collectableName
+        [`<img src="images/${collectable.discovered ? `${collectable.location}/${collectable.id}` : 'unknown'}.png">`], // collectableImage
+        [`${collectable.numberOwned} owned`], // collectableCount
+        [collectable.discovered ? ConvertToCurrency(collectable.value) : '?'] // collectableValue
+    ];
 
-    table.insertRow(0).innerHTML = `<th>${collectableName}</th>`;
-    table.insertRow(1).innerHTML = `<td>${collectableImage}</td>`;
-    table.insertRow(2).innerHTML = `<th>${collectableCount}</th>`;
-    table.insertRow(3).innerHTML = `<th>${collectableValue}</th>`;
+    AppendRowsToTable(rows, table);
+
+    // Set a unique ID for the table
+    table.id = `${collectable.id}TableElement`;
 
     return table;
 }
@@ -89,33 +101,33 @@ function CreateCollectableTable(collectable) {
 function CreateComboTable(combo) {
     const table = document.createElement("table");
     table.className = 'combo-table';
-    table.style.backgroundColor = `var(--rarity-${combo.discovered ? combo.rarity : 'empty'})`
+    table.style.backgroundColor = `var(--rarity-${combo.discovered ? combo.rarity : 'empty'})`;
 
-    const comboName = combo.discovered ? combo.name : '?'
-    const comboImage = `<img src="images/${combo.discovered ? `${combo.location}/${combo.id}` : 'unknown'}.png">`
-    const comboDescription = combo.discovered ? combo.description : '?';
+    const rows = [
+        [combo.discovered ? combo.name : '?'], // comboName
+        [`<img src="images/${combo.discovered ? `${combo.location}/${combo.id}` : 'unknown'}.png">`], // comboImage
+        [combo.discovered ? combo.description : '?'] // comboDescription
+    ];
 
-    table.insertRow(0).innerHTML = `<th>${comboName}</th>`;
-    table.insertRow(1).innerHTML = `<td>${comboImage}</td>`;
-    table.insertRow(2).innerHTML = `<th>${comboDescription}</th>`;
+    AppendRowsToTable(rows, table);
+
+    // Set a unique ID for the table
+    table.id = `${combo.id}TableElement`;
 
     return table;
 }
-
 function CreateShopItemTable(shopItem) {
     const table = document.createElement("table");
     table.className = 'shop-item-table';
 
-    const itemName = shopItem.name;
-    const itemImage = `<img src="images/shop/${shopItem.id}.png">`
-    const itemDesc = shopItem.description;
-    const purchaseButton = shopItem.owned ? 'Owned' : `<button onclick="controller.Purchase('${shopItem.id}')">${ConvertToCurrency(shopItem.price)}</button>`;
+    const rows = [
+        [shopItem.name], // itemName
+        [`<img src="images/shop/${shopItem.id}.png">`], // itemImage
+        [shopItem.description], // itemDesc
+        [shopItem.owned ? 'Owned' : `<button onclick="controller.Purchase('${shopItem.id}')">${ConvertToCurrency(shopItem.price)}</button>`] // purchaseButton
+    ];
 
-    table.insertRow(0).innerHTML = `<th>${itemName}</th>`;
-    table.insertRow(1).innerHTML = `<td>${itemImage}</td>`;
-    table.insertRow(2).innerHTML = `<td>${itemDesc}</td>`;
-    table.insertRow(3).innerHTML = `<th>${purchaseButton}</th>`;
-
+    AppendRowsToTable(rows, table);
     return table;
 }
 
@@ -123,13 +135,13 @@ function CreateMapTable(location, enabled) {
     const table = document.createElement("table");
     table.className = 'map-table';
 
-    const mapName = CapitalizeFirstLetter(location);
-    const mapImage = `<img src="images/environments/${location}.png"}>`
-    const moveButton = enabled ? `<button onclick="controller.Move('${location}')">GO</button>` : '<button disabled>GO</button>';
+    const rows = [
+        [CapitalizeFirstLetter(location)], // mapName
+        [`<img src="images/environments/${location}.png">`], // mapImage
+        [enabled ? `<button onclick="controller.Move('${location}')">GO</button>` : '<button disabled>GO</button>'] // moveButton
+    ];
 
-    table.insertRow(0).innerHTML = `<th>${mapName}</th>`;
-    table.insertRow(1).innerHTML = `<td>${mapImage}</td>`;
-    table.insertRow(2).innerHTML = `<th>${moveButton}</th>`;
+    AppendRowsToTable(rows, table);
 
     return table;
 }
