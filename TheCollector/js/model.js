@@ -21,6 +21,7 @@ class Model {
         this.InitializeShop();
 
         this.money = 0;
+        this.collected = 0;
     }
 
     //#region initialize
@@ -249,7 +250,11 @@ class Model {
         selectedCollectable = GetRandomCollectable(this.ActiveCollectables());
         
         //increment and return
-        selectedCollectable.discovered = true;
+        if (!selectedCollectable.discovered) {
+            selectedCollectable.discovered = true;
+            this.collected += 1;
+        }
+        
         selectedCollectable.numberOwned += 1;
         this.money += selectedCollectable.value;
         return selectedCollectable;
@@ -328,7 +333,8 @@ class Model {
             caveCollectables: serializedCaveCollectables,
             shopItems: serializedShopItems,
             currentLocation: this.currentLocation,
-            money: this.money
+            money: this.money,
+            collected: this.collected
         });
     }
     
@@ -365,6 +371,7 @@ class Model {
         // Update current location and money if provided
         this.currentLocation = jsonData.currentLocation ?? this.currentLocation;
         this.money = jsonData.money ?? this.money;
+        this.collected = jsonData.collected ?? this.collected;
     }
 
     LoadAndProcessLocationData(jsonCollectables, collectables, combos) {

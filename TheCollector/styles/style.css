@@ -539,14 +539,14 @@ body {
 
         box-sizing: border-box;
         height: 80px;
-        padding: 25px;
+        padding: 15px;
 
         background-color: var(--ui-background-color);
 
         p {
-            height: 30px;
             padding: 0;
             margin: auto auto;
+            text-align: right;
         }
     }
 
@@ -858,10 +858,13 @@ body {
         .collectable-section {
             border: 2px solid white;
             margin-bottom: 10px;
-            h2 {
+
+            summary {
                 text-align: center;
+                font-size: 30px;
                 color: white;
-                padding: 0;
+                padding: 20px 0;
+                cursor: pointer;
             }
     
             h3 {

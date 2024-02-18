@@ -85,7 +85,7 @@ class View {
     //#endregion location
 
     Initialize(model) {
-        money.innerText = ConvertToCurrency(model.money);
+        this.UpdatePlayerDetails(model);
         this.LoadLocation(LOCATIONS[model.currentLocation]);
     }
 
@@ -109,6 +109,7 @@ class View {
 
     UpdatePlayerDetails(model) {
         money.innerText = ConvertToCurrency(model.money);
+        collected.innerText = model.collected;
     }
 
     /* Message */
@@ -205,23 +206,25 @@ class View {
     }
 
     CreateCollectablesSection(title, collectables, combos) {
-        let collectablesSection = CreateDiv('', 'collectable-section');
+        const collectablesSection = document.createElement('details');
+        collectablesSection.className = 'collectable-section';
 
-        let collectablesTitle = document.createElement("h2");
-        collectablesTitle.innerText = `${title} Collectables`;
+        const collectablesTitle = document.createElement("summary");
+        collectablesTitle.innerHTML = `${title} Collectables`;
+        collectablesTitle.id = `${title}CollectablesTitle`
         collectablesSection.appendChild(collectablesTitle);
 
-        let collectablesGrid = CreateDiv('', 'collectables-grid');
+        const collectablesGrid = CreateDiv('', 'collectables-grid');
         collectables.forEach(collectable => {
             collectablesGrid.appendChild(CreateCollectableTable(collectable));
         });
         collectablesSection.appendChild(collectablesGrid);
 
-        let CombosSubtitle = document.createElement("h3");
+        const CombosSubtitle = document.createElement("h3");
         CombosSubtitle.innerText = `${title} Achievements`;
         collectablesSection.appendChild(CombosSubtitle);
 
-        let combosGrid = CreateDiv('', 'combos-grid');
+        const combosGrid = CreateDiv('', 'combos-grid');
         combos.forEach(combo => {
             combosGrid.appendChild(CreateComboTable(combo));
         });
