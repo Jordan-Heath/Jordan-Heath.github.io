@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Our Funky HTML Page</title>
+    <meta name="description" content="Our first page">
+    <meta name="keywords" content="html tutorial template">
+
+    <link rel="stylesheet" href="styles/style.css">
+
+    <script src="js/models/pet.js"></script>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <header>
+        <button onclick="openMenu('infoView')"><img src="assets/buttons/info.png" alt="Info"></button>
+        <button onclick="openMenu('foodView')"><img src="assets/buttons/food.png" alt="Food"></button>
+        <button onclick="openMenu('toiletView')"><img src="assets/buttons/toilet.png" alt="Toilet"></button>
+        <button onclick="openMenu('gameView')"><img src="assets/buttons/game.png" alt="Game"></button>
+    </header>
+
+    <button id="backButton" onclick="openMenu('defaultView')" hidden>Back</button>
+
+    <main id="defaultView">
+        <img id="characterElement" src="assets/character.png">
+    </main>
+
+    <main id="infoView" hidden>
+        <div>Hungry: <span id="hungryValue"></span></div>
+        <div>Happy: <span id="happyValue"></span></div>
+        <div>Training: <span id="trainingValue"></span></div>
+        <div>Age</div>
+        <div>weight</div>
+        <div>name</div>
+        <div>gender</div>
+        <div>generation</div>
+        <div>points</div>
+    </main>
+    <main id="foodView" hidden>
+        <button>meal</button>
+        <button></button>
+    </main>
+    <main id="toiletView" hidden></main> <!-- Not a view, just a function that effects main -->
+    <main id="gameView" hidden></main>
+
+    <main id="trainingView" hidden></main>
+    <main id="healthView" hidden></main> <!-- Not a view, just a function that effects main -->
+    <main id="nightView" hidden></main> <!-- Not a view, just a function that effects main -->
+    <main id="journalView" hidden></main>
+
+    <footer>
+        <button onclick="openMenu('trainingView')"><img src="assets/buttons/training.png" alt="Training"></button>
+        <button onclick="openMenu('healthView')"><img src="assets/buttons/health.png" alt="Health"></button>
+        <button onclick="openMenu('nightView')"><img src="assets/buttons/night.png" alt="Night"></button>
+        <button onclick="openMenu('journalView')"><img src="assets/buttons/journal.png" alt="Journal"></button>
+    </footer>
+</body>
+
+</html>
+
+<!doctype html>
