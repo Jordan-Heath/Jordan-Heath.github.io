@@ -612,7 +612,7 @@ body {
             position: absolute;
             top: 0;
             left: 50vw;
-            z-index: 4;
+            z-index: 100;
 
             padding: 10px;
             color: red;
