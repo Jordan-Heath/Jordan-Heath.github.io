@@ -87,6 +87,7 @@ class View {
     Initialize(model) {
         this.UpdatePlayerDetails(model);
         this.LoadLocation(LOCATIONS[model.currentLocation]);
+        loadingView.style.display = 'none';
     }
 
     Update(model, collectable, combo) {

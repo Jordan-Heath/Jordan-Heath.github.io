@@ -2,57 +2,80 @@ class Model {
     constructor() {
         this.currentLocation = LOCATIONS[0];
 
-        this.cityCollectables = this.InitializeCollectables(LOCATIONS[0]);
-        this.cityCombos = this.InitializeCombos(LOCATIONS[0]);
-
-        this.forestCollectables = this.InitializeCollectables(LOCATIONS[1]);
-        this.forestCombos = this.InitializeCombos(LOCATIONS[1]);
-
-        this.pierCollectables = this.InitializeCollectables(LOCATIONS[2]);
-        this.pierCombos = this.InitializeCombos(LOCATIONS[2]);
-
-        this.caveCollectables = this.InitializeCollectables(LOCATIONS[3]);
-        this.caveCombos = this.InitializeCombos(LOCATIONS[3]);
+        this.cityCollectables = [];
+        this.cityCombos = [];
+        this.forestCollectables = [];
+        this.forestCombos = [];
+        this.pierCollectables = [];
+        this.pierCombos = [];
+        this.caveCollectables = [];
+        this.caveCombos = [];
 
         this.shopItems = [];
-        this.InitializeShop();
 
         this.money = 0;
         this.collected = 0;
     }
 
-    //#region initialize
-    InitializeCollectables(location) {
-        let collectables;
+    async Initialize() {
         try {
-            //fetch the json file
-            //const jsonFile = fetch(`../data/${location}Collectables.json`);
-            const jsonFile = COLLECTABLES_JSON[location];
+            this.cityCollectables = await this.InitializeCollectables(LOCATIONS[0]);
+            this.cityCombos = await this.InitializeCombos(LOCATIONS[0]);
+
+            this.forestCollectables = await this.InitializeCollectables(LOCATIONS[1]);
+            this.forestCombos = await this.InitializeCombos(LOCATIONS[1]);
+
+            this.pierCollectables = await this.InitializeCollectables(LOCATIONS[2]);
+            this.pierCombos = await this.InitializeCombos(LOCATIONS[2]);
+
+            this.caveCollectables = await this.InitializeCollectables(LOCATIONS[3]);
+            this.caveCombos = await this.InitializeCombos(LOCATIONS[3]);
+
+            this.InitializeShop();
+
+            console.log('Initialization completed.');
+        } catch (error) {
+            console.error('Error during initialization:', error);
+        }
+    }
+
+    //#region initialize
+    async InitializeCollectables(location) {
+        try {
+            let jsonFile;
+            if (testingMode) {
+                jsonFile = COLLECTABLES_JSON[location];
+            } else {
+                const response = await fetch(`https://jordan-heath.github.io/TheCollector/data/${location}Collectables.json`);
+                jsonFile = await response.text();
+            }
 
             const collectableJsonData = JSON.parse(jsonFile);
-            collectables = collectableJsonData.map(collectableData => new Collectable(
+            return collectableJsonData.map(collectableData => new Collectable(
                 collectableData.location,
                 collectableData.id,
                 collectableData.name,
                 collectableData.rarity,
                 collectableData.value
             ));
-            console.log(`Initialized ${location}Collectables from JSON data:`, collectables);
         } catch (error) {
             console.error(`Error initializing ${location}Data from JSON:`, error);
+            return [];
         }
-        return collectables;
     }
 
-    InitializeCombos(location) {
+    async InitializeCombos(location) {
         let combos = [];
         try {
-            //fetch the json file
-            //const jsonFile = fetch(`../data/${location}Combos.json`);
-            const jsonFile = COMBOS_JSON[location];
-
-            const cityCombosData = JSON.parse(jsonFile);
-            combos = cityCombosData.map(comboData => new CollectableCombo(
+            let jsonFile;
+            if (testingMode) {
+                jsonFile = COMBOS_JSON[location];
+            } else {
+                const response = await fetch(`https://jordan-heath.github.io/TheCollector/data/${location}Combos.json`);
+                jsonFile = await response.json();
+            }
+    
+            combos = jsonFile.map(comboData => new CollectableCombo(
                 comboData.location,
                 comboData.id,
                 comboData.name,
@@ -67,6 +90,7 @@ class Model {
         }
         return combos;
     }
+    
 
     InitializeShop() {
         //this.items.push(new ShopItem("", "", "", 0));

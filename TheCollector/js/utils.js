@@ -64,6 +64,16 @@ function CapitalizeFirstLetter(str) {
     if (!str) return str;
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+function checkTestingMode() {
+    const url = window.location.href;
+    const testingMode = url.includes('file');
+
+    testingMode ? console.log('Running in testing mode') : console.log('Not running in testing mode');
+
+    return testingMode;
+}
+
 //#endregion misc
 
 /* itemTable */

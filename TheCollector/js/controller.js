@@ -4,13 +4,15 @@ class Controller {
         this.view = view;
 
         this.Initialize();
-        this.view.Initialize(this.model);
+        
     }
 
     /* Initialization Methods */
     //#region Inititalize
-    Initialize() {
+    async Initialize() {
         this.InitializeButtons();
+
+        await this.model.Initialize()
 
         //attempt to load from cookies
         this.model.LoadFromCookies();
@@ -21,7 +23,9 @@ class Controller {
             this.view.SaveMessage('Saved');
         }, SAVE_INTERVAL);
 
+        
         this.Update();
+        this.view.Initialize(this.model);
     }
 
     InitializeButtons() {

@@ -44,6 +44,9 @@ const CITY_COLLECTABLE_JSON_DATA = `[
 
     { "location": "city", "id": "goldcoin", "name": "Gold Coin", "rarity": 7, "value": 100 }
 ]`;
+const CITY_COLLECTABLE_JSON_URL = `[
+
+]`
 const CITY_COMBO_JSON_DATA = `[
     { "location": "city", "id": "stickstone", "name": "Sticks & Stones", "description": "[Twig + Pebble] Words cannot compare", "rarity": 0, "value": 0.40, "requirements": ["twig", "pebble"] },
     { "location": "city", "id": "garbage", "name": "Garbage Collector", "description": "[Plastic Bag + Bottle Cap + Can + Glass + Ciggerette Butt] Eww", "rarity": 1, "value": 0.80, "requirements": ["plasticbag", "bottlecap", "can", "glass", "cigbutt"] },
@@ -116,12 +119,12 @@ const PIER_COLLECTABLE_JSON_DATA = `[
 	{ "location": "pier", "id": "mackerel", "name": "Mackerel", "rarity": 2, "value": 3 },
 	{ "location": "pier", "id": "salmon", "name": "Salmon", "rarity": 2, "value": 4 },
 
-    { "location": "pier", "id": "octopus", "name": "Octopus", "rarity": 3, "value": 5 },
+    { "location": "pier", "id": "eel", "name": "Eel", "rarity": 3, "value": 5 },
 	{ "location": "pier", "id": "snapper", "name": "Red Snapper", "rarity": 3, "value": 6 },
-    { "location": "pier", "id": "eel", "name": "Eel", "rarity": 3, "value": 7 },
+	{ "location": "pier", "id": "lobster", "name": "Lobster", "rarity": 3, "value": 7 },
     
 	{ "location": "pier", "id": "turtle", "name": "Turtle", "rarity": 4, "value": 10 },
-    { "location": "pier", "id": "lobster", "name": "Lobster", "rarity": 4, "value": 20 },
+	{ "location": "pier", "id": "octopus", "name": "Octopus", "rarity": 4, "value": 20 },
 	{ "location": "pier", "id": "tuna", "name": "Tuna", "rarity": 4, "value": 30 },
 
 	{ "location": "pier", "id": "shark", "name": "Shark", "rarity": 5, "value": 50 },
@@ -133,12 +136,15 @@ const PIER_COLLECTABLE_JSON_DATA = `[
     { "location": "pier", "id": "treasure", "name": "Buried Treasure", "rarity": 7, "value": 500 }
 ]`;
 const PIER_COMBO_JSON_DATA = `[
-    { "location": "pier", "id": "shelltrio", "name": "Shell Trio", "description": "[Prawn + Crab + Lobster] Hardest achievement here", "rarity": 4, "value": 300, "requirements": ["prawn", "crab", "lobster"] },
-    { "location": "pier", "id": "bento", "name": "Bento Box", "description": "[Tuna + Salmon + Red Snapper] Amazing combo served raw", "rarity": 5, "value": 500, "requirements": ["tuna", "salmon", "snapper"] },
-    { "location": "pier", "id": "fishandchips", "name": "Fish and Chips", "description": "[Octopus + Shark] Calamari and flake", "rarity": 6, "value": 2000, "requirements": ["octopus", "shark"] },
+	{ "location": "pier", "id": "tireswing", "name": "Tire Swing", "description": "[Tire + Netting] The foundations for a good afternoon", "rarity": 0, "value": 5, "requirements": ["tire", "netting"] },
+	{ "location": "pier", "id": "wallhanging", "name": "Wall Hanging", "description": "[Sea Glass + Scallop] Something to remember that trip to the pier", "rarity": 1, "value": 7, "requirements": ["seaglass", "scallop"] },
+	{ "location": "pier", "id": "magicwand", "name": "Magic Wand", "description": "[Drift Wood + Starfish] This is how they are made", "rarity": 2, "value": 10, "requirements": ["driftwood", "starfish"] },
+    { "location": "pier", "id": "shelltrio", "name": "Shell Trio", "description": "[Prawn + Crab + Lobster] Hardest achievement here", "rarity": 3, "value": 70, "requirements": ["prawn", "crab", "lobster"] },
+    { "location": "pier", "id": "bento", "name": "Bento Box", "description": "[Tuna + Salmon + Red Snapper] Amazing combo served raw", "rarity": 4, "value": 300, "requirements": ["tuna", "salmon", "snapper"] },
+    { "location": "pier", "id": "fishandchips", "name": "Fish and Chips", "description": "[Octopus + Shark] Calamari and flake", "rarity": 5, "value": 600, "requirements": ["octopus", "shark"] },
+	{ "location": "pier", "id": "ancientfish", "name": "Ancient Fish", "description": "[Coelacanth + Nautilus] Probably should put these back...", "rarity": 6, "value": 2000, "requirements": ["coelacanth", "nautilus"] },
     { "location": "pier", "id": "plunder", "name": "Plunder", "description": "[Pearl + Treasure] The seas bounties are yours now", "rarity": 7, "value": 5000, "requirements": ["pearl", "treasure"] }
-]
-`;
+]`;
 //#endregion Pier Data
 
 //#region Cave Data

@@ -19,6 +19,8 @@
     --table-highlight-color: #ffffff55;
     --table-background-color: #ffffffaa;
 
+    --loading-background: radial-gradient(ellipse at center, #00ff00, #3f3f3f);
+
     --character-shadow-inner: #3f3f3f;
     --character-shadow: radial-gradient(ellipse at center, #3f3f3f, transparent, transparent);
     --pavement-color: linear-gradient(#999, #444);
@@ -81,6 +83,28 @@ body {
         max-width: 140px;
     }
 
+}
+
+#loadingView {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+
+    background: var(--loading-background);
+
+    h1 {
+        position: relative;
+        top: 50vh;
+
+        text-align: center;
+        color: white;
+    }
 }
 
 #mainView {
