@@ -961,7 +961,7 @@ body {
         box-sizing: border-box;
         padding: 5px;
         margin: 0;
-        height: inherit;
+        height: 70vh;
         width: inherit;
 
         overflow-y: scroll;
@@ -995,11 +995,7 @@ body {
         height: 50px;
     }
 
-    h2 {
-        text-align: center;
-        color: white;
-        padding: 0;
-    }
+    
 
     #mapViewOutput {
         box-sizing: border-box;
@@ -1009,6 +1005,12 @@ body {
         width: inherit;
 
         overflow-y: scroll;
+
+        h2 {
+            text-align: center;
+            color: white;
+            padding: 0;
+        }
 
         .map-locations-grid {
             display: grid;
