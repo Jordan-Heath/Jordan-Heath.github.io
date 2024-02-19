@@ -17,6 +17,7 @@ class Model {
         this.collected = 0;
     }
 
+    //#region initialize
     async Initialize() {
         try {
             this.cityCollectables = await this.InitializeCollectables(LOCATIONS[0]);
@@ -39,29 +40,29 @@ class Model {
         }
     }
 
-    //#region initialize
     async InitializeCollectables(location) {
+        let collectables = [];
         try {
             let jsonFile;
             if (testingMode) {
-                jsonFile = COLLECTABLES_JSON[location];
+                jsonFile = JSON.parse(COLLECTABLES_JSON[location]);
             } else {
                 const response = await fetch(`https://jordan-heath.github.io/TheCollector/data/${location}Collectables.json`);
-                jsonFile = await response.text();
+                jsonFile = await response.json();
             }
 
-            const collectableJsonData = JSON.parse(jsonFile);
-            return collectableJsonData.map(collectableData => new Collectable(
+            collectables = jsonFile.map(collectableData => new Collectable(
                 collectableData.location,
                 collectableData.id,
                 collectableData.name,
                 collectableData.rarity,
                 collectableData.value
             ));
+            console.log(`Initialized ${location}Combos from JSON data:`, collectables);
         } catch (error) {
             console.error(`Error initializing ${location}Data from JSON:`, error);
-            return [];
         }
+        return collectables;
     }
 
     async InitializeCombos(location) {
@@ -69,7 +70,7 @@ class Model {
         try {
             let jsonFile;
             if (testingMode) {
-                jsonFile = COMBOS_JSON[location];
+                jsonFile = JSON.parse(COMBOS_JSON[location]);
             } else {
                 const response = await fetch(`https://jordan-heath.github.io/TheCollector/data/${location}Combos.json`);
                 jsonFile = await response.json();
@@ -279,7 +280,7 @@ class Model {
         try {
             const dataString = this.ConvertToJson();
             const expirationDate = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toUTCString();
-            const secureFlag = this.isSecureProtocol() ? '; secure' : '';
+            const secureFlag = isSecureProtocol() ? '; secure' : '';
     
             document.cookie = `userData=${encodeURIComponent(dataString)}; expires=${expirationDate}; path=/${secureFlag}; samesite=strict`;
             console.log('Saved to cookies');
@@ -304,10 +305,32 @@ class Model {
         console.log("Didn't load from cookies");
         return false;
     }
-    
-    isSecureProtocol() {
-        return window.location.protocol === 'https:';
+
+    ImportSave(file) {
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = () => {
+                try {
+                    this.LoadFromJson(reader.result)
+                    console.log('successfully imported player:', reader.result);
+                } catch (error) {
+                    console.error('Error importing player:', error);
+                }
+            };
+
+            reader.readAsText(file);
+        }
     }
+
+    ExportSave() {
+        const blob = new Blob([this.ConvertToJson()], { type: 'application/json' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = `TheCollectorSave.json`;
+        link.click();
+    }
+    
     //#endregion SaveFunctions
 }
 

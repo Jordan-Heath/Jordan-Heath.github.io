@@ -97,6 +97,8 @@ body {
     height: 100vh;
 
     background: var(--loading-background);
+    opacity: 1;
+    transition: opacity 1s linear;
 
     h1 {
         position: relative;
@@ -547,6 +549,11 @@ body {
             padding: 5px;
             width: 160px;
             height: 40px;
+        }
+
+        #saveFileControls {
+            display: flex;
+            flex-direction: row;
         }
 
         #resetMenuButton,

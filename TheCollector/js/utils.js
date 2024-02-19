@@ -74,6 +74,10 @@ function checkTestingMode() {
     return testingMode;
 }
 
+function isSecureProtocol() {
+    return window.location.protocol === 'https:';
+}
+
 //#endregion misc
 
 /* itemTable */

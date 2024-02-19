@@ -49,6 +49,18 @@ class Controller {
             this.SaveButton();
         });
 
+        exportSaveMenuButton.addEventListener('click', () => {
+            this.ExportButton();
+        });
+
+        importSaveMenuButton.addEventListener('click', () => {
+            this.ImportButton()
+        });
+
+        importFileMenuInput.addEventListener('change', () => {
+            this.ImportFile();
+        });
+
         resetMenuButton.addEventListener('click', () => {
             this.ResetButton();
         });
@@ -118,6 +130,26 @@ class Controller {
         this.view.SaveMessage('Saved');
     }
 
+    ExportButton() {
+        this.model.ExportSave();
+    }
+
+    ImportButton() {
+        if(window.confirm("This will overwrite your save, are you sure?")) {
+            document.getElementById('importFileMenuInput').click();
+        }
+    }
+    
+    ImportFile() {
+        const importFileMenuInput = document.getElementById('importFileMenuInput');
+        const file = importFileMenuInput.files[0];
+        this.model.ImportSave(file);
+        setTimeout (() => {
+            this.model.SaveToCookies();
+            window.location.href = 'TheCollector.html';
+        }, 200)
+    }
+
     ResetButton() {
         if(window.confirm("Are you sure you wish to reset?")) {
             model = new Model();
@@ -126,6 +158,7 @@ class Controller {
             window.location.href = 'TheCollector.html';
         }
     }
+
     ExitButton() {
         this.model.SaveToCookies();
         if(window.confirm("Are you sure you wish to quit?")) {

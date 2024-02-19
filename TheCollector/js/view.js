@@ -87,7 +87,12 @@ class View {
     Initialize(model) {
         this.UpdatePlayerDetails(model);
         this.LoadLocation(LOCATIONS[model.currentLocation]);
-        loadingView.style.display = 'none';
+
+        loadingView.style.opacity = 0;
+
+        setTimeout(()=> {
+            loadingView.style.display = 'none'
+        }, 1000);
     }
 
     Update(model, collectable, combo) {
