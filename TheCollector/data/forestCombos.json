@@ -1,0 +1,5 @@
+[
+    { "location": "forest", "id": "stickleaf", "name": "Stick and Leaf", "description": "[Stick + Leaf]\nNatures Fingers", "rarity": 0, "value": 0.50, "requirements": ["stick", "leaf"] },
+    { "location": "forest", "id": "stickleaf2", "name": "Stick and Leaf?", "description": "[Stick Bug + Leaf Insect]\nThey wriggle unsettlingly", "rarity": 5, "value": 100, "requirements": ["stickbug", "leafinsect"] },
+    { "location": "forest", "id": "goldenarc", "name": "Golden Arc", "description": "[Ancient Box + Golden Idol]\nMy face feels tingley", "rarity": 7, "value": 1000, "requirements": ["ancientbox", "goldenidol"] }
+]

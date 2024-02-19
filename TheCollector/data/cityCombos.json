@@ -1,0 +1,10 @@
+[
+    { "location": "city", "id": "stickstone", "name": "Sticks & Stones", "description": "[Twig + Pebble] Words cannot compare", "rarity": 0, "value": 0.40, "requirements": ["twig", "pebble"] },
+    { "location": "city", "id": "garbage", "name": "Garbage Collector", "description": "[Plastic Bag + Bottle Cap + Can + Glass + Ciggerette Butt] Eww", "rarity": 1, "value": 0.80, "requirements": ["plasticbag", "bottlecap", "can", "glass", "cigbutt"] },
+    { "location": "city", "id": "gambling", "name": "Gambling", "description": "[Strange Currency + Lotto Ticket]\nToo bad it's worthless", "rarity": 2, "value": 3, "requirements": ["dollar", "lottoticket"] },
+    { "location": "city", "id": "allchips", "name": "Potato Reuinited", "description": "[Chip + Chips]\nTogether at last", "rarity": 3, "value": 5, "requirements": ["chip", "chips"] },
+    { "location": "city", "id": "litcig", "name": "Nicotine Addiction", "description": "[Full Ciggerette + Lighter]\nA cigerrete you may puff upon", "rarity": 4, "value": 30, "requirements": ["cig", "lighter"] },
+    { "location": "city", "id": "music", "name": "Music", "description": "[CD + CD Player]\nA rapturous auditory experience", "rarity": 5, "value": 50, "requirements": ["cd", "cdplayer"] },
+    { "location": "city", "id": "cinema", "name": "Cinema", "description": "[VCR + TV]\nTape that impresses both the ears and the eyes", "rarity": 6, "value": 100, "requirements": ["vcr", "tv"] },
+    { "location": "city", "id": "coins", "name": "Coin Collection", "description": "[Copper + Silver + Gold]\nA neat set of funny metals", "rarity": 7, "value": 1000, "requirements": ["coppercoin", "silvercoin", "goldcoin"] }
+]

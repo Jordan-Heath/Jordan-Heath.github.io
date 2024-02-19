@@ -562,7 +562,7 @@ body {
             translate: -50% -100%;
     
             table {
-                animation: rareItemAnimation 3s infinite;
+                animation: rareItemAnimation 2.5s infinite;
                 animation-iteration-count: 1;
                 opacity: 0;
     
@@ -572,7 +572,7 @@ body {
             }
     
             p {
-                animation: commonitemAnimation 2s infinite;
+                animation: commonitemAnimation 1.5s infinite;
                 animation-iteration-count: 1;
                 opacity: 0;
     
@@ -583,11 +583,23 @@ body {
                 padding: 5px;
             }
         }
+
+        #errorMessageOutput {
+            position: absolute;
+            top: 0;
+            left: 50vw;
+            z-index: 4;
+
+            padding: 10px;
+            color: red;
+            background-color: white;
+            text-align: center;
+            translate: -50% 0;
+        }
     
         #saveMessageOutput {
             position: absolute;
             bottom: 30px;
-            left: 0;
             z-index: 4;
     
             padding: 10px;

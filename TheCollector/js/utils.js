@@ -25,14 +25,14 @@ function GetWeightedRandom(values, weights) {
     }
 }
 
-function GetRandomCollectable(collectables) {
+function GetRandomCollectable(collectables, rarityChance) {
     this.values = [];
     this.weights = [];
 
     let i = 0;
     collectables.forEach(collectable => {
         this.values.push(i);
-        this.weights.push(RARITY_CHANCE[collectable.rarity]); //convert the rarity
+        this.weights.push(rarityChance[collectable.rarity]); //convert the rarity
         i++;
     });
 

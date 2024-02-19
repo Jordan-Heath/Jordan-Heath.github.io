@@ -16,7 +16,12 @@ class Controller {
         this.model.LoadFromCookies();
         this.view.LoadLocation(this.model.currentLocation);
 
-        this.StartUpdateInterval();
+        setInterval(() => {
+            this.model.SaveToCookies();
+            this.view.SaveMessage('Saved');
+        }, SAVE_INTERVAL);
+
+        this.Update();
     }
 
     InitializeButtons() {
@@ -61,26 +66,22 @@ class Controller {
         });
     }
 
-    StartUpdateInterval() {
-        setInterval(() => {
-            this.Update();
-        }, SEARCH_INTERVAL);
-
-        setInterval(() => {
-            this.model.SaveToCookies();
-            this.view.SaveMessage('Saved');
-        }, SAVE_INTERVAL);
-    }
-
     Update() {
-        let collectable = this.model.Update();
+        try {
+            let collectable = this.model.Update();
 
-        let combo; 
-        if (collectable.numberOwned === 1) {
-            combo = this.model.CheckCombos();
+            let combo; 
+            if (collectable.numberOwned === 1) {
+                combo = this.model.CheckCombos();
+            }
+    
+            this.view.Update(model, collectable, combo);
+    
+            const searchInterval = this.model.SearchInterval();
+            setTimeout(() => this.Update(), searchInterval);
+        } catch (error) {
+            this.view.ErrorMessage(`An error occured on update: ${error}`)
         }
-
-        this.view.Update(model, collectable, combo);
     }
     //#endregion Inititalize
 

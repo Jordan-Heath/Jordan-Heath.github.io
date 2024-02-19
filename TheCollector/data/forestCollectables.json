@@ -1,0 +1,33 @@
+[
+	{ "location": "forest", "id": "leaf", "name": "Leaf", "rarity": 0, "value": 0.05 },
+	{ "location": "forest", "id": "stick", "name": "Stick", "rarity": 0, "value": 0.06 },
+	{ "location": "forest", "id": "sap", "name": "Sap", "rarity": 0, "value": 0.05 },
+	{ "location": "forest", "id": "cockroach", "name": "Cockroach", "rarity": 0, "value": 0.05 },
+	{ "location": "forest", "id": "fly", "name": "Fly", "rarity": 0, "value": 0.05 },
+
+	{ "location": "forest", "id": "dungbeetle", "name": "Dung Beetle", "rarity": 1, "value": 0.10 },
+	{ "location": "forest", "id": "cicada", "name": "Cicada", "rarity": 1, "value": 0.20 },
+	{ "location": "forest", "id": "ant", "name": "Ant", "rarity": 1, "value": 0.30 },
+	{ "location": "forest", "id": "bee", "name": "Bee", "rarity": 1, "value": 0.40 },
+
+	{ "location": "forest", "id": "moth", "name": "Moth", "rarity": 2, "value": 0.50 },
+	{ "location": "forest", "id": "weevil", "name": "Weevil", "rarity": 2, "value": 0.60 },
+	{ "location": "forest", "id": "aphid", "name": "Aphid", "rarity": 2, "value": 0.70 },
+	{ "location": "forest", "id": "caterpillar", "name": "Caterpillar", "rarity": 2, "value": 0.80 },
+
+	{ "location": "forest", "id": "butterfly", "name": "Butterfly", "rarity": 3, "value": 1 },
+	{ "location": "forest", "id": "firefly", "name": "Fire fly", "rarity": 3, "value": 2 },
+	{ "location": "forest", "id": "spider", "name": "Spider", "rarity": 3, "value": 3 },
+
+	{ "location": "forest", "id": "stickbug", "name": "Stick Bug", "rarity": 4, "value": 5 },
+	{ "location": "forest", "id": "mantis", "name": "Preying Mantis", "rarity": 4, "value": 6 },
+	{ "location": "forest", "id": "dragonfly", "name": "Dragonfly", "rarity": 4, "value": 7 },
+
+	{ "location": "forest", "id": "leafinsect", "name": "Leaf Insect", "rarity": 5, "value": 10 },
+	{ "location": "forest", "id": "christmasbeetle", "name": "Christmas Beetle", "rarity": 5, "value": 20 },
+
+	{ "location": "forest", "id": "chalice", "name": "Silver Chalice", "rarity": 6, "value": 50 },
+	{ "location": "forest", "id": "ancientbox", "name": "Ancient Box", "rarity": 6, "value": 60 },
+
+	{ "location": "forest", "id": "goldenidol", "name": "Golden Idol", "rarity": 7, "value": 100 }
+]

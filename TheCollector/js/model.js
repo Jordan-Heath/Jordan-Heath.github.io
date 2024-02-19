@@ -5,17 +5,14 @@ class Model {
         this.cityCollectables = this.InitializeCollectables(LOCATIONS[0]);
         this.cityCombos = this.InitializeCombos(LOCATIONS[0]);
 
-        this.forestCollectables = [];
-        this.forestCombos = [];
-        this.InitializeForestCollectables();
+        this.forestCollectables = this.InitializeCollectables(LOCATIONS[1]);
+        this.forestCombos = this.InitializeCombos(LOCATIONS[1]);
 
-        this.pierCollectables = [];
-        this.pierCombos = [];
-        this.InitializePierCollectables();
+        this.pierCollectables = this.InitializeCollectables(LOCATIONS[2]);
+        this.pierCombos = this.InitializeCombos(LOCATIONS[2]);
 
-        this.caveCollectables = [];
-        this.caveCombos = [];
-        this.InitializeCaveCollectables();
+        this.caveCollectables = this.InitializeCollectables(LOCATIONS[3]);
+        this.caveCombos = this.InitializeCombos(LOCATIONS[3]);
 
         this.shopItems = [];
         this.InitializeShop();
@@ -30,7 +27,7 @@ class Model {
         try {
             //fetch the json file
             //const jsonFile = fetch(`../data/${location}Collectables.json`);
-            const jsonFile = CITY_COLLECTABLE_JSON_DATA;
+            const jsonFile = COLLECTABLES_JSON[location];
 
             const collectableJsonData = JSON.parse(jsonFile);
             collectables = collectableJsonData.map(collectableData => new Collectable(
@@ -40,9 +37,9 @@ class Model {
                 collectableData.rarity,
                 collectableData.value
             ));
-            console.log('Initialized cityCollectables from JSON data:', collectables);
+            console.log(`Initialized ${location}Collectables from JSON data:`, collectables);
         } catch (error) {
-            console.error(`Error initializing ${location} Data from JSON:`, error);
+            console.error(`Error initializing ${location}Data from JSON:`, error);
         }
         return collectables;
     }
@@ -52,7 +49,7 @@ class Model {
         try {
             //fetch the json file
             //const jsonFile = fetch(`../data/${location}Combos.json`);
-            const jsonFile = CITY_COMBO_JSON_DATA;
+            const jsonFile = COMBOS_JSON[location];
 
             const cityCombosData = JSON.parse(jsonFile);
             combos = cityCombosData.map(comboData => new CollectableCombo(
@@ -64,179 +61,26 @@ class Model {
                 comboData.value,
                 comboData.requirements
             ));
-            console.log('Initialized cityCombos from JSON data:', combos);
+            console.log(`Initialized ${location}Combos from JSON data:`, combos);
         } catch (error) {
-            console.error(`Error initializing ${location} Data from JSON:`, error);
+            console.error(`Error initializing ${location}Data from JSON:`, error);
         }
         return combos;
-    }
-
-    InitializeForestCollectables() {
-        //Format: //this.forestCollectables.push(new Collectable("forest", "", "", 0, 0));
-        // 5-9 poors
-        this.forestCollectables.push(new Collectable("forest", "leaf", "Leaf", 0, 0.05));
-        this.forestCollectables.push(new Collectable("forest", "stick", "Stick", 0, 0.06));
-        this.forestCollectables.push(new Collectable("forest", "sap", "Sap", 0, 0.05));
-        this.forestCollectables.push(new Collectable("forest", "cockroach", "Cockroach", 0, 0.05));
-        this.forestCollectables.push(new Collectable("forest", "fly", "Fly", 0, 0.05));
-
-        // 4-8 commons
-        this.forestCollectables.push(new Collectable("forest", "dungbeetle", "Dung Beetle", 1, 0.10));
-        this.forestCollectables.push(new Collectable("forest", "cicada", "Cicada", 1, 0.20));
-        this.forestCollectables.push(new Collectable("forest", "ant", "Ant", 1, 0.30));
-        this.forestCollectables.push(new Collectable("forest", "bee", "Bee", 1, 0.40));
-
-        // 4-7 uncommons
-        this.forestCollectables.push(new Collectable("forest", "moth", "Moth", 2, 0.50));
-        this.forestCollectables.push(new Collectable("forest", "weevil", "Weevil", 2, 0.60));
-        this.forestCollectables.push(new Collectable("forest", "aphid", "Aphid", 2, 0.70))
-        this.forestCollectables.push(new Collectable("forest", "caterpillar", "Caterpillar", 2, 0.80));
-
-        // 3-6 rares
-        this.forestCollectables.push(new Collectable("forest", "butterfly", "Butterfly", 3, 1));
-        this.forestCollectables.push(new Collectable("forest", "firefly", "Fire fly", 3, 2));
-        this.forestCollectables.push(new Collectable("forest", "spider", "Spider", 3, 3));
-
-        // 3-5 epics
-        this.forestCollectables.push(new Collectable("forest", "stickbug", "Stick Bug", 4, 5));
-        this.forestCollectables.push(new Collectable("forest", "mantis", "Preying Mantis", 4, 6));
-        this.forestCollectables.push(new Collectable("forest", "dragonfly", "Dragonfly", 4, 7));
-
-        // 2-4 legendaries
-        this.forestCollectables.push(new Collectable("forest", "leafinsect", "Leaf Insect", 5, 10));
-        this.forestCollectables.push(new Collectable("forest", "christmasbeetle", "Christmas Beetle", 5, 20));
-
-        // 2-3 artifacts
-        this.forestCollectables.push(new Collectable("forest", "chalice", "Silver Chalice", 6, 50));
-        this.forestCollectables.push(new Collectable("forest", "ancientbox", "Ancient Box", 6, 60));
-
-        // 1-2 heirlooms
-        this.forestCollectables.push(new Collectable("forest", "goldenidol", "Golden Idol", 7, 100));
-
-        // combos
-        //format //this.forestCombos.push(new CollectableCombo("forest", "", "", "", 0, 0, ["", ""]));
-        this.forestCombos.push(new CollectableCombo("forest", "stickleaf", "Stick and Leaf", "[Stick + Leaf]\nNatures Fingers", 0, 0.50, ["stick", "leaf"]));
-        //level 2 combo
-        //level 3 combo
-        //level 4 combo
-        this.forestCombos.push(new CollectableCombo("forest", "stickleaf2", "Stick and Leaf?", "[Stick Bug + Leaf Insect]\nThey wriggle unsettlingly", 6, 100, ["stickbug", "leafinsect"]));
-        //level 6 combo
-        this.forestCombos.push(new CollectableCombo("forest", "goldenarc", "Golden Arc", "[Ancient Box + Golden Idol]\nMy face feels tingley", 7, 1000, ["ancientbox", "goldenidol"]));
-    }
-
-    InitializePierCollectables() {
-        //Format: //this.pierCollectables.push(new Collectable("pier", "", "", 0, 0));
-        // 5-9 poors
-        this.pierCollectables.push(new Collectable("pier", "boot", "Leather Boot", 0, 0.10));
-        this.pierCollectables.push(new Collectable("pier", "driftwood", "Drift Wood", 0, 0.20));
-        this.pierCollectables.push(new Collectable("pier", "tire", "Tire", 0, 0.30));
-        this.pierCollectables.push(new Collectable("pier", "seaglass", "Sea Glass", 0, 0.40));
-        this.pierCollectables.push(new Collectable("pier", "netting", "Netting", 0, 0.50));
-
-        // 4-8 commons
-        this.pierCollectables.push(new Collectable("pier", "carp", "Carp", 1, 0.60));
-        this.pierCollectables.push(new Collectable("pier", "scallop", "Scallop", 1, 0.70));
-        this.pierCollectables.push(new Collectable("pier", "prawn", "Prawn", 1, 0.80));
-        this.pierCollectables.push(new Collectable("pier", "crab", "Crab", 1, 0.90));
-
-        // 4-7 uncommons
-        this.pierCollectables.push(new Collectable("pier", "mackerel", "Mackerel", 2, 1));
-        this.pierCollectables.push(new Collectable("pier", "starfish", "Starfish", 2, 2));
-        this.pierCollectables.push(new Collectable("pier", "jellyfish", "Jellyfish", 2, 3));
-        this.pierCollectables.push(new Collectable("pier", "lanternfish", "Lanternfish", 2, 4));
-
-        // 3-6 rares
-        this.pierCollectables.push(new Collectable("pier", "turtle", "Turtle", 3, 5));
-        this.pierCollectables.push(new Collectable("pier", "eel", "Eel", 3, 6));
-        this.pierCollectables.push(new Collectable("pier", "nautilus", "Nautilus", 3, 7));
-
-        // 3-5 epics
-        this.pierCollectables.push(new Collectable("pier", "salmon", "Salmon", 4, 10));
-        this.pierCollectables.push(new Collectable("pier", "snapper", "Red Snapper", 4, 20));
-        this.pierCollectables.push(new Collectable("pier", "lobster", "Lobster", 4, 30));
-
-        // 2-4 legendaries
-        this.pierCollectables.push(new Collectable("pier", "tuna", "Tuna", 5, 50));
-        this.pierCollectables.push(new Collectable("pier", "octopus", "Octopus", 5, 60));
-
-        // 2-3 artifacts
-        this.pierCollectables.push(new Collectable("pier", "pearl", "Pearl", 6, 100));
-        this.pierCollectables.push(new Collectable("pier", "shark", "Shark", 6, 200));
-
-        // 1-2 heirlooms
-        this.pierCollectables.push(new Collectable("pier", "treasure", "Buried Treasure", 7, 500));
-
-        // combos
-        //format //this.pierCombos.push(new CollectableCombo("pier", "", "", "[]\n", 0, 0, ["", ""]));
-        //level 2 combo
-        //level 3 combo
-        this.pierCombos.push(new CollectableCombo("pier", "shelltrio", "Shell Trio", "[Prawn + Crab + Lobster]\nHardest achievement here", 4, 300, ["prawn", "crab", "lobster"]));
-        this.pierCombos.push(new CollectableCombo("pier", "bento", "Bento Box", "[Tuna + Salmon + Red Snapper]\nAmazing combo served raw", 5, 500, ["tuna", "salmon", "snapper"]));
-        this.pierCombos.push(new CollectableCombo("pier", "fishandchips", "Fish and Chips", "[Octopus + Shark]\nCalamari and flake", 6, 2000, ["octopus", "shark"]));
-        this.pierCombos.push(new CollectableCombo("pier", "plnder", "Plunder", "[Pearl + Treasure]\nThe seas bounties are yours now", 7, 5000, ["pearl", "treasure"]));
-    }
-
-    InitializeCaveCollectables() {
-        //Format: //this.caveCollectables.push(new Collectable("cave", "", "", 0, 0));
-        // 5-9 poors
-        this.caveCollectables.push(new Collectable("cave", "refuse", "Animal refuse", 0, 0.50));
-        this.caveCollectables.push(new Collectable("cave", "rope", "Rope", 0, 0.60));
-        this.caveCollectables.push(new Collectable("cave", "lantern", "Oil Latern", 0, 0.70));
-        this.caveCollectables.push(new Collectable("cave", "vase", "Broken Vase", 0, 0.80));
-        this.caveCollectables.push(new Collectable("cave", "coal", "Coal", 0, 0.90));
-
-        // 4-8 commons
-        this.caveCollectables.push(new Collectable("cave", "agate", "Agate", 1, 1));
-        this.caveCollectables.push(new Collectable("cave", "obsidian", "Obsidian", 1, 2));
-        this.caveCollectables.push(new Collectable("cave", "tinore", "Tin Ore", 1, 3));
-        this.caveCollectables.push(new Collectable("cave", "ironore", "Iron Ore", 1, 4));
-
-        // 4-7 uncommons
-        this.caveCollectables.push(new Collectable("cave", "tigerseye", "Tigers-eye", 2, 5));
-        this.caveCollectables.push(new Collectable("cave", "copperore", "Copper Ore", 2, 6));
-        this.caveCollectables.push(new Collectable("cave", "fluorite", "Fluorite", 2, 7));
-        this.caveCollectables.push(new Collectable("cave", "calcite", "Calcite crystals", 2, 8));
-
-        // 3-6 rares
-        this.caveCollectables.push(new Collectable("cave", "opal", "Opal", 3, 10));
-        this.caveCollectables.push(new Collectable("cave", "missinglink", "Missing Link", 3, 20));
-        this.caveCollectables.push(new Collectable("cave", "emerald", "Emerald", 3, 30));
-
-        // 3-5 epics
-        this.caveCollectables.push(new Collectable("cave", "amethyst", "Amethyst", 4, 50));
-        this.caveCollectables.push(new Collectable("cave", "silverore", "Silver Ore", 4, 60));
-        this.caveCollectables.push(new Collectable("cave", "sapphire", "Sapphire", 4, 70));
-
-        // 2-4 legendaries
-        this.caveCollectables.push(new Collectable("cave", "ruby", "Ruby", 5, 100));
-        this.caveCollectables.push(new Collectable("cave", "fossil", "Fossil", 5, 200));
-
-        // 2-3 artifacts
-        this.caveCollectables.push(new Collectable("cave", "goldore", "Gold Ore", 6, 500));
-        this.caveCollectables.push(new Collectable("cave", "diamond", "Diamond", 6, 600));
-
-        // 1-2 heirlooms
-        this.caveCollectables.push(new Collectable("cave", "platinumore", "Platinum Ore", 7, 1000));
-
-        // combos
-        //format //this.caveCombos.push(new CollectableCombo("cave", "", "", "[]\n", 0, 0, ["", ""]));
-        this.caveCombos.push(new CollectableCombo("cave", "bronze", "Bronze", "[Tin + Copper]\nI learnt that in Runescape", 2, 60, ["tinore", "copperore"]));
-        this.caveCombos.push(new CollectableCombo("cave", "archeology", "Archeology", "[Missing Link + Broken Vase]\nLooks useless to me, I don't get it", 3, 200, ["missinglink", "vase"]));
-        //level 4 combo
-        //level 5 combo
-        this.caveCombos.push(new CollectableCombo("cave", "minecraft", "Minecraft", "[Coal + Iron + Diamond]\nOn to the nether!", 6, 6000, ["coal", "ironore", "diamond"]));
-        this.caveCombos.push(new CollectableCombo("cave", "banking", "Fundamentals Of Banking", "[Copper + Silver + Gold + Platinum]\nThe foundations of our currency", 7, 10000, ["copperore", "silverore", "goldore", "platinumore"]));
     }
 
     InitializeShop() {
         //this.items.push(new ShopItem("", "", "", 0));
         this.shopItems.push(new ShopItem("bugnet", "Bug Net", "Unlock Bughunting in the forest", 75));
-        this.shopItems.push(new ShopItem("fishingrod", "Fishing Rod", "Unlock Fishing at the pier", 300));
-        this.shopItems.push(new ShopItem("pickaxe", "Pick Axe", "Unlock Mining in the cave", 1200));
-        //this.items.push(new ShopItem("coffee", "Coffee Machine", "Unlock your true potential", 40));
+        this.shopItems.push(new ShopItem("fishingrod", "Fishing Rod", "Unlock Fishing at the pier", 225));
+        this.shopItems.push(new ShopItem("pickaxe", "Pick Axe", "Unlock Mining in the cave", 675));
+
+        this.shopItems.push(new ShopItem("chutzpah", "Chutzpah", "Collect 20% faster", 150));
+        this.shopItems.push(new ShopItem("fence", "Junk Fence", "Earn 50% more", 450));
+        this.shopItems.push(new ShopItem("fortuna", "Fortuna's Blessing", "Significantly improve odds for rare items", 1350));
     }
     //#endregion initialize
 
+    //#region Update
     Update() {
         let selectedCollectable = this.Collect();
 
@@ -247,16 +91,19 @@ class Model {
         let selectedCollectable;
 
         //obtain collectable
-        selectedCollectable = GetRandomCollectable(this.ActiveCollectables());
+        const rarityChances = this.RarityChances();
+        selectedCollectable = GetRandomCollectable(this.ActiveCollectables(), rarityChances);
         
-        //increment and return
+        //discovery?
         if (!selectedCollectable.discovered) {
             selectedCollectable.discovered = true;
             this.collected += 1;
         }
         
+        //add item + money
         selectedCollectable.numberOwned += 1;
-        this.money += selectedCollectable.value;
+        this.AddMoney(selectedCollectable.value);
+
         return selectedCollectable;
     }
 
@@ -271,6 +118,9 @@ class Model {
         }
     }
 
+    //#endregion Update
+
+    //#region Misc
     ActiveCollectables() {
         switch(this.currentLocation) {
             case(LOCATIONS[0]):
@@ -316,6 +166,19 @@ class Model {
             if (this.money < result.price) console.log("couldn't afford item");
         }
     }
+    
+    AddMoney(value) {
+        this.money += this.shopItems.some(shopItem => shopItem.id === 'fence' && shopItem.owned) ? value*1.5 : value;
+    }
+
+    RarityChances() {
+        return this.shopItems.some(shopItem => shopItem.id === 'fortuna' && shopItem.owned) ? IMPROVED_RARITY_CHANCE : RARITY_CHANCE;
+    }
+
+    SearchInterval() {
+        return this.shopItems.some(shopItem => shopItem.id === 'chutzpah' && shopItem.owned) ? IMPROVED_SEARCH_INTERVAL : SEARCH_INTERVAL;
+    }
+    //#endregion Misc
 
     //#region SaveFunctions
     ConvertToJson() {

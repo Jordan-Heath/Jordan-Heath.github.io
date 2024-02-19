@@ -168,6 +168,11 @@ class View {
             achievementMessageOutput.innerHTML = '';
         }, 6000);
     }
+
+    ErrorMessage(errorString) {
+        errorMessageOutput.hidden = false;
+        errorMessageOutput.innerText = errorString;
+    }
     //#endregion message
 
     /* menues */
