@@ -1,0 +1,10 @@
+[
+	{ "location": "pier", "id": "tireswing", "name": "Tire Swing", "description": "[Tire + Netting] The foundations for a good afternoon", "rarity": 0, "value": 5, "requirements": ["tire", "netting"] },
+	{ "location": "pier", "id": "wallhanging", "name": "Wall Hanging", "description": "[Sea Glass + Scallop] Something to remember that trip to the pier", "rarity": 1, "value": 7, "requirements": ["seaglass", "scallop"] },
+	{ "location": "pier", "id": "magicwand", "name": "Magic Wand", "description": "[Drift Wood + Starfish] This is how they are made", "rarity": 2, "value": 10, "requirements": ["driftwood", "starfish"] },
+    { "location": "pier", "id": "shelltrio", "name": "Shell Trio", "description": "[Prawn + Crab + Lobster] Hardest achievement here", "rarity": 3, "value": 70, "requirements": ["prawn", "crab", "lobster"] },
+    { "location": "pier", "id": "bento", "name": "Bento Box", "description": "[Tuna + Salmon + Red Snapper] Amazing combo served raw", "rarity": 4, "value": 300, "requirements": ["tuna", "salmon", "snapper"] },
+    { "location": "pier", "id": "fishandchips", "name": "Fish and Chips", "description": "[Octopus + Shark] Calamari and flake", "rarity": 5, "value": 600, "requirements": ["octopus", "shark"] },
+	{ "location": "pier", "id": "ancientfish", "name": "Ancient Fish", "description": "[Coelacanth + Nautilus] Probably should put these back...", "rarity": 6, "value": 2000, "requirements": ["coelacanth", "nautilus"] },
+    { "location": "pier", "id": "plunder", "name": "Plunder", "description": "[Pearl + Treasure] The seas bounties are yours now", "rarity": 7, "value": 5000, "requirements": ["pearl", "treasure"] }
+]

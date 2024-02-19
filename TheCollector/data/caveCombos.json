@@ -1,0 +1,6 @@
+[
+    { "location": "cave", "id": "bronze", "name": "Bronze", "description": "[Tin + Copper] I learnt that in Runescape", "rarity": 2, "value": 60, "requirements": ["tinore", "copperore"] },
+    { "location": "cave", "id": "archeology", "name": "Archeology", "description": "[Missing Link + Broken Vase] Looks useless to me, I don't get it", "rarity": 3, "value": 200, "requirements": ["missinglink", "vase"] },
+    { "location": "cave", "id": "minecraft", "name": "Minecraft", "description": "[Coal + Iron + Diamond] On to the nether!", "rarity": 6, "value": 6000, "requirements": ["coal", "ironore", "diamond"] },
+    { "location": "cave", "id": "banking", "name": "Fundamentals Of Banking", "description": "[Copper + Silver + Gold + Platinum] The foundations of our currency", "rarity": 7, "value": 10000, "requirements": ["copperore", "silverore", "goldore", "platinumore"] }
+]

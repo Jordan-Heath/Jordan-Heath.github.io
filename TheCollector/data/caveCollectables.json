@@ -1,0 +1,33 @@
+[
+    { "location": "cave", "id": "refuse", "name": "Animal refuse", "rarity": 0, "value": 0.50 },
+    { "location": "cave", "id": "rope", "name": "Rope", "rarity": 0, "value": 0.60 },
+    { "location": "cave", "id": "lantern", "name": "Oil Lantern", "rarity": 0, "value": 0.70 },
+    { "location": "cave", "id": "vase", "name": "Broken Vase", "rarity": 0, "value": 0.80 },
+    { "location": "cave", "id": "coal", "name": "Coal", "rarity": 0, "value": 0.90 },
+
+    { "location": "cave", "id": "agate", "name": "Agate", "rarity": 1, "value": 1 },
+    { "location": "cave", "id": "obsidian", "name": "Obsidian", "rarity": 1, "value": 2 },
+    { "location": "cave", "id": "tinore", "name": "Tin Ore", "rarity": 1, "value": 3 },
+    { "location": "cave", "id": "ironore", "name": "Iron Ore", "rarity": 1, "value": 4 },
+
+    { "location": "cave", "id": "tigerseye", "name": "Tigers-eye", "rarity": 2, "value": 5 },
+    { "location": "cave", "id": "copperore", "name": "Copper Ore", "rarity": 2, "value": 6 },
+    { "location": "cave", "id": "fluorite", "name": "Fluorite", "rarity": 2, "value": 7 },
+    { "location": "cave", "id": "calcite", "name": "Calcite crystals", "rarity": 2, "value": 8 },
+
+    { "location": "cave", "id": "opal", "name": "Opal", "rarity": 3, "value": 10 },
+    { "location": "cave", "id": "missinglink", "name": "Missing Link", "rarity": 3, "value": 20 },
+    { "location": "cave", "id": "emerald", "name": "Emerald", "rarity": 3, "value": 30 },
+
+    { "location": "cave", "id": "amethyst", "name": "Amethyst", "rarity": 4, "value": 50 },
+    { "location": "cave", "id": "silverore", "name": "Silver Ore", "rarity": 4, "value": 60 },
+    { "location": "cave", "id": "sapphire", "name": "Sapphire", "rarity": 4, "value": 70 },
+
+    { "location": "cave", "id": "ruby", "name": "Ruby", "rarity": 5, "value": 100 },
+    { "location": "cave", "id": "fossil", "name": "Fossil", "rarity": 5, "value": 200 },
+
+    { "location": "cave", "id": "goldore", "name": "Gold Ore", "rarity": 6, "value": 500 },
+    { "location": "cave", "id": "diamond", "name": "Diamond", "rarity": 6, "value": 600 },
+
+    { "location": "cave", "id": "platinumore", "name": "Platinum Ore", "rarity": 7, "value": 1000 }
+]
