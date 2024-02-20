@@ -325,7 +325,7 @@ class Model {
             const expirationDate = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toUTCString();
             const secureFlag = isSecureProtocol() ? '; secure' : '';
     
-            document.cookie = `userData=${encodeURIComponent(dataString)}; expires=${expirationDate}; path=/${secureFlag}; samesite=strict`;
+            document.cookie = `collectorData=${encodeURIComponent(dataString)}; expires=${expirationDate}; path=/${secureFlag}; samesite=strict`;
             console.log('Saved to cookies');
         } catch (error) {
             console.error('Error saving data to cookies:', error);
@@ -334,7 +334,7 @@ class Model {
 
     LoadFromCookies() {
         try {
-            const cookieData = document.cookie.split('; ').find(row => row.startsWith('userData='));
+            const cookieData = document.cookie.split('; ').find(row => row.startsWith('collectorData='));
             if (cookieData) {
                 const dataString = decodeURIComponent(cookieData.split('=')[1]);
                 this.LoadFromJson(dataString);

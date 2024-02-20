@@ -119,17 +119,17 @@ class Player {
     saveToCookies() {
         const dataString = this.toJson();
         const expirationDate = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toUTCString();
-
+    
         // Set secure flag if running over HTTPS
         const secureFlag = window.location.protocol === 'https:' ? '; secure' : '';
-
-        document.cookie = `userData=${encodeURIComponent(dataString)}; expires=${expirationDate}; path=/${secureFlag}; samesite=strict`;
-
+    
+        document.cookie = `idleLandlordData=${encodeURIComponent(dataString)}; expires=${expirationDate}; path=/${secureFlag}; samesite=strict`;
+    
         sendMessage("Progress Saved");
-    }
+    }    
 
     loadFromCookies() {
-        const cookieData = document.cookie.split('; ').find(row => row.startsWith('userData='));
+        const cookieData = document.cookie.split('; ').find(row => row.startsWith('idleLandlordData='));
 
         try {
             if (cookieData) {
