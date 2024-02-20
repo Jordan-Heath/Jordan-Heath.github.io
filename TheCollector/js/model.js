@@ -91,17 +91,20 @@ class Model {
         }
         return combos;
     }
-    
 
     InitializeShop() {
-        //this.items.push(new ShopItem("", "", "", 0));
+        //zones
         this.shopItems.push(new ShopItem("bugnet", "Bug Net", "Unlock Bughunting in the forest", 75));
         this.shopItems.push(new ShopItem("fishingrod", "Fishing Rod", "Unlock Fishing at the pier", 225));
         this.shopItems.push(new ShopItem("pickaxe", "Pick Axe", "Unlock Mining in the cave", 675));
 
+        //upgrades
         this.shopItems.push(new ShopItem("chutzpah", "Chutzpah", "Collect 20% faster", 150));
         this.shopItems.push(new ShopItem("fence", "Junk Fence", "Earn 50% more", 450));
         this.shopItems.push(new ShopItem("fortuna", "Fortuna's Blessing", "Significantly improve odds for rare items", 1350));
+
+        //remaining
+        this.shopItems.push(new ShopItem("missing", "Purchase Missing Item", "If you've got money to burn and a collection to fill", 10000));
     }
     //#endregion initialize
 
@@ -175,21 +178,61 @@ class Model {
     }
 
     Purchase(shopItemId) {
-        //find the upgrade
-        let result;
-        this.shopItems.forEach(shopItem => {
-            if (shopItem.id === shopItemId)
-                result = shopItem;
-        });
-
-        //make the transaction
-        if (result && this.money >= result.price) {
-            this.money -= result.price;
-            result.owned = true;
-        } else {
-            if (!result) console.log("purchaseable item not found");
-            if (this.money < result.price) console.log("couldn't afford item");
+        const result = this.findShopItemById(shopItemId);
+    
+        if (!result) {
+            console.log("Purchaseable item not found");
+            return;
         }
+    
+        if (shopItemId === 'missing') {
+            this.purchaseMissingItem(result);
+            return;
+        }
+    
+        if (this.money < result.price) {
+            console.log("Couldn't afford item");
+            return;
+        }
+    
+        this.money -= result.price;
+        result.owned = true;
+    }
+
+    findShopItemById(shopItemId) {
+        return this.shopItems.find(shopItem => shopItem.id === shopItemId);
+    }
+
+    purchaseMissingItem(missingShopItem) {
+        const undiscoveredCollectables = this.getUndiscoveredCollectables();
+        if (undiscoveredCollectables.length === 0) {
+            console.log("No undiscovered collectables available");
+            missingShopItem.owned = true;
+            return;
+        }
+    
+        this.money -= missingShopItem.price;
+    
+        const selectedCollectable = randomArrayValue(undiscoveredCollectables);
+        selectedCollectable.discovered = true;
+        this.collected += 1;
+        selectedCollectable.numberOwned += 1;
+        this.AddMoney(selectedCollectable.value);
+    
+        const combo = this.CheckCombos();
+    
+        view.Update(this, selectedCollectable, combo);
+        shopView.hidden = true;
+    }
+
+    getUndiscoveredCollectables() {
+        const allCollectables = [
+            ...this.cityCollectables,
+            ...this.forestCollectables,
+            ...this.pierCollectables,
+            ...this.caveCollectables
+        ];
+        return allCollectables.filter(collectable => !collectable.discovered);
     }
     
     AddMoney(value) {
@@ -252,7 +295,7 @@ class Model {
         // Load shop items
         if (jsonData.shopItems) {
             this.shopItems.forEach(item => {
-                item.owned = jsonData.shopItems[item.id] ?? item.owned; // Use optional chaining and nullish coalescing
+                item.owned = jsonData.shopItems[item.id] ?? item.owned;
             });
         }
     

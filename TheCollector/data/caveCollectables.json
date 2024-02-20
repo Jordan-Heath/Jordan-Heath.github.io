@@ -16,7 +16,7 @@
     { "location": "cave", "id": "calcite", "name": "Calcite crystals", "rarity": 2, "value": 8 },
 
     { "location": "cave", "id": "opal", "name": "Opal", "rarity": 3, "value": 10 },
-    { "location": "cave", "id": "missinglink", "name": "Missing Link", "rarity": 3, "value": 20 },
+    { "location": "cave", "id": "cavemushroom", "name": "Cave Mushroom", "rarity": 3, "value": 20 },
     { "location": "cave", "id": "emerald", "name": "Emerald", "rarity": 3, "value": 30 },
 
     { "location": "cave", "id": "amethyst", "name": "Amethyst", "rarity": 4, "value": 50 },

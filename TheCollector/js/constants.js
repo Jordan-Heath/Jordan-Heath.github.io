@@ -95,8 +95,13 @@ const FOREST_COLLECTABLE_JSON_DATA = `[
 	{ "location": "forest", "id": "goldenidol", "name": "Golden Idol", "rarity": 7, "value": 100 }
 ]`;
 const FOREST_COMBO_JSON_DATA = `[
-    { "location": "forest", "id": "stickleaf", "name": "Stick and Leaf", "description": "[Stick + Leaf Natures Fingers", "rarity": 0, "value": 0.50, "requirements": ["stick", "leaf"] },
+    { "location": "forest", "id": "stickleaf", "name": "Stick and Leaf", "description": "[Stick + Leaf] Natures Fingers", "rarity": 0, "value": 0.50, "requirements": ["stick", "leaf"] },
+    { "location": "forest", "id": "buzzboys", "name": "The Buzzy Boys", "description": "[Fly + Bee] One is yuck, one is scary", "rarity": 1, "value": 4, "requirements": ["fly", "bee"] },
+    { "location": "forest", "id": "bestfriends", "name": "Best Friends", "description": "[Weevil + Aphid] Look at them", "rarity": 2, "value": 7, "requirements": ["weevil", "aphid"] },
+    { "location": "forest", "id": "thesame", "name": "The Same", "description": "[Caterpillar + Butterfly] We've had a mix up, they're the same", "rarity": 3, "value": 10, "requirements": ["caterpillar", "butterfly"] },
+    { "location": "forest", "id": "shamantis", "name": "Sha-Mantis", "description": "[Stick + Preying Mantis] He conjures storms and boils seas", "rarity": 4, "value": 60, "requirements": ["stick", "mantis"] },
     { "location": "forest", "id": "stickleaf2", "name": "Stick and Leaf?", "description": "[Stick Bug + Leaf Insect] They wriggle unsettlingly", "rarity": 5, "value": 100, "requirements": ["stickbug", "leafinsect"] },
+    { "location": "forest", "id": "iridescence", "name": "Iridescence", "description": "[Dragonfly + Christmas Beetle] beautiful", "rarity": 6, "value": 200, "requirements": ["dragonfly", "christmasbeetle"] },
     { "location": "forest", "id": "goldenarc", "name": "Golden Arc", "description": "[Ancient Box + Golden Idol] My face feels tingley", "rarity": 7, "value": 1000, "requirements": ["ancientbox", "goldenidol"] }
 ]`;
 //#endregion Forest Data
@@ -166,7 +171,7 @@ const CAVE_COLLECTABLE_JSON_DATA = `[
     { "location": "cave", "id": "calcite", "name": "Calcite crystals", "rarity": 2, "value": 8 },
 
     { "location": "cave", "id": "opal", "name": "Opal", "rarity": 3, "value": 10 },
-    { "location": "cave", "id": "missinglink", "name": "Missing Link", "rarity": 3, "value": 20 },
+    { "location": "cave", "id": "cavemushroom", "name": "Cave Mushroom", "rarity": 3, "value": 20 },
     { "location": "cave", "id": "emerald", "name": "Emerald", "rarity": 3, "value": 30 },
 
     { "location": "cave", "id": "amethyst", "name": "Amethyst", "rarity": 4, "value": 50 },
@@ -182,8 +187,12 @@ const CAVE_COLLECTABLE_JSON_DATA = `[
     { "location": "cave", "id": "platinumore", "name": "Platinum Ore", "rarity": 7, "value": 1000 }
 ]`;
 const CAVE_COMBO_JSON_DATA = `[
+    { "location": "cave", "id": "patchedvase", "name": "Patched Vase", "description": "[Animal Refuse + Vase] I wouldn't drink from it", "rarity": 0, "value": 8, "requirements": ["refuse", "vase"] },
+    { "location": "cave", "id": "furnace", "name": "Furnace", "description": "[Coal + Iron Ore] The industrial revolution has begun", "rarity": 1, "value": 40, "requirements": ["coal", "ironore"] },
     { "location": "cave", "id": "bronze", "name": "Bronze", "description": "[Tin + Copper] I learnt that in Runescape", "rarity": 2, "value": 60, "requirements": ["tinore", "copperore"] },
-    { "location": "cave", "id": "archeology", "name": "Archeology", "description": "[Missing Link + Broken Vase] Looks useless to me, I don't get it", "rarity": 3, "value": 200, "requirements": ["missinglink", "vase"] },
+    { "location": "cave", "id": "mushroomfarm", "name": "Mushroom Farm", "description": "[Cave Mushroom + Refuse] An infinite number of the blighters", "rarity": 3, "value": 200, "requirements": ["cavemushroom", "refuse"] },
+    { "location": "cave", "id": "crystalprism", "name": "Crystal Prism", "description": "[Amethyst + Lantern] A lantern that emits colorful light", "rarity": 4, "value": 5, "requirements": ["amethyst", "lantern"] },
+    { "location": "cave", "id": "pokemongen3", "name": "Pokemon Gen 3", "description": "[Emerald + Ruby + Sapphire] Remember Torchic?", "rarity": 5, "value": 5, "requirements": ["emerald", "ruby", "sapphire"] },
     { "location": "cave", "id": "minecraft", "name": "Minecraft", "description": "[Coal + Iron + Diamond] On to the nether!", "rarity": 6, "value": 6000, "requirements": ["coal", "ironore", "diamond"] },
     { "location": "cave", "id": "banking", "name": "Fundamentals Of Banking", "description": "[Copper + Silver + Gold + Platinum] The foundations of our currency", "rarity": 7, "value": 10000, "requirements": ["copperore", "silverore", "goldore", "platinumore"] }
 ]`;

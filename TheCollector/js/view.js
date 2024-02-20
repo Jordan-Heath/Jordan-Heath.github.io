@@ -98,18 +98,11 @@ class View {
     Update(model, collectable, combo) {
         this.UpdatePlayerDetails(model);
 
-        if (collectable.numberOwned === 1) {
-            this.NewCollectableMessage(collectable);
-        } else if (collectable.rarity > 1) {
-            this.RareCollectableMessage(collectable);
-        } else {
-            this.CommonCollectableMessage(collectable);
-        }
+        if (collectable.numberOwned === 1 || collectable.rarity > 1) this.DisplayCollectableTable(collectable);
+        else this.DisplayCollectableMessage(collectable);
 
-        if (combo) {
-            this.AchivementMessage(combo);
-        }
-
+        if (combo) this.AchivementMessage(combo);
+        
         this.UpdateCollectionView(model, collectable, combo);
     }
 
@@ -120,64 +113,75 @@ class View {
 
     /* Message */
     //#region message
-    NewCollectableMessage(collectable) {
-        collectableMessageOutput.innerHTML = '';
+    DisplayCollectableTable(collectable) {
+        if (collectable.numberOwned === 1) {
+            const message = document.createElement("p");
+            message.innerHTML = 'NEW';
+            collectableMessageOutput.appendChild(message);
 
-        const message = document.createElement("p");
-        message.innerHTML = 'NEW';
-        collectableMessageOutput.appendChild(message);
-
+            setTimeout(() => {
+                collectableMessageOutput.removeChild(message);
+            }, 2000);
+        }
+    
         const collectableTable = CreateCollectableTable(collectable);
         collectableTable.style.boxShadow = `0px 0px 10px 5px var(--rarity-${collectable.rarity})`;
         collectableTable.removeAttribute("id");
-
+    
+        this.playSoundEffect('item');
+    
         collectableMessageOutput.appendChild(collectableTable);
+    
+        setTimeout(() => {
+            collectableMessageOutput.removeChild(collectableTable);
+        }, 2500);
     }
 
-    RareCollectableMessage(collectable) {
-        collectableMessageOutput.innerHTML = '';
-
-        const collectableTable = CreateCollectableTable(collectable);
-        collectableTable.style.boxShadow = `0px 0px 10px 5px var(--rarity-${collectable.rarity})`;
-        collectableTable.removeAttribute("id");
-
-        collectableMessageOutput.appendChild(collectableTable);
-    }
-
-    CommonCollectableMessage(collectable) {
-        collectableMessageOutput.innerHTML = '';
-
+    DisplayCollectableMessage(collectable) {
         const message = document.createElement("p");
         message.innerHTML = collectable.name;
         message.style.backgroundColor = `var(--rarity-${collectable.rarity})`
 
         collectableMessageOutput.appendChild(message);
+
+        setTimeout(() => {
+            collectableMessageOutput.removeChild(message);
+        }, 2000);
     }
 
     SaveMessage(messageString) {
-        saveMessageOutput.innerHTML = '';
-
         const message = document.createElement("p");
         message.innerText = messageString;
-
+    
         saveMessageOutput.appendChild(message);
+    
+        setTimeout(() => {
+            saveMessageOutput.removeChild(message);
+        }, 3000);
     }
 
     AchivementMessage(combo) {
         const comboTable = CreateComboTable(combo);
         comboTable.style.boxShadow = `0px 0px 10px 5px var(--rarity-${combo.rarity})`;
 
+        this.playSoundEffect('achievement');
+
         achievementMessageOutput.appendChild(comboTable);
         comboTable.removeAttribute("id");
 
         setTimeout(() => {
-            achievementMessageOutput.innerHTML = '';
+            achievementMessageOutput.removeChild(comboTable);
         }, 6000);
     }
 
     ErrorMessage(errorString) {
         errorMessageOutput.hidden = false;
         errorMessageOutput.innerText = errorString;
+    }
+
+    playSoundEffect(sound) {
+        const audio = new Audio(`assets/${sound}.mp3`);
+        audio.play();
     }
     //#endregion message
 

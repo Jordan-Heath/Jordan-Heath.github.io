@@ -19,7 +19,7 @@
     --table-highlight-color: #ffffff55;
     --table-background-color: #ffffffaa;
 
-    --loading-background: radial-gradient(ellipse at center, #00ff00, #3f3f3f);
+    --loading-background: radial-gradient(ellipse at center, #000000, #3f3f3f);
 
     --character-shadow-inner: #3f3f3f;
     --character-shadow: radial-gradient(ellipse at center, #3f3f3f, transparent, transparent);
@@ -104,6 +104,7 @@ body {
         position: relative;
         top: 50vh;
 
+        translate: 0% -50%;
         text-align: center;
         color: white;
     }
@@ -367,7 +368,7 @@ body {
 
                 width: 100vw;
                 height: 40vh;
-                background-size: auto 100%;
+                background-size: auto 40vh;
 
                 background-repeat: repeat-x;
                 background-image: url('../images/environments/fishlayer.png');
@@ -382,7 +383,7 @@ body {
 
                 width: 100vw;
                 height: 40vh;
-                background-size: auto 100%;
+                background-size: auto 40vh;
                 rotate: 180deg;
 
                 background-repeat: repeat-x;
