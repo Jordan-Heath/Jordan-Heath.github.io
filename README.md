@@ -5,9 +5,9 @@ Explore My Collection of Projects. Most of my work is not shared publicly. This 
 
 ## Incomplete Projects
 
-### [The Collector](TheCollector/TheCollector.html)
+### [Pet Game](PetGame/PetGame.html)
 
-PLAYABLE ROUGH DRAFT. Intended to be an idle collection game.
+PLAYABLE DEMO. A digimon/tamogotchi clone with my own spin.
 
 ### [Monster Battler](MonsterBattler/MonsterBattler.html)
 
@@ -22,6 +22,18 @@ EMPTY PAGE. Intended to be an autobattler.
 ROUGH DESIGN, NOT PLAYABLE. Intended to be a short interactive story with procedural elements.
 
 ## Completed Projects
+
+### [The Collector](TheCollector/TheCollector.html)
+
+Idle Collection game. To my knowledge the first of it's kind.
+
+- [ ] 96 different items (some art incomplete)
+- [ ] 32 different combos (some art incomplete)
+- [x] Upgrade store
+- [x] 4 different zones
+- [x] Sound effects
+- [x] Automatic Save system with manual, import and export saves
+
 
 ### [Meal Planner](MealPlanner/MealPlanner.html)
 
@@ -38,9 +50,8 @@ Intended to help me plan out my meals.
 
 ### [Idle Landlord](IdleLandlord/IdleLandlord.html)
 
-I've wanted to make a clicker game for a while. The king of passive income is landlording, so I really wanted to make 'Idle Landlord' the 1970s aesthetic clicker game. Features:
+I've wanted to make a clicker game for a while. The king of passive income is landlording, so I really wanted to make landlord themed clicker game. Features:
 
-- [x] 1970s aesthetic
 - [x] Work a job and get promoted
 - [x] 7 properties you can buy
 - [x] Upgrade Properties to earn more
