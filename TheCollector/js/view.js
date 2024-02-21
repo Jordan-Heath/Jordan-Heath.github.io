@@ -1,5 +1,7 @@
 class View {
-    constructor() { }
+    constructor() {
+        this.soundEffectsEnabled = false;
+    }
 
     /* location */
     //#region location
@@ -179,9 +181,11 @@ class View {
         errorMessageOutput.innerText = errorString;
     }
 
-    playSoundEffect(sound) {
-        const audio = new Audio(`assets/${sound}.mp3`);
-        audio.play();
+    async playSoundEffect(sound) {
+        if (this.soundEffectsEnabled) {
+            const audio = new Audio(`assets/${sound}.mp3`);
+            audio.play();
+        }
     }
     //#endregion message
 

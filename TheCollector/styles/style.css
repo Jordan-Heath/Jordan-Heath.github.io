@@ -552,6 +552,14 @@ body {
             height: 40px;
         }
 
+        #soundEffectsButton {
+            background-color: #ce9c1d;
+            border: 2px solid #9c7718;
+        }
+        #soundEffectsButton.enabled {
+            background-color: #ffd700;
+        }
+
         #saveFileControls {
             display: flex;
             flex-direction: row;

@@ -4,7 +4,6 @@ class Controller {
         this.view = view;
 
         this.Initialize();
-        
     }
 
     /* Initialization Methods */
@@ -44,6 +43,10 @@ class Controller {
         mapMenuButton.addEventListener('click', () => {
             this.OpenMapView();
         });
+
+        soundEffectsButton.addEventListener('click', () => {
+            this.ToggleSoundEffects();
+        })
 
         saveMenuButton.addEventListener('click', () => {
             this.SaveButton();
@@ -123,6 +126,12 @@ class Controller {
         menu.hidden = true;
         this.view.UpdateMapView(this.model);
         mapView.hidden = false;
+    }
+
+    ToggleSoundEffects() {
+        this.view.soundEffectsEnabled = !this.view.soundEffectsEnabled;
+        soundEffectsButton.className = this.view.soundEffectsEnabled ? 'enabled' : '';
+        soundEffectsValue.innerText = this.view.soundEffectsEnabled ? 'On' : 'Off';
     }
 
     SaveButton() {

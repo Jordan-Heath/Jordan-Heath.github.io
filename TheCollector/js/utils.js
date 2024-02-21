@@ -1,12 +1,4 @@
-function CreateDiv(id, classname) {
-    const result = document.createElement("div");
-    result.id = id;
-    result.className = classname;
-    return result;
-}
-
-/* randomNumber */
-//#region randomNumber
+//#region Random Number Generation
 function GetRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -42,10 +34,9 @@ function GetRandomCollectable(collectables, rarityChance) {
 
     return collectables[GetWeightedRandom(values, weights)];
 }
-//#endregion randomNumber
+//#endregion Random Number Generation
 
-/* Miscellenious */
-//#region misc
+//#region Miscellanious
 function Round(number) {
     return number.toFixed(2);
 }
@@ -81,11 +72,16 @@ function checkTestingMode() {
 function isSecureProtocol() {
     return window.location.protocol === 'https:';
 }
+//#endregion Miscellanious
 
-//#endregion misc
+//#region View Building
+function CreateDiv(id, classname) {
+    const result = document.createElement("div");
+    result.id = id;
+    result.className = classname;
+    return result;
+}
 
-/* itemTable */
-//#region itemTable
 function AppendRowsToTable(rows, table) {
     for (const rowData of rows) {
         const tableRow = table.insertRow();
@@ -163,4 +159,4 @@ function CreateMapTable(location, enabled) {
 
     return table;
 }
-//#endregion itemTable
+//#endregion View Building
