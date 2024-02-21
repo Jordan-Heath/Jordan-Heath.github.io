@@ -107,6 +107,8 @@ function toilet() {
 }
 
 function sleep() {
+    if (!pet.isAvailable() && pet.state !== 'sleep') return;
+
     light = !light;
     sleepElement.hidden = light;
     pet.state = light ? 'default' : 'sleep';
@@ -115,7 +117,14 @@ function sleep() {
 }
 
 function heal() {
-    // Logic to check and display pet's health status
+    if (!pet.isAvailable()) return;
+
+    pet.state = 'healing'
+
+    setTimeout(() => {
+        pet.health = 100;
+        happy();
+    }, HEALING_LENGTH)
 }
 //#endregion buttonFunctions
 

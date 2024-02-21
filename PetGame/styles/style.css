@@ -23,9 +23,10 @@
 	--main-height: calc(100vh - 2*var(--header-height) - 2*var(--border-height));
 	--main-width: var(--header-width);
 
-		--day-filter: #ffe4c4cc;
-		--night-filter: #38322acc;
-		--character-size: 40vh;
+		--main-background: url('../assets/background.png');
+		--day-filter: #ffe4c413;
+		--night-filter: #38322a4f;
+		--character-size: min(40vh, 40vw);
 
 		--menu-background: #808080cc;
 
@@ -118,6 +119,9 @@ main {
 
 	height: var(--main-height);
 	width: var(--main-width);
+
+	background-image: var(--main-background);
+	background-size: 100% 100%;
 
 	#defaultView {
 		top: inherit;
@@ -258,13 +262,4 @@ footer {
 		border: 5px solid black;
 	}
 
-}
-
-/* Mobile Rules */
-@media screen and (max-width: 1000px) {
-	#characterElement {
-		height: 40vw;
-    	width: 40vw;
-		background-size: 40vw 40vw;
-	}
 }
