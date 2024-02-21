@@ -2,58 +2,79 @@
 <html>
 
 <head>
-    <title>Our Funky HTML Page</title>
-    <meta name="description" content="Our first page">
-    <meta name="keywords" content="html tutorial template">
+    <title>Pet Game</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 
+    <link rel="icon" type="image/x-icon" href="../data/favicon.ico">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
 
     <script src="js/models/pet.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/constants.js"></script>
+    <script defer src="js/script.js"></script>
 </head>
 
 <body>
+    <div id="borderElement"></div>
+
     <header>
-        <button onclick="openMenu('infoView')"><img src="assets/buttons/info.png" alt="Info"></button>
-        <button onclick="openMenu('foodView')"><img src="assets/buttons/food.png" alt="Food"></button>
-        <button onclick="openMenu('toiletView')"><img src="assets/buttons/toilet.png" alt="Toilet"></button>
-        <button onclick="openMenu('gameView')"><img src="assets/buttons/game.png" alt="Game"></button>
+        <button onclick="openMenu('statsMenuView')"><img src="assets/buttons/stats.png" alt="Stats"></button>
+        <button onclick="openMenu('foodDropdownView')"><img src="assets/buttons/food.png" alt="Food"></button>
+        <button onclick="openMenu('trainingDropdownView')"><img src="assets/buttons/training.png" alt="Training"></button>
+        <button onclick="openView('gameView')"><img src="assets/buttons/game.png" alt="Game"></button>
     </header>
 
-    <button id="backButton" onclick="openMenu('defaultView')" hidden>Back</button>
+    <main>
+        
 
-    <main id="defaultView">
-        <img id="characterElement" src="assets/character.png">
-    </main>
+        <div id="defaultView">
+            <div id="characterElement"></div>
+            <div id="sleepElement" hidden></div>
+        </div>
+    
+        <div id="statsMenuView" hidden>
+            <div>Name: <span id="nameValue"></span></div>
+            <div>Species: <span id="speciesValue"></span></div>
 
-    <main id="infoView" hidden>
-        <div>Hungry: <span id="hungryValue"></span></div>
-        <div>Happy: <span id="happyValue"></span></div>
-        <div>Training: <span id="trainingValue"></span></div>
-        <div>Age</div>
-        <div>weight</div>
-        <div>name</div>
-        <div>gender</div>
-        <div>generation</div>
-        <div>points</div>
-    </main>
-    <main id="foodView" hidden>
-        <button>meal</button>
-        <button></button>
-    </main>
-    <main id="toiletView" hidden></main> <!-- Not a view, just a function that effects main -->
-    <main id="gameView" hidden></main>
+            <div>Hungry: <span id="hungryValue"></span></div>
+            <div>Happy: <span id="happyValue"></span></div>
+            
+            <div>Training: <span id="trainingValue"></span></div>
+            <div>Age: <span id="ageValue"></span></div>
+            <div>Weight: <span id="weightValue"></span></div>
 
-    <main id="trainingView" hidden></main>
-    <main id="healthView" hidden></main> <!-- Not a view, just a function that effects main -->
-    <main id="nightView" hidden></main> <!-- Not a view, just a function that effects main -->
-    <main id="journalView" hidden></main>
+            <div>Money: <span id="moneyValue"></span></div>
+        </div>
+        
+        <div id="foodDropdownView" style="display: none;">
+            <button onclick="feed('meal')">Meal</button>
+            <button onclick="feed('snack')">Snack</button>
+            <!--<button onclick="feed('treat')">Treat</button>-->
+        </div>
+        <div id="trainingDropdownView" style="display: none;">
+            <button>Praise</button>
+            <button>Punish</button>
+        </div>
+    
+        <div id="gameView" hidden>
+            <button class="back-button" onclick="openView('defaultView')">X</button>
+            <!-- Haven't decided what games to do -->
+        </div>
+        
+        <div id="journalView" hidden>
+            <button class="back-button" onclick="openView('defaultView')">X</button>
+        </div>
+    </main>
+    
 
     <footer>
-        <button onclick="openMenu('trainingView')"><img src="assets/buttons/training.png" alt="Training"></button>
-        <button onclick="openMenu('healthView')"><img src="assets/buttons/health.png" alt="Health"></button>
-        <button onclick="openMenu('nightView')"><img src="assets/buttons/night.png" alt="Night"></button>
-        <button onclick="openMenu('journalView')"><img src="assets/buttons/journal.png" alt="Journal"></button>
+        <button onclick="toilet()"><img src="assets/buttons/toilet.png" alt="Toilet"></button>
+        <button onclick="sleep()"><img src="assets/buttons/night.png" alt="Sleep"></button>
+        <button onclick="heal()"><img src="assets/buttons/health.png" alt="Heal"></button>
+        <button onclick="openView('journalView')"><img src="assets/buttons/journal.png" alt="Journal"></button>
     </footer>
 </body>
 

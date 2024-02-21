@@ -1,81 +1,270 @@
-@keyframes characterAnimation {
-    0%, 100% {
-        transform: translateX(30vw) scaleX(1);
-    }
-    5% {
-        transform: translateX(30vw) scaleX(-1);
-    }
-    50% {
-        transform: translateX(-30vw) scaleX(-1);
-    }
-    55% {
-        transform: translateX(-30vw) scaleX(1);
-    }
+:root {
+	/* 
+	 ____________________________
+	| __________Border__________ |
+	||__________Header__________||
+	||							||
+	||			 Main			||
+	||__________________________||
+	||__________Footer__________||
+	|___________Border___________|
+
+	*/
+	--border-height: 5vh;
+	--border-width: 5vw;
+
+	--header-top: var(--border-height);
+	--header-left: var(--border-width);
+	--header-height: 15vh;
+	--header-width: calc(100vw - 2*var(--border-width));
+
+	--main-top: calc(var(--border-height) + var(--header-height));
+	--main-left: var(--border-width);
+	--main-height: calc(100vh - 2*var(--header-height) - 2*var(--border-height));
+	--main-width: var(--header-width);
+
+		--day-filter: #ffe4c4cc;
+		--night-filter: #38322acc;
+		--character-size: 40vh;
+
+		--menu-background: #808080cc;
+
+
+	--footer-bottom: var(--header-top);
+	--footer-left: var(--header-left);
+	--footer-height: var(--header-height);
+	--footer-width: var(--header-width);
 }
 
+/*#region Animations */
+@keyframes characterAnimation {
+	0%, 5%, 100% {
+		transform: translate(0vw, 5vh);
+	}
+	25%, 30% {
+		transform: translate(25vw);
+	}
+	50%, 55% {
+		transform: translate(0vw, -5vh);
+	}
+	75%, 80% {
+		transform: translate(-25vw);
+	}
+}
+
+@keyframes sleepAnimation {
+	0%,
+	100% {
+		transform: scaleY(0.85) scaleX(1.2);
+	}
+	30% {
+		transform: scaleY(1.2) scaleX(0.85);
+	}
+}
+/*#endregion Animations */
 
 body {
+	overflow: hidden;
 
-    background-color: black;
-    color: white;
+	image-rendering: pixelated;
+	font-family: "Kode Mono", monospace;
+	font-size: 20px;
+	color: white;
+
+	button {
+		font-family: "Kode Mono", monospace;
+		font-size: 20px;
+	}
+}
+
+#borderElement {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+
+	height: 100vh;
+	width: 100vw;
+
+	background: url('../assets/border.png');
+	background-size: 100% 100%;
+
+	pointer-events: none;
 }
 
 header {
-    position: absolute;
-    top: 0;
-    left: 0;
+	position: absolute;
+    top: var(--header-top);
+    left: var(--header-left);
 
     display: flex;
-    flex-direction: row;
-    width: 100vw;
-    height: 20vh;
-}
-footer {
-    position: absolute;
-    top: 80vh;
-    left: 0;
+	flex-direction: row;
+	width: var(--header-width);
+	height: var(--header-height);
 
-    display: flex;
-    flex-direction: row;
-    width: 100vw;
-    height: 20vh;
-}
+	button {
+		flex: 1;
+		height: var(--header-height);
 
-header button,
-footer button {
-    flex: 1;
-    height: 20vh;
-
-    background-color: grey;
-}
-
-#backButton {
-    position: absolute;
-    top: 20vh;
-    left: 0;
-    z-index: 10;
-
-    height: 50px;
-    width: 50px;
+		background-color: grey;
+		border: 5px solid black;
+	}
 }
 
 main {
-    position: absolute;
-    top: 20vh;
-    left: 0;
+	position: absolute;
+	top: var(--main-top);
+	left: var(--main-left);
 
-    width: 100vw;
-    height: 60vh;
-    text-align: center;
+	height: var(--main-height);
+	width: var(--main-width);
+
+	#defaultView {
+		top: inherit;
+		left: inherit;
+
+		height: inherit;
+		width: inherit;
+
+		background-color: var(--day-filter);
+
+		#characterElement {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			z-index: 2;
+		
+			height: var(--character-size);
+			width: var(--character-size);
+			translate: -50% -50%;
+			background-size: var(--character-size) var(--character-size);
+		}
+		#characterElement.default {
+			animation: characterAnimation 20s linear infinite;
+		}
+		#characterElement.sleep {
+			animation: sleepAnimation 8s linear infinite;
+		}
+		#characterElement.toilet {
+			background-image: url('../assets/effects/toilet.gif');
+		}
+
+		#sleepElement {
+			position: absolute;
+			top: 40%;
+			left: 50%;
+			z-index: 1;
+		
+			height: 40vh;
+			width: 60vh;
+			translate: -50% -50%;
+		
+			background-image: url('../assets/effects/sleep.gif');
+			background-size: 40vh 40vh;
+		}
+	}
+	#defaultView.sleep {
+		background-color: var(--night-filter);
+	}
+	
+	#statsMenuView {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 3;
+	
+		min-width: 25%;
+		max-width: fit-content;
+
+		background-color: var(--menu-background);
+
+	}
+	
+	#foodDropdownView {
+		position: absolute;
+		top: 0;
+		right: 50%;
+		z-index: 3;
+	
+		min-width: 25%;
+		max-width: fit-content;
+	
+		background-color: grey;
+	
+		button {
+			margin: 10px 10%;
+			height: 30px;
+			width: 80%;
+		}
+	}
+	#trainingDropdownView {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		z-index: 3;
+	
+		min-width: 25%;
+		max-width: fit-content;
+	
+		background-color: grey;
+	
+		button {
+			margin: 10px 10%;
+			height: 30px;
+			width: 80%;
+		}
+	}
+
+	#gameView {
+		background-color: var(--menu-background);
+
+		.back-button {
+			position: absolute;
+		
+			height: 50px;
+			width: 50px;
+			margin: 20px;
+		}
+	}
+
+	#journalView {
+		background-color: var(--menu-background);
+
+		.back-button {
+			position: absolute;
+		
+			height: 50px;
+			width: 50px;
+			margin: 20px;
+		}
+	}
 }
 
-#characterElement {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+footer {
+	position: absolute;
+	bottom: var(--footer-bottom);
+    left: var(--footer-left);
 
-    max-height: 55vh;
+    display: flex;
+	flex-direction: row;
+	width: var(--footer-width);
+	height: var(--footer-height);
 
-    translate: -50% -50%;
-    animation: characterAnimation 10s infinite;
+	button {
+		flex: 1;
+		height: var(--header-height);
+
+		background-color: grey;
+		border: 5px solid black;
+	}
+
+}
+
+/* Mobile Rules */
+@media screen and (max-width: 1000px) {
+	#characterElement {
+		height: 40vw;
+    	width: 40vw;
+		background-size: 40vw 40vw;
+	}
 }
