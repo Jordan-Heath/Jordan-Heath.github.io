@@ -155,16 +155,16 @@ main {
 
 		#sleepElement {
 			position: absolute;
-			top: 40%;
+			top: 50%;
 			left: 50%;
 			z-index: 1;
 		
-			height: 40vh;
-			width: 60vh;
+			height: calc(1.5 * var(--character-size));
+			width: calc(2 * var(--character-size));
 			translate: -50% -50%;
 		
 			background-image: url('../assets/effects/sleep.gif');
-			background-size: 40vh 40vh;
+			background-size: 100% 100%;
 		}
 	}
 	#defaultView.sleep {
@@ -229,6 +229,14 @@ main {
 			width: 50px;
 			margin: 20px;
 		}
+
+		.content {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+
+			translate: -50% -50%;
+		}
 	}
 
 	#journalView {
@@ -240,6 +248,14 @@ main {
 			height: 50px;
 			width: 50px;
 			margin: 20px;
+		}
+
+		.content {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+
+			translate: -50% -50%;
 		}
 	}
 }

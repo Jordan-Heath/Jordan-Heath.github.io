@@ -5,7 +5,8 @@ const STATE_IDS = {
 
     'sleeping': 3,
     'eating': 4,
-    'toilet': 5
+    'toilet': 5,
+    'no': 6
 }
 
 const STATE_NAMES = {
@@ -15,7 +16,8 @@ const STATE_NAMES = {
 
     3: 'sleeping',
     4: 'eating',
-    5: 'toilet'
+    5: 'toilet',
+    6: 'no'
 }
 
 const UPDATE_FREQUENCY = 300;

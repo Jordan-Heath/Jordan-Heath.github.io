@@ -37,8 +37,8 @@ class Pet {
 
     update(secondsPassed) {
         if (this.state !== 'sleep') {
-            this.hunger -= HUNGER_DECAY_PER_SECOND * secondsPassed;
-            this.happy -= HAPPY_DECAY_PER_SECOND * secondsPassed;
+            this.addHunger(-HUNGER_DECAY_PER_SECOND * secondsPassed);
+            this.addHappy(-HAPPY_DECAY_PER_SECOND * secondsPassed);
             this.age += AGE_INCREASE_PER_SECOND * secondsPassed;
             this.health -= HEALTH_DECAY_PER_SECOND * secondsPassed;
             this.bowels += BOWEL_INCREASE_PER_SECOND * secondsPassed;
@@ -48,15 +48,19 @@ class Pet {
     addHunger(points) {
         //eat the points
         this.hunger += points;
-        //ensure not greater than max
-        this.hunger = this.hunger > this.maxHunger ? this.maxHunger : this.hunger;
+
+        //0 < this.hunger < this.maxHunger
+        if (this.hunger < 0) this.hunger = 0;
+        if (this.hunger > this.maxHunger) this.hunger = this.maxHunger;
     }
 
     addHappy(points) {
         //eat the points
         this.happy += points;
-        //ensure not greater than max
-        this.happy = this.happy > this.maxHappy ? this.maxHappy : this.happy;
+
+        //0 < this.happy < this.maxHappy
+        if (this.happy < 0) this.happy = 0;
+        if (this.happy > this.maxHappy) this.happy = this.maxHappy;
     }
 
     hungerPercentage() {

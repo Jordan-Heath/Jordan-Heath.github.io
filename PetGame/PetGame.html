@@ -56,17 +56,23 @@
             <!--<button onclick="feed('treat')">Treat</button>-->
         </div>
         <div id="trainingDropdownView" style="display: none;">
-            <button>Praise</button>
-            <button>Punish</button>
+            <button onclick="train('praise')">Praise</button>
+            <button onclick="train('punish')">Punish</button>
         </div>
     
         <div id="gameView" hidden>
             <button class="back-button" onclick="openView('defaultView')">X</button>
+            <div class="content">
+                <p>Not Implemented</p>
+            </div>
             <!-- Haven't decided what games to do -->
         </div>
         
         <div id="journalView" hidden>
             <button class="back-button" onclick="openView('defaultView')">X</button>
+            <div class="content">
+                <p>Not Implemented</p>
+            </div>
         </div>
     </main>
     

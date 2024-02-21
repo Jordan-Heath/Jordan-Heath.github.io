@@ -91,6 +91,13 @@ function feed(type) {
 }
 
 function train(action) {
+    switch(action) {
+        case('praise'):
+            happy();
+            break;
+        case('punish'):
+            sad();
+    }
     // Logic to train the pet based on the action (praise or punish)
     // Update pet's training level accordingly
 }
@@ -130,7 +137,16 @@ function heal() {
 
 function happy() {
     pet.state = 'happy';
-    pet.happy += 5;
+    pet.addHappy(5);
+
+    setTimeout(() => {
+        pet.state = 'default';
+    }, HAPPY_LENGTH);
+}
+
+function sad() {
+    pet.state = 'sad';
+    pet.addHappy(-5);
 
     setTimeout(() => {
         pet.state = 'default';
