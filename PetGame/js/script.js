@@ -104,11 +104,12 @@ function train(action) {
 
 function toilet() {
     if (!pet.isAvailable()) return;
+    if (pet.bowels < 50) return no();
 
     pet.state = 'toilet'
 
     setTimeout(() => {
-        pet.bowels -= 100;
+        pet.bowels = 0;
         happy();
     }, TOILET_LENGTH)
 }
@@ -125,6 +126,7 @@ function sleep() {
 
 function heal() {
     if (!pet.isAvailable()) return;
+    if (pet.health > 50) return no();
 
     pet.state = 'healing'
 
@@ -150,7 +152,15 @@ function sad() {
 
     setTimeout(() => {
         pet.state = 'default';
-    }, HAPPY_LENGTH);
+    }, SAD_LENGTH);
+}
+
+function no() {
+    pet.state = 'no';
+
+    setTimeout(() => {
+        pet.state = 'default';
+    }, NO_LENGTH);
 }
 
 // Event listener to initialize the interface when the DOM is loaded

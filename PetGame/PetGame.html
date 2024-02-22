@@ -26,11 +26,10 @@
         <button onclick="openMenu('foodDropdownView')"><img src="assets/buttons/food.png" alt="Food"></button>
         <button onclick="openMenu('trainingDropdownView')"><img src="assets/buttons/training.png" alt="Training"></button>
         <button onclick="openView('gameView')"><img src="assets/buttons/game.png" alt="Game"></button>
+        <button onclick="openView('shopView')"><img src="assets/buttons/shop.png" alt="Shop"></button>
     </header>
 
     <main>
-        
-
         <div id="defaultView">
             <div id="characterElement"></div>
             <div id="sleepElement" hidden></div>
@@ -65,13 +64,91 @@
             <div class="content">
                 <p>Not Implemented</p>
             </div>
-            <!-- Haven't decided what games to do -->
         </div>
-        
+
+        <div id="shopView" hidden>
+            <button class="back-button" onclick="openView('defaultView')">X</button>
+            <div class="content">
+                <p>Not Implemented</p>
+            </div>
+        </div>
+
         <div id="journalView" hidden>
             <button class="back-button" onclick="openView('defaultView')">X</button>
             <div class="content">
                 <p>Not Implemented</p>
+            </div>
+        </div>
+        
+        <div id="helpView" hidden>
+            <button class="back-button" onclick="openView('defaultView')">X</button>
+            <div class="content">
+                <h2>Help</h2>
+                <details><summary>Menues</summary>
+                    <details><summary>Stats</summary>
+                        <p>
+                            Name: Your pet's name<br>
+                            Species: Your pet's species<br>
+                            Age: How many hours your pet has lived<br>
+                            Hunger: How full your pet is<br>
+                            Happy: How happy your pet is<br>
+                            ...etc
+                        </p>
+                    </details>
+                    <details><summary>Food</summary>
+                        <p>
+                            Meal: Adds 25 hunger, and adds some weight to your pet.<br>
+                            Snack: Adds 10 happy, but adds a lot of weight to your pet.<br>
+                        </p>
+                    </details>
+                    <details><summary>Training</summary>
+                        <p>
+                            Praise: Adds 5 happy to your pet.<br>
+                            Punish: Takes 5 happy from your pet.<br>
+                        </p>
+                    </details>
+                    <details><summary>Game</summary>
+                        <p>
+                            Not Implemented.
+                        </p>
+                    </details>
+                    <details><summary>Shop</summary>
+                        <p>
+                            Not Implemented
+                        </p>
+                    </details>
+                    <details><summary>Toilet</summary>
+                        <p>
+                            What goes in, must come out.<br>
+                            If it is time, they will go.
+                        </p>
+                    </details>
+                    <details><summary>Sleep</summary>
+                        <p>
+                            Pets are capable of hibernation.<br>
+                            When sleeping, pets enter a stable state where their needs do not decay.
+                        </p>
+                    </details>
+                    <details><summary>Heal</summary>
+                        <p>
+                            Everybody needs a little help sometimes.<br>
+                            If your pet is unwell, give them that help they need.
+                        </p>
+                    </details>
+                    <details><summary>Journal</summary>
+                        <p>
+                            Not Implemented
+                        </p>
+                    </details>
+                    <details><summary>Help</summary>
+                        <p>
+                            You're already here silly!
+                        </p>
+                    </details>
+                </details>
+                <details><summary>Raising Pets</summary>
+                    <p>No Advice Yet</p>
+                </details>
             </div>
         </div>
     </main>
@@ -82,6 +159,7 @@
         <button onclick="sleep()"><img src="assets/buttons/sleep.png" alt="Sleep"></button>
         <button onclick="heal()"><img src="assets/buttons/heal.png" alt="Heal"></button>
         <button onclick="openView('journalView')"><img src="assets/buttons/journal.png" alt="Journal"></button>
+        <button onclick="openView('helpView')"><img src="assets/buttons/help.png" alt="Help"></button>
     </footer>
 </body>
 

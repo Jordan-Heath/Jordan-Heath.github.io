@@ -19,7 +19,7 @@ class Pet {
 
         //hidden bars
         this.health = 100;
-        this.bowels = 100;
+        this.bowels = 0;
 
         this.money = 0;
     }

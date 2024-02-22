@@ -10,17 +10,18 @@
 	|___________Border___________|
 
 	*/
-	--border-height: 5vh;
+	--top-border-height: 10vh;
+	--bottom-border-height: 5vh;
 	--border-width: 5vw;
 
-	--header-top: var(--border-height);
+	--header-top: var(--top-border-height);
 	--header-left: var(--border-width);
 	--header-height: 15vh;
 	--header-width: calc(100vw - 2*var(--border-width));
 
-	--main-top: calc(var(--border-height) + var(--header-height));
+	--main-top: calc(var(--top-border-height) + var(--header-height));
 	--main-left: var(--border-width);
-	--main-height: calc(100vh - 2*var(--header-height) - 2*var(--border-height));
+	--main-height: calc(100vh - 2*var(--header-height) - var(--top-border-height) - var(--bottom-border-height));
 	--main-width: var(--header-width);
 
 		--main-background: url('../assets/background.png');
@@ -31,7 +32,7 @@
 		--menu-background: #808080cc;
 
 
-	--footer-bottom: var(--header-top);
+	--footer-bottom: var(--bottom-border-height);
 	--footer-left: var(--header-left);
 	--footer-height: var(--header-height);
 	--footer-width: var(--header-width);
@@ -70,6 +71,7 @@ body {
 	image-rendering: pixelated;
 	font-family: "Kode Mono", monospace;
 	font-size: 20px;
+	background-color: black;
 	color: white;
 
 	button {
@@ -177,7 +179,7 @@ main {
 		left: 0;
 		z-index: 3;
 	
-		min-width: 25%;
+		min-width: 20%;
 		max-width: fit-content;
 
 		background-color: var(--menu-background);
@@ -187,10 +189,10 @@ main {
 	#foodDropdownView {
 		position: absolute;
 		top: 0;
-		right: 50%;
+		left: 20%;
 		z-index: 3;
 	
-		min-width: 25%;
+		min-width: 20%;
 		max-width: fit-content;
 	
 		background-color: grey;
@@ -204,10 +206,10 @@ main {
 	#trainingDropdownView {
 		position: absolute;
 		top: 0;
-		left: 50%;
+		left: 40%;
 		z-index: 3;
 	
-		min-width: 25%;
+		min-width: 20%;
 		max-width: fit-content;
 	
 		background-color: grey;
@@ -219,26 +221,8 @@ main {
 		}
 	}
 
-	#gameView {
-		background-color: var(--menu-background);
-
-		.back-button {
-			position: absolute;
-		
-			height: 50px;
-			width: 50px;
-			margin: 20px;
-		}
-
-		.content {
-			position: absolute;
-			left: 50%;
-			top: 50%;
-
-			translate: -50% -50%;
-		}
-	}
-
+	#gameView,
+	#shopView,
 	#journalView {
 		background-color: var(--menu-background);
 
@@ -256,6 +240,44 @@ main {
 			top: 50%;
 
 			translate: -50% -50%;
+		}
+	}
+
+	#helpView {
+		background-color: var(--menu-background);
+
+		.back-button {
+			position: absolute;
+		
+			height: 50px;
+			width: 50px;
+			margin: 20px;
+		}
+
+		.content {
+			overflow: scroll;
+			width: 98%;
+			height: var(--main-height);
+			padding: 0 2%;
+			box-sizing: border-box;
+
+			h2 {
+				width: 100%;
+				text-align: center;
+			}
+
+			details {
+				margin-left: 10px;
+
+				summary {
+					text-decoration: underline;
+					cursor: pointer;
+				}
+
+				p {
+					margin-top: 0;
+				}
+			}
 		}
 	}
 }
