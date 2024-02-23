@@ -1,14 +1,19 @@
 let pet = new Pet();
+let player = new Player();
 let currentView = 'defaultView';
 let light = true;
+let numberOfPoos = 0;
+let previousTime = Date.now();
+let testingMode = true //checkTestingMode();
 
 function init() {
-    // Display the default view
     openView('defaultView');
-    // Initialize pet's initial stats and appearance
+
+    if (testingMode) {
+        debugStats.style.display = 'block';
+    }
     
     startUpdateLoop();
-    // Update the UI to reflect the initial pet state
 }
 
 //#region Update
@@ -17,11 +22,17 @@ function startUpdateLoop() {
 }
 
 function update() {
-    pet.update(UPDATE_FREQUENCY/1000);
+    const currentTime = Date.now(); // Get current time
+    const millisecondsPassed = currentTime - previousTime; // Calculate milliseconds passed
+    const secondsPassed = millisecondsPassed / 1000; // Convert milliseconds to seconds
+
+    pet.update(secondsPassed); // Pass seconds to pet.update()
 
     updateCharacterView();
     updateBackgroundView();
     updateStatsView();
+
+    previousTime = currentTime; // Update previous time for the next update
 }
 
 function updateCharacterView() {
@@ -36,15 +47,26 @@ function updateBackgroundView() {
 function updateStatsView() {
     document.getElementById("nameValue").textContent = pet.name;
     document.getElementById("speciesValue").textContent = pet.species;
+    //hr
+    document.getElementById('stateValue').textContent = pet.state;
+    document.getElementById("hungryValue").textContent = pet.printHunger();
+    document.getElementById("happyValue").textContent = pet.printHappy();
+    document.getElementById("xpValue").textContent = pet.xp;
+    //hr
+    document.getElementById('evolutionValue').textContent = EVOLUTION_STATES[pet.evolution];
+    document.getElementById("ageValue").textContent = Math.round(pet.age * 10)/10;
+    document.getElementById("weightValue").textContent = Math.round(pet.weight * 10)/10;
+    //hr
+    document.getElementById("moneyValue").textContent = player.money;
 
-    document.getElementById("hungryValue").textContent = pet.hungerPercentage();
-    document.getElementById("happyValue").textContent = pet.happyPercentage();
-
-    document.getElementById("trainingValue").textContent = pet.training;
-    document.getElementById("ageValue").textContent = Math.round(pet.age);
-    document.getElementById("weightValue").textContent = pet.weight;
-    
-    document.getElementById("moneyValue").textContent = pet.money;
+    //debug
+    if (testingMode) {
+        document.getElementById('preciseHunger').textContent = pet.hungerPercentage();
+        document.getElementById('preciseHappy').textContent = pet.happyPercentage();
+        document.getElementById('preciseHealth').textContent = pet.healthPercentage();
+        document.getElementById('bowelsValue').textContent = Math.round(pet.bowels);
+        document.getElementById('maturityValue').textContent = Math.round(pet.maturity);
+    }
 }
 //#endregion Update
 
@@ -65,103 +87,42 @@ function openView(view) {
     document.getElementById(view).hidden = false;
     currentView = view;
 }
+
+function toggleNewPetButton(hidden) {
+    document.getElementById('newPetButton').hidden = hidden;
+}
 //#endregion menues
 
-//#region buttonFunctions
-function feed(type) {
-    if (!pet.isAvailable()) return;
-
-    pet.state = 'eating';
-    switch(type) {
-        case('meal'):
-            pet.addHunger(25);
-            pet.weight += 0.1;
-            pet.bowels += 10;
-            break;
-        case('snack'):
-            pet.addHappy(12.5)
-            pet.weight += 0.5;
-            pet.bowels += 5;
-            break;
-    }
-
-    setTimeout(() => {
-        pet.state = 'default';
-    }, EATING_LENGTH)
+//#region Actions
+function createPooElement() {
+    const pooContainer = document.getElementById('pooContainer');
+    let poo = document.createElement('img');
+    poo.src = 'assets/effects/poo.gif';
+    poo.alt = 'poo';
+    pooContainer.appendChild(poo);
 }
-
-function train(action) {
-    switch(action) {
-        case('praise'):
-            happy();
-            break;
-        case('punish'):
-            sad();
-    }
-    // Logic to train the pet based on the action (praise or punish)
-    // Update pet's training level accordingly
+function flushPooElements() {
+    document.getElementById('pooContainer').innerHTML = '';
 }
-
-function toilet() {
-    if (!pet.isAvailable()) return;
-    if (pet.bowels < 50) return no();
-
-    pet.state = 'toilet'
-
-    setTimeout(() => {
-        pet.bowels = 0;
-        happy();
-    }, TOILET_LENGTH)
+function newPet() {
+    toggleNewPetButton(true);
+    pet = new Pet();
 }
+//#endregion Actions
 
-function sleep() {
-    if (!pet.isAvailable() && pet.state !== 'sleep') return;
+//#region misc
+function checkTestingMode() {
+    const url = window.location.href;
+    const testingMode = url.includes('file');
 
-    light = !light;
-    sleepElement.hidden = light;
-    pet.state = light ? 'default' : 'sleep';
-    updateBackgroundView();
-    updateCharacterView();
+    testingMode ? console.log('Running in testing mode') : console.log('Not running in testing mode');
+
+    return testingMode;
 }
-
-function heal() {
-    if (!pet.isAvailable()) return;
-    if (pet.health > 50) return no();
-
-    pet.state = 'healing'
-
-    setTimeout(() => {
-        pet.health = 100;
-        happy();
-    }, HEALING_LENGTH)
+function randomArrayValue(array) {
+    return array[Math.floor(Math.random() * array.length)];
 }
-//#endregion buttonFunctions
-
-function happy() {
-    pet.state = 'happy';
-    pet.addHappy(5);
-
-    setTimeout(() => {
-        pet.state = 'default';
-    }, HAPPY_LENGTH);
-}
-
-function sad() {
-    pet.state = 'sad';
-    pet.addHappy(-5);
-
-    setTimeout(() => {
-        pet.state = 'default';
-    }, SAD_LENGTH);
-}
-
-function no() {
-    pet.state = 'no';
-
-    setTimeout(() => {
-        pet.state = 'default';
-    }, NO_LENGTH);
-}
+//#endregion misc
 
 // Event listener to initialize the interface when the DOM is loaded
 document.addEventListener('DOMContentLoaded', init);

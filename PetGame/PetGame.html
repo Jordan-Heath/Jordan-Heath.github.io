@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
 
     <script src="js/models/pet.js"></script>
+    <script src="js/models/player.js"></script>
     <script src="js/constants.js"></script>
     <script defer src="js/script.js"></script>
 </head>
@@ -33,36 +34,50 @@
         <div id="defaultView">
             <div id="characterElement"></div>
             <div id="sleepElement" hidden></div>
+            <div id="pooContainer"></div>
+            <button id="newPetButton" onclick="newPet()" hidden="">New Pet</button>
         </div>
     
         <div id="statsMenuView" hidden>
             <div>Name: <span id="nameValue"></span></div>
             <div>Species: <span id="speciesValue"></span></div>
-
+            <hr>
+            <div>State: <span id="stateValue"></span></div>
             <div>Hungry: <span id="hungryValue"></span></div>
             <div>Happy: <span id="happyValue"></span></div>
-            
-            <div>Training: <span id="trainingValue"></span></div>
+            <div>XP: <span id="xpValue"></span></div>
+            <hr>
+            <div>Evolution: <span id="evolutionValue"></span></div>
             <div>Age: <span id="ageValue"></span></div>
             <div>Weight: <span id="weightValue"></span></div>
-
+            <hr>
             <div>Money: <span id="moneyValue"></span></div>
+            <details id="debugStats" style="display: none;"><summary>DEBUG</summary>
+                <div>Hunger%: <span id="preciseHunger"></span></div>
+                <div>Happy%: <span id="preciseHappy"></span></div>
+                <div>Health%: <span id="preciseHealth"></span></div>
+                <div>Bowels: <span id="bowelsValue"></span></div>
+                <div>Maturity: <span id="maturityValue"></span></div>
+            </details>
         </div>
         
         <div id="foodDropdownView" style="display: none;">
-            <button onclick="feed('meal')">Meal</button>
-            <button onclick="feed('snack')">Snack</button>
+            <button onclick="pet.meal()">Meal</button>
+            <button onclick="pet.treat()">Treat</button>
             <!--<button onclick="feed('treat')">Treat</button>-->
         </div>
         <div id="trainingDropdownView" style="display: none;">
-            <button onclick="train('praise')">Praise</button>
-            <button onclick="train('punish')">Punish</button>
+            <button onclick="pet.praise()">Praise</button>
+            <button onclick="pet.punish()">Punish</button>
         </div>
     
         <div id="gameView" hidden>
             <button class="back-button" onclick="openView('defaultView')">X</button>
             <div class="content">
                 <p>Not Implemented</p>
+                <button>Button Mash Game</button>
+                <button>Whack-a-mole</button>
+                <button>Slot Machine</button>
             </div>
         </div>
 
@@ -97,8 +112,8 @@
                     </details>
                     <details><summary>Food</summary>
                         <p>
-                            Meal: Adds 25 hunger, and adds some weight to your pet.<br>
-                            Snack: Adds 10 happy, but adds a lot of weight to your pet.<br>
+                            Meal: Fills hunger, and adds some weight to your pet.<br>
+                            Treat: Fills happy, but adds significant weight to your pet.<br>
                         </p>
                     </details>
                     <details><summary>Training</summary>
@@ -123,16 +138,16 @@
                             If it is time, they will go.
                         </p>
                     </details>
-                    <details><summary>Sleep</summary>
-                        <p>
-                            Pets are capable of hibernation.<br>
-                            When sleeping, pets enter a stable state where their needs do not decay.
-                        </p>
-                    </details>
                     <details><summary>Heal</summary>
                         <p>
                             Everybody needs a little help sometimes.<br>
                             If your pet is unwell, give them that help they need.
+                        </p>
+                    </details>
+                    <details><summary>Sleep</summary>
+                        <p>
+                            Pets are capable of hibernation.<br>
+                            When sleeping, pets enter a stable state where their needs do not decay.
                         </p>
                     </details>
                     <details><summary>Journal</summary>
@@ -147,7 +162,13 @@
                     </details>
                 </details>
                 <details><summary>Raising Pets</summary>
-                    <p>No Advice Yet</p>
+                    <details><summary></summary>
+
+                    </details>
+                    <details><summary>Sick</summary>
+                        If you have checked your pet's stats, they may explain why.<br>
+                        Otherwise, you should try the bandage icon to heal them.
+                    </details>
                 </details>
             </div>
         </div>
@@ -155,9 +176,9 @@
     
 
     <footer>
-        <button onclick="toilet()"><img src="assets/buttons/toilet.png" alt="Toilet"></button>
-        <button onclick="sleep()"><img src="assets/buttons/sleep.png" alt="Sleep"></button>
-        <button onclick="heal()"><img src="assets/buttons/heal.png" alt="Heal"></button>
+        <button onclick="pet.toilet()"><img src="assets/buttons/toilet.png" alt="Toilet"></button>
+        <button onclick="pet.heal()"><img src="assets/buttons/heal.png" alt="Heal"></button>
+        <button onclick="pet.sleep()"><img src="assets/buttons/sleep.png" alt="Sleep"></button>
         <button onclick="openView('journalView')"><img src="assets/buttons/journal.png" alt="Journal"></button>
         <button onclick="openView('helpView')"><img src="assets/buttons/help.png" alt="Help"></button>
     </footer>
