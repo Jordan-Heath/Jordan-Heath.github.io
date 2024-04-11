@@ -1,0 +1,111 @@
+body {
+    overflow: hidden;
+
+    margin: auto;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+
+    font-family: Arial, sans-serif;
+    background-color: #272727;
+    color: whitesmoke;
+}
+
+.card-container {
+    overflow-x: auto;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    height: 70vh;
+
+    h1 {
+        text-align: center;
+        width: 100%;
+    }
+
+    .card {
+        padding: 5px;
+        margin: 5px 5px;
+
+        flex: 1;
+        max-height: 60vh;
+        max-width: max-content;
+
+        animation: cardAppear 1s ease-in-out;
+
+        img {
+            max-height: 60vh;
+            padding: 5px;
+            margin: auto;
+
+            background-color: #ffdc90;
+            border: 1px solid #7e6b43;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        img:hover {
+            scale: 0.8;
+        }
+
+        p {
+            position: relative;
+            z-index: -1;
+
+            flex: 1;
+            padding: 5px 0;
+            margin: 0;
+            translate: 0 -100%;
+            
+            font-size: small;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+            color: #fff;
+        }
+    }
+}
+
+.fortune-container {
+    position: absolute;
+    left: 50vw;
+    top: 70vh;
+    transform: translate(-50%, 0);
+
+    text-align: center;
+    max-width: 60%;
+    margin: auto;
+
+    background-color: #272727;
+}
+
+button {
+    position: absolute;
+    bottom: 0vh;
+    left: 50vw;
+    transform: translate(-50%, -100%);
+    z-index: 5;
+
+    height: 40px;
+    width: 120px;
+
+    font-size: large;
+    background-color: darkcyan;
+    color: whitesmoke;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+@keyframes cardAppear {
+    from {
+        transform: scale(0%);
+    }
+    75% {
+        transform: scale(110%);
+    }
+    to {
+        transform: scale(100%);
+    }
+}
