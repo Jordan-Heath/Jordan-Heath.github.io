@@ -5,6 +5,10 @@ Explore My Collection of Projects. Most of my work is not shared publicly. This 
 
 ## Incomplete Projects
 
+### [Fortune Teller](FortuneTeller/FortuneTeller.html)
+
+PLAYABLE DEMO. You draw 3 cards and it tells you your fortune.
+
 ### [Pet Game](PetGame/PetGame.html)
 
 PLAYABLE DEMO. A digimon/tamogotchi clone with my own spin.
