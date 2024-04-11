@@ -48,6 +48,7 @@ function drawCard() {
 
     let cardView = makeCardView(newCard);
     cardContainer.appendChild(cardView);
+    cardView.scrollIntoView();
 
     if (cards.length === 3) {
         button.innerHTML = 'Reset';
