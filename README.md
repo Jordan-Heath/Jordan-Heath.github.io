@@ -5,6 +5,10 @@ Explore My Collection of Projects. Most of my work is not shared publicly. This 
 
 ## Incomplete Projects
 
+### [The Great 100 Man Fight](TheGreat100ManFight/TheGreat100ManFight.html)
+
+PLAYABLE DEMO. 100 men enter, 1 leaves. I haven't gotten the motivation to polish it enough for the main page.
+
 ### [Fortune Teller](FortuneTeller/FortuneTeller.html)
 
 PLAYABLE DEMO. You draw 3 cards and it tells you your fortune.
