@@ -14,11 +14,11 @@ class Controller {
         await this.model.Initialize()
 
         //attempt to load from cookies
-        this.model.LoadFromCookies();
+        this.model.LoadFromLocalStorage();
         this.view.LoadLocation(this.model.currentLocation);
 
         setInterval(() => {
-            this.model.SaveToCookies();
+            this.model.SaveToLocalStorage();
             this.view.SaveMessage('Saved');
         }, SAVE_INTERVAL);
 
@@ -135,7 +135,7 @@ class Controller {
     }
 
     SaveButton() {
-        this.model.SaveToCookies();
+        this.model.SaveToLocalStorage();
         this.view.SaveMessage('Saved');
     }
 
@@ -154,8 +154,8 @@ class Controller {
         const file = importFileMenuInput.files[0];
         this.model.ImportSave(file);
         setTimeout (() => {
-            this.model.SaveToCookies();
-            window.location.href = 'TheCollector.html';
+            this.model.SaveToLocalStorage();
+            window.location.reload();
         }, 200)
     }
 
@@ -163,15 +163,15 @@ class Controller {
         if(window.confirm("Are you sure you wish to reset?")) {
             model = new Model();
             this.model = model;
-            this.model.SaveToCookies();
-            window.location.href = 'TheCollector.html';
+            this.model.SaveToLocalStorage();
+            window.location.reload();
         }
     }
 
     ExitButton() {
-        this.model.SaveToCookies();
+        this.model.SaveToLocalStorage();
         if(window.confirm("Are you sure you wish to quit?")) {
-            window.location.href = '../index.html';
+            window.location.href = 'https://jordan-heath.github.io/';
         }
     }
     //#endregion MainView

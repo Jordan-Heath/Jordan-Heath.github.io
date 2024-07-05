@@ -11,7 +11,7 @@ const IMPROVED_SEARCH_INTERVAL = 2500; //milliseconds
 const SAVE_INTERVAL = 30000; //milliseconds
 
 //#region City Data
-const CITY_COLLECTABLE_JSON_DATA = `[
+const CITY_COLLECTABLE_JSON_DATA = [
     { "location": "city", "id": "coppercoin", "name": "Copper Coin", "rarity": 0, "value": 0.01 },
     { "location": "city", "id": "twig", "name": "Twig", "rarity": 0, "value": 0.02 },
     { "location": "city", "id": "plasticbag", "name": "Plastic Bag", "rarity": 0, "value": 0.03 },
@@ -43,11 +43,8 @@ const CITY_COLLECTABLE_JSON_DATA = `[
     { "location": "city", "id": "bike", "name": "Bike", "rarity": 6, "value": 20 },
 
     { "location": "city", "id": "goldcoin", "name": "Gold Coin", "rarity": 7, "value": 100 }
-]`;
-const CITY_COLLECTABLE_JSON_URL = `[
-
-]`
-const CITY_COMBO_JSON_DATA = `[
+];
+const CITY_COMBO_JSON_DATA = [
     { "location": "city", "id": "stickstone", "name": "Sticks & Stones", "description": "[Twig + Pebble] Words cannot compare", "rarity": 0, "value": 0.40, "requirements": ["twig", "pebble"] },
     { "location": "city", "id": "garbage", "name": "Garbage Collector", "description": "[Plastic Bag + Bottle Cap + Can + Glass + Ciggerette Butt] Eww", "rarity": 1, "value": 0.80, "requirements": ["plasticbag", "bottlecap", "can", "glass", "cigbutt"] },
     { "location": "city", "id": "gambling", "name": "Gambling", "description": "[Strange Currency + Lotto Ticket] Too bad it's worthless", "rarity": 2, "value": 3, "requirements": ["dollar", "lottoticket"] },
@@ -56,12 +53,12 @@ const CITY_COMBO_JSON_DATA = `[
     { "location": "city", "id": "music", "name": "Music", "description": "[CD + CD Player] A rapturous auditory experience", "rarity": 5, "value": 50, "requirements": ["cd", "cdplayer"] },
     { "location": "city", "id": "cinema", "name": "Cinema", "description": "[VCR + TV] Tape that impresses both the ears and the eyes", "rarity": 6, "value": 100, "requirements": ["vcr", "tv"] },
     { "location": "city", "id": "coins", "name": "Coin Collection", "description": "[Copper + Silver + Gold] A neat set of funny metals", "rarity": 7, "value": 1000, "requirements": ["coppercoin", "silvercoin", "goldcoin"] }
-]`;
+];
 
 //#endregion City Data
 
 //#region Forest Data
-const FOREST_COLLECTABLE_JSON_DATA = `[
+const FOREST_COLLECTABLE_JSON_DATA = [
 	{ "location": "forest", "id": "leaf", "name": "Leaf", "rarity": 0, "value": 0.05 },
 	{ "location": "forest", "id": "stick", "name": "Stick", "rarity": 0, "value": 0.06 },
 	{ "location": "forest", "id": "sap", "name": "Sap", "rarity": 0, "value": 0.05 },
@@ -93,8 +90,8 @@ const FOREST_COLLECTABLE_JSON_DATA = `[
 	{ "location": "forest", "id": "ancientbox", "name": "Ancient Box", "rarity": 6, "value": 60 },
 
 	{ "location": "forest", "id": "goldenidol", "name": "Golden Idol", "rarity": 7, "value": 100 }
-]`;
-const FOREST_COMBO_JSON_DATA = `[
+];
+const FOREST_COMBO_JSON_DATA = [
     { "location": "forest", "id": "stickleaf", "name": "Stick and Leaf", "description": "[Stick + Leaf] Natures Fingers", "rarity": 0, "value": 0.50, "requirements": ["stick", "leaf"] },
     { "location": "forest", "id": "buzzboys", "name": "The Buzzy Boys", "description": "[Fly + Bee] One is yuck, one is scary", "rarity": 1, "value": 4, "requirements": ["fly", "bee"] },
     { "location": "forest", "id": "bestfriends", "name": "Best Friends", "description": "[Weevil + Aphid] Look at them", "rarity": 2, "value": 7, "requirements": ["weevil", "aphid"] },
@@ -103,11 +100,11 @@ const FOREST_COMBO_JSON_DATA = `[
     { "location": "forest", "id": "stickleaf2", "name": "Stick and Leaf?", "description": "[Stick Bug + Leaf Insect] They wriggle unsettlingly", "rarity": 5, "value": 100, "requirements": ["stickbug", "leafinsect"] },
     { "location": "forest", "id": "iridescence", "name": "Iridescence", "description": "[Dragonfly + Christmas Beetle] beautiful", "rarity": 6, "value": 200, "requirements": ["dragonfly", "christmasbeetle"] },
     { "location": "forest", "id": "goldenarc", "name": "Golden Arc", "description": "[Ancient Box + Golden Idol] My face feels tingley", "rarity": 7, "value": 1000, "requirements": ["ancientbox", "goldenidol"] }
-]`;
+];
 //#endregion Forest Data
 
 //#region Pier Data
-const PIER_COLLECTABLE_JSON_DATA = `[
+const PIER_COLLECTABLE_JSON_DATA = [
     { "location": "pier", "id": "boot", "name": "Leather Boot", "rarity": 0, "value": 0.10 },
     { "location": "pier", "id": "driftwood", "name": "Drift Wood", "rarity": 0, "value": 0.20 },
     { "location": "pier", "id": "tire", "name": "Tire", "rarity": 0, "value": 0.30 },
@@ -139,8 +136,8 @@ const PIER_COLLECTABLE_JSON_DATA = `[
 	{ "location": "pier", "id": "nautilus", "name": "Nautilus", "rarity": 6, "value": 200 },
     
     { "location": "pier", "id": "treasure", "name": "Buried Treasure", "rarity": 7, "value": 500 }
-]`;
-const PIER_COMBO_JSON_DATA = `[
+];
+const PIER_COMBO_JSON_DATA = [
 	{ "location": "pier", "id": "tireswing", "name": "Tire Swing", "description": "[Tire + Netting] The foundations for a good afternoon", "rarity": 0, "value": 5, "requirements": ["tire", "netting"] },
 	{ "location": "pier", "id": "wallhanging", "name": "Wall Hanging", "description": "[Sea Glass + Scallop] Something to remember that trip to the pier", "rarity": 1, "value": 7, "requirements": ["seaglass", "scallop"] },
 	{ "location": "pier", "id": "magicwand", "name": "Magic Wand", "description": "[Drift Wood + Starfish] This is how they are made", "rarity": 2, "value": 10, "requirements": ["driftwood", "starfish"] },
@@ -149,11 +146,11 @@ const PIER_COMBO_JSON_DATA = `[
     { "location": "pier", "id": "fishandchips", "name": "Fish and Chips", "description": "[Octopus + Shark] Calamari and flake", "rarity": 5, "value": 600, "requirements": ["octopus", "shark"] },
 	{ "location": "pier", "id": "ancientfish", "name": "Ancient Fish", "description": "[Coelacanth + Nautilus] Probably should put these back...", "rarity": 6, "value": 2000, "requirements": ["coelacanth", "nautilus"] },
     { "location": "pier", "id": "plunder", "name": "Plunder", "description": "[Pearl + Treasure] The seas bounties are yours now", "rarity": 7, "value": 5000, "requirements": ["pearl", "treasure"] }
-]`;
+];
 //#endregion Pier Data
 
 //#region Cave Data
-const CAVE_COLLECTABLE_JSON_DATA = `[
+const CAVE_COLLECTABLE_JSON_DATA = [
     { "location": "cave", "id": "refuse", "name": "Animal refuse", "rarity": 0, "value": 0.50 },
     { "location": "cave", "id": "rope", "name": "Rope", "rarity": 0, "value": 0.60 },
     { "location": "cave", "id": "lantern", "name": "Oil Lantern", "rarity": 0, "value": 0.70 },
@@ -185,8 +182,8 @@ const CAVE_COLLECTABLE_JSON_DATA = `[
     { "location": "cave", "id": "diamond", "name": "Diamond", "rarity": 6, "value": 600 },
 
     { "location": "cave", "id": "platinumore", "name": "Platinum Ore", "rarity": 7, "value": 1000 }
-]`;
-const CAVE_COMBO_JSON_DATA = `[
+];
+const CAVE_COMBO_JSON_DATA = [
     { "location": "cave", "id": "patchedvase", "name": "Patched Vase", "description": "[Animal Refuse + Vase] I wouldn't drink from it", "rarity": 0, "value": 8, "requirements": ["refuse", "vase"] },
     { "location": "cave", "id": "furnace", "name": "Furnace", "description": "[Coal + Iron Ore] The industrial revolution has begun", "rarity": 1, "value": 40, "requirements": ["coal", "ironore"] },
     { "location": "cave", "id": "bronze", "name": "Bronze", "description": "[Tin + Copper] I learnt that in Runescape", "rarity": 2, "value": 60, "requirements": ["tinore", "copperore"] },
@@ -195,8 +192,169 @@ const CAVE_COMBO_JSON_DATA = `[
     { "location": "cave", "id": "pokemongen3", "name": "Pokemon Gen 3", "description": "[Emerald + Ruby + Sapphire] Remember Torchic?", "rarity": 5, "value": 5, "requirements": ["emerald", "ruby", "sapphire"] },
     { "location": "cave", "id": "minecraft", "name": "Minecraft", "description": "[Coal + Iron + Diamond] On to the nether!", "rarity": 6, "value": 6000, "requirements": ["coal", "ironore", "diamond"] },
     { "location": "cave", "id": "banking", "name": "Fundamentals Of Banking", "description": "[Copper + Silver + Gold + Platinum] The foundations of our currency", "rarity": 7, "value": 10000, "requirements": ["copperore", "silverore", "goldore", "platinumore"] }
-]`;
+];
 //#endregion Cave Data
+
+//#region Images
+const IMAGE_URLS = [
+    //images/
+    "images/character.png",
+    "images/unknown.png",
+    //images/environment/
+    "images/environments/buildings.png",
+    "images/environments/canopy.png",
+    "images/environments/cave.png",
+    "images/environments/caveforeground.png",
+    "images/environments/cavewalls.png",
+    "images/environments/city.png",
+    "images/environments/citytrees.png",
+    "images/environments/fishlayer.png",
+    "images/environments/forest.png",
+    "images/environments/foresttrees.png",
+    "images/environments/pier.png",
+    "images/environments/pierlayer.png",
+    "images/environments/waves.png",
+    //images/shop/
+    "images/shop/bugnet.png",
+    "images/shop/chutzpah.png",
+    "images/shop/fence.png",
+    "images/shop/fishingrod.png",
+    "images/shop/fortuna.png",
+    "images/shop/pickaxe.png",
+    //images/city/
+    "images/city/allchips.png",
+    "images/city/bike.png",
+    "images/city/bottlecap.png",
+    "images/city/can.png",
+    "images/city/cd.png",
+    "images/city/cdplayer.png",
+    "images/city/chip.png",
+    "images/city/chips.png",
+    "images/city/cig.png",
+    "images/city/cigbutt.png",
+    "images/city/cinema.png",
+    "images/city/coins.png",
+    "images/city/coppercoin.png",
+    "images/city/dollar.png",
+    "images/city/gambling.png",
+    "images/city/garbage.png",
+    "images/city/glass.png",
+    "images/city/goldcoin.png",
+    "images/city/gum.png",
+    "images/city/laptop.png",
+    "images/city/lighter.png",
+    "images/city/litcig.png",
+    "images/city/lottoticket.png",
+    "images/city/loyaltycard.png",
+    "images/city/music.png",
+    "images/city/pebble.png",
+    "images/city/plasticbag.png",
+    "images/city/silvercoin.png",
+    "images/city/stickstone.png",
+    "images/city/tv.png",
+    "images/city/twig.png",
+    "images/city/vcr.png",
+    //images/forest/
+    "images/forest/ancientbox.png",
+    "images/forest/ant.png",
+    "images/forest/aphid.png",
+    "images/forest/bee.png",
+    "images/forest/bestfriends.png",
+    "images/forest/butterfly.png",
+    "images/forest/buzzboys.png",
+    "images/forest/caterpillar.png",
+    "images/forest/chalice.png",
+    "images/forest/christmasbeetle.png",
+    "images/forest/cicada.png",
+    "images/forest/cockroach.png",
+    "images/forest/dragonfly.png",
+    "images/forest/dungbeetle.png",
+    "images/forest/firefly.png",
+    "images/forest/fly.png",
+    "images/forest/goldenarc.png",
+    "images/forest/goldenidol.png",
+    "images/forest/iridescence.png",
+    "images/forest/leaf.png",
+    "images/forest/leafinsect.png",
+    "images/forest/mantis.png",
+    "images/forest/moth.png",
+    "images/forest/sap.png",
+    "images/forest/shamantis.png",
+    "images/forest/spider.png",
+    "images/forest/stick.png",
+    "images/forest/stickbug.png",
+    "images/forest/stickleaf.png",
+    "images/forest/stickleaf2.png",
+    "images/forest/thesame.png",
+    "images/forest/weevil.png",
+    //images/pier/
+    "images/pier/ancientfish.png",
+    "images/pier/bento.png",
+    "images/pier/boot.png",
+    "images/pier/carp.png",
+    "images/pier/coelacanth.png",
+    "images/pier/crab.png",
+    "images/pier/driftwood.png",
+    "images/pier/eel.png",
+    "images/pier/fishandchips.png",
+    "images/pier/jellyfish.png",
+    "images/pier/lobster.png",
+    "images/pier/mackerel.png",
+    "images/pier/magicwand.png",
+    "images/pier/nautilus.png",
+    "images/pier/netting.png",
+    "images/pier/octopus.png",
+    "images/pier/pearl.png",
+    "images/pier/plunder.png",
+    "images/pier/prawn.png",
+    "images/pier/salmon.png",
+    "images/pier/scallop.png",
+    "images/pier/seaglass.png",
+    "images/pier/shark.png",
+    "images/pier/shelltrio.png",
+    "images/pier/snapper.png",
+    "images/pier/starfish.png",
+    "images/pier/tire.png",
+    "images/pier/tireswing.png",
+    "images/pier/treasure.png",
+    "images/pier/tuna.png",
+    "images/pier/turtle.png",
+    "images/pier/wallhanging.png",
+    //images/cave/
+    "images/cave/agate.png",
+    "images/cave/amethyst.png",
+    "images/cave/banking.png",
+    "images/cave/bronze.png",
+    "images/cave/calcite.png",
+    "images/cave/cavemushroom.png",
+    "images/cave/coal.png",
+    "images/cave/copperore.png",
+    "images/cave/crystalprism.png",
+    "images/cave/diamond.png",
+    "images/cave/emerald.png",
+    "images/cave/fluorite.png",
+    "images/cave/fossil.png",
+    "images/cave/furnace.png",
+    "images/cave/goldore.png",
+    "images/cave/ironore.png",
+    "images/cave/lantern.png",
+    "images/cave/minecraft.png",
+    "images/cave/mushroomfarm.png",
+    "images/cave/obsidian.png",
+    "images/cave/opal.png",
+    "images/cave/patchedvase.png",
+    "images/cave/platinumore.png",
+    "images/cave/pokemongen3.png",
+    "images/cave/refuse.png",
+    "images/cave/rope.png",
+    "images/cave/ruby.png",
+    "images/cave/sapphire.png",
+    "images/cave/silverore.png",
+    "images/cave/tigerseye.png",
+    "images/cave/tinore.png",
+    "images/cave/vase.png"
+]
+//#endregion Images
 
 const COLLECTABLES_JSON = {
 	city: CITY_COLLECTABLE_JSON_DATA,

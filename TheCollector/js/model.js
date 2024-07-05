@@ -34,6 +34,8 @@ class Model {
 
             this.InitializeShop();
 
+            this.InitializeImages();
+
             console.log('Initialization completed.');
         } catch (error) {
             console.error('Error during initialization:', error);
@@ -43,24 +45,18 @@ class Model {
     async InitializeCollectables(location) {
         let collectables = [];
         try {
-            let jsonFile;
-            if (testingMode) {
-                jsonFile = JSON.parse(COLLECTABLES_JSON[location]);
-            } else {
-                const response = await fetch(`https://jordan-heath.github.io/TheCollector/data/${location}Collectables.json`);
-                jsonFile = await response.json();
-            }
+            let data = COLLECTABLES_JSON[location];
 
-            collectables = jsonFile.map(collectableData => new Collectable(
+            collectables = data.map(collectableData => new Collectable(
                 collectableData.location,
                 collectableData.id,
                 collectableData.name,
                 collectableData.rarity,
                 collectableData.value
             ));
-            console.log(`Initialized ${location}Combos from JSON data:`, collectables);
+            //console.log(`Initialized ${location}Combos from JSON data:`, collectables);
         } catch (error) {
-            console.error(`Error initializing ${location}Data from JSON:`, error);
+            console.error(`Error initializing ${location}Data:`, error);
         }
         return collectables;
     }
@@ -68,15 +64,9 @@ class Model {
     async InitializeCombos(location) {
         let combos = [];
         try {
-            let jsonFile;
-            if (testingMode) {
-                jsonFile = JSON.parse(COMBOS_JSON[location]);
-            } else {
-                const response = await fetch(`https://jordan-heath.github.io/TheCollector/data/${location}Combos.json`);
-                jsonFile = await response.json();
-            }
+            let data = COMBOS_JSON[location];
     
-            combos = jsonFile.map(comboData => new CollectableCombo(
+            combos = data.map(comboData => new CollectableCombo(
                 comboData.location,
                 comboData.id,
                 comboData.name,
@@ -85,9 +75,9 @@ class Model {
                 comboData.value,
                 comboData.requirements
             ));
-            console.log(`Initialized ${location}Combos from JSON data:`, combos);
+            //console.log(`Initialized ${location}Combos from JSON data:`, combos);
         } catch (error) {
-            console.error(`Error initializing ${location}Data from JSON:`, error);
+            console.error(`Error initializing ${location}Data:`, error);
         }
         return combos;
     }
@@ -105,6 +95,29 @@ class Model {
 
         //remaining
         this.shopItems.push(new ShopItem("missing", "Purchase Missing Item", "If you've got money to burn and a collection to fill", 10000));
+    }
+
+    InitializeImages() {
+        let loadedImagesCount = 0;
+        const totalImages = IMAGE_URLS.length;
+    
+        IMAGE_URLS.forEach(url => {
+            const img = new Image();
+            img.src = url;
+            img.onload = () => {
+                loadedImagesCount++;
+                if (loadedImagesCount === totalImages) {
+                    console.log('Loaded all Images');
+                }
+            };
+            img.onerror = () => {
+                console.error(`Failed to load image: ${url}`);
+                loadedImagesCount++;
+                if (loadedImagesCount === totalImages) {
+                    console.log('Loaded all Images');
+                }
+            };
+        });
     }
     //#endregion initialize
 
@@ -319,35 +332,32 @@ class Model {
         });
     }
 
-    SaveToCookies() {
+    SaveToLocalStorage() {
         try {
             const dataString = this.ConvertToJson();
-            const expirationDate = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toUTCString();
-            const secureFlag = isSecureProtocol() ? '; secure' : '';
-    
-            document.cookie = `collectorData=${encodeURIComponent(dataString)}; expires=${expirationDate}; path=/${secureFlag}; samesite=strict`;
-            console.log('Saved to cookies');
+            localStorage.setItem('collectorData', dataString);
+            console.log('Saved to localStorage');
         } catch (error) {
-            console.error('Error saving data to cookies:', error);
+            console.error('Error saving data to localStorage:', error);
         }
     }
-
-    LoadFromCookies() {
+    
+    LoadFromLocalStorage() {
         try {
-            const cookieData = document.cookie.split('; ').find(row => row.startsWith('collectorData='));
-            if (cookieData) {
-                const dataString = decodeURIComponent(cookieData.split('=')[1]);
+            const dataString = localStorage.getItem('collectorData');
+            if (dataString) {
                 this.LoadFromJson(dataString);
-                console.log('Loaded from cookies');
+                console.log('Loaded from localStorage');
                 return true;
             }
         } catch (error) {
-            console.error('Error loading data from cookies:', error);
+            console.error('Error loading data from localStorage:', error);
         }
-    
-        console.log("Didn't load from cookies");
+        
+        console.log("Didn't load from localStorage");
         return false;
     }
+    
 
     ImportSave(file) {
         if (file) {
