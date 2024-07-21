@@ -52,6 +52,27 @@ function displayDetails(month, date) {
         createAndAppendElement('div', events, output);
     });
 
+    // Calculate the percentage progress
+    const totalDays = calculateTotalDays(guideData, monthNames);
+    const currentDayIndex = calculateCurrentDayIndex(guideData, monthNames, month, date);
+    const dayProgress = currentDayIndex / totalDays;
+
+    // Create a progress bar that shows a percentage of how far you are through the game
+    const progressBarContainer = document.createElement('div');
+    progressBarContainer.classList.add('progress-bar-container');
+
+    const progressBar = document.createElement('div');
+    progressBar.classList.add('progress-bar');
+    progressBar.style.width = `${dayProgress * 100}%`;
+
+    const progressText = document.createElement('h2');
+    progressText.classList.add('progress-text');
+    progressText.innerText = `${Math.round(dayProgress * 100)}%`;
+
+    progressBarContainer.appendChild(progressBar);
+    progressBarContainer.appendChild(progressText);
+    output.appendChild(progressBarContainer);
+
     createNavigationButton('Previous Day', previousDay, output);
     createNavigationButton('Next Day', nextDay, output);
 

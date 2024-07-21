@@ -257,11 +257,13 @@ main {
         border-radius: 5px;
 
         h1 {
+            z-index: 5;
             left: 10px;
             height: 30px;
         }
 
         h3 {
+            z-index: 5;
             position: relative;
             left: 50px;
             max-width: calc(100% - 50px);
@@ -285,6 +287,36 @@ main {
             left: 15px;
             bottom: 15px;
             background-color: #111;
+        }
+
+        .progress-bar-container {
+            position: absolute;
+            z-index: 4;
+            top: 20px;
+            left: initial;
+            right: 15px;
+            width: 200px;
+            height: 30px;
+            rotate: 8deg;
+            transform: skew(10deg, 0deg);
+            background-color: #111;
+
+            .progress-bar {
+                position: relative;
+                left: initial;
+                max-width: none;
+                height: 100%;
+                background-color: var(--persona-5-red);
+            }
+
+            .progress-text {
+                position: absolute;
+                bottom: -20px;
+                left: initial;
+                right: -10px;
+                color: white;
+                margin: 0;
+            }
         }
     }
 }

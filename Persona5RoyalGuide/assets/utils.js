@@ -43,3 +43,30 @@ function applyDayColor(day, element) {
     if (day === 'Saturday') element.classList.add('blue');
     if (day === 'Sunday') element.classList.add('red');
 }
+
+function calculateTotalDays(guideData, monthNames) {
+    let totalDays = 0;
+    monthNames.forEach(month => {
+        totalDays += Object.keys(guideData[month]).length;
+    });
+    return totalDays;
+}
+
+function calculateCurrentDayIndex(guideData, monthNames, currentMonth, currentDate) {
+    let currentDayIndex = 0;
+    let foundCurrentDay = false;
+    for (const monthName of monthNames) {
+        const dates = Object.keys(guideData[monthName]);
+        for (const day of dates) {
+            if (monthName === currentMonth && day === currentDate) {
+                foundCurrentDay = true;
+                break;
+            }
+            currentDayIndex++;
+        }
+        if (foundCurrentDay) {
+            break;
+        }
+    }
+    return currentDayIndex;
+}
