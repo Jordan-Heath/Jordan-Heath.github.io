@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P5R Guide</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/mobilestyle.css">
+    <link rel="icon" type="image/x-icon" href="assets/icon.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <h1>P5R</h1>
+        <h2>Guides</h2>
+        <button onclick="openPopup(flowerStoreGuide, this)">Flower Picking</button>
+        <button onclick="openPopup(convenienceStoreGuide, this)">Convenience Store</button>
+        <button onclick="openPopup(negotiationGuide, this)">Negotiation</button>
+        <button>TODO: Fusion</button>
+        <button onclick="openPopup(credits, this)">Credits</button>
+    </nav>
+
+    <main>
+        <div id="popup" class="popup" style="display: none;"></div>
+
+        <div id="months-container" class="months-container"></div>
+        
+        <div id="dates-container" class="dates-container"></div>
+    
+        <div id="output" class="output" style="display: none;"></div>
+    </main>
+
+    <script src="assets/utils.js"></script>
+    <script src="assets/data.js"></script>
+    <script src="assets/script.js" defer></script>
+</body>
+</html>

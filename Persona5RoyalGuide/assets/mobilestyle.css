@@ -1,0 +1,95 @@
+/* regular desktop styles */
+@media only screen and (max-width: 1200px) {
+    :root {
+        --month-title-span: span 1;
+    }
+    body {
+        flex-direction: column;
+    }
+
+    nav {
+        flex-direction: row;
+        width: auto;
+        margin: auto;
+
+        h1, h2 {
+            display: none;
+        }
+    }
+
+    main {
+        max-height: 95vh;
+        overflow-y: initial;
+        overflow-x: initial;
+        width: 90vw;
+
+        .popup {
+            width: calc(100% - 40px);
+            left: 0;
+            top: 80px;
+        }
+
+        .months-container, 
+        .dates-container {
+            grid-template-columns: repeat(7, 1fr);
+
+            .day-of-week {
+                display: none;
+            }
+        }
+
+        .months-container {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    :root {
+        --start-on-sunday: span 1;
+        --start-on-monday: span 1;
+        --start-on-tuesday: span 1;
+        --start-on-wednesday: span 1;
+        --start-on-thursday: span 1;
+        --start-on-friday: span 1;
+        --start-on-saturday: span 1;
+
+        --month-title-span: span 1;
+    }
+
+    body {
+        padding: 0;
+        padding-top: initial;
+    }
+
+    nav {
+        flex-direction: column;
+    }
+
+    main {
+        .months-container, 
+        .dates-container {
+            grid-template-columns: repeat(4, 1fr);
+
+            .red, .blue {
+                color: white;
+            }
+        }
+
+        .months-container {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .output {
+            h3 {
+                max-width: calc(100% - 10px);
+                left: 10px;
+            }
+
+            div {
+                max-width: calc(100% - 20px);
+                left: 20px;
+            }
+        }
+    }
+}

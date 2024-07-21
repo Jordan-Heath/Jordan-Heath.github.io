@@ -31,12 +31,27 @@ ROUGH DESIGN, NOT PLAYABLE. Intended to be a short interactive story with proced
 
 ## Completed Projects
 
+### [Persona 5 Royal Guide](Persona5RoyalGuide/index.html)
+
+I wanted an elegant guide styled after the game to occupy my second screen while playing. Other guides would require you to keep track of the day you were up to by scrolling through difficult to read whole pages of text, require you to switch tabs for negotiations and part time quizes.
+
+- [x] Full 300 days of day by day guidance
+- [x] Guide for selecting Flowers
+- [x] Guide for finding barcodes in convenience store
+- [x] Guide for shadow negotiations
+- [ ] Guide for fusion (WIP)
+- [x] Saves date you are up to
+- [x] Neato little knife animation / sound effect when selected date
+- [x] Press numpad +/- to go to next/prev day
+- [x] Mobile Friendly
+
+
 ### [The Collector](TheCollector/TheCollector.html)
 
 Idle Collection game. To my knowledge the first of it's kind.
 
-- [ ] 96 different items (some art incomplete)
-- [ ] 32 different combos (some art incomplete)
+- [x] 96 different items
+- [x] 32 different combos
 - [x] Upgrade store
 - [x] 4 different zones
 - [x] Sound effects
@@ -75,7 +90,7 @@ I developed an app that emulates the game Madlibs. Features:
 - [x] 16 different stories
 - [x] Page design to match the mood of the story
 - [x] Complete the story by filling in the missing words
-- [x] Watch as the story unfolds keystroke at a time accompanied by [7 different musical tracks](StoryTeller/README.md)
+- [x] Watch as the story unfolds keystroke at a time accompanied by 7 different musical tracks
 - [x] Adjustable Text-speed and audio fade
 - [x] support for making and importing custom stories via the [Story Maker](StoryTeller/StoryMaker.html)
 
@@ -130,6 +145,18 @@ I created this a while ago to replicate a peculiar mode of speech I was exposed 
 - [Reference Images from Pixabay](https://pixabay.com)
 - [Graphic Design Help by FrostedMonster](https://www.frostedmonster.com/)
 
+### Persona 5 Royal Guide
+Guides:
+- [Walkthrough by aqiu384.github.io](https://aqiu384.github.io/p5r-walkthrough/ace-walkthrough)
+- [Flower Guide by samurai-gamers](https://samurai-gamers.com/persona-5/flower-shop-part-time-guide/)
+- [Convenience Store Guide by samurai-gamers](https://samurai-gamers.com/persona-5/triple-seven-convenience-store-part-time-job-guide/)
+- [Negotiation Guide by joyceychen.com](https://joyceychen.com/persona5-negotiation/)
+Assets:
+- [Title Font](https://www.reddit.com/r/Persona5/comments/kqickc/persona_5_menu_font_prototype/)
+- [Background source](https://steamcommunity.com/sharedfiles/filedetails/?id=2948225096&insideModal=0)
+- [Knife Sound source](https://www.sounds-resource.com/playstation_3/persona5/sound/30366/)
+- [Knife Image source](https://www.spriters-resource.com/playstation_3/persona5/sheet/92802/)
+- [Web Icon](https://tcrf.net/Persona_5_Royal/Unused_Graphics)
 
 ### Character Generator
 - [Background Image](https://www.pexels.com/photo/empty-brown-canvas-235985/)
@@ -139,7 +166,6 @@ I created this a while ago to replicate a peculiar mode of speech I was exposed 
 ### Manticore Generator
 - Original Concept : Brin
 - [Original Animal List](https://gist.github.com/atduskgreg/3cf8ef48cb0d29cf151bedad81553a54)
-
 
 ### Story Teller
 Music sourced from [fesliyanstudios](https://www.fesliyanstudios.com/):
