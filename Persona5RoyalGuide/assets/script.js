@@ -175,6 +175,11 @@ function navigateDay(offset) {
     if (newDateButton) {
         newDateButton.classList.add('selected');
     }
+
+    //scroll to bottom
+    window.scrollTo(0, document.body.scrollHeight);
+    const main = document.querySelector('main');
+    if (main) main.scrollTo(0, main.scrollHeight);
 }
 
 document.addEventListener('keydown', (event) => {
