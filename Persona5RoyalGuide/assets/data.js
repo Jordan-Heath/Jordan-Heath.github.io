@@ -117,8 +117,8 @@ const guideData = {
             "Evening": "<ul>\n<li>Cannot leave Leblanc</li>\n<li>Study at Leblanc <strong>(Knowledge +3)</strong></li>\n</ul>\n"
         },
         "5/8 Sunday": {
-            "Class": "<ul>\n<li>Moon Rank 2 <strong>(Auto)</strong></li>\n</ul>\n",
-            "Evening": "<ul>\n<li>Aojiru <strong>(Y5000)</strong> <strong>(Guts +2)</strong></li>\n<li>Work at beef bowl <strong>(Proficiency +5)</strong><ol>\n<li>Correctly memorize all orders</li></ol></li>\n</ul>\n"
+            "Class": "<ul>\n<li>Moon Rank 2 <strong>(Auto)</strong><ol><li>-</li><li>Choice 2: \"You've done good, kid.\"</li><li>Choice 2: \"Sounds Cool.\"</li><li>Choice 1: \"Nice hustle, image manager.\"</li></ol></li>\n</ul>\n",
+            "Evening": "<ul>\n<li>Aojiru <strong>(Y5000)</strong> <strong>(Guts +2)</strong></li>\n<li>Work at beef bowl <strong>(Proficiency +5)</strong><ol>\n<li>Correctly memorize all orders</li><li><textarea placeholder=\"Write orders here\"></textarea></li></ol></li>\n</ul>\n"
         },
         "5/9 Monday": {
             "Daytime": "<ul>\n<li>Request \"The Bark and Bite of a Bully\" unlocked</li>\n<li>Death Rank 3 <strong>(Guts +2)</strong><ol>\n<li>-</li>\n<li>-</li>\n<li>Choice 1: \"I don't mind.\" (+2)</li>\n<li>(Phone) Choice 1: \"Of course not.\" (+2)</li></ol></li>\n</ul>\n",
