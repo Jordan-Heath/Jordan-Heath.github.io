@@ -295,9 +295,9 @@ main {
         .progress-bar-container {
             position: absolute;
             z-index: 4;
-            top: 10px;
+            top: 40px;
             left: initial;
-            right: 5px;
+            right: 20px;
             width: 70%;
             max-width: 600px;
             min-width: 200px;
