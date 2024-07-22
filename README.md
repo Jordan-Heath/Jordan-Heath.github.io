@@ -150,7 +150,7 @@ Guides:
 - [Walkthrough by aqiu384.github.io](https://aqiu384.github.io/p5r-walkthrough/ace-walkthrough)
 - [Flower Guide by samurai-gamers](https://samurai-gamers.com/persona-5/flower-shop-part-time-guide/)
 - [Convenience Store Guide by samurai-gamers](https://samurai-gamers.com/persona-5/triple-seven-convenience-store-part-time-job-guide/)
-- [Negotiation Guide by joyceychen.com](https://joyceychen.com/persona5-negotiation/)
+- [Negotiation Guide by joyceychen.com](https://joyceychen.com/persona5-negotiation/royal)
 Assets:
 - [Title Font](https://www.reddit.com/r/Persona5/comments/kqickc/persona_5_menu_font_prototype/)
 - [Background source](https://steamcommunity.com/sharedfiles/filedetails/?id=2948225096&insideModal=0)
