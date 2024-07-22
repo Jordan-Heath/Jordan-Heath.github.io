@@ -161,7 +161,7 @@ const guideData = {
             "Evening": "<ul>\n<li>Interact with downstairs TV in Leblanc, TV Quiz: \"Using noise to cause distress.\" <strong>(Knowledge +2)</strong></li>\n<li>Bathhouse <strong>(Charm +3, Guts +2)</strong></li>\n</ul>\n"
         },
         "5/20 Friday": {
-            "Daytime": "<ul>\n<li>Exam results <strong>(Charm +3)</strong></li>\n<li>Talk to Justine in Velvet Room, Strength Rank 1</li>\n<li><strong>Strength confidant can be continued anytime bef12/24 ore</strong></li>\n<li><strong>Reach barrier in Museum Palace</strong></li>\n<li><strong>Need free slot in stock to unlock \"The Purpose of a Thief\" when recruiting Regent during scripted encounter</strong> </li>\n</ul>\n",
+            "Daytime": "<ul>\n<li>Exam results <strong>(Charm +3)</strong></li>\n<li>Talk to Justine in Velvet Room, Strength Rank 1</li>\n<li><strong>Strength confidant can be continued anytime before 12/24</strong></li>\n<li><strong>Reach barrier in Museum Palace</strong></li>\n<li><strong>Need free slot in stock to unlock \"The Purpose of a Thief\" when recruiting Regent during scripted encounter</strong> </li>\n</ul>\n",
             "Evening": "<ul>\n<li>Study at Leblanc <strong>(Knowledge +3)</strong></li>\n</ul>\n"
         },
         "5/21 Saturday": {

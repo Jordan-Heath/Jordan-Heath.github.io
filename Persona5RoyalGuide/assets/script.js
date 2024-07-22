@@ -200,7 +200,7 @@ function navigateDay(offset) {
     //scroll to bottom
     window.scrollTo(0, document.body.scrollHeight);
     const main = document.querySelector('main');
-    if (main) main.scrollTo(0, main.scrollHeight);
+    main.scrollTo(0, main.scrollHeight);
 }
 
 document.addEventListener('keydown', (event) => {
