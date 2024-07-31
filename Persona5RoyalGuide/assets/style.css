@@ -172,6 +172,10 @@ main {
         border-radius: 5px;
         z-index: 10;
 
+        a {
+            color: white;
+        }
+
         .close-button {
             position: absolute;
             top: 10px;
@@ -265,6 +269,10 @@ main {
             height: 30px;
         }
 
+        h2 {
+            z-index: 5;
+        }
+
         h3 {
             z-index: 5;
             position: relative;
@@ -300,7 +308,6 @@ main {
             right: 20px;
             width: 70%;
             max-width: 600px;
-            min-width: 200px;
             height: 30px;
             rotate: 5deg;
             transform: skew(5deg, 0deg);

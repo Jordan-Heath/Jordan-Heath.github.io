@@ -186,11 +186,20 @@ function navigateDay(offset) {
         newDateIndex = 0;
     }
 
+    //select new month button
+    document.querySelector('.month-button.selected')?.classList.remove('selected');
+    const newMonthButton = findButtonByText(monthsContainer, newMonth);
+    if (newMonthButton) {
+        newMonthButton.classList.add('selected');
+    }
+
+    //change date
     const newDate = Object.keys(guideData[newMonth])[newDateIndex];
     saveSelection(newMonth, newDate);
     displayDetails(newMonth, newDate);
     renderDates(newMonth);
 
+    //select new date button
     document.querySelector('.date-button.selected')?.classList.remove('selected');
     const newDateButton = findButtonByText(datesContainer, newDate);
     if (newDateButton) {
