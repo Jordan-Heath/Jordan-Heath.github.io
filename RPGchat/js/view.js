@@ -25,12 +25,12 @@ class XPBar {
 
 // Initialize character information
 const characterInfoLines = document.getElementById("characterInfoLines");
-    const playerNameElement = document.getElementById("playerNameElement");
-    const playerHealthElement = document.getElementById("playerHealthElement");
-    //const playerManaElement = document.getElementById("p")
-    const playerGoldElement = document.getElementById('playerGoldElement');
-    const xpBar = new XPBar('XPBar');
-    const playerStatElements = document.getElementById("playerStatElements");
+const playerNameElement = document.getElementById("playerNameElement");
+const playerHealthElement = document.getElementById("playerHealthElement");
+//const playerManaElement = document.getElementById("p")
+const playerGoldElement = document.getElementById('playerGoldElement');
+const xpBar = new XPBar('XPBar');
+const playerStatElements = document.getElementById("playerStatElements");
 
 
 function updateCharacterInfo() {
@@ -38,7 +38,7 @@ function updateCharacterInfo() {
     playerHealthElement.textContent = `Health: ${player.health}`;
 
     xpBar.update(`Level: ${player.level}`, player.xpPercentage())
-    
+
     //playerManaElement.textContent = `${player.mana}`;
     playerStatElements.innerHTML = "";
     player.stats.forEach(stat => {
@@ -56,3 +56,29 @@ function initializePlayerStats() {
 }
 
 updateCharacterInfo();
+
+// Quest Box
+const questDialog = document.getElementById("questDialog");
+const continueButton = document.getElementById("continueButton");
+
+function progressQuest() {
+    if (dialogueIndex < npcDialogues.length) {
+        questDialog.textContent = npcDialogues[dialogueIndex];
+        dialogueIndex++;
+
+        if (dialogueIndex === npcDialogues.length) {
+            continueButton.textContent = "End Conversation";
+        }
+    } else {
+        // End of conversation logic
+        alert("End of conversation. Quest accepted!");
+    }
+}
+
+function continue_clicked() {
+    //progressQuest();
+
+    player.xp += 1;
+    player.tryLevelUp();
+    updateCharacterInfo();
+}
