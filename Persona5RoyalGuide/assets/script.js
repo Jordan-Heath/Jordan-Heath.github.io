@@ -10,6 +10,7 @@ const dayIndices = {
 const monthsContainer = document.getElementById('months-container');
 const datesContainer = document.getElementById('dates-container');
 const output = document.getElementById('output');
+const navButtons = document.getElementById('nav').querySelectorAll('button');
 
 function loadSelection() {
     const savedMonth = localStorage.getItem('selectedMonth');
@@ -213,10 +214,42 @@ function navigateDay(offset) {
 }
 
 document.addEventListener('keydown', (event) => {
-    if (event.code === 'NumpadAdd') {
-        nextDay();
-    } else if (event.code === 'NumpadSubtract') {
-        previousDay();
+    switch(event.code) {
+        case('NumpadAdd'):
+            nextDay();
+            break;
+        case('NumpadSubtract'):
+            previousDay();
+            break;
+        case('Numpad1'):
+            navButtons[0]?.click();
+            break;
+        case('Numpad2'):
+            navButtons[1]?.click();
+            break;
+        case('Numpad3'):
+            navButtons[2]?.click();
+            break;
+        case('Numpad4'):
+            navButtons[3]?.click();
+            break;
+        case('Numpad5'):
+            navButtons[4]?.click();
+            break;
+        case('Numpad6'):
+            navButtons[5]?.click();
+            break;
+        case('Numpad7'):
+            navButtons[6]?.click();
+            break;
+        case('Numpad8'):
+            navButtons[7]?.click(); //not implemented
+            break;
+        case('Numpad9'):
+            navButtons[8]?.click(); //not implemented
+            break;
+        case('Escape'):
+            document.querySelector('.close-button')?.click();
     }
 });
 

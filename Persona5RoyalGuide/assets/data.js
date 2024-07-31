@@ -1199,7 +1199,7 @@ const guideData = {
 			"Evening": "<ul>\n<li>Do not accept his deal</li>\n<li>Justice Rank 11 <strong>(Auto)</strong></li>\n</ul>\n"
 		}
 	}
-}
+};
 
 //source: https://samurai-gamers.com/persona-5/flower-shop-part-time-guide/
 const flowerStoreGuide = `
@@ -1216,7 +1216,7 @@ const flowerStoreGuide = `
 <tr><td>Flowers for Friend\'s Childbirth</td><td>Rainbow Sage, Delightful Lily, and Gold Gerbera</td></tr>
 </tbody>
 </table>
-`
+`;
 
 //source: https://samurai-gamers.com/persona-5/triple-seven-convenience-store-part-time-job-guide/
 const convenienceStoreGuide = `
@@ -1234,10 +1234,10 @@ const convenienceStoreGuide = `
 <tr><td>Where is the position of the Super Duper Vanilla Cup barcode?</td><td>Side of the character illustration.</td></tr>
 <tr><td>Where is the position of the india ink barcode?</td><td>Right side when viewed from the front.</td></tr>
 </tbody></table>
-`
+`;
 
 //source: https://joyceychen.com/persona5-negotiation/royal
-let negotiationGuide = `
+const negotiationGuide = `
 <input type="text" id="searchBar" onkeyup="filterQuestions()" placeholder="Search for questions or responses.." title="Type in a question or response">
 <br/><br/>
 <div id="questions">
@@ -10383,7 +10383,17 @@ let negotiationGuide = `
 	</tr>
 </table>
 </div>
-`
+`;
+
+//source: https://aqiu384.github.io/megaten-fusion-tool/p5r/personas
+const fusionCalculator = `
+<embed src="https://aqiu384.github.io/megaten-fusion-tool/p5r/personas">
+`;
+
+//source: https://aqiu384.github.io/p5r-walkthrough/confidants
+const confidantGuide = `
+<embed src="https://aqiu384.github.io/p5r-walkthrough/confidants">
+`;
 
 //font source: https://www.reddit.com/r/Persona5/comments/kqickc/persona_5_menu_font_prototype/
 
@@ -10401,9 +10411,13 @@ const credits = `
 <h2>Guides</h2>
 <ul>
 <li><a href="https://aqiu384.github.io/p5r-walkthrough/ace-walkthrough">Walkthrough by aqiu384.github.io</a></li>
+
 <li><a href="https://samurai-gamers.com/persona-5/flower-shop-part-time-guide/">Flower Guide by samurai-gamers</a></li>
 <li><a href="https://samurai-gamers.com/persona-5/triple-seven-convenience-store-part-time-job-guide/">Convenience Store Guide by samurai-gamers</a></li>
+<li><a href="https://aqiu384.github.io/p5r-walkthrough/confidants">Confidant Guide by aqiu384.github.io</a></li>
+
 <li><a href="https://joyceychen.com/persona5-negotiation/royal">Negotiation Guide by joyceychen.com</a></li>
+<li><a href="https://aqiu384.github.io/megaten-fusion-tool/p5r/personas">Fusion Calculator by aqiu384.github.io</a></li>
 </ul>
 
 <h2>Assets</h2>
@@ -10413,5 +10427,14 @@ const credits = `
 <li><a href="https://www.sounds-resource.com/playstation_3/persona5/sound/30366/">Knife Sound source</a></li>
 <li><a href="https://www.spriters-resource.com/playstation_3/persona5/sheet/92802/">Knife Image source</a></li>
 <li><a href="https://tcrf.net/Persona_5_Royal/Unused_Graphics">Web Icon</a></li>
+</ul>
+`;
+
+const controls = `
+<h2>Controls</h2>
+<ul>
+<li>Press Numpad +/- to go to the next/previous date.</li>
+<li>Press Numpad 1-9 to open the sub-guides.</li>
+<li>Press Esc to close the sub-guides.</li>
 </ul>
 `

@@ -18,8 +18,16 @@
         margin: auto;
         overflow-y: scroll;
 
-        h1, h2 {
+        h1, h2, hr {
             display: none;
+        }
+
+        .trigger-number {
+            display: none;
+        }
+
+        button {
+            text-align: center;
         }
     }
 

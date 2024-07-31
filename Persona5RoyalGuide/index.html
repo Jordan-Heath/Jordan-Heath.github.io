@@ -14,15 +14,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav>
+    <nav id="nav">
         <h1>P5R</h1>
         <h2>Guides</h2>
-        <button onclick="openPopup(flowerStoreGuide, this)">Flower Picking</button>
-        <button onclick="openPopup(convenienceStoreGuide, this)">Convenience Store</button>
-        <button onclick="openPopup(negotiationGuide, this)">Negotiation</button>
-        <button disabled>TODO: Fusion</button>
-        <button disabled>TODO: Strength</button>
-        <button onclick="openPopup(credits, this)">Credits</button>
+        <button onclick="openPopup(flowerStoreGuide, this)"><span class="trigger-number">1. </span>Flower Picking</button>
+        <button onclick="openPopup(convenienceStoreGuide, this)"><span class="trigger-number">2. </span>Convenience Store</button>
+        <button onclick="openPopup(confidantGuide, this)"><span class="trigger-number">3. </span>Confidants</button>
+        <hr/>
+        <button onclick="openPopup(negotiationGuide, this)"><span class="trigger-number">4. </span>Negotiation</button>
+        <button onclick="openPopup(fusionCalculator, this)"><span class="trigger-number">5. </span>Fusion Calculator</button>
+        <hr/>
+        <button onclick="openPopup(controls, this)"><span class="trigger-number">6. </span>Controls</button>
+        <button onclick="openPopup(credits, this)"><span class="trigger-number">7. </span>Credits</button>
     </nav>
 
     <main>

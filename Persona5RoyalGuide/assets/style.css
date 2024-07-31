@@ -48,11 +48,12 @@ body {
     font-size: 1em;
     padding: 0;
 
-    width: fit-content;
+    width: 100%;
     margin: auto;
 
     display: flex;
     flex-direction: row;
+    justify-content: center;
 
     button {
         position: relative;
@@ -137,6 +138,7 @@ nav {
 
     button {
         background-color: var(--persona-5-red);
+        text-align: left;
     }
 
     button.selected {
