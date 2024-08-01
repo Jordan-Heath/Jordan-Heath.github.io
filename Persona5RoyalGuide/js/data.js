@@ -10406,7 +10406,6 @@ const selectSoundSrc = 'assets/knifesound.wav';
 
 //knife image source: https://www.spriters-resource.com/playstation_3/persona5/sheet/92802/
 
-
 const credits = `
 <h2>Guides</h2>
 <ul>
