@@ -9,25 +9,9 @@ Explore My Collection of Projects. Most of my work is not shared publicly. This 
 
 PLAYABLE DEMO. 100 men enter, 1 leaves. I haven't gotten the motivation to polish it enough for the main page.
 
-### [Fortune Teller](FortuneTeller/FortuneTeller.html)
-
-PLAYABLE DEMO. You draw 3 cards and it tells you your fortune.
-
 ### [Pet Game](PetGame/PetGame.html)
 
 PLAYABLE DEMO. A digimon/tamogotchi clone with my own spin.
-
-### [Monster Battler](MonsterBattler/MonsterBattler.html)
-
-EMPTY PAGE. Intended to be a pokemon type fighter.
-
-### [War Wager](WarWager/WarWager.html)
-
-EMPTY PAGE. Intended to be an autobattler.
-
-### [RPG Chat](RPGchat/RPGchat.html)
-
-ROUGH DESIGN, NOT PLAYABLE. Intended to be a short interactive story with procedural elements.
 
 ## Completed Projects
 
