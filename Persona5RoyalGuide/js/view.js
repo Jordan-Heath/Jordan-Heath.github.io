@@ -33,8 +33,8 @@ function createProgressBar(dayProgress, parentElement) {
 
 function scrollToBottom() {
     window.scrollTo(0, document.body.scrollHeight);
-    const main = document.querySelector('main');
-    main.scrollTo(0, main.scrollHeight);
+    const walkthrough = document.getElementById('walkthrough');
+    walkthrough.scrollTo(0, walkthrough.scrollHeight);
 }
 
 function applyDayColor(day, element) {
