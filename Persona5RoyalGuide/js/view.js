@@ -66,12 +66,21 @@ function createButton(text, className, clickHandler) {
 }
 
 function toggleNav() {
-    nav.style.display = nav.style.display == 'none' ? 'flex' : 'none';
+    playSelectSound(clickSoundSrc);
+
+    if (nav.style.display == 'none') {
+        nav.style.display = 'flex';
+        navButton.classList.add('selected');
+    } else {
+        nav.style.display = 'none';
+        navButton.classList.remove('selected');
+    }    
 }
 
 function resizePage() {
     if (window.innerWidth <= 1100) {
         nav.style.display = 'none';
+        navButton.classList.remove('selected');
     } else {
         nav.style.display = 'flex';
     }

@@ -35,9 +35,9 @@ const convenienceStoreGuide = `
 </tbody></table>
 `;
 
-//source: https://aqiu384.github.io/megaten-fusion-tool/p5r/personas
+//source: https://p5rfusioncalculator.com/#/list
 const fusionCalculator = `
-<embed src="https://aqiu384.github.io/megaten-fusion-tool/p5r/personas">
+<embed src="https://p5rfusioncalculator.com/#/list">
 `;
 
 //font source: https://www.reddit.com/r/Persona5/comments/kqickc/persona_5_menu_font_prototype/
@@ -64,7 +64,7 @@ const credits = `
 <li><a href="https://aqiu384.github.io/p5r-walkthrough/confidants">Confidant Guide by aqiu384.github.io</a></li>
 
 <li><a href="https://joyceychen.com/persona5-negotiation/royal">Negotiation Guide by joyceychen.com</a></li>
-<li><a href="https://aqiu384.github.io/megaten-fusion-tool/p5r/personas">Fusion Calculator by aqiu384.github.io</a></li>
+<li><a href="https://p5rfusioncalculator.com/#/list">Fusion Calculator by p5rfusioncalculator.com</a></li>
 </ul>
 
 <h2>Assets</h2>

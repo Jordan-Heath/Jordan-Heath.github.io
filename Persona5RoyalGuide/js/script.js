@@ -3,6 +3,8 @@ function renderMonths() {
 
     monthNames.forEach(month => {
         const monthButton = createButton(month, 'month-button', () => {
+            if (monthButton.classList.contains('selected')) return;
+
             playSelectSound(knifeSoundSrc);
 
             document.querySelector('.month-button.selected')?.classList.remove('selected');
@@ -81,6 +83,8 @@ function renderDates(month) {
     Object.keys(walkthroughData[month]).forEach(date => {
         const dateComponents = date.split(' ');
         const dateButton = createButton(`${dateComponents[0]} <span class='day-of-week'>${dateComponents[1]}</span>`, 'date-button', () => {
+            if (dateButton.classList.contains('selected')) return;
+
             playSelectSound(knifeSoundSrc);
             displayDetails(month, date);
             saveSelection(month, date);
@@ -95,9 +99,10 @@ function renderDates(month) {
 }
 
 function openPopup(loadedGuide, selectedButton) {
-    popup.innerHTML = '';
-    playSelectSound(clickSoundSrc);
+    if(selectedButton.classList.contains('selected')) return;
 
+    playSelectSound(clickSoundSrc);
+    popup.innerHTML = '';
     document.querySelector('nav .selected')?.classList.remove('selected');
     selectedButton.classList.add('selected');
 
@@ -112,6 +117,8 @@ function openPopup(loadedGuide, selectedButton) {
         walkthrough.style.display = 'none';
         popup.style.display = 'block';
     }
+
+    resizePage();
 }
 
 function navigateDay(offset) {

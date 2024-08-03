@@ -26,5 +26,6 @@ const monthsContainer = document.getElementById('months-container');
 const datesContainer = document.getElementById('dates-container');
 const output = document.getElementById('output');
 const nav = document.getElementById('nav');
+const navButton = document.getElementById('nav-button');
 const navButtons = document.getElementById('nav').querySelectorAll('button');
 const walkthrough = document.getElementById('walkthrough');

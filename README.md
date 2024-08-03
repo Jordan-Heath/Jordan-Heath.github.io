@@ -22,9 +22,9 @@ I wanted an elegant guide styled after the game to occupy my second screen while
 - [x] Full 300 days of day by day guidance
 - [x] Guide for selecting Flowers
 - [x] Guide for finding barcodes in convenience store
-- [x] Guide for confidants (implemented via embad)
+- [x] Guide for confidants
 - [x] Guide for shadow negotiations
-- [x] Guide for fusion (implemented via embad)
+- [x] Guide for fusion (implemented via embed)
 - [x] Saves date you are up to
 - [x] Neato little knife animation / sound effect when selected date
 - [x] Press numpad +/- to go to next/prev day
@@ -138,7 +138,7 @@ Guides:
 - [Confidant Guide by aqiu384.github.io](https://aqiu384.github.io/p5r-walkthrough/confidants)
 - [Negotiation Guide by joyceychen.com](https://joyceychen.com/persona5-negotiation/royal)
 Assets:
-- [Fusion Calculator by aqiu384.github.io](https://aqiu384.github.io/megaten-fusion-tool/p5r/personas)
+- [Fusion Calculator by p5rfusioncalculator.com](https://p5rfusioncalculator.com/#/list)
 - [Title Font](https://www.reddit.com/r/Persona5/comments/kqickc/persona_5_menu_font_prototype/)
 - [Background source](https://steamcommunity.com/sharedfiles/filedetails/?id=2948225096&insideModal=0)
 - [Knife Sound source](https://www.sounds-resource.com/playstation_3/persona5/sound/30366/)
