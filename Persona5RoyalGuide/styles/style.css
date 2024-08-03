@@ -12,6 +12,12 @@
     --persona-5-red: #c10b0a;
     --persona-5-dark-red: #900807;
     --persona-5-blue: #0fffff;
+    --custom-grey: #333;
+
+    --font-color: white;
+    --button-color: #333;
+    --button-selected-color: #555;
+    --button-disabled-color: #222;
 }
 
 @font-face {
@@ -19,7 +25,34 @@
     src: url("../assets/P5Font.otf") format("opentype");
 }
 
-@keyframes selected {
+@keyframes clickSelected {
+    0%, 100% {
+        rotate: -1deg;
+        scale: 1;
+    }
+    /* intense twist right */
+    10%, 30% {
+        rotate: 3deg;
+        scale: 1.1;
+        transform: skewX(8deg);
+    }
+    /* intense twist left */
+    20%, 40% {
+        rotate: -5deg;
+        scale: 1.1;
+    }
+    /* light twist right */
+    50%, 70%, 90% {
+        rotate: 0deg;
+        transform: skewX(-8deg);
+    }
+    /* light twist left */
+    60%, 80% {
+        rotate: -2deg;
+    }
+}
+
+@keyframes knifeSelected {
     0% {
         top: -45px;
         right: -25px;
@@ -42,12 +75,13 @@ body {
     background-color: #1a1a1a;
     background-image: url("../assets/background.jpg");
     background-size: cover;
-    color: #ffffff;
+    color: var(--font-color);
     font-family: "Nunito", sans-serif;
     font-weight: 600;
     font-size: 1em;
     padding: 0;
 
+    height: 100vh;
     width: 100%;
     margin: auto;
 
@@ -57,8 +91,8 @@ body {
 
     button {
         position: relative;
-        background-color: #333;
-        color: #ffffff;
+        background-color: var(--button-color);
+        color: var(--font-color);
         font-family: "Arsenal", sans-serif;
         font-weight: 600;
         font-size: 1em;
@@ -71,31 +105,11 @@ body {
     }
 
     button:disabled {
-        background-color: #222;
+        background-color: var(--button-disabled-color);
     }
 
     button.selected {
-        background-color: #555;
-    }
-
-    button.selected::after {
-        /* knife */
-        content: "";
-        position: absolute;
-        top: -15px;
-        right: 5px;
-        width: 50px;
-        height: 50px;
-        rotate: 45deg;
-        background-image: url('../assets/knife.png');
-        background-size: contain;
-        background-repeat: no-repeat;
-        pointer-events: none;
-        overflow: visible;
-        animation: selected 0.5s ease-in-out forwards;
-        transform: translate(50%, -50%);
-        z-index: 6;
-        image-rendering: crisp-edges;
+        background-color: var(--button-selected-color);
     }
 
     h1, h2 {
@@ -124,6 +138,10 @@ body {
     }
 }
 
+.nav-button {
+    display: none;
+}
+
 nav {
     display: flex;
     flex-direction: column;
@@ -133,7 +151,7 @@ nav {
     box-sizing: border-box;
     margin: 10px;
     gap: 10px;
-    background-color: #333;
+    background-color: var(--custom-grey);
     border-radius: 5px;
 
     button {
@@ -143,6 +161,7 @@ nav {
 
     button.selected {
         background-color: var(--persona-5-dark-red);
+        animation: clickSelected 0.5s ease-in-out forwards
     }
 
     h1 {
@@ -153,112 +172,13 @@ nav {
 }
 
 main {
-    height: 100vh;
+    max-height: 100vh;
     overflow-y: auto;
     overflow-x: hidden;
     box-sizing: border-box;
     padding: 20px;
     max-width: 1000px;
     z-index: 5;
-
-    .popup {
-        position: absolute;
-        margin: 20px;
-        box-sizing: border-box;
-        width: 100%;
-        max-width: 920px;
-        max-height: 90vh;
-        overflow-y: auto;
-        padding: 20px;
-        background-color: var(--persona-5-red);
-        border-radius: 5px;
-        z-index: 10;
-
-        a {
-            color: white;
-        }
-
-        .close-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-        }
-
-        embed {
-            width: 100%;
-            height: 85vh;
-            padding: 5px;
-        }
-
-        input[type='text'] {
-            width: 80%;
-            height: 48px;
-            border: 1px solid #c0c0c0;
-            border-radius: 4px;
-            box-sizing: border-box;
-            padding: 16px;
-        }
-
-        table {
-            width: 100%;
-            border: 1px solid white;
-            border-collapse: collapse;
-            margin-bottom: 10px;
-
-            tr {
-                border: solid 1px white;
-
-                th, td {
-                    padding: 5px;
-                    border: 1px solid white;
-                    border-collapse: collapse;
-                }
-
-                td {
-                    text-align: left;
-                    
-                    .symbol {
-                        display: none;
-                    }
-                }
-            }
-        }
-    
-        details {
-            position: relative;
-            margin-top: 10px;
-            margin-bottom: 30px;
-            background-color: var(--persona-5-dark-red);
-            border-radius: 5px;
-            padding: 5px;
-
-            summary {
-                cursor: pointer;
-                position: relative;
-                left: -20px;
-        
-                h3,
-                h4 {
-                    display: inline;
-                }
-            }
-    
-            details {
-                left: 20px;
-                width: calc(100% - 25px);
-                margin-top: initial;
-                margin-bottom: initial;
-            }
-        }
-
-        #questions td {
-            width: 10%;
-        }
-        
-        #questions td:first-child {
-            width: 30%;
-        }
-    }
 
     .months-container, 
     .dates-container {
@@ -270,6 +190,26 @@ main {
 
         button {
             position: relative;
+        }
+
+        button.selected::after {
+            /* knife */
+            content: "";
+            position: absolute;
+            top: -15px;
+            right: 5px;
+            width: 50px;
+            height: 50px;
+            rotate: 45deg;
+            background-image: url('../assets/knife.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            pointer-events: none;
+            overflow: visible;
+            animation: knifeSelected 0.5s ease-in-out forwards;
+            transform: translate(50%, -50%);
+            z-index: 6;
+            image-rendering: crisp-edges;
         }
 
         h2 {
@@ -289,8 +229,8 @@ main {
         margin: 20px 0;
         padding: 20px;
         padding-bottom: 60px;
-        background-color: #333;
-        color: white;
+        background-color: var(--custom-grey);
+        color: var(--font-color);
         border-radius: 5px;
 
         h1 {
@@ -359,7 +299,7 @@ main {
                 top: -40px;
                 left: initial;
                 right: -10px;
-                color: white;
+                color: var(--font-color);
                 margin: 0;
                 font-size: xx-large;
             }
@@ -375,5 +315,105 @@ main {
             bottom: -1px;
             border: 2px solid white;
         }
+    }
+}
+
+.popup {
+    position: relative;
+    margin: 10px 0;
+    max-height: calc(100vh - 20px);
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 5px;
+    background-color: var(--custom-grey);
+
+    h1 {
+        margin: 20px 0;
+    }
+
+    a {
+        color: var(--font-color);
+    }
+
+    .close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #111;
+    }
+
+    embed {
+        width: 100%;
+        height: 85vh;
+        padding: 5px;
+    }
+
+    input[type='text'] {
+        width: 80%;
+        height: 48px;
+        border: none;
+        border-radius: 4px;
+        box-sizing: border-box;
+        padding: 16px;
+    }
+
+    table {
+        width: 100%;
+        border: 1px solid white;
+        border-collapse: collapse;
+        margin-bottom: 10px;
+
+        tr {
+            border: solid 1px white;
+
+            th, td {
+                padding: 5px;
+                border: 1px solid white;
+                border-collapse: collapse;
+            }
+
+            td {
+                text-align: left;
+                
+                .symbol {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    details {
+        position: relative;
+        margin-top: 10px;
+        margin-bottom: 30px;
+        background-color: var(--persona-5-dark-red);
+        border-radius: 5px;
+        padding: 5px;
+
+        summary {
+            cursor: pointer;
+            position: relative;
+            left: -20px;
+    
+            h3,
+            h4 {
+                display: inline;
+            }
+        }
+
+        details {
+            left: 20px;
+            width: calc(100% - 25px);
+            margin-top: initial;
+            margin-bottom: initial;
+        }
+    }
+
+    #questions td {
+        width: 10%;
+    }
+    
+    #questions td:first-child {
+        width: 30%;
     }
 }
