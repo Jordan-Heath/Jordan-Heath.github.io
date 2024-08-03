@@ -136,6 +136,18 @@ body {
     .blue {
         color: var(--persona-5-blue);
     }
+
+    .title {
+        height: 60px;
+        h1 {
+            left: 2px;
+            height: 18px;
+            color: var(--persona-5-red);
+        }
+        h2 {
+            height: 0px;
+        }
+    }
 }
 
 .nav-button {
@@ -163,23 +175,21 @@ nav {
         background-color: var(--persona-5-dark-red);
         animation: clickSelected 0.5s ease-in-out forwards
     }
+}
 
-    h1 {
-        left: 10px;
-        height: 3px;
-        color: var(--persona-5-red);
-    }
+#mobileHeading {
+    display: none;
 }
 
 main {
     max-height: 100vh;
-    overflow-y: auto;
-    overflow-x: hidden;
     box-sizing: border-box;
     padding: 20px;
     max-width: 1150px;
     width: 100%;
     z-index: 5;
+    overflow-y: auto;
+    overflow-x: hidden;
 
     .months-container, 
     .dates-container {

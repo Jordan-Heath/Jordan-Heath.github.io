@@ -3,10 +3,12 @@
     :root {
         --month-title-span: span 1;
     }
+
     body {
+        height: unset;
+        overflow-x: hidden;
         flex-direction: column;
-        margin: 0;
-        padding: 0;
+        padding: 20px 0;
         justify-content: initial;
     }
 
@@ -36,7 +38,7 @@
         width: 200px;
         margin: 0;
 
-        h1, h2, hr {
+        .title, hr {
             display: none;
         }
 
@@ -53,21 +55,16 @@
         }
     }
 
-    main {
-        height: initial;
-        max-height: initial;
-        overflow-y: initial;
-        overflow-x: hidden;
-        max-width: 100vw;
-        width: 100vw;
-        margin-top: 30px;
+    #mobileHeading {
+        display: block;
+        margin: auto;
+    }
 
-        .popup {
-            max-width: 100vw;
-            width: calc(100% - 40px);
-            left: 0;
-            top: 80px;
-        }
+    main {
+        height: 100%;
+        max-height: unset;
+        max-width: 100vw;
+        overflow: unset;
 
         .months-container, 
         .dates-container {
@@ -80,6 +77,14 @@
 
         .months-container {
             grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    .popup {
+        max-height: unset;
+
+        .close-button {
+            position: fixed;
         }
     }
 }
@@ -95,11 +100,6 @@
         --start-on-saturday: span 1;
 
         --month-title-span: span 1;
-    }
-
-    body {
-        padding: 0;
-        padding-top: initial;
     }
 
     main {

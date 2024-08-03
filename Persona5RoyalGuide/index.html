@@ -16,8 +16,7 @@
 <body>
     <button id="nav-button" class="nav-button" onclick="toggleNav()">≡</button>
     <nav id="nav" style="display: flex;">
-        <h1>P5R</h1>
-        <h2>Guides</h2>
+        <div class="title"><h1>P5R</h1> <h2>Guide</h2></div>
         <button onclick="openPopup('', this)" class="selected"><span class="trigger-number">1. </span>Walkthrough</button>
         <button onclick="openPopup(flowerStoreGuide, this)"><span class="trigger-number">2. </span>Flower Picking</button>
         <button onclick="openPopup(convenienceStoreGuide, this)"><span class="trigger-number">3. </span>Convenience Store</button>
@@ -29,6 +28,8 @@
         <button id="controls-button" onclick="openPopup(controls, this)"><span class="trigger-number">7. </span>Controls</button>
         <button onclick="openPopup(credits, this)"><span class="trigger-number">8. </span>Credits</button>
     </nav>
+
+    <div class="title" id="mobileHeading"><h1>P5R</h1> <h2>Guide</h2></div>
 
     <main id="popup" class="popup" style="display: none;"></main>
 
