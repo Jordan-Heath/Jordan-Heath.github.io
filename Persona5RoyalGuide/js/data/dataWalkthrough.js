@@ -316,7 +316,7 @@ const walkthroughData = {
 		},
 		"6/25 Saturday": {
 			"Class": "<ul>\n<li>Finish reading \"ABCs of Crafting\" <strong>(Doubles the number of items that can be crafted)</strong></li>\n</ul>\n",
-			"Daytime": "<ul>\n<li>Death Rank 7 <strong>(Guts +2)</strong><ol>\n<li>Choice 2: \"She's a great doctor.\" (+2)</li>\n<li>-</li>\n<li>Choice 1: \"Just rest for today.\" (+2)</li>\n<li>Choice 3: <strong>\"I'm glad you did.\"</strong> (+2)</li></ol></li>\n</ul>\n",
+			"Daytime": "<ul>\n<li>Death Rank 7 <strong>(Guts +2)</strong><ol>\n<li>Choice 2: \"She's a great doctor.\" (+2)</li>\n<li>-</li>\n<li>Choice 1: \"Just rest for today.\" (+2)</li>\n<li>Choice 2: <strong>\"We all do sometimes.\"</strong> (+3)</li></ol></li>\n</ul>\n",
 			"Evening": "<ul>\n<li>Temperance Hangout</li>\n</ul>\n"
 		},
 		"6/26 Sunday": {

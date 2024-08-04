@@ -54,6 +54,10 @@ const knifeSoundSrc = 'assets/knifesound.wav';
 
 //knife image source: https://www.spriters-resource.com/playstation_3/persona5/sheet/92802/
 
+const notepad = `
+<textarea id="notepadElement" placeholder="Notes recorded here will be saved..."></textarea>
+`;
+
 const credits = `
 <h1>Guides</h1>
 <ul>

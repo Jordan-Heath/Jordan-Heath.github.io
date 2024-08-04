@@ -37,9 +37,10 @@ function scrollToBottom() {
     walkthrough.scrollTo(0, walkthrough.scrollHeight);
 }
 
-function applyDayColor(day, element) {
+function applyDayColor(date, day, element) {
     if (day === 'Saturday') element.classList.add('blue');
     if (day === 'Sunday') element.classList.add('red');
+    if (holidays.includes(date)) element.classList.add('red');
 }
 
 function createAndAppendElement(tag, text, parent) {

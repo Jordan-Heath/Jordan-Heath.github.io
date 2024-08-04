@@ -51,7 +51,7 @@ function displayDetails(month, date) {
 
     const dateSubHeading = document.createElement('h2');
     dateSubHeading.innerText = dateComponents[1];
-    applyDayColor(dateComponents[1], dateSubHeading);
+    applyDayColor(dateComponents[0], dateComponents[1], dateSubHeading);
     output.appendChild(dateSubHeading);
 
     Object.entries(details).forEach(([time, events]) => {
@@ -93,7 +93,7 @@ function renderDates(month) {
             dateButton.classList.add('selected');
         });
 
-        applyDayColor(dateComponents[1], dateButton);
+        applyDayColor(dateComponents[0], dateComponents[1], dateButton);
         datesContainer.appendChild(dateButton);
     });
 }
@@ -136,6 +136,33 @@ function navigateDay(offset) {
     selectNewDateButton(newDate);
 
     scrollToBottom();
+}
+
+function openNotepad(selectedButton) {
+    openPopup(notepad, selectedButton);
+    notepadElement = document.getElementById('notepadElement')
+    
+    const savedContent = localStorage.getItem("notepadContent");
+    if (savedContent) {
+        notepadElement.value = savedContent;
+    }
+
+    notepadElement.addEventListener("input", () => {
+        localStorage.setItem("notepadContent", notepadElement.value);
+    });
+
+    notepadElement.addEventListener("keydown", (e) => {
+        if (e.key == "Tab") {
+          e.preventDefault();
+          const textArea = e.currentTarget;
+          textArea.setRangeText(
+            "\t",
+            textArea.selectionStart,
+            textArea.selectionEnd,
+            "end"
+          );
+        }
+      });
 }
 
 document.addEventListener('keydown', (event) => {

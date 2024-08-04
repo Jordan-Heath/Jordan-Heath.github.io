@@ -22,6 +22,21 @@ const keyActions = {
     'Escape': () => document.querySelector('.close-button')?.click(),
 };
 
+const holidays = [
+    "4/29",
+    "5/3",
+    "5/4",
+    "5/5",
+    "7/18",
+    "8/11",
+    "9/19",
+    "9/22",
+    "10/10",
+    "11/3",
+    "11/23",
+    "12/23"
+];
+
 const monthsContainer = document.getElementById('months-container');
 const datesContainer = document.getElementById('dates-container');
 const output = document.getElementById('output');
