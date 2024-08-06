@@ -61,13 +61,15 @@ function renderOutput(selectedMonth, selectedDate) {
         output.appendChild(createElement('div', events))
     });
 
+    //highlight output
+    highlightOutput();
+
     //progressbar and buttons
     output.appendChild(createProgressBar(selectedMonth, selectedDate));
     output.appendChild(createButton('Previous Day', 'previous-day-button', () => changeDate(-1)));
     output.appendChild(createButton('Next Day', 'next-day-button', () => changeDate(1)));
 
     //highlight and display
-    highlightOutput();
     output.style.display = 'block'; // Show output when date details are displayed
 }
 
