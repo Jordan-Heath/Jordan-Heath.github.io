@@ -347,7 +347,7 @@ const walkthroughData = {
 		"7/1 Friday": {
 			"Train": "<ul>\n<li>Finish reading \"The Gallant Rogue\" <strong>(Guts +5)</strong></li>\n</ul>\n",
 			"Class": "<ul>\n<li>Question: \"Barbarian's head.\" <strong>(Knowledge +2)</strong></li>\n</ul>\n",
-			"Daytime": "<ul>\n<li>Borrow \"Speed Reader\" from library</li>\n<li>Buy all books including \"Ghost Encounters\" and \"Tidying the Heart\" from Shibuya bookstore</li>\n<li>Buy Summer Lotto S <strong>(sequential)</strong> lottery ticket <strong>(Y5000)</strong> from Shibuya <strong>(Does not unlock \"Easy Mondayey\", only weekly or daily prizes do)</strong></li>\n<li>Talk to Makoto outside Shujin student council room, Priestess Rank 1 <strong>(Requires Knowledge Lv. 3)</strong></li>\n</ul>\n",
+			"Daytime": "<ul>\n<li>Borrow \"Speed Reader\" from library</li>\n<li>Buy all books including \"Ghost Encounters\" and \"Tidying the Heart\" from Shibuya bookstore</li>\n<li>Buy Summer Lotto S <strong>(sequential)</strong> lottery ticket <strong>(Y5000)</strong> from Shibuya <strong>(Does not unlock \"Easy Money\", only weekly or daily prizes do)</strong></li>\n<li>Talk to Makoto outside Shujin student council room, Priestess Rank 1 <strong>(Requires Knowledge Lv. 3)</strong></li>\n</ul>\n",
 			"Evening": "<ul>\n<li>Temperance Rank 8 <strong>(Y5000)</strong><ol>\n<li>Choice 3: \"Is this really what you want?\" (+3)</li>\n<li>Choice 2: \"If that's what you decided.\" (+3)</li>\n<li>-</li>\n<li>-</li>\n<li>Choice 2: \"That's the right choice.\" (+3)</li>\n<li>Choice 2: \"That's reassuring.\" (+3)</li>\n<li>(Phone) Choice 3: \"I'll do anything for you.\" (+2)</li></ol></li>\n</ul>\n"
 		},
 		"7/2 Saturday": {
@@ -463,7 +463,7 @@ const walkthroughData = {
 			"Evening": "<ul>\n<li>Visit the donut shop across from the Kichijoji power stone shop, Answer Morgana's quiz <strong>(Guts +3)</strong></li>\n<li>Fortune Hangout</li>\n</ul>\n"
 		},
 		"7/31 Sunday": {
-			"Daytime": "<ul>\n<li>Ask Chihaya for Mondayey Reading <strong>(Y5000)</strong></li>\n<li>Luck Reading <strong>(Y5000)</strong> <strong>(Boost Charm)</strong></li>\n<li>Aojiru <strong>(Y5000)</strong> <strong>(Charm +3)</strong> <strong>(Charm Lv. 4)</strong></li>\n<li><strong>Reach treasure in Pyramid Palace</strong></li>\n<li><strong>Need to obtain Hermit, Hanged, and Devil personas</strong></li>\n</ul>\n",
+			"Daytime": "<ul>\n<li>Ask Chihaya for Money Reading <strong>(Y5000)</strong></li>\n<li>Luck Reading <strong>(Y5000)</strong> <strong>(Boost Charm)</strong></li>\n<li>Aojiru <strong>(Y5000)</strong> <strong>(Charm +3)</strong> <strong>(Charm Lv. 4)</strong></li>\n<li><strong>Reach treasure in Pyramid Palace</strong></li>\n<li><strong>Need to obtain Hermit, Hanged, and Devil personas</strong></li>\n</ul>\n",
 			"Evening": "<ul>\n<li>Call Kawakami for massage</li>\n<li>Fortune Rank 4<ol>\n<li>-</li>\n<li>Choice 3: \"Trust in yourself.\" (+3)</li>\n<li>-</li>\n<li>-</li>\n<li>-</li>\n<li>(Phone) Choice 2: \"I didn't do much.\" (+2)</li></ol></li>\n</ul>\n"
 		}
 	},
@@ -553,7 +553,7 @@ const walkthroughData = {
 			"Evening": "<ul>\n<li>Cannot leave Leblanc</li>\n<li>Watch \"31\" <strong>(Guts +5)</strong></li>\n</ul>\n"
 		},
 		"8/22 Monday": {
-			"Evening": "<ul>\n<li>Trade Melon Pan for Old Man's Fist</li>\n<li>Check Summer Lotto S <strong>(sequential)</strong> lottery results <strong>(Does not unlock \"Easy Mondayey\", only weekly or daily prizes do)</strong></li>\n<li>Star Rank 6 <strong>(Knowledge +2)</strong><ol>\n<li>Choice 2: \"Is that frustrating?\" (+2)</li>\n<li>Choice 3: \"Do what you love.\" (+2)</li>\n<li>(Phone) Choice 2: \"You're imagining things.\" (+2)</li></ol></li>\n</ul>\n"
+			"Evening": "<ul>\n<li>Trade Melon Pan for Old Man's Fist</li>\n<li>Check Summer Lotto S <strong>(sequential)</strong> lottery results <strong>(Does not unlock \"Easy Money\", only weekly or daily prizes do)</strong></li>\n<li>Star Rank 6 <strong>(Knowledge +2)</strong><ol>\n<li>Choice 2: \"Is that frustrating?\" (+2)</li>\n<li>Choice 3: \"Do what you love.\" (+2)</li>\n<li>(Phone) Choice 2: \"You're imagining things.\" (+2)</li></ol></li>\n</ul>\n"
 		},
 		"8/23 Tuesday": {
 			"Evening": "<ul>\n<li>Luck Reading <strong>(Y5000)</strong> <strong>(Boost Proficiency)</strong></li>\n<li>Hanged Rank 4 <strong>(Proficiency +4)</strong><ol>\n<li>-</li>\n<li>-</li>\n<li>-</li>\n<li>Choice 3: \"Where's my reward?\" (+3)</li>\n<li>(Phone) Choice 1: \"I agree.\" (+2)</li></ol></li>\n</ul>\n"
@@ -815,7 +815,7 @@ const walkthroughData = {
 		"10/31 Monday": {
 			"Class": "<ul>\n<li>Read \"Call Me Chief\"</li>\n</ul>\n",
 			"Daytime": "<ul>\n<li>Draw on classroom chalkboard <strong>(Guts +2)</strong></li>\n<li>Empress Rank 1</li>\n</ul>\n",
-			"Evening": "<ul>\n<li>Crossword: \"Stalls\" <strong>(Knowledge +2)</strong></li>\n<li>Hierophant Rank 8 <strong>(Request \"The Mondayey-grubbing Uncle\" unlocked)</strong><ol>\n<li>Choice 2: \"Something with curry.\" (+3)</li>\n<li>Choice 2: \"I was just protecting Futaba.\" (+2)</li></ol></li>\n</ul>\n"
+			"Evening": "<ul>\n<li>Crossword: \"Stalls\" <strong>(Knowledge +2)</strong></li>\n<li>Hierophant Rank 8 <strong>(Request \"The Money-grubbing Uncle\" unlocked)</strong><ol>\n<li>Choice 2: \"Something with curry.\" (+3)</li>\n<li>Choice 2: \"I was just protecting Futaba.\" (+2)</li></ol></li>\n</ul>\n"
 		}
 	},
 	"November": {
