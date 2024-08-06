@@ -1,4 +1,7 @@
-//source: https://samurai-gamers.com/persona-5/flower-shop-part-time-guide/
+const clickSoundSrc = 'assets/clicksound.wav';
+
+const knifeSoundSrc = 'assets/knifesound.wav';
+
 const flowerStoreGuide = `
 <h1>Flower Store Guide</h1>
 <table><tbody>
@@ -16,7 +19,6 @@ const flowerStoreGuide = `
 </table>
 `;
 
-//source: https://samurai-gamers.com/persona-5/triple-seven-convenience-store-part-time-job-guide/
 const convenienceStoreGuide = `
 <h1>Convenience Store Guide</h1>
 <table><tbody>
@@ -35,27 +37,13 @@ const convenienceStoreGuide = `
 </tbody></table>
 `;
 
-//source: https://p5rfusioncalculator.com/#/list
 const fusionCalculator = `
 <embed src="https://p5rfusioncalculator.com/#/list">
 `;
 
-//font source: https://www.reddit.com/r/Persona5/comments/kqickc/persona_5_menu_font_prototype/
-
-//background source: https://steamcommunity.com/sharedfiles/filedetails/?id=2948225096&insideModal=0
-
-//click sound source: https://www.sounds-resource.com/playstation_3/persona5/sound/30366/ sound effect 00159.wav
-const clickSoundSrc = 'assets/clicksound.wav';
-
-//knife sound source: https://www.sounds-resource.com/playstation_3/persona5/sound/30366/ sound effect 00302_streaming.wav
-const knifeSoundSrc = 'assets/knifesound.wav';
-
-//icon source: https://tcrf.net/Persona_5_Royal/Unused_Graphics used an unused stamp
-
-//knife image source: https://www.spriters-resource.com/playstation_3/persona5/sheet/92802/
-
-const notepad = `
-<textarea id="notepadElement" placeholder="Notes recorded here will be saved..."></textarea>
+const notepadData = `
+<textarea id="notepad" placeholder="Notes recorded here will be saved..."></textarea>
+<textarea id="highlightedWords" placeholder="Words you'd like highlighted in the walkthrough, separated by enters...\nFool\nMagician\netc.."></textarea>
 `;
 
 const credits = `

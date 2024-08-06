@@ -511,7 +511,7 @@ const walkthroughData = {
 		},
 		"8/11 Thursday": {
 			"Daytime": "<ul>\n<li>Rain</li>\n<li>Emperor Hangout Leblanc-8/11 <strong>(Charm +5)</strong><ol>\n<li>Choice 1: \"There's no way.\" (+3)</li></ol></li>\n</ul>\n",
-			"Evening": "<ul>\n<li>Luck Reading <strong>(Y5000)</strong> <strong>(Boost Kindness)</strong></li>\n<li>Ask Chihaya for Affinity Reading <strong>(Y5000)</strong> with matching arcana <strong>(Hierophant +2)</strong></li>\n<li>Feed plant Mega Fertilizer <strong>(Kindness +7)</strong> <strong>(Kindness Lv. 4)</strong></li>\n<li>Sun Rank 6</li>\n</ul>\n"
+			"Evening": "<ul>\n<li>Luck Reading <strong>(Y5000)</strong> <strong>(Boost Kindness)</strong></li>\n<li>Ask Chihaya for Affinity Reading <strong>(Y5000)</strong> with matching arcana <strong>(Hierophant +2)</strong></li>\n<li>Feed plant Mega Fertilizer <strong>(Kindness +7)</strong> <strong>(Kindness Lv. 4)</strong></li>\n<li>Sun Rank 6 (No Persona Needed)</li>\n</ul>\n"
 		},
 		"8/12 Friday": {
 			"Daytime": "<ul>\n<li>Emperor Rank 7<ol>\n<li>-</li>\n<li>Choice 2: \"What do you mean?\" (+2)</li>\n<li>Choice 1: \"The truth is within you.\" (+3)</li>\n<li>(Phone) Choice 1: \"Calm down.\" (+2)</li></ol></li>\n</ul>\n",

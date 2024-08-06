@@ -1,170 +1,118 @@
-function renderMonths() {
-    createAndAppendElement('h2', "Month", monthsContainer);
+function initialise() {
+    renderMonthsContainer();
 
-    monthNames.forEach(month => {
-        const monthButton = createButton(month, 'month-button', () => {
-            if (monthButton.classList.contains('selected')) return;
-
-            playSelectSound(knifeSoundSrc);
-
-            document.querySelector('.month-button.selected')?.classList.remove('selected');
-            monthButton.classList.add('selected');
-
-            saveSelection(month, null);
-            renderDates(month);
-
-            output.style.display = 'none'; // Hide output when month is selected
-        });
-        monthsContainer.appendChild(monthButton);
-    });
-}
-
-function loadSelection() {
     const { currentMonth, currentDate } = getCurrentSelection();
 
     if (currentMonth) {
-        const monthButton = findButtonByText(monthsContainer, currentMonth);
-        if (monthButton) {
-            monthButton.classList.add('selected');
-            renderDates(currentMonth);
+        selectElement(findButtonByText(monthsContainer, currentMonth), '.month-button')
+        //findButtonByText(monthsContainer, currentMonth)?.classList.add('selected');
+        renderDatesContainer(currentMonth);
 
-            if (currentDate) {
-                const dateButton = findButtonByText(datesContainer, currentDate);
-                if (dateButton) {
-                    dateButton.classList.add('selected');
-                    displayDetails(currentMonth, currentDate);
-                    output.style.display = 'block'; // Show output for selected date
-                }
-            } else {
-                output.style.display = 'none'; // Hide output if only month is selected
-            }
+        if (currentDate) {
+            selectElement(findButtonByText(datesContainer, currentDate), '.date-button')
+            //findButtonByText(datesContainer, currentDate)?.classList.add('selected');
+            renderOutput(currentMonth, currentDate);
         }
-    }
-}
-
-function displayDetails(month, date) {
-    output.innerHTML = '';
-    const details = walkthroughData[month][date];
-    const dateComponents = date.split(' ');
-
-    createAndAppendElement('h1', dateComponents[0], output);
-
-    const dateSubHeading = document.createElement('h2');
-    dateSubHeading.innerText = dateComponents[1];
-    applyDayColor(dateComponents[0], dateComponents[1], dateSubHeading);
-    output.appendChild(dateSubHeading);
-
-    Object.entries(details).forEach(([time, events]) => {
-        createAndAppendElement('h3', time, output);
-        createAndAppendElement('div', events, output);
-    });
-
-    // Calculate the percentage progress
-    const totalDays = calculateTotalDays(walkthroughData, monthNames);
-    const currentDayIndex = calculateCurrentDayIndex(walkthroughData, monthNames, month, date);
-    const dayProgress = currentDayIndex / totalDays;
-
-    // Create and append the progress bar using the utility function
-    createProgressBar(dayProgress, output);
-
-    createNavigationButton('Previous Day', () => navigateDay(-1), output);
-    createNavigationButton('Next Day', () => navigateDay(1), output);
-
-    output.style.display = 'block'; // Show output when date details are displayed
-}
-
-function renderDates(month) {
-    datesContainer.innerHTML = '';
-
-    const firstDayOfMonth = getFirstDayOfMonth(month);
-    const dateHeading = createAndAppendElement('h2', month, datesContainer);
-    dateHeading.style.gridColumn = `var(--start-on-${firstDayOfMonth.toLowerCase()})`;
-
-    Object.keys(walkthroughData[month]).forEach(date => {
-        const dateComponents = date.split(' ');
-        const dateButton = createButton(`${dateComponents[0]} <span class='day-of-week'>${dateComponents[1]}</span>`, 'date-button', () => {
-            if (dateButton.classList.contains('selected')) return;
-
-            playSelectSound(knifeSoundSrc);
-            displayDetails(month, date);
-            saveSelection(month, date);
-
-            document.querySelector('.date-button.selected')?.classList.remove('selected');
-            dateButton.classList.add('selected');
-        });
-
-        applyDayColor(dateComponents[0], dateComponents[1], dateButton);
-        datesContainer.appendChild(dateButton);
-    });
-}
-
-function openPopup(loadedGuide, selectedButton) {
-    if(selectedButton.classList.contains('selected')) return;
-
-    playSelectSound(clickSoundSrc);
-    popup.innerHTML = '';
-    document.querySelector('nav .selected')?.classList.remove('selected');
-    selectedButton.classList.add('selected');
-
-    if (loadedGuide == '') {
-        popup.style.display = 'none';
-        walkthrough.style.display = 'block';
-    } else {
-        popup.innerHTML = loadedGuide
-
-        const closeButton = createButton('Close', 'close-button', () => openPopup('', navButtons[0]));
-        popup.appendChild(closeButton);
-        walkthrough.style.display = 'none';
-        popup.style.display = 'block';
     }
 
     resizePage();
 }
 
-function navigateDay(offset) {
+function renderMonthsContainer() {
+    monthsContainer.appendChild(createElement('h2', "Month"));
+
+    monthNames.forEach(month => {
+        monthsContainer.appendChild(createButton(month, 'month-button', () => monthButtonFunction(month)));
+    });
+}
+
+function renderDatesContainer(month) {
+    datesContainer.innerHTML = '';
+
+    const dateHeading = createElement('h2', month);
+    dateHeading.style.gridColumn = `var(--start-on-${getFirstDayOfMonth(month).toLowerCase()})`;
+    datesContainer.appendChild(dateHeading);
+
+    Object.keys(walkthroughData[month]).forEach(fullDate => {
+        const [date, weekday] = fullDate.split(' ');
+
+        const buttonText = `${date} <span class='day-of-week'>${weekday}</span>`
+        const dateButton = createButton(buttonText, 'date-button', () => dateButtonFunction(month, fullDate));
+        applyDayColor(date, weekday, dateButton);
+
+        datesContainer.appendChild(dateButton);
+    });
+}
+
+function renderOutput(selectedMonth, selectedDate) {
+    output.innerHTML = '';
+    const details = walkthroughData[selectedMonth][selectedDate];
+    const [date, weekday] = selectedDate.split(' ');
+
+    //headings
+    output.appendChild(createElement('h1', date));
+    const dateSubHeading = createElement('h2', weekday);
+    applyDayColor(date, weekday, dateSubHeading);
+    output.appendChild(dateSubHeading);
+
+    //details
+    Object.entries(details).forEach(([time, events]) => {
+        output.appendChild(createElement('h3', time))
+        output.appendChild(createElement('div', events))
+    });
+
+    //progressbar and buttons
+    output.appendChild(createProgressBar(selectedMonth, selectedDate));
+    output.appendChild(createButton('Previous Day', 'previous-day-button', () => changeDate(-1)));
+    output.appendChild(createButton('Next Day', 'next-day-button', () => changeDate(1)));
+
+    //highlight and display
+    highlightOutput();
+    output.style.display = 'block'; // Show output when date details are displayed
+}
+
+function highlightOutput() {
+    highlightedWordsContent = localStorage.getItem('highlightedWordsContent');
+
+    if (highlightedWordsContent) {
+        const words = highlightedWordsContent.split('\n').map(word => word.trim());
+        const originalText = output.innerHTML;
+    
+        let highlightedText = originalText;
+    
+        words.forEach(word => {
+            if (word) {
+                const regex = new RegExp(`(${word})`, 'gi');
+                highlightedText = highlightedText.replace(regex, '<span class="highlight">$1</span>');
+            }
+        });
+    
+        output.innerHTML = highlightedText;
+    }
+}
+
+function changeDate(offset) {
     playSelectSound(knifeSoundSrc);
 
     const { currentMonth, currentDate } = getCurrentSelection();
     if (!currentMonth || !currentDate) return;
 
+    //determine date
     const { newMonth, newDate } = calculateNewDate(currentMonth, currentDate, offset);
+    saveDate(newMonth, newDate);
 
-    selectNewMonthButton(newMonth);
-    saveSelection(newMonth, newDate);
-    displayDetails(newMonth, newDate);
-    renderDates(newMonth);
-    selectNewDateButton(newDate);
+    //select correct month
+    selectElement(findButtonByText(monthsContainer, newMonth), '.month-button');
+    renderDatesContainer(newMonth);
+
+    //select correct date
+    selectElement(findButtonByText(datesContainer, newDate), '.date-button');
+    renderOutput(newMonth, newDate);
 
     scrollToBottom();
 }
 
-function openNotepad(selectedButton) {
-    openPopup(notepad, selectedButton);
-    notepadElement = document.getElementById('notepadElement')
-    
-    const savedContent = localStorage.getItem("notepadContent");
-    if (savedContent) {
-        notepadElement.value = savedContent;
-    }
-
-    notepadElement.addEventListener("input", () => {
-        localStorage.setItem("notepadContent", notepadElement.value);
-    });
-
-    notepadElement.addEventListener("keydown", (e) => {
-        if (e.key == "Tab") {
-          e.preventDefault();
-          const textArea = e.currentTarget;
-          textArea.setRangeText(
-            "\t",
-            textArea.selectionStart,
-            textArea.selectionEnd,
-            "end"
-          );
-        }
-      });
-}
-
+//hotkey handler
 document.addEventListener('keydown', (event) => {
     const action = keyActions[event.code];
     if (action) {
@@ -172,8 +120,7 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
+//change nav behaviour on screen resize
 window.addEventListener('resize', resizePage)
 
-renderMonths();
-loadSelection();
-resizePage();
+initialise();

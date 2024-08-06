@@ -12,27 +12,36 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+
+    <script src="js/utils.js"></script>
+    <script src="js/controls.js"></script>
+    <script src="js/data/data.js"></script>
+    <script src="js/data/dataConfidantGuide.js"></script>
+    <script src="js/data/dataNegotiationGuide.js"></script>
+    <script src="js/data/dataWalkthrough.js"></script>
+    <script src="js/constants.js" defer></script>
+    <script src="js/script.js" defer></script>
 </head>
 <body>
-    <button id="nav-button" class="nav-button" onclick="toggleNav()">≡</button>
+    <button id="nav-button" class="nav-button" onclick="navButtonFunction()">≡</button>
     <nav id="nav" style="display: flex;">
         <div class="title"><h1>P5R</h1> <h2>Guide</h2></div>
-        <button onclick="openPopup('', this)" class="selected"><span class="trigger-number">1. </span>Walkthrough</button>
-        <button onclick="openPopup(flowerStoreGuide, this)"><span class="trigger-number">2. </span>Flower Picking</button>
-        <button onclick="openPopup(convenienceStoreGuide, this)"><span class="trigger-number">3. </span>Convenience Store</button>
-        <button onclick="openPopup(confidantGuide, this)"><span class="trigger-number">4. </span>Confidants</button>
+        <button class="guide-button selected" onclick="closeGuideButton(this)"><span class="trigger-number">0. </span>Walkthrough</button>
+        <button class="guide-button" onclick="guideButtonFunction(flowerStoreGuide, this)"><span class="trigger-number">1. </span>Flower Picking</button>
+        <button class="guide-button" onclick="guideButtonFunction(convenienceStoreGuide, this)"><span class="trigger-number">2. </span>Convenience Store</button>
+        <button class="guide-button" onclick="guideButtonFunction(confidantGuide, this)"><span class="trigger-number">3. </span>Confidants</button>
         <hr/>
-        <button onclick="openPopup(negotiationGuide, this)"><span class="trigger-number">5. </span>Negotiation</button>
-        <button onclick="openPopup(fusionCalculator, this)"><span class="trigger-number">6. </span>Fusion Calculator</button>
+        <button class="guide-button" onclick="guideButtonFunction(negotiationGuide, this)"><span class="trigger-number">4. </span>Negotiation</button>
+        <button class="guide-button" onclick="guideButtonFunction(fusionCalculator, this)"><span class="trigger-number">5. </span>Fusion Calculator</button>
         <hr/>
-        <button onclick="openNotepad(this)"><span class="trigger-number">7. </span>NotePad</button>
-        <button id="controls-button" onclick="openPopup(controls, this)"><span class="trigger-number">8. </span>Controls</button>
-        <button onclick="openPopup(credits, this)"><span class="trigger-number">9. </span>Credits</button>
+        <button class="guide-button" onclick="notepadButtonFuction(this)"><span class="trigger-number">6. </span>NotePad</button>
+        <button class="guide-button" onclick="guideButtonFunction(controls, this)" id="controls-button"><span class="trigger-number">7. </span>Controls</button>
+        <button class="guide-button" onclick="guideButtonFunction(credits, this)"><span class="trigger-number">8. </span>Credits</button>
     </nav>
 
     <div class="title" id="mobileHeading"><h1>P5R</h1> <h2>Guide</h2></div>
 
-    <main id="popup" class="popup" style="display: none;"></main>
+    <main id="guide" class="guide" style="display: none;"></main>
 
     <main id="walkthrough">
         <div id="months-container" class="months-container"></div>
@@ -41,14 +50,5 @@
     
         <div id="output" class="output" style="display: none;"></div>
     </main>
-
-    <script src="js/utils.js"></script>
-    <script src="js/view.js"></script>
-    <script src="js/data/data.js"></script>
-    <script src="js/data/dataConfidantGuide.js"></script>
-    <script src="js/data/dataNegotiationGuide.js"></script>
-    <script src="js/data/dataWalkthrough.js"></script>
-    <script src="js/constants.js"></script>
-    <script src="js/script.js" defer></script>
 </body>
 </html>

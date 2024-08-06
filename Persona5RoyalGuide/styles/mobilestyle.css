@@ -80,11 +80,17 @@
         }
     }
 
-    .popup {
+    .guide {
         max-height: unset;
+        min-height: 90vh;
 
         .close-button {
             position: fixed;
+        }
+
+        textarea {
+            height: 50%;
+            width: 100%;
         }
     }
 }
@@ -106,10 +112,6 @@
         .months-container, 
         .dates-container {
             grid-template-columns: repeat(4, 1fr);
-
-            .red, .blue {
-                color: white;
-            }
         }
 
         .months-container {
