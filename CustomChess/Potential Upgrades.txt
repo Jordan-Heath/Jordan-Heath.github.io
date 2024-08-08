@@ -1,6 +1,7 @@
 Upgrades
     Pawns:
         pawns can always move 2 spaces
+        pawns can move diagonally without attacking
         pawns can attack forwards
     Rook:
         rook can jump pieces
