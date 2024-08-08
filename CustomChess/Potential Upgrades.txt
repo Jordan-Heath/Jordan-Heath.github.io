@@ -1,0 +1,28 @@
+Upgrades
+    Pawns:
+        pawns can always move 2 spaces
+        pawns can attack forwards
+    Rook:
+        rook can jump pieces
+    Bishop:
+        bishop can jump pieces
+    Queen:
+        queen and jump pieces
+    King:
+        king can move like a queen
+    extra team slot (boardSize + X)
+    extra move at the start of a match
+    Ability to upgrade to a king at the end of the board (multiple kings)
+
+
+Quirks
+    Play on without a king
+    Larger chessboard
+    Smaller chessboard
+    Every
+
+
+Paywall existing features?
+    Make upgrading to new pieces an upgrade
+    Make show movement arrow an upgrade
+    Make highlight moveable pieces an upgrade
