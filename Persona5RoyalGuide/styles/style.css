@@ -173,7 +173,7 @@ nav {
 
     button.selected {
         background-color: var(--persona-5-dark-red);
-        animation: clickSelected 0.5s ease-in-out forwards
+        animation: clickSelected 0.5s ease-in-out forwards;
     }
 }
 
