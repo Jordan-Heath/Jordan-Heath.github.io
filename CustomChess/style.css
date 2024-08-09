@@ -1,19 +1,18 @@
 :root {
     --background-color: #f0f0f0;
-    --text-color: white;
+    --text-color: black;
 
     --chessboard-grid: #000;
 
     --cell-white: #ffd;
     --cell-black: #795;
     --cell-highlight: #ff8;
-    --cell-highlight-piece: #f87;
+    --cell-highlight-enemy: #fa9;
 
-    --cell-white-moved-from: #cca;
-    --cell-black-moved-from: #462;
-    --cell-moved-to: 3px darkgreen solid;
-    --cell-available: 3px #cd3 solid;
-    --cell-selected: #cd3;
+    --piece-available: 3px #cd3 solid;
+    --piece-selected: #cd3;
+    --piece-selected-enemy: #f87;
+    --piece-highlight: #f87;
 
     --arrow-color: red;
 
@@ -56,7 +55,7 @@ body {
         padding: 5px 15px;
         border-radius: 5px;
         border: none;
-        color: var(--text-color);
+        color: white;
         font-size: large;
         margin: 5px;
     }
@@ -124,160 +123,71 @@ body {
     .cell.black {
         background-color: var(--cell-black);
     }
-    
+
     .cell.highlight {
         background-color: var(--cell-highlight); /* Highlight color */
         cursor: pointer;
     
-        .piece.enemy {
-            background-color: var(--cell-highlight-piece);
-            /* animation: quiver linear 0.5s infinite; */
+        .piece {
+            background-color: var(--piece-highlight);
+        }
+        .piece::before {
+            animation: quiver ease-in-out 0.1s infinite;
         }
     }
-
-    .cell.available {
-        border: var(--cell-available);
-
-        .player {
-            cursor: pointer;
-        }
-    }
-
-    .cell.enemy.selected {
-        background-color: var(--cell-selected);
-    }
+    .cell.highlight-enemy {
+        background-color: var(--cell-highlight-enemy); /* Highlight color */
     
-    .cell.player.selected {
-        background-color: var(--cell-selected);
+        .piece {
+            background-color: var(--piece-highlight);
+        }
+        .piece.player::before {
+            animation: quiver ease-in-out 0.1s infinite;
+        }
     }
 }
 
         /* Pieces */
 /* #region Pieces */
 .piece {
+    position: relative;
     width: 100%;
     height: 100%;
     padding: 10px;
     box-sizing: border-box;
-    cursor: default;
+    cursor: pointer;
     text-align: center;
     align-content: center;
     position: relative;
     z-index: 1;
-
-    image-rendering: pixelated;
-    background-size: auto 100%;
-    background-repeat: no-repeat;
-    background-position: center;
 }
 
+.piece.available {
+    border: var(--piece-available);
+}
+.piece.enemy.selected {
+    background-color: var(--piece-selected-enemy);
+}
 .piece.player.selected {
+    background-color: var(--piece-selected);
+}
+.piece.player.selected::before {
     animation: bounce linear 1s infinite;
 }
-
-
-.available .piece.player {
+.piece.player.available::before {
     animation: wiggleHarder ease-in-out 1s infinite;
 }
-.available .piece.player.pawn {
+.piece.player.pawn.available::before {
     animation: wiggle ease-in-out 2s infinite;
 }
-
-
-/* #endregion pieces */
-
-#ui {
-    margin: auto;
-    font-size: large;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 800px;
-
-    p {
-        margin: 0;
-    }
-}
-
-#popup {
-    border-radius: 10px;
-    width: 500px;
-    height: 400px;
-
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    translate: -50% -50%;
-    z-index: 5;
-
-    background-color: var(--popup-color);
-    text-align: center;
-    align-content: center;
-
-    .shop {
-        border: #000 1px solid;
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
-
-        .item {
-            display: flex;
-            flex-direction: row;
-        }
-    }
-}
-
-        /* Piece Images */
-/* #region Piece Images */
-.piece.player.pawn {
-    background-image: var(--player-pawn);
-}
-.piece.player.knight {
-    background-image: var(--player-knight);
-}
-.piece.player.bishop {
-    background-image: var(--player-bishop);
-}
-.piece.player.rook {
-    background-image: var(--player-rook);
-}
-.piece.player.queen {
-    background-image: var(--player-queen);
-}
-.piece.player.king {
-    background-image: var(--player-king);
-}
-
-.piece.enemy.pawn {
-    background-image: var(--enemy-pawn);
-}
-.piece.enemy.knight {
-    background-image: var(--enemy-knight);
-}
-.piece.enemy.bishop {
-    background-image: var(--enemy-bishop);
-}
-.piece.enemy.rook {
-    background-image: var(--enemy-rook);
-}
-.piece.enemy.queen {
-    background-image: var(--enemy-queen);
-}
-.piece.enemy.king {
-    background-image: var(--enemy-king);
-}
-/* #endregion Piece Images */
-
-
-/* Animations */
+/* Piece Animations */
+/* #region PieceAnimations */
 @keyframes quiver {
     0%, 100% {
-        left: -5px;
-        scale: 1 0.9;
+        translate: -1% 0%;
     }
     50% {
-        left: 5px;
-        scale: 1 0.8;
+        translate: 1% 0%;
     }
 }
 
@@ -328,5 +238,100 @@ body {
         rotate: 8deg;
         scale: 1.1;
         translate: 0% -10%;
+    }
+}
+/* #endregion PieceAnimations */
+/* Piece Images */
+/* #region Piece Images */
+.piece::before {
+    content: '';
+
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    image-rendering: pixelated;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.piece.player.pawn::before {
+    background-image: var(--player-pawn);
+}
+.piece.player.knight::before {
+    background-image: var(--player-knight);
+}
+.piece.player.bishop::before {
+    background-image: var(--player-bishop);
+}
+.piece.player.rook::before {
+    background-image: var(--player-rook);
+}
+.piece.player.queen::before {
+    background-image: var(--player-queen);
+}
+.piece.player.king::before {
+    background-image: var(--player-king);
+}
+
+.piece.enemy.pawn::before {
+    background-image: var(--enemy-pawn);
+}
+.piece.enemy.knight::before {
+    background-image: var(--enemy-knight);
+}
+.piece.enemy.bishop::before {
+    background-image: var(--enemy-bishop);
+}
+.piece.enemy.rook::before {
+    background-image: var(--enemy-rook);
+}
+.piece.enemy.queen::before {
+    background-image: var(--enemy-queen);
+}
+.piece.enemy.king::before {
+    background-image: var(--enemy-king);
+}
+/* #endregion Piece Images */
+/* #endregion pieces */
+
+#ui {
+    margin: auto;
+    font-size: large;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 800px;
+
+    p {
+        margin: 0;
+    }
+}
+
+#popup {
+    border-radius: 10px;
+    width: 500px;
+    height: 400px;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    z-index: 5;
+
+    background-color: var(--popup-color);
+    text-align: center;
+    align-content: center;
+
+    .shop {
+        border: #000 1px solid;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+
+        .item {
+            display: flex;
+            flex-direction: row;
+        }
     }
 }

@@ -7,12 +7,31 @@ class Piece {
 
         this.div.classList.add('piece', player, pieceType);
         this.div.draggable = true;
-        this.div.addEventListener('dragstart', (e) => handleDragStart(e, this));
-        this.div.addEventListener('click', (e) => handlePieceClick(e, this));
+        this.div.addEventListener('dragstart', (e) => this.handleDragStart(e, this));
+        this.div.addEventListener('click', (e) => this.handlePieceClick(e, this));
 
         //piece shouldn't append itself
         const cell = getCell(pos);
         cell.appendChild(this.div);
+    }
+
+    handleDragStart(e, piece) {
+        piece.select();
+
+        // Don't let player drag when it's not their turn
+        if (!e.target.classList.contains(currentTurn)) {
+            e.preventDefault();
+            return;
+        }
+    
+        const startPos = piece.pos;
+        e.dataTransfer.setData('text/plain', JSON.stringify(startPos));
+    }
+    
+    handlePieceClick(e, piece) {
+        if (document.querySelector('.selected')) return;
+        e.stopPropagation();
+        piece.select();
     }
 
     movePiece(endPos) {
@@ -36,17 +55,14 @@ class Piece {
 
         // Apply the animation transform
         requestAnimationFrame(() => {
-            this.div.style.transition = 'transform 0.3s ease';
+            this.div.style.transition = 'transform 0.4s ease';
             this.div.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+            getPieceFromPos(endPos)?.kill(deltaX, deltaY, angle);
 
             // After the animation completes, move the piece back to the grid and reset styles
             this.div.addEventListener('transitionend', () => {
                 this.div.style.transition = '';
                 this.div.style.transform = '';
-
-                // Append the piece to the target cell in the grid
-                //TODO: implement killing pieces
-                getPiece(endPos)?.kill();
 
                 // Move the piece and update its position
                 targetCell.appendChild(this.div);
@@ -56,11 +72,8 @@ class Piece {
                     if (endPos.y === 0 && this.player == 'player') {
                         promptPromotion(this, endPos);
                         return;
-                    } else if ((endPos.y === boardSize - 1 && piece.player == 'enemy')) {
-                        //TODO: enemy piece promotion
-                        const pieces = Object.keys(pieceValues).filter(pieceName => pieceName !== 'pawn');
-                        const randomIndex = Math.floor(Math.random() * pieces.length);
-                        promote(piece, pieces[randomIndex]);
+                    } else if ((endPos.y === boardSize - 1 && this.player == 'enemy')) {
+                        this.promote('random');
                         return;
                     }
                 }
@@ -71,27 +84,31 @@ class Piece {
     }
 
     promote(newPieceType) {
-        playerGold -= pieceValues[newPieceType] - 3;
-
+        if (newPieceType === 'random') {
+            newPieceType = getWeightedRandomPiece();
+        } else {
+            playerGold -= pieceValues[newPieceType] - 3;
+        }
+    
         this.pieceType = newPieceType;
         this.div.className = `piece ${this.player} ${this.pieceType}`;
-
+    
         popup.innerHTML = '';
         popup.style.display = 'none';
-
-        if (currentTurn == 'PAUSED') currentTurn = 'player';
+    
+        if (currentTurn === 'PAUSED') currentTurn = 'player';
         endTurn();
     }
 
     isValidMove(endPos) {
-        if (getPiece(endPos)) return false; //prevent moving onto occupied tiles
+        if (getPieceFromPos(endPos)) return false; //prevent moving onto occupied tiles
         if (endPos.x < 0 || endPos.x >= boardSize || endPos.y < 0 || endPos.y >= boardSize) return false; //prevent going off the board
 
         return pieceRules[this.pieceType].move(this, endPos);
     }
 
     isValidAttack(endPos) {
-        const targetPiece = getPiece(endPos)
+        const targetPiece = getPieceFromPos(endPos)
         if (!targetPiece || targetPiece.player == this.player) return false; //prevent attacking nothing OR taking own pieces
         if (endPos.x < 0 || endPos.x >= boardSize || endPos.y < 0 || endPos.y >= boardSize) return false; //prevent going off the board
 
@@ -100,15 +117,14 @@ class Piece {
 
     calculatePossibleMoves() {
         const possibleMoves = [];
-        const isPlayerPiece = this.player == 'player';
 
         // For each piece, determine the possible moves based on its type
         switch (this.pieceType) {
             case 'pawn':
-                const moveDirection = isPlayerPiece ? -1 : 1;
+                const moveDirection = this.player == 'player' ? -1 : 1;
                 // Pawns move 1-2 squares forward and attack diagonally
                 const pawnMoves = [
-                    [0, 1], [0, 2]
+                    [0, 1], [0, 2], [1, 1], [-1, 1], [1, 2], [-1, 2]
                 ];
 
                 pawnMoves.forEach(([deltaX, deltaY]) => {
@@ -116,17 +132,6 @@ class Piece {
                         x: this.pos.x + deltaX,
                         y: this.pos.y + (deltaY * moveDirection)
                     };
-                    if (this.isValidMove(endPos) || this.isValidAttack(endPos)) {
-                        possibleMoves.push(endPos);
-                    }
-                });
-
-                const pawnAttacks = [
-                    [1, 1], [-1, 1]
-                ];
-
-                pawnAttacks.forEach(([deltaX, deltaY]) => {
-                    const endPos = { x: this.pos.x + deltaX, y: this.pos.y + deltaY * moveDirection };
                     if (this.isValidMove(endPos) || this.isValidAttack(endPos)) {
                         possibleMoves.push(endPos);
                     }
@@ -201,8 +206,6 @@ class Piece {
                     }
                 });
                 break;
-            default:
-                break;
         }
 
         return possibleMoves;
@@ -210,19 +213,47 @@ class Piece {
 
     select() {
         document.querySelector('.selected')?.classList.remove('selected');
-        this.div.parentNode.classList.add('selected');
+        this.div.classList.add('selected');
         highlightValidCells(this);
     }
 
-    kill() {
-        this.div.remove();
-
-        const index = pieces.indexOf(this);
-        if (index > -1) {
-            pieces.splice(index, 1);
-        }
+    kill(deltaX, deltaY, angle) {
+        // Set up the animation with a 0.1s delay
+        requestAnimationFrame(() => {
+            // Delay the start of the animation by 0.1 seconds
+            setTimeout(() => {
+                this.div.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                this.div.style.transform = `translate(${deltaX}px, ${deltaY}px) rotate(${angle - 90}deg)`;
+                this.div.style.opacity = '0';
+        
+                // After the animation completes, remove the piece and update the game state
+                this.div.addEventListener('transitionend', () => {
+                    this.div.remove();
+                    const index = pieces.indexOf(this);
+                    if (index > -1) {
+                        pieces.splice(index, 1);
+                    }
+                }, { once: true });
+            }, 50); // 100 milliseconds delay
+        });
     }
 }
+
+const pieceValues = {
+    'pawn': 1,
+    'knight': 3,
+    'bishop': 3,
+    'rook': 5,
+    'queen': 9,
+    'king': 0
+};
+
+const pieceWeights = {
+    'knight': 1 / pieceValues['knight'],
+    'bishop': 1 / pieceValues['bishop'],
+    'rook': 1 / pieceValues['rook'],
+    'queen': 1 / pieceValues['queen']
+};
 
 const pieceRules = {
     pawn: {
@@ -232,7 +263,7 @@ const pieceRules = {
             const isStartingRow = (piece.player == 'player' && piece.pos.y > boardSize - 3) ||
                 (piece.player == 'enemy' && piece.pos.y < 2);
 
-            if (deltaX === 0) {
+            if (deltaX === 0 || (deltaX === 1 && purchasedUpgrades.includes("pawnMoveDiagonal") && piece.player == 'player')) {
                 // Move forward by one square
                 if ((deltaY === 1 && piece.player == 'enemy') ||
                     (deltaY === -1 && piece.player == 'player')) {
@@ -311,23 +342,21 @@ const pieceRules = {
     }
 }
 
-function handleDragStart(e, piece) {
-    // Don't let player drag when it's not their turn
-    if (!e.target.classList.contains(currentTurn)) {
-        e.preventDefault();
-        return;
+function getWeightedRandomPiece() {
+    const pieces = Object.keys(pieceWeights);
+    const weights = pieces.map(piece => pieceWeights[piece]);
+
+    // Calculate the total weight
+    const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
+
+    // Generate a random number between 0 and totalWeight
+    let random = Math.random() * totalWeight;
+
+    // Determine which piece corresponds to the random number
+    for (let i = 0; i < pieces.length; i++) {
+        random -= weights[i];
+        if (random <= 0) {
+            return pieces[i];
+        }
     }
-
-    const startPos = piece.pos;
-    e.dataTransfer.setData('text/plain', JSON.stringify(startPos));
-
-    piece.select();
-}
-
-function handlePieceClick(e, piece) {
-    //don't let player select when it's not their turn
-    if (!e.target.classList.contains(currentTurn)) return;
-    e.stopPropagation();
-
-    piece.select();
 }

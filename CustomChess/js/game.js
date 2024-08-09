@@ -12,19 +12,17 @@ const runInfo = document.getElementById('runInfo');
 //constants
 const boardSize = 8;
 const turnTime = 300; //ms
-const pieceValues = {
-    'pawn': 1,
-    'knight': 3,
-    'bishop': 3,
-    'rook': 5,
-    'queen': 9,
-    'king': 0 // Typically, the king is not assigned a point value for game-ending purposes
-};
 const upgradeData = [
     {
         id: "pawnTwoSteps",
         name: 'Charging Pawns',
         description: "Pawn's can always march 2 squares",
+        cost: 10
+    },
+    {
+        id: "pawnMoveDiagonal",
+        name: 'Weaving Pawns',
+        description: "Pawn's can move Diagonally without attacking",
         cost: 10
     },
     {
@@ -42,7 +40,6 @@ const upgradeData = [
 ]
 
 //variables
-let selectedCell;
 let currentTurn;
 let playerLoadOut = [
     'king',
@@ -69,49 +66,22 @@ let playerGold = 0;
 let pieces = [];
 let purchasedUpgrades = [
     // "pawnTwoSteps",
+    // "pawnMoveDiagonal",
     // "pawnAttackFowards",
     // "piecesCanJump"
 ];
+let promotionDiscount = 1;
 
 
 function Initialize() {
     newMatch();
 }
 
-function handleDragOver(e) {
-    e.preventDefault();
-}
-
-function handleDrop(e) {
-    e.preventDefault();
-
-    const startPos = JSON.parse(e.dataTransfer.getData('text/plain'));
-    const targetElement = e.target.classList.contains('cell') ? e.target : e.target.parentNode;
-    const endPos = JSON.parse(targetElement.dataset.pos);
-
-    const piece = getPiece(startPos);
-
-    if (!piece) return;
-
-    if (piece.isValidMove(endPos) || piece.isValidAttack(endPos)) piece.movePiece(endPos);
-}
-
-function handleCellClick(e) {
-    if (selectedCell) {
-        const startPos = getPos(selectedCell);
-        const endPos = getPos(e.target);
-
-        const piece = getPiece(startPos);
-
-        if (piece.isValidMove(endPos) || piece.isValidAttack(endPos)) piece.movePiece(endPos);
-    }
-}
-
 function endTurn() {
     //change turn
     currentTurn = currentTurn === 'player' ? 'enemy' : 'player';
     printUI(`${currentTurn.charAt(0).toUpperCase() + currentTurn.slice(1)}'s turn`);
-    highlightPieces();
+    highlightAvailablePieces();
 
     // Check if the game is over
     if (isGameOver()) {
@@ -126,24 +96,80 @@ function endTurn() {
 
 function enemyTurn() {
     const enemyPieces = getPlayersPieces('enemy');
-    if (enemyPieces.length === 0) return; // No pieces to move
+    const kingPiece = enemyPieces.find(piece => piece.pieceType === 'king');
 
-    let allPiecesMoves = [];
-
-    // Iterate through each enemy piece
-    for (var i = 0; i < enemyPieces.length; i++) {
-        const pieceAndMoves = {piece: enemyPieces[i], moves: enemyPieces[i].calculatePossibleMoves() };
-
-        if (pieceAndMoves.moves.length > 0) allPiecesMoves.push(pieceAndMoves);
+    // Gather possible moves for each enemy piece
+    const allPiecesMoves = [];
+    for (let piece of enemyPieces) {
+        const possibleMoves = piece.calculatePossibleMoves();
+        if (possibleMoves.length > 0) {
+            allPiecesMoves.push({ piece, moves: possibleMoves });
+        }
     }
 
-    if (allPiecesMoves.length === 0) return; // No pieces have valid moves or attacks
+    // 1. Check if the king is in danger and prioritize moves to save it
+    if (isPosDangerous(kingPiece, kingPiece.pos, 'enemy')) {
+        // Try moving the king to a safe position
+        const possibleKingMoves = kingPiece.calculatePossibleMoves();
+        for (const move of possibleKingMoves) {
+            if (!isPosDangerous(kingPiece, move, 'enemy')) {
+                kingPiece.movePiece(move);
+                return;
+            }
+        }
+    }
 
-    //choose a random piece
-    const pieceAndMoves = allPiecesMoves[Math.floor(Math.random() * allPiecesMoves.length)];
-    const endPos = pieceAndMoves.moves[Math.floor(Math.random() * pieceAndMoves.moves.length)];
+    // 2. Prioritize attacking moves
+    for (let pieceAndMoves of allPiecesMoves) {
+        for (let move of pieceAndMoves.moves) {
+            const targetPiece = getPieceFromPos(move);
+            if (targetPiece) {
+                // If the piece is the king, ensure the move is to a safe position
+                if (pieceAndMoves.piece.pieceType === 'king' && isPosDangerous(kingPiece, move, 'enemy')) {
+                    continue;
+                }
+                pieceAndMoves.piece.movePiece(move);
+                return;
+            }
+        }
+    }
 
-    pieceAndMoves.piece.movePiece(endPos);
+    // 3. Move any piece except the king
+    const nonKingMoves = allPiecesMoves.filter(pieceAndMoves => pieceAndMoves.piece.pieceType !== 'king');
+    if (nonKingMoves.length > 0) {
+        const randomPiece = nonKingMoves[Math.floor(Math.random() * nonKingMoves.length)];
+        const randomMove = randomPiece.moves[Math.floor(Math.random() * randomPiece.moves.length)];
+        randomPiece.piece.movePiece(randomMove);
+        return;
+    }
+
+    // 4. Move the king if no non-king moves are available
+    // Try moving the king to a safe position
+    const possibleKingMoves = kingPiece.calculatePossibleMoves();
+    shuffle(possibleKingMoves);
+    for (const move of possibleKingMoves) {
+
+        if (!isPosDangerous(kingPiece, move, 'enemy')) {
+            kingPiece.movePiece(move);
+            return;
+        }
+    }
+    // If no safe moves for the king, make any move with the king
+    const randomMove = possibleKingMoves[Math.floor(Math.random() * possibleKingMoves.length)];
+    if (randomMove) {
+        console.log('CheckMate');
+        kingPiece.movePiece(randomMove);
+        return;
+    }
+}
+
+
+// Utility function to shuffle an array
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+    }
 }
 
 // Calculate the total points for a player
@@ -175,28 +201,45 @@ function isGameOver() {
     return !playerHasKing || !enemyHasKing || !currentPlayerCanMove;
 }
 
-function endGame() {
+function determineWinner() {
     const playerHasKing = document.querySelectorAll(`.player.king`).length > 0; //TODO: do this better
     const enemyHasKing = document.querySelectorAll(`.enemy.king`).length > 0; //TODO: do this better
     const playerPoints = calculatePoints('player');
     const enemyPoints = calculatePoints('enemy');
-    let result;
-    let pointsEarned = 0;
 
-    //determine winner
-    if ((playerHasKing && !enemyHasKing) || playerPoints > enemyPoints) {
-        result = 'You won!';
-        pointsEarned = enemyPoints < playerPoints ? playerPoints - enemyPoints : 0;
-        playerGold += pointsEarned;
-        matchStreak += 1;
-    } else if ((enemyHasKing && !playerHasKing) || enemyPoints > playerPoints) {
-        result = 'You lost!'
-        matchStreak = 0;
+    let matchResult
+
+    // Determine the winner
+    if (playerHasKing && !enemyHasKing) {
+        matchResult = 'You won!';
+    } else if (enemyHasKing && !playerHasKing) {
+        matchResult = 'You lost!';
+    } else if (playerPoints > enemyPoints) {
+        matchResult = 'You won!';
+    } else if (enemyPoints > playerPoints) {
+        matchResult = 'You lost!';
     } else {
-        result = 'Stalemate'
+        matchResult = 'Stalemate'
     }
 
-    // Build player loadout
+    return matchResult;
+}
+
+function endGame() {
+    let goldEarned = 0;
+
+    //determine & handle win/loss
+    const matchResult = determineWinner();
+    if ('You won!' == matchResult) {
+        matchStreak += 1;
+        goldEarned = calculatePoints('player') - calculatePoints('enemy');
+        goldEarned = Math.ceil(matchStreak * goldEarned / 5)
+        playerGold += goldEarned > 0 ? goldEarned : 0;
+    } else if ('You lost!' == matchResult) {
+        matchStreak = 0;
+    }
+
+    // Save Player Loadout
     playerLoadOut = [];
     getPlayersPieces('player').forEach(piece => {
         playerLoadOut.push(piece.pieceType);
@@ -210,7 +253,7 @@ function endGame() {
         playerLoadOut.push('pawn');
     }
 
-    endGameMessage(result, `You earned ${pointsEarned} gold`);
+    endGameMessage(matchResult, `You earned ${goldEarned} gold`);
     printUI('');
     currentTurn = 'none';
     clearHighlights();
@@ -256,6 +299,10 @@ function getShopItems() {
     return shopItems;
 }
 
+function buildEnemyTeam() {
+    //TODO:
+}
+
 function newMatch() {
     //reset variables
     popup.innerHTML = '';
@@ -293,7 +340,7 @@ function newMatch() {
 
     printUI("Player's Turn");
 
-    highlightPieces();
+    highlightAvailablePieces();
 }
 
 function endGameMessage(result, message) {
