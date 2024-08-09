@@ -1,4 +1,4 @@
-class Chessboard {
+class Chessboard { //refers to match
     constructor() {
 
     }
@@ -39,7 +39,7 @@ function handleDrop(e) {
 function handleCellClick(e) {
     const selectedPiece = getPieceFromDiv(document.querySelector('.selected'));
 
-    const targetCell = e.target.classList.contains('piece') ? e.target.parentNode : e.target;
+    const targetCell = e.target.classList.contains('cell') ? e.target : e.target.parentNode ;
     const endPos = getCellPos(targetCell);
     const targetPiece = getPieceFromPos(endPos);
 
@@ -79,26 +79,26 @@ function promptPromotion(piece) {
 
     const knightButton = document.createElement('button');
     knightButton.onclick = () => piece.promote('knight');
-    knightButton.innerText = `Knight (${pieceValues['knight'] - promotionDiscount})`;
-    if (playerGold < pieceValues['knight'] - promotionDiscount) knightButton.disabled = 'true';
+    knightButton.innerText = `Knight (${pieceValues['knight'] - player.promotionDiscount})`;
+    if (player.gold < pieceValues['knight'] - player.promotionDiscount) knightButton.disabled = 'true';
     specificPromotions.appendChild(knightButton);
 
     const bishopButton = document.createElement('button');
     bishopButton.onclick = () => piece.promote('bishop');
-    bishopButton.innerText = `Bishop (${pieceValues['bishop'] - promotionDiscount})`;
-    if (playerGold < pieceValues['bishop'] - promotionDiscount) bishopButton.disabled = 'true';
+    bishopButton.innerText = `Bishop (${pieceValues['bishop'] - player.promotionDiscount})`;
+    if (player.gold < pieceValues['bishop'] - player.promotionDiscount) bishopButton.disabled = 'true';
     specificPromotions.appendChild(bishopButton);
 
     const rookButton = document.createElement('button');
     rookButton.onclick = () => piece.promote('rook');
-    rookButton.innerText = `Rook (${pieceValues['rook'] - promotionDiscount})`;
-    if (playerGold < pieceValues['rook'] - promotionDiscount) rookButton.disabled = 'true';
+    rookButton.innerText = `Rook (${pieceValues['rook'] - player.promotionDiscount})`;
+    if (player.gold < pieceValues['rook'] - player.promotionDiscount) rookButton.disabled = 'true';
     specificPromotions.appendChild(rookButton);
 
     const queenButton = document.createElement('button');
     queenButton.onclick = () => piece.promote('queen');
-    queenButton.innerText = `Queen (${pieceValues['queen'] - promotionDiscount})`;
-    if (playerGold < pieceValues['queen'] - promotionDiscount) queenButton.disabled = 'true';
+    queenButton.innerText = `Queen (${pieceValues['queen'] - player.promotionDiscount})`;
+    if (player.gold < pieceValues['queen'] - player.promotionDiscount) queenButton.disabled = 'true';
     specificPromotions.appendChild(queenButton);
 
     popup.style.display = 'block';
@@ -107,7 +107,7 @@ function promptPromotion(piece) {
 }
 
 function isPathBlocked(startPos, endPos) {
-    if (purchasedUpgrades.includes("piecesCanJump") && getPieceFromPos(startPos).player == 'player') return false;
+    if (player.upgrades.includes("piecesCanJump") && getPieceFromPos(startPos).player == 'player') return false;
 
     const deltaY = endPos.y - startPos.y;
     const deltaX = endPos.x - startPos.x;

@@ -19,22 +19,26 @@
     --popup-color: burlywood;
 
     /* Player Pieces */
-    --player-pawn: url(assets/player/pawn.png);
-    --player-knight: url(assets/player/knight.png);
-    --player-bishop: url(assets/player/bishop.png);
-    --player-rook: url(assets/player/rook.png);
-    --player-queen: url(assets/player/queen.png);
-    --player-king: url(assets/player/king.png);
+    --player-pawn: url(../assets/player/pawn.png);
+    --player-knight: url(../assets/player/knight.png);
+    --player-bishop: url(../assets/player/bishop.png);
+    --player-rook: url(../assets/player/rook.png);
+    --player-queen: url(../assets/player/queen.png);
+    --player-king: url(../assets/player/king.png);
     --piece-player: #fff;
 
     /* Enemy Pieces */
-    --enemy-pawn: url(assets/enemy/pawn.png);
-    --enemy-knight: url(assets/enemy/knight.png);
-    --enemy-bishop: url(assets/enemy/bishop.png);
-    --enemy-rook: url(assets/enemy/rook.png);
-    --enemy-queen: url(assets/enemy/queen.png);
-    --enemy-king: url(assets/enemy/king.png);
+    --enemy-pawn: url(../assets/enemy/pawn.png);
+    --enemy-knight: url(../assets/enemy/knight.png);
+    --enemy-bishop: url(../assets/enemy/bishop.png);
+    --enemy-rook: url(../assets/enemy/rook.png);
+    --enemy-queen: url(../assets/enemy/queen.png);
+    --enemy-king: url(../assets/enemy/king.png);
     --piece-enemy: #000;
+}
+
+html, body {
+    overflow-x: hidden;
 }
 
 body {
@@ -45,6 +49,7 @@ body {
     background-color: var(--background-color);
     margin: 0;
     padding: 0;
+    width: 100vw;
     height: 100vh;
     justify-content: center;
     color: var(--text-color);
@@ -78,8 +83,10 @@ body {
     gap: 2px;
     margin: auto;
 
-    width: 800px;
-    height: 800px;
+    height: min(100vw, calc(100vh - 110px));
+    width: min(100vw, calc(100vh - 110px));
+    /* width: 800px;
+    height: 800px; */
 
     .cell {
         width: 100%;
@@ -97,22 +104,18 @@ body {
             position: absolute;
             z-index: 2;
             transform-origin: 50%;
-            background-color: var(--arrow-color);
-            height: 10%;
-            width: 80%;
-        }
 
-        .arrow::before {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 0;
-            border-left: 20px solid transparent;
-            border-right: 20px solid transparent;
-            border-top: 20px solid var(--arrow-color); /* Arrowhead color */
-            top: -5px;
-            left: 55px; /* Adjust position to align with the arrow body */
-            rotate: -90deg;
+            background-image: url(../assets/Arrow.png);
+            background-size: 100% 100%;
+            image-rendering: pixelated;
+            overflow: visible;
+            opacity: 0.5;
+
+
+            height: 100%;
+            width: 100%;
+
+            padding: 3px;
         }
     }
     
@@ -153,7 +156,7 @@ body {
     position: relative;
     width: 100%;
     height: 100%;
-    padding: 10px;
+    padding: 1px;
     box-sizing: border-box;
     cursor: pointer;
     text-align: center;
@@ -301,7 +304,8 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 800px;
+    min-height: 100px;
+    width: 100vw;
 
     p {
         margin: 0;
@@ -311,7 +315,9 @@ body {
 #popup {
     border-radius: 10px;
     width: 500px;
+    max-width: 100vw;
     height: 400px;
+    max-height: 100vh;
 
     position: absolute;
     left: 50%;

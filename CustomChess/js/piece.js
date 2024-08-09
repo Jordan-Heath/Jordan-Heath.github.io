@@ -10,6 +10,8 @@ class Piece {
         this.div.addEventListener('dragstart', (e) => this.handleDragStart(e, this));
         this.div.addEventListener('click', (e) => this.handlePieceClick(e, this));
 
+        // this.div.addEventListener('touchStart', (e) => this.handleDragStart(e, this));
+
         //piece shouldn't append itself
         const cell = getCell(pos);
         cell.appendChild(this.div);
@@ -87,7 +89,8 @@ class Piece {
         if (newPieceType === 'random') {
             newPieceType = getWeightedRandomPiece();
         } else {
-            playerGold -= pieceValues[newPieceType] - 3;
+            player.gold -= pieceValues[newPieceType] - 3;
+            printUI('');
         }
     
         this.pieceType = newPieceType;
@@ -263,14 +266,14 @@ const pieceRules = {
             const isStartingRow = (piece.player == 'player' && piece.pos.y > boardSize - 3) ||
                 (piece.player == 'enemy' && piece.pos.y < 2);
 
-            if (deltaX === 0 || (deltaX === 1 && purchasedUpgrades.includes("pawnMoveDiagonal") && piece.player == 'player')) {
+            if (deltaX === 0 || (deltaX === 1 && player.upgrades.includes("pawnMoveDiagonal") && piece.player == 'player')) {
                 // Move forward by one square
                 if ((deltaY === 1 && piece.player == 'enemy') ||
                     (deltaY === -1 && piece.player == 'player')) {
                     return true;
                 }
                 // Move forward by two squares from the first 2 rows
-                if ((isStartingRow || (purchasedUpgrades.includes("pawnTwoSteps") && piece.player == 'player')) &&
+                if ((isStartingRow || (player.upgrades.includes("pawnTwoSteps") && piece.player == 'player')) &&
                     ((piece.player == 'player' && deltaY === -2) ||
                         (piece.player == 'enemy' && deltaY === 2)) &&
                     !isPathBlocked(piece.pos, endPos)) {
@@ -291,7 +294,7 @@ const pieceRules = {
                 }
             }
 
-            if (purchasedUpgrades.includes("pawnAttackFowards") && piece.player == 'player') return pieceRules.pawn.move(piece, endPos);
+            if (player.upgrades.includes("pawnAttackFowards") && piece.player == 'player') return pieceRules.pawn.move(piece, endPos);
 
             return false;
         }

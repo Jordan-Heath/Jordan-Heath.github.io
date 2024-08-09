@@ -2,16 +2,20 @@
     // piece images source: https://opengameart.org/content/8x13-chess-pieces
 
 //elements
+//#region elements
 const chessboard = document.getElementById('chessboard');
 const ui = document.getElementById('ui');
 const popup = document.getElementById('popup');
 const matchInfo = document.getElementById('matchInfo');
 const turnIndicator = document.getElementById('turnIndicator');
 const runInfo = document.getElementById('runInfo');
+// #endregion elements
 
 //constants
+//#region constants
 const boardSize = 8;
 const turnTime = 300; //ms
+const forfeitThreshold = 5;
 const upgradeData = [
     {
         id: "pawnTwoSteps",
@@ -38,42 +42,16 @@ const upgradeData = [
         cost: 20
     }
 ]
+//#endregion constants
 
 //variables
 let currentTurn;
-let playerLoadOut = [
-    'king',
-    'pawn',
-    'pawn',
-    'pawn',
-    'pawn',
-    'pawn',
-    'pawn',
-    'pawn'
-];
-let enemyLoadOut = [
-    'king',
-    'pawn',
-    'pawn',
-    'pawn',
-    'pawn',
-    'pawn',
-    'pawn',
-    'pawn'
-];
-let matchStreak = 0;
-let playerGold = 0;
 let pieces = [];
-let purchasedUpgrades = [
-    // "pawnTwoSteps",
-    // "pawnMoveDiagonal",
-    // "pawnAttackFowards",
-    // "piecesCanJump"
-];
-let promotionDiscount = 1;
-
+let forfeitCounter = 0;
+let player = new Player();
 
 function Initialize() {
+    player.loadFromLocalStorage();
     newMatch();
 }
 
@@ -128,6 +106,7 @@ function enemyTurn() {
                 if (pieceAndMoves.piece.pieceType === 'king' && isPosDangerous(kingPiece, move, 'enemy')) {
                     continue;
                 }
+                forfeitCounter = 0;
                 pieceAndMoves.piece.movePiece(move);
                 return;
             }
@@ -139,7 +118,15 @@ function enemyTurn() {
     if (nonKingMoves.length > 0) {
         const randomPiece = nonKingMoves[Math.floor(Math.random() * nonKingMoves.length)];
         const randomMove = randomPiece.moves[Math.floor(Math.random() * randomPiece.moves.length)];
+        forfeitCounter = 0;
         randomPiece.piece.movePiece(randomMove);
+        return;
+    }
+
+    //forfeit is closer
+    forfeitCounter += 1;
+    if (forfeitCounter >= 5 ) {
+        promptEnemyForfeit();
         return;
     }
 
@@ -148,7 +135,6 @@ function enemyTurn() {
     const possibleKingMoves = kingPiece.calculatePossibleMoves();
     shuffle(possibleKingMoves);
     for (const move of possibleKingMoves) {
-
         if (!isPosDangerous(kingPiece, move, 'enemy')) {
             kingPiece.movePiece(move);
             return;
@@ -163,6 +149,32 @@ function enemyTurn() {
     }
 }
 
+function promptEnemyForfeit() {
+    currentTurn = 'PAUSED';
+
+    popup.innerHTML = "<h2>Enemy Offer's Forfeit</h2>";
+
+    const AcceptButton = document.createElement('button');
+    AcceptButton.onclick = () => {
+        pieces.find(piece => piece.pieceType === 'king' && piece.player === 'enemy').kill(50, -50, 200);
+        endGame();
+    };
+    AcceptButton.innerText = `Accept`;
+    popup.appendChild(AcceptButton);
+
+    const RejectButton = document.createElement('button');
+    RejectButton.onclick = () => {
+        forfeitCounter = 0;
+        currentTurn = 'enemy';
+        enemyTurn();
+    };
+    RejectButton.innerText = `Reject`;
+    popup.appendChild(RejectButton);
+
+    popup.style.display = 'block';
+
+    currentTurn = 'PAUSED';
+}
 
 // Utility function to shuffle an array
 function shuffle(array) {
@@ -231,32 +243,25 @@ function endGame() {
     //determine & handle win/loss
     const matchResult = determineWinner();
     if ('You won!' == matchResult) {
-        matchStreak += 1;
+        player.matchStreak += 1;
         goldEarned = calculatePoints('player') - calculatePoints('enemy');
-        goldEarned = Math.ceil(matchStreak * goldEarned / 5)
-        playerGold += goldEarned > 0 ? goldEarned : 0;
+        goldEarned = Math.ceil(player.matchStreak * goldEarned / 5)
+        player.gold += goldEarned > 0 ? goldEarned : 0;
     } else if ('You lost!' == matchResult) {
-        matchStreak = 0;
+        player.matchStreak = 0;
     }
 
     // Save Player Loadout
-    playerLoadOut = [];
+    player.loadOut = [];
     getPlayersPieces('player').forEach(piece => {
-        playerLoadOut.push(piece.pieceType);
+        player.loadOut.push(piece.pieceType);
     });
 
-    //ensure player has a king
-    if (!playerLoadOut.includes('king')) playerLoadOut.push('king');
-
-    // Add pawns to the loadout until there are 8 values
-    while (playerLoadOut.length < 8) {
-        playerLoadOut.push('pawn');
-    }
-
-    endGameMessage(matchResult, `You earned ${goldEarned} gold`);
+    endGameMessage(matchResult, `You earned ${goldEarned} gold - giving you a total of ${player.gold} gold.`);
     printUI('');
     currentTurn = 'none';
     clearHighlights();
+    player.saveToLocalStorage();
 }
 
 function getShopItems() {
@@ -265,23 +270,24 @@ function getShopItems() {
 
     const availableUpgrades = [];
     upgradeData.forEach(upgrade => {
-        if (!purchasedUpgrades.includes(upgrade.id)) availableUpgrades.push(upgrade);
+        if (!player.upgrades.includes(upgrade.id)) availableUpgrades.push(upgrade);
     });
 
-    //TODO: randomly select 3 upgrades
-    const selectedShopUpgrades = availableUpgrades;
+    shuffle(availableUpgrades);
 
-    selectedShopUpgrades.forEach(selectedUpgrade => {
+    for(let i = 0; i < player.shopSize; i++) {
         const shopItemDiv = document.createElement('div');
         shopItemDiv.classList.add('item');
 
         const buyButton = document.createElement('button');
-        buyButton.innerText = `${selectedUpgrade.name} (${selectedUpgrade.cost})`;
+        buyButton.innerText = `${availableUpgrades[i].name} (${availableUpgrades[i].cost})`;
+        if (availableUpgrades[i].cost > player.gold) buyButton.style.disabled = 'true';
         buyButton.addEventListener('click', () => {
             buyButton.disabled = 'true';
-            if (playerGold >= selectedUpgrade.cost) {
-                playerGold -= selectedUpgrade.cost;
-                purchasedUpgrades.push(selectedUpgrade.id);
+            if (player.gold >= availableUpgrades[i].cost) {
+                player.gold -= availableUpgrades[i].cost;
+                player.upgrades.push(availableUpgrades[i].id);
+                document.getElementById('endGameMessageParagraph').innerHTML = `Enjoy your upgrade! You now have ${player.gold} gold`
                 buyButton.innerText = "Enjoy"
             } else {
                 buyButton.innerText = "Cannot Afford"
@@ -290,11 +296,11 @@ function getShopItems() {
         shopItemDiv.appendChild(buyButton);
 
         const itemDescription = document.createElement('p');
-        itemDescription.innerText = selectedUpgrade.description;
+        itemDescription.innerText = availableUpgrades[i].description;
         shopItemDiv.appendChild(itemDescription);
 
         shopItems.appendChild(shopItemDiv);
-    });
+    }
 
     return shopItems;
 }
@@ -305,7 +311,7 @@ function buildEnemyTeam() {
     loadOut.push('king');
 
     while(loadOut.length < boardSize) {
-        if (loadOut.length < matchStreak) loadOut.push(getWeightedRandomPiece());
+        if (loadOut.length < player.matchStreak) loadOut.push(getWeightedRandomPiece());
         else loadOut.push('pawn');
     }
 
@@ -317,6 +323,7 @@ function newMatch() {
     popup.innerHTML = '';
     popup.style.display = 'none';
     currentTurn = 'player'
+    player.saveToLocalStorage();
 
     //build chessboard
     chessboard.innerHTML = '';
@@ -333,11 +340,15 @@ function newMatch() {
 
     const playerPiecePositions = getRandomPositions(boardSize-3, boardSize-1, boardSize); // Bottom 3 rows for player
     const enemyPiecePositions = getRandomPositions(0, 2, boardSize); // Top 3 rows for enemy
-    enemyLoadOut = buildEnemyTeam();
+    if (!player.loadOut.includes('king')) player.loadOut.push('king');
+    while (player.loadOut.length < 8) {
+        player.loadOut.push('pawn');
+    }
+    const enemyLoadOut = buildEnemyTeam();
 
     pieces = [];
     for (var i = 0; i < boardSize; i++) {
-        pieces.push(new Piece(playerLoadOut[i], playerPiecePositions[i], 'player'));
+        pieces.push(new Piece(player.loadOut[i], playerPiecePositions[i], 'player'));
         pieces.push(new Piece(enemyLoadOut[i], enemyPiecePositions[i], 'enemy'));
     }
 
@@ -346,6 +357,9 @@ function newMatch() {
     cells.forEach(cell => {
         cell.addEventListener('dragover', handleDragOver);
         cell.addEventListener('drop', handleDrop);
+
+        // cell.addEventListener('touchMove', handleDragOver);
+        // cell.addEventListener('touchEnd', handleDrop);
     });
 
     printUI("Player's Turn");
@@ -354,18 +368,21 @@ function newMatch() {
 }
 
 function endGameMessage(result, message) {
+    popup.innerHTML = '';
+
     const heading = document.createElement('h2');
-    heading.innerText = result;
+    heading.innerHTML = result;
     popup.appendChild(heading);
 
-    const paragraph = document.createElement('p');
-    paragraph.innerText = message;
-    popup.appendChild(paragraph);
+    const endGameMessageParagraph = document.createElement('p');
+    endGameMessageParagraph.id = 'endGameMessageParagraph';
+    endGameMessageParagraph.innerHTML = message;
+    popup.appendChild(endGameMessageParagraph);
 
     popup.appendChild(getShopItems());
 
     const newMatchButton = document.createElement('button');
-    newMatchButton.innerText = 'New Match'
+    newMatchButton.innerHTML = 'New Match'
     newMatchButton.addEventListener('click', newMatch);
     popup.appendChild(newMatchButton);
 
@@ -383,8 +400,8 @@ function printUI(message) {
     `;
 
     runInfo.innerHTML = `
-    <p>Match Streak: ${matchStreak} </p>
-    <p>Gold: ${playerGold}</p>
+    <p>Match Streak: ${player.matchStreak} </p>
+    <p>Gold: ${player.gold}</p>
     `;
 }
 
