@@ -15,6 +15,15 @@ PLAYABLE DEMO. A digimon/tamogotchi clone with my own spin.
 
 ## Completed Projects
 
+### [Custom Chess](CustomChess/index.html)
+Inspired by Balatro, but for chess. Work In Progress, but good enough to publish.
+
+- [ ] Saving
+- [x] All pieces working
+- [x] Reckless AI
+- [x] Build a streak to earn greater prizes
+- [x] Carry your pieces over to the next round
+
 ### [Persona 5 Royal Guide](Persona5RoyalGuide/index.html)
 
 I wanted an elegant guide styled after the game to occupy my second screen while playing. Other guides would require you to keep track of the day you were up to by scrolling through difficult to read whole pages of text, require you to switch tabs for negotiations and part time quizes.

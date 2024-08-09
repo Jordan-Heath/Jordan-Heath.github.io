@@ -3,6 +3,10 @@ Visual:
 Fix:
 
 Features:
+    Saving
+    Landing Page
+    Sounds
+    Music
     More upgrades
 
 OOP Conversion:
