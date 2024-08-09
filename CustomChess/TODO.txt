@@ -3,6 +3,7 @@ Visual:
 Fix:
 
 Features:
+    More upgrades
 
 OOP Conversion:
     make chessboard handle a match

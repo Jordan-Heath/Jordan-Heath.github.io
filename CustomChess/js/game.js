@@ -300,7 +300,16 @@ function getShopItems() {
 }
 
 function buildEnemyTeam() {
-    //TODO:
+    const loadOut = [];
+
+    loadOut.push('king');
+
+    while(loadOut.length < boardSize) {
+        if (loadOut.length < matchStreak) loadOut.push(getWeightedRandomPiece());
+        else loadOut.push('pawn');
+    }
+
+    return loadOut;
 }
 
 function newMatch() {
@@ -324,6 +333,7 @@ function newMatch() {
 
     const playerPiecePositions = getRandomPositions(boardSize-3, boardSize-1, boardSize); // Bottom 3 rows for player
     const enemyPiecePositions = getRandomPositions(0, 2, boardSize); // Top 3 rows for enemy
+    enemyLoadOut = buildEnemyTeam();
 
     pieces = [];
     for (var i = 0; i < boardSize; i++) {
