@@ -120,6 +120,11 @@ function isPathBlocked(startPos, endPos) {
         if (getPieceFromPos(pos)) {
             return true; // Path is blocked by another piece
         }
+        if (pos.y > boardSize || pos.y < 0 || pos.x > boardSize || pos.x < 0) {
+            console.log(`Error occured in isPathBlocked when moving from ${startPos.x},${startPos.y} to ${endPos.x}, ${endPos.y}`);
+            return true;
+        }
+
         pos.y += stepY;
         pos.x += stepX;
     }
@@ -197,7 +202,7 @@ function isPosDangerous(concernedPiece, pos, player) {
         concernedPiece.pos = piecePos;
 
         const result = possibleAttacks.some(attackPos => attackPos.x === pos.x && attackPos.y === pos.y);
-        if (result) console.log(`${pos.x},${pos.y} is unsafe`);
+        // if (result) console.log(`${pos.x},${pos.y} is unsafe`);
         return result;
     });
 }

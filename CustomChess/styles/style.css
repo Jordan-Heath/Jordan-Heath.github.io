@@ -304,8 +304,9 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    min-height: 100px;
+    min-height: 50px;
     width: 100vw;
+    padding: 10px;
 
     p {
         margin: 0;
@@ -338,6 +339,13 @@ body {
         .item {
             display: flex;
             flex-direction: row;
+
+            button {
+                flex: 1;
+            }
+            p {
+                flex: 2;
+            }
         }
     }
 }

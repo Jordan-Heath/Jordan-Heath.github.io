@@ -40,7 +40,26 @@ const upgradeData = [
         name: "Jumping Pieces",
         description: "Pieces won't block your path",
         cost: 20
+    },
+    {
+        id: "kingMovesLikeQueen",
+        name: "Drag Queen",
+        description: "Your king will move like a queen",
+        cost: 20
+    },
+    {
+        id: "restockGoodPieces",
+        name: "Trained Reinforcements",
+        description: "50% Chance reinforcements will be a promoted piecetype",
+        cost: 10
+    },
+    {
+        id: "noKingNeeded",
+        name: "Constitutional Monarchy",
+        description: "No King needed. Keep playing until you run out of pieces.",
+        cost: 20
     }
+    //player.upgrades.includes('upgradeID')
 ]
 //#endregion constants
 
@@ -205,7 +224,7 @@ function canPlayerMove(player) {
 
 // Check if the game is over
 function isGameOver() {
-    const playerHasKing = document.querySelectorAll(`.player.king`).length > 0; //TODO: do this better
+    const playerHasKing = document.querySelectorAll(`.player.king`).length > 0 || player.upgrades.includes('noKingNeeded'); //TODO: do this better
     const enemyHasKing = document.querySelectorAll(`.enemy.king`).length > 0; //TODO: do this better
 
     const currentPlayerCanMove = canPlayerMove(currentTurn);
@@ -214,12 +233,12 @@ function isGameOver() {
 }
 
 function determineWinner() {
-    const playerHasKing = document.querySelectorAll(`.player.king`).length > 0; //TODO: do this better
+    const playerHasKing = (document.querySelectorAll(`.player.king`).length > 0 || player.upgrades.includes('noKingNeeded')); //TODO: do this better
     const enemyHasKing = document.querySelectorAll(`.enemy.king`).length > 0; //TODO: do this better
     const playerPoints = calculatePoints('player');
     const enemyPoints = calculatePoints('enemy');
 
-    let matchResult
+    let matchResult;
 
     // Determine the winner
     if (playerHasKing && !enemyHasKing) {
@@ -275,7 +294,7 @@ function getShopItems() {
 
     shuffle(availableUpgrades);
 
-    for(let i = 0; i < player.shopSize; i++) {
+    for(let i = 0; i < player.shopSize && i < availableUpgrades.length; i++) {
         const shopItemDiv = document.createElement('div');
         shopItemDiv.classList.add('item');
 
@@ -342,7 +361,9 @@ function newMatch() {
     const enemyPiecePositions = getRandomPositions(0, 2, boardSize); // Top 3 rows for enemy
     if (!player.loadOut.includes('king')) player.loadOut.push('king');
     while (player.loadOut.length < 8) {
-        player.loadOut.push('pawn');
+        if (player.upgrades.includes('restockGoodPieces') && Math.random() > 0.5) {
+            player.loadOut.push(getWeightedRandomPiece());
+        } else player.loadOut.push('pawn');
     }
     const enemyLoadOut = buildEnemyTeam();
 

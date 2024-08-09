@@ -3,13 +3,12 @@ Visual:
 Fix:
 
 Features:
-    Saving
     Landing Page
     Sounds
     Music
     More upgrades
+    Highlight pieces that are vulnerable
 
 OOP Conversion:
     make chessboard handle a match
     make game handle a game
-    make player handle data and save

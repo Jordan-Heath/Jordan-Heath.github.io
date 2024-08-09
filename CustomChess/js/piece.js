@@ -25,11 +25,11 @@ class Piece {
             e.preventDefault();
             return;
         }
-    
+
         const startPos = piece.pos;
         e.dataTransfer.setData('text/plain', JSON.stringify(startPos));
     }
-    
+
     handlePieceClick(e, piece) {
         if (document.querySelector('.selected')) return;
         e.stopPropagation();
@@ -92,13 +92,13 @@ class Piece {
             player.gold -= pieceValues[newPieceType] - 3;
             printUI('');
         }
-    
+
         this.pieceType = newPieceType;
         this.div.className = `piece ${this.player} ${this.pieceType}`;
-    
+
         popup.innerHTML = '';
         popup.style.display = 'none';
-    
+
         if (currentTurn === 'PAUSED') currentTurn = 'player';
         endTurn();
     }
@@ -198,14 +198,24 @@ class Piece {
                 break;
             case 'king':
                 // Kings move one square in any direction
-                const kingMoves = [
+                const kingDirections = [
                     [1, 0], [0, 1], [-1, 0], [0, -1],
                     [1, 1], [1, -1], [-1, 1], [-1, -1]
                 ];
-                kingMoves.forEach(([deltaX, deltaY]) => {
-                    const endPos = { x: this.pos.x + deltaX, y: this.pos.y + deltaY };
-                    if (this.isValidMove(endPos) || this.isValidAttack(endPos)) {
-                        possibleMoves.push(endPos);
+                kingDirections.forEach(([deltaX, deltaY]) => {
+
+                    if (player.upgrades.includes('kingMovesLikeQueen') && this.player == 'player') {
+                        for (let y = this.pos.y + deltaY, x = this.pos.x + deltaX; y >= 0 && y < boardSize && x >= 0 && x < boardSize; y += deltaY, x += deltaX) {
+                            const endPos = { x: x, y: y }
+                            if (this.isValidMove(endPos) || this.isValidAttack(endPos)) {
+                                possibleMoves.push(endPos);
+                            }
+                        }
+                    } else {
+                        const endPos = { x: this.pos.x + deltaX, y: this.pos.y + deltaY };
+                        if (this.isValidMove(endPos) || this.isValidAttack(endPos)) {
+                            possibleMoves.push(endPos);
+                        }
                     }
                 });
                 break;
@@ -228,7 +238,7 @@ class Piece {
                 this.div.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
                 this.div.style.transform = `translate(${deltaX}px, ${deltaY}px) rotate(${angle - 90}deg)`;
                 this.div.style.opacity = '0';
-        
+
                 // After the animation completes, remove the piece and update the game state
                 this.div.addEventListener('transitionend', () => {
                     this.div.remove();
@@ -263,24 +273,34 @@ const pieceRules = {
         move: (piece, endPos) => {
             const deltaY = endPos.y - piece.pos.y;
             const deltaX = Math.abs(endPos.x - piece.pos.x);
-            const isStartingRow = (piece.player == 'player' && piece.pos.y > boardSize - 3) ||
-                (piece.player == 'enemy' && piece.pos.y < 2);
 
-            if (deltaX === 0 || (deltaX === 1 && player.upgrades.includes("pawnMoveDiagonal") && piece.player == 'player')) {
-                // Move forward by one square
-                if ((deltaY === 1 && piece.player == 'enemy') ||
-                    (deltaY === -1 && piece.player == 'player')) {
-                    return true;
+            if (piece.player === 'enemy') {
+                const isStartingRow = piece.pos.y > boardSize - 3;
+                if (deltaX === 0) {
+                    // Move down by one square
+                    if (deltaY === 1) return true;
+
+                    // Move down by two squares from the first 2 rows, ignore path if moving diagonal
+                    if (isStartingRow && 
+                        deltaY === 2 && 
+                        (deltaX != 0 || !isPathBlocked(piece.pos, endPos))) {
+                        return true;
+                    }
                 }
-                // Move forward by two squares from the first 2 rows
-                if ((isStartingRow || (player.upgrades.includes("pawnTwoSteps") && piece.player == 'player')) &&
-                    ((piece.player == 'player' && deltaY === -2) ||
-                        (piece.player == 'enemy' && deltaY === 2)) &&
-                    !isPathBlocked(piece.pos, endPos)) {
-                    return true;
+            } else {
+                const isStartingRow = piece.pos.y < 2;
+                if (deltaX === 0 || (deltaX === 1 && player.upgrades.includes("pawnMoveDiagonal"))) {
+                    // Move up by one square
+                    if (deltaY === -1) return true;
+
+                    // Move up by two squares from the first 2 rows (unless upgraded), ignore path if moving diagonal
+                    if ((isStartingRow || player.upgrades.includes("pawnTwoSteps")) &&
+                        deltaY === -2 &&
+                        (deltaX != 0 || !isPathBlocked(piece.pos, endPos))) {
+                        return true;
+                    }
                 }
             }
-
             return false;
         },
         attack: (piece, endPos) => {
@@ -335,6 +355,8 @@ const pieceRules = {
     },
     king: {
         move: (piece, endPos) => {
+            if (player.upgrades.includes('kingMovesLikeQueen')) return pieceRules.queen.move(piece, endPos);
+
             const deltaY = Math.abs(endPos.y - piece.pos.y);
             const deltaX = Math.abs(endPos.x - piece.pos.x);
             return deltaY <= 1 && deltaX <= 1;
