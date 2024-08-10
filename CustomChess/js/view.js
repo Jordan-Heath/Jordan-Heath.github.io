@@ -73,8 +73,8 @@ function getShopItems() {
             <div class="row">
                 <p>${availableUpgrades[i].description}</p>
                 <button id="${availableUpgrades[i].id}Button" 
-                        disabled="${availableUpgrades[i].cost > player.gold ? 'true' : 'false'}" 
-                        onclick="player.buyUpgrade(${availableUpgrades[i].id})">
+                        ${availableUpgrades[i].cost > player.gold ? 'disabled="true"' : ''}
+                        onclick="player.buyUpgrade('${availableUpgrades[i].id}')">
                         Buy ($${availableUpgrades[i].cost})
                 </button>
             </div>
