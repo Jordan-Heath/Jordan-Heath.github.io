@@ -1,23 +1,20 @@
 @media (prefers-color-scheme: dark) {
     :root {
-        --background-color: #444;
+        --background-color: #222;
         --text-color: white;
     
-        --chessboard-grid: #000;
+        /* --chessboard-grid: #000; */
     
-        --cell-white: #333;
-        --cell-black: #222;
+        --cell-white: #444;
+        --cell-black: #333;
         --cell-highlight: #740;
         --cell-highlight-piece: #a65;
     
-        --cell-white-moved-from: #cca;
-        --cell-black-moved-from: #462;
-        --cell-moved-to: 3px darkgreen solid;
-        --cell-available: 3px #732 solid;
-        --cell-selected: #732;
+        /* --piece-available: 3px #732 solid; */
+        --piece-selected: #732;
+        --piece-selected-enemy: #f87;
+        --piece-highlight: #f87;
     
-        --arrow-color: red;
-    
-        --popup-color: rgb(83, 47, 0);
+        --popup-color: #080;
     }
 }

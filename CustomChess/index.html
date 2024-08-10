@@ -11,25 +11,29 @@
     <script src="js/piece.js"></script>
     <script src="js/chessboard.js"></script>
     <script src="js/player.js"></script>
+    <script src="js/enemyAI.js"></script>
+    <script src="js/view.js" defer></script>
+    <script src="js/debug.js" defer></script>
     <script src="js/game.js" defer></script>
 
     <script src="https://drag-drop-touch-js.github.io/dragdroptouch/dist/drag-drop-touch.esm.min.js" type="module"></script>
 </head>
 <body>
-    <!-- <h1>Pawn Chess</h1> -->
+    <button id="menu-button" onclick="toggleMenu()">≡</button>
+    <nav id="menu" style="display: none;">
+        <h2>Stats</h2>
+        <div id="stats"></div>
+        <h2>Loadout</h2>
+        <div id="loadout"></div>
+        <h2>Upgrades</h2>
+        <div id="upgrades"></div>
+    </nav>
+
     <div id="chessboard"></div>
     <div id="ui">
-        <div id="matchInfo">
-            <p>0 Pieces Taken</p>
-            <p>0 Pieces Lost</p>
-        </div>
-        <div id="turnIndicator">
-            <p>Player's Turn</p>
-        </div>
-        <div id="runInfo">
-            <p>Matches Won</p>
-            <p>0 Gold</p>
-        </div>
+        <div id="matchInfo"></div>
+        <div id="turnIndicator"></div>
+        <div id="runInfo"></div>
     </div>
     <div id="popup"></div>
 </body>

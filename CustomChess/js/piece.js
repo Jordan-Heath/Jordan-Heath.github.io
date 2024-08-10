@@ -4,11 +4,15 @@ class Piece {
         this.pieceType = pieceType;
         this.player = player;
         this.div = document.createElement('div');
+        this.img = document.createElement('img');
+        this.availableMoves = [];
 
+        this.img.src = `assets/${this.player}/${this.pieceType}.png`;
+        this.div.appendChild(this.img);
         this.div.classList.add('piece', player, pieceType);
         this.div.draggable = true;
-        this.div.addEventListener('dragstart', (e) => this.handleDragStart(e, this));
-        this.div.addEventListener('click', (e) => this.handlePieceClick(e, this));
+        this.img.addEventListener('dragstart', (e) => this.handleDragStart(e, this));
+        this.img.addEventListener('click', (e) => this.handlePieceClick(e, this));
 
         // this.div.addEventListener('touchStart', (e) => this.handleDragStart(e, this));
 
@@ -21,7 +25,7 @@ class Piece {
         piece.select();
 
         // Don't let player drag when it's not their turn
-        if (!e.target.classList.contains(currentTurn)) {
+        if (!e.currentTarget.parentNode.classList.contains(currentTurn)) {
             e.preventDefault();
             return;
         }
@@ -70,16 +74,6 @@ class Piece {
                 targetCell.appendChild(this.div);
                 this.pos = endPos;
 
-                if (this.pieceType == 'pawn') {
-                    if (endPos.y === 0 && this.player == 'player') {
-                        promptPromotion(this, endPos);
-                        return;
-                    } else if ((endPos.y === boardSize - 1 && this.player == 'enemy')) {
-                        this.promote('random');
-                        return;
-                    }
-                }
-
                 endTurn();
             }, { once: true });
         });
@@ -87,25 +81,30 @@ class Piece {
 
     promote(newPieceType) {
         if (newPieceType === 'random') {
-            newPieceType = getWeightedRandomPiece();
+            newPieceType = getWeightedRandomPieceType();
         } else {
             player.gold -= pieceValues[newPieceType] - 3;
             printUI('');
         }
 
         this.pieceType = newPieceType;
+        this.availableMoves = this.calculateAvailableMoves();
+        this.img.src = `assets/${this.player}/${this.pieceType}.png`;
         this.div.className = `piece ${this.player} ${this.pieceType}`;
 
         popup.innerHTML = '';
         popup.style.display = 'none';
 
-        if (currentTurn === 'PAUSED') currentTurn = 'player';
-        endTurn();
+        if (currentTurn === 'PAUSED') {
+            currentTurn = 'player';
+            endTurn();
+        }
     }
 
     isValidMove(endPos) {
         if (getPieceFromPos(endPos)) return false; //prevent moving onto occupied tiles
-        if (endPos.x < 0 || endPos.x >= boardSize || endPos.y < 0 || endPos.y >= boardSize) return false; //prevent going off the board
+        if (this.pos.x >= player.boardSize || this.pos.y >= player.boardSize) return false; //if in the temp position, it has no valid moves
+        if (endPos.x < 0 || endPos.x >= player.boardSize || endPos.y < 0 || endPos.y >= player.boardSize) return false; //prevent going off the board
 
         return pieceRules[this.pieceType].move(this, endPos);
     }
@@ -113,13 +112,14 @@ class Piece {
     isValidAttack(endPos) {
         const targetPiece = getPieceFromPos(endPos)
         if (!targetPiece || targetPiece.player == this.player) return false; //prevent attacking nothing OR taking own pieces
-        if (endPos.x < 0 || endPos.x >= boardSize || endPos.y < 0 || endPos.y >= boardSize) return false; //prevent going off the board
+        if (this.pos.x >= player.boardSize || this.pos.y >= player.boardSize) return false; //if in the temp position, it has no valid moves
+        if (endPos.x < 0 || endPos.x >= player.boardSize || endPos.y < 0 || endPos.y >= player.boardSize) return false; //prevent going off the board
 
         return pieceRules[this.pieceType].attack(this, endPos);
     }
 
-    calculatePossibleMoves() {
-        const possibleMoves = [];
+    calculateAvailableMoves() {
+        const availableMoves = [];
 
         // For each piece, determine the possible moves based on its type
         switch (this.pieceType) {
@@ -136,7 +136,7 @@ class Piece {
                         y: this.pos.y + (deltaY * moveDirection)
                     };
                     if (this.isValidMove(endPos) || this.isValidAttack(endPos)) {
-                        possibleMoves.push(endPos);
+                        availableMoves.push(endPos);
                     }
                 });
                 break;
@@ -146,10 +146,10 @@ class Piece {
                     [1, 0], [0, 1], [-1, 0], [0, -1]
                 ];
                 rookDirections.forEach(([deltaX, deltaY]) => {
-                    for (let y = this.pos.y + deltaY, x = this.pos.x + deltaX; y >= 0 && y < boardSize && x >= 0 && x < boardSize; y += deltaY, x += deltaX) {
+                    for (let y = this.pos.y + deltaY, x = this.pos.x + deltaX; y >= 0 && y < player.boardSize && x >= 0 && x < player.boardSize; y += deltaY, x += deltaX) {
                         const endPos = { x: x, y: y }
                         if (this.isValidMove(endPos) || this.isValidAttack(endPos)) {
-                            possibleMoves.push(endPos);
+                            availableMoves.push(endPos);
                         }
                     }
                 });
@@ -160,10 +160,10 @@ class Piece {
                     [1, 1], [1, -1], [-1, 1], [-1, -1]
                 ];
                 bishopDirections.forEach(([deltaX, deltaY]) => {
-                    for (let y = this.pos.y + deltaY, x = this.pos.x + deltaX; y >= 0 && y < boardSize && x >= 0 && x < boardSize; y += deltaY, x += deltaX) {
+                    for (let y = this.pos.y + deltaY, x = this.pos.x + deltaX; y >= 0 && y < player.boardSize && x >= 0 && x < player.boardSize; y += deltaY, x += deltaX) {
                         const endPos = { x: x, y: y }
                         if (this.isValidMove(endPos) || this.isValidAttack(endPos)) {
-                            possibleMoves.push(endPos);
+                            availableMoves.push(endPos);
                         }
                     }
                 });
@@ -177,7 +177,7 @@ class Piece {
                 knightMoves.forEach(([deltaX, deltaY]) => {
                     const endPos = { x: this.pos.x + deltaX, y: this.pos.y + deltaY };
                     if (this.isValidMove(endPos) || this.isValidAttack(endPos)) {
-                        possibleMoves.push(endPos);
+                        availableMoves.push(endPos);
                     }
                 });
                 break;
@@ -188,10 +188,10 @@ class Piece {
                     [1, 1], [1, -1], [-1, 1], [-1, -1]
                 ];
                 queenDirections.forEach(([deltaX, deltaY]) => {
-                    for (let y = this.pos.y + deltaY, x = this.pos.x + deltaX; y >= 0 && y < boardSize && x >= 0 && x < boardSize; y += deltaY, x += deltaX) {
+                    for (let y = this.pos.y + deltaY, x = this.pos.x + deltaX; y >= 0 && y < player.boardSize && x >= 0 && x < player.boardSize; y += deltaY, x += deltaX) {
                         const endPos = { x: x, y: y }
                         if (this.isValidMove(endPos) || this.isValidAttack(endPos)) {
-                            possibleMoves.push(endPos);
+                            availableMoves.push(endPos);
                         }
                     }
                 });
@@ -205,29 +205,29 @@ class Piece {
                 kingDirections.forEach(([deltaX, deltaY]) => {
 
                     if (player.upgrades.includes('kingMovesLikeQueen') && this.player == 'player') {
-                        for (let y = this.pos.y + deltaY, x = this.pos.x + deltaX; y >= 0 && y < boardSize && x >= 0 && x < boardSize; y += deltaY, x += deltaX) {
+                        for (let y = this.pos.y + deltaY, x = this.pos.x + deltaX; y >= 0 && y < player.boardSize && x >= 0 && x < player.boardSize; y += deltaY, x += deltaX) {
                             const endPos = { x: x, y: y }
                             if (this.isValidMove(endPos) || this.isValidAttack(endPos)) {
-                                possibleMoves.push(endPos);
+                                availableMoves.push(endPos);
                             }
                         }
                     } else {
                         const endPos = { x: this.pos.x + deltaX, y: this.pos.y + deltaY };
                         if (this.isValidMove(endPos) || this.isValidAttack(endPos)) {
-                            possibleMoves.push(endPos);
+                            availableMoves.push(endPos);
                         }
                     }
                 });
                 break;
         }
 
-        return possibleMoves;
+        return availableMoves;
     }
 
     select() {
         document.querySelector('.selected')?.classList.remove('selected');
         this.div.classList.add('selected');
-        highlightValidCells(this);
+        selectionHighlights(this);
     }
 
     kill(deltaX, deltaY, angle) {
@@ -275,7 +275,7 @@ const pieceRules = {
             const deltaX = Math.abs(endPos.x - piece.pos.x);
 
             if (piece.player === 'enemy') {
-                const isStartingRow = piece.pos.y > boardSize - 3;
+                const isStartingRow = piece.pos.y < 2;
                 if (deltaX === 0) {
                     // Move down by one square
                     if (deltaY === 1) return true;
@@ -288,7 +288,7 @@ const pieceRules = {
                     }
                 }
             } else {
-                const isStartingRow = piece.pos.y < 2;
+                const isStartingRow = piece.pos.y > player.boardSize - 3; 
                 if (deltaX === 0 || (deltaX === 1 && player.upgrades.includes("pawnMoveDiagonal"))) {
                     // Move up by one square
                     if (deltaY === -1) return true;
@@ -367,7 +367,7 @@ const pieceRules = {
     }
 }
 
-function getWeightedRandomPiece() {
+function getWeightedRandomPieceType() {
     const pieces = Object.keys(pieceWeights);
     const weights = pieces.map(piece => pieceWeights[piece]);
 

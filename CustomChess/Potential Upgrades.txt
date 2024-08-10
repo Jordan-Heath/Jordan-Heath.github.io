@@ -4,16 +4,18 @@ Upgrades
         <DONE><TESTED> pawns can move diagonally without attacking
         <DONE><TESTED> pawns can attack forwards
     Rook:
-        
+        <DONE><TESTED> protectiveSight: If you have a rook on your team, you can see if your pieces are vulnerable
     Bishop:
-
+        <DONE><TESTED> safetySight: If you have a bishop on your team, you can sense if tiles you're moving to are vulnerable
+    Knight:
+        <DONE><TESTED> killerSight: If you have a knight on your team, you can see if an enemy is vulnerable
     Queen:
-        
     King:
         <DONE><TESTED> king can move like a queen
+
     <DONE><TESTED> Pieces can jump other pieces
     <DONE><TESTED> Restock your ranks with good pieces
-    extra team slot (boardSize + X)
+    <DONE> extra team slot (boardSize + X)
     extra move at the start of a match
     Ability to upgrade to a king at the end of the board (multiple kings)
     <DONE> Play on without a king
@@ -21,8 +23,9 @@ Upgrades
 
 Quirks
     Play on without a king
-    Larger chessboard
+    <DONE> Larger chessboard
     Smaller chessboard
+    Make enemy less agressive
 
 
 Paywall existing features?

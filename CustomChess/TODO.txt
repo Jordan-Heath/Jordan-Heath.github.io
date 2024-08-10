@@ -1,13 +1,13 @@
 Visual:
 
 Fix:
+    convert view.js functions to string methodology
 
 Features:
     Landing Page
     Sounds
     Music
     More upgrades
-    Highlight pieces that are vulnerable
 
 OOP Conversion:
     make chessboard handle a match
