@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom Chess</title>
     <link rel="stylesheet" href="styles/style.css">
-    <!-- <link rel="stylesheet" href="styles/mobilestyle.css"> -->
     <link rel="stylesheet" href="styles/darkmode.css">
+    <link rel="icon" type="image/x-icon" href="assets/player/pawn.png">
 
     <script src="js/piece.js"></script>
     <script src="js/chessboard.js"></script>
@@ -16,25 +16,42 @@
     <script src="js/debug.js" defer></script>
     <script src="js/game.js" defer></script>
 
-    <script src="https://drag-drop-touch-js.github.io/dragdroptouch/dist/drag-drop-touch.esm.min.js" type="module"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Tiny5&display=swap" rel="stylesheet">
 </head>
 <body>
-    <button id="menu-button" onclick="toggleMenu()">≡</button>
-    <nav id="menu" style="display: none;">
-        <h2>Stats</h2>
-        <div id="stats"></div>
-        <h2>Loadout</h2>
-        <div id="loadout"></div>
-        <h2>Upgrades</h2>
-        <div id="upgrades"></div>
-    </nav>
-
-    <div id="chessboard"></div>
-    <div id="ui">
-        <div id="matchInfo"></div>
-        <div id="turnIndicator"></div>
-        <div id="runInfo"></div>
+    <div id="startMenu">
+        <h1 id="title">Custom Chess</h1>
+        <div id="menuButtons">
+            <button id="profileButton" onclick="printProfileMenu()">Profile</button>
+            <div id="playButtonContainer">
+                <p id="playButtonParagraph"></p>
+                <button id="playButton" onclick="newMatch()">Play</button>
+            </div>
+            <button id="collectionButton" onclick="printCollectionMenu()">Collection</button>
+        </div>
     </div>
-    <div id="popup"></div>
+
+    <div id="profileMenu" class="menu" style="display: none;"></div>
+    <div id="collectionMenu" class="menu" style="display: none;"></div>
+
+    <div id="match" style="display: none;">
+        <button id="menu-button" onclick="toggleMatchMenu()">≡</button>
+        <div id="match-menu" style="display: none;">
+            <button onclick="printProfileMenu(); closeMenu(matchMenuElement)">Profile</button>
+            <button onclick="printCollectionMenu(); closeMenu(matchMenuElement)">Collection</button>
+            <button onclick="closeMenu(matchElement); startMenu.style.display = 'flex'; closeMenu(matchMenuElement)">Return to Main Menu</button>
+        </div>
+
+        <div id="chessboard"></div>
+        <div id="ui">
+            <div id="matchInfo"></div>
+            <div id="turnIndicator"></div>
+            <div id="runInfo"></div>
+        </div>
+
+        <div id="popup" style="display: none;"></div>
+    </div>
 </body>
 </html>

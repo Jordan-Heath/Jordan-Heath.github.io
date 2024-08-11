@@ -84,7 +84,7 @@ class Piece {
             newPieceType = getWeightedRandomPieceType();
         } else {
             player.gold -= pieceValues[newPieceType] - 3;
-            printUI('');
+            printMatchUI('');
         }
 
         this.pieceType = newPieceType;
@@ -94,6 +94,8 @@ class Piece {
 
         popup.innerHTML = '';
         popup.style.display = 'none';
+
+        if (this.player == 'player') player.piecesPromoted += 1;
 
         if (currentTurn === 'PAUSED') {
             currentTurn = 'player';
@@ -231,6 +233,9 @@ class Piece {
     }
 
     kill(deltaX, deltaY, angle) {
+        if (this.player == 'player') player.piecesLost += 1;
+        else player.piecesTaken += 1;
+
         // Set up the animation with a 0.1s delay
         requestAnimationFrame(() => {
             // Delay the start of the animation by 0.1 seconds
@@ -254,11 +259,11 @@ class Piece {
 
 const pieceValues = {
     'pawn': 1,
-    'knight': 3,
+    'knight': 2,
     'bishop': 3,
-    'rook': 5,
-    'queen': 9,
-    'king': 0
+    'rook': 4,
+    'queen': 5,
+    'king': 6
 };
 
 const pieceWeights = {

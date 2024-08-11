@@ -23,31 +23,39 @@ function handleDragOver(e) {
 }
 
 function handleDrop(e) {
-    e.preventDefault();
+    try {
+        e.preventDefault();
 
-    const startPos = JSON.parse(e.dataTransfer.getData('text/plain'));
-    const targetElement = e.currentTarget;
-    const endPos = JSON.parse(targetElement.dataset.pos);
-
-    const piece = getPieceFromPos(startPos);
-
-    if (!piece) return;
-
-    if (piece.isValidMove(endPos) || piece.isValidAttack(endPos)) piece.movePiece(endPos);
+        const startPos = JSON.parse(e.dataTransfer.getData('text/plain'));
+        const targetElement = e.currentTarget;
+        const endPos = JSON.parse(targetElement.dataset.pos);
+    
+        const piece = getPieceFromPos(startPos);
+    
+        if (!piece) return;
+    
+        if (piece.isValidMove(endPos) || piece.isValidAttack(endPos)) piece.movePiece(endPos);
+    } catch(e) {
+        console.log('Error on cell drop: ', e)
+    }
 }
 
 function handleCellClick(e) {
-    const selectedPiece = getPieceFromDiv(document.querySelector('.selected'));
-    const endPos = getCellPos(e.currentTarget);
-    const targetPiece = getPieceFromPos(endPos);
-
-    if (selectedPiece?.player == currentTurn
-        && (selectedPiece.isValidMove(endPos) || selectedPiece.isValidAttack(endPos))) {
-        selectedPiece.movePiece(endPos);
-    } else if (targetPiece) {
-        targetPiece.select();
-    } else {
-        generalHighlights();
+    try {
+        const selectedPiece = getPieceFromDiv(document.querySelector('.selected'));
+        const endPos = JSON.parse(e.currentTarget.dataset.pos);
+        const targetPiece = getPieceFromPos(endPos);
+    
+        if (selectedPiece?.player == currentTurn
+            && (selectedPiece.isValidMove(endPos) || selectedPiece.isValidAttack(endPos))) {
+            selectedPiece.movePiece(endPos);
+        } else if (targetPiece) {
+            targetPiece.select();
+        } else {
+            generalHighlights();
+        }
+    } catch(e) {
+        console.log('Error on cell click: ', e)
     }
 }
 
@@ -88,12 +96,6 @@ function isPathBlocked(startPos, endPos) {
     }
 
     return false;
-}
-
-function getCellPos(element) {
-
-
-    return JSON.parse(element.dataset.pos);
 }
 
 function getCell(pos) {

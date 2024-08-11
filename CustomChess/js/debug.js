@@ -47,12 +47,15 @@ const debugFunctions = {
         getPlayersPieces('enemy').forEach(piece => {
             piece.kill(50, -50, 200);
         });
-        setTimeout(() => endGame(), 400);
+        setTimeout(() => endGame(), 500);
     },
     "Randomly Promote all player Pawns": () => {
         getPlayersPieces('player').forEach(piece => {
             if (piece.pieceType === 'pawn') piece.promote('random');
         });
+
+        clearHighlights();
+        generalHighlights();
     },
     "Reset Save": () => {
         player = new Player();

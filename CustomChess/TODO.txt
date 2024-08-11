@@ -4,7 +4,8 @@ Fix:
     convert view.js functions to string methodology
 
 Features:
-    Landing Page
+    Prestiging
+    More mechanics for the enemy as streak rises
     Sounds
     Music
     More upgrades

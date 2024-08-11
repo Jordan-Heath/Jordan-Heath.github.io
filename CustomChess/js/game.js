@@ -86,8 +86,10 @@ let forfeitCounter = 0;
 let player = new Player();
 
 function Initialize() {
+    startMenu.style.display = 'flex';
+    matchElement.style.display = 'none';
     player.loadFromLocalStorage();
-    newMatch();
+    loadStartMenu()
 }
 
 function endTurn() {
@@ -107,7 +109,7 @@ function endTurn() {
 
     //change turn
     currentTurn = currentTurn === 'player' ? 'enemy' : 'player';
-    printUI(`${currentTurn.charAt(0).toUpperCase() + currentTurn.slice(1)}'s turn`);
+    printMatchUI(`${currentTurn.charAt(0).toUpperCase() + currentTurn.slice(1)}'s turn`);
     pieces.forEach(piece => piece.availableMoves =  piece.calculateAvailableMoves());
     generalHighlights();
 
@@ -149,10 +151,15 @@ function canPlayerMove(player) {
     return false;
 }
 
+function isPlayerHasKing(player) {
+    return (getPlayersPieces(player).some(piece => piece.pieceType === 'king')
+            || (player === 'player' && player.upgrades.includes('noKingNeeded')));
+}
+
 // Check if the game is over
 function isGameOver() {
-    const playerHasKing = document.querySelectorAll(`.player.king`).length > 0 || player.upgrades.includes('noKingNeeded'); //TODO: do this better
-    const enemyHasKing = document.querySelectorAll(`.enemy.king`).length > 0; //TODO: do this better
+    const playerHasKing = isPlayerHasKing('player');
+    const enemyHasKing = isPlayerHasKing('enemy');
 
     const currentPlayerCanMove = canPlayerMove(currentTurn);
 
@@ -160,9 +167,10 @@ function isGameOver() {
 }
 
 function determineWinner() {
-    const playerHasKing = (document.querySelectorAll(`.player.king`).length > 0 || player.upgrades.includes('noKingNeeded')); //TODO: do this better
-    const enemyHasKing = document.querySelectorAll(`.enemy.king`).length > 0; //TODO: do this better
+    const playerHasKing = isPlayerHasKing('player');
     const playerPoints = calculatePoints('player');
+    
+    const enemyHasKing = isPlayerHasKing('enemy');
     const enemyPoints = calculatePoints('enemy');
 
     let matchResult;
@@ -191,13 +199,19 @@ function endGame() {
     if ('You won!' == matchResult) {
         player.matchStreak += 1;
 
-        //matchstreak + ( enemyscore / 5 )
-        goldEarned = player.matchStreak + (Math.ceil((calculatePoints('enemy') / 5)));
-
+        //matchstreak + ( enemyscore / 3 )
+        goldEarned = player.matchStreak + (Math.ceil((calculatePoints('enemy') / 3)));
         player.gold += goldEarned > 0 ? goldEarned : 0;
+
     } else if ('You lost!' == matchResult) {
         player.matchStreak = 0;
     }
+
+    //handle stats
+    if (player.matchStreak > player.highestStreak) player.highestStreak = player.matchStreak; //new highest streak!
+    if (matchResult == 'You won!') player.matchesWon += 1;
+    if (matchResult == 'You lost!') player.matchesLost += 1;
+    player.goldEarned += goldEarned;
 
     // Save Player Loadout
     player.loadOut = [];
@@ -205,8 +219,8 @@ function endGame() {
         player.loadOut.push(piece.pieceType);
     });
 
-    endGameMessage(matchResult, `You earned ${goldEarned} gold - giving you a total of ${player.gold} gold.`);
-    printUI('');
+    promptEndGameMessage(matchResult, `You earned ${goldEarned} gold - giving you a total of ${player.gold} gold.`);
+    printMatchUI('');
     currentTurn = 'PAUSED';
     clearHighlights();
     player.saveToLocalStorage();
@@ -230,14 +244,19 @@ function buildEnemyTeam() {
 }
 
 function newMatch() {
-    //reset variables
+    // Control whats showed
+    closeMenu(startMenuElement);
+    closeMenu(popupElement);
+    closeMenu(matchMenuElement);
+    matchElement.style.display = 'block';
+    setTimeout(() => chessboardElement.style.opacity = 1, 100);
+
+    // Reset variables
     popupElement.innerHTML = '';
-    popupElement.style.display = 'none';
     currentTurn = 'player'
-    player.saveToLocalStorage();
     player.refreshUpgrades();
 
-    //build chessboard
+    // Build chessboard
     chessboardElement.innerHTML = '';
     for (let row = 0; row < player.boardSize; row++) {
         for (let col = 0; col < player.boardSize; col++) {
@@ -250,10 +269,6 @@ function newMatch() {
         }
     }
 
-    pieces = [];
-    player.buildTeam();
-    buildEnemyTeam();
-
     // Allow dropping on cells
     const cells = document.querySelectorAll('.cell');
     cells.forEach(cell => {
@@ -261,33 +276,23 @@ function newMatch() {
         cell.addEventListener('drop', handleDrop);
     });
 
-    printUI("Player's Turn");
+    //build pieces
+    pieces = [];
+    player.buildTeam();
+    buildEnemyTeam();
+
+    printMatchUI("Player's Turn");
 
     pieces.forEach(piece => piece.availableMoves =  piece.calculateAvailableMoves());
     generalHighlights();
-}
-
-function printUI(message) {
-    matchInfo.innerHTML = `
-    <p>Player Score: ${calculatePoints('player')}</p>
-    <p>Enemy Score: ${calculatePoints('enemy')}</p>
-    `;
-
-    turnIndicator.innerHTML = `
-    <p>${message}</p>
-    `;
-
-    runInfo.innerHTML = `
-    <p>Match Streak: ${player.matchStreak} </p>
-    <p>Gold: $${player.gold}</p>
-    `;
-}
-
-function toggleMenu() {
-    menu.style.display = menu.style.display == 'none' ? 'flex' : 'none';
-    printMenu();
+    player.saveToLocalStorage();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     Initialize();
+
+    //test ui's
+    // matchElement.style.display = 'block';
+    // toggleMenu(); //test menu
+    // promptEndGameMessage('you won', 'congrats');
 });

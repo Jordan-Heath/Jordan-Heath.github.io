@@ -1,5 +1,6 @@
 class Player {
     constructor() {
+        //variables
         this.loadOut = [];
         this.matchStreak = 0;
         this.gold = 0;
@@ -12,10 +13,26 @@ class Player {
         this.promotionDiscount = 1;
         this.shopSize = 3;
 
+        //constants
         this.boardSize = 8;
         this.teamSize = 8;
         this.turnTime = 300; //ms
         this.forfeitThreshold = 5;
+
+        //stats
+        this.piecesTaken = 0; //
+        this.piecesLost = 0; //
+        this.piecesPromoted = 0; //
+
+        this.matchesWon = 0; //
+        this.matchesLost = 0; //
+        this.goldEarned = 0; //
+
+        this.upgradesPurchased = 0;
+        this.upgradesSold = 0;
+        
+        this.highestStreak = 0; //
+        this.timesPrestiged = 0; //
     }
 
     saveToLocalStorage() {
@@ -51,8 +68,10 @@ class Player {
         if (this.gold >= upgrade.cost) {
             this.gold -= upgrade.cost;
             this.upgrades.push(upgrade.id);
+            this.upgradesPurchased += 1;
             document.getElementById('endGameMessageParagraph').innerHTML = `Enjoy your upgrade! You now have ${this.gold} gold`
             buyButton.innerText = "Enjoy!"
+            printMatchUI('');
         } else {
             buyButton.innerText = "Cannot Afford"
         }
@@ -89,5 +108,9 @@ class Player {
             chessboardElement.style.gridTemplateRows = `repeat(${this.boardSize}, 1fr)`
         }
         if (this.upgrades.includes('extraTeamSlot')) this.teamSize += 1;
+    }
+
+    pretige() { //TODO
+        this.timesPrestiged += 1;
     }
 }

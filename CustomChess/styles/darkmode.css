@@ -1,7 +1,7 @@
 @media (prefers-color-scheme: dark) {
     :root {
         --background-color: #222;
-        --text-color: white;
+        --text-color: #ffd;
     
         /* --chessboard-grid: #000; */
     
@@ -15,6 +15,6 @@
         --piece-selected-enemy: #f87;
         --piece-highlight: #f87;
     
-        --popup-color: #080;
+        --popup-color: #594;
     }
 }

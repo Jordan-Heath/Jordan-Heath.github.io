@@ -4,21 +4,22 @@ Upgrades
         <DONE><TESTED> pawns can move diagonally without attacking
         <DONE><TESTED> pawns can attack forwards
     Rook:
-        <DONE><TESTED> protectiveSight: If you have a rook on your team, you can see if your pieces are vulnerable
+        [Name after a fortification]: Rooks are immune to enemy Pawns
     Bishop:
-        <DONE><TESTED> safetySight: If you have a bishop on your team, you can sense if tiles you're moving to are vulnerable
+        Protestant Reformation: bishops can move 1 tile up down left or right, allowing them to change their color
     Knight:
-        <DONE><TESTED> killerSight: If you have a knight on your team, you can see if an enemy is vulnerable
+        Scouting Parties: knights can spawn 4-5 tiles deep into the board
     Queen:
+        Queen's Tax: Earn 1 gold every your queen kills an opposing piece
     King:
         <DONE><TESTED> king can move like a queen
 
     <DONE><TESTED> Pieces can jump other pieces
     <DONE><TESTED> Restock your ranks with good pieces
-    <DONE> extra team slot (boardSize + X)
+    <DONE><TESTED> extra team slot (boardSize + X)
     extra move at the start of a match
     Ability to upgrade to a king at the end of the board (multiple kings)
-    <DONE> Play on without a king
+    <DONE><TESTED> Play on without a king
 
 
 Quirks
@@ -26,6 +27,8 @@ Quirks
     <DONE> Larger chessboard
     Smaller chessboard
     Make enemy less agressive
+    Name your pieces
+    Rainbow Pieces (1g)
 
 
 Paywall existing features?
@@ -33,3 +36,6 @@ Paywall existing features?
     Make show movement arrow an upgrade
     Make highlight moveable pieces an upgrade
     Show other pieces available moves on select
+    <DONE><TESTED> protectiveSight: You can see if your pieces are vulnerable
+    <DONE><TESTED> safetySight: You can sense if tiles you're moving to are vulnerable
+    <DONE><TESTED> killerSight: You can see if an enemy is vulnerable
