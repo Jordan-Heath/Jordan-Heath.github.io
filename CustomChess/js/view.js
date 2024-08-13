@@ -5,6 +5,7 @@ const startMenuElement = document.getElementById('startMenu');
     const profileButtonElement = document.getElementById('profileButton');
     const collectionButtonElement = document.getElementById('collectionButton');
     const playButtonParagraph = document.getElementById('playButtonParagraph');
+    const playButtonElement = document.getElementById('playButton');
 
 //profileMenu
 const profileMenuElement = document.getElementById('profileMenu');
@@ -14,7 +15,11 @@ const collectionMenuElement = document.getElementById('collectionMenu');
 
 //match
 const matchElement = document.getElementById('match');
-const matchMenuElement = document.getElementById('match-menu');
+const matchMenuButtonElement = document.getElementById('match-menu-button');
+    const matchMenuElement = document.getElementById('match-menu');
+        const matchMenuProfileButton = document.getElementById('match-menu-profile-button');
+        const matchMenuCollectionButton = document.getElementById('match-menu-collection-button');
+        const matchMenuReturnButton = document.getElementById('match-menu-return-button');
 const chessboardElement = document.getElementById('chessboard');
 const popupElement = document.getElementById('popup');
 const matchUIElement = document.getElementById('ui');
@@ -23,248 +28,280 @@ const matchUIElement = document.getElementById('ui');
     const runInfoElement = document.getElementById('runInfo');
 // #endregion elements
 
-function printProfileMenu() {
-    profileMenuElement.innerHTML = `
-        <h2>Stats</h2>
-        <div id="stats">
-            <table>
-                <tr><th class='table-divider' colspan='2'>Pieces</th></tr>
-                <tr><th>Pieces Taken</th><td>${player.piecesTaken}</td></tr>
-                <tr><th>Pieces Lost</th><td>${player.piecesLost}</td></tr>
-            </table>
-            <table>
-                <tr><th class='table-divider' colspan='2'>Matches</th></tr>
-                <tr><th>Matches Won</th><td>${player.matchesWon}</td></tr>
-                <tr><th>Matches Lost</th><td>${player.matchesLost}</td></tr>
-            </table>
-            <table>
-                <tr><th class='table-divider' colspan='2'>Other</th></tr>
-                <tr><th>Gold Earned</th><td>${player.goldEarned}</td></tr>
-                <tr><th>Pieces Promoted</th><td>${player.piecesPromoted}</td></tr>
-            </table>
-            <table>
-                <tr><th class='table-divider' colspan='2'>Upgrades</th></tr>
-                <tr><th>Upgrades Purchased</th><td>${player.upgradesPurchased}</td></tr>
-                <tr><th>Upgrades Sold</th><td>${player.upgradesSold}</td></tr>
-            </table>
-            <table>
-                <tr><th class='table-divider' colspan='2'>Prestige</th></tr>
-                <tr><th>Highest Streak</th><td>${player.highestStreak}</td></tr>
-                <tr><th>Times Prestiged</th><td>${player.timesPrestiged}</td></tr>
-            </table>
-        </div>
+class ViewHandler {
+    static attachListeners() {
+        //Start Menu
+        profileButtonElement.addEventListener('click', () => {
+            ViewHandler.printProfileMenu();
+        });
+        playButtonElement.addEventListener('click', () => {
+            Match.newMatch();
+        });
+        collectionButtonElement.addEventListener('click', () => {
+            ViewHandler.printCollectionMenu();
+        });
 
-        <h2>Prestige</h2>
-        <div id="prestige">
-            <p>Not Implemented</p>
-            <p>If you have all upgrades, and your highest streak is ${player.timesPrestiged + 10} you can prestige.</p>
-            <p>Pretiging will cost all your upgrades and gold, but permanently raise your teamsize by 1</p>
-            <button disabled>Prestige</button>
-        </div>
-
-        <h2>Save Management</h2>
-        <div id="save-management">
-            <p>Not Implemented</p>
-            <button disabled>Export Save</button>
-            <button disabled>Import Save</button>
-            <button disabled>Delete Save</button>
-        </div>
-        <button class="close-button" onclick="closeMenu(profileMenu)">Close</button>
-    `;
-    profileMenuElement.style.display = 'flex';
-}
-
-function printCollectionMenu() {
-    let loadoutHTML = '';
-    let upgradesHTML = '';
-
-    // build loadout html
-    player.loadOut.forEach(pieceType => {
-        loadoutHTML += `<img src='assets/player/${pieceType}.png'>`;
-    });
-    
-    // build upgrades html
-    if (player.upgrades.length === 0) {
-        upgradesHTML = '<h3>You have no upgrades</h3>';
-    } else {
-        player.upgrades.forEach(upgradeID => {
-            const upgrade = upgradeData.find(u => u.id == upgradeID);
-            upgradesHTML += `
-            <div class="upgrade">
-                <h3>${upgrade.name}</h3>
-                <div class="row">
-                    <p>${upgrade.description}</p>
-                    <button onclick="player.sellUpgrade('${upgradeID}')">Sell (${upgrade.cost}g)</button>
-                </div>
-            </div>
-            `
+        //Match
+        matchMenuButtonElement.addEventListener('click', () => {
+            ViewHandler.toggleMatchMenu();
+        });
+        matchMenuProfileButton.addEventListener('click', () => {
+            ViewHandler.printProfileMenu(); 
+        });
+        matchMenuCollectionButton.addEventListener('click', () => {
+            ViewHandler.printCollectionMenu(); 
+        });
+        matchMenuReturnButton.addEventListener('click', () => {
+            this.loadStartMenu();
         });
     }
 
-    collectionMenuElement.innerHTML = `
-        <h2>Loadout</h2>
-        <div id="loadout">${loadoutHTML}</div>
-
-        <h2>Upgrades</h2>
-        <div id="upgrades">${upgradesHTML}</div>
-
-        <button class="close-button" onclick="closeMenu(collectionMenuElement)">Close</button>
-    `;
-    collectionMenuElement.style.display = 'flex';
-}
-
-function closeMenu(menuElement) {
-    menuElement.style.display = 'none';
-}
-
-function promptEndGameMessage(result, message) {
-    popupElement.innerHTML = `
-    <h2>${result}</h2>
-    <p id='endGameMessageParagraph'>${message}</p>
-    ${getShopItems()}
-    <button onclick="newMatch()">New Match</button>
-    `;
-
-    popupElement.style.display = 'block';
-
-    chessboardElement.style.opacity = 0;
-}
-
-function getShopItems() {
-    const availableUpgrades = [];
-    upgradeData.forEach(upgrade => {
-        if (!player.upgrades.includes(upgrade.id)) availableUpgrades.push(upgrade);
-    });
-
-    shuffle(availableUpgrades);
-
-    let shopItemsHTML = '';
-
-    for(let i = 0; i < player.shopSize && i < availableUpgrades.length; i++) {
-        shopItemsHTML += `
-        <div class="upgrade">
-            <h3>${availableUpgrades[i].name}</h3>
-            <div class="row">
-                <p>${availableUpgrades[i].description}</p>
-                <button id="${availableUpgrades[i].id}Button" 
-                        ${availableUpgrades[i].cost > player.gold ? 'disabled="true"' : ''}
-                        onclick="player.buyUpgrade('${availableUpgrades[i].id}')">
-                        Buy ($${availableUpgrades[i].cost})
+    static printProfileMenu() {
+        matchMenuElement.style.display = 'none';
+        profileMenuElement.innerHTML = `
+            <h2>Stats</h2>
+            <div id="stats">
+                <table>
+                    <tr><th class='table-divider' colspan='2'>Pieces</th></tr>
+                    <tr><th>Pieces Taken</th><td>${Player.piecesTaken}</td></tr>
+                    <tr><th>Pieces Lost</th><td>${Player.piecesLost}</td></tr>
+                </table>
+                <table>
+                    <tr><th class='table-divider' colspan='2'>Matches</th></tr>
+                    <tr><th>Matches Won</th><td>${Player.matchesWon}</td></tr>
+                    <tr><th>Matches Lost</th><td>${Player.matchesLost}</td></tr>
+                </table>
+                <table>
+                    <tr><th class='table-divider' colspan='2'>Other</th></tr>
+                    <tr><th>Gold Earned</th><td>${Player.goldEarned}</td></tr>
+                    <tr><th>Pieces Promoted</th><td>${Player.piecesPromoted}</td></tr>
+                </table>
+                <table>
+                    <tr><th class='table-divider' colspan='2'>Upgrades</th></tr>
+                    <tr><th>Upgrades Purchased</th><td>${Player.upgradesPurchased}</td></tr>
+                    <tr><th>Upgrades Sold</th><td>${Player.upgradesSold}</td></tr>
+                </table>
+                <table>
+                    <tr><th class='table-divider' colspan='2'>Prestige</th></tr>
+                    <tr><th>Highest Streak</th><td>${Player.highestStreak}</td></tr>
+                    <tr><th>Times Prestiged</th><td>${Player.timesPrestiged}</td></tr>
+                </table>
+            </div>
+    
+            <h2>Prestige</h2>
+            <div id="prestige">
+                ${Player.timesPrestiged > 0 ? `<p>Prestige Rank ${Player.timesPrestiged}</p>` : ''}
+                <p>If you have all upgrades, and your highest streak is ${(Player.timesPrestiged + 1) * 10} you can prestige.</p>
+                <p>Pretiging will cost all your upgrades and gold, but permanently raise your teamsize by 1</p>
+                <button onclick="Player.prestige()"
+                            ${(Player.highestStreak >= (Player.timesPrestiged + 1) * 10) //must have high streak
+                            && (Player.upgrades.length === UpgradeData.length) //must have all upgrades
+                            ? '' : 'disabled'}>
+                    Prestige
                 </button>
             </div>
+    
+            <h2>Save Management</h2>
+            <div id="save-management">
+                <p>Not Implemented</p>
+                <button disabled>Export Save</button>
+                <button disabled>Import Save</button>
+                <button onclick="Player.deleteSave()">Delete Save</button>
+            </div>
+            <button class="close-button" onclick="ViewHandler.closeMenu(profileMenu)">Close</button>
+        `;
+        profileMenuElement.style.display = 'flex';
+    }
+    
+    static printCollectionMenu() {
+        matchMenuElement.style.display = 'none';
+
+        let loadoutHTML = '';
+        let upgradesHTML = '';
+    
+        // build loadout html
+        Player.loadOut.forEach(pieceType => {
+            loadoutHTML += `<img src='assets/white/${pieceType}.png'>`;
+        });
+        
+        // build upgrades html
+        if (Player.upgrades.length === 0) {
+            upgradesHTML = '<h3>You have no upgrades</h3>';
+        } else {
+            Player.upgrades.forEach(upgradeID => {
+                const upgrade = UpgradeData.find(u => u.id == upgradeID);
+                upgradesHTML += `
+                <div class="upgrade">
+                    <h3>${upgrade.name}</h3>
+                    <div class="row">
+                        <p>${upgrade.description}</p>
+                        <button onclick="Player.sellUpgrade('${upgradeID}')">Sell (${upgrade.cost}g)</button>
+                    </div>
+                </div>
+                `
+            });
+        }
+    
+        collectionMenuElement.innerHTML = `
+            <h2>Loadout</h2>
+            <div id="loadout">${loadoutHTML}</div>
+    
+            <h2>Upgrades</h2>
+            <div id="upgrades">${upgradesHTML}</div>
+    
+            <button class="close-button" onclick="ViewHandler.closeMenu(collectionMenuElement)">Close</button>
+        `;
+        collectionMenuElement.style.display = 'flex';
+    }
+
+    static closeMenu(menuElement) {
+        menuElement.style.display = 'none';
+    }
+
+    static promptEndGameMessage(result, message) {
+        popupElement.innerHTML = `
+        <h2>${result}</h2>
+        <p id='endGameMessageParagraph'>${message}</p>
+        ${ViewHandler.getShopItems()}
+        <button onclick="Match.newMatch()">New Match</button>
+        `;
+    
+        popupElement.style.display = 'block';
+    
+        chessboardElement.style.opacity = 0;
+    }
+
+    static getShopItems() {
+        const availableUpgrades = [];
+        UpgradeData.forEach(upgrade => {
+            if (!Player.hasUpgrade(upgrade.id)) availableUpgrades.push(upgrade);
+        });
+    
+        shuffle(availableUpgrades);
+    
+        let shopItemsHTML = '';
+    
+        for(let i = 0; i < Player.shopSize && i < availableUpgrades.length; i++) {
+            shopItemsHTML += `
+            <div class="upgrade">
+                <h3>${availableUpgrades[i].name}</h3>
+                <div class="row">
+                    <p>${availableUpgrades[i].description}</p>
+                    <button id="${availableUpgrades[i].id}Button" 
+                            ${availableUpgrades[i].cost > Player.gold ? 'disabled="true"' : ''}
+                            onclick="Player.buyUpgrade('${availableUpgrades[i].id}')">
+                            Buy ($${availableUpgrades[i].cost})
+                    </button>
+                </div>
+            </div>
+            `
+        }
+    
+        let shopHTML = `
+        <div class="shop">
+            ${shopItemsHTML === '' ? 'All upgrades purchased!' : shopItemsHTML}
         </div>
-        `
+        `;
+    
+        return shopHTML;
     }
 
-    let shopHTML = `
-    <div class="shop">
-        ${shopItemsHTML === '' ? 'All upgrades purchased!' : shopItemsHTML}
-    </div>
-    `;
-
-    return shopHTML;
-}
-
-function promptEnemyForfeit() {
-    currentTurn = 'PAUSED';
-
-    popupElement.innerHTML = `
-    <h2>Enemy Offer's Forfeit</h2>
-    <p>If you accept, you will be granted an additional 3 gold.</p>
-    `;
-
-    const AcceptButton = document.createElement('button');
-    AcceptButton.onclick = () => {
-        pieces.find(piece => piece.pieceType === 'king' && piece.player === 'enemy').kill(50, -50, 200);
-        player.gold += 3;
-        setTimeout(() => endGame(), 500);
-    };
-    AcceptButton.innerText = `Accept`;
-    popupElement.appendChild(AcceptButton);
-
-    const RejectButton = document.createElement('button');
-    RejectButton.onclick = () => {
-        popupElement.style.display = 'none';
-        forfeitCounter = 0;
-        currentTurn = 'enemy';
-        enemyTurn();
-    };
-    RejectButton.innerText = `Reject`;
-    popupElement.appendChild(RejectButton);
-
-    popupElement.style.display = 'block';
-
-    currentTurn = 'PAUSED';
-}
-
-function promptPromotion(piece) {
-    currentTurn = 'PAUSED';
-    popupElement.innerHTML = '<h2>Promote Your Pawn</h2>';
-
-    const randomButton = document.createElement('button');
-    randomButton.onclick = () => piece.promote('random');
-    randomButton.innerText = `Random (Free)`;
-    popupElement.appendChild(randomButton);
-
-    const specificPromotions = document.createElement('div');
-    popupElement.appendChild(specificPromotions);
-
-    const knightButton = document.createElement('button');
-    knightButton.onclick = () => piece.promote('knight');
-    knightButton.innerText = `Knight (${pieceValues['knight'] - player.promotionDiscount}g)`;
-    if (player.gold < pieceValues['knight'] - player.promotionDiscount) knightButton.disabled = 'true';
-    specificPromotions.appendChild(knightButton);
-
-    const bishopButton = document.createElement('button');
-    bishopButton.onclick = () => piece.promote('bishop');
-    bishopButton.innerText = `Bishop (${pieceValues['bishop'] - player.promotionDiscount}g)`;
-    if (player.gold < pieceValues['bishop'] - player.promotionDiscount) bishopButton.disabled = 'true';
-    specificPromotions.appendChild(bishopButton);
-
-    const rookButton = document.createElement('button');
-    rookButton.onclick = () => piece.promote('rook');
-    rookButton.innerText = `Rook (${pieceValues['rook'] - player.promotionDiscount}g)`;
-    if (player.gold < pieceValues['rook'] - player.promotionDiscount) rookButton.disabled = 'true';
-    specificPromotions.appendChild(rookButton);
-
-    const queenButton = document.createElement('button');
-    queenButton.onclick = () => piece.promote('queen');
-    queenButton.innerText = `Queen (${pieceValues['queen'] - player.promotionDiscount}g)`;
-    if (player.gold < pieceValues['queen'] - player.promotionDiscount) queenButton.disabled = 'true';
-    specificPromotions.appendChild(queenButton);
-
-    popupElement.style.display = 'block';
-
-    currentTurn = 'PAUSED';
-}
-
-function printMatchUI(message) {
-    matchInfoElement.innerHTML = `
-    <p>Player Score: ${calculatePoints('player')}</p>
-    <p>Enemy Score: ${calculatePoints('enemy')}</p>
-    `;
-
-    turnIndicatorElement.innerHTML = `
-    <p>${message}</p>
-    `;
-
-    runInfoElement.innerHTML = `
-    <p>Match Streak: ${player.matchStreak} </p>
-    <p>Gold: ${player.gold}g</p>
-    `;
-}
-
-function loadStartMenu() {
-    //if new player
-    if (localStorage.getItem("CustomChessSave") === null) {
-        profileButtonElement.disabled = true;
-        collectionButtonElement.disabled = true;
-        playButtonParagraph.innerText = 'New Game';
-    } else {
-            playButtonParagraph.innerText = `Continue (Match Streak ${player.matchStreak})`
+    static promptEnemyForfeit() {
+        popupElement.innerHTML = `
+            <h2>Enemy Offer's Forfeit</h2>
+            <p>If you accept, you will be granted an additional 3 gold.</p>
+            <p>If you decline, you will no longer be able to promote pieces.\n
+            The enemy will forfeit again in 10 turns, unless they can level the playing field</p>
+        `;
+    
+        const AcceptButton = document.createElement('button');
+        AcceptButton.onclick = () => {
+            Match.getPlayersPieces(2).find(piece => piece.pieceType === 'king').kill(50, -50, 200); //kill the enemies king
+            Player.gold += 3;
+            setTimeout(() => Match.endGame(), 500);
+        };
+        AcceptButton.innerText = `Accept`;
+        popupElement.appendChild(AcceptButton);
+    
+        const RejectButton = document.createElement('button');
+        RejectButton.onclick = () => {
+            popupElement.style.display = 'none';
+            forfeitCounter = -6;
+            promotionDisabled = true;
+            currentTurn = 2; //enemy's turn
+            Enemy.turn();
+        };
+        RejectButton.innerText = `Reject`;
+        popupElement.appendChild(RejectButton);
+    
+        popupElement.style.display = 'block';
     }
-}
 
-function toggleMatchMenu() {
-    matchMenuElement.style.display = matchMenuElement.style.display == 'none' ? 'flex' : 'none';
+    static promptPromotion(piece) {
+        const pieceIndex = allPieces.indexOf(piece);
+
+        popupElement.innerHTML = `
+            <h2>Promote Your Pawn</h2>
+            <button onclick="allPieces[${pieceIndex}].promote('random')">Random (Free)</button>
+            <div>
+                <button 
+                    ${Player.gold < pieceValues['knight'] - Player.promotionDiscount ? 'disabled' : ''} 
+                    onclick="allPieces[${pieceIndex}].promote('knight')">
+                        Knight (${pieceValues['knight'] - Player.promotionDiscount}g)
+                </button>
+                <button 
+                    ${Player.gold < pieceValues['bishop'] - Player.promotionDiscount ? 'disabled' : ''} 
+                    onclick="allPieces[${pieceIndex}].promote('bishop')">
+                        Bishop (${pieceValues['bishop'] - Player.promotionDiscount}g)
+                </button>
+                <button 
+                    ${Player.gold < pieceValues['rook'] - Player.promotionDiscount ? 'disabled' : ''} 
+                    onclick="allPieces[${pieceIndex}].promote('rook')">
+                        Rook (${pieceValues['rook'] - Player.promotionDiscount}g)
+                </button>
+                <button 
+                    ${Player.gold < pieceValues['queen'] - Player.promotionDiscount ? 'disabled' : ''} 
+                    onclick="allPieces[${pieceIndex}].promote('queen')">
+                        Queen (${pieceValues['queen'] - Player.promotionDiscount}g)
+                </button>
+            </div>
+        `;
+    
+        popupElement.style.display = 'block';
+    }
+
+    static printMatchUI(message) {
+        matchInfoElement.innerHTML = `
+        <p>Player Score: ${Match.calculatePoints(1)}</p>
+        <p>Enemy Score: ${Match.calculatePoints(2)}</p>
+        `;
+    
+        turnIndicatorElement.innerHTML = `
+        <p>${message}</p>
+        `;
+    
+        runInfoElement.innerHTML = `
+        <p>Match Streak: ${Player.matchStreak} </p>
+        <p>Gold: ${Player.gold}g</p>
+        `;
+    }
+
+    static loadStartMenu() {
+        matchMenuElement.style.display = 'none';
+        matchElement.style.display = 'none';
+        startMenuElement.style.display = 'flex';
+
+        //if new player
+        if (localStorage.getItem("CustomChessSave") === null) {
+            profileButtonElement.disabled = true;
+            collectionButtonElement.disabled = true;
+            playButtonParagraph.innerText = 'New Game';
+        } else {
+                playButtonParagraph.innerText = `Continue (Match Streak ${Player.matchStreak})`
+        }
+    }
+
+    static toggleMatchMenu() {
+        matchMenuElement.style.display = matchMenuElement.style.display == 'none' ? 'flex' : 'none';
+    }
 }

@@ -6,12 +6,14 @@
     <title>Custom Chess</title>
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/darkmode.css">
-    <link rel="icon" type="image/x-icon" href="assets/player/pawn.png">
+    <link rel="icon" type="image/x-icon" href="assets/white/pawn.png">
 
+    <script src="js/utils.js"></script>
     <script src="js/piece.js"></script>
     <script src="js/chessboard.js"></script>
+    <script src="js/match.js"></script>
     <script src="js/player.js"></script>
-    <script src="js/enemyAI.js"></script>
+    <script src="js/enemy.js"></script>
     <script src="js/view.js" defer></script>
     <script src="js/debug.js" defer></script>
     <script src="js/game.js" defer></script>
@@ -24,12 +26,12 @@
     <div id="startMenu">
         <h1 id="title">Custom Chess</h1>
         <div id="menuButtons">
-            <button id="profileButton" onclick="printProfileMenu()">Profile</button>
+            <button id="profileButton">Profile</button>
             <div id="playButtonContainer">
                 <p id="playButtonParagraph"></p>
-                <button id="playButton" onclick="newMatch()">Play</button>
+                <button id="playButton">Play</button>
             </div>
-            <button id="collectionButton" onclick="printCollectionMenu()">Collection</button>
+            <button id="collectionButton">Collection</button>
         </div>
     </div>
 
@@ -37,11 +39,11 @@
     <div id="collectionMenu" class="menu" style="display: none;"></div>
 
     <div id="match" style="display: none;">
-        <button id="menu-button" onclick="toggleMatchMenu()">≡</button>
+        <button id="match-menu-button">≡</button>
         <div id="match-menu" style="display: none;">
-            <button onclick="printProfileMenu(); closeMenu(matchMenuElement)">Profile</button>
-            <button onclick="printCollectionMenu(); closeMenu(matchMenuElement)">Collection</button>
-            <button onclick="closeMenu(matchElement); startMenu.style.display = 'flex'; closeMenu(matchMenuElement)">Return to Main Menu</button>
+            <button id="match-menu-profile-button">Profile</button>
+            <button id="match-menu-collection-button">Collection</button>
+            <button id="match-menu-return-button">Return to Main Menu</button>
         </div>
 
         <div id="chessboard"></div>

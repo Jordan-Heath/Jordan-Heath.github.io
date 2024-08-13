@@ -1,15 +1,12 @@
 Visual:
 
 Fix:
-    convert view.js functions to string methodology
 
 Features:
-    Prestiging
     More mechanics for the enemy as streak rises
     Sounds
     Music
     More upgrades
 
 OOP Conversion:
-    make chessboard handle a match
-    make game handle a game
+    make pieces use inheritance to implement move/attack rules?

@@ -7,25 +7,24 @@ class Piece {
         this.img = document.createElement('img');
         this.availableMoves = [];
 
-        this.img.src = `assets/${this.player}/${this.pieceType}.png`;
+        this.img.src = `assets/${pieceColor[player]}/${pieceType}.png`;
         this.div.appendChild(this.img);
-        this.div.classList.add('piece', player, pieceType);
+        this.div.classList.add('piece', pieceColor[player], pieceType);
         this.div.draggable = true;
         this.img.addEventListener('dragstart', (e) => this.handleDragStart(e, this));
         this.img.addEventListener('click', (e) => this.handlePieceClick(e, this));
 
-        // this.div.addEventListener('touchStart', (e) => this.handleDragStart(e, this));
-
         //piece shouldn't append itself
-        const cell = getCell(pos);
+        const cell = Chessboard.getCell(pos);
         cell.appendChild(this.div);
     }
 
+    //#region Event Listeners
     handleDragStart(e, piece) {
-        piece.select();
+        Chessboard.selectionHighlights(piece);
 
         // Don't let player drag when it's not their turn
-        if (!e.currentTarget.parentNode.classList.contains(currentTurn)) {
+        if (!e.currentTarget.parentNode.classList.contains(pieceColor[currentTurn])) {
             e.preventDefault();
             return;
         }
@@ -37,13 +36,14 @@ class Piece {
     handlePieceClick(e, piece) {
         if (document.querySelector('.selected')) return;
         e.stopPropagation();
-        piece.select();
+        Chessboard.selectionHighlights(piece);
     }
+    //#endregion Event Listeners
 
-    movePiece(endPos) {
-        const targetCell = getCell(endPos);
-        const startCell = getCell(this.pos);
-        clearHighlights();
+    movePiece(endPos, callback = () => Match.endTurn()) {
+        const targetCell = Chessboard.getCell(endPos);
+        const startCell = Chessboard.getCell(this.pos);
+        Chessboard.clearHighlights();
 
         // Calculate the angle for the arrow
         const animationStartPos = startCell.getBoundingClientRect();
@@ -63,7 +63,7 @@ class Piece {
         requestAnimationFrame(() => {
             this.div.style.transition = 'transform 0.4s ease';
             this.div.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
-            getPieceFromPos(endPos)?.kill(deltaX, deltaY, angle);
+            Chessboard.getPieceFromPos(endPos)?.kill(deltaX, deltaY, angle);
 
             // After the animation completes, move the piece back to the grid and reset styles
             this.div.addEventListener('transitionend', () => {
@@ -74,7 +74,7 @@ class Piece {
                 targetCell.appendChild(this.div);
                 this.pos = endPos;
 
-                endTurn();
+                callback();
             }, { once: true });
         });
     }
@@ -83,39 +83,39 @@ class Piece {
         if (newPieceType === 'random') {
             newPieceType = getWeightedRandomPieceType();
         } else {
-            player.gold -= pieceValues[newPieceType] - 3;
-            printMatchUI('');
+            Player.gold -= pieceValues[newPieceType] - 3;
+            ViewHandler.printMatchUI('');
         }
 
         this.pieceType = newPieceType;
         this.availableMoves = this.calculateAvailableMoves();
-        this.img.src = `assets/${this.player}/${this.pieceType}.png`;
-        this.div.className = `piece ${this.player} ${this.pieceType}`;
+        this.img.src = `assets/${pieceColor[this.player]}/${this.pieceType}.png`;
+        this.div.className = `piece ${pieceColor[this.player]} ${this.pieceType}`;
 
         popup.innerHTML = '';
         popup.style.display = 'none';
 
-        if (this.player == 'player') player.piecesPromoted += 1;
+        if (this.player == 1) Player.piecesPromoted += 1;
 
-        if (currentTurn === 'PAUSED') {
-            currentTurn = 'player';
-            endTurn();
+        if (currentTurn === 0) { //if paused
+            currentTurn = 1; //make it player's turn
+            Match.endTurn();
         }
     }
 
     isValidMove(endPos) {
-        if (getPieceFromPos(endPos)) return false; //prevent moving onto occupied tiles
-        if (this.pos.x >= player.boardSize || this.pos.y >= player.boardSize) return false; //if in the temp position, it has no valid moves
-        if (endPos.x < 0 || endPos.x >= player.boardSize || endPos.y < 0 || endPos.y >= player.boardSize) return false; //prevent going off the board
+        if (Chessboard.getPieceFromPos(endPos)) return false; //prevent moving onto occupied tiles
+        if (this.pos.x >= Player.boardSize || this.pos.y >= Player.boardSize) return false; //if in the temp position, it has no valid moves
+        if (endPos.x < 0 || endPos.x >= Player.boardSize || endPos.y < 0 || endPos.y >= Player.boardSize) return false; //prevent going off the board
 
         return pieceRules[this.pieceType].move(this, endPos);
     }
 
     isValidAttack(endPos) {
-        const targetPiece = getPieceFromPos(endPos)
+        const targetPiece = Chessboard.getPieceFromPos(endPos)
         if (!targetPiece || targetPiece.player == this.player) return false; //prevent attacking nothing OR taking own pieces
-        if (this.pos.x >= player.boardSize || this.pos.y >= player.boardSize) return false; //if in the temp position, it has no valid moves
-        if (endPos.x < 0 || endPos.x >= player.boardSize || endPos.y < 0 || endPos.y >= player.boardSize) return false; //prevent going off the board
+        if (this.pos.x >= Player.boardSize || this.pos.y >= Player.boardSize) return false; //if in the temp position, it has no valid moves
+        if (endPos.x < 0 || endPos.x >= Player.boardSize || endPos.y < 0 || endPos.y >= Player.boardSize) return false; //prevent going off the board
 
         return pieceRules[this.pieceType].attack(this, endPos);
     }
@@ -126,7 +126,7 @@ class Piece {
         // For each piece, determine the possible moves based on its type
         switch (this.pieceType) {
             case 'pawn':
-                const moveDirection = this.player == 'player' ? -1 : 1;
+                const moveDirection = this.player == 1 ? -1 : 1; //white pieces move up, black pieces down
                 // Pawns move 1-2 squares forward and attack diagonally
                 const pawnMoves = [
                     [0, 1], [0, 2], [1, 1], [-1, 1], [1, 2], [-1, 2]
@@ -148,7 +148,7 @@ class Piece {
                     [1, 0], [0, 1], [-1, 0], [0, -1]
                 ];
                 rookDirections.forEach(([deltaX, deltaY]) => {
-                    for (let y = this.pos.y + deltaY, x = this.pos.x + deltaX; y >= 0 && y < player.boardSize && x >= 0 && x < player.boardSize; y += deltaY, x += deltaX) {
+                    for (let y = this.pos.y + deltaY, x = this.pos.x + deltaX; y >= 0 && y < Player.boardSize && x >= 0 && x < Player.boardSize; y += deltaY, x += deltaX) {
                         const endPos = { x: x, y: y }
                         if (this.isValidMove(endPos) || this.isValidAttack(endPos)) {
                             availableMoves.push(endPos);
@@ -162,7 +162,7 @@ class Piece {
                     [1, 1], [1, -1], [-1, 1], [-1, -1]
                 ];
                 bishopDirections.forEach(([deltaX, deltaY]) => {
-                    for (let y = this.pos.y + deltaY, x = this.pos.x + deltaX; y >= 0 && y < player.boardSize && x >= 0 && x < player.boardSize; y += deltaY, x += deltaX) {
+                    for (let y = this.pos.y + deltaY, x = this.pos.x + deltaX; y >= 0 && y < Player.boardSize && x >= 0 && x < Player.boardSize; y += deltaY, x += deltaX) {
                         const endPos = { x: x, y: y }
                         if (this.isValidMove(endPos) || this.isValidAttack(endPos)) {
                             availableMoves.push(endPos);
@@ -190,7 +190,7 @@ class Piece {
                     [1, 1], [1, -1], [-1, 1], [-1, -1]
                 ];
                 queenDirections.forEach(([deltaX, deltaY]) => {
-                    for (let y = this.pos.y + deltaY, x = this.pos.x + deltaX; y >= 0 && y < player.boardSize && x >= 0 && x < player.boardSize; y += deltaY, x += deltaX) {
+                    for (let y = this.pos.y + deltaY, x = this.pos.x + deltaX; y >= 0 && y < Player.boardSize && x >= 0 && x < Player.boardSize; y += deltaY, x += deltaX) {
                         const endPos = { x: x, y: y }
                         if (this.isValidMove(endPos) || this.isValidAttack(endPos)) {
                             availableMoves.push(endPos);
@@ -206,8 +206,8 @@ class Piece {
                 ];
                 kingDirections.forEach(([deltaX, deltaY]) => {
 
-                    if (player.upgrades.includes('kingMovesLikeQueen') && this.player == 'player') {
-                        for (let y = this.pos.y + deltaY, x = this.pos.x + deltaX; y >= 0 && y < player.boardSize && x >= 0 && x < player.boardSize; y += deltaY, x += deltaX) {
+                    if (Player.hasUpgrade('kingMovesLikeQueen') && this.player == 1) { //is player piece
+                        for (let y = this.pos.y + deltaY, x = this.pos.x + deltaX; y >= 0 && y < Player.boardSize && x >= 0 && x < Player.boardSize; y += deltaY, x += deltaX) {
                             const endPos = { x: x, y: y }
                             if (this.isValidMove(endPos) || this.isValidAttack(endPos)) {
                                 availableMoves.push(endPos);
@@ -227,14 +227,16 @@ class Piece {
     }
 
     select() {
-        document.querySelector('.selected')?.classList.remove('selected');
-        this.div.classList.add('selected');
-        selectionHighlights(this);
     }
 
     kill(deltaX, deltaY, angle) {
-        if (this.player == 'player') player.piecesLost += 1;
-        else player.piecesTaken += 1;
+        if (this.player == 1) Player.piecesLost += 1;
+        else Player.piecesTaken += 1;
+
+        const index = allPieces.indexOf(this);
+        if (index > -1) {
+            allPieces.splice(index, 1);
+        }
 
         // Set up the animation with a 0.1s delay
         requestAnimationFrame(() => {
@@ -247,13 +249,39 @@ class Piece {
                 // After the animation completes, remove the piece and update the game state
                 this.div.addEventListener('transitionend', () => {
                     this.div.remove();
-                    const index = pieces.indexOf(this);
+                    const index = allPieces.indexOf(this);
                     if (index > -1) {
-                        pieces.splice(index, 1);
+                        allPieces.splice(index, 1);
                     }
                 }, { once: true });
             }, 50); // 100 milliseconds delay
         });
+    }
+
+    isPathBlocked(endPos) {
+        if (Player.hasUpgrade("piecesCanJump") && this.player == 1) return false;
+    
+        const deltaY = endPos.y - this.pos.y;
+        const deltaX = endPos.x - this.pos.x;
+        const stepY = deltaY === 0 ? 0 : deltaY / Math.abs(deltaY);
+        const stepX = deltaX === 0 ? 0 : deltaX / Math.abs(deltaX);
+    
+        let pos = { x: this.pos.x + stepX, y: this.pos.y + stepY }
+    
+        while (pos.y !== endPos.y || pos.x !== endPos.x) {
+            if (Chessboard.getPieceFromPos(pos)) {
+                return true; // Path is blocked by another piece
+            }
+            if (pos.y > Player.boardSize || pos.y < 0 || pos.x > Player.boardSize || pos.x < 0) {
+                console.log(`Error occured in isPathBlocked when moving from ${this.pos.x},${this.pos.y} to ${endPos.x}, ${endPos.y}`);
+                return true;
+            }
+    
+            pos.y += stepY;
+            pos.x += stepX;
+        }
+    
+        return false;
     }
 }
 
@@ -279,7 +307,7 @@ const pieceRules = {
             const deltaY = endPos.y - piece.pos.y;
             const deltaX = Math.abs(endPos.x - piece.pos.x);
 
-            if (piece.player === 'enemy') {
+            if (piece.player === 2) {
                 const isStartingRow = piece.pos.y < 2;
                 if (deltaX === 0) {
                     // Move down by one square
@@ -288,20 +316,20 @@ const pieceRules = {
                     // Move down by two squares from the first 2 rows, ignore path if moving diagonal
                     if (isStartingRow && 
                         deltaY === 2 && 
-                        (deltaX != 0 || !isPathBlocked(piece.pos, endPos))) {
+                        (deltaX != 0 || !piece.isPathBlocked(endPos))) {
                         return true;
                     }
                 }
             } else {
-                const isStartingRow = piece.pos.y > player.boardSize - 3; 
-                if (deltaX === 0 || (deltaX === 1 && player.upgrades.includes("pawnMoveDiagonal"))) {
+                const isStartingRow = piece.pos.y > Player.boardSize - 3; 
+                if (deltaX === 0 || (deltaX === 1 && Player.hasUpgrade("pawnMoveDiagonal"))) {
                     // Move up by one square
                     if (deltaY === -1) return true;
 
                     // Move up by two squares from the first 2 rows (unless upgraded), ignore path if moving diagonal
-                    if ((isStartingRow || player.upgrades.includes("pawnTwoSteps")) &&
+                    if ((isStartingRow || Player.hasUpgrade("pawnTwoSteps")) &&
                         deltaY === -2 &&
-                        (deltaX != 0 || !isPathBlocked(piece.pos, endPos))) {
+                        (deltaX != 0 || !piece.isPathBlocked(endPos))) {
                         return true;
                     }
                 }
@@ -313,20 +341,20 @@ const pieceRules = {
             const deltaX = Math.abs(endPos.x - piece.pos.x);
 
             if (deltaX === 1) {
-                if ((deltaY === 1 && piece.player == 'enemy') ||
-                    (deltaY === -1 && piece.player == 'player')) {
+                if ((deltaY === 1 && piece.player == 2) ||
+                    (deltaY === -1 && piece.player == 1)) {
                     return true;
                 }
             }
 
-            if (player.upgrades.includes("pawnAttackFowards") && piece.player == 'player') return pieceRules.pawn.move(piece, endPos);
+            if (Player.hasUpgrade("pawnAttackFowards") && piece.player == 1) return pieceRules.pawn.move(piece, endPos);
 
             return false;
         }
     },
     rook: {
         move: (piece, endPos) => {
-            return (piece.pos.y === endPos.y || piece.pos.x === endPos.x) && !isPathBlocked(piece.pos, endPos);
+            return (piece.pos.y === endPos.y || piece.pos.x === endPos.x) && !piece.isPathBlocked(endPos);
         },
         attack: (piece, endPos) => {
             return pieceRules.rook.move(piece, endPos);
@@ -334,7 +362,7 @@ const pieceRules = {
     },
     bishop: {
         move: (piece, endPos) => {
-            return Math.abs(endPos.y - piece.pos.y) === Math.abs(endPos.x - piece.pos.x) && !isPathBlocked(piece.pos, endPos);
+            return Math.abs(endPos.y - piece.pos.y) === Math.abs(endPos.x - piece.pos.x) && !piece.isPathBlocked(endPos);
         },
         attack: (piece, endPos) => {
             return pieceRules.bishop.move(piece, endPos);
@@ -352,7 +380,7 @@ const pieceRules = {
     },
     queen: {
         move: (piece, endPos) => {
-            return (piece.pos.y === endPos.y || piece.pos.x === endPos.x || Math.abs(endPos.y - piece.pos.y) === Math.abs(endPos.x - piece.pos.x)) && !isPathBlocked(piece.pos, endPos);
+            return (piece.pos.y === endPos.y || piece.pos.x === endPos.x || Math.abs(endPos.y - piece.pos.y) === Math.abs(endPos.x - piece.pos.x)) && !piece.isPathBlocked(endPos);
         },
         attack: (piece, endPos) => {
             return pieceRules.queen.move(piece, endPos);
@@ -360,7 +388,7 @@ const pieceRules = {
     },
     king: {
         move: (piece, endPos) => {
-            if (player.upgrades.includes('kingMovesLikeQueen')) return pieceRules.queen.move(piece, endPos);
+            if (Player.hasUpgrade('kingMovesLikeQueen')) return pieceRules.queen.move(piece, endPos);
 
             const deltaY = Math.abs(endPos.y - piece.pos.y);
             const deltaX = Math.abs(endPos.x - piece.pos.x);
@@ -376,17 +404,5 @@ function getWeightedRandomPieceType() {
     const pieces = Object.keys(pieceWeights);
     const weights = pieces.map(piece => pieceWeights[piece]);
 
-    // Calculate the total weight
-    const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
-
-    // Generate a random number between 0 and totalWeight
-    let random = Math.random() * totalWeight;
-
-    // Determine which piece corresponds to the random number
-    for (let i = 0; i < pieces.length; i++) {
-        random -= weights[i];
-        if (random <= 0) {
-            return pieces[i];
-        }
-    }
+    return getWeightedRandom(pieces, weights);
 }

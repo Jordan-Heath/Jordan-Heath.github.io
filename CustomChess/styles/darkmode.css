@@ -1,20 +1,16 @@
 @media (prefers-color-scheme: dark) {
     :root {
+        /* General Colors */
         --background-color: #222;
         --text-color: #ffd;
     
-        /* --chessboard-grid: #000; */
+        --cell-white: #988;
+        --cell-black: #556;
+        --cell-highlight: #a77;
     
-        --cell-white: #444;
-        --cell-black: #333;
-        --cell-highlight: #740;
-        --cell-highlight-piece: #a65;
-    
-        /* --piece-available: 3px #732 solid; */
-        --piece-selected: #732;
-        --piece-selected-enemy: #f87;
-        --piece-highlight: #f87;
-    
-        --popup-color: #594;
+        /* --piece-selected: #4b7b37; */
+        --piece-available: #b4c;
+        --piece-selected: #a6a;
+        --piece-highlight: #d88;
     }
 }

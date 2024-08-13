@@ -1,4 +1,4 @@
-class Player {
+class PlayerObj {
     constructor() {
         //variables
         this.loadOut = [];
@@ -49,20 +49,24 @@ class Player {
     }
 
     sellUpgrade(upgradeID) {
-        if (confirm("Selling this upgrade will restart any ongoing matches. Are you sure?")) {
-            const upgrade = upgradeData.find(u => u.id === upgradeID)
+        let allowSale = currentTurn === 0;
+
+        if (!allowSale) allowSale = confirm("Selling this upgrade will restart any ongoing matches. Are you sure?");
+
+        if (allowSale) {
+            const upgrade = UpgradeData.find(u => u.id === upgradeID)
             //remove the upgrade
             this.upgrades = this.upgrades.filter(u => u != upgradeID);
             //give the gold
             this.gold += upgrade.cost;
     
-            printMenu();
-            newMatch();
+            ViewHandler.printCollectionMenu();
+            if (currentTurn != 0) Match.newMatch();
         }
     }
 
     buyUpgrade(upgradeID) {
-        const upgrade = upgradeData.find(u => u.id === upgradeID);
+        const upgrade = UpgradeData.find(u => u.id === upgradeID);
         const buyButton = document.getElementById(`${upgradeID}Button`)
         buyButton.disabled = 'true';
         if (this.gold >= upgrade.cost) {
@@ -71,30 +75,30 @@ class Player {
             this.upgradesPurchased += 1;
             document.getElementById('endGameMessageParagraph').innerHTML = `Enjoy your upgrade! You now have ${this.gold} gold`
             buyButton.innerText = "Enjoy!"
-            printMatchUI('');
+            ViewHandler.printMatchUI('');
         } else {
             buyButton.innerText = "Cannot Afford"
         }
     }
 
     buildTeam() {
-        if (!player.loadOut.includes('king')) player.loadOut.push('king');
+        if (!this.loadOut.includes('king')) this.loadOut.push('king');
     
-        while (player.loadOut.length < this.teamSize) {
-            if (player.upgrades.includes('restockGoodPieces') && Math.random() > 0.5) {
-                player.loadOut.push(getWeightedRandomPieceType());
+        while (this.loadOut.length < this.teamSize) {
+            if (this.upgrades.includes('restockGoodPieces') && Math.random() > 0.5) {
+                this.loadOut.push(getWeightedRandomPieceType());
             } else {
-                player.loadOut.push('pawn');
+                this.loadOut.push('pawn');
             }
         }
     
-        // Sort player.loadOut based on pieceValues in ascending order
-        player.loadOut.sort((a, b) => pieceValues[a] - pieceValues[b]);
+        // Sort Player.loadOut based on pieceValues in ascending order
+        this.loadOut.sort((a, b) => pieceValues[b] - pieceValues[a]);
 
-        const playerPiecePositions = getRandomPositions(player.boardSize-3, player.boardSize-1, player.teamSize); // Bottom 3 rows for player
+        const playerPiecePositions = Chessboard.getRandomPositions(this.boardSize-3, this.boardSize-1, this.teamSize); // Bottom 3 rows for player
 
-        for (var i = 0; i < player.teamSize; i++) {
-            pieces.push(new Piece(this.loadOut[i], playerPiecePositions[i], 'player'));
+        for (var i = 0; i < this.teamSize; i++) {
+            allPieces.push(new Piece(this.loadOut[i], playerPiecePositions[i], 1));
         }
     }
 
@@ -102,15 +106,38 @@ class Player {
         this.boardSize = 8;
         this.teamSize = 8;
 
+        //handle chessboard size
         if (this.upgrades.includes('largerChessboard')) {
             this.boardSize += 1;
             chessboardElement.style.gridTemplateColumns = `repeat(${this.boardSize}, 1fr)`
             chessboardElement.style.gridTemplateRows = `repeat(${this.boardSize}, 1fr)`
         }
+
+        //handle team size
         if (this.upgrades.includes('extraTeamSlot')) this.teamSize += 1;
+        this.teamSize += this.timesPrestiged;
     }
 
-    pretige() { //TODO
+    prestige() { //TODO
+        if (Player.highestStreak < (Player.timesPrestiged + 1) * 10) return; //must have high streak
+        if (Player.upgrades.length != UpgradeData.length) return; //must have all upgrades
+
+        this.upgrades = [];
         this.timesPrestiged += 1;
+        this.refreshUpgrades();
+        this.saveToLocalStorage();
+
+        ViewHandler.printProfileMenu();
+    }
+
+    hasUpgrade(upgradeID) {
+        return this.upgrades.includes(upgradeID);
+    }
+
+    deleteSave() {
+        if (confirm("Are you sure you want to delete your save?")) {
+            localStorage.removeItem("CustomChessSave");
+            location.reload();
+        }
     }
 }

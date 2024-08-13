@@ -34,36 +34,30 @@ function debugPopup() {
 // Define the debug functions
 const debugFunctions = {
     "Give All Upgrades": () => {
-        upgradeData.forEach(upgrade => {
-            if (!player.upgrades.includes(upgrade.id)) {
-                player.upgrades.push(upgrade.id);
+        for (const upgrade of UpgradeData) {
+            if (!Player.hasUpgrade(upgrade.id)) {
+                Player.upgrades.push(upgrade.id);
             }
 
             //need to refresh availableMoves and highlights
-            newMatch();
-        });
+            Match.newMatch();
+        }
     },
     "Win Match": () => {
-        getPlayersPieces('enemy').forEach(piece => {
+        for (const piece of Match.getPlayersPieces(2)) {
             piece.kill(50, -50, 200);
-        });
-        setTimeout(() => endGame(), 500);
+        };
+        setTimeout(() => Match.endGame(), 500);
     },
     "Randomly Promote all player Pawns": () => {
-        getPlayersPieces('player').forEach(piece => {
+        for (const piece of Match.getPlayersPieces(1)) {
             if (piece.pieceType === 'pawn') piece.promote('random');
-        });
+        }
 
-        clearHighlights();
-        generalHighlights();
-    },
-    "Reset Save": () => {
-        player = new Player();
-        player.saveToLocalStorage();
-        location.reload();
+        Chessboard.generalHighlights();
     },
     "Close Debug Menu": () => {
         popupElement.innerHTML = '';
-        popupElement.style.display = 'none';
+        ViewHandler.closeMenu(popupElement);
     }
 };
