@@ -42,7 +42,7 @@ class ViewHandler {
             ViewHandler.printCollectionMenu();
         });
         quitButtonElement.addEventListener('click', () => {
-            location.href = "../../index.html";
+            location.href = "../index.html";
         });
 
         //Match
