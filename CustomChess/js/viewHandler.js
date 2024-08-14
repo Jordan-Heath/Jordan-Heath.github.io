@@ -95,10 +95,10 @@ class ViewHandler {
             <h2>Prestige</h2>
             <div id="prestige">
                 ${Player.timesPrestiged > 0 ? `<p>Prestige Rank ${Player.timesPrestiged}</p>` : ''}
-                <p>If you have all upgrades, and your highest streak is ${(Player.timesPrestiged + 1) * 10} you can prestige.</p>
-                <p>Pretiging will cost all your upgrades and gold, but permanently raise your teamsize by 1</p>
+                <p>If your highest streak is ${(Player.timesPrestiged + 1) * 20} you can prestige.</p>
+                <p>Prestiging will cost all your upgrades, but permanently raise your teamsize by 1</p>
                 <button onclick="Player.prestige()"
-                            ${(Player.highestStreak >= (Player.timesPrestiged + 1) * 10) //must have high streak
+                            ${(Player.highestStreak >= (Player.timesPrestiged + 1) * 20) //must have high streak
                             && (Player.upgrades.length === UpgradeData.length) //must have all upgrades
                             ? '' : 'disabled'}>
                     Prestige

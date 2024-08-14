@@ -116,7 +116,7 @@ class PlayerObj {
     }
 
     prestige() { //TODO
-        if (Player.highestStreak < (Player.timesPrestiged + 1) * 10) return; //must have high streak
+        if (Player.highestStreak < (Player.timesPrestiged + 1) * 20) return; //must have high streak
         if (Player.upgrades.length != UpgradeData.length) return; //must have all upgrades
 
         this.upgrades = [];

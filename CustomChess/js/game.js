@@ -27,7 +27,7 @@ const UpgradeData = [
         id: "piecesCanJump",
         name: "Jumping Pieces",
         description: "Pieces won't block your path",
-        cost: 20
+        cost: 40
     },
     {
         id: "kingMovesLikeQueen",
@@ -45,7 +45,7 @@ const UpgradeData = [
         id: "noKingNeeded",
         name: "Constitutional Monarchy",
         description: "No King needed. Keep playing until you run out of pieces.",
-        cost: 20
+        cost: 40
     },
     {
         id: "protectiveSight",
@@ -87,7 +87,7 @@ const UpgradeData = [
         id: "saferKing",
         name: "Battleplan Position",
         description: "King will always spawn in the back row.",
-        cost: 10
+        cost: 5
     },
     {
         id: "deeperKnights",
@@ -104,7 +104,7 @@ const UpgradeData = [
     {
         id: "promoteToKing",
         name: "Noble Heirs",
-        description: "You are able to a pawn to a an additional king.",
+        description: "You are able to promote a pawn to an additional king.",
         cost: 20
     }
     //player.upgrades.includes('upgradeID')

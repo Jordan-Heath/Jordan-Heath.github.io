@@ -133,6 +133,8 @@ class EnemyObj {
                 teamSize++;
             }
         }
+
+        teamSize = Math.min(teamSize, Player.boardSize * 3)
     
         // Add promoted units to the loadOut array
         for (let i = 0; i < promotedUnits; i++) {

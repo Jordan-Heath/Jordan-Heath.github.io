@@ -14,14 +14,17 @@ Upgrades
         Queen's Tax: Earn 1 gold every your queen kills an opposing piece
     King:
         <DONE><TESTED> king can move like a queen
-        <DONE> Safer king: king always spawns in the backmost row
         <DONE><TESTED> Play on without a king
+        <DONE> Safer king: king always spawns in the backmost row
 
     <DONE><TESTED> Pieces can jump other pieces
     <DONE><TESTED> Restock your ranks with good pieces
     <DONE><TESTED> extra team slot (boardSize + X)
+
     <DONE> Ability to upgrade to a king at the end of the board (multiple kings)
     <DONE> add discount to promoting pawns
+
+    once per match, mind control an enemy pieces
     extra move at the start of a match
 
 

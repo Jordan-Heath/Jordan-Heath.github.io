@@ -130,7 +130,7 @@ class Chessboard {
             let y;
             y = Math.floor(Math.random() * (yRange)) + yStart;
             if (player === 1) {
-                if (loadOut[i] === 'king' && Player.hasUpgrade("saferKing")) y = 8;
+                if (loadOut[i] === 'king' && Player.hasUpgrade("saferKing")) y = yEnd;
                 if (loadOut[i] === 'knight' && Player.hasUpgrade("deeperKnights")) y = Math.floor(Math.random() * (yRange - 1)) + yStart - 2;
             }
 

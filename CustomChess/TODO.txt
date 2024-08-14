@@ -1,10 +1,21 @@
 Visual:
+    dark mode
+        make menues dark blue rather than purple
+    add rarity visuals for different upgrade prices
 
 Fix:
     Check performance / add unit tests
     Fix pull down refresh on mobile
+    box-sizing border on .upgrade
+
+Balance:
+    adjust prestige
+        remove upgrade requirement
+        change gold requirement (remove or set a standard)
+    change price of upgrades
 
 Features:
+    Save Management
     Sounds
     Music
     More upgrades
