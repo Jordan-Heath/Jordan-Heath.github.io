@@ -76,6 +76,36 @@ const UpgradeData = [
         name: "Wider Battlefield",
         description: "Makes the chessboard 1 tile wider/taller.",
         cost: 10
+    },
+    // {
+    //     id: "rookImuneToPawns",
+    //     name: "Fortified Rooks",
+    //     description: "Makes Rooks imune to pawns",
+    //     cost: 20
+    // }
+    {
+        id: "saferKing",
+        name: "Battleplan Position",
+        description: "King will always spawn in the back row.",
+        cost: 10
+    },
+    {
+        id: "deeperKnights",
+        name: "Scouting Parties",
+        description: "knights will spawn 4-5 tiles deep into the board",
+        cost: 10
+    },
+    {
+        id: "promotionDiscount",
+        name: "Promotion Discount",
+        description: "Promoting to a specific piece will cost you 1 less gold.",
+        cost: 5
+    },
+    {
+        id: "promoteToKing",
+        name: "Noble Heirs",
+        description: "You are able to a pawn to a an additional king.",
+        cost: 20
     }
     //player.upgrades.includes('upgradeID')
 ]

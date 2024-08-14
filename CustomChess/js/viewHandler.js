@@ -6,6 +6,7 @@ const startMenuElement = document.getElementById('startMenu');
     const collectionButtonElement = document.getElementById('collectionButton');
     const playButtonParagraph = document.getElementById('playButtonParagraph');
     const playButtonElement = document.getElementById('playButton');
+    const quitButtonElement = document.getElementById('quitButton');
 
 //profileMenu
 const profileMenuElement = document.getElementById('profileMenu');
@@ -22,7 +23,7 @@ const matchMenuButtonElement = document.getElementById('match-menu-button');
         const matchMenuReturnButton = document.getElementById('match-menu-return-button');
 const chessboardElement = document.getElementById('chessboard');
 const popupElement = document.getElementById('popup');
-const matchUIElement = document.getElementById('ui');
+const matchUIElement = document.getElementById('matchUI');
     const matchInfoElement = document.getElementById('matchInfo');
     const turnIndicatorElement = document.getElementById('turnIndicator');
     const runInfoElement = document.getElementById('runInfo');
@@ -31,14 +32,17 @@ const matchUIElement = document.getElementById('ui');
 class ViewHandler {
     static attachListeners() {
         //Start Menu
-        profileButtonElement.addEventListener('click', () => {
-            ViewHandler.printProfileMenu();
-        });
         playButtonElement.addEventListener('click', () => {
             Match.newMatch();
         });
+        profileButtonElement.addEventListener('click', () => {
+            ViewHandler.printProfileMenu();
+        });
         collectionButtonElement.addEventListener('click', () => {
             ViewHandler.printCollectionMenu();
+        });
+        quitButtonElement.addEventListener('click', () => {
+            location.href = "../../index.html";
         });
 
         //Match
@@ -240,6 +244,17 @@ class ViewHandler {
     static promptPromotion(piece) {
         const pieceIndex = allPieces.indexOf(piece);
 
+        let promoteToKingButton = '';
+        if (Player.hasUpgrade("promoteToKing")) {
+            promoteToKingButton = `
+                    <button 
+                        ${Player.gold < pieceValues['king'] - Player.promotionDiscount ? 'disabled' : ''} 
+                        onclick="allPieces[${pieceIndex}].promote('king')">
+                            King (${pieceValues['king'] - Player.promotionDiscount}g)
+                    </button>
+                `;
+        }
+
         popupElement.innerHTML = `
             <h2>Promote Your Pawn</h2>
             <button onclick="allPieces[${pieceIndex}].promote('random')">Random (Free)</button>
@@ -264,6 +279,7 @@ class ViewHandler {
                     onclick="allPieces[${pieceIndex}].promote('queen')">
                         Queen (${pieceValues['queen'] - Player.promotionDiscount}g)
                 </button>
+                ${promoteToKingButton}
             </div>
         `;
     
@@ -274,10 +290,20 @@ class ViewHandler {
         matchInfoElement.innerHTML = `
         <p>Player Score: ${Match.calculatePoints(1)}</p>
         <p>Enemy Score: ${Match.calculatePoints(2)}</p>
+        <p>Expected Gold: ${(Player.matchStreak + 1) + Math.ceil(((Match.calculatePoints(2) - pieceValues['king']) / 3))}
         `;
+
+        let checkMessage = '';
+        const kings = allPieces.filter(piece => piece.pieceType === 'king');
+
+        for( const king of kings ) {
+            const playerInDanger = Chessboard.isPosDangerous(king, king.pos);
+            checkMessage = playerInDanger ? '<p>King is in Check</p>' : '';
+        }
     
         turnIndicatorElement.innerHTML = `
         <p>${message}</p>
+        ${checkMessage}
         `;
     
         runInfoElement.innerHTML = `
@@ -297,7 +323,9 @@ class ViewHandler {
             collectionButtonElement.disabled = true;
             playButtonParagraph.innerText = 'New Game';
         } else {
-                playButtonParagraph.innerText = `Continue (Match Streak ${Player.matchStreak})`
+            profileButtonElement.disabled = false;
+            collectionButtonElement.disabled = false;
+            playButtonParagraph.innerText = `Continue (Match Streak ${Player.matchStreak})`
         }
     }
 

@@ -5,17 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom Chess</title>
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/mobilestyle.css">
     <link rel="stylesheet" href="styles/darkmode.css">
     <link rel="icon" type="image/x-icon" href="assets/white/pawn.png">
 
-    <script src="js/utils.js"></script>
+    <script src="js/misc/utils.js"></script>
+    <script src="js/misc/debug.js" defer></script>
+
     <script src="js/piece.js"></script>
     <script src="js/chessboard.js"></script>
     <script src="js/match.js"></script>
-    <script src="js/player.js"></script>
-    <script src="js/enemy.js"></script>
-    <script src="js/view.js" defer></script>
-    <script src="js/debug.js" defer></script>
+    <script src="js/playerObj.js"></script>
+    <script src="js/enemyObj.js"></script>
+    <script src="js/viewHandler.js" defer></script>
     <script src="js/game.js" defer></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,13 +27,14 @@
 <body>
     <div id="startMenu">
         <h1 id="title">Custom Chess</h1>
-        <div id="menuButtons">
-            <button id="profileButton">Profile</button>
+        <div id="menu-button-container">
             <div id="playButtonContainer">
                 <p id="playButtonParagraph"></p>
                 <button id="playButton">Play</button>
             </div>
+            <button id="profileButton">Profile</button>
             <button id="collectionButton">Collection</button>
+            <button id="quitButton">Quit</button>
         </div>
     </div>
 
@@ -47,7 +50,7 @@
         </div>
 
         <div id="chessboard"></div>
-        <div id="ui">
+        <div id="matchUI">
             <div id="matchInfo"></div>
             <div id="turnIndicator"></div>
             <div id="runInfo"></div>

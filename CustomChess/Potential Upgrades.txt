@@ -8,34 +8,32 @@ Upgrades
     Bishop:
         Protestant Reformation: bishops can move 1 tile up down left or right, allowing them to change their color
     Knight:
-        Scouting Parties: knights can spawn 4-5 tiles deep into the board
+        <DONE> Scouting Parties: knights can spawn 4-5 tiles deep into the board
+        Big L movement (2 by 3)
     Queen:
         Queen's Tax: Earn 1 gold every your queen kills an opposing piece
     King:
         <DONE><TESTED> king can move like a queen
+        <DONE> Safer king: king always spawns in the backmost row
+        <DONE><TESTED> Play on without a king
 
     <DONE><TESTED> Pieces can jump other pieces
     <DONE><TESTED> Restock your ranks with good pieces
     <DONE><TESTED> extra team slot (boardSize + X)
+    <DONE> Ability to upgrade to a king at the end of the board (multiple kings)
+    <DONE> add discount to promoting pawns
     extra move at the start of a match
-    Ability to upgrade to a king at the end of the board (multiple kings)
-    <DONE><TESTED> Play on without a king
 
 
 Quirks
-    Play on without a king
-    <DONE> Larger chessboard
-    Smaller chessboard
+    <DONE><TESTED> Larger chessboard
     Make enemy less agressive
-    Name your pieces
-    Rainbow Pieces (1g)
+    Gives pieces random names (5g)
+    Rainbow Pieces (5g)
+    Holes in the middle of the map
 
 
 Paywall existing features?
-    Make upgrading to new pieces an upgrade
-    Make show movement arrow an upgrade
-    Make highlight moveable pieces an upgrade
-    Show other pieces available moves on select
     <DONE><TESTED> protectiveSight: You can see if your pieces are vulnerable
     <DONE><TESTED> safetySight: You can sense if tiles you're moving to are vulnerable
     <DONE><TESTED> killerSight: You can see if an enemy is vulnerable

@@ -4,12 +4,7 @@ class PlayerObj {
         this.loadOut = [];
         this.matchStreak = 0;
         this.gold = 0;
-        this.upgrades = [
-            // "pawnTwoSteps",
-            // "pawnMoveDiagonal",
-            // "pawnAttackFowards",
-            // "piecesCanJump"
-        ];
+        this.upgrades = [];
         this.promotionDiscount = 1;
         this.shopSize = 3;
 
@@ -92,19 +87,16 @@ class PlayerObj {
             }
         }
     
-        // Sort Player.loadOut based on pieceValues in ascending order
+        // Sort loadOut based on pieceValues in descending order (high value first)
         this.loadOut.sort((a, b) => pieceValues[b] - pieceValues[a]);
 
-        const playerPiecePositions = Chessboard.getRandomPositions(this.boardSize-3, this.boardSize-1, this.teamSize); // Bottom 3 rows for player
-
-        for (var i = 0; i < this.teamSize; i++) {
-            allPieces.push(new Piece(this.loadOut[i], playerPiecePositions[i], 1));
-        }
+        Chessboard.placePlayerPieces(1, this.loadOut, this.teamSize);
     }
 
     refreshUpgrades() {
         this.boardSize = 8;
         this.teamSize = 8;
+        this.promotionDiscount = 1;
 
         //handle chessboard size
         if (this.upgrades.includes('largerChessboard')) {
@@ -116,6 +108,11 @@ class PlayerObj {
         //handle team size
         if (this.upgrades.includes('extraTeamSlot')) this.teamSize += 1;
         this.teamSize += this.timesPrestiged;
+
+        //handle promotion discount
+        if (this.hasUpgrade("promotionDiscount")) {
+            this.promotionDiscount += 1;
+        }
     }
 
     prestige() { //TODO

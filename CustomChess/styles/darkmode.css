@@ -3,14 +3,29 @@
         /* General Colors */
         --background-color: #222;
         --text-color: #ffd;
+
+        --button-color: #836;
+        --button-hover-color: #726;
+
+        /* Start Menu Colors */
+        --menu-button-container-color: #555;
     
+        /* Chessboard Colors */
         --cell-white: #988;
         --cell-black: #556;
         --cell-highlight: #a77;
-    
-        /* --piece-selected: #4b7b37; */
+
+        /* Piece Colors */
         --piece-available: #b4c;
         --piece-selected: #a6a;
         --piece-highlight: #d88;
+
+        /* Other UI Colors */
+        --menu-primary-color: #434;
+        --menu-secondary-color: #647;
+        --menu-tertiary-color: #84a;
+
+        --popup-color: #434;
+        --popup-secondary-color: #647;
     }
 }

@@ -1,12 +1,14 @@
 Visual:
 
 Fix:
+    Check performance / add unit tests
+    Fix pull down refresh on mobile
 
 Features:
-    More mechanics for the enemy as streak rises
     Sounds
     Music
     More upgrades
+    Pay the average price of the remaining upgrades for weighted random upgrade on the collection page
 
 OOP Conversion:
     make pieces use inheritance to implement move/attack rules?

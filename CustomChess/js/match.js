@@ -85,7 +85,6 @@ class Match {
         });
 
         ViewHandler.promptEndGameMessage(matchResult, `You earned ${goldEarned} gold - giving you a total of ${Player.gold} gold.`);
-        ViewHandler.printMatchUI('');
         currentTurn = 0; //pause
         Chessboard.clearHighlights();
         Player.saveToLocalStorage();
@@ -111,28 +110,35 @@ class Match {
                 if (piece.pos.y === 0 && piece.player === 1) {
                     currentTurn = 0; //pause
                     ViewHandler.promptPromotion(piece);
-                    return;
+                    return true;
                 } else if (piece.pos.y === Player.boardSize - 1 && piece.player === 2) {
                     piece.promote('random');
                 }
             }
         }
+        return false;
     }
 
     static endTurn() {
+        //end if paused
+        if (currentTurn === 0) return;
+
+        //promote pawns
         if (!promotionDisabled && Match.checkPawnsForPromotions()) return;
 
-        if (currentTurn === 0) return; //if paused
-
-        currentTurn = currentTurn === 1 ? 2 : 1; //swap between player (1) and enemy (2)
-        ViewHandler.printMatchUI(`${currentTurn == 1 ? "Player's turn" : "Enemy's Turn"}`); //display either player's or enemy's turn
-        allPieces.forEach(piece => piece.availableMoves = piece.calculateAvailableMoves());
-        Chessboard.generalHighlights();
-
+        //end game?
         if (Match.isGameOver()) {
             Match.endGame();
             return;
         }
+
+        //handle turn swap
+        currentTurn = currentTurn === 1 ? 2 : 1; //swap between player (1) and enemy (2)
+        ViewHandler.printMatchUI(`${currentTurn == 1 ? "Player's turn" : "Enemy's Turn"}`); //display either player's or enemy's turn
+
+        //recalculate Moves
+        allPieces.forEach(piece => piece.availableMoves = piece.calculateAvailableMoves());
+        Chessboard.generalHighlights();
 
         if (currentTurn === 2) { //if enemy's turn
             setTimeout(() => { Enemy.turn() }, Player.turnTime);

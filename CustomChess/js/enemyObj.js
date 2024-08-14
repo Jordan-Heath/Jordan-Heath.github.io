@@ -25,17 +25,17 @@ class EnemyObj {
     
         // 4. Move the king if no non-king moves are available
         this.delayForfeit(kingPiece);
-    }
+    }    
     
     tryAvoidCheckMate(kingPiece) {
-        if (Chessboard.isPosDangerous(kingPiece, kingPiece.pos, 2)) {
+        if (Chessboard.isPosDangerous(kingPiece, kingPiece.pos)) {
             const possibleKingMoves = kingPiece.availableMoves;
             console.log('Check');
             
             // Try safely attacking with the king
             for (const move of possibleKingMoves) {
                 const targetPiece = Chessboard.getPieceFromPos(move);
-                if (targetPiece && !Chessboard.isPosDangerous(kingPiece, move, 2)) {
+                if (targetPiece && !Chessboard.isPosDangerous(kingPiece, move)) {
                     kingPiece.movePiece(move);
                     return true;
                 }
@@ -43,7 +43,7 @@ class EnemyObj {
     
             // Try safely moving the king
             for (const move of possibleKingMoves) {
-                if (!Chessboard.isPosDangerous(kingPiece, move, 2)) {
+                if (!Chessboard.isPosDangerous(kingPiece, move)) {
                     kingPiece.movePiece(move);
                     return true;
                 }
@@ -61,7 +61,7 @@ class EnemyObj {
                 const targetPiece = Chessboard.getPieceFromPos(move);
                 if (targetPiece) {
                     // If the piece is the king, ensure the move is to a safe position
-                    if (pieceAndMoves.piece.pieceType === 'king' && Chessboard.isPosDangerous(kingPiece, move, 2)) {
+                    if (pieceAndMoves.piece.pieceType === 'king' && Chessboard.isPosDangerous(kingPiece, move)) {
                         continue;
                     }
                     forfeitCounter = 0;
@@ -96,7 +96,7 @@ class EnemyObj {
         const possibleKingMoves = kingPiece.availableMoves;
         shuffle(possibleKingMoves);
         for (const move of possibleKingMoves) {
-            if (!Chessboard.isPosDangerous(kingPiece, move, 2)) {
+            if (!Chessboard.isPosDangerous(kingPiece, move)) {
                 kingPiece.movePiece(move);
                 return;
             }
@@ -114,17 +114,41 @@ class EnemyObj {
     buildTeam() {
         const loadOut = [];
     
-        loadOut.push('king');
-    
-        while(loadOut.length < Player.boardSize) {
-            if (loadOut.length < Player.matchStreak) loadOut.push(getWeightedRandomPieceType());
-            else loadOut.push('pawn');
+        // Calculate the number of kings based on match streak
+        const numberOfKings = 1 + Math.floor(Player.matchStreak / 50);
+        for (let i = 0; i < numberOfKings; i++) {
+            loadOut.push('king');
         }
     
-        const enemyPiecePositions = Chessboard.getRandomPositions(0, 2, 8);
+        // Initialize team size and promoted units
+        let teamSize = 8;  // Start with base team size
+        let promotedUnits = 0;  // No promoted units initially
     
-        for (var i = 0; i < 8; i++) {
-            allPieces.push(new Piece(loadOut[i], enemyPiecePositions[i], 2));
+        // Determine number of promoted units and adjust team size accordingly
+        for (let i = 0; i < Player.matchStreak; i++) {
+            promotedUnits++;
+    
+            if (promotedUnits > (teamSize - numberOfKings)) {
+                promotedUnits = Math.floor(promotedUnits / 3);
+                teamSize++;
+            }
         }
+    
+        // Add promoted units to the loadOut array
+        for (let i = 0; i < promotedUnits; i++) {
+            loadOut.push(getWeightedRandomPieceType());
+        }
+    
+        // Fill the remaining slots with pawns until reaching the team size
+        while (loadOut.length < teamSize) {
+            loadOut.push('pawn');
+        }
+    
+        // Sort loadOut based on pieceValues in descending order (high value first)
+        loadOut.sort((a, b) => pieceValues[b] - pieceValues[a]);
+    
+        // Place pieces on the board
+        Chessboard.placePlayerPieces(2, loadOut, teamSize);
     }
+    
 }

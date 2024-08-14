@@ -226,9 +226,6 @@ class Piece {
         return availableMoves;
     }
 
-    select() {
-    }
-
     kill(deltaX, deltaY, angle) {
         if (this.player == 1) Player.piecesLost += 1;
         else Player.piecesTaken += 1;

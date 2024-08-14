@@ -1,6 +1,7 @@
 class Chessboard {
     static draw() {
         chessboardElement.innerHTML = '';
+    
         for (let row = 0; row < Player.boardSize; row++) {
             for (let col = 0; col < Player.boardSize; col++) {
                 const cell = document.createElement('div');
@@ -8,10 +9,19 @@ class Chessboard {
                 cell.classList.add((row + col) % 2 === 0 ? 'white' : 'black');
                 cell.dataset.pos = JSON.stringify({ x: col, y: row });
                 cell.addEventListener('click', Chessboard.handleCellClick);
+    
+                // Add row and column numbers
+                if (row === 0) {
+                    cell.innerHTML = `<p>${col}</p>`; // Top row
+                } else if (col === 0) {
+                    cell.innerHTML = `<p>${row}</p>`; // Left column
+                }
+    
                 chessboardElement.appendChild(cell);
             }
         }
-
+    
+        // Add event listeners for drag and drop functionality
         const cells = document.querySelectorAll('.cell');
         cells.forEach(cell => {
             cell.addEventListener('dragover', Chessboard.handleDragOverCell);
@@ -109,17 +119,30 @@ class Chessboard {
         return allPieces.find(piece => piece.pos.x === pos.x && piece.pos.y === pos.y);
     }
 
-    static getRandomPositions(rowStart, rowEnd, count) {
+    static placePlayerPieces(player, loadOut, count) {
         const positions = [];
-        while (positions.length < count) {
-            const row = Math.floor(Math.random() * (rowEnd - rowStart + 1)) + rowStart;
-            const col = Math.floor(Math.random() * Player.boardSize);
-            const pos = { x: col, y: row };
+
+        const yStart = player === 1 ? (Player.boardSize - 3) : 0;
+        const yEnd = player === 1 ? (Player.boardSize - 1) : 2;
+        const yRange = yEnd - yStart + 1;
+
+        for (let i = 0; i < count;) {
+            let y;
+            y = Math.floor(Math.random() * (yRange)) + yStart;
+            if (player === 1) {
+                if (loadOut[i] === 'king' && Player.hasUpgrade("saferKing")) y = 8;
+                if (loadOut[i] === 'knight' && Player.hasUpgrade("deeperKnights")) y = Math.floor(Math.random() * (yRange - 1)) + yStart - 2;
+            }
+
+            const x = Math.floor(Math.random() * Player.boardSize);
+            const pos = { x: x, y: y };
+
             if (!positions.some(p => p.x === pos.x && p.y === pos.y)) {
                 positions.push(pos);
+                allPieces.push(new Piece(loadOut[i], pos, player));
+                i++;
             }
         }
-        return positions;
     }
 
     //#region Event Listeners
