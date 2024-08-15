@@ -163,7 +163,7 @@ function calculateCurrentDayIndex(walkthroughData, monthNames, currentMonth, cur
 //hotkey handler
 document.addEventListener('keydown', (event) => {
     const action = keyActions[event.code];
-    if (action && guideSave.guideButtonHotkeysEnabled) {
+    if (action) {
         action();
     }
 });
