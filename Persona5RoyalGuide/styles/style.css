@@ -71,6 +71,11 @@
     }
 }
 
+html {
+    overflow-x: hidden;
+    overscroll-behavior: none
+}
+
 body {
     background-color: #1a1a1a;
     background-image: url("../assets/background.jpg");

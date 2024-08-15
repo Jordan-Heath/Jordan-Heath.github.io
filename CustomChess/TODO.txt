@@ -1,12 +1,9 @@
 Visual:
-    dark mode
-        make menues dark blue rather than purple
     add rarity visuals for different upgrade prices
 
 Fix:
     Check performance / add unit tests
-    Fix pull down refresh on mobile
-    box-sizing border on .upgrade
+    <NEED TO TEST> Fix pull down refresh on mobile
 
 Balance:
     adjust prestige
