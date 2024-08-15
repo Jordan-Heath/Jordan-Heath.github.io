@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 
+    <script src="js/guideSave.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/controls.js"></script>
     <script src="js/data/data.js"></script>
@@ -27,18 +28,17 @@
     <nav id="nav" style="display: flex;">
         <div class="title"><h1>P5R</h1> <h2>Guide</h2></div>
         <button class="guide-button selected" onclick="closeGuideButton(this)"><span class="trigger-number">0. </span>Walkthrough</button>
-        <button class="guide-button" onclick="guideButtonFunction(flowerStoreGuide, this)"><span class="trigger-number">1. </span>Flower Picking</button>
-        <button class="guide-button" onclick="guideButtonFunction(convenienceStoreGuide, this)"><span class="trigger-number">2. </span>Convenience Store</button>
-        <button class="guide-button" onclick="guideButtonFunction(confidantGuide, this)"><span class="trigger-number">3. </span>Confidants</button>
+        <button class="guide-button" onclick="guideButtonFunction(parttimeJobGuide, this)"><span class="trigger-number">1. </span>Parttime Jobs</button>
+        <button class="guide-button" onclick="guideButtonFunction(confidantGuide, this)"><span class="trigger-number">2. </span>Confidants</button>
         <hr/>
-        <button class="guide-button" onclick="guideButtonFunction(negotiationGuide, this)"><span class="trigger-number">4. </span>Negotiation</button>
-        <button class="guide-button" onclick="guideButtonFunction(fusionCalculator, this)"><span class="trigger-number">5. </span>Fusion Calculator</button>
+        <button class="guide-button" onclick="guideButtonFunction(negotiationGuide, this)"><span class="trigger-number">3. </span>Negotiation</button>
+        <button class="guide-button" onclick="guideButtonFunction(fusionCalculator, this)"><span class="trigger-number">4. </span>Fusion Calculator</button>
         <hr/>
-        <button class="guide-button" onclick="notepadButtonFuction(this)"><span class="trigger-number">6. </span>NotePad</button>
-        <button class="guide-button" onclick="guideButtonFunction(controls, this)" id="controls-button"><span class="trigger-number">7. </span>Controls</button>
-        <button class="guide-button" onclick="guideButtonFunction(credits, this)"><span class="trigger-number">8. </span>Credits</button>
+        <button class="guide-button" onclick="notepadButtonFuction(this)"><span class="trigger-number">5. </span>NotePad</button>
+        <button class="guide-button" onclick="controlsButtonFunction(this)" id="controls-button"><span class="trigger-number">6. </span>Controls</button>
+        <button class="guide-button" onclick="guideButtonFunction(credits, this)"><span class="trigger-number">7. </span>Credits</button>
         <hr/>
-        <button class="guide-button" onclick="location.href='../index.html'"><span class="trigger-number">9. </span>Quit</button>
+        <button class="guide-button" onclick="location.href='../index.html'">Quit</button>
     </nav>
 
     <div class="title" id="mobileHeading"><h1>P5R</h1> <h2>Guide</h2></div>

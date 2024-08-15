@@ -1,12 +1,3 @@
-//save the month/date to localStorage
-function saveDate(month, date) {
-    selectedMonth = month;
-    month == null ? localStorage.removeItem('selectedMonth') : localStorage.setItem('selectedMonth', month);
-
-    selectedDate = date;
-    date == null ? localStorage.removeItem('selectedDate') : localStorage.setItem('selectedDate', date);
-}
-
 //find a button in {container} with value {text}
 function findButtonByText(container, text) {
     return Array.from(container.querySelectorAll('button')).find(button => button.textContent === text);

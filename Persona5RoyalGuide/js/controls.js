@@ -9,8 +9,8 @@ function monthButtonFunction(month) {
     selectElement(buttonElement, '.month-button');
 
     // save the new month, render the dates for the month
-    saveDate(month, null);
-    renderDatesContainer(month);
+    guideSave.saveDate(month, null);
+    renderDatesContainer();
 
     // ensure output is hidden
     output.style.display = 'none';
@@ -27,8 +27,8 @@ function dateButtonFunction(month, date) {
     selectElement(buttonElement, '.date-button');
 
     // save the new date, render the output
-    saveDate(month, date);
-    renderOutput(month, date);
+    guideSave.saveDate(month, date);
+    renderOutput();
 }
 
 function guideButtonFunction(loadedGuide, selectedButton) {
@@ -79,13 +79,14 @@ function notepadButtonFuction(selectedButton) {
     highlightedWordsElement = document.getElementById('highlightedWords');
 
     //initialise values
-    notepad.value = localStorage.getItem("notepadContent") || '';
-    highlightedWordsElement.value = localStorage.getItem("highlightedWordsContent") || '';
+    notepad.value = guideSave.notepadContent;
+    highlightedWordsElement.value = guideSave.highlightedWordsContent;
 
     //add notepad save & tab support
     const debouncedNotepadSave = debounce(() => {
         console.log('Saved notepadContent');
-        localStorage.setItem("notepadContent", notepad.value);
+        guideSave.notepadContent = notepad.value;
+        guideSave.saveToLocalStorage();
     });
     notepad.addEventListener("input", debouncedNotepadSave);
     notepad.addEventListener("keydown", handleTabKey);
@@ -93,10 +94,42 @@ function notepadButtonFuction(selectedButton) {
     //add highlighted words save
     const debouncedHighlightedWordsSave = debounce(() => {
         console.log('Saved highlightedWords');
-        localStorage.setItem("highlightedWordsContent", highlightedWordsElement.value);
-        renderOutput(selectedMonth, selectedDate);
+        guideSave.highlightedWordsContent = highlightedWordsElement.value;
+        guideSave.saveToLocalStorage();
+
+        renderOutput();
     });
     highlightedWordsElement.addEventListener("input", debouncedHighlightedWordsSave);
+}
+
+function controlsButtonFunction(selectedButton) {
+    guideButtonFunction(controls, selectedButton);
+
+    // Get checkbox elements
+    const numberHotkeysCheckbox = document.getElementById('numberHotkeysCheckbox');
+    const navigationHotkeysCheckbox = document.getElementById('navigationHotkeysCheckbox');
+    const escapeHotkeyCheckbox = document.getElementById('escapeHotkeyCheckbox');
+
+    // Set initial checkbox states based on GuideSave settings
+    numberHotkeysCheckbox.checked = guideSave.numberHotkeysEnabled;
+    navigationHotkeysCheckbox.checked = guideSave.navigationHotkeysEnabled;
+    escapeHotkeyCheckbox.checked = guideSave.escapeHotkeyEnabled;
+
+    // Add event listeners to update settings when checkboxes are toggled
+    numberHotkeysCheckbox.addEventListener('click', () => {
+        guideSave.numberHotkeysEnabled = numberHotkeysCheckbox.checked;
+        guideSave.saveToLocalStorage();
+    });
+
+    navigationHotkeysCheckbox.addEventListener('click', () => {
+        guideSave.navigationHotkeysEnabled = navigationHotkeysCheckbox.checked;
+        guideSave.saveToLocalStorage();
+    });
+
+    escapeHotkeyCheckbox.addEventListener('click', () => {
+        guideSave.escapeHotkeyEnabled = escapeHotkeyCheckbox.checked;
+        guideSave.saveToLocalStorage();
+    });
 }
 
 function navButtonFunction() {

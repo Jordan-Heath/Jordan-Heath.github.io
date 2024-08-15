@@ -9,19 +9,19 @@ const dayIndices = {
 };
 
 const keyActions = {
-	'NumpadAdd': () => changeDate(1),
-	'NumpadSubtract': () => changeDate(-1),
-	'Numpad0': () => guideButtons[0]?.click(),
-	'Numpad1': () => guideButtons[1]?.click(),
-	'Numpad2': () => guideButtons[2]?.click(),
-	'Numpad3': () => guideButtons[3]?.click(),
-	'Numpad4': () => guideButtons[4]?.click(),
-	'Numpad5': () => guideButtons[5]?.click(),
-	'Numpad6': () => guideButtons[6]?.click(),
-	'Numpad7': () => guideButtons[7]?.click(),
-	'Numpad8': () => guideButtons[8]?.click(), 
-	'Numpad9': () => guideButtons[9]?.click(), //not implemented
-	'Escape': () => document.querySelector('.close-button')?.click(),
+	'NumpadAdd': () => { if (guideSave.navigationHotkeysEnabled) changeDate(1) },
+	'NumpadSubtract': () => { if (guideSave.navigationHotkeysEnabled) changeDate(-1) },
+	'Numpad0': () => { if (guideSave.numberHotkeysEnabled) guideButtons[0]?.click() },
+	'Numpad1': () => { if (guideSave.numberHotkeysEnabled) guideButtons[1]?.click() },
+	'Numpad2': () => { if (guideSave.numberHotkeysEnabled) guideButtons[2]?.click() },
+	'Numpad3': () => { if (guideSave.numberHotkeysEnabled) guideButtons[3]?.click() },
+	'Numpad4': () => { if (guideSave.numberHotkeysEnabled) guideButtons[4]?.click() },
+	'Numpad5': () => { if (guideSave.numberHotkeysEnabled) guideButtons[5]?.click() },
+	'Numpad6': () => { if (guideSave.numberHotkeysEnabled) guideButtons[6]?.click() },
+	'Numpad7': () => { if (guideSave.numberHotkeysEnabled) guideButtons[7]?.click() },
+	// 'Numpad8': () => { if (guideSave.numberHotkeysEnabled) guideButtons[8]?.click() },
+	// 'Numpad9': () => { if (guideSave.numberHotkeysEnabled) guideButtons[9]?.click() },
+	'Escape': () => { if (guideSave.escapeHotkeyEnabled) document.querySelector('.close-button')?.click() },
 };
 
 const holidays = [
@@ -51,7 +51,4 @@ const guide = document.getElementById('guide');
 
 //constants
 const debounceDelay = 500; //ms
-
-//variables
-let selectedDate = localStorage.getItem('selectedDate');
-let selectedMonth = localStorage.getItem('selectedMonth');
+const guideSave = new GuideSave();

@@ -1,17 +1,15 @@
 function initialise() {
     renderMonthsContainer();
 
-    const { currentMonth, currentDate } = getCurrentSelection();
+    guideSave.loadFromLocalStorage();
 
-    if (currentMonth) {
-        selectElement(findButtonByText(monthsContainer, currentMonth), '.month-button')
-        //findButtonByText(monthsContainer, currentMonth)?.classList.add('selected');
-        renderDatesContainer(currentMonth);
+    if (guideSave.selectedMonth != '') {
+        selectElement(findButtonByText(monthsContainer, guideSave.selectedMonth), '.month-button')
+        renderDatesContainer();
 
-        if (currentDate) {
-            selectElement(findButtonByText(datesContainer, currentDate), '.date-button')
-            //findButtonByText(datesContainer, currentDate)?.classList.add('selected');
-            renderOutput(currentMonth, currentDate);
+        if (guideSave.selectedDate != '') {
+            selectElement(findButtonByText(datesContainer, guideSave.selectedDate), '.date-button')
+            renderOutput();
         }
     }
 
@@ -26,28 +24,28 @@ function renderMonthsContainer() {
     });
 }
 
-function renderDatesContainer(month) {
+function renderDatesContainer() {
     datesContainer.innerHTML = '';
 
-    const dateHeading = createElement('h2', month);
-    dateHeading.style.gridColumn = `var(--start-on-${getFirstDayOfMonth(month).toLowerCase()})`;
+    const dateHeading = createElement('h2', guideSave.selectedMonth);
+    dateHeading.style.gridColumn = `var(--start-on-${getFirstDayOfMonth(guideSave.selectedMonth).toLowerCase()})`;
     datesContainer.appendChild(dateHeading);
 
-    Object.keys(walkthroughData[month]).forEach(fullDate => {
+    Object.keys(walkthroughData[guideSave.selectedMonth]).forEach(fullDate => {
         const [date, weekday] = fullDate.split(' ');
 
         const buttonText = `${date} <span class='day-of-week'>${weekday}</span>`
-        const dateButton = createButton(buttonText, 'date-button', () => dateButtonFunction(month, fullDate));
+        const dateButton = createButton(buttonText, 'date-button', () => dateButtonFunction(guideSave.selectedMonth, fullDate));
         applyDayColor(date, weekday, dateButton);
 
         datesContainer.appendChild(dateButton);
     });
 }
 
-function renderOutput(selectedMonth, selectedDate) {
+function renderOutput() {
     output.innerHTML = '';
-    const details = walkthroughData[selectedMonth][selectedDate];
-    const [date, weekday] = selectedDate.split(' ');
+    const details = walkthroughData[guideSave.selectedMonth][guideSave.selectedDate];
+    const [date, weekday] = guideSave.selectedDate.split(' ');
 
     //headings
     output.appendChild(createElement('h1', date));
@@ -65,7 +63,7 @@ function renderOutput(selectedMonth, selectedDate) {
     highlightOutput();
 
     //progressbar and buttons
-    output.appendChild(createProgressBar(selectedMonth, selectedDate));
+    output.appendChild(createProgressBar(guideSave.selectedMonth, guideSave.selectedDate));
     output.appendChild(createButton('Previous Day', 'previous-day-button', () => changeDate(-1)));
     output.appendChild(createButton('Next Day', 'next-day-button', () => changeDate(1)));
 
@@ -74,10 +72,8 @@ function renderOutput(selectedMonth, selectedDate) {
 }
 
 function highlightOutput() {
-    highlightedWordsContent = localStorage.getItem('highlightedWordsContent');
-
-    if (highlightedWordsContent) {
-        const words = highlightedWordsContent.split('\n').map(word => word.trim());
+    if (guideSave.highlightedWordsContent) {
+        const words = guideSave.highlightedWordsContent.split('\n').map(word => word.trim());
         const originalText = output.innerHTML;
     
         let highlightedText = originalText;
@@ -96,28 +92,78 @@ function highlightOutput() {
 function changeDate(offset) {
     playSelectSound(knifeSoundSrc);
 
-    const { currentMonth, currentDate } = getCurrentSelection();
-    if (!currentMonth || !currentDate) return;
+    if (guideSave.selectedMonth == '' || guideSave.selectedDate == '') return;
 
     //determine date
-    const { newMonth, newDate } = calculateNewDate(currentMonth, currentDate, offset);
-    saveDate(newMonth, newDate);
+    const { newMonth, newDate } = calculateNewDate(guideSave.selectedMonth, guideSave.selectedDate, offset);
+    guideSave.saveDate(newMonth, newDate);
 
     //select correct month
-    selectElement(findButtonByText(monthsContainer, newMonth), '.month-button');
-    renderDatesContainer(newMonth);
+    selectElement(findButtonByText(monthsContainer, guideSave.selectedMonth), '.month-button');
+    renderDatesContainer();
 
     //select correct date
-    selectElement(findButtonByText(datesContainer, newDate), '.date-button');
-    renderOutput(newMonth, newDate);
+    selectElement(findButtonByText(datesContainer, guideSave.selectedDate), '.date-button');
+    renderOutput();
 
     scrollToBottom();
+}
+
+function getFirstDayOfMonth(month) {
+    const firstDate = Object.keys(walkthroughData[month])[0];
+    return firstDate.split(' ')[1];
+}
+
+function calculateNewDate(currentMonth, currentDate, offset) {
+    const dates = Object.keys(walkthroughData[currentMonth]);
+    const currentIndex = dates.indexOf(currentDate);
+
+    let newDateIndex = currentIndex + offset;
+    let newMonth = currentMonth;
+
+    if (newDateIndex < 0) {
+        newMonth = monthNames[monthNames.indexOf(currentMonth) - 1] || monthNames[monthNames.length - 1];
+        newDateIndex = Object.keys(walkthroughData[newMonth]).length - 1;
+    } else if (newDateIndex >= dates.length) {
+        newMonth = monthNames[monthNames.indexOf(currentMonth) + 1] || monthNames[0];
+        newDateIndex = 0;
+    }
+
+    const newDate = Object.keys(walkthroughData[newMonth])[newDateIndex];
+    return { newMonth, newDate };
+}
+
+function calculateTotalDays(walkthroughData, monthNames) {
+    let totalDays = 0;
+    monthNames.forEach(month => {
+        totalDays += Object.keys(walkthroughData[month]).length;
+    });
+    return totalDays;
+}
+
+function calculateCurrentDayIndex(walkthroughData, monthNames, currentMonth, currentDate) {
+    let currentDayIndex = 0;
+    let foundCurrentDay = false;
+    for (const monthName of monthNames) {
+        const dates = Object.keys(walkthroughData[monthName]);
+        for (const day of dates) {
+            if (monthName === currentMonth && day === currentDate) {
+                foundCurrentDay = true;
+                break;
+            }
+            currentDayIndex++;
+        }
+        if (foundCurrentDay) {
+            break;
+        }
+    }
+    return currentDayIndex;
 }
 
 //hotkey handler
 document.addEventListener('keydown', (event) => {
     const action = keyActions[event.code];
-    if (action) {
+    if (action && guideSave.guideButtonHotkeysEnabled) {
         action();
     }
 });
