@@ -4,8 +4,11 @@
         --background-color: #222;
         --text-color: #ffd;
 
-        --button-color: #836;
-        --button-hover-color: #726;
+        --button-color: #338588;
+        --button-hover-color: #226d77;
+
+        --alt-button-color: #55e;
+        --alt-button-hover-color: #55a;
 
         /* Start Menu Colors */
         --menu-button-container-color: #555;
@@ -21,11 +24,11 @@
         --piece-highlight: #d88;
 
         /* Other UI Colors */
-        --menu-primary-color: #434;
-        --menu-secondary-color: #647;
-        --menu-tertiary-color: #84a;
+        --menu-primary-color: #334;
+        --menu-secondary-color: #447;
+        --menu-tertiary-color: #54b;
 
-        --popup-color: #434;
-        --popup-secondary-color: #647;
+        --popup-color: #334;
+        --popup-secondary-color: #447;
     }
 }

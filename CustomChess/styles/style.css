@@ -8,9 +8,10 @@
     --button-hover-color: #060;
     --button-disabled-color: #333;
 
+    --alt-button-color: #f00;
+    --alt-button-hover-color: #b00;
+
     /* Start Menu Colors */
-    --play-button-color: #f00;
-    --play-button-hover-color: #b00;
     --menu-button-container-color: #bbb;
 
     /* Chessboard Colors */
@@ -185,11 +186,11 @@ body {
                 width: 100%;
                 height: 10vw;
                 margin: 0;
-                background-color: var(--play-button-color);
+                background-color: var(--alt-button-color);
                 font-size: 5vw;
 
                 &:hover {
-                    background-color: var(--play-button-hover-color);
+                    background-color: var(--alt-button-hover-color);
                 }
             }
         }
@@ -205,10 +206,10 @@ body {
         }
 
         #quitButton {
-            background-color: var(--play-button-color);
+            background-color: var(--alt-button-color);
             
             &:hover {
-                background-color: var(--play-button-hover-color);
+                background-color: var(--alt-button-hover-color);
             }
         }
     }
