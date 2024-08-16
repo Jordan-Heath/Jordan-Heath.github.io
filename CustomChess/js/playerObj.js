@@ -2,6 +2,7 @@ class PlayerObj {
     constructor() {
         //variables
         this.loadOut = [];
+        this.shopItems = [];
         this.matchStreak = 0;
         this.gold = 0;
         this.upgrades = [];
@@ -80,7 +81,7 @@ class PlayerObj {
         if (!this.loadOut.includes('king')) this.loadOut.push('king');
     
         while (this.loadOut.length < this.teamSize) {
-            if (this.upgrades.includes('restockGoodPieces') && Math.random() > 0.5) {
+            if (this.upgrades.includes('restockGoodPieces') && Math.random() > 0.7) {
                 this.loadOut.push(getWeightedRandomPieceType());
             } else {
                 this.loadOut.push('pawn');

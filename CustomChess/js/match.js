@@ -9,6 +9,7 @@ class Match {
         popupElement.innerHTML = '';
         forfeitCounter = 0;
         promotionDisabled = false;
+        mindControlEnabled = Player.hasUpgrade('mindControl')
         currentTurn = 1;
         Player.refreshUpgrades();
 
@@ -79,10 +80,18 @@ class Match {
         if (matchResult === 'You lost!') Player.matchesLost += 1;
         Player.goldEarned += goldEarned;
 
+        //save loadout
         Player.loadOut = [];
         Match.getPlayersPieces(1).forEach(piece => {
             Player.loadOut.push(piece.pieceType);
         });
+
+        //find shop items
+        Player.shopItems = [];
+        shuffle(UpgradeData);
+        for(let i = 0; i < Player.shopSize && i < UpgradeData.length; i++) {
+            if (!Player.hasUpgrade(UpgradeData[i].id)) Player.shopItems.push(upgrade);
+        }
 
         ViewHandler.promptEndGameMessage(matchResult, `You earned ${goldEarned} gold - giving you a total of ${Player.gold} gold.`);
         currentTurn = 0; //pause

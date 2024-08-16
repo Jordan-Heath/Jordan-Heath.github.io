@@ -5,6 +5,7 @@
 // Global Constants
 //#region constants
 const UpgradeData = [
+    //#region Pawn
     {
         id: "pawnTwoSteps",
         name: 'Charging Pawns',
@@ -23,12 +24,46 @@ const UpgradeData = [
         description: "Pawn's can now attack forwards",
         cost: 10
     },
+    //#endregion Pawn
+    //#region Rook
     {
-        id: "piecesCanJump",
-        name: "Jumping Pieces",
-        description: "Pieces won't block your path",
-        cost: 40
+        id: "rookImuneToPawns",
+        name: "Fortified Rooks",
+        description: "Makes your rooks imune to enemy pawns.",
+        cost: 20
     },
+    //#endregion Rook
+    //#region Bishop
+    {
+        id: "bishopsCanMove1Tile",
+        name: "Protestant Reformation",
+        description: "Bishops can move 1 tile up down left or right, allowing them to change their tile color.",
+        cost: 20
+    },
+    //#endregion Bishop
+    //#region Knight
+    {
+        id: "deeperKnights",
+        name: "Scouting Parties",
+        description: "Knights will spawn 4-5 tiles deep into the board",
+        cost: 10
+    },
+    {
+        id: "knightBigLMovement",
+        name: "Knights will be able to move 2x3 squares in addition to 1x2 squares.",
+        description: "Knights",
+        cost: 20
+    },
+    //#endregion Knight
+    //#region Queen
+    {
+        id: "queenEarnsGoldFromKills",
+        name: "Queen's Tax",
+        description: "Earn 1 gold every your queen kills an opposing piece.",
+        cost: 20
+    },
+    //#endregion Queen
+    //#region King
     {
         id: "kingMovesLikeQueen",
         name: "Drag Queen",
@@ -36,16 +71,29 @@ const UpgradeData = [
         cost: 20
     },
     {
-        id: "restockGoodPieces",
-        name: "Trained Reinforcements",
-        description: "50% Chance reinforcements will be a promoted piecetype",
-        cost: 10
-    },
-    {
         id: "noKingNeeded",
         name: "Constitutional Monarchy",
         description: "No King needed. Keep playing until you run out of pieces.",
         cost: 40
+    },
+    {
+        id: "saferKing",
+        name: "Battleplan Position",
+        description: "King will always spawn in the back row.",
+        cost: 5
+    },
+    //#endregion King
+    {
+        id: "piecesCanJump",
+        name: "Jumping Pieces",
+        description: "Pieces won't block your path",
+        cost: 40
+    },
+    {
+        id: "restockGoodPieces",
+        name: "Trained Reinforcements",
+        description: "70% Chance reinforcements will be a promoted piecetype",
+        cost: 10
     },
     {
         id: "protectiveSight",
@@ -77,24 +125,6 @@ const UpgradeData = [
         description: "Makes the chessboard 1 tile wider/taller.",
         cost: 10
     },
-    // {
-    //     id: "rookImuneToPawns",
-    //     name: "Fortified Rooks",
-    //     description: "Makes Rooks imune to pawns",
-    //     cost: 20
-    // }
-    {
-        id: "saferKing",
-        name: "Battleplan Position",
-        description: "King will always spawn in the back row.",
-        cost: 5
-    },
-    {
-        id: "deeperKnights",
-        name: "Scouting Parties",
-        description: "knights will spawn 4-5 tiles deep into the board",
-        cost: 10
-    },
     {
         id: "promotionDiscount",
         name: "Promotion Discount",
@@ -106,6 +136,12 @@ const UpgradeData = [
         name: "Noble Heirs",
         description: "You are able to promote a pawn to an additional king.",
         cost: 20
+    },
+    {
+        id: "mindControl",
+        name: "Mind Control",
+        description: "Once per game, move an enemy's piece.",
+        cost: 40
     }
     //player.upgrades.includes('upgradeID')
 ]
@@ -123,6 +159,7 @@ let currentTurn = '0'; //0 = paused, 1 = white, 2 = black
 let allPieces = [];
 let forfeitCounter = 0;
 let promotionDisabled = false;
+let mindControlEnabled = false;
 
 function Initialize() {
     Player.loadFromLocalStorage();

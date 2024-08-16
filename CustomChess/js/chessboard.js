@@ -67,26 +67,28 @@ class Chessboard {
         Chessboard.clearHighlights();
 
         if (currentTurn === 1) { //player's turn
-            Match.getPlayersPieces(currentTurn).forEach(piece => {
+            const potentiallyMoveablePieces = mindControlEnabled ? allPieces : Match.getPlayersPieces(currentTurn)
+
+            potentiallyMoveablePieces.forEach(piece => {
                 const moves = piece.availableMoves;
-                if (piece.player === 1 //if piece belong's to player
-                    && moves.length > 0) {
+                if (moves.length > 0) {
                     piece.div.classList.add('available');
                 }
 
-                if (Player.hasUpgrade('protectiveSight') &&
-                    Chessboard.isPosDangerous(piece, piece.pos)) {
+                if (piece.player == 1
+                    && Player.hasUpgrade('protectiveSight')
+                    && Chessboard.isPosDangerous(piece, piece.pos)) {
                     piece.div.classList.add('vulnerable');
                 }
-
-                if (Player.hasUpgrade('killerSight')) {
-                    Match.getPlayersPieces(2).forEach(enemyPiece => {
-                        if (Chessboard.isPosDangerous(enemyPiece, enemyPiece.pos)) {
-                            enemyPiece.div.classList.add('vulnerable');
-                        }
-                    });
-                }
             });
+
+            if (Player.hasUpgrade('killerSight')) {
+                Match.getPlayersPieces(2).forEach(enemyPiece => {
+                    if (Chessboard.isPosDangerous(enemyPiece, enemyPiece.pos)) {
+                        enemyPiece.div.classList.add('vulnerable');
+                    }
+                });
+            }
         }
     }
 
@@ -162,7 +164,14 @@ class Chessboard {
         
             if (!piece) return;
         
-            if (piece.isValidMove(endPos) || piece.isValidAttack(endPos)) piece.movePiece(endPos);
+            if (piece.isValidMove(endPos) || piece.isValidAttack(endPos)) {
+                if (piece.player == 1) piece.movePiece(endPos);
+                else if (piece.player == 2 && mindControlEnabled) {
+                    currentTurn = 2;
+                    mindControlEnabled = false;
+                    piece.movePiece(endPos)
+                }
+            }
         } catch(e) {
             console.log('Error on cell drop: ', e)
         }
@@ -174,11 +183,21 @@ class Chessboard {
             const endPos = JSON.parse(e.currentTarget.dataset.pos);
             const targetPiece = Chessboard.getPieceFromPos(endPos);
         
+            //you can move your own piece
             if (selectedPiece?.player == currentTurn
                 && (selectedPiece.isValidMove(endPos) || selectedPiece.isValidAttack(endPos))) {
-                selectedPiece.movePiece(endPos);
+                    selectedPiece.movePiece(endPos);
+            //you can mind control a piece
+            } else if (selectedPiece?.player == 2
+                && mindControlEnabled
+                && (selectedPiece?.isValidMove(endPos) || selectedPiece?.isValidAttack(endPos))) {
+                    currentTurn = 2;
+                    mindControlEnabled =  false;
+                    selectedPiece.movePiece(endPos);
+            //select new piece
             } else if (targetPiece) {
                 Chessboard.selectionHighlights(targetPiece);
+            //unselect piece
             } else {
                 Chessboard.generalHighlights();
             }

@@ -24,7 +24,8 @@ class Piece {
         Chessboard.selectionHighlights(piece);
 
         // Don't let player drag when it's not their turn
-        if (!e.currentTarget.parentNode.classList.contains(pieceColor[currentTurn])) {
+        if (!e.currentTarget.parentNode.classList.contains(pieceColor[currentTurn])
+            && !mindControlEnabled) {
             e.preventDefault();
             return;
         }
@@ -63,7 +64,19 @@ class Piece {
         requestAnimationFrame(() => {
             this.div.style.transition = 'transform 0.4s ease';
             this.div.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
-            Chessboard.getPieceFromPos(endPos)?.kill(deltaX, deltaY, angle);
+
+            //killed Piece
+            const killedPiece = Chessboard.getPieceFromPos(endPos);
+            if (killedPiece) {
+                killedPiece.kill(deltaX, deltaY, angle);
+
+                //earn gold of player queen kills a piece
+                if (this.player === 1
+                    && this.pieceType === "queen"
+                    && Player.hasUpgrade("queenEarnsGoldFromKills")) {
+                        Player.gold += 1;
+                }
+            }
 
             // After the animation completes, move the piece back to the grid and reset styles
             this.div.addEventListener('transitionend', () => {
@@ -128,9 +141,13 @@ class Piece {
             case 'pawn':
                 const moveDirection = this.player == 1 ? -1 : 1; //white pieces move up, black pieces down
                 // Pawns move 1-2 squares forward and attack diagonally
-                const pawnMoves = [
-                    [0, 1], [0, 2], [1, 1], [-1, 1], [1, 2], [-1, 2]
+                let pawnMoves = [
+                    [0, 1], [0, 2], [1, 1], [-1, 1]
                 ];
+                //add upgraded movement
+                if (this.player === 1 && Player.hasUpgrade("pawnMoveDiagonal")) {
+                    pawnMoves.push([1, 2], [-1, 2]);
+                }
 
                 pawnMoves.forEach(([deltaX, deltaY]) => {
                     const endPos = {
@@ -169,13 +186,32 @@ class Piece {
                         }
                     }
                 });
+
+                if (this.player == 1 && Player.hasUpgrade("bishopsCanMove1Tile")) {
+                    const bishopStepDirections = [
+                        [1, 0], [0, 1], [-1, 0], [0, -1]
+                    ]
+
+                    bishopStepDirections.forEach(([deltaX, deltaY]) => {
+                        const endPos = { x: this.pos.x + deltaX, y: this.pos.y + deltaY };
+                        if (this.isValidMove(endPos) || this.isValidAttack(endPos)) {
+                            availableMoves.push(endPos);
+                        }
+                    });
+                }
                 break;
             case 'knight':
                 // Knights move in an L shape
-                const knightMoves = [
+                let knightMoves = [
                     [2, 1], [2, -1], [-2, 1], [-2, -1],
                     [1, 2], [1, -2], [-1, 2], [-1, -2]
                 ];
+                //add upgraded movement
+                if (this.player === 1 && Player.hasUpgrade("knightBigLMovement")) {
+                    knightMoves.push([3, 2], [3, -2], [-3, 2], [-3, -2],
+                                   [2, 3], [2, -3], [-2, 3], [-2, -3]);
+                }
+                
                 knightMoves.forEach(([deltaX, deltaY]) => {
                     const endPos = { x: this.pos.x + deltaX, y: this.pos.y + deltaY };
                     if (this.isValidMove(endPos) || this.isValidAttack(endPos)) {
@@ -206,7 +242,7 @@ class Piece {
                 ];
                 kingDirections.forEach(([deltaX, deltaY]) => {
 
-                    if (Player.hasUpgrade('kingMovesLikeQueen') && this.player == 1) { //is player piece
+                    if (this.player == 1 && Player.hasUpgrade('kingMovesLikeQueen')) { //is player piece
                         for (let y = this.pos.y + deltaY, x = this.pos.x + deltaX; y >= 0 && y < Player.boardSize && x >= 0 && x < Player.boardSize; y += deltaY, x += deltaX) {
                             const endPos = { x: x, y: y }
                             if (this.isValidMove(endPos) || this.isValidAttack(endPos)) {
@@ -257,14 +293,14 @@ class Piece {
 
     isPathBlocked(endPos) {
         if (Player.hasUpgrade("piecesCanJump") && this.player == 1) return false;
-    
+
         const deltaY = endPos.y - this.pos.y;
         const deltaX = endPos.x - this.pos.x;
         const stepY = deltaY === 0 ? 0 : deltaY / Math.abs(deltaY);
         const stepX = deltaX === 0 ? 0 : deltaX / Math.abs(deltaX);
-    
+
         let pos = { x: this.pos.x + stepX, y: this.pos.y + stepY }
-    
+
         while (pos.y !== endPos.y || pos.x !== endPos.x) {
             if (Chessboard.getPieceFromPos(pos)) {
                 return true; // Path is blocked by another piece
@@ -273,11 +309,11 @@ class Piece {
                 console.log(`Error occured in isPathBlocked when moving from ${this.pos.x},${this.pos.y} to ${endPos.x}, ${endPos.y}`);
                 return true;
             }
-    
+
             pos.y += stepY;
             pos.x += stepX;
         }
-    
+
         return false;
     }
 }
@@ -311,14 +347,14 @@ const pieceRules = {
                     if (deltaY === 1) return true;
 
                     // Move down by two squares from the first 2 rows, ignore path if moving diagonal
-                    if (isStartingRow && 
-                        deltaY === 2 && 
+                    if (isStartingRow &&
+                        deltaY === 2 &&
                         (deltaX != 0 || !piece.isPathBlocked(endPos))) {
                         return true;
                     }
                 }
             } else {
-                const isStartingRow = piece.pos.y > Player.boardSize - 3; 
+                const isStartingRow = piece.pos.y > Player.boardSize - 3;
                 if (deltaX === 0 || (deltaX === 1 && Player.hasUpgrade("pawnMoveDiagonal"))) {
                     // Move up by one square
                     if (deltaY === -1) return true;
@@ -336,6 +372,12 @@ const pieceRules = {
         attack: (piece, endPos) => {
             const deltaY = endPos.y - piece.pos.y;
             const deltaX = Math.abs(endPos.x - piece.pos.x);
+
+            if (piece.player == 2
+                && Player.hasUpgrade("rookImuneToPawns")
+                && Chessboard.getPieceFromPos(endPos).pieceType === 'rook') {
+                return false;
+            }
 
             if (deltaX === 1) {
                 if ((deltaY === 1 && piece.player == 2) ||
@@ -359,7 +401,11 @@ const pieceRules = {
     },
     bishop: {
         move: (piece, endPos) => {
-            return Math.abs(endPos.y - piece.pos.y) === Math.abs(endPos.x - piece.pos.x) && !piece.isPathBlocked(endPos);
+            const deltaY = Math.abs(endPos.y - piece.pos.y);
+            const deltaX = Math.abs(endPos.x - piece.pos.x);
+
+            return (deltaY === deltaX && !piece.isPathBlocked(endPos))
+                    || (Player.hasUpgrade("bishopsCanMove1Tile") && (deltaY <= 1 && deltaX <= 1));
         },
         attack: (piece, endPos) => {
             return pieceRules.bishop.move(piece, endPos);
@@ -369,7 +415,11 @@ const pieceRules = {
         move: (piece, endPos) => {
             const deltaY = Math.abs(endPos.y - piece.pos.y);
             const deltaX = Math.abs(endPos.x - piece.pos.x);
-            return (deltaY === 2 && deltaX === 1) || (deltaY === 1 && deltaX === 2);
+
+            const regularMovement = (deltaY === 2 && deltaX === 1) || (deltaY === 1 && deltaX === 2)
+            const upgradedMovement = Player.hasUpgrade("knightBigLMovement") && ((deltaY === 3 && deltaX === 2) || (deltaY === 2 && deltaX === 3));
+
+            return regularMovement || upgradedMovement
         },
         attack: (piece, endPos) => {
             return pieceRules.knight.move(piece, endPos);
@@ -377,7 +427,9 @@ const pieceRules = {
     },
     queen: {
         move: (piece, endPos) => {
-            return (piece.pos.y === endPos.y || piece.pos.x === endPos.x || Math.abs(endPos.y - piece.pos.y) === Math.abs(endPos.x - piece.pos.x)) && !piece.isPathBlocked(endPos);
+            const deltaY = Math.abs(endPos.y - piece.pos.y);
+            const deltaX = Math.abs(endPos.x - piece.pos.x);
+            return (piece.pos.y === endPos.y || piece.pos.x === endPos.x || deltaY === deltaX) && !piece.isPathBlocked(endPos);
         },
         attack: (piece, endPos) => {
             return pieceRules.queen.move(piece, endPos);

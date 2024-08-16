@@ -33,6 +33,12 @@ function debugPopup() {
 
 // Define the debug functions
 const debugFunctions = {
+    "Win Match": () => {
+        for (const piece of Match.getPlayersPieces(2)) {
+            if (piece.pieceType === 'king') piece.kill(50, -50, 200);
+        };
+        setTimeout(() => Match.endGame(), 500);
+    },
     "Give All Upgrades": () => {
         for (const upgrade of UpgradeData) {
             if (!Player.hasUpgrade(upgrade.id)) {
@@ -43,11 +49,10 @@ const debugFunctions = {
             Match.newMatch();
         }
     },
-    "Win Match": () => {
-        for (const piece of Match.getPlayersPieces(2)) {
-            piece.kill(50, -50, 200);
-        };
-        setTimeout(() => Match.endGame(), 500);
+    "Raise Match streak by 10": () => {
+        Player.matchStreak += 10;
+        if (Player.matchStreak > Player.highestStreak) Player.highestStreak = Player.matchStreak;
+        Match.newMatch();
     },
     "Randomly Promote all player Pawns": () => {
         for (const piece of Match.getPlayersPieces(1)) {

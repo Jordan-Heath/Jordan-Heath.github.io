@@ -176,25 +176,19 @@ class ViewHandler {
     }
 
     static getShopItems() {
-        const availableUpgrades = [];
-        UpgradeData.forEach(upgrade => {
-            if (!Player.hasUpgrade(upgrade.id)) availableUpgrades.push(upgrade);
-        });
-    
-        shuffle(availableUpgrades);
-    
         let shopItemsHTML = '';
-    
-        for(let i = 0; i < Player.shopSize && i < availableUpgrades.length; i++) {
+
+        for (const shopItemID of Player.shopItems) {
+            const upgrade = UpgradeData.find(u => u.id == shopItemID);
             shopItemsHTML += `
             <div class="upgrade">
-                <h3>${availableUpgrades[i].name}</h3>
+                <h3>${upgrade.name}</h3>
                 <div class="row">
-                    <p>${availableUpgrades[i].description}</p>
-                    <button id="${availableUpgrades[i].id}Button" 
-                            ${availableUpgrades[i].cost > Player.gold ? 'disabled="true"' : ''}
-                            onclick="Player.buyUpgrade('${availableUpgrades[i].id}')">
-                            Buy ($${availableUpgrades[i].cost})
+                    <p>${upgrade.description}</p>
+                    <button id="${upgrade.id}Button" 
+                            ${upgrade.cost > Player.gold || Player.hasUpgrade(upgrade.id) ? 'disabled="true"' : ''}
+                            onclick="Player.buyUpgrade('${upgrade.id}')">
+                            Buy ($${upgrade.cost})
                     </button>
                 </div>
             </div>

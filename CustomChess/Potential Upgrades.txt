@@ -4,33 +4,37 @@ Upgrades
         <DONE><TESTED> pawns can move diagonally without attacking
         <DONE><TESTED> pawns can attack forwards
     Rook:
-        [Name after a fortification]: Rooks are immune to enemy Pawns
+        <DONE><TESTED> Fortified Rooks: Rooks are immune to enemy Pawns
     Bishop:
-        Protestant Reformation: bishops can move 1 tile up down left or right, allowing them to change their color
+        <DONE><TESTED> Protestant Reformation: bishops can move 1 tile up down left or right, allowing them to change their color
     Knight:
-        <DONE> Scouting Parties: knights can spawn 4-5 tiles deep into the board
-        Big L movement (2 by 3)
+        <DONE><TESTED> Scouting Parties: knights can spawn 4-5 tiles deep into the board
+        <DONE><TESTED> Big L movement (2 by 3)
     Queen:
-        Queen's Tax: Earn 1 gold every your queen kills an opposing piece
+        <DONE><TESTED> Queen's Tax: Earn 1 gold every your queen kills an opposing piece
     King:
         <DONE><TESTED> king can move like a queen
         <DONE><TESTED> Play on without a king
-        <DONE> Safer king: king always spawns in the backmost row
+        <DONE><TESTED> Safer king: king always spawns in the backmost row
 
     <DONE><TESTED> Pieces can jump other pieces
     <DONE><TESTED> Restock your ranks with good pieces
     <DONE><TESTED> extra team slot (boardSize + X)
 
-    <DONE> Ability to upgrade to a king at the end of the board (multiple kings)
-    <DONE> add discount to promoting pawns
+    <DONE><TESTED> Ability to upgrade to a king at the end of the board (multiple kings)
+    <DONE><TESTED> add discount to promoting pawns
 
-    once per match, mind control an enemy pieces
+    <DONE><TESTED> once per match, mind control an enemy pieces
     extra move at the start of a match
+    increase shopsize by 1
 
+Debuffs to enemy
+    Make enemy less agressive
+    reduce enemy teamsize by 1
+    enemy cannot promote pawns
 
 Quirks
     <DONE><TESTED> Larger chessboard
-    Make enemy less agressive
     Gives pieces random names (5g)
     Rainbow Pieces (5g)
     Holes in the middle of the map

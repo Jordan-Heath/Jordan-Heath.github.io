@@ -1,15 +1,18 @@
 Visual:
+    improve main page text with effect
     add rarity visuals for different upgrade prices
+    add upgrade popup visuals top top of screen
 
 Fix:
+    Give game a name
     Check performance / add unit tests
-    <NEED TO TEST> Fix pull down refresh on mobile
 
 Balance:
     adjust prestige
         remove upgrade requirement
         change gold requirement (remove or set a standard)
     change price of upgrades
+    limit number of upgrades?
 
 Features:
     Save Management
@@ -17,6 +20,7 @@ Features:
     Music
     More upgrades
     Pay the average price of the remaining upgrades for weighted random upgrade on the collection page
+    Add curses (pay % of player gold to remove)
 
 OOP Conversion:
     make pieces use inheritance to implement move/attack rules?
