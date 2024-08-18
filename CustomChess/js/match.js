@@ -88,9 +88,10 @@ class Match {
 
         //find shop items
         Player.shopItems = [];
-        shuffle(UpgradeData);
-        for(let i = 0; i < Player.shopSize && i < UpgradeData.length; i++) {
-            if (!Player.hasUpgrade(UpgradeData[i].id)) Player.shopItems.push(UpgradeData[i].id);
+        const remainingUpgrades = UpgradeData.filter(upgrade => !Player.hasUpgrade(upgrade.id))
+        shuffle(remainingUpgrades);
+        for(let i = 0; i < Player.shopSize && i < remainingUpgrades.length; i++) {
+            if (!Player.hasUpgrade(remainingUpgrades[i].id)) Player.shopItems.push(remainingUpgrades[i].id);
         }
 
         ViewHandler.promptEndGameMessage(matchResult, `You earned ${goldEarned} gold - giving you a total of ${Player.gold} gold.`);

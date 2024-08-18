@@ -50,8 +50,8 @@ const UpgradeData = [
     },
     {
         id: "knightBigLMovement",
-        name: "Knights will be able to move 2x3 squares in addition to 1x2 squares.",
-        description: "Knights",
+        name: "Agile Knights",
+        description: "Knights will be able to move 2x3 squares in addition to 1x2 squares.",
         cost: 20
     },
     //#endregion Knight
