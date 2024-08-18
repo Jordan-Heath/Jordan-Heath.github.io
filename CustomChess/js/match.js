@@ -90,7 +90,7 @@ class Match {
         Player.shopItems = [];
         shuffle(UpgradeData);
         for(let i = 0; i < Player.shopSize && i < UpgradeData.length; i++) {
-            if (!Player.hasUpgrade(UpgradeData[i].id)) Player.shopItems.push(upgrade);
+            if (!Player.hasUpgrade(UpgradeData[i].id)) Player.shopItems.push(UpgradeData[i].id);
         }
 
         ViewHandler.promptEndGameMessage(matchResult, `You earned ${goldEarned} gold - giving you a total of ${Player.gold} gold.`);
