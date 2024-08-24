@@ -115,7 +115,7 @@ class EnemyObj {
         const loadOut = [];
     
         // Calculate the number of kings based on match streak
-        const numberOfKings = 1 + Math.floor(Player.matchStreak / 25);
+        const numberOfKings = 1 + Math.floor(Player.matchStreak / 20);
         for (let i = 0; i < numberOfKings; i++) {
             loadOut.push('king');
         }

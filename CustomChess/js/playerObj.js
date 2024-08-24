@@ -117,14 +117,18 @@ class PlayerObj {
     }
 
     prestige() { //TODO
-        if (Player.highestStreak < (Player.timesPrestiged + 1) * 20) return; //must have high streak
-        if (Player.upgrades.length != UpgradeData.length) return; //must have all upgrades
+        if (Player.highestStreak < (Player.timesPrestiged + 1) * 10) return; //must have high streak
+        // if (Player.upgrades.length != UpgradeData.length) return; //must have all upgrades
 
         this.upgrades = [];
         this.timesPrestiged += 1;
+        this.matchStreak = 0;
+        this.gold = 0;
+        
         this.refreshUpgrades();
         this.saveToLocalStorage();
 
+        ViewHandler.loadStartMenu();
         ViewHandler.printProfileMenu();
     }
 
