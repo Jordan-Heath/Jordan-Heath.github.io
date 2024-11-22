@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pokemon Collector</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/mobilestyle.css">
+    <link rel="icon" type="image/x-icon" href="../data/favicon.ico">
+
+    <script src="js/view.js"></script>
+    <script src="js/challenges.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/model.js"></script>
+    <script src="js/controls.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+    <main>
+        <header>
+            <h1 style="white-space: pre;">Pokemon<br>    Collector</h1>
+            <nav>
+                <button onclick="selectNavTab(this, '.gatcha-container')" class="nav-tab active">Gatcha</button>
+                <button onclick="selectNavTab(this, '.collection-container')" class="nav-tab">Collection <span id="collection-number">0/45</span></button>
+                <button onclick="selectNavTab(this, '.upgrade-container')" class="nav-tab">Upgrades</button>
+                <button onclick="selectNavTab(this, '.jobs-container')" class="nav-tab">Jobs $<span id="revenue">0</span>/min</button>
+                <button onclick="selectNavTab(this, '.settings')" class="nav-tab">Settings</button>
+            </nav>
+            <div class="HUD">
+                <p>$<span id="money">0.00</span></p>
+                <p>✧<span id="shiny-chance">0</span>%</p>
+                <div class="messageContainer"></div>
+            </div>
+        </header>
+
+        <div class="container gatcha-container active">
+            <div class="spinner">
+                <div class="reward"></div>
+                <button class="gatcha-spinner" onclick="spinGatcha()">Spin Gatcha</button>
+            </div>
+
+            <h2>Select a Gatcha:</h2>
+            <div class="gatchas card-container"></div>
+        </div>
+
+        <div class="container collection-container">
+            <div class="collection card-container"></div>
+        </div>
+
+        <div class="container upgrade-container">
+            <h2>Available Upgrades:</h2>
+            <div class="upgrades card-container"></div>
+            <h2>Owned Upgrades:</h2>
+            <div class="owned-upgrades card-container"></div>
+        </div>
+
+        <div class="container jobs-container">
+            <div class="jobs card-container"></div>
+            <div class="job-viewer-container">
+                <div class="job-viewer"></div>
+                <div class="monster-assigner card-container"></div>
+            </div>
+        </div>
+
+        <div class="container settings">
+            <div class="setting">
+                <button onclick="saveGame()">Manual Save</button>
+                <button onclick="deleteSave()">Delete Save</button>
+                <button onclick="exportSave()">Export Save</button>
+            </div>
+            
+            <div class="setting">
+                <label for="pay-frequency">Pay Frequency:</label>
+                <input onchange="updatePayFrequency()" type="range" id="pay-frequency" min="0.05" max="1" step="0.05" value="1">
+                <br>
+                <span id="pay-frequency-value">every 1 seconds (1/sec)</span>
+            </div>
+
+            <div class="cheat setting">
+                <label for="cheat-mode">Cheat Mode:</label>
+                <input type="checkbox" id="cheat-mode" onclick="toggleCheatMode()"><br>
+                <span id="cheat-mode-value">Disabled</span>
+            </div>
+
+            <div class="setting">
+                <p>Pokemon is a product of GameFreak</p>
+                <p>Assets Sourced from <a href="https://github.com/waydelyle/pokemon-assets">here</a></p>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

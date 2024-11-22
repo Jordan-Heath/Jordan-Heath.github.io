@@ -15,10 +15,15 @@ PLAYABLE DEMO. A digimon/tamogotchi clone with my own spin.
 
 ## Completed Projects
 
+### [Pokemon Collector](CustomChess/index.html)
+I've wanted to make a card collection game for a while, but given I could not do enough good quality art to do it myself, i decided last minute to make it a fan game.
+
+- [ ] Checklist of accomplishments
+
 ### [Custom Chess](CustomChess/index.html)
 Inspired by Balatro, but for chess. Work In Progress, but good enough to publish.
 
-- [ ] Saving
+- [x] Saving
 - [x] All pieces working
 - [x] Reckless AI
 - [x] Build a streak to earn greater prizes
@@ -138,6 +143,10 @@ I created this a while ago to replicate a peculiar mode of speech I was exposed 
 - Manticore Image by Brin
 - [Reference Images from Pixabay](https://pixabay.com)
 - [Graphic Design Help by FrostedMonster](https://www.frostedmonster.com/)
+
+### Pokemon Collector
+- Pokemon is a product of GameFreak
+- Assets Sourced from [here](https://github.com/waydelyle/pokemon-assets)
 
 ### Persona 5 Royal Guide
 Guides:

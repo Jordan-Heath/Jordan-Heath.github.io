@@ -1,0 +1,28 @@
+/* when screen is less than 640px wide */
+
+/* @media screen and (max-width: 640px) {
+    header {
+        position: relative;
+        flex-direction: column;
+        height: fit-content;
+
+        nav {
+            flex-direction: column;
+        }
+    }
+
+    body {
+        .container {
+            margin-top: 0px;
+        }
+    }
+
+    .card-container {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+
+    .card {
+        height: 210px;
+        width: 140px;
+    }
+} */
