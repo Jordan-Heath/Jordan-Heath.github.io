@@ -1876,7 +1876,7 @@ const data = {
         },
         {
             "ID": 83,
-            "name": "Farfetch\u2019d",
+            "name": "Farfetch'd",
             "image": "farfetchd.png",
             "rarity": rarity[2],
             "evolvesTo": [],
@@ -3442,7 +3442,7 @@ const data = {
             "description": "Cheat gatcha gives you any card with equal chance. Rewards $100 on money rewards.",
             "image": "premium.jpg",
             "odds": [1, 1, 1, 1, 1, 1],
-            "moneyReward": 100,
+            "moneyReward": 500,
             "challenge": "None",
             "unlockedBy": 0 // "Unlock Cheat Mode"
         },
@@ -3536,7 +3536,7 @@ const data = {
             "image": "premium-gatcha.jpg",
             "rarity": "uncommon",
             "description": "Unlocks the Uncommon Gatcha machine. Requires user to complete \"Moving Button\" Challenge. Chance to give common cards.",
-            "cost": 1,
+            "cost": 5,
             "unlockedBy": null,
             "owned": false
         },

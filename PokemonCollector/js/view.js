@@ -186,9 +186,8 @@ function renderMonsterCard(monsterData) {
         <img 
             style="background: linear-gradient(180deg, ${imgBackgroundColors[0]}, ${imgBackgroundColors[1] || imgBackgroundColors[0]});"
             class="card-image" 
-            src="images/monsters/${monsterData.image}" 
-            alt="${monsterData.name}" 
-            onerror="this.src='images/monsters/unknown-pokemon.png';">
+            src="images/monsters/${monsterData.shiny ? 'shiny/' : ''}${monsterData.image}"
+            alt="${monsterData.name}">
         <div class="card-details">
             <p class="card-name">${monsterData.name}</p>
             ${statsVisible ? `
@@ -401,9 +400,8 @@ function renderJob(jobData) {
     jobElement.innerHTML = `
         <img
             class="card-image"
-            src="images/monsters/${assignedMonsterData?.image || 'unknown-pokemon.png'}"
-            alt="${jobData.name}"
-            onerror="this.src='images/jobs/placeholder.png';">
+            src="images/monsters/${assignedMonsterData.shiny ? 'shiny/' : ''}${assignedMonsterData.image}"
+            alt="${jobData.name}">
         <div class="card-details">
             <p class="card-name">${jobData.name} (${jobData.skill})</p>
             <p>Assigned: ${assignedMonsterName}</p>
@@ -469,9 +467,8 @@ function updateSelectedJob() {
         <div class="performance-details">
             <img 
                 class="card-image"
-                src="images/monsters/${assignedMonsterData.image}" 
-                alt="${assignedMonsterData.name}" 
-                onerror="this.src='images/monsters/unknown-pokemon.png';">
+                src="images/monsters/${assignedMonsterData.shiny ? 'shiny/' : ''}${assignedMonsterData.image}"
+                alt="${assignedMonsterData.name}">
             <div>
                 <p>Work currently being performed by <strong>${assignedMonsterData.name}</strong>. They are doing a <strong>${assignedMonsterReleventAptitude}</strong> job</p>
                 <p>Revenue per minute: ${assignedMonsterRevenuePerMinute.toFixed(2)}</p>
@@ -521,9 +518,8 @@ function updateMonsterAssigner() {
         <div class="card-ID">${monsterData.ID}</div>
         <img 
             class="card-image"
-            src="images/monsters/${monsterData.image}" 
-            alt="${monsterData.name}" 
-            onerror="this.src='images/monsters/placeholder.jpg';">
+            src="images/monsters/${monsterData.shiny ? 'shiny/' : ''}${monsterData.image}"
+            alt="${monsterData.name}">
         <div class="card-details">
             <p class="card-name">${monsterData.name}</p>
             <p>${selectedJobData.skill}: ${monsterData.skills[selectedJobData.skill] * (monsterData.shiny ? shinySkillMultiplier : 1)}</p>
