@@ -400,8 +400,9 @@ function renderJob(jobData) {
     jobElement.innerHTML = `
         <img
             class="card-image"
-            src="images/monsters/${assignedMonsterData.shiny ? 'shiny/' : ''}${assignedMonsterData.image}"
-            alt="${jobData.name}">
+            src="images/monsters/${assignedMonsterData?.shiny ? 'shiny/' : ''}${assignedMonsterData?.image}"
+            alt="${jobData.name}"
+            onerror="this.src='images/jobs/placeholder.png';">
         <div class="card-details">
             <p class="card-name">${jobData.name} (${jobData.skill})</p>
             <p>Assigned: ${assignedMonsterName}</p>
