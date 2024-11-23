@@ -3576,7 +3576,7 @@ const data = {
             "image": "premium-gatcha.jpg",
             "rarity": "legendary",
             "description": "Unlocks the Passive Gatcha. Spins once per second. Legendary Gatcha with no challenge.",
-            "cost": 10000,
+            "cost": 5000,
             "unlockedBy": 1.4,
             "owned": false
         },
@@ -3585,7 +3585,7 @@ const data = {
             "ID": 2.1,
             "name": "Proficient Workers 10%",
             "image": "better-workers-1.png",
-            "rarity": "uncommon",
+            "rarity": "common",
             "description": "10% better workers",
             "cost": 10,
             "unlockedBy": null,
@@ -3595,9 +3595,9 @@ const data = {
             "ID": 2.2,
             "name": "Proficient Workers 25%",
             "image": "better-workers-2.png",
-            "rarity": "rare",
+            "rarity": "uncommon",
             "description": "25% better workers",
-            "cost": 100,
+            "cost": 50,
             "unlockedBy": 2.1,
             "owned": false
         },
@@ -3605,9 +3605,9 @@ const data = {
             "ID": 2.3,
             "name": "Proficient Workers 50%",
             "image": "better-workers-3.png",
-            "rarity": "epic",
+            "rarity": "rare",
             "description": "50% better workers",
-            "cost": 500,
+            "cost": 100,
             "unlockedBy": 2.2,
             "owned": false
         },
@@ -3615,10 +3615,19 @@ const data = {
             "ID": 2.4,
             "name": "Proficient Workers 100%",
             "image": "better-workers-4.png",
-            "rarity": "legendary",
+            "rarity": "epic",
             "description": "100% better workers",
-            "cost": 1000,
+            "cost": 500,
             "unlockedBy": 2.3,
+            "owned": false
+        },
+        {
+            "ID": 2.5,
+            "name": "Proficient Workers 200%",
+            "rarity": "legendary",
+            "description": "200% better workers",
+            "cost": 1000,
+            "unlockedBy": 2.4,
             "owned": false
         },
         // evolving monsters
@@ -3680,7 +3689,7 @@ const data = {
             "image": "raise-shiny-chance.jpg",
             "rarity": "shiny",
             "description": "Raise shiny chance by 0.1%.",
-            "cost": 2000,
+            "cost": 2500,
             "unlockedBy": null,
             "owned": false,
             "repeatable": true
@@ -3691,7 +3700,7 @@ const data = {
             "image": "speed-passive-gatcha.jpg",
             "rarity": "shiny",
             "description": "Get 1 more passive gatcha per second.",
-            "cost": 10000,
+            "cost": 5000,
             "unlockedBy": 1.5,
             "owned": false,
             "repeatable": true

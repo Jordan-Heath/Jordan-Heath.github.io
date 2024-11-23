@@ -19,9 +19,11 @@ function getSacrificeCost() {
 }
 
 function getRevenueBonus() {
-    if (save.upgrades.find((u) => u.ID === 2.1).owned) return 1.5; // "Proficient Workers 50%", 1.5 multiplier
+    if (save.upgrades.find((u) => u.ID === 2.5).owned) return 3; // "Proficient Workers 200%", 3.0 multiplier
+    else if (save.upgrades.find((u) => u.ID === 2.4).owned) return 2; // "Proficient Workers 100%", 2.0 multiplier
+    else if (save.upgrades.find((u) => u.ID === 2.3).owned) return 1.5; // "Proficient Workers 50%", 1.5 multiplier
     else if (save.upgrades.find((u) => u.ID === 2.2).owned) return 1.25; // "Proficient Workers 25%", 1.25 multiplier
-    else if (save.upgrades.find((u) => u.ID === 2.3).owned) return 1.1; // "Proficient Workers 10%", 1.1 multiplier
+    else if (save.upgrades.find((u) => u.ID === 2.1).owned) return 1.1; // "Proficient Workers 10%", 1.1 multiplier
     else return 1;
 }
 
