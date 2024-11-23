@@ -37,7 +37,7 @@ function spinGatcha() {
 }
 
 function evolveMonster(monsterID) {
-    const evolveCost = getEvolveCost()
+    const evolveCost = getEvolveCost();
     const monsterData = save.monsters.find((m) => m.ID === monsterID);
     
     if (!monsterData) { alert('Monster not found'); return; }
@@ -66,6 +66,24 @@ function sacrificeMonster(monsterID) {
 
     raiseShinyChance();
     updateHUD();
+}
+
+function evolveAllMonsters() {
+    const evolveCost = getEvolveCost();
+
+    save.monsters.forEach(monster => {
+        while ( monster.count >= evolveCost && monster.evolvesTo.length > 0)
+            evolveMonster(monster.ID);
+    });
+}
+
+function sacrificeAllMonsters() {
+    const sacrificeCost = getSacrificeCost();
+
+    save.monsters.forEach(monster => {
+        while (monster.count >= sacrificeCost && monster.evolvesTo.length === 0)
+            sacrificeMonster(monster.ID);
+    });
 }
 
 function selectNavTab(tab, container) {

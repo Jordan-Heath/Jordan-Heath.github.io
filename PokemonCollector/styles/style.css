@@ -617,6 +617,30 @@ header {
     
 } */
 
+.collection-buttons {
+    display: flex;
+    height: 200px;
+    width: 100%;
+    padding: 20px;
+    gap: 20px;
+    box-sizing: border-box;
+    background-color: var(--html-2);
+
+    button {
+        margin: auto;
+        height: 100px;
+        width: 300px;
+    }
+
+    #sacrifice-all-button {
+        background-color: goldenrod;
+
+        &:hover {
+            background-color: gold;
+        }
+    }
+}
+
 /* Upgrades */
 .upgrades, .owned-upgrades {
     font-size: 12px;
