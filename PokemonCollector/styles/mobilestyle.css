@@ -128,7 +128,7 @@
         }
 
         .monster-assigner {
-            max-height: calc(100vh - 200px);
+            max-height: unset;
             padding: 5px;
         }
     }

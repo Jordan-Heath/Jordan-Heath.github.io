@@ -31,7 +31,8 @@ const globals = {
     cardPackOpenerEventListener: null,
     resizeListener: null,
     gameInterval: null,
-    activeKeys: []
+    activeKeys: [],
+    gameBeaten: false
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -58,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //pay interval is set to save.settings.payFrequency
     globals.payInterval = setInterval(() => {
         save.money += save.revenue / 60 * save.settings.payFrequency;
+        updateUpgrades();
         updateHUD();
     }, save.settings.payFrequency * 1000);
 
@@ -94,7 +96,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const upgradesNavTab = document.getElementById('upgrades-nav-tab');
         if (upgradesNavTab.classList.contains('active')) return;
         
-        if (save.upgrades.some((u) => u.owned && u.cost <= save.money && u.unlockedBy === null || u.unlockedBy !== null && save.upgrades.find((u2) => u2.ID === u.unlockedBy).owned)) {
+        if (save.upgrades.some((u) => {
+            if (u.owned) return false;
+            if (u.cost > save.money) return false;
+            if (u.unlockedBy !== null && save.upgrades.find((u2) => u2.ID === u.unlockedBy).owned) return false;
+            return true;
+        })) {
             upgradesNavTab.classList.add('notifying');
             displayMessage('Upgrades are available');
         }

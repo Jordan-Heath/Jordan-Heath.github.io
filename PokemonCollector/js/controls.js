@@ -35,14 +35,15 @@ function evolveMonster(monsterID, doDisplayMessage = true) {
     const evolveCost = getEvolveCost();
     const monsterData = save.monsters.find((m) => m.ID === monsterID);
     
-    if (!monsterData) { alert('Monster not found'); return; }
-    if (monsterData.count < evolveCost) { alert(`You need at least ${evolveCost} ${monsterData.name} to evolve`); return; }
-    if (!monsterData.evolvesTo.length > 0) { alert(`Cannot evolve ${monsterData.name}`); return; }
+    if (!monsterData) { console.log(`Monster ${monsterID} not found`); return; }
+    if (monsterData.count < evolveCost) { console.log(`You need at least ${evolveCost} ${monsterData.name} to evolve`); return; }
+    if (!monsterData.evolvesTo.length > 0) { console.log(`Cannot evolve ${monsterData.name}`); return; }
 
     // get monster data
-    const resultingMonster = save.monsters.find((m) => m.name === monsterData.evolvesTo[Math.floor(Math.random() * monsterData.evolvesTo.length)]);
+    const resultingMonsterName = monsterData.evolvesTo[Math.floor(Math.random() * monsterData.evolvesTo.length)];
+    const resultingMonster = save.monsters.find((m) => m.name === resultingMonsterName);
 
-    if (!resultingMonster) { alert('Evolved monster not found'); return; }
+    if (!resultingMonster) { alert(`${resultingMonsterName} not found`); return; }
     
     monsterData.count -= evolveCost;
     updateMonsterCollection(monsterData);
@@ -55,9 +56,9 @@ function sacrificeMonster(monsterID, doDisplayMessage = true) {
     const sacrificeCost = getSacrificeCost()
     const monsterData = save.monsters.find((m) => m.ID === monsterID);
 
-    if (!monsterData) { alert('Monster not found'); return; }
-    if (monsterData.count < sacrificeCost) { alert(`You need at least ${sacrificeCost} ${monsterData.name} to sacrifice`); return; }
-    if (monsterData.evolvesTo.length > 0) { alert(`Cannot sacrifice ${monsterData.name}`); return; }
+    if (!monsterData) { console.log('Monster not found'); return; }
+    if (monsterData.count < sacrificeCost) { console.log(`You need at least ${sacrificeCost} ${monsterData.name} to sacrifice`); return; }
+    if (monsterData.evolvesTo.length > 0) { console.log(`Cannot sacrifice ${monsterData.name}`); return; }
 
     monsterData.count -= sacrificeCost;
     updateMonsterCollection(monsterData);
@@ -71,7 +72,7 @@ function evolveAllMonsters() {
     const evolveCost = getEvolveCost();
     let evolvedMonsters = 0;
 
-    if (evolveCost === 0) { alert('You have not unlocked the ability to evolve any monsters'); return; }
+    if (evolveCost === 0) { console.log('You have not unlocked the ability to evolve any monsters'); return; }
 
     save.monsters.forEach(monster => {
         while (canMonsterEvolve(monster, evolveCost)) {
@@ -80,7 +81,7 @@ function evolveAllMonsters() {
         }
     });
 
-    displayMessage(`${evolvedMonsters} ${evolvedMonsters === 1 ? 'monster was' : 'monsters were'} evolved`);
+    displayMessage(`${evolvedMonsters}x${evolveCost} monsters were evolved`);
     document.getElementById('evolve-all-button').disabled = true;
 }
 
@@ -92,12 +93,12 @@ function sacrificeAllMonsters() {
 
     save.monsters.forEach(monster => {
         while (monster.count >= sacrificeCost && monster.evolvesTo.length === 0) {
-            sacrificeMonster(monster.ID);
+            sacrificeMonster(monster.ID, false);
             sacrificedMonsters++;
         }
     });
 
-    displayMessage(`${sacrificedMonsters} ${sacrificedMonsters !== 1 ? 'monster was' : 'monsters were'} sacrificed`);
+    displayMessage(`${sacrificedMonsters}x${sacrificeCost} monsters were sacrificed`);
     document.getElementById('sacrifice-all-button').disabled = true;
 }
 

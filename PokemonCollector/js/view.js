@@ -151,8 +151,13 @@ function updateHUD() {
     if (ownedMonsters !== save.monsters.length) {
         elements.collectionNumber.textContent = `${ownedMonsters}/${save.monsters.length} (${(ownedMonsters * 100 / save.monsters.length).toFixed(0)}%)`;
     } else {
-        const shinyMonsters = ownedMonsters.filter((m) => m.shiny === true).length
+        const shinyMonsters = save.monsters.filter((m) => m.shiny === true).length
         elements.collectionNumber.textContent = `${shinyMonsters + ownedMonsters}/${ownedMonsters} (${((ownedMonsters + shinyMonsters) * 100 / ownedMonsters).toFixed(0)}%) (${shinyMonsters} Shiny)`;
+
+        if (shinyMonsters === save.monsters.length && !globals.gameBeaten) {
+            alert("Congratuations! You have collected all the shiny monsters and have beaten the game!");
+            globals.gameBeaten = true;
+        }
     }
 }
 
@@ -196,9 +201,6 @@ function renderCollection() {
 
     document.getElementById('evolve-all-button').disabled = !aMonsterCanEvolve;
     document.getElementById('sacrifice-all-button').disabled = !aMonsterCanBeSacrificed;
-    const collectionNavTab = document.getElementById('collection-nav-tab');
-    if (collectionNavTab.classList.contains('active')) collectionNavTab.classList.remove('notifying');
-    else collectionNavTab.classList.toggle('notifying', aMonsterCanEvolve || aMonsterCanBeSacrificed);
 }
 
 function renderMonsterCard(monsterData) {
@@ -305,7 +307,6 @@ function updateMonsterCollection(monsterData = null) {
 
         if (aMonsterCanEvolve) document.getElementById('evolve-all-button').disabled = false;
         if (aMonsterCanBeSacrificed) document.getElementById('sacrifice-all-button').disabled = false;
-        if (aMonsterCanEvolve || aMonsterCanBeSacrificed) document.getElementById('collection-nav-tab').classList.add('notifying');
 
     } else if (document.querySelector('.collection-container').classList.contains('active')) {
         //all needs update
@@ -316,10 +317,6 @@ function updateMonsterCollection(monsterData = null) {
 
         document.getElementById('evolve-all-button').disabled = !aMonsterCanEvolve;
         document.getElementById('sacrifice-all-button').disabled = !aMonsterCanBeSacrificed;
-
-        const collectionNavTab = document.getElementById('collection-nav-tab');
-        if (collectionNavTab.classList.contains('active')) collectionNavTab.classList.remove('notifying');
-        else collectionNavTab.classList.toggle('notifying', aMonsterCanEvolve || aMonsterCanBeSacrificed);
     }
 }
 //#endregion Collection
