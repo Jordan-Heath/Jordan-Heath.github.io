@@ -7,14 +7,13 @@ function addMonster(monsterData, isShiny = false) {
 }
 
 function handleRepeatableUpgrade(upgrade) {
-    switch (upgrade.id) {
+    switch (upgrade.ID) {
         case 5.1: //'Raise Shiny Chance'
             save.repeatableUpgrades.timesBoostedShinyChance++;
             raiseShinyChance();
             break;
         case 5.2: //'Raise CardPack Speed'
             save.repeatableUpgrades.passiveCardPackSpeed += 1;
-            renderChallenges();
             break;
     }
 }

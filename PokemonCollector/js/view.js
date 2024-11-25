@@ -47,6 +47,7 @@ function renderCardPacks() {
 
 function renderChallenges() {
     const cardPackOpenerElement = document.querySelector('.cardpack-opener');
+    if (!document.querySelector('.cardpack-container').classList.contains('active')) return;
 
     let activeChallenge = save.cardPacks.find((g) => g.ID === globals.selectedCardPack).challenge;
     if (save.settings.disableChallenges
@@ -140,12 +141,19 @@ function updateHUD() {
         shinyChance: document.querySelector('#shiny-chance')
     };
 
-    const ownedMonster = save.monsters.filter((m) => m.owned === true).length
+    const ownedMonsters = save.monsters.filter((m) => m.owned === true).length
+    
 
     elements.money.textContent = save.money.toFixed(2);
     elements.revenue.textContent = save.revenue.toFixed(2);
-    elements.collectionNumber.textContent = `${ownedMonster}/${save.monsters.length} (${(ownedMonster * 100 / save.monsters.length).toFixed(0)}%)`;
     elements.shinyChance.textContent = (save.shinyChance * 100).toFixed(1);
+
+    if (ownedMonsters !== save.monsters.length) {
+        elements.collectionNumber.textContent = `${ownedMonsters}/${save.monsters.length} (${(ownedMonsters * 100 / save.monsters.length).toFixed(0)}%)`;
+    } else {
+        const shinyMonsters = ownedMonsters.filter((m) => m.shiny === true).length
+        elements.collectionNumber.textContent = `${shinyMonsters + ownedMonsters}/${ownedMonsters} (${((ownedMonsters + shinyMonsters) * 100 / ownedMonsters).toFixed(0)}%) (${shinyMonsters} Shiny)`;
+    }
 }
 
 function displayMessage(messageText, duration = 3000) {
