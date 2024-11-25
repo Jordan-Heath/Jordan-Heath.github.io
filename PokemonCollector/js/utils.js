@@ -21,20 +21,6 @@ function sortArray(array) {
     });
 }
 
-function calculateAptitudeScore(monsterData, skill) {
-    const adjustedMonsterSkill = monsterData.skills[skill] * (monsterData.shiny ? shinySkillMultiplier : 1);
-
-    if (adjustedMonsterSkill >= 300)
-        return 6;
-    if (adjustedMonsterSkill >= 200)
-        return 5;
-    if (adjustedMonsterSkill >= 150)
-        return 4;
-    if (adjustedMonsterSkill >= 120)
-        return 3;
-    if (adjustedMonsterSkill >= 80)
-        return 2;
-    if (adjustedMonsterSkill >= 40)
-        return 1;
-    return 0;
+function isNullOrUndefined(value) {
+    return value === null || typeof value === 'undefined';
 }

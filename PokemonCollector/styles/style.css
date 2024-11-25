@@ -1,10 +1,11 @@
+/* #region variables */
 :root {
-    --coin-color: grey;
-    --common-color: whitesmoke;
-    --uncommon-color: lightgreen;
-    --rare-color: lightblue;
-    --epic-color: purple;
-    --legendary-color: gold;
+    --coin-color: #808080;
+    --common-color: #f5f5f5;
+    --uncommon-color: #90ee90;
+    --rare-color: #add8e6;
+    --epic-color: #800080;
+    --legendary-color: #ffd700;
     --shiny-gradient: linear-gradient(45deg, transparent, #00ff00, transparent, #ff00ff, transparent, #0099ff, transparent);;
 
     --html-0: #0f1f25;
@@ -12,7 +13,9 @@
     --html-1: #214553;
     --html-1-transparent: #21455380;
     --html-2: #32667a;
+    --html-2-transparent: #32667a80;
     --html-3: #4893b1;
+    --html-3-transparent: #4893b180;
     --html-4: #52a2c2;
     --html-5: #ffd966;
 
@@ -160,6 +163,19 @@
     }
 }
 
+@keyframes subtlePulse {
+    from {
+        background-color: var(--html-2);
+    }
+    50% {
+        background-color: var(--html-3-transparent);
+    }
+    to {
+        background-color: var(--html-2);
+    }
+}
+/* #endregion variables */
+
 html {
     padding: 0px;
     margin: 0px;
@@ -236,9 +252,7 @@ body {
 
 header {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    color: white;
     background-color: var(--html-2);
     border-radius: 0px 0px 20px 20px;
     padding: 10px 20px;
@@ -251,6 +265,10 @@ header {
     width: calc(100% - 20px);
     max-width: 1300px;
     z-index: 10;
+
+    #mobile-menu-button {
+        display: none;
+    }
 
     h1 {
         margin: 0 20px 0 0;
@@ -265,6 +283,10 @@ header {
         width: 100%;
         gap: 20px;
         margin: 20px;
+
+        .notifying {
+            animation: subtlePulse 1s ease-in-out infinite;
+        }
 
         button {
             background-color: var(--html-2);
@@ -288,26 +310,10 @@ header {
             margin: 0px;
             font-size: 16px;
         }
-
-        .messageContainer {
-            position: fixed;
-            right: 10px;
-            top: 10px;
-
-            .message {
-                width: fit-content;
-                text-align: right;
-                margin: 0px;
-                margin-left: auto;
-                color: lightgreen;
-                background-color: #00000080;
-                padding: 10px;
-                opacity: 0;
-                transition: opacity 1s ease-in-out;
-            }
-        }
     }
 }
+
+/* #region Cards & Card Containers */
 
 .card-container {
     display: grid;
@@ -368,8 +374,8 @@ header {
     }
 
     .card-image {
-        height: 82px;
-        width: 100px;
+        height: 100px;
+        width: 121px;
         flex-shrink: 0;
         border-radius: 20px;
         margin: 5px auto;
@@ -396,7 +402,7 @@ header {
         }
 
         table {
-            font-size: 12px;
+            font-size: 14px;
             margin: 0px;
             padding: 0px;
 
@@ -407,6 +413,8 @@ header {
             }
 
             td, th {
+                flex: 1;
+                text-align: center;
                 padding: 0px;
                 margin: 0px;
             }
@@ -516,12 +524,13 @@ header {
         }
     }
 }
+/* #endregion Cards & Card Containers */
 
-/* Gatchas & Spinner */
-.gatchas {
-    .gatcha {
+/* #region Cardpacks & Opener */
+.cardpacks {
+    .cardpack {
         .card-details {
-            font-size: 12px;
+            font-size: 14px;
         }
     }
 
@@ -534,7 +543,7 @@ header {
     }
 }
 
-.spinner {
+.opener {
     position: relative;
     height: 500px;
     width: 100%;
@@ -552,6 +561,26 @@ header {
             bottom: 0;
             left: 0;
             animation: popupAnimation 3s ease-in-out;
+
+            .card {
+                height: 180px;
+                width: 120px;
+
+                .card-image {
+                    height: 56px;
+                    width: 68px;
+                }
+
+                .card-details {
+                    .card-name {
+                        font-size: 16px;
+                    }
+
+                    table {
+                        font-size: 10px;
+                    }
+                }
+            }
         }
     }
 
@@ -593,7 +622,7 @@ header {
         text-align: center;
     }
 
-    .gatcha-spinner {
+    .cardpack-opener {
         position: absolute;
         top: calc(50% - 50px);
         left: calc(50% - 100px);
@@ -611,8 +640,9 @@ header {
         font-size: 20px;
     }
 }
+/* #endregion Cardpacks & Opener */
 
-/* Collection */
+/* #region Collection */
 /* .collection {
     
 } */
@@ -632,7 +662,7 @@ header {
         width: 300px;
     }
 
-    #sacrifice-all-button {
+    #sacrifice-all-button:not([disabled]) {
         background-color: goldenrod;
 
         &:hover {
@@ -640,10 +670,11 @@ header {
         }
     }
 }
+/* #endregion Collection */
 
-/* Upgrades */
+/* #region Upgrades */
 .upgrades, .owned-upgrades {
-    font-size: 12px;
+    font-size: 14px;
 
     .upgrade {
         .card-name {
@@ -657,10 +688,12 @@ header {
 
     
 }
+/* #endregion Upgrades */
 
-/* Jobs */
+/* #region Jobs */
 .jobs {
     grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    margin-bottom: 0px;
 
     .job {
         height: 130px;
@@ -677,25 +710,27 @@ header {
 
 .job-viewer-container {
     display: flex;
-    flex-direction: row;
-    min-height: 450px;
+    flex-direction: column;
+    /* min-height: 450px; */
     height: 100%;
     max-height: calc(100vh - 180px);
-    border: 2px solid var(--html-0);
-    border-radius: 20px;
+    /* border: 2px solid var(--html-0); */
+    border-radius: 0 0 20px 20px;
     background-color: var(--html-2);
     padding: 20px;
 
     .job-viewer {
         flex: 1;
         padding: 20px;
-        border-radius: 20px;
+        border-radius: 20px 20px 0 0;
         background-color: var(--html-1);
 
         img {
             height: 100px;
-            width: 100px;
+            width: 121px;
             flex-shrink: 0;
+            background-color: var(--html-3);
+            border-radius: 5px;
         }
 
         .performance-details {
@@ -709,14 +744,23 @@ header {
 
     .monster-assigner {
         overflow: scroll;
-        max-width: 630px;
         width: 100%;
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        background-color: var(--html-1);
+        box-sizing: border-box;
+        flex: 1;
+        border-radius: 0 0 20px 20px;
+        margin-top: 0px;
 
         .monster {
             height: 225px;
             width: 150px;
-            font-size: 12px;
+            font-size: 14px;
+
+            .card-image {
+                height: 56px;
+                width: 68px;
+            }
 
             .card-name, button {
                 font-size: 20px;
@@ -728,8 +772,9 @@ header {
         }
     }
 }
+/* #endregion Jobs */
 
-/* Settings */
+/* #region Settings */
 .settings {
     margin: auto;
     padding: 20px;
@@ -741,6 +786,43 @@ header {
     background-color: var(--html-2);
 
     .setting {
-        margin: 20px;
+        background-color: var(--html-3);
+        margin: 10px;
+        padding: 10px;
+
+        p {
+            margin: 0;
+        }
+    }
+}
+/* #endregion Settings */
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    height: fit-content;
+    z-index: 2;
+    pointer-events: none;
+
+    .messageContainer {
+        position: fixed;
+        right: 10px;
+        bottom: 10px;
+        z-index: 2;
+
+        .message {
+            width: fit-content;
+            text-align: right;
+            margin: 0px;
+            margin-left: auto;
+            color: lightgreen;
+            background-color: #00000080;
+            padding: 10px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            z-index: 2;
+        }
     }
 }

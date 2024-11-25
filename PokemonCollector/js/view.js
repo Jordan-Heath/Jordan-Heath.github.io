@@ -1,69 +1,81 @@
-//#region Gatchas
-function renderGatchas() {
-    const gatchasContainer = document.querySelector('.gatchas');
-    gatchasContainer.innerHTML = '';
-    let currentlySelectedGatchaElement = null;
+//#region CardPacks
+function renderCardPacks() {
+    const CardPacksElement = document.querySelector('.cardpacks');
+    CardPacksElement.innerHTML = '';
+    let selectedCardPackElement = null;
 
-    save.gatchas.forEach((gatcha) => {
-        if (gatcha.unlockedBy !== null && !save.upgrades.find((u) => u.ID === gatcha.unlockedBy).owned) {
+    if (globals.selectedCardPack === null) {
+        //set it to the highest CardPack unlocked
+        save.cardPacks.forEach(cardPack => {
+            if (cardPack.unlockedBy !== null && !save.upgrades.find((u) => u.ID === cardPack.unlockedBy).owned) return;
+            else globals.selectedCardPack = globals.selectedCardPack > cardPack.ID ? globals.selectedCardPack : cardPack.ID;
+        });
+    }
+
+    save.cardPacks.forEach((cardPackData) => {
+        if (cardPackData.unlockedBy !== null && !save.upgrades.find((u) => u.ID === cardPackData.unlockedBy).owned) {
             return;
         }
 
-        const gatchaCard = document.createElement('div');
-        gatchaCard.className = 'gatcha card';
-        gatchaCard.onclick = () => selectGatcha(gatcha.ID, gatchaCard);
-        gatchaCard.innerHTML = `
+        let cardPackChallengeHTML = !save.settings.disableChallenges ? 
+            `<p><strong>${cardPackData.challenge}</strong>: ${challengeDescriptions[cardPackData.challenge]}</p>` : '';
+
+        const cardPackElement = document.createElement('div');
+        cardPackElement.className = 'cardpack card';
+        cardPackElement.onclick = () => selectCardPack(cardPackData.ID, cardPackElement);
+        cardPackElement.innerHTML = `
             <img 
                 class="card-image" 
-                src="images/gatchas/${gatcha.image}" 
-                alt="${gatcha.name}">
+                src="images/cardpacks/${cardPackData.image}" 
+                alt="${cardPackData.name}">
             <div class="card-details">
-                <p class="card-name">${gatcha.name}</p>
-                <p>${gatcha.description}</p> 
-                <p><strong>${gatcha.challenge}</strong>: ${challengeDescriptions[gatcha.challenge]}</p>
+                <p class="card-name">${cardPackData.name}</p>
+                <p>${cardPackData.description}</p> 
+                ${cardPackChallengeHTML}
             </div>
         `;
 
-        if (gatcha.ID === globals.selectedGatcha) {
-            currentlySelectedGatchaElement = gatchaCard;
+        if (cardPackData.ID === globals.selectedCardPack) {
+            selectedCardPackElement = cardPackElement;
         }
 
-        gatchasContainer.appendChild(gatchaCard);
+        CardPacksElement.appendChild(cardPackElement);
     });
 
-    const gatchaSpinner = document.querySelector('.gatcha-spinner');
-    gatchaSpinner.innerHTML = 'Click to spin!';
-    selectGatcha(globals.selectedGatcha, currentlySelectedGatchaElement);
+    selectCardPack(globals.selectedCardPack, selectedCardPackElement);
 }
 
-function renderChallenges(doRender = true) {
-    const selectedGatcha = save.gatchas.find((g) => g.ID === globals.selectedGatcha);
-    const gatchaSpinnerElement = document.querySelector('.gatcha-spinner');
+function renderChallenges() {
+    const cardPackOpenerElement = document.querySelector('.cardpack-opener');
+
+    let activeChallenge = save.cardPacks.find((g) => g.ID === globals.selectedCardPack).challenge;
+    if (save.settings.disableChallenges
+        && activeChallenge !== 'Passive') 
+            activeChallenge = 'None'
 
     clearChallenges();
 
     // Start challenge
-    if (doRender) {
-        gatchaSpinnerElement.disabled = true;
-        switch (selectedGatcha.challenge) {
-            case 'Moving Button':
-                startMovingButtonChallenge();
-                break;
-            case 'Collector':
-                startCollectorChallenge();
-                break;
-            case 'Number Popup':
-                startKeyPressChallenge(numbers);
-                break;
-            case 'Typing Challenge':
-                startTypingChallenge();
-                break;
-            case 'Passive':
-                startPassiveChallenge();
-                break;
-            default:
-                gatchaSpinnerElement.disabled = false;
-        }
+    switch (activeChallenge) {
+        case 'Moving Button':
+            startMovingButtonChallenge();
+            break;
+        case 'Collector':
+            startCollectorChallenge();
+            break;
+        case 'Number Popup':
+            startKeyPressChallenge(numbers);
+            break;
+        case 'Typing Challenge':
+            startTypingChallenge();
+            break;
+        case 'Passive':
+            startPassiveChallenge();
+            break;
+        default:
+            cardPackOpenerElement.disabled = false;
+            cardPackOpenerElement.innerHTML = 'Click to Open!';
+            cardPackOpenerElement.onclick = openCardPack;
     }
 }
 
@@ -88,8 +100,25 @@ function renderMonsterReward(monsterData, isShiny = false) {
     const rewardElement = document.createElement('div');
 
     rewardElement.className = `popup ${isShiny ? 'shiny' : ''}`;
-    monsterCardElement = renderMonsterCard(monsterData);
-    rewardElement.appendChild(monsterCardElement);
+
+    if (monsterData.rewardElement === null
+        || monsterData.rewardElement === undefined
+    ) {
+        monsterData.rewardElement = document.createElement('div');
+        monsterData.rewardElement.className = getCardClassName(monsterData);
+        monsterData.rewardElement.innerHTML = `
+            ${getCardHeaderHTML(monsterData)}
+            <div class="card-details">
+                <p class="card-name">${monsterData.name}</p>
+                ${getCardSkillTableHTML(monsterData, isShiny)}
+            </div>
+        `;
+    }
+    
+    monsterData.rewardElement.classList.toggle('shiny', isShiny);
+    
+    //duplicate the reward element
+    rewardElement.appendChild(monsterData.rewardElement.cloneNode(true));
     
     rewardContainer.appendChild(rewardElement);
 
@@ -100,7 +129,7 @@ function renderMonsterReward(monsterData, isShiny = false) {
         rewardContainer.removeChild(rewardElement);
     }, 2700);
 }
-//#endregion Gatchas
+//#endregion CardPacks
 
 //#region HUD
 function updateHUD() {
@@ -119,7 +148,7 @@ function updateHUD() {
     elements.shinyChance.textContent = (save.shinyChance * 100).toFixed(1);
 }
 
-function displayMessage(messageText) {
+function displayMessage(messageText, duration = 3000) {
     const messageContainer = document.querySelector('.messageContainer');
     const messageElement = document.createElement('p');
     messageElement.classList.add('message');
@@ -130,11 +159,11 @@ function displayMessage(messageText) {
 
     setTimeout(() => {
         messageElement.style.opacity = '0';
-    }, 3000);
+    }, duration);
 
     setTimeout(() => {
         messageElement.remove();
-    }, 4000);
+    }, duration + 1000);
 }
 //#endregion HUD
 
@@ -143,20 +172,45 @@ function renderCollection() {
     const collectionContainer = document.querySelector('.collection');
     collectionContainer.innerHTML = ''; // clear the container
 
+    const evolveCost = getEvolveCost();
+    const sacrificeCost = getSacrificeCost();
+
+    let aMonsterCanEvolve = false;
+    let aMonsterCanBeSacrificed = false;
+
     save.monsters.forEach((monsterData) => {
         const cardElement = renderMonsterCard(monsterData);
         collectionContainer.appendChild(cardElement);
+
+        if (canMonsterEvolve(monsterData, evolveCost)) aMonsterCanEvolve = true;
+        if (canMonsterBeSacrificed(monsterData, sacrificeCost)) aMonsterCanBeSacrificed = true;
     });
+
+    document.getElementById('evolve-all-button').disabled = !aMonsterCanEvolve;
+    document.getElementById('sacrifice-all-button').disabled = !aMonsterCanBeSacrificed;
+    const collectionNavTab = document.getElementById('collection-nav-tab');
+    if (collectionNavTab.classList.contains('active')) collectionNavTab.classList.remove('notifying');
+    else collectionNavTab.classList.toggle('notifying', aMonsterCanEvolve || aMonsterCanBeSacrificed);
 }
 
 function renderMonsterCard(monsterData) {
     const cardElement = document.createElement('div');
 
+    if (monsterData.cardElement !== null 
+        && monsterData.cardElement !== undefined
+        && monsterData.cardElement.dataset.count === String(monsterData.count)
+        && monsterData.cardElement.dataset.shiny === String(monsterData.shiny)
+        && monsterData.cardElement.dataset.statsVisible === String(true)
+        && monsterData.cardElement.dataset.evolvingCost === String(getEvolveCost())
+        && monsterData.cardElement.dataset.isSacrificable === String(true)) {
+        return monsterData.cardElement;
+    }
+
     if (monsterData.owned) {
         const isEvolvable = monsterData.evolvesTo.length > 0 && getEvolveCost() > 0;
         const statsVisible = true; //save.upgrades.find((u) => u.ID === 4.1).owned;
         const isSacrificable = monsterData.evolvesTo.length === 0 && save.upgrades.find((u) => u.ID === 3.4).owned; //
-        const skillMultiplier = monsterData.shiny ? shinySkillMultiplier : 1;
+        
         const evolveCost = getEvolveCost();
         const sacrificeCost = getSacrificeCost();
 
@@ -167,53 +221,12 @@ function renderMonsterCard(monsterData) {
         cardElement.dataset.evolvingCost = getEvolveCost();
         cardElement.dataset.isSacrificable = isSacrificable;
 
-        let cardTypeHTML = '';
-        let imgBackgroundColors = [];
-        monsterData.types.forEach(type => {
-            type = type.toLowerCase();
-
-            cardTypeHTML += `<img src="images/types/${type}.png" alt="${type}">`;
-
-            imgBackgroundColors.push(`var(--${type}-color)`);
-        })
-
-        cardElement.className = `card ${monsterData.rarity} ${monsterData.shiny ? 'shiny' : ''}`;
+        cardElement.className = getCardClassName(monsterData);
         cardElement.innerHTML = `
-        <div class="card-type"> 
-            ${cardTypeHTML} 
-        </div>
-        <div class="card-ID">${monsterData.ID}</div>
-        <img 
-            style="background: linear-gradient(180deg, ${imgBackgroundColors[0]}, ${imgBackgroundColors[1] || imgBackgroundColors[0]});"
-            class="card-image" 
-            src="images/monsters/${monsterData.shiny ? 'shiny/' : ''}${monsterData.image}"
-            alt="${monsterData.name}">
+        ${getCardHeaderHTML(monsterData)}
         <div class="card-details">
             <p class="card-name">${monsterData.name}</p>
-            ${statsVisible ? `
-            <table>
-                <tr>
-                    <th>${skills[0]}</th>
-                    <th>${skills[1]}</th>
-                    <th>${skills[2]}</th>
-                </tr>
-                <tr>
-                    <td>${monsterData.skills[skills[0]] * skillMultiplier}</td>
-                    <td>${monsterData.skills[skills[1]] * skillMultiplier}</td>
-                    <td>${monsterData.skills[skills[2]] * skillMultiplier}</td>
-                </tr>
-                <tr>
-                    <th>${skills[3]}</th>
-                    <th>${skills[4]}</th>
-                    <th>${skills[5]}</th>
-                </tr>
-                <tr>
-                    <td>${monsterData.skills[skills[3]] * skillMultiplier}</td>
-                    <td>${monsterData.skills[skills[4]] * skillMultiplier}</td>
-                    <td>${monsterData.skills[skills[5]] * skillMultiplier}</td>
-                </tr>
-            </table>
-            ` : ''}
+            ${statsVisible ? getCardSkillTableHTML(monsterData) : ''}
             ${isEvolvable ? `
                 <button 
                     class="evolve-button"
@@ -230,6 +243,7 @@ function renderMonsterCard(monsterData) {
                 </button>` : ''}
         </div>
         `;
+
     } else {
         cardElement.dataset.ID = monsterData.ID;
         cardElement.className = 'card placeholder';
@@ -243,38 +257,62 @@ function renderMonsterCard(monsterData) {
         `;
     }
 
+    monsterData.cardElement = cardElement;
     return cardElement;
 }
 
-function updateMonsterCollection() {
-    const collectionContainer = document.querySelector('.collection-container');
-    if (!collectionContainer.classList.contains('active')) return;
+function updateMonsterCollection(monsterData = null) {
+    const evolveCost = getEvolveCost();
+    const sacrificeCost = getSacrificeCost();
+    const canSacrifice = sacrificeCost > 0;
 
-    document.querySelectorAll('.collection .card').forEach((cardElement) => {
-        const monsterID = parseInt(cardElement.dataset.ID);
-        const monsterData = save.monsters.find((m) => m.ID === monsterID);
+    let aMonsterCanEvolve = false;
+    let aMonsterCanBeSacrificed = false;
 
-        const needsUpdate = monsterData.owned && (
-            cardElement.dataset.count !== String(monsterData.count) ||
+    function updateMonsterCard(monsterData, cardElement) {
+        if (canMonsterEvolve(monsterData, evolveCost)) aMonsterCanEvolve = true;
+        if (canMonsterBeSacrificed(monsterData, sacrificeCost)) aMonsterCanBeSacrificed = true;
+
+        if (cardElement.dataset.count !== String(monsterData.count) ||
             cardElement.dataset.shiny !== String(monsterData.shiny) ||
-            // cardElement.dataset.statsVisible !== String(save.upgrades.find((u) => u.ID === 4.1).owned) || // "Learn the kills of monsters"
-            cardElement.dataset.evolvingCost !== String(getEvolveCost()) ||
-            cardElement.dataset.isSacrificable !== String(monsterData.evolvesTo.length === 0 && save.upgrades.find((u) => u.ID === 3.4).owned) // "Sacrificing Monsters"
-        );
-
-        if (needsUpdate) {
+            cardElement.dataset.evolvingCost !== String(evolveCost) ||
+            cardElement.dataset.isSacrificable !== String(canSacrifice)) {
+    
             const updatedCardElement = renderMonsterCard(monsterData);
-
+        
             cardElement.dataset.count = updatedCardElement.dataset.count;
             cardElement.dataset.shiny = updatedCardElement.dataset.shiny;
-            // cardElement.dataset.statsVisible = updatedCardElement.dataset.statsVisible;
             cardElement.dataset.evolvingCost = updatedCardElement.dataset.evolvingCost;
             cardElement.dataset.isSacrificable = updatedCardElement.dataset.isSacrificable;
-
+    
             cardElement.className = updatedCardElement.className;
             cardElement.innerHTML = updatedCardElement.innerHTML;
         }
-    });
+    }
+
+    if (monsterData !== null) {
+        //once needs update
+        const cardElement = document.querySelector(`[data--i-d="${monsterData.ID}"]`);
+        updateMonsterCard(monsterData, cardElement);
+
+        if (aMonsterCanEvolve) document.getElementById('evolve-all-button').disabled = false;
+        if (aMonsterCanBeSacrificed) document.getElementById('sacrifice-all-button').disabled = false;
+        if (aMonsterCanEvolve || aMonsterCanBeSacrificed) document.getElementById('collection-nav-tab').classList.add('notifying');
+
+    } else if (document.querySelector('.collection-container').classList.contains('active')) {
+        //all needs update
+        save.monsters.forEach(monsterData => {
+            const cardElement = document.querySelector(`[data--i-d="${monsterData.ID}"]`);
+            updateMonsterCard(monsterData, cardElement);
+        });
+
+        document.getElementById('evolve-all-button').disabled = !aMonsterCanEvolve;
+        document.getElementById('sacrifice-all-button').disabled = !aMonsterCanBeSacrificed;
+
+        const collectionNavTab = document.getElementById('collection-nav-tab');
+        if (collectionNavTab.classList.contains('active')) collectionNavTab.classList.remove('notifying');
+        else collectionNavTab.classList.toggle('notifying', aMonsterCanEvolve || aMonsterCanBeSacrificed);
+    }
 }
 //#endregion Collection
 
@@ -397,18 +435,30 @@ function renderJob(jobData) {
     jobElement.dataset.ID = jobData.ID;
     jobElement.dataset.monsterID = jobData.assignedMonster?.ID;
 
-    jobElement.innerHTML = `
-        <img
-            class="card-image"
-            src="images/monsters/${assignedMonsterData?.shiny ? 'shiny/' : ''}${assignedMonsterData?.image}"
-            alt="${jobData.name}"
-            onerror="this.src='images/jobs/placeholder.png';">
-        <div class="card-details">
-            <p class="card-name">${jobData.name} (${jobData.skill})</p>
-            <p>Assigned: ${assignedMonsterName}</p>
-            <p>Aptitude: ${aptitude}</p>
-        </div>
-    `;
+    if (jobData.assignedMonster === null) {
+        jobElement.innerHTML = `
+            <img
+                class="card-image"
+                src="images/jobs/placeholder.png"
+                alt="${jobData.name}">
+            <div class="card-details">
+                <p class="card-name">${jobData.name}</p>
+            </div>
+        `;
+        return jobElement;
+    } else {
+        jobElement.innerHTML = `
+            <img
+                class="card-image"
+                src="images/monsters/${assignedMonsterData?.shiny ? 'shiny/' : ''}${assignedMonsterData?.image}"
+                alt="${jobData.name}">
+            <div class="card-details">
+                <p class="card-name">${jobData.name} (${jobData.skill})</p>
+                <p>Assigned: ${assignedMonsterName}</p>
+                <p>Aptitude: ${aptitude}</p>
+            </div>
+        `;
+    }
 
     return jobElement;
 }
@@ -506,27 +556,40 @@ function updateMonsterAssigner() {
 
     //render all owned monsters
     availableMonsters.forEach((monsterData) => {
-        const monstersJob = save.jobs.find((j) => j.assignedMonster?.ID === monsterData.ID);
-        const isMonsterAssigned = monstersJob !== undefined;
-        const existingJobHTML = isMonsterAssigned ? `<p>${save.jobs[monstersJob.ID].name}</p>` : '';
+        const monstersJob = monsterData.assignedJob;
+        const isMonsterAssigned = monsterData.assignedJob !== null && monsterData.assignedJob !== undefined;
         const isMonsterAssignedToSelectedJob = isMonsterAssigned && monstersJob.ID === selectedJobData.ID;
-        const assignButtonDisabledHTML = isMonsterAssignedToSelectedJob ? 'disabled' : '';
+
+        if (monsterData.monsterAssignerElement !== null
+            && monsterData.monsterAssignerElement !== undefined
+            && monsterData.monsterAssignerElement.dataset.shiny === String(monsterData.shiny)
+            && monsterData.monsterAssignerElement.dataset.isMonsterAssigned === String(isMonsterAssigned)
+            && monsterData.monsterAssignerElement.dataset.isMonsterAssignedToSelectedJob === String(isMonsterAssignedToSelectedJob)
+        ) {
+            monsterAssigner.appendChild(monsterData.monsterAssignerElement);
+            return;
+        }
 
         //build element
         const monsterElement = document.createElement('div');
+
         monsterElement.className = `monster card ${monsterData.ID === selectedJobData.assignedMonster?.ID ? 'selected' : ''} ${monsterData.rarity} ${monsterData.shiny ? 'shiny' : ''}`;
+        monsterElement.dataset.ID = monsterData.ID;
+        monsterElement.dataset.shiny = String(monsterData.shiny);
+        monsterElement.dataset.isMonsterAssigned = String(isMonsterAssigned);
+        monsterElement.dataset.isMonsterAssignedToSelectedJob = String(isMonsterAssignedToSelectedJob);
+
         monsterElement.innerHTML = `
-        <div class="card-ID">${monsterData.ID}</div>
-        <img 
-            class="card-image"
-            src="images/monsters/${monsterData.shiny ? 'shiny/' : ''}${monsterData.image}"
-            alt="${monsterData.name}">
+        ${getCardHeaderHTML(monsterData)}
         <div class="card-details">
             <p class="card-name">${monsterData.name}</p>
-            <p>${selectedJobData.skill}: ${monsterData.skills[selectedJobData.skill] * (monsterData.shiny ? shinySkillMultiplier : 1)}</p>
-            ${existingJobHTML}
-            <button ${assignButtonDisabledHTML}>
-                ${isMonsterAssigned ? 'Reassign' : 'Assign'}
+            ${getCardSkillTableHTML(monsterData)}
+            <button ${isMonsterAssignedToSelectedJob ? 'disabled' : ''}>
+                ${isMonsterAssigned ? 
+                    isMonsterAssignedToSelectedJob ? 
+                        'Assigned' : 
+                        'Reassign' : 
+                    'Assign'}
             </button>
         </div>
         `;
@@ -535,9 +598,10 @@ function updateMonsterAssigner() {
         const assignButton = monsterElement.querySelector('button');
         assignButton.addEventListener('click', () => {
             // assign the monster to the selected job
-            assignJob(selectedJobData, monsterData);
+            assignJob(save.jobs.find((j) => j.ID === globals.selectedJob), monsterData);
         });
 
+        monsterData.monsterAssignerElement = monsterElement;
         monsterAssigner.appendChild(monsterElement);
     });
 }
@@ -552,5 +616,9 @@ function renderSettings() {
     // set the cheat mode
     document.getElementById('cheat-mode').checked = save.settings.cheatMode;
     document.getElementById('cheat-mode-value').textContent = save.settings.cheatMode ? 'Enabled' : 'Disabled';
+
+    // set the mobile friendly
+    document.getElementById('disable-challenges').checked = save.settings.disableChallenges;
+    document.getElementById('disable-challenges-value').textContent = save.settings.disableChallenges ? 'Enabled' : 'Disabled';
 }
 //#endregion Settings

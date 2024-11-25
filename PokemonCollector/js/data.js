@@ -3,12 +3,14 @@ const rarityColor = ['gray', 'white', 'green', 'blue', 'purple', 'gold'];
 
 //monsters can do jobs based on their skills
 const skills = ['HP', 'Attack', 'Defense', 'Special Attack', 'Special Defense', 'Speed'];
+const skillsReadable = ['HP', 'Att', 'Def', 'Sp.Att', 'Sp.Def', 'Spe',]
 //their performance is indicated by their aptitude (1/2 | 3/4 | 5/6 | 7/8 | 9/10)
 const aptitudes = ['Poor', 'Average', 'Good', 'Great', 'Excellent', 'Amazing', 'Godly'];
 
 const shinySkillMultiplier = 3;
 
 const data = {
+    //#region Monsters
     "monsters": [
         {
             "ID": 1,
@@ -32,7 +34,8 @@ const data = {
             },
             "owned": false,
             "count": 0,
-            "shiny": false
+            "shiny": false,
+            "element": null
         },
         {
             "ID": 2,
@@ -3425,22 +3428,25 @@ const data = {
             "shiny": false
         }
     ],
-    "gatchas": [
+    //#endregion Monsters
+    //#region CardPacks
+    "cardPacks": [
         /*
         {
-            "name": name of the gatcha
-            "image": directory of the image of the gatcha
+            "name": name of the CardPack
+            "image": directory of the image of the CardPack
             "odds": an array of odds, first number represents the likelihood of money, secon number a common, third a uncommon, etc
-            "moneyReward": how much money the gatcha will reward
-            "challenge": the challenge that needs to be completed to unlock the gatcha
-            "unlockedBy": the upgrade that unlocks the gatcha
+            "moneyReward": how much money the CardPack will reward
+            "challenge": the challenge that needs to be completed to unlock the CardPack
+            "unlockedBy": the upgrade that unlocks the CardPack
         }
         */
         {
             "ID": 0,
-            "name": "Cheat Gatcha",
-            "description": "Cheat gatcha gives you any card with equal chance. Rewards $100 on money rewards.",
-            "image": "premium.jpg",
+            "name": "Cheat CardPack",
+            "description": "Cheat CardPack gives you any card with equal chance. Rewards $100 on money rewards.",
+            "image": "legendary.png",
+            "rarity": "shiny",
             "odds": [1, 1, 1, 1, 1, 1],
             "moneyReward": 500,
             "challenge": "None",
@@ -3448,9 +3454,10 @@ const data = {
         },
         {
             "ID": 1,
-            "name": "Common Gatcha",
-            "description": "Common gatcha can only reward common cards. Rewards $0.5 on money rewards.",
-            "image": "free.jpg",
+            "name": "Common CardPack",
+            "description": "Common CardPack can only reward common cards. Rewards $0.5 on money rewards.",
+            "image": "common.png",
+            "rarity": "common",
             "odds": [50, 50, 0, 0, 0, 0],
             "moneyReward": 0.5,
             "challenge": "None",
@@ -3458,133 +3465,130 @@ const data = {
         },
         {
             "ID": 2,
-            "name": "Uncommon Gatcha",
-            "description": "Uncommon gatcha has a 10% to give an uncommon card. Rewards $1 on money rewards.",
-            "image": "free.jpg",
+            "name": "Uncommon CardPack",
+            "description": "Uncommon CardPack has a 10% to give an uncommon card. Rewards $1 on money rewards.",
+            "image": "uncommon.png",
+            "rarity": "uncommon",
             "odds": [45, 40, 10, 0, 0, 0],
             "moneyReward": 1,
             "challenge": "Moving Button",
-            "unlockedBy": 1.1 // "Unlock Uncommon Gatcha"
+            "unlockedBy": 1.1 // "Unlock Uncommon CardPack"
         },
         {
             "ID": 3,
-            "name": "Rare Gatcha",
-            "description": "Rare gatcha has a 5% chance to give a rare card. Rewards $3 on money rewards. <strong>[Not Mobile Friendly]</strong>",
-            "image": "premium.jpg",
+            "name": "Rare CardPack",
+            "description": "Rare CardPack has a 5% chance to give a rare card. Rewards $3 on money rewards.",
+            "image": "rare.png",
+            "rarity": "rare",
             "odds": [40, 40, 15, 5, 0, 0],
             "moneyReward": 3,
             "challenge": "Collector",
-            "unlockedBy": 1.2 // "Unlock Rare Gatcha"
+            "unlockedBy": 1.2 // "Unlock Rare CardPack"
         },
         {
             "ID": 4,
-            "name": "Epic Gatcha",
-            "description": "Epic gatcha has a 3% chance to give an epic card. Rewards $5 on money rewards. <strong>[Not Mobile Friendly]</strong>",
-            "image": "premium.jpg",
+            "name": "Epic CardPack",
+            "description": "Epic CardPack has a 3% chance to give an epic card. Rewards $5 on money rewards.",
+            "image": "epic.png",
+            "rarity": "epic",
             "odds": [35, 30, 25, 7, 3, 0],
             "moneyReward": 5,
             "challenge": "Number Popup",
-            "unlockedBy": 1.3 // "Unlock Epic Gatcha"
+            "unlockedBy": 1.3 // "Unlock Epic CardPack"
         },
         {
             "ID": 5,
-            "name": "Legendary Gatcha",
-            "description": "Legendary gatcha has a 1% chance to give a legendary card. Rewards $10 on money rewards. <strong>[Not Mobile Friendly]</strong>",
-            "image": "premium.jpg",
+            "name": "Legendary CardPack",
+            "description": "Legendary CardPack has a 1% chance to give a legendary card. Rewards $10 on money rewards.",
+            "image": "legendary.png",
+            "rarity": "legendary",
             "odds": [30, 15, 25, 12, 5, 3],
             "moneyReward": 10,
             "challenge": "Typing Challenge",
-            "unlockedBy": 1.4 // "Unlock Legendary Gatcha"
+            "unlockedBy": 1.4 // "Unlock Legendary CardPack"
         },
         {
             "ID": 6,
-            "name": "Passive Gatcha",
-            "description": "You've worked hard, now it's time to rest. This legendary gatcha spins itself.",
-            "image": "premium.jpg",
+            "name": "Passive CardPack",
+            "description": "You've worked hard, now it's time to rest. This legendary CardPack opens itself.",
+            "image": "legendary.png",
+            "rarity": "shiny",
             "odds": [30, 15, 25, 12, 5, 3],
             "moneyReward": 10,
             "challenge": "Passive",
-            "unlockedBy": 1.5 // "Unlock Passive Gatcha"
+            "unlockedBy": 1.5 // "Unlock Passive CardPack"
         }
     ],
+    //#endregion CardPacks
+    //#region Upgrades
     "upgrades": [
-        /*
-        {
-            "ID": ID of the upgrade
-            "name": name of the upgrade
-            "image": name of the image of the upgrade
-            "rarity": rarity of the upgrade
-            "description": description of the upgrade
-            "cost": cost of the upgrade
-            "unlockedBy": the upgrade that unlocks the upgrade
-        }
-        */
-        // unlock gatchas
+        //#region unlock CardPacks
         {
             "ID": 0,
             "name": "Unlock Cheat Mode",
-            "image": "cheat-gatcha.png",
+            "image": "legendary-cardpack-2.png",
             "rarity": "legendary",
-            "description": "Unlocks the Cheat Gatcha machine.",
+            "description": "Unlocks the Cheat CardPack machine.",
             "cost": 0,
             "unlockedBy": 0,
             "owned": false
         },
         {
             "ID": 1.1,
-            "name": "Unlock Uncommon Gatcha",
-            "image": "premium-gatcha.jpg",
+            "name": "Unlock Uncommon CardPack",
+            "image": "uncommon-cardpack.png",
             "rarity": "uncommon",
-            "description": "Unlocks the Uncommon Gatcha machine. Requires user to complete \"Moving Button\" Challenge. Chance to give common cards.",
+            "description": "Unlocks the Uncommon CardPack machine. Requires user to complete \"Moving Button\" Challenge. Chance to give common cards.",
             "cost": 5,
             "unlockedBy": null,
             "owned": false
         },
         {
             "ID": 1.2,
-            "name": "Unlock Rare Gatcha",
-            "image": "premium-gatcha.jpg",
+            "name": "Unlock Rare CardPack",
+            "image": "rare-cardpack.png",
             "rarity": "rare",
-            "description": "Unlocks the Rare Gatcha machine. Requires user to complete \"Collector\" Challenge. Chance to give rare cards. <strong>[Not Mobile Friendly]</strong>",
+            "description": "Unlocks the Rare CardPack machine. Requires user to complete \"Collector\" Challenge. Chance to give rare cards.",
             "cost": 10,
             "unlockedBy": 1.1,
             "owned": false
         },
         {
             "ID": 1.3,
-            "name": "Unlock Epic Gatcha",
-            "image": "premium-gatcha.jpg",
+            "name": "Unlock Epic CardPack",
+            "image": "epic-cardpack.png",
             "rarity": "epic",
-            "description": "Unlocks the Epic Gatcha machine. Requires user to complete \"Number Popup\" Challenge. Chance to give epic cards. <strong>[Not Mobile Friendly]</strong>",
+            "description": "Unlocks the Epic CardPack machine. Requires user to complete \"Number Popup\" Challenge. Chance to give epic cards.",
             "cost": 100,
             "unlockedBy": 1.2,
             "owned": false
         },
         {
             "ID": 1.4,
-            "name": "Unlock Legendary Gatcha",
-            "image": "premium-gatcha.jpg",
+            "name": "Unlock Legendary CardPack",
+            "image": "legendary-cardpack.png",
             "rarity": "legendary",
-            "description": "Unlocks the Legendary Gatcha. Requires user to complete \"Typing Challenge\" Challenge. Chance to give legendary cards. <strong>[Not Mobile Friendly]</strong>",
+            "description": "Unlocks the Legendary CardPack. Requires user to complete \"Typing Challenge\" Challenge. Chance to give legendary cards.",
             "cost": 1000,
             "unlockedBy": 1.3,
             "owned": false
         },
         {
             "ID": 1.5,
-            "name": "Unlock Passive Gatcha",
-            "image": "premium-gatcha.jpg",
+            "name": "Unlock Passive CardPack",
+            "image": "legendary-cardpack-2.png",
             "rarity": "legendary",
-            "description": "Unlocks the Passive Gatcha. Spins once per second. Legendary Gatcha with no challenge.",
+            "description": "Unlocks the Passive CardPack. Spins once per second. Legendary CardPack with no challenge.",
             "cost": 5000,
             "unlockedBy": 1.4,
             "owned": false
         },
-        // worker enhancements
+        //#endregion unlock CardPacks
+        //#region worker enhancements
         {
             "ID": 2.1,
             "name": "Proficient Workers 10%",
-            "image": "better-workers-1.png",
+            "image": "placeholder.png",
             "rarity": "common",
             "description": "10% better workers",
             "cost": 10,
@@ -3594,7 +3598,7 @@ const data = {
         {
             "ID": 2.2,
             "name": "Proficient Workers 25%",
-            "image": "better-workers-2.png",
+            "image": "placeholder.png",
             "rarity": "uncommon",
             "description": "25% better workers",
             "cost": 50,
@@ -3604,7 +3608,7 @@ const data = {
         {
             "ID": 2.3,
             "name": "Proficient Workers 50%",
-            "image": "better-workers-3.png",
+            "image": "placeholder.png",
             "rarity": "rare",
             "description": "50% better workers",
             "cost": 100,
@@ -3614,7 +3618,7 @@ const data = {
         {
             "ID": 2.4,
             "name": "Proficient Workers 100%",
-            "image": "better-workers-4.png",
+            "image": "placeholder.png",
             "rarity": "epic",
             "description": "100% better workers",
             "cost": 500,
@@ -3624,17 +3628,19 @@ const data = {
         {
             "ID": 2.5,
             "name": "Proficient Workers 200%",
+            "image": "placeholder.png",
             "rarity": "legendary",
             "description": "200% better workers",
             "cost": 1000,
             "unlockedBy": 2.4,
             "owned": false
         },
-        // evolving monsters
+        //#endregion worker enhancements
+        //#region evolving monsters
         {
             "ID": 3.1,
             "name": "Evolving Monsters",
-            "image": "evolving-monsters-0.png",
+            "image": "placeholder.png",
             "rarity": "uncommon",
             "description": "Unlock evolving monsters. Costs 5 Cards to evolve",
             "cost": 10,
@@ -3644,7 +3650,7 @@ const data = {
         {
             "ID": 3.2,
             "name": "Evolving Monsters +1",
-            "image": "evolving-monsters-1.png",
+            "image": "placeholder.png",
             "rarity": "rare",
             "description": "Cheaper evolving requirement. Costs 4 Cards to evolve",
             "cost": 100,
@@ -3654,7 +3660,7 @@ const data = {
         {
             "ID": 3.3,
             "name": "Evolving Monsters +2",
-            "image": "evolving-monsters-2.png",
+            "image": "placeholder.png",
             "rarity": "epic",
             "description": "Cheaper evolving requirement. Costs 3 Cards to evolve",
             "cost": 500,
@@ -3664,29 +3670,31 @@ const data = {
         {
             "ID": 3.4,
             "name": "Sacrificing Monsters",
-            "image": "evolving-monsters-3.png",
+            "image": "placeholder.png",
             "rarity": "legendary",
             "description": "Unlock sacrificing legendary monsters to raise shiny chance by 1%.",
             "cost": 1000,
             "unlockedBy": 3.3,
             "owned": false
         },
-        // ui enhancements
+        //#endregion evolving monsters
+        //#region ui enhancements
         /*{
             "ID": 4.1,
             "name": "Learn the skills of monsters",
-            "image": "learn-skills.jpg",
+            "image": "placeholder.png",
             "rarity": "uncommon",
             "description": "Become able to view the skills of your monsters, so you can better assign them to work.",
             "cost": 10,
             "unlockedBy": null,
             "owned": false
         },*/
-        // repeatable upgrades
+        //#endregion ui enhancements
+        //#region repeatable upgrades
         {
             "ID": 5.1,
             "name": "Raise Shiny Chance",
-            "image": "raise-shiny-chance.jpg",
+            "image": "placeholder.png",
             "rarity": "shiny",
             "description": "Raise shiny chance by 0.1%.",
             "cost": 2500,
@@ -3696,21 +3704,24 @@ const data = {
         },
         {
             "ID": 5.2,
-            "name": "Speed up Passive Gatcha",
-            "image": "speed-passive-gatcha.jpg",
+            "name": "Speed up Passive CardPack",
+            "image": "placeholder.png",
             "rarity": "shiny",
-            "description": "Get 1 more passive gatcha per second.",
+            "description": "Get 1 more passive CardPack per second.",
             "cost": 5000,
             "unlockedBy": 1.5,
             "owned": false,
             "repeatable": true
         }
+        //#endregion repeatable upgrades
     ],
+    //#endregion Upgrades
+    //#region Jobs
     "jobs": [
         {
             "ID": 0,
             "name": "Healer",
-            "image": "healer.jpg",
+            "image": "placeholder.png",
             "description": "Pokémon with high HP are typically resilient and durable, making them great for roles requiring endurance or care for others.",
             "skill": skills[0],
             "revenuePerSkill": 0.1,
@@ -3720,7 +3731,7 @@ const data = {
         {
             "ID": 1,
             "name": "Lumberjack",
-            "image": "lumberjack.jpg",
+            "image": "placeholder.png",
             "description": "High Attack indicates physical strength, so these Pokémon excel in physically demanding or combat-heavy roles.",
             "skill": skills[1],
             "revenuePerSkill": 0.1,
@@ -3730,7 +3741,7 @@ const data = {
         {
             "ID": 2,
             "name": "Blacksmith",
-            "image": "blacksmith.jpg",
+            "image": "placeholder.png",
             "description": "High Defense Pokémon are tough and protective, making them ideal for guarding or building roles that require durability.",
             "skill": skills[2],
             "revenuePerSkill": 0.1,
@@ -3740,7 +3751,7 @@ const data = {
         {
             "ID": 3,
             "name": "Researcher",
-            "image": "researcher.jpg",
+            "image": "placeholder.png",
             "description": "Pokémon with high Special Attack often have unique or magical abilities, which could align with intelligence, creativity, or high-tech applications.",
             "skill": skills[3],
             "revenuePerSkill": 0.1,
@@ -3750,7 +3761,7 @@ const data = {
         {
             "ID": 4,
             "name": "Merchant",
-            "image": "merchant.jpg",
+            "image": "placeholder.png",
             "description": "High Special Defense implies mental fortitude or resistance to special/magical effects, making them suitable for advisory or protective roles.",
             "skill": skills[4],
             "revenuePerSkill": 0.1,
@@ -3760,7 +3771,7 @@ const data = {
         {
             "ID": 5,
             "name": "Courier",
-            "image": "courier.jpg",
+            "image": "placeholder.png",
             "description": "High Speed Pokémon are quick and agile, thriving in roles requiring rapid action or movement.",
             "skill": skills[5],
             "revenuePerSkill": 0.1,
@@ -3768,4 +3779,5 @@ const data = {
             "assignedMonster": null
         }
     ]
+    //#endregion Jobs
 }

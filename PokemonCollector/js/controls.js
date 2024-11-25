@@ -1,31 +1,26 @@
-/**
- * Set the selected gatcha in the save object and update the UI
- * @param {string} gatchaName - the name of the gatcha to select
- * @param {Element} gatchaElement - the element of the gatcha to select
- */
-function selectGatcha(gatchaID, gatchaElement) {
-    globals.selectedGatcha = gatchaID;
+function selectCardPack(cardPackID, cardPackElement) {
+    globals.selectedCardPack = cardPackID;
 
-    //unselect all gatcha elements and select the one that was clicked
-    document.querySelectorAll('.gatcha').forEach((gatcha) => gatcha.classList.remove('selected'));
-    gatchaElement.classList.add('selected');
+    //unselect all cardpack elements and select the one that was clicked
+    document.querySelectorAll('.cardpack').forEach((cardpack) => cardpack.classList.remove('selected'));
+    cardPackElement.classList.add('selected');
 
-    //update spinner
-    const gatchaSpinnerElement = document.querySelector('.gatcha-spinner');
-    gatchaSpinnerElement.style = null;
-    gatchaSpinnerElement.innerHTML = `Click to spin!`;
+    //update opener
+    const cardpackOpenerElement = document.querySelector('.cardpack-opener');
+    cardpackOpenerElement.style = null;
+    cardpackOpenerElement.innerHTML = `Click to spin!`;
 
     renderChallenges();
 }
 
-function spinGatcha() {
-    const selectedGatcha = save.gatchas.find(gatcha => gatcha.ID === globals.selectedGatcha);
+function openCardPack() {
+    const selectedCardPack = save.cardPacks.find(cardpack => cardpack.ID === globals.selectedCardPack);
 
-    let rewardRarity = getWeightedRandom(rarity, selectedGatcha.odds);
+    let rewardRarity = getWeightedRandom(rarity, selectedCardPack.odds);
     if (rewardRarity === 'coin') {
-        save.money += selectedGatcha.moneyReward;
+        save.money += selectedCardPack.moneyReward;
         updateHUD();
-        renderMoneyReward(selectedGatcha.moneyReward);
+        renderMoneyReward(selectedCardPack.moneyReward);
     } else {
         const eligibleMonsters = save.monsters.filter((monster) => monster.rarity === rewardRarity);
         const rewardMonster = eligibleMonsters[Math.floor(Math.random() * eligibleMonsters.length)];
@@ -36,7 +31,7 @@ function spinGatcha() {
     }
 }
 
-function evolveMonster(monsterID) {
+function evolveMonster(monsterID, doDisplayMessage = true) {
     const evolveCost = getEvolveCost();
     const monsterData = save.monsters.find((m) => m.ID === monsterID);
     
@@ -50,10 +45,13 @@ function evolveMonster(monsterID) {
     if (!resultingMonster) { alert('Evolved monster not found'); return; }
     
     monsterData.count -= evolveCost;
+    updateMonsterCollection(monsterData);
+
     addMonster(resultingMonster);
+    if (doDisplayMessage) displayMessage(`${monsterData.name} evolved into ${resultingMonster.name}`);
 }
 
-function sacrificeMonster(monsterID) {
+function sacrificeMonster(monsterID, doDisplayMessage = true) {
     const sacrificeCost = getSacrificeCost()
     const monsterData = save.monsters.find((m) => m.ID === monsterID);
 
@@ -62,28 +60,43 @@ function sacrificeMonster(monsterID) {
     if (monsterData.evolvesTo.length > 0) { alert(`Cannot sacrifice ${monsterData.name}`); return; }
 
     monsterData.count -= sacrificeCost;
-    updateMonsterCollection();
+    updateMonsterCollection(monsterData);
 
     raiseShinyChance();
     updateHUD();
+    if (doDisplayMessage) displayMessage(`${monsterData.name} sacrificed`);
 }
 
 function evolveAllMonsters() {
     const evolveCost = getEvolveCost();
+    let evolvedMonsters = 0;
+
+    if (evolveCost === 0) { alert('You have not unlocked the ability to evolve any monsters'); return; }
 
     save.monsters.forEach(monster => {
-        while ( monster.count >= evolveCost && monster.evolvesTo.length > 0)
-            evolveMonster(monster.ID);
+        while (canMonsterEvolve(monster, evolveCost)) {
+            evolveMonster(monster.ID, false);
+            evolvedMonsters++;
+        }
     });
+
+    displayMessage(`${evolvedMonsters * evolveCost} ${evolvedMonsters === 1 ? 'monster was' : 'monsters were'} evolved`);
 }
 
 function sacrificeAllMonsters() {
     const sacrificeCost = getSacrificeCost();
+    let sacrificedMonsters = 0;
+
+    if (sacrificeCost === 0) { alert('You have not unlocked the ability to sacrifice any monsters'); return; }
 
     save.monsters.forEach(monster => {
-        while (monster.count >= sacrificeCost && monster.evolvesTo.length === 0)
+        while (monster.count >= sacrificeCost && monster.evolvesTo.length === 0) {
             sacrificeMonster(monster.ID);
+            sacrificedMonsters++;
+        }
     });
+
+    displayMessage(`${sacrificedMonsters * sacrificeCost} ${sacrificedMonsters === 1 ? 'monster was' : 'monsters were'} sacrificed`);
 }
 
 function selectNavTab(tab, container) {
@@ -95,21 +108,27 @@ function selectNavTab(tab, container) {
     containers.forEach((container) => container.classList.remove('active'));
     document.querySelector(container).classList.add('active');
 
+    document.querySelector('nav').classList.remove('active');
+    document.getElementById('mobile-menu-button').classList.remove('active');
+
     //deactivate controls
     clearChallenges();
 
     // update the selected container
     switch (container) {
-        case '.gatcha-container':
-            renderGatchas();
+        case '.cardpack-container':
+            renderCardPacks();
             break;
         case '.collection-container':
+            document.getElementById('collection-nav-tab').classList.remove('notifying');
             updateMonsterCollection();
             break;
         case '.upgrade-container':
+            document.getElementById('upgrades-nav-tab').classList.remove('notifying');
             updateUpgrades();
             break;
         case '.jobs-container':
+            document.getElementById('jobs-nav-tab').classList.remove('notifying');
             updateJobs();
             break;
         case '.settings':
@@ -135,7 +154,6 @@ function purchaseUpgrade(selectedUpgradeID) {
     updateUpgrades();
     calculateRevenuePerSecond();
     updateHUD();
-    updateMonsterCollection();
 }
 
 function selectJob(selectedJob, selectedJobElement) {
@@ -157,18 +175,26 @@ function assignJob(selectedJobData, monsterData) {
     if (selectedJobData.assignedMonster?.ID === monsterData.ID) { alert('This monster is already assigned to this job'); return; }
 
     //check if this monster has already been assigned a job
-    const monstersCurrentJob = save.jobs.find((j) => j.assignedMonster?.ID === monsterData.ID);
-    if (monstersCurrentJob !== undefined) {
+    const monstersCurrentJob = monsterData.assignedJob;
+    if (monstersCurrentJob !== undefined
+        && monstersCurrentJob !== null
+    ) {
         //confirm the user wishes to reassign them, then reassign
-        if (!confirm(`The monster ${monsterData.name} is already assigned to a job. Do you wish to reassign them?`)) {
+        if (!confirm(`${monsterData.name} is already assigned to ${monstersCurrentJob.name}. Do you wish to reassign them?`)) {
             return;
         }
-        
-        //set the assigned monster to null
+
+        //ensure old job is unassigned
         monstersCurrentJob.assignedMonster = null;
     }
 
+    //esnure previous employee is unassigned
+    if (selectedJobData.assignedMonster !== null) {
+        selectedJobData.assignedMonster.assignedJob = null;
+    }
+
     selectedJobData.assignedMonster = monsterData;
+    monsterData.assignedJob = selectedJobData;
 
     calculateRevenuePerSecond();
     updateJobs();
@@ -207,7 +233,6 @@ function updatePayFrequency() {
     globals.payInterval = setInterval(() => {
         save.money += save.revenue / 60 * save.settings.payFrequency;
         updateHUD();
-        updateMonsterCollection();
     }, save.settings.payFrequency * 1000);
 }
 // #endregion Settings
@@ -223,9 +248,27 @@ function toggleCheatMode() {
         save.settings.cheatMode = false;
         data.upgrades.find((u) => u.ID === 0).owned = false;
 
-        if (globals.selectedGatcha === 0) {
-            globals.selectedGatcha = 1;
-            renderGatchas();
+        if (globals.selectedCardPack === 0) {
+            globals.selectedCardPack = 1;
+            renderCardPacks();
         }
+    }
+}
+
+function toggleMobileMenu() {
+    const mobileMenu = document.querySelector('nav');
+    mobileMenu.classList.toggle('active');
+
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    mobileMenuButton.classList.toggle('active');
+}
+
+function toggleDisableChallenges() {
+    if (document.getElementById('disable-challenges').checked) {
+        document.getElementById('disable-challenges-value').textContent = 'Enabled';
+        save.settings.disableChallenges = true;
+    } else {
+        document.getElementById('disable-challenges-value').textContent = 'Disabled';
+        save.settings.disableChallenges = false;
     }
 }
