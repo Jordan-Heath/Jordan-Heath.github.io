@@ -442,7 +442,7 @@ function renderJob(jobData) {
                 src="images/jobs/placeholder.png"
                 alt="${jobData.name}">
             <div class="card-details">
-                <p class="card-name">${jobData.name}</p>
+                <p class="card-name">${jobData.name} (${jobData.skill})</p>
             </div>
         `;
         return jobElement;

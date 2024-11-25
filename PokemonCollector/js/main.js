@@ -13,7 +13,9 @@ const save = {
     settings: {
         payFrequency: 1,
         cheatMode: false,
-        disableChallenges: false
+        disableChallenges: false,
+        notificationFrequency: 60,
+        saveFrequency: 15
     }
 };
 
@@ -63,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     globals.saveInterval = setInterval(() => {
         saveToLocalStorage();
         displayMessage('Saved');
-    }, 15000);
+    }, 15000); //save.settings.saveFrequency * 1000);
 
     //collection interval every 1 min
     globals.collectionInterval = setInterval(() => {
@@ -85,27 +87,28 @@ document.addEventListener('DOMContentLoaded', () => {
             collectionNavTab.classList.add('notifying');
             displayMessage('Monsters are able to be sacrificed');
         }
-    }, 60000)
+    }, 60000); //save.settings.notificationFrequency * 1000)
 
     globals.upgradesInterval = setInterval(() => {
         //if the user can afford an upgrade, show a message
         const upgradesNavTab = document.getElementById('upgrades-nav-tab');
         if (upgradesNavTab.classList.contains('active')) return;
         
-        if (save.upgrades.find((u) => u.cost <= save.money && !u.owned)) {
+        if (save.upgrades.some((u) => u.owned && u.cost <= save.money && u.unlockedBy === null || u.unlockedBy !== null && save.upgrades.find((u2) => u2.ID === u.unlockedBy).owned)) {
             upgradesNavTab.classList.add('notifying');
             displayMessage('Upgrades are available');
         }
-    }, 62000);
+    }, 60000); //save.settings.notificationFrequency * 1000);
 
     globals.jobsInterval = setInterval(() => {
         //if the user hasn't assigned a job
         const jobsNavTab = document.getElementById('jobs-nav-tab');
         if (jobsNavTab.classList.contains('active')) return;
         
-        if (save.jobs.find((j) => j.assignedMonster === null)) {
+        if (save.monsters.some((m) => m.owned && isNullOrUndefined(m.assignedJob)) 
+            && save.jobs.some((j) => j.assignedMonster === null)) {
             jobsNavTab.classList.add('notifying');
             displayMessage('Jobs are available');
         }
-    }, 64000);
+    }, 60000); //save.settings.notificationFrequency * 1000);
 });

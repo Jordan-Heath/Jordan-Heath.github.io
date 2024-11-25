@@ -3708,7 +3708,7 @@ const data = {
             "image": "placeholder.png",
             "rarity": "shiny",
             "description": "Get 1 more passive CardPack per second.",
-            "cost": 5000,
+            "cost": 2500,
             "unlockedBy": 1.5,
             "owned": false,
             "repeatable": true
