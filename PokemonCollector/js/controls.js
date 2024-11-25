@@ -80,7 +80,8 @@ function evolveAllMonsters() {
         }
     });
 
-    displayMessage(`${evolvedMonsters * evolveCost} ${evolvedMonsters === 1 ? 'monster was' : 'monsters were'} evolved`);
+    displayMessage(`${evolvedMonsters} ${evolvedMonsters === 1 ? 'monster was' : 'monsters were'} evolved`);
+    document.getElementById('evolve-all-button').disabled = true;
 }
 
 function sacrificeAllMonsters() {
@@ -96,7 +97,8 @@ function sacrificeAllMonsters() {
         }
     });
 
-    displayMessage(`${sacrificedMonsters * sacrificeCost} ${sacrificedMonsters === 1 ? 'monster was' : 'monsters were'} sacrificed`);
+    displayMessage(`${sacrificedMonsters} ${sacrificedMonsters !== 1 ? 'monster was' : 'monsters were'} sacrificed`);
+    document.getElementById('sacrifice-all-button').disabled = true;
 }
 
 function selectNavTab(tab, container) {

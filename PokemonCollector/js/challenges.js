@@ -34,6 +34,7 @@ function startCollectorChallenge() {
     });
 
     const cardPackOpenerElement = document.querySelector('.cardpack-opener');
+    cardPackOpenerElement.disabled = true;
     cardPackOpenerElement.innerHTML = "Press the Arrow Keys to move the button";
     cardPackOpenerElement.style.top = `${openerContainerElement.offsetHeight / 2 - cardPackOpenerElement.offsetHeight / 2}px`;
     cardPackOpenerElement.style.left = `${openerContainerElement.offsetWidth / 2 - cardPackOpenerElement.offsetWidth / 2}px`;
@@ -115,6 +116,7 @@ function startKeyPressChallenge(keyPressOptionsArray) {
 
     //set the CardPack opener to the option
     const cardPackOpenerElement = document.querySelector('.cardpack-opener');
+    cardPackOpenerElement.disabled = true;
     cardPackOpenerElement.style.fontSize = '40px';
     let printKey = requiredKey.toUpperCase();
     if (arrows.includes(requiredKey)) printKey = arrowSymbols[requiredKey];
