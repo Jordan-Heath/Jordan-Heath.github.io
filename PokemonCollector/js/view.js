@@ -447,7 +447,7 @@ function renderJob(jobData) {
                 src="images/jobs/placeholder.png"
                 alt="${jobData.name}">
             <div class="card-details">
-                <p class="card-name">${jobData.name} (${jobData.skill})</p>
+                <p class="card-name">${jobData.name} (${skillsReadable[skills.indexOf(jobData.skill)]})</p>
             </div>
         `;
         return jobElement;
@@ -458,7 +458,7 @@ function renderJob(jobData) {
                 src="images/monsters/${assignedMonsterData?.shiny ? 'shiny/' : ''}${assignedMonsterData?.image}"
                 alt="${jobData.name}">
             <div class="card-details">
-                <p class="card-name">${jobData.name} (${jobData.skill})</p>
+                <p class="card-name">${jobData.name} (${skillsReadable[skills.indexOf(jobData.skill)]})</p>
                 <p>Assigned: ${assignedMonsterName}</p>
                 <p>Aptitude: ${aptitude}</p>
             </div>

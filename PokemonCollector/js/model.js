@@ -10,7 +10,7 @@ function handleRepeatableUpgrade(upgrade) {
     switch (upgrade.ID) {
         case 5.1: //'Raise Shiny Chance'
             save.repeatableUpgrades.timesBoostedShinyChance++;
-            raiseShinyChance();
+            raiseShinyChance(0.01);
             break;
         case 5.2: //'Raise CardPack Speed'
             save.repeatableUpgrades.passiveCardPackSpeed += 1;
@@ -18,8 +18,8 @@ function handleRepeatableUpgrade(upgrade) {
     }
 }
 
-function raiseShinyChance() {
-    save.shinyChance += 0.001
+function raiseShinyChance(amount = 0.001) {
+    save.shinyChance += amount;
     updateHUD();
 }
 
@@ -59,11 +59,11 @@ function saveToLocalStorage() {
         });
     });
 
-    localStorage.setItem('save', JSON.stringify(saveData));
+    localStorage.setItem('PokemonCollectorSave', JSON.stringify(saveData));
 }
 
 function loadFromLocalStorage() {
-    const saveString = localStorage.getItem('save');
+    const saveString = localStorage.getItem('PokemonCollectorSave');
     
     if (saveString) {
         const loadedData = JSON.parse(saveString)

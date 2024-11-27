@@ -18,7 +18,14 @@ PLAYABLE DEMO. A digimon/tamogotchi clone with my own spin.
 ### [Pokemon Collector](CustomChess/index.html)
 I've wanted to make a card collection game for a while, but given I could not do enough good quality art to do it myself, i decided last minute to make it a fan game.
 
-- [ ] Checklist of accomplishments
+- [x] 6 CardPacks to unlock pokemon
+- [x] 151 Pokemon to collect/evolve
+- [x] 151 Shiny Pokemon with a base 0.1% shiny rate
+- [x] 16 Upgrades to unlock
+- [x] 6 Jobs to earn passive income
+- [x] Disable Challenges Setting - removes the challenges and turns the game into a pure clicker game
+- [x] Cheat mode - provides a CardPack with busted odds and money rewards
+- [x] Optimised Card rendering
 
 ### [Custom Chess](CustomChess/index.html)
 Inspired by Balatro, but for chess. Work In Progress, but good enough to publish.

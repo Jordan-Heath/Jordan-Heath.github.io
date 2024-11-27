@@ -80,14 +80,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const sacrificeCost = getSacrificeCost();
         if (evolveCost > 0
             && save.monsters.some((m) => m.count >= evolveCost && m.evolvesTo.length > 0)) {
-            collectionNavTab.classList.add('notifying');
-            displayMessage('Monsters are able to be evolved');
-        }
-
-        if (sacrificeCost > 0
+            if (collectionNavTab.classList.contains('notifying')) displayMessage('Monsters are able to be evolved');
+            else collectionNavTab.classList.add('notifying');
+        } else if (sacrificeCost > 0
             && save.monsters.some((m) => m.count >= sacrificeCost && m.evolvesTo.length === 0)) {
-            collectionNavTab.classList.add('notifying');
-            displayMessage('Monsters are able to be sacrificed');
+            if (collectionNavTab.classList.contains('notifying')) displayMessage('Monsters are able to be sacrificed'); 
+            else collectionNavTab.classList.add('notifying');
         }
     }, 60000); //save.settings.notificationFrequency * 1000)
 
@@ -97,13 +95,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (upgradesNavTab.classList.contains('active')) return;
         
         if (save.upgrades.some((u) => {
-            if (u.owned) return false;
-            if (u.cost > save.money) return false;
-            if (u.unlockedBy !== null && save.upgrades.find((u2) => u2.ID === u.unlockedBy).owned) return false;
+            if (u.owned) return false; //skip owned upgrades
+            if (u.cost > save.money) return false; //skip unaffordable upgrades
+            if (u.unlockedBy !== null && save.upgrades.find((u2) => u2.ID === u.unlockedBy).owned === false) return false; //skip unavailable upgrades
             return true;
         })) {
-            upgradesNavTab.classList.add('notifying');
-            displayMessage('Upgrades are available');
+            if (upgradesNavTab.classList.contains('notifying')) displayMessage('Upgrades are available'); 
+            else upgradesNavTab.classList.add('notifying');
         }
     }, 60000); //save.settings.notificationFrequency * 1000);
 
@@ -114,8 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (save.monsters.some((m) => m.owned && isNullOrUndefined(m.assignedJob)) 
             && save.jobs.some((j) => j.assignedMonster === null)) {
-            jobsNavTab.classList.add('notifying');
-            displayMessage('Jobs are available');
+            if (jobsNavTab.classList.contains('notifying')) displayMessage('Jobs are available'); 
+            else jobsNavTab.classList.add('notifying');
         }
     }, 60000); //save.settings.notificationFrequency * 1000);
 });

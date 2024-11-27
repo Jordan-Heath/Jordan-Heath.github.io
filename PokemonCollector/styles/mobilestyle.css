@@ -92,6 +92,18 @@
         }
     }
 
+    .cardpacks {
+        .cardpack {
+            .card-details {
+                font-size: 10px;
+
+                .card-name {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+
     .upgrades, .owned-upgrades {
         grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
 
