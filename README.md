@@ -15,6 +15,18 @@ PLAYABLE DEMO. A digimon/tamogotchi clone with my own spin.
 
 ## Completed Projects
 
+### [Qualification Academy](QualificationAcademy/Index.html)
+A game where you complete a series of questions to receive a certificate. I wanted it to be elegant and fun.
+
+- [ ] 3/10+ Qualifications to unlock
+- [x] Custom Courses
+- [x] Elegant UI Design
+- [x] Sound effects
+- [ ] Mobile Friendly
+- [x] Dark Mode
+- [x] Saving to local storage
+- [x] Importing/Exporting courses to JSON
+
 ### [Pokemon Collector](CustomChess/index.html)
 I've wanted to make a card collection game for a while, but given I could not do enough good quality art to do it myself, i decided last minute to make it a fan game.
 
