@@ -270,6 +270,15 @@ function calculateCourseScore(course) {
         givenAnswers: []
     };
 
+    function unescapeHtml(html) {
+        return html
+            .replace(/&amp;/g, "&")
+            .replace(/&lt;/g, "<")
+            .replace(/&gt;/g, ">")
+            .replace(/&quot;/g, '"')
+            .replace(/&#039;/g, "'");
+    }
+
     for (let i = 0; i < course.questions.length; i++) {
         const question = course.questions[i];
         const answerElements = document.querySelectorAll(`input[name="question-${i + 1}"]`);
@@ -280,9 +289,10 @@ function calculateCourseScore(course) {
             correct: null
         });
 
-
         if (question.type == "single choice") {
-            if (givenAnswers.length == 1 && givenAnswers[0] == question.correctAnswer[0]) {
+            //if (givenAnswers[0] == question.correctAnswer[0]) {
+            //filter all quotation marks
+            if (unescapeHtml(givenAnswers[0]) == question.correctAnswer[0]) {
                 answers.correctAnswers++;
                 answers.givenAnswers[i].correct = true;
             } else {

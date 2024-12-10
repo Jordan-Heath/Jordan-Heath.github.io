@@ -53,7 +53,7 @@ body {
         margin-bottom: 200px;
         /* border: 2px solid black; */
         height: auto;
-        min-height: 848px;
+        min-height: min(calc(100vh - 40px), 848px);
         max-width: 600px;
         width: 100%;
         margin: 20px auto;

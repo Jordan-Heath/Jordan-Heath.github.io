@@ -215,7 +215,7 @@ const data = {
             description: "Be the envy of all of your friends by demonstrating you're a bonafide broccoli head.",
             difficulty: "Medium",
             duration: "5 minutes",
-            correctAnswersRequired: 6,
+            correctAnswersRequired: 4,
             questions: [
                 {
                     question: "Broccoli belongs to which plant family?",
@@ -282,21 +282,6 @@ const data = {
                         "Steaming",
                         "Roasting"
                     ]
-                },
-                {
-                    question: "Broccoli contains sulforaphane, which is known for its potential:",
-                    type: "multiple choice",
-                    correctAnswer: [
-                        "Anti-inflammatory properties",
-                        "Antioxidant properties",
-                        "Cancer-fighting properties"
-                    ],
-                    answers: [
-                        "Anti-inflammatory properties",
-                        "Antioxidant properties",
-                        "Cancer-fighting properties",
-                        "Muscle-building properties"
-                    ]
                 }
             ],
             isCustom: false
@@ -305,9 +290,9 @@ const data = {
             name: "Cheese Connoisseur",
             author: "Qualification Academy",
             description: "What stinks? It must be the stink of cheese in this quiz of course! Pound down all 5 questions and you may call yourself a true 'Cheese Connoisseur'!",
-            difficulty: "Medium",
+            difficulty: "Easy",
             duration: "5 minutes",
-            correctAnswersRequired: "5",
+            correctAnswersRequired: "4",
             questions: [
                 {
                     question: "Which country is credited with producing the most varieties of cheese?",
@@ -382,8 +367,8 @@ const data = {
             author: "Qualification Academy",
             description: "Dolphins are an often beloved creature. Show how much you love them by completing this course.",
             difficulty: "Medium",
-            duration: "10 minutes",
-            correctAnswersRequired: 6,
+            duration: "6 minutes",
+            correctAnswersRequired: 5,
             questions: [
                 {
                     question: "What is the primary component of a dolphin's diet?",
@@ -470,8 +455,8 @@ const data = {
             name: "Earwax Expert",
             author: "Qualification Academy",
             description: "Explore the facinating domain of earwax",
-            difficulty: "Hard",
-            duration: "10 minutes",
+            difficulty: "Medium",
+            duration: "7 minutes",
             correctAnswersRequired: 7,
             questions: [
                 {
@@ -567,6 +552,21 @@ const data = {
                         "Curette",
                         "Endoscope"
                     ]
+                },
+                {
+                    question: "Earwax contains compounds that help to fight off which of these?",
+                    type: "multiple choice",
+                    correctAnswer: [
+                        "Viruses",
+                        "Bacteria",
+                        "Fungus"
+                    ],
+                    answers: [
+                        "Viruses",
+                        "Bacteria",
+                        "Fungus",
+                        "Earbuds"
+                    ]
                 }
             ],
             isCustom: false
@@ -577,7 +577,7 @@ const data = {
             description: "From Fukuiraptor to Fukuisaurus, there are many fossils frequenting the firmament. How Familiar are you?",
             difficulty: "Medium",
             duration: "5 minutes",
-            correctAnswersRequired: "5",
+            correctAnswersRequired: 8,
             questions: [
                 {
                     question: "What type of rock are fossils most commonly found in?",
@@ -643,6 +643,58 @@ const data = {
                         "Resin",
                         "Crystallized honey"
                     ]
+                },
+                {
+                    question: "What is a coprolite?",
+                    type: "single choice",
+                    correctAnswer: [
+                        "Fossilized dung"
+                    ],
+                    answers: [
+                        "Fossilized bone",
+                        "Fossilized plant",
+                        "Fossilized dung",
+                        "Fossilized footprint"
+                    ]
+                },
+                {
+                    question: "The extinction event that killed the dinosaurs occurred approximately how many million years ago?",
+                    type: "single choice",
+                    correctAnswer: [
+                        "65 million years ago"
+                    ],
+                    answers: [
+                        "65 million years ago",
+                        "85 million years ago",
+                        "100 million years ago",
+                        "120 million years ago"
+                    ]
+                },
+                {
+                    question: "Which fossil is often referred to as the \"missing link\" between dinosaurs and birds?",
+                    type: "single choice",
+                    correctAnswer: [
+                        "Archaeopteryx"
+                    ],
+                    answers: [
+                        "Velociraptor",
+                        "Pteranodon",
+                        "Compsognathus",
+                        "Archaeopteryx"
+                    ]
+                },
+                {
+                    question: "What is the term for a fossil that is widespread, easily recognizable, and limited to a short span of geological time?",
+                    type: "single choice",
+                    correctAnswer: [
+                        "Index fossil"
+                    ],
+                    answers: [
+                        "Indicator fossil",
+                        "Trace fossil",
+                        "Index fossil",
+                        "Transition fossil"
+                    ]
                 }
             ],
             isCustom: false
@@ -653,7 +705,7 @@ const data = {
             description: "Our world is large and unknown. But how much do you know of it? Take this course to find out.",
             difficulty: "Hard",
             duration: "15 minutes",
-            correctAnswersRequired: "12",
+            correctAnswersRequired: 13,
             questions: [
                 {
                     question: "Which country has the longest coastline in the world?",
@@ -860,8 +912,8 @@ const data = {
             author: "Qualification Academy",
             description: "A truly grueling course that expects you to be familiar with thousands of years of history. Horrible.",
             difficulty: "Impossible",
-            duration: "15 minutes",
-            correctAnswersRequired: "18",
+            duration: "20 minutes",
+            correctAnswersRequired: 18,
             questions: [
                 {
                     question: "Who was the first emperor of Rome?",
@@ -931,15 +983,16 @@ const data = {
                 },
                 {
                     question: "Who wrote the Communist Manifesto?",
-                    type: "single choice",
+                    type: "multiple choice",
                     correctAnswer: [
-                        "Friedrich Engels and Karl Marx"
+                        "Friedrich Engels",
+                        "Karl Marx"
                     ],
                     answers: [
-                        "Friedrich Engels and Karl Marx",
+                        "Friedrich Engels",
                         "Vladimir Lenin",
                         "Leon Trotsky",
-                        "Joseph Stalin"
+                        "Karl Marx"
                     ]
                 },
                 {

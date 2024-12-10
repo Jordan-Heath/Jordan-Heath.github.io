@@ -99,43 +99,43 @@ function buildSettings() {
             save.name = nameInput.value;
             if (save.settings.audioEnabled) writingSounds[Math.floor(Math.random() * writingSounds.length)].play();
         });
-        
+
         darkmodeCheckbox.addEventListener("change", () => {
             toggleDarkMode(darkmodeCheckbox.checked);
             if (save.settings.audioEnabled) writingSounds[Math.floor(Math.random() * writingSounds.length)].play();
         });
-    
-        
+
+
         pageTransitionsCheckbox.addEventListener("change", () => {
             toggleFasterPageChanges(pageTransitionsCheckbox.checked);
             if (save.settings.audioEnabled) writingSounds[Math.floor(Math.random() * writingSounds.length)].play();
         });
-    
-        
+
+
         audioCheckbox.addEventListener("change", () => {
             toggleAudio(audioCheckbox.checked);
             if (save.settings.audioEnabled) writingSounds[Math.floor(Math.random() * writingSounds.length)].play();
         });
-    
-        
+
+
         shuffleQuestionsCheckbox.addEventListener("change", () => {
             toggleShuffleQuestions(shuffleQuestionsCheckbox.checked);
             if (save.settings.audioEnabled) writingSounds[Math.floor(Math.random() * writingSounds.length)].play();
         });
-    
-        
+
+
         shuffleAnswersCheckbox.addEventListener("change", () => {
             toggleShuffleAnswers(shuffleAnswersCheckbox.checked);
             if (save.settings.audioEnabled) writingSounds[Math.floor(Math.random() * writingSounds.length)].play();
         });
-    
+
         exitSettingsButton.addEventListener("click", () => {
             const courseSelectView = document.getElementById("course-select-view");
-    
+
             if (save.settings.audioEnabled) clickSound.play();
-    
+
             saveToLocalStorage();
-    
+
             transitionToView(courseSelectView);
         });
 
@@ -149,17 +149,19 @@ function buildCourseList() {
         const courseFilterDifficulty = document.getElementById("course-filter-difficulty");
         const courseFilterCompleted = document.getElementById("course-filter-completed");
         const clearFiltersButton = document.getElementById("clear-filters");
-    
+
         courseFilterInput.addEventListener("input", filterCourses);
         courseFilterDifficulty.addEventListener("change", filterCourses);
         courseFilterCompleted.addEventListener("change", filterCourses);
-    
+
         clearFiltersButton.addEventListener("click", () => {
             if (save.settings.audioEnabled) clickSound.play();
-    
+
             courseFilterInput.value = "";
             courseFilterDifficulty.value = "All";
             courseFilterCompleted.value = "All";
+
+            filterCourses();
         });
 
         globals.courseListEventListenersApplied = true;
@@ -167,35 +169,35 @@ function buildCourseList() {
 
     document.getElementById("courses").innerHTML = `
         ${data.courses.map((course, index) => {
-            const completedCourse = save.completedCourses.find(c => c.name == course.name);
-            return `
+        const completedCourse = save.completedCourses.find(c => c.name == course.name);
+        return `
                 <div class="course${completedCourse ? " completed" : ""}" id="course-${index}">
                     <h3>${course.name}</h3>
                     <p>By <strong>${course.author}</strong></p>
-                    <p>${course.description}</p>
+                    <p><i>${course.description}</i></p>
                     <table>
                         <tr>
                             <th>Difficulty</th>
                             <td>${course.difficulty}</td>
                         </tr>
                         <tr>
-                            <th>Number of questions</th>
-                            <td>${course.questions.length}</td>
-                        </tr>
-                        <tr>
                             <th>Duration</th>
                             <td>${course.duration}</td>
                         </tr>
+                        <tr>
+                            <th>Required Grade</th>
+                            <td>${course.correctAnswersRequired}/${course.questions.length}</td>
+                        </tr>
                         ${completedCourse ? `
                             <tr>
-                                <th>Date Completed</th>
-                                <td>${completedCourse.date}</td>
+                                <th><strong>Date Completed</strong></th>
+                                <td><strong>${completedCourse.date}</strong></td>
                             </tr>
                         ` : ""}
                         ${completedCourse ? `
                             <tr>
-                                <th>Score</th>
-                                <td>${completedCourse.score} / ${course.correctAnswersRequired}</td>
+                                <th><strong>Grade Attained</strong></th>
+                                <td><strong>${completedCourse.score} / ${course.correctAnswersRequired}</strong></td>
                             </tr>
                         ` : ""}
                     </table>
@@ -210,7 +212,7 @@ function buildCourseList() {
                     </div>
                 </div>
             `;
-        }).join("")}
+    }).join("")}
     `;
 
     filterCourses();
@@ -234,11 +236,40 @@ function buildCourseDetails(course) {
 }
 
 function buildCourseTest(course) {
+    function shuffle(array) {
+        let currentIndex = array.length;
+
+        // While there remain elements to shuffle...
+        while (currentIndex != 0) {
+
+            // Pick a remaining element...
+            let randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+
+            // And swap it with the current element.
+            [array[currentIndex], array[randomIndex]] = [
+                array[randomIndex], array[currentIndex]];
+        }
+    }
+
     //shuffle the order of the questions
-    if (save.settings.shuffleQuestions) course.questions.sort(() => Math.random() - 0.5);
+    if (save.settings.shuffleQuestions) shuffle(course.questions);
 
     //shuffle the order of the answers
-    if (save.settings.shuffleAnswers) course.questions.forEach(question => question.answers.sort(() => Math.random() - 0.5));
+    if (save.settings.shuffleAnswers) {
+        course.questions.forEach(question => {
+            shuffle(question.answers);
+        });
+    }
+
+    function escapeHTML(unsafe) {
+        return unsafe
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
 
     document.getElementById("course-test-view").innerHTML = `
         <h2>${course.name}</h2>
@@ -251,7 +282,7 @@ function buildCourseTest(course) {
                         <input 
                             type="${question.type == "single choice" ? "radio" : "checkbox"}" 
                             name="question-${index + 1}" 
-                            value="${value}" 
+                            value="${escapeHTML(value)}"
                             id="question-${index + 1}-answer-${key}" />
                         <label for="question-${index + 1}-answer-${key}">${value}</label>
                     </div>
@@ -290,7 +321,7 @@ function buildCourseTest(course) {
             }
 
             timerElement.innerHTML = `${minutes < 10 ? "0" : ""}${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-            
+
             if (seconds <= 0 && minutes <= 0) {
                 clearInterval(course.timer);
                 submitAnswers(data.courses.indexOf(course), true);
@@ -322,16 +353,19 @@ function buildCourseResults(course, results, element) {
             <summary>Results</summary>
             <p><strong>${results ? `You got ${results.score} out of ${course.correctAnswersRequired} questions right.` : ""}</strong></p>
             ${course.questions.map((question, index) => {
-                const givenAnswer = results.answers.givenAnswers[index] ? results.answers.givenAnswers[index].givenAnswer : [];
-                const correct = results.answers.givenAnswers[index] ? results.answers.givenAnswers[index].correct : false;
+        const givenAnswer = results.answers.givenAnswers[index] ? results.answers.givenAnswers[index].givenAnswer : [];
+        const correct = results.answers.givenAnswers[index] ? results.answers.givenAnswers[index].correct : false;
 
-                return `
+        return `
                     <div class="question">
                         <p><i>${question.question}</i></p>
-                        <p><strong>Given Answer:</strong> ${givenAnswer.join(", ")} ${correct ? "✔" : "✘"}</p>
+                        <p>
+                            <strong>Given Answer:</strong> ${givenAnswer.join(", ")} 
+                            ${correct ? "<span style='color: green'>✔</span>" : "<span style='color: red'>✘</span>"}
+                        </p>
                     </div>
                 `;
-            }).join("")}
+    }).join("")}
         </details>
 
         <div class="course-results-controls">
@@ -469,7 +503,7 @@ function buildCourseMaker(element, editingCourseID = null) {
                 <button id="confirm-return">Return to Course List</button>
                 <button id="close-popup">Cancel</button>
             `);
-            clickListener(document.getElementById('confirm-return'),() => { openCourseSelectView(); closePopup() });
+            clickListener(document.getElementById('confirm-return'), () => { openCourseSelectView(); closePopup() });
             clickListener(document.getElementById('close-popup'), closePopup);
         });
     };
@@ -698,12 +732,12 @@ function buildCertificate(courseID, element = null) {
         printHeight += h3;
         context.font = `${h3}px 'Noto Sans', sans-serif`;
         context.fillText("Humbly awards this certificate to", canvas.width / 2, printHeight);
-        
+
         printHeight += gap;
         printHeight += h1;
         context.font = `${h1}px 'Herr Von Muellerhoff', cursive`;
         context.fillText(save.name, canvas.width / 2, printHeight);
-        
+
 
         // add underline
         printHeight += padding;

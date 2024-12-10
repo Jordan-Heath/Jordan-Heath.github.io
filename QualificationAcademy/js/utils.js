@@ -199,6 +199,7 @@ function convertCourseToJSON() {
             };
         });
         course.isCustom = true;
+
         return course;
     } catch (error) {
         displayNotification("Failed to convert course to JSON");
