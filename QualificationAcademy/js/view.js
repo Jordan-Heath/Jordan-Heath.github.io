@@ -52,8 +52,11 @@ function transitionToView(nextView) {
 function buildTitle() {
     const titleViewText = document.getElementById("title-view-text");
     const titleViewNameInput = document.getElementById("title-view-name-input");
+    const titleViewStartButton = document.getElementById("title-view-start-button");
 
     if (save.name == "") {
+        titleViewStartButton.disabled = true;
+
         titleViewNameInput.addEventListener("input", () => {
             const startButton = document.getElementById("title-view-start-button");
             startButton.disabled = titleViewNameInput.value == "";

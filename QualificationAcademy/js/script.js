@@ -72,7 +72,7 @@ function openCourseSelectView() {
 
     // save name
     if (save.name == "") {
-        save.name = document.getElementById("name-input").value;
+        save.name = document.getElementById("title-view-name-input").value;
 
         save.initiationDate = {
             date: new Date().toLocaleDateString(),
