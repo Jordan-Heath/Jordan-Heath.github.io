@@ -197,7 +197,7 @@ function buildCourseList() {
                         ${completedCourse ? `
                             <tr>
                                 <th><strong>Grade Attained</strong></th>
-                                <td><strong>${completedCourse.score} / ${course.correctAnswersRequired}</strong></td>
+                                <td><strong>${completedCourse.score} / ${course.questions.length}</strong></td>
                             </tr>
                         ` : ""}
                     </table>
@@ -263,12 +263,11 @@ function buildCourseTest(course) {
     }
 
     function escapeHTML(unsafe) {
-        return unsafe
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
+        return unsafe?.replace(/&/g, "&amp;")
+                      .replace(/</g, "&lt;")
+                      .replace(/>/g, "&gt;")
+                      .replace(/"/g, "&quot;")
+                      .replace(/'/g, "&#039;");
     }
 
     document.getElementById("course-test-view").innerHTML = `
@@ -276,12 +275,13 @@ function buildCourseTest(course) {
         ${course.questions.map((question, index) => `
             <div class="question">
                 <h3>Question ${index + 1}</h3>
-                <p>${question.question}${question.type == "multiple choice" ? " (Multiple Choice)" : ""}</p>
+                <p>${question.question}</p>
+                ${question.type == "multiple choice" ? "<p><strong>(Multiple Answers)</strong></p>" : ""}
                 <div class="question-controls">${Object.entries(question.answers).map(([key, value]) => `
                     <div class="answer">
                         <input 
                             type="${question.type == "single choice" ? "radio" : "checkbox"}" 
-                            name="question-${index + 1}" 
+                            name="question-${index + 1}"
                             value="${escapeHTML(value)}"
                             id="question-${index + 1}-answer-${key}" />
                         <label for="question-${index + 1}-answer-${key}">${value}</label>
@@ -351,7 +351,7 @@ function buildCourseResults(course, results, element) {
 
         <details class="certificate-questions" open>
             <summary>Results</summary>
-            <p><strong>${results ? `You got ${results.score} out of ${course.correctAnswersRequired} questions right.` : ""}</strong></p>
+            <p><strong>${results ? `You got ${results.score} out of ${course.questions.length} questions correct.` : ""}</strong></p>
             ${course.questions.map((question, index) => {
         const givenAnswer = results.answers.givenAnswers[index] ? results.answers.givenAnswers[index].givenAnswer : [];
         const correct = results.answers.givenAnswers[index] ? results.answers.givenAnswers[index].correct : false;
@@ -370,7 +370,8 @@ function buildCourseResults(course, results, element) {
 
         <div class="course-results-controls">
             <button onclick="openCourseSelectView()">Return</button>
-            ${results.passed ? `<button onclick="downloadCertificate(${data.courses.indexOf(course)})">Download Certificate</button>` : ''}
+            ${results.passed ? `<button onclick="downloadCertificate(${data.courses.indexOf(course)})">Download Certificate</button>` 
+            : `<button onclick="openCourseDetailsView(${data.courses.indexOf(course)})">Try Again</button>`}
         </div>
     `;
 

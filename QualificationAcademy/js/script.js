@@ -271,12 +271,11 @@ function calculateCourseScore(course) {
     };
 
     function unescapeHtml(html) {
-        return html
-            .replace(/&amp;/g, "&")
-            .replace(/&lt;/g, "<")
-            .replace(/&gt;/g, ">")
-            .replace(/&quot;/g, '"')
-            .replace(/&#039;/g, "'");
+        return html?.replace(/&amp;/g, "&")
+                    .replace(/&lt;/g, "<")
+                    .replace(/&gt;/g, ">")
+                    .replace(/&quot;/g, '"')
+                    .replace(/&#039;/g, "'");
     }
 
     for (let i = 0; i < course.questions.length; i++) {

@@ -139,7 +139,7 @@ const data = {
             description: "Strap in for a course that will take you out of this world, but then plummeting back into this world at above terminal velocity.",
             difficulty: "Easy",
             duration: "5 minutes",
-            correctAnswersRequired: "4",
+            correctAnswersRequired: "3",
             questions: [
                 {
                     question: "What is the region of the solar system where most asteroids are found?",
@@ -215,7 +215,7 @@ const data = {
             description: "Be the envy of all of your friends by demonstrating you're a bonafide broccoli head.",
             difficulty: "Medium",
             duration: "5 minutes",
-            correctAnswersRequired: 4,
+            correctAnswersRequired: 3,
             questions: [
                 {
                     question: "Broccoli belongs to which plant family?",
@@ -292,7 +292,7 @@ const data = {
             description: "What stinks? It must be the stink of cheese in this quiz of course! Pound down all 5 questions and you may call yourself a true 'Cheese Connoisseur'!",
             difficulty: "Easy",
             duration: "5 minutes",
-            correctAnswersRequired: "4",
+            correctAnswersRequired: "3",
             questions: [
                 {
                     question: "Which country is credited with producing the most varieties of cheese?",
@@ -368,7 +368,7 @@ const data = {
             description: "Dolphins are an often beloved creature. Show how much you love them by completing this course.",
             difficulty: "Medium",
             duration: "6 minutes",
-            correctAnswersRequired: 5,
+            correctAnswersRequired: 4,
             questions: [
                 {
                     question: "What is the primary component of a dolphin's diet?",
@@ -457,7 +457,7 @@ const data = {
             description: "Explore the facinating domain of earwax",
             difficulty: "Medium",
             duration: "7 minutes",
-            correctAnswersRequired: 7,
+            correctAnswersRequired: 6,
             questions: [
                 {
                     question: "What is the scientific name of earwax?",
@@ -507,7 +507,7 @@ const data = {
                     answers: [
                         "Wet earwax",
                         "Dry earwax",
-                        "Crusty earwax",
+                        "Brown earwax",
                         "Sticky earwax"
                     ]
                 },
@@ -577,7 +577,7 @@ const data = {
             description: "From Fukuiraptor to Fukuisaurus, there are many fossils frequenting the firmament. How Familiar are you?",
             difficulty: "Medium",
             duration: "5 minutes",
-            correctAnswersRequired: 8,
+            correctAnswersRequired: 7,
             questions: [
                 {
                     question: "What type of rock are fossils most commonly found in?",
@@ -705,7 +705,7 @@ const data = {
             description: "Our world is large and unknown. But how much do you know of it? Take this course to find out.",
             difficulty: "Hard",
             duration: "15 minutes",
-            correctAnswersRequired: 13,
+            correctAnswersRequired: 12,
             questions: [
                 {
                     question: "Which country has the longest coastline in the world?",
@@ -721,7 +721,7 @@ const data = {
                     ]
                 },
                 {
-                    question: "Which desert is the largest hot desert in the world?",
+                    question: "What is the largest hot desert in the world?",
                     type: "single choice",
                     correctAnswer: [
                         "Sahara"
@@ -734,7 +734,7 @@ const data = {
                     ]
                 },
                 {
-                    question: "The Amazon River is primarily located in which countries?",
+                    question: "The Amazon River is located in which countries?",
                     type: "multiple choice",
                     correctAnswer: [
                         "Brazil",
@@ -892,7 +892,7 @@ const data = {
                     ]
                 },
                 {
-                    question: "Which desert is the largest cold desert in the world?",
+                    question: "What is the largest cold desert in the world?",
                     type: "single choice",
                     correctAnswer: [
                         "Gobi"
@@ -913,7 +913,7 @@ const data = {
             description: "A truly grueling course that expects you to be familiar with thousands of years of history. Horrible.",
             difficulty: "Impossible",
             duration: "20 minutes",
-            correctAnswersRequired: 18,
+            correctAnswersRequired: 16,
             questions: [
                 {
                     question: "Who was the first emperor of Rome?",
