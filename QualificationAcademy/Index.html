@@ -41,79 +41,78 @@
 
         <main id="settings-view">
             <h2>Settings</h2>
-        <div class="setting">
-            <h3>Name</h3>
-            <input type="text" id="settings-name-input" placeholder="Your name" autocomplete="off">
-            <h3>Initiation Date</h3>
-            <p id="initiation-date"></p>
-        </div>
-        <div class="setting">
-            <h3>Visuals</h3>
-            <p>
-                <input type="checkbox" id="page-transitions-checkbox" />
-                <label for="page-transitions-checkbox">Faster Page Transitions</label>
-            </p>
-            <p>
-                <input type="checkbox" id="darkmode-checkbox" /> 
-                <label for="darkmode-checkbox">Dark Mode [Not Recommended]</label>
-            </p>
-        </div>
-        <div class="setting">
-            <h3>Audio</h3>
-            <p>
-                <input type="checkbox" id="audio-checkbox" />
-                <label for="audio-checkbox">Enable/Disable audio</label>
-            </p>
-        </div>
-        <div class="setting">
-            <h3>Gameplay</h3>
-            <p>
-                <input type="checkbox" id="shuffle-questions-checkbox" />
-                <label for="shuffle-questions-checkbox">Shuffle Question Order</label>
-            </p>
-            <p>
-                <input type="checkbox" id="shuffle-answers-checkbox" />
-                <label for="shuffle-answers-checkbox">Shuffle Answer Order</label>
-            </p>
-        </div>
-        <div class="setting">
-            <h3>Save Management</h3>
-            <p>
-                This game makes use of local storage when saving your game.
-                This can leave your save vulnerable to corruption or loss.
-                If you are concerned about your save, you can export it to your computer to back it up.
-                If you wish to restore your save, you can import it from your computer.
-            </p>
-            <p>
-                <button onclick="exportSave()">Export Save</button>
-                Backup your save by exporting it to your computer.
-            </p>
-            <p>
-                <button onclick="importSave()">Import Save</button>
-                <input type="file" id="import-save-file" accept=".json">
-                Restore your save by importing it from your computer.
-            </p>
-            <p>
-                <button onclick="deleteSave()">Delete Save</button>
-                Restart your game by deleting your save.
-            </p>
-            
-        </div>
-        <div class="setting">
-            <h3>Credits</h3>
-            <p>Sounds:</p>
-            <ul>
-                <li>Office Ambiance: <a href="https://pixabay.com/sound-effects/office-ambience-24734/">Pixabay</a></li>
-                <li>Click Sound: <a href="https://pixabay.com/sound-effects/click-234708/">Pixabay</a></li>
-                <li>Writing Sound: <a href="https://pixabay.com/sound-effects/writing-263642/">Pixabay</a></li>
-                <li>Drumroll Sound: <a href="https://pixabay.com/sound-effects/065391-drumrollwav-88344/">Pixabay</a></li>
-                <li>Success Sound: <a href="https://pixabay.com/sound-effects/tada-fanfare-a-6313/">Pixabay</a></li>
-                <li>Failure Sound: <a href="https://pixabay.com/sound-effects/failure-drum-sound-effect-2-7184/">Pixabay</a></li>
-            </ul>
-        </div>
-        <div class="settings-controls">
-            <button id="exit-settings">Save & Exit</button>
-        </div>
+            <div class="setting">
+                <h3>Name</h3>
+                <input type="text" id="settings-name-input" placeholder="Your name" autocomplete="off">
+                <p id="initiation-date"></p>
+            </div>
+            <div class="setting">
+                <h3>Visuals</h3>
+                <p>
+                    <input type="checkbox" id="page-transitions-checkbox" />
+                    <label for="page-transitions-checkbox">Faster Page Transitions</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="darkmode-checkbox" /> 
+                    <label for="darkmode-checkbox">Dark Mode [Not Recommended]</label>
+                </p>
+            </div>
+            <div class="setting">
+                <h3>Audio</h3>
+                <p>
+                    <input type="checkbox" id="audio-checkbox" />
+                    <label for="audio-checkbox">Enable/Disable audio</label>
+                </p>
+            </div>
+            <div class="setting">
+                <h3>Gameplay</h3>
+                <p>
+                    <input type="checkbox" id="shuffle-questions-checkbox" />
+                    <label for="shuffle-questions-checkbox">Shuffle Question Order</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="shuffle-answers-checkbox" />
+                    <label for="shuffle-answers-checkbox">Shuffle Answer Order</label>
+                </p>
+            </div>
+            <div class="setting">
+                <h3>Save Management</h3>
+                <p>
+                    This game makes use of local storage when saving your game.
+                    This can leave your save vulnerable to corruption or loss.
+                    If you are concerned about your save, you can export it to your device to back it up.
+                    If you wish to restore your save, you can import it from your device.
+                </p>
+                <p>
+                    <button onclick="exportSave()">Export Save</button>
+                    Backup your save by exporting it to your device.
+                </p>
+                <p>
+                    <button onclick="importSave()">Import Save</button>
+                    <input type="file" id="import-save-file" accept=".json">
+                    Restore your save by importing it from your device.
+                </p>
+                <p>
+                    <button onclick="deleteSave()">Delete Save</button>
+                    Restart your game by deleting your save.
+                </p>
+                
+            </div>
+            <div class="setting">
+                <h3>Credits</h3>
+                <p>Sounds:</p>
+                <ul>
+                    <li>Office Ambiance: <a href="https://pixabay.com/sound-effects/office-ambience-24734/">Pixabay</a></li>
+                    <li>Click Sound: <a href="https://pixabay.com/sound-effects/click-234708/">Pixabay</a></li>
+                    <li>Writing Sound: <a href="https://pixabay.com/sound-effects/writing-263642/">Pixabay</a></li>
+                    <li>Drumroll Sound: <a href="https://pixabay.com/sound-effects/065391-drumrollwav-88344/">Pixabay</a></li>
+                    <li>Success Sound: <a href="https://pixabay.com/sound-effects/tada-fanfare-a-6313/">Pixabay</a></li>
+                    <li>Failure Sound: <a href="https://pixabay.com/sound-effects/failure-drum-sound-effect-2-7184/">Pixabay</a></li>
+                </ul>
+            </div>
+            <div class="settings-controls">
+                <button id="exit-settings">Save & Exit</button>
+            </div>
         </main>
         
         <main id="course-select-view">
@@ -122,19 +121,21 @@
             <h2>Select a course</h2>
             <div class="course-filter">
                 <input type="text" id="course-filter-input" placeholder="Search" autocomplete="off">
-                <select id="course-filter-difficulty" value="all">
-                    <option value="All">All</option>
-                    <option value="Easy">Easy</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Hard">Hard</option>
-                    <option value="Impossible">Impossible</option>
-                </select>
-                <select id="course-filter-completed" value="all">
-                    <option value="All">All</option>
-                    <option value="Completed">Completed</option>
-                    <option value="Incomplete">Incomplete</option>
-                </select>
-                <button id="clear-filters">Clear Filters</button>
+                <div class="course-filter-controls">
+                    <select id="course-filter-difficulty" value="all">
+                        <option value="All">All</option>
+                        <option value="Easy">Easy</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Hard">Hard</option>
+                        <option value="Impossible">Impossible</option>
+                    </select>
+                    <select id="course-filter-completed" value="all">
+                        <option value="All">All</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Incomplete">Incomplete</option>
+                    </select>
+                    <button id="clear-filters">Clear Filters</button>
+                </div>
             </div>
 
             <div id="courses"></div>

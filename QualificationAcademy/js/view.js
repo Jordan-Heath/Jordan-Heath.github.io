@@ -84,7 +84,7 @@ function buildSettings() {
     const exitSettingsButton = document.getElementById("exit-settings");
 
     nameInput.value = save.name;
-    initiationDate.innerHTML = `${save.initiationDate.date} ${save.initiationDate.time}`;
+    initiationDate.innerHTML = `Member since ${save.initiationDate.time} - ${save.initiationDate.date}`;
     darkmodeCheckbox.checked = save.settings.darkMode;
     pageTransitionsCheckbox.checked = save.settings.fasterPageChanges;
     audioCheckbox.checked = save.settings.audioEnabled;
@@ -209,6 +209,8 @@ function buildCourseList() {
             `;
         }).join("")}
     `;
+
+    filterCourses();
 }
 
 function buildCourseDetails(course) {
@@ -264,32 +266,33 @@ function buildCourseTest(course) {
         const number = parseInt(duration[0]);
         const unit = duration[1];
 
+        let minutes = 0
+        let seconds = 0
+
         switch (unit) {
             case "seconds":
-                let seconds = number;
-                timerElement.innerHTML = `Time left: ${seconds} seconds`;
-                course.timer = setInterval(() => {
-                    seconds--;
-                    timerElement.innerHTML = `Time left: ${seconds} seconds`;
-                    if (seconds <= 0) {
-                        clearInterval(interval);
-                        submitAnswers(data.courses.indexOf(course), true);
-                    }
-                }, 1000);
+                seconds = number;
                 break;
             case "minutes":
-                let minutes = number;
-                timerElement.innerHTML = `Time left: ${minutes} minutes`;
-                course.timer = setInterval(() => {
-                    minutes--;
-                    timerElement.innerHTML = `Time left: ${minutes} minutes`;
-                    if (minutes <= 0) {
-                        clearInterval(interval);
-                        submitAnswers(data.courses.indexOf(course), true);
-                    }
-                }, 60000);
+                minutes = number;
                 break;
         }
+
+        // tick every second, adjust the timer
+        course.timer = setInterval(() => {
+            seconds--;
+            if (seconds < 0 && minutes > 0) {
+                minutes--;
+                seconds = 59;
+            }
+
+            timerElement.innerHTML = `${minutes < 10 ? "0" : ""}${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+            
+            if (seconds <= 0 && minutes <= 0) {
+                clearInterval(course.timer);
+                submitAnswers(data.courses.indexOf(course), true);
+            }
+        }, 1000);
     }
 
     const inputs = document.querySelectorAll("input");
@@ -310,7 +313,9 @@ function buildCourseResults(course, results, element) {
     element.innerHTML = `<h2>Results</h2>
         <p>${results.passed ? "Congratulations! You passed the course." : "Better luck next time."}</p>
 
-        <details class="certificate-questions">
+        ${results.passed ? `<div id="certificate-canvas"></div>` : ""}
+
+        <details class="certificate-questions" open>
             <summary>Results</summary>
             <p><strong>${results ? `You got ${results.score} out of ${course.correctAnswersRequired} questions right.` : ""}</strong></p>
             ${course.questions.map((question, index) => {
@@ -326,9 +331,7 @@ function buildCourseResults(course, results, element) {
             }).join("")}
         </details>
 
-        ${results.passed ? `<div id="certificate-canvas"></div>` : ""}
-
-        <div>
+        <div class="course-results-controls">
             <button onclick="openCourseSelectView()">Return</button>
             ${results.passed ? `<button onclick="downloadCertificate(${data.courses.indexOf(course)})">Download Certificate</button>` : ''}
         </div>

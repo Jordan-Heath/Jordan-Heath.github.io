@@ -54,9 +54,11 @@ body {
         /* border: 2px solid black; */
         height: auto;
         min-height: 848px;
-        width: 600px;
+        max-width: 600px;
+        width: 100%;
         margin: 20px auto;
         padding: 20px;
+        box-sizing: border-box;
         background: var(--main-background-color);
 
         box-shadow: var(--subtle-drop-shadow);
@@ -69,6 +71,11 @@ body {
         &.closing {
             animation: fadeOut 0.5s ease-in-out;
             opacity: 0;
+        }
+
+        /* if screen too small */
+        @media screen and (max-width: 600px) {
+            padding: 10px;
         }
     }
 
@@ -269,6 +276,7 @@ body {
     input[type="checkbox"], 
     label {
         cursor: pointer;
+        font-size: 20px;
 
         &:hover {
             text-decoration: underline;
@@ -377,13 +385,22 @@ body {
             flex: 1;
         }
 
-        select {
-            width: 100px;
+        .course-filter-controls {
+            display: flex;
+            gap: 10px;
+
+            select {
+                width: 100px;
+            }
+    
+            button {
+                padding: 5px 10px;
+                line-height: normal;
+            }
         }
 
-        button {
-            padding: 5px 10px;
-            line-height: normal;
+        @media screen and (max-width: 600px) {
+            flex-direction: column;
         }
     }
 
@@ -426,12 +443,27 @@ body {
                         background-color: var(--button-red-hover-color);
                     }
                 }
+
+                @media screen and (max-width: 600px) {
+                    margin: unset;
+
+                    button {
+                        flex: 1;
+                    }
+                }
+            }
+
+            @media screen and (max-width: 600px) {
+                flex-direction: column;
             }
         }
     }
 }
 
 #settings-view {
+    h3 {
+        margin: 20px 0 5px 0;
+    }
     .setting {
         margin-bottom: 50px;
         border-top: 2px solid var(--border-color);
@@ -473,7 +505,11 @@ body {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
-            text-align: center;
+            text-align: left;
+
+            @media screen and (max-width: 600px) {
+                grid-template-columns: 1fr;
+            }
         }
     }
 
@@ -499,6 +535,24 @@ body {
 
 #course-results-view {
     gap: 20px;
+
+    #certificate-canvas {
+        border: 2px solid var(--border-color);
+
+        canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+    }
+
+    .course-results-controls {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 10px;
+        border-top: 2px solid var(--border-color);
+    }
 }
 
 #course-maker-view {
@@ -580,6 +634,14 @@ body {
             &:hover {
                 background-color: var(--button-red-hover-color);
             }
+
+            @media screen and (max-width: 600px) {
+                margin: unset;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            flex-direction: column;
         }
     }
 }
