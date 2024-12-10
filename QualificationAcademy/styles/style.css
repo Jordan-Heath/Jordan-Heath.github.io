@@ -42,6 +42,10 @@ body {
     margin: 0;
     padding: 0;
 
+    strong {
+        text-decoration: underline;
+    }
+
     main {
         display: none;
         flex-direction: column;
@@ -182,6 +186,10 @@ body {
         &:focus {
             background-color: var(--input-background-color-hover);
         }
+    }
+
+    input[type="file"] {
+        display: none;
     }
 
     a {
@@ -327,17 +335,17 @@ body {
     }
 }
 
-#title-screen {
+#title-view {
     text-align: center;
 
-    #name-input {
+    #title-view-name-input {
         margin-bottom: 20px;
         background-color: var(--input-background-color-special);
         text-align: center;
     }
 }
 
-#select-course-view {
+#course-select-view {
     position: relative;
 
     #settings-button,
@@ -405,15 +413,18 @@ body {
             flex-direction: row;
             gap: 10px;
 
-            .export-course-button {
+            .custom-course-controls {
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
                 margin-left: auto;
-            }
 
-            .delete-course-button {
-                background-color: var(--button-red-color);
-
-                &:hover {
-                    background-color: var(--button-red-hover-color);
+                .delete-course-button {
+                    background-color: var(--button-red-color);
+    
+                    &:hover {
+                        background-color: var(--button-red-hover-color);
+                    }
                 }
             }
         }
@@ -424,6 +435,12 @@ body {
     .setting {
         margin-bottom: 50px;
         border-top: 2px solid var(--border-color);
+    }
+
+    #settings-name-input {
+        margin-bottom: 20px;
+        background-color: var(--input-background-color-special);
+        text-align: center;
     }
 
     .settings-controls {
@@ -447,7 +464,7 @@ body {
     }
 }
 
-#course-view {
+#course-test-view {
     .question {
         margin-bottom: 50px;
         border-top: 2px solid var(--border-color);
@@ -475,6 +492,8 @@ body {
 #course-results-anticipation-view {
     #anticipation-progress {
         width: 100%;
+        /* transition value */
+        transition: width 1ms ease-in-out;
     }
 }
 
@@ -561,10 +580,6 @@ body {
             &:hover {
                 background-color: var(--button-red-hover-color);
             }
-        }
-
-        input[type="file"] {
-            display: none;
         }
     }
 }

@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", init);
+document.addEventListener("DOMContentLoaded", openTitle);
 
 const clickSound = new Audio("assets/audio/click.mp3");
 const officeSounds = new Audio("assets/audio/office-ambience.mp3");
@@ -15,7 +15,13 @@ const globals = {
 
     notificationDuration: 3000,
 
-    anticipationScreenDuration: 3900
+    anticipationScreenDuration: 3900,
+
+    questionNumber: 0,
+
+    initialised: false,
+    settingsEventListenersApplied: false,
+    courseListEventListenersApplied: false
 };
 
 const save = {
@@ -29,52 +35,50 @@ const save = {
         audioEnabled: null,
         shuffleQuestions: false,
         shuffleAnswers: true
+    },
+    initiationDate: {
+        date: "",
+        time: ""
     }
 }
 
-function init() {
-    const titleScreen = document.getElementById("title-screen");
-    titleScreen.classList.add("active");
+function openTitle() {
+    const titleView = document.getElementById("title-view");
 
-    loadFonts();
+    if (!globals.initialised) {
+        loadFonts();
+    
+        loadFromLocalStorage();
+    
+        toggleDarkMode(save.settings.darkMode);
+        toggleFasterPageChanges(save.settings.fasterPageChanges);
+        toggleAudio(save.settings.audioEnabled);
+    
+        officeSounds.loop = true;
 
-    loadFromLocalStorage();
+        globals.initialised = true;
+    } else if (save.settings.audioEnabled) {
+        clickSound.play();
+        fadeOutSound(officeSounds);
+    }
 
-    toggleDarkMode(save.settings.darkMode);
-    toggleFasterPageChanges(save.settings.fasterPageChanges);
-    toggleAudio(save.settings.audioEnabled);
+    buildTitle();
 
-    officeSounds.loop = true;
-
-    buildTitleScreen(titleScreen);
+    transitionToView(titleView);
 }
 
-function newGame() {
-    // ask the user if they are certain
-    displayPopup(`
-        <p>Are you sure you want to delete your save?</p>
-        <button id="delete-save">Yes</button>
-        <button id="cancel-delete">No</button>
-    `);
-
-    document.getElementById("delete-save").addEventListener("click", () => {
-        localStorage.removeItem("QualificationAcademySave");
-        location.reload();
-    });
-
-    document.getElementById("cancel-delete").addEventListener("click", () => {
-        closePopup();
-    });
-}
-
-function startGame() {
-    const activeScreen = document.querySelector("main.active");
-    const selectCourseView = document.getElementById("select-course-view");
+function openCourseSelectView() {
+    const courseSelectView = document.getElementById("course-select-view");
 
     // save name
     if (save.name == "") {
         save.name = document.getElementById("name-input").value;
-        save.initiationDate = new Date();
+
+        save.initiationDate = {
+            date: new Date().toLocaleDateString(),
+            time: new Date().toLocaleTimeString()
+        };
+
         saveToLocalStorage();
     }
 
@@ -85,34 +89,20 @@ function startGame() {
     }
 
     // build the course list
-    buildCourseList(selectCourseView);
+    setTimeout(() => { buildCourseList(courseSelectView); }, globals.pageChangeDelay/2);
 
     // transition to course list
-    transitionToScreen(activeScreen, selectCourseView);
+    transitionToView(courseSelectView);
 }
 
-function exitGame() {
-    const activeScreen = document.querySelector("main.active");
-    const titleScreen = document.getElementById("title-screen");
-
-    if (save.settings.audioEnabled) {
-        clickSound.play();
-        fadeOutSound(officeSounds);
-    }
-
-    buildTitleScreen(titleScreen);
-
-    transitionToScreen(activeScreen, titleScreen);
-}
-
-function showSettings() {
-    const activeScreen = document.querySelector("main.active");
+function openSettingsView() {
     const settingsView = document.getElementById("settings-view");
 
     if (save.settings.audioEnabled) clickSound.play();
 
-    buildSettings(settingsView);
-    transitionToScreen(activeScreen, settingsView);
+    buildSettings();
+
+    transitionToView(settingsView);
 }
 
 function filterCourses() {
@@ -129,7 +119,11 @@ function filterCourses() {
         const courseElement = document.getElementById(`course-${index}`);
         const courseCompletionData = save.completedCourses.find(c => c.name == course.name);
 
-        if (nameFilter != "" && !course.name.toLowerCase().includes(nameFilter.toLowerCase())) {
+        if (nameFilter != "" 
+            && !course.name.toLowerCase().includes(nameFilter.toLowerCase())
+            && !course.author.toLowerCase().includes(nameFilter.toLowerCase())
+            && !course.description.toLowerCase().includes(nameFilter.toLowerCase())
+            && !course.difficulty.toLowerCase().includes(nameFilter.toLowerCase())) {
             courseElement.classList.add("filtered");
         } 
         
@@ -150,8 +144,7 @@ function filterCourses() {
     })
 }
 
-function selectCourse(courseID) {
-    const activeScreen = document.querySelector("main.active");
+function openCourseDetailsView(courseID) {
     const courseDetailsView = document.getElementById("course-details-view");
     const course = data.courses[courseID];
 
@@ -162,25 +155,26 @@ function selectCourse(courseID) {
     buildCourseDetails(course, courseDetailsView);
 
     // transition to course details view
-    transitionToScreen(activeScreen, courseDetailsView);
+    transitionToView(courseDetailsView);
 }
 
-function openCourseMaker() {
-    const activeScreen = document.querySelector("main.active");
+function openCourseMakerView(courseID = null) {
     const courseMakerView = document.getElementById("course-maker-view");
 
-    if (save.settings.audioEnabled) clickSound.play();
+    if (save.settings.audioEnabled) {
+        clickSound.play();
+        fadeOutSound(officeSounds);
+    }
 
     // build the course maker view
-    buildCourseMaker(courseMakerView);
+    buildCourseMaker(courseMakerView, courseID);
 
     // transition to course maker view
-    transitionToScreen(activeScreen, courseMakerView);
+    transitionToView(courseMakerView);
 }
 
-function acceptCourse(courseID) {
-    const activeScreen = document.querySelector("main.active");
-    const courseView = document.getElementById("course-view");
+function openCourseTestView(courseID) {
+    const courseTestView = document.getElementById("course-test-view");
     const course = data.courses[courseID];
 
     if (save.settings.audioEnabled) {
@@ -189,14 +183,13 @@ function acceptCourse(courseID) {
     }
 
     // build the course view
-    buildCourseTest(course, courseView);
+    buildCourseTest(course);
 
     // transition to course view
-    transitionToScreen(activeScreen, courseView);
+    transitionToView(courseTestView);
 }
 
-function submitAnswers(courseID, confirmed = false) {
-    const activeScreen = document.querySelector("main.active");
+function submitAnswers(courseID, outOfTime = false) {
     const courseResultsView = document.getElementById("course-results-view");
     const anticipationScreen = document.getElementById("course-results-anticipation-view");
     
@@ -209,7 +202,7 @@ function submitAnswers(courseID, confirmed = false) {
 
         if (course.timer) clearInterval(course.timer);
 
-        const answers = calculateScore(course);
+        const answers = calculateCourseScore(course);
         const results = {
             name: course.name,
             passed: answers.correctAnswers >= course.correctAnswersRequired,
@@ -241,35 +234,36 @@ function submitAnswers(courseID, confirmed = false) {
         if (save.settings.audioEnabled) drumrollSound.play();
 
         // build the anticipation screen
-        transitionToScreen(activeScreen, anticipationScreen);
+        transitionToView(anticipationScreen);
         buildAnticipationMenu(anticipationScreen, courseResultsView, results.passed);
     }
 
-    if (!confirmed) {
-        // prompt the user if they're sure
-        displayPopup(`
-            <p>Are you sure you want to submit your answers?</p>
-            <button id="submit-answers">Yes</button>
-            <button id="cancel-answers">No</button>
-        `);
-
-        document.getElementById("submit-answers").addEventListener("click", proceedEvent);
-
-        document.getElementById("cancel-answers").addEventListener("click", () => {
-            closePopup();
-            if (save.settings.audioEnabled) clickSound.play();
-        });
-    } else {
+    if (outOfTime) {
         displayPopup(`
             <p>You have run out of time</p>
             <button id="submit-answers">OK</button>
         `)
 
         document.getElementById("submit-answers").addEventListener("click", proceedEvent);
+        return;
     }
+
+    // prompt the user if they're sure
+    displayPopup(`
+        <p>Are you sure you want to submit your answers?</p>
+        <button id="submit-answers">Yes</button>
+        <button id="cancel-answers">No</button>
+    `);
+
+    document.getElementById("submit-answers").addEventListener("click", proceedEvent);
+
+    document.getElementById("cancel-answers").addEventListener("click", () => {
+        closePopup();
+        if (save.settings.audioEnabled) clickSound.play();
+    });
 }
 
-function calculateScore(course) {
+function calculateCourseScore(course) {
     const answers = {
         totalAnswers: course.questions.length,
         correctAnswers: 0,
@@ -307,8 +301,7 @@ function calculateScore(course) {
     return answers;
 }
 
-function showCertificate(courseID) {
-    const activeScreen = document.querySelector("main.active");
+function openCourseResultsView(courseID) {
     const newScreen = document.getElementById("course-results-view");
     const course = data.courses[courseID];
     const courseCompletionData = save.completedCourses.find(c => c.name == course.name);
@@ -319,7 +312,7 @@ function showCertificate(courseID) {
     buildCourseResults(course, courseCompletionData, newScreen);
 
     // transition to course results view
-    transitionToScreen(activeScreen, newScreen);
+    transitionToView(newScreen);
 }
 
 function downloadCertificate(courseID) {
