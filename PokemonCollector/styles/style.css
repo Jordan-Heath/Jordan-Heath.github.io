@@ -529,8 +529,10 @@ header {
 /* #region Cardpacks & Opener */
 .cardpacks {
     .cardpack {
+        border: 2px solid transparent;
+
         .card-details {
-            font-size: 14px;
+            font-size: 13px;
         }
     }
 
