@@ -9,6 +9,10 @@
     --heading-text1: #25db7d;
     --heading-text2: #2eff93;
     --drop-shadow: rgba(0, 0, 0, 0.2);
+
+    --dithering: radial-gradient(rgba(0, 0, 0, 0.5) 0.5px,transparent 0.5px) 0   0   /3px 3px,
+                radial-gradient(rgba(0, 0, 0, 0.5) 0.5px,transparent 0.5px) 1px 1px /3px 3px,
+                radial-gradient(rgba(0, 0, 0, 0.5) 0.5px,transparent 0.5px) 2px 2px /3px 3px;
 }
 
 body {
@@ -16,7 +20,8 @@ body {
     padding: 20px;
     text-align: center;
     min-height: 100vh;
-    background-color: var(--body-background);
+    background: var(--dithering), var(--body-background);
+    background-attachment: fixed;
     color: var(--body-text);
     font-family: monaco, Consolas, Lucida Console, monospace;
 }
@@ -82,7 +87,7 @@ main {
     padding: 10px;
     margin: 0 auto;
     border-radius: 8px;
-    box-shadow: 0 4px 8px var(--drop-shadow);
+    box-shadow: 4px 4px 4px var(--drop-shadow);
 }
 main h1, main h2 {
     text-align: center;

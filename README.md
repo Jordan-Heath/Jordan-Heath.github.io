@@ -3,15 +3,6 @@
 Explore My Collection of Projects. Most of my work is not shared publicly. This collection does not comprehensively represent my work.
 
 
-## Incomplete Projects
-
-### [The Great Hundred Man Fight](TheGreatHundredManFight/TheGreatHundredManFight.html)
-
-PLAYABLE DEMO. 100 men enter, 1 leaves. I haven't gotten the motivation to polish it enough for the main page.
-
-### [Pet Game](PetGame/PetGame.html)
-
-PLAYABLE DEMO. A digimon/tamogotchi clone with my own spin.
 
 ## Completed Projects
 
@@ -154,6 +145,19 @@ Wouldn't particularly recommend this one.
 I created this a while ago to replicate a peculiar mode of speech I was exposed to. I just need to port it over. Features:
 
 - [x] Scrambles input text into a semi-comprehensible mess
+
+
+
+## Incomplete Projects
+
+### [The Great Hundred Man Fight](TheGreatHundredManFight/TheGreatHundredManFight.html)
+
+PLAYABLE DEMO. 100 men enter, 1 leaves. I haven't gotten the motivation to polish it enough for the main page.
+
+### [Pet Game](PetGame/PetGame.html)
+
+PLAYABLE DEMO. A digimon/tamogotchi clone with my own spin.
+
 
 
 ## Credits
