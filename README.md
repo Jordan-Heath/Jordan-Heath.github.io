@@ -150,6 +150,10 @@ I created this a while ago to replicate a peculiar mode of speech I was exposed 
 
 ## Incomplete Projects
 
+### [Tamagotchi Uni Guide](TamagotchiUniGuide/index.html)
+
+Functional and untidy; incomplete/inconsistant data.
+
 ### [The Great Hundred Man Fight](TheGreatHundredManFight/TheGreatHundredManFight.html)
 
 PLAYABLE DEMO. 100 men enter, 1 leaves. I haven't gotten the motivation to polish it enough for the main page.
