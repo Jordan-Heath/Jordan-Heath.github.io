@@ -59,6 +59,13 @@ function updateHomeTable() {
     const totalPetPercent = (totalPetCount / PETS.length) * 100;
     document.getElementById('total-pet-count').textContent = totalPetCount + ' / ' + PETS.length;
     document.getElementById('total-pet-percent').textContent = `${totalPetPercent.toFixed(2)}%`;
+
+
+    //Care Icons
+    const careIconCount = SAVE.acquiredCareIcons.length;
+    const careIconPercent = (careIconCount / CARE_ICONS.length) * 100;
+    document.getElementById('base-care-icon-count').textContent = careIconCount + ' / ' + CARE_ICONS.length;
+    document.getElementById('base-care-icon-percent').textContent = `${careIconPercent.toFixed(2)}%`;
 }
 
 function resetSave() {

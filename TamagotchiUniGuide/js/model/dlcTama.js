@@ -31,7 +31,7 @@ class DLCTama {
                         type="checkbox" 
                         onchange="collectDLCTama('${this.name}')" 
                         ${SAVE.acquiredDLCTamas.includes(this.name) ? 'checked' : ''}/>
-                    <label for="${this.name}">Collected?</label>
+                    <label for="${this.name}">Got</label>
                 </td>
             </tr>
         `

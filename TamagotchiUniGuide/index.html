@@ -29,7 +29,7 @@
             <a class="nav-button" id="nav-button-dlc-characters"><span>DLC Tamas</span></a>
             <a class="nav-button" id="nav-button-likes-dislikes"><span>Likes & Dislikes</span></a>
             <a class="nav-button" id="nav-button-pets"><span>Pets</span></a>
-            <a class="nav-button" id="nav-button-badges"><span>Badges</span></a>
+            <a class="nav-button" id="nav-button-care-icons"><span>Care Icons</span></a>
         </nav>
         <div id="heading">
             <img src="assets/img/Tamagotchi_Uni_Logo.webp" alt="Tamagotchi Uni Logo"/>
@@ -42,7 +42,6 @@
             <h1 class="page-heading">Welcome to Tamagotchi Uni Guide!</h1>
 
             <p>Here you can find all of the information you need to know about Tamagotchi Uni!</p>
-            <p>Information is sourced from the <a href="https://tamagotchi.fandom.com/wiki/Main_Page" target="_blank">Tamagotchi Uni Wiki</a> and should be up to date as of 16/12/2024</p>
 
             <h3>Completion Stats</h3>
             <table>
@@ -89,15 +88,17 @@
                     <td id="total-pet-percent"></td>
                 </tr>
 
-                <!-- <tr>
-                    <th colspan="3">Badges:</th>
+                <tr>
+                    <th colspan="3">Care Icons:</th>
                 </tr>
                 <tr>
-                    <th>Badges:</th>
-                    <td id="base-badge-count"></td>
-                    <td id="base-badge-percent"></td>
-                </tr> -->
+                    <th>Care Icons:</th>
+                    <td id="base-care-icon-count"></td>
+                    <td id="base-care-icon-percent"></td>
+                </tr>
             </table>
+
+            <p>Information is sourced from the <a href="https://tamagotchi.fandom.com/wiki/Main_Page" target="_blank">Tamagotchi Uni Wiki</a> and should be up to date as of 16/12/2024</p>
 
             <div id="save-controls">
                 <p>Page is a work in progress. Export your save to be safe.</p>
@@ -279,10 +280,12 @@
             </div>
         </section>
 
-        <section id="badges" style="display: none;">
-            <h1 class="page-heading">Badges</h1>
+        <section id="care-icons" style="display: none;">
+            <h1 class="page-heading">Care Icons</h1>
 
-            <h2>UNDER CONSTRUCTION</h2>
+            <div id="care-icons-grid-container">
+                <!-- grid rendered here -->
+            </div>
         </section>
     </main>
 
@@ -291,7 +294,7 @@
     <script src="js/model/dlcTama.js"></script>
     <script src="js/model/item.js"></script>
     <script src="js/model/pet.js"></script>
-    <script src="js/model/badge.js"></script>
+    <script src="js/model/careIcon.js"></script>
 
     <script src="js/view/nav.js" defer></script>
     <script src="js/view/home.js" defer></script>
@@ -300,7 +303,7 @@
     <script src="js/view/dlcCharacters.js" defer></script>
     <script src="js/view/likesDislikes.js" defer></script>
     <script src="js/view/pets.js" defer></script>
-    <script src="js/view/badges.js" defer></script>
+    <script src="js/view/careIcons.js" defer></script>
     <script src="js/view/popup.js" defer></script>
 
     <script src="js/main.js" defer></script>

@@ -75,7 +75,7 @@ class Tama {
             </table>
             <div>
                 <input type="checkbox" class="tama-detailed-checkbox" id="${this.name}-detailed-checkbox" ${SAVE.acquiredTamas.includes(this.name) ? 'checked' : ''}/>
-                <label for="${this.name}-detailed-checkbox">Collected</label>
+                <label for="${this.name}-detailed-checkbox">Got</label>
             </div>
         `;
 

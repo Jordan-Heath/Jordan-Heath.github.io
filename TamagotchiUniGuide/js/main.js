@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         case 'dlc-characters': openDLCCharacters(); break;
         case 'likes-dislikes': openLikesDislikes(); break;
         case 'pets': openPets(); break;
-        case 'badges': openBadges(); break;
+        case 'care-icons': openCareIcons(); break;
     }
 });
 
@@ -24,7 +24,7 @@ function attachEventListeners() {
     const navButtonDLCCharacters = document.getElementById('nav-button-dlc-characters');
     const navButtonLikesDislikes = document.getElementById('nav-button-likes-dislikes');
     const navButtonPets = document.getElementById('nav-button-pets');
-    const navButtonBadges = document.getElementById('nav-button-badges');
+    const navButtonCareIcons = document.getElementById('nav-button-care-icons');
 
     navOpenButton.addEventListener('click', toggleNav);
 
@@ -34,7 +34,7 @@ function attachEventListeners() {
     navButtonDLCCharacters.addEventListener('click', () => { toggleNav(); openDLCCharacters(); });
     navButtonLikesDislikes.addEventListener('click', () => { toggleNav(); openLikesDislikes(); });
     navButtonPets.addEventListener('click', () => { toggleNav(); openPets(); });
-    navButtonBadges.addEventListener('click', () => { toggleNav(); openBadges(); });
+    navButtonCareIcons.addEventListener('click', () => { toggleNav(); openCareIcons(); });
 
     // Completion Diary
     const filterStagesElement = document.getElementById('filter-stages');

@@ -34,7 +34,7 @@ function renderPets() {
             <td>${pet.requirement}</td>
             <td>
                 <input id="${pet.name}" value="${pet.name}" type="checkbox" onchange="collectPet('${pet.name}')" ${SAVE.acquiredPets.includes(pet.name) ? 'checked' : ''}/>
-                <label for="${pet.name}">Collected?</label>
+                <label for="${pet.name}">Got</label>
             </td>
         </tr>
         `

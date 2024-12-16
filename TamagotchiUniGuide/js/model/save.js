@@ -2,7 +2,7 @@ const SAVE = {
     acquiredTamas: [],
     acquiredDLCTamas: [],
     acquiredPets: [],
-    acquiredBadges: [],
+    acquiredCareIcons: [],
     tamaSelected: "Egg",
     renderedParentGenerations: 5,
     renderedChildrenGenerations: 1,
@@ -19,7 +19,20 @@ function saveToLocalStorage() {
 
 function loadFromLocalStorage() {
     if (localStorage.getItem('tamagotchiUniGuideSave')) {
-        Object.assign(SAVE, JSON.parse(localStorage.getItem('tamagotchiUniGuideSave')));
+        const saveData = JSON.parse(localStorage.getItem('tamagotchiUniGuideSave'));
+
+        SAVE.acquiredTamas = saveData.acquiredTamas || [];
+        SAVE.acquiredDLCTamas = saveData.acquiredDLCTamas || [];
+        SAVE.acquiredPets = saveData.acquiredPets || [];
+        SAVE.acquiredCareIcons = saveData.acquiredCareIcons || [];
+        SAVE.tamaSelected = saveData.tamaSelected || "Egg";
+        SAVE.renderedParentGenerations = saveData.renderedParentGenerations || 5;
+        SAVE.renderedChildrenGenerations = saveData.renderedChildrenGenerations || 1;
+        SAVE.filterSpecials = saveData.filterSpecials || false;
+        SAVE.showEvolutionRequirement = saveData.showEvolutionRequirement || true;
+        SAVE.openedPage = saveData.openedPage || 'home';
+        SAVE.evolutionChartzoom = saveData.evolutionChartzoom || 100;
+        SAVE.selectedDLC = saveData.selectedDLC || 'Very Berry Land';
     }
 }
 
