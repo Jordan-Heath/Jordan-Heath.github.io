@@ -39,8 +39,10 @@
 
     <main>
         <section id="home" style="display: none;">
-            <h2>Welcome to Tamagotchi Uni Guide!</h2>
+            <h1 class="page-heading">Welcome to Tamagotchi Uni Guide!</h1>
+
             <p>Here you can find all of the information you need to know about Tamagotchi Uni!</p>
+            <p>Information is sourced from the <a href="https://tamagotchi.fandom.com/wiki/Main_Page" target="_blank">Tamagotchi Uni Wiki</a> and should be up to date as of 16/12/2024</p>
 
             <h3>Completion Stats</h3>
             <table>
@@ -96,6 +98,8 @@
         </section>
 
         <section id="evolution-chart" style="display: none;">
+            <h1 class="page-heading">Evolution Chart</h1>
+
             <details id="evolution-chart-controls">
                 <summary>Controls</summary>
                 <div class="control">
@@ -131,6 +135,8 @@
         </section>
 
         <section id="completion-diary" style="display: none;">
+            <h1 class="page-heading">Completion Diary</h1>
+
             <div id="filter-controls">
                 <div class="control">
                     Filter for stage:
@@ -170,6 +176,8 @@
         </section>
 
         <section id="dlc-characters" style="display: none;">
+            <h1 class="page-heading">DLC Tamas</h1>
+
             <div id="dlc-selection-buttons">
                 <img class="dlc-button" id="dlc-button-very-berry-land" src="assets/img/buttons/Very-Berry-Land.jpg" alt="Very Berry Land">
                 <img class="dlc-button" id="dlc-button-lovemelo-concert" src="assets/img/buttons/Love-Melo-Concert.jpg" alt="Lovemelo Concert">
@@ -187,67 +195,63 @@
         </section>
 
         <section id="likes-dislikes" style="display: none;">
+            <h1 class="page-heading">Likes & Dislikes</h1>
+
             <p>How To Use:</p>
             <ul>
                 <li>Select what Tama you have - else select "Other"</li><ul>
-                    <li>If your Tama is not an adult they wont be listed</li>
-                    <li>If your Tama is from a DLC I was too lazy to list it</li>
+                    <li>If your Tama is not an adult they don't have any likes/dislikes from their species</li>
                 </ul>
-                <li>Select the personality group of your Tama</li><ul>
+                <li>Select the personality of your Tama</li><ul>
                     <li>Most likes/dislikes are determined by your personality group</li>
-                    <li>Selecting "None" will only show the likes/dislikes determined by your Tama</li>
+                    <li>Selecting "None" will show only the likes/dislikes determined by your Tama</li>
                 </ul>
             </ul>
 
-            <details>
-                <summary>Guide To Determing Personality Group</summary>
-
-                <p>There are 5 personality groups, each including 6 personalities.</p>
-
-                <table>
-                    <tr>
-                        <th>Group</th>
-                        <th>Personalities</th>
-                    </tr>
-                    <tr>
-                        <td>Docile</td>
-                        <td>Calm, Cool, Honest, Orderly, Polite</td>
-                    </tr>
-                    <tr>
-                        <td>Energetic</td>
-                        <td>Bold, Careless, Jolly, Naughty, Passionate, Playful</td>
-                    </tr>
-                    <tr>
-                        <td>Shy</td>
-                        <td>Coy, Delicate, Fearful, Reserved, Shy, Timid</td>
-                    </tr>
-                    <tr>
-                        <td>Spoiled</td>
-                        <td>Affectionate, Emotional, Friendly, Lonely, Lovely, Spoiled</td>
-                    </tr>
-                    <tr>
-                        <td>Mysterious</td>
-                        <td>Chill, Ditzy, Moody, Mysterious, Rash, Relaxed</td>
-                    </tr>
-                </table>
-
-                <p>For more information, see <a href="https://tamagotchi.fandom.com/wiki/Tamagotchi_Uni/Personalities" target="_blank">Tamagotchi Wiki</a></p>
-            </details>
-
             <div id="likes-dislikes-controls">
                 <div class="control">
-                    Tama:
+                    Tama:<br>
                     <select id="likes-dislikes-species-select"></select>
                 </div>
                 <div class="control">
-                    Personality Group:
+                    Personality:<br>
                     <select id="likes-dislikes-personality-select">
                         <option value="None">None</option>
-                        <option value="Docile">Docile</option>
-                        <option value="Energetic">Energetic</option>
+                        <option value="" disabled>---Docile---</option>
+                        <option value="Docile">Calm</option>
+                        <option value="Docile">Cool</option>
+                        <option value="Docile">Honest</option>
+                        <option value="Docile">Orderly</option>
+                        <option value="Docile">Polite</option>
+                        <option value="Docile">Quiet</option>
+                        <option value="" disabled>---Energetic---</option>
+                        <option value="Energetic">Bold</option>
+                        <option value="Energetic">Careless</option>
+                        <option value="Energetic">Jolly</option>
+                        <option value="Energetic">Naughty</option>
+                        <option value="Energetic">Passionate</option>
+                        <option value="Energetic">Playful</option>
+                        <option value="" disabled>---Shy---</option>
+                        <option value="Shy">Coy</option>
+                        <option value="Shy">Delicate</option>
+                        <option value="Shy">Fearful</option>
+                        <option value="Shy">Reserved</option>
                         <option value="Shy">Shy</option>
+                        <option value="Shy">Timid</option>
+                        <option value="" disabled>---Spoiled---</option>
+                        <option value="Spoiled">Affectionate</option>
+                        <option value="Spoiled">Emotional</option>
+                        <option value="Spoiled">Friendly</option>
+                        <option value="Spoiled">Lonely</option>
+                        <option value="Spoiled">Lovely</option>
                         <option value="Spoiled">Spoiled</option>
+                        <option value="" disabled>---Mysterious---</option>
+                        <option value="Mysterious">Chill</option>
+                        <option value="Mysterious">Ditzy</option>
+                        <option value="Mysterious">Moody</option>
                         <option value="Mysterious">Mysterious</option>
+                        <option value="Mysterious">Rash</option>
+                        <option value="Mysterious">Relaxed</option>
                     </select>
                 </div>
             </div>
@@ -258,10 +262,14 @@
         </section>
 
         <section id="pets" style="display: none;">
+            <h1 class="page-heading">Pets</h1>
+
             <h2>UNDER CONSTRUCTION</h2>
         </section>
 
         <section id="badges" style="display: none;">
+            <h1 class="page-heading">Badges</h1>
+
             <h2>UNDER CONSTRUCTION</h2>
         </section>
     </main>
@@ -269,7 +277,7 @@
     <script src="js/model/save.js"></script>
     <script src="js/model/tama.js"></script>
     <script src="js/model/dlcTama.js"></script>
-    <script src="js/model/personality.js"></script>
+    <script src="js/model/item.js"></script>
     <script src="js/model/pet.js"></script>
     <script src="js/model/badge.js"></script>
 

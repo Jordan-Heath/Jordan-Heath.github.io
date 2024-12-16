@@ -26,18 +26,15 @@ function attachEventListeners() {
     const navButtonPets = document.getElementById('nav-button-pets');
     const navButtonBadges = document.getElementById('nav-button-badges');
 
-    navOpenButton.addEventListener('click', () => {
-        navOpenButton.classList.toggle('active');
-        nav.classList.toggle('active');
-    });
+    navOpenButton.addEventListener('click', toggleNav);
 
-    navButtonHome.addEventListener('click', openHome);
-    navButtonEvolutionChart.addEventListener('click', openEvolutionChart);
-    navButtonCompletionDiary.addEventListener('click', openCompletionDiary);
-    navButtonDLCCharacters.addEventListener('click', openDLCCharacters);
-    navButtonLikesDislikes.addEventListener('click', openLikesDislikes);
-    navButtonPets.addEventListener('click', openPets);
-    navButtonBadges.addEventListener('click', openBadges);
+    navButtonHome.addEventListener('click', () => { toggleNav(); openHome(); });
+    navButtonEvolutionChart.addEventListener('click', () => { toggleNav(); openEvolutionChart(); });
+    navButtonCompletionDiary.addEventListener('click', () => { toggleNav(); openCompletionDiary(); });
+    navButtonDLCCharacters.addEventListener('click', () => { toggleNav(); openDLCCharacters(); });
+    navButtonLikesDislikes.addEventListener('click', () => { toggleNav(); openLikesDislikes(); });
+    navButtonPets.addEventListener('click', () => { toggleNav(); openPets(); });
+    navButtonBadges.addEventListener('click', () => { toggleNav(); openBadges(); });
 
     // Completion Diary
     const filterStagesElement = document.getElementById('filter-stages');
@@ -130,4 +127,20 @@ function attachEventListeners() {
     DLCButtonSanrioCharacters.addEventListener('click', () => selectDLC('Sanrio Characters'));
     DLCButtonFairyTaleLibrary.addEventListener('click', () => selectDLC('Fairy Tale Library'));
     DLCButtonPokoPeaLand.addEventListener('click', () => selectDLC('PokoPea Land'));
+}
+
+function toggleNav() {
+    const navOpenButton = document.getElementById('nav-open-button');
+    const nav = document.querySelector('nav');
+
+    navOpenButton.classList.toggle('active');
+
+    if (!nav.classList.contains('active')) {
+        nav.classList.add('active');
+    } else {
+        nav.classList.remove('active');
+        nav.classList.add('dismissed');
+
+        setTimeout(() => nav.classList.remove('dismissed'), 300);
+    }
 }

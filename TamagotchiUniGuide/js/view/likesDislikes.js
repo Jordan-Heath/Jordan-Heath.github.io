@@ -33,12 +33,22 @@ function renderLikesDislikes() {
     option.textContent = 'Other...';
     speciesSelect.appendChild(option);
 
-    const availableTamas = TAMAS.filter(tama => tama.stage == 'Adult');
+    const availableTamas = [];
+
+    TAMAS.forEach(t => { if (t.stage == 'Adult') availableTamas.push(t); });
     availableTamas.sort((a, b) => a.name.localeCompare(b.name));
+
     availableTamas.forEach(tama => {
         const option = document.createElement('option');
         option.value = tama.name;
-        option.textContent = tama.name;
+        option.textContent = `${tama.name}`;
+        speciesSelect.appendChild(option);
+    });
+
+    DLC_TAMAS.forEach(tama => {
+        const option = document.createElement('option');
+        option.value = tama.name;
+        option.textContent = `${tama.name} (${tama.dlc})`;
         speciesSelect.appendChild(option);
     });
 
@@ -53,18 +63,17 @@ function renderLikesDislikes() {
 }
 
 function determineLikesDislikes() {
-    const tama = TAMAS.find(t => t.name == document.getElementById('likes-dislikes-species-select').value) 
-                || TAMAS[0]; // TAMAS[0] is "Egg" which has no likes
-    const personality = PERSONALITIES.find(p => p.name == document.getElementById('likes-dislikes-personality-select').value);
+    const tamaName = document.getElementById('likes-dislikes-species-select').value;
+    const personalityName = document.getElementById('likes-dislikes-personality-select').value;
 
     // build the arrays
-    const likedMeals = Array.from(new Set([...tama.likes.meals, ...personality.likes.meals])).sort();
-    const likedSnacks = Array.from(new Set([...tama.likes.snacks, ...personality.likes.snacks])).sort();
-    const likedHeadAccessories = Array.from(new Set([...tama.likes.headAccessories, ...personality.likes.headAccessories])).sort();
-    const likedFaceAccessories = Array.from(new Set([...tama.likes.faceAccessories, ...personality.likes.faceAccessories])).sort();
-    const likedBodyAccessories = Array.from(new Set([...tama.likes.bodyAccessories, ...personality.likes.bodyAccessories])).sort();
-    const likedBackAccessories = Array.from(new Set([...tama.likes.backAccessories, ...personality.likes.backAccessories])).sort();
-    const dislikedItems = Array.from(new Set([...personality.dislikes.items])).sort();
+    const likedMeals = ITEMS.meals.filter(i => i.likedBy.includes(tamaName) || i.likedBy.includes(personalityName)).sort((a, b) => a.name.localeCompare(b.name));
+    const likedSnacks = ITEMS.snacks.filter(i => i.likedBy.includes(tamaName) || i.likedBy.includes(personalityName)).sort((a, b) => a.name.localeCompare(b.name));
+    const likedHeadAccessories = ITEMS.headAccessories.filter(i => i.likedBy.includes(tamaName) || i.likedBy.includes(personalityName)).sort((a, b) => a.name.localeCompare(b.name));
+    const likedFaceAccessories = ITEMS.faceAccessories.filter(i => i.likedBy.includes(tamaName) || i.likedBy.includes(personalityName)).sort((a, b) => a.name.localeCompare(b.name));
+    const likedBodyAccessories = ITEMS.bodyAccessories.filter(i => i.likedBy.includes(tamaName) || i.likedBy.includes(personalityName)).sort((a, b) => a.name.localeCompare(b.name));
+    const likedBackAccessories = ITEMS.backAccessories.filter(i => i.likedBy.includes(tamaName) || i.likedBy.includes(personalityName)).sort((a, b) => a.name.localeCompare(b.name));
+    const dislikedItems = ITEMS.items.filter(i => i.dislikedBy.includes(personalityName)); // only personalities have dislikes
 
     // build the tables
     const tableContainer = document.getElementById('likes-dislikes-table-container');
@@ -91,7 +100,7 @@ function buildLikesTables(likes, label) {
     likes.forEach(like => {
         const tr = document.createElement('tr');
         const td = document.createElement('td');
-        td.textContent = like;
+        td.textContent = `${like.name}${like.source !== 'Base' ? ` (${like.source})` : ''}`;
         tr.appendChild(td);
         tableElement.appendChild(tr);
     });

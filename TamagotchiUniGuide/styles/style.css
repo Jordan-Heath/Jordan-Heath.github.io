@@ -32,6 +32,67 @@
     }
 }
 
+@keyframes openNav {
+    from {
+        height: 0px;
+        width: 0px;
+        opacity: 0;
+    }
+    to {
+        height: 300px;
+        width: 300px;
+        opacity: 1;
+    }
+}
+
+@keyframes closeNav {
+    from {
+        height: 300px;
+        width: 300px;
+        opacity: 1;
+    }
+    33% {
+        height: 300px;
+        width: 300px;
+        opacity: 1;
+    }
+    to {
+        height: 0px;
+        width: 0px;
+        opacity: 0;
+    }
+}
+
+@keyframes delayedFadeIn {
+    from {
+        opacity: 0;
+    }
+    66% {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
 html {
     overflow-x: hidden;
 }
@@ -220,14 +281,50 @@ header {
         top: 10px;
         left: 10px;
         z-index: 2;
+        box-sizing: border-box;
 
+        height: 300px;
+        width: 300px;
         padding: 10px 20px 20px 60px;
         border-radius: 20px;
         background-color: var(--blue);
         color: var(--white);
 
+        &.dismissed {
+            display: flex;
+            animation: closeNav 300ms linear;
+            height: 0px;
+            width: 0px;
+            opacity: 0;
+
+            h1 {
+                animation: fadeOut 100ms linear;
+                opacity: 0;
+            }
+
+            .nav-button {
+                animation: fadeOut 100ms linear;
+                opacity: 0;
+            }
+        }
+
         &.active {
             display: flex;
+            animation: openNav 200ms linear;
+            opacity: 1;
+
+            h1 {
+                animation: delayedFadeIn 300ms linear;
+            }
+
+            .nav-button {
+                animation: delayedFadeIn 300ms linear;
+            }
+        }
+
+        h1 {
+            text-align: center;
+            width: 100%;
         }
 
         .nav-button {
@@ -262,6 +359,7 @@ header {
         flex-direction: row;
         flex: 1;
         justify-content: center;
+        position: relative;
 
         img {
             max-width: 250px;
@@ -270,6 +368,12 @@ header {
     
         h1 {
             margin: 10px;
+            position: absolute;
+            bottom: -24px;
+            right: -6px;
+            rotate: -11deg;
+            /* add a white text stroke of 5px width */
+            text-shadow: 2px 2px 0px var(--white), -2px -2px 0px var(--white), 2px -2px 0px var(--white), -2px 2px 0px var(--white);
         }
     }
 }
@@ -279,11 +383,18 @@ section {
     padding: 0 20px 20px 20px;
     max-width: 600px;
     margin: auto;
+    margin-bottom: 100px;
 
     min-height: calc(100vh - 200px);
 
+    animation: fadeIn 0.5s linear;
+
     &.active {
         display: block;
+    }
+
+    .page-heading {
+        text-align: center;
     }
 }
 
@@ -471,15 +582,19 @@ section {
     }
 
     #likes-dislikes-controls {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        display: flex;
+        flex-direction: column;
     }
 
     #likes-dislikes-table-container {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr 1fr;
         gap: 20px;
         padding-top: 20px;
+
+        @media screen and (max-width: 400px) {
+            grid-template-columns: 1fr;
+        }
 
         table {
             flex: 1;

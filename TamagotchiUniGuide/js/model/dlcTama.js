@@ -605,7 +605,7 @@ const DLC_TAMA_DATA = [
     { // Peanuts-kun (Snack: Peanuts-kun Jellies)
         name: "Peanuts-kun",
         sex: "Male",
-        image: "dlctama/Peanuts-kun.webp",
+        image: "dlctama/Peanuts-Kun.webp",
         wikiLink: "https://tamagotchi.fandom.com/wiki/Peanuts-kun",
         itemName: "Peanuts-kun Jellies",
         itemType: "Snack",
