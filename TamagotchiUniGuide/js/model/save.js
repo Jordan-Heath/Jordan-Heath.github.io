@@ -1,6 +1,7 @@
 const SAVE = {
     acquiredTamas: [],
     acquiredDLCTamas: [],
+    acquiredPets: [],
     acquiredBadges: [],
     tamaSelected: "Egg",
     renderedParentGenerations: 5,
