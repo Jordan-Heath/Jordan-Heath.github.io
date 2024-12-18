@@ -31,12 +31,12 @@ class Tama {
         const div = this.renderDiv();
 
         div.addEventListener('click', () => {
-            // createPopup(this.detailsDiv);
-            SAVE.tamaSelected = this.name;
-            renderTama();
-
             if (div.classList.contains('selected')) {
                 createPopup(this.renderDetailedDiv());
+            } else {
+                SAVE.tamaSelected = this.name;
+                saveToLocalStorage();
+                renderTama();    
             }
         });
 
