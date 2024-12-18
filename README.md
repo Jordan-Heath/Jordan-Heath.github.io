@@ -6,14 +6,28 @@ Explore My Collection of Projects. Most of my work is not shared publicly. This 
 
 ## Completed Projects
 
+### [Tamagotchi Uni Guide](TamagotchiUniGuide/index.html)
+A webapp I put together for my partner to help them keep track of their Tamagotchi Uni. It was important that it had a nice mobile-friendly design, kept track of progress in the game, and informed the user in a very accessible way.
+
+- [x] Mobile Friendly
+- [x] Tamagotchi inspired design
+- [x] Saves progress / settings to local storage
+- [x] Completion Stats
+- [x] Evolution Chart
+- [x] Completion Diary
+- [x] DLC Tamas
+- [x] Likes & Dislikes
+- [x] Pets
+- [x] Care Icons
+
 ### [Qualification Academy](QualificationAcademy/Index.html)
 A game where you complete a series of questions to receive a certificate. I wanted it to be elegant and fun.
 
-- [ ] 3/10+ Qualifications to unlock
+- [x] 10+ Qualifications to unlock
 - [x] Custom Courses
 - [x] Elegant UI Design
 - [x] Sound effects
-- [ ] Mobile Friendly
+- [x] Mobile Friendly
 - [x] Dark Mode
 - [x] Saving to local storage
 - [x] Importing/Exporting courses to JSON
@@ -149,10 +163,6 @@ I created this a while ago to replicate a peculiar mode of speech I was exposed 
 
 
 ## Incomplete Projects
-
-### [Tamagotchi Uni Guide](TamagotchiUniGuide/index.html)
-
-Functional and untidy; incomplete/inconsistant data.
 
 ### [The Great Hundred Man Fight](TheGreatHundredManFight/TheGreatHundredManFight.html)
 
