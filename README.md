@@ -6,7 +6,7 @@ Explore My Collection of Projects. Most of my work is not shared publicly. This 
 
 ## Completed Projects
 
-### [Tamagotchi Uni Guide](TamagotchiUniGuide/index.html)
+### [Tamagotchi Uni Guide](TamagotchiUniGuide/)
 A webapp I put together for my partner to help them keep track of their Tamagotchi Uni. It was important that it had a nice mobile-friendly design, kept track of progress in the game, and informed the user in a very accessible way.
 
 - [x] Mobile Friendly
@@ -20,7 +20,7 @@ A webapp I put together for my partner to help them keep track of their Tamagotc
 - [x] Pets
 - [x] Care Icons
 
-### [Qualification Academy](QualificationAcademy/Index.html)
+### [Qualification Academy](QualificationAcademy/)
 A game where you complete a series of questions to receive a certificate. I wanted it to be elegant and fun.
 
 - [x] 10+ Qualifications to unlock
@@ -32,7 +32,7 @@ A game where you complete a series of questions to receive a certificate. I want
 - [x] Saving to local storage
 - [x] Importing/Exporting courses to JSON
 
-### [Pokemon Collector](CustomChess/index.html)
+### [Pokemon Collector](CustomChess/)
 I've wanted to make a card collection game for a while, but given I could not do enough good quality art to do it myself, i decided last minute to make it a fan game.
 
 - [x] 6 CardPacks to unlock pokemon
@@ -44,7 +44,7 @@ I've wanted to make a card collection game for a while, but given I could not do
 - [x] Cheat mode - provides a CardPack with busted odds and money rewards
 - [x] Optimised Card rendering
 
-### [Custom Chess](CustomChess/index.html)
+### [Custom Chess](CustomChess/)
 Inspired by Balatro, but for chess. Work In Progress, but good enough to publish.
 
 - [x] Saving
@@ -53,7 +53,7 @@ Inspired by Balatro, but for chess. Work In Progress, but good enough to publish
 - [x] Build a streak to earn greater prizes
 - [x] Carry your pieces over to the next round
 
-### [Persona 5 Royal Guide](Persona5RoyalGuide/index.html)
+### [Persona 5 Royal Guide](Persona5RoyalGuide/)
 
 I wanted an elegant guide styled after the game to occupy my second screen while playing. Other guides would require you to keep track of the day you were up to by scrolling through difficult to read whole pages of text, require you to switch tabs for negotiations and part time quizes.
 
@@ -69,7 +69,7 @@ I wanted an elegant guide styled after the game to occupy my second screen while
 - [x] Mobile Friendly
 
 
-### [The Collector](TheCollector/TheCollector.html)
+### [The Collector](TheCollector/)
 
 Idle Collection game. To my knowledge the first of it's kind.
 
@@ -81,7 +81,7 @@ Idle Collection game. To my knowledge the first of it's kind.
 - [x] Automatic Save system with manual, import and export saves
 
 
-### [Meal Planner](MealPlanner/MealPlanner.html)
+### [Meal Planner](MealPlanner/)
 
 Intended to help me plan out my meals.
 
@@ -94,7 +94,7 @@ Intended to help me plan out my meals.
 - [x] Includes [Recipe Browser](MealPlanner/RecipeBrowser.html) - for if you want to search for a recipe instead of being assigned.
 
 
-### [Idle Landlord](IdleLandlord/IdleLandlord.html)
+### [Idle Landlord](IdleLandlord/)
 
 I've wanted to make a clicker game for a while. The king of passive income is landlording, so I really wanted to make landlord themed clicker game. Features:
 
@@ -106,7 +106,7 @@ I've wanted to make a clicker game for a while. The king of passive income is la
 - [x] Unique mobile layout
 
 
-### [Story Teller](StoryTeller/StoryTeller.html)
+### [Story Teller](StoryTeller/)
 
 I developed an app that emulates the game Madlibs. Features:
 
@@ -118,7 +118,7 @@ I developed an app that emulates the game Madlibs. Features:
 - [x] support for making and importing custom stories via the [Story Maker](StoryTeller/StoryMaker.html)
 
 
-### [Manticore Generator](ManticoreGenerator/ManticoreGenerator.html)
+### [Manticore Generator](ManticoreGenerator/)
 
 A friend of mine saw the character generator and was working on creating some manticores for a personal project. They asked if I could make something similar to assist them in the process. I added a few extra features to help them:
 
@@ -131,7 +131,7 @@ A friend of mine saw the character generator and was working on creating some ma
 Otherwise, it is very similar to the Character Generator.
 
 
-### [Character Generator](CharacterGenerator/CharacterGenerator.html)
+### [Character Generator](CharacterGenerator/)
 
 I was familiar with name generators, but I wanted to put my own spin on it by adding a few extra features.
 
@@ -142,7 +142,7 @@ I was familiar with name generators, but I wanted to put my own spin on it by ad
 The characters may come out as a bit whimsical, but I found it enjoyable.
 
 
-### [Percentage Clock](PercentageClock/PercentageClock.html)
+### [Percentage Clock](PercentageClock/)
 
 On challenging days, it's helpful to know how much of the day is left. Percentage Clock provides this information in a simple number. It might not offer much comfort as I got a bit carried away with the CSS animation library. A few features include:
 
@@ -154,7 +154,7 @@ On challenging days, it's helpful to know how much of the day is left. Percentag
 Wouldn't particularly recommend this one.
 
 
-### [Word Scrambler](WordScrambler/WordScrambler.html)
+### [Word Scrambler](WordScrambler/)
 
 I created this a while ago to replicate a peculiar mode of speech I was exposed to. I just need to port it over. Features:
 
@@ -164,11 +164,11 @@ I created this a while ago to replicate a peculiar mode of speech I was exposed 
 
 ## Incomplete Projects
 
-### [The Great Hundred Man Fight](TheGreatHundredManFight/TheGreatHundredManFight.html)
+### [The Great Hundred Man Fight](TheGreatHundredManFight/)
 
 PLAYABLE DEMO. 100 men enter, 1 leaves. I haven't gotten the motivation to polish it enough for the main page.
 
-### [Pet Game](PetGame/PetGame.html)
+### [Pet Game](PetGame/)
 
 PLAYABLE DEMO. A digimon/tamogotchi clone with my own spin.
 
