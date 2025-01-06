@@ -43,11 +43,17 @@ class Tile {
             if (this.country.capitalTile === this) {
                 tileMap.ctx.drawImage(document.getElementById('capital'), x, y, size, size);
 
-            } else if (this.buildings.includes("developed")) {
-                tileMap.ctx.drawImage(document.getElementById('developed'), x, y, size, size);
+            } else if (this.buildings.includes("developed3")) {
+                tileMap.ctx.drawImage(document.getElementById('developed3'), x, y, size, size);
 
-            } else if (this.buildings.includes("populated")) {
-                tileMap.ctx.drawImage(document.getElementById('populated'), x, y, size, size);
+            } else if (this.buildings.includes("developed2")) {
+                tileMap.ctx.drawImage(document.getElementById('developed2'), x, y, size, size);
+
+            } else if (this.buildings.includes("developed1")) {
+                tileMap.ctx.drawImage(document.getElementById('developed1'), x, y, size, size);
+
+            } else if (this.buildings.includes("developed0")) {
+                tileMap.ctx.drawImage(document.getElementById('developed0'), x, y, size, size);
 
             } else if (this.buildings.includes("dock")) {
                 tileMap.ctx.drawImage(document.getElementById('dock'), x, y, size, size);
@@ -108,8 +114,10 @@ class Tile {
     develop() {
         this.development += 0.01;
 
-        if (this.development > 0.6 && !this.buildings.includes("developed")) this.buildings.push("developed");
-        if (this.development > 0.3 && !this.buildings.includes("populated")) this.buildings.push("populated");
+        if (this.development > 0.8 && !this.buildings.includes("developed3")) this.buildings.push("developed3");
+        if (this.development > 0.6 && !this.buildings.includes("developed2")) this.buildings.push("developed2");
+        if (this.development > 0.4 && !this.buildings.includes("developed1")) this.buildings.push("developed1");
+        if (this.development > 0.2 && !this.buildings.includes("developed0")) this.buildings.push("developed0");
 
         this.calculateProsperity();
     }

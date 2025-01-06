@@ -85,7 +85,7 @@ class TileMap {
                 country.capitalTile = randomTile;
 
                 index++;
-                availableTiles = availableTiles.filter(t => country.distanceToCapital(t) > 50);
+                availableTiles = availableTiles.filter(t => country.distanceToCapital(t) > 30);
             }
 
             console.log("Stage 2 Complete: Countries spawned");

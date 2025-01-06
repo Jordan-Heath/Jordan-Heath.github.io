@@ -10,8 +10,8 @@ class Game {
         ];
         this.tickRate = this.tickRates[2];
         this.terrain = [
-            new Terrain('DeepWater', 0, false, 0, '#255859'),
-            new Terrain('Water', 1, false, 0, '#5f999b'),
+            new Terrain('DeepWater', 0, false, 2, '#255859'),
+            new Terrain('Water', 1, false, 2, '#5f999b'),
             new Terrain('Beach', 2, true, 2, '#f8cd6e'),
             new Terrain('Grass', 3, true, 3, '#899d5e'),
             new Terrain('Hill', 4, true, 2, '#76583f'),

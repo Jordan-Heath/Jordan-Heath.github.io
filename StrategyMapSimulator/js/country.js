@@ -89,7 +89,7 @@ class Country {
     }
 
     develop(developableTiles = this.tiles.filter(tile => tile.isAccessible() && tile.development < 1)) {
-        developableTiles.sort((a, b) => b.calculateProsperity(this) - a.calculateProsperity(this));
+        developableTiles.sort((a, b) => b.terrain.prosperity - a.terrain.prosperity);
 
         const tileToDevelop = developableTiles[0];
         this.money -= 1*this.size;
@@ -178,8 +178,17 @@ class Country {
     }
 
     distanceToCapital(tile) {
-        // return the number of tiles between this tile and the capital of this country
-        return Math.abs(this.capitalTile.x - tile.x) + Math.abs(this.capitalTile.y - tile.y) + 1;
+        const xDistanceNormal = Math.abs(this.capitalTile.x - tile.x);
+        const yDistanceNormal = Math.abs(this.capitalTile.y - tile.y);
+
+        const xDistanceCrossingBorder = Math.abs(game.tileMap.mapWidth + this.capitalTile.x - tile.x);
+        const yDistanceCrossingBorder = Math.abs(game.tileMap.mapHeight + this.capitalTile.y - tile.y);
+
+
+        const xDistance = xDistanceNormal < xDistanceCrossingBorder ? xDistanceNormal : xDistanceCrossingBorder;
+        const yDistance = yDistanceNormal < yDistanceCrossingBorder ? yDistanceNormal : yDistanceCrossingBorder;
+
+        return xDistance + yDistance + 1;
     }
 
     calculateScore() {

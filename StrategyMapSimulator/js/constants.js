@@ -70,7 +70,10 @@ const CountryNames = [
     'Volyvia',
     'Acturt',
     'Boystown',
-    'Dunemarch'
+    'Dunemarch',
+    'Ardentia',
+    'Hillside',
+    'Fropland',
 ]
 
 const Colors = [
@@ -81,5 +84,9 @@ const Colors = [
     'Magenta',
     'Aqua',
     'Black',
-    'White'
+    'White',
+    'Orange',
+    'Purple',
+    'Lime',
+    'Teal'
 ];
