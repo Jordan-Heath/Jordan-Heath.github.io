@@ -1,0 +1,89 @@
+:root {
+    --active-color: green;
+    --ui-color: white;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: black;
+}
+
+#assets {
+    display: none;
+}
+
+#userInterface {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+
+    background: var(--ui-color);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#date {
+    /* top centered */
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+
+    background: var(--ui-color);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#speedControls {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+
+    background: var(--ui-color);
+    padding: 10px;
+    border-radius: 5px;
+
+    text-align: right;
+
+    .active {
+        background: var(--active-color);
+    }
+}
+
+#controls {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    z-index: 1;
+
+    padding: 10px;
+    background: var(--ui-color);
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: column-reverse;
+
+    .active {
+        background: var(--active-color);
+    }
+
+    .hidden {
+        display: none;
+    }
+}
+
+#scores {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 1;
+
+    background: var(--ui-color);
+    padding: 10px;
+    border-radius: 5px;
+}

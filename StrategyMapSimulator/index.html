@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Strategy Map Simulator</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="assets/capital.png">    
+</head>
+
+<body>
+    <div id="assets">
+        <img src="assets/populated.png" id="populated">
+        <img src="assets/developed.png" id="developed">
+        <img src="assets/capital.png" id="capital">
+        <img src="assets/dock.png" id="dock">
+    </div>
+
+
+    <div id="userInterface">
+        <h1 id="selectedCountryName">faction</h1>
+        <div>
+            <span>money:</span> <span id="selectedCountryMoney">0</span>
+        </div>
+        <div>
+            <span>size:</span> <span id="selectedCountrySize">0</span>
+        </div>
+        <div>
+            <span>attack:</span> <span id="selectedCountryAttack">0</span>
+        </div>
+        <div>
+            <span>defense:</span> <span id="selectedCountryDefense">0</span>
+        </div>
+        <div>
+            <span>growth:</span> <span id="selectedCountryGrowth">0</span>
+        </div>
+        <div>
+            <span>development:</span> <span id="selectedCountryDevelopment">0</span>
+        </div>
+        <div>
+            <span>governmental stability:</span> <span id="selectedCountryGovernmentalStability">0</span>
+        </div>
+    </div>
+
+    <div id="date">
+        <span id="day">1st</span>
+        <span id="month">January</span>
+        <span id="year">0000</span>
+    </div>
+
+    <div id="speedControls">
+        <div>
+            <button id="speedButton0" class="active">I</button>
+            <button id="speedButton1" class="active">II</button>
+            <button id="speedButton2" class="active">III</button>
+            <button id="speedButton3">IV</button>
+            <button id="speedButton4">V</button>
+        </div>
+        <button id="playPauseButton">⏸︎</button>
+    </div>
+
+    <canvas id="mapCanvas"></canvas>
+
+    <div id="controls">
+        <div>
+            <button id="moveButton" class="control-button active">Move</button>
+            <button id="selectButton" class="control-button">Select</button>
+            <button id="drawButton" class="control-button">Draw</button>
+        </div>
+        <div id="terrainMenu" class="hidden">
+            <span>Terrain to draw:</span>
+            <button id="deepWaterButton" class="terrain-button">DeepWater</button>
+            <button id="waterButton" class="terrain-button">Water</button>
+            <button id="beachButton" class="terrain-button">Beach</button>
+            <button id="dirtButton" class="terrain-button">Dirt</button>
+            <button id="grassButton" class="terrain-button">Grass</button>
+            <button id="mountainButton" class="terrain-button">Mountain</button>
+        </div>
+    </div>
+
+    <div id="scores">
+        <!-- populated by js -->
+    </div>
+
+    <script src="js/constants.js"></script>
+    <script src="js/userinterface.js"></script>
+    <script src="js/country.js"></script>
+    <script src="js/terrain.js"></script>
+    <script src="js/tile.js"></script>
+    <script src="js/tilemap.js"></script>
+    <script src="js/game.js" defer></script>
+</body>
+</html>
