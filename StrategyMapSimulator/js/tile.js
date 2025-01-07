@@ -29,12 +29,15 @@ class Tile {
 
     draw(x, y, size) {
         const { ctx } = game.tileMap;
-
+        
         // Draw terrain
-        ctx.fillStyle = this.terrain.color;
-        ctx.fillRect(x, y, size, size);
+        if (size >= 15) {
+            ctx.drawImage(document.getElementById(this.terrain.name.toLowerCase()), x, y, size, size);
+        } else {
+            ctx.fillStyle = this.terrain.color;
+            ctx.fillRect(x, y, size, size);
+        }
 
-        // Draw country overlay if present
         if (this.country) {
             ctx.fillStyle = this.country.color;
             ctx.globalAlpha = 0.6;
@@ -42,9 +45,6 @@ class Tile {
             ctx.globalAlpha = 1;
         }
 
-        // Draw capital or building
-
-        // Ensure it picks the first result that matches
         const imageId = [
             "capital",
             "ruins2",
@@ -57,7 +57,6 @@ class Tile {
             "dock",
         ].find((id) => this.country?.capitalTile === this || this.buildings.includes(id));
 
-        // Draw capital and ruins regardless of size, but only draw developed or docks if size is above 20
         if (imageId && (size >= 20 || ["capital", "ruins2", "ruins1", "ruins0"].includes(imageId))) {
             ctx.drawImage(document.getElementById(imageId), x, y, size, size);
         }
@@ -130,13 +129,14 @@ class Tile {
 
     calculateProsperity(country = this.country) {
         if (country) {
-            const distanceToCapital = country.distanceToCapital(this)
-            this.prosperity = (this.terrain.prosperity * this.development) / distanceToCapital;
+            const distanceToCapital = country.distanceToCapital(this);
+            const neighbouringTilesOwned = [...this.getNeighbours()].filter(tile => tile.country === country).length;
+            this.prosperity = (this.terrain.prosperity * this.development) / distanceToCapital + neighbouringTilesOwned/100;
         } else {
             this.prosperity = this.terrain.prosperity * this.development;
         }
 
-        if (this.buildings.includes("ruins0")) this.prosperity *= 2;
+        if (this.buildings.includes("ruins0")) this.prosperity *= 50;
 
         return this.prosperity;
     }

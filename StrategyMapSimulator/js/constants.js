@@ -75,53 +75,45 @@ const CountryNames = [
     'Hillside',
     'Fropland',
 ]
+CountryNames.sort((a, b) => 0.5 - Math.random());
 
 const Colors = [
-    'Red',
-    'Green',
-    'Blue',
-    'Yellow',
-    'Magenta',
-    'Aqua',
-    'DarkSlateGray',
-    'White',
-    'Orange',
-    'Purple',
-    'Lime',
-    'Teal'
+    '#000000', // Black
+    '#FFFFFF', // White
+    '#2D3748', // Dark Blue
+    '#63C69C', // Light Blue
+    '#C53030', // Dark Red
+    '#FFA500', // Light Red
+    '#2F855A', // Dark Green
+    '#B0E57C', // Light Green
+    '#D69E2E', // Dark Yellow
+    '#F6E05E', // Light Yellow
+    '#FF6347', // Dark Orange
+    '#FF8C00', // Light Orange
+    '#4FD1C5', // Light Blue Green
+    '#3182CE', // Dark Blue Green
+    '#FFA500', // Dark Yellow Orange
+    '#FF69B4', // Light Pink
+    '#68D391', // Dark Green Yellow
+    '#6B46C1', // Dark Blue Purple
+    '#9F7AEA', // Light Purple
+    '#A0522D' // Dark Orange Brown
 ];
+Colors.sort((a, b) => 0.5 - Math.random());
 
 const Terrains = [
-    new Terrain('DeepWater', 0, false, 2.5, '#255859'),
-    new Terrain('Water', 1, false, 1.5, '#5f999b'),
+    new Terrain('DeepWater', 0, false, 3, '#255859'),
+    new Terrain('Water', 1, false, 2, '#5f999b'),
     new Terrain('Beach', 2, true, 3, '#f8cd6e'),
     new Terrain('Grass', 3, true, 4, '#899d5e'),
     new Terrain('Hill', 4, true, 3, '#76583f'),
-    new Terrain('Mountain', 5, false, 1.5, '#dddddd'),
+    new Terrain('Mountain', 5, false, 2, '#dddddd'),
 ];
 
-function findContrastingTextColor(colorName) {
-    const colors = {
-        red: '#ff0000',
-        green: '#008000',
-        blue: '#0000ff',
-        yellow: '#ffff00',
-        magenta: '#ff00ff',
-        aqua: '#00ffff',
-        darkslategray: '#2f4f4f',
-        white: '#ffffff',
-        orange: '#ffa500',
-        purple: '#800080',
-        lime: '#00ff00',
-        teal: '#008080'
-    };
-
-    const hex = colors[colorName.toLowerCase()];
-    if (!hex) return 'black';
-
-    const r = parseInt(hex.slice(1, 3), 16);
-    const g = parseInt(hex.slice(3, 5), 16);
-    const b = parseInt(hex.slice(5, 7), 16);
+function findContrastingTextColor(color) {
+    const r = parseInt(color.slice(1, 3), 16);
+    const g = parseInt(color.slice(3, 5), 16);
+    const b = parseInt(color.slice(5, 7), 16);
 
     const brightness = (r * 299 + g * 587 + b * 114) / 1000;
     return brightness > 128 ? 'black' : 'white';

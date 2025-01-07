@@ -30,10 +30,16 @@ class TileMap {
 
         this.mapData = [];
 
+        this.mapSpawnSettings = {
+            numberOfAgings: 5,
+            countryFrequency: 25,
+            ruinFrequency: 25
+        }
+
         this.init();
     }
 
-    generateRandomMap(stage = 1, subStage = 0) {
+    generateRandomMap(stage = 1, subStage = 1) {
         const countries = game.countries;
 
         if (stage === 1) {
@@ -53,7 +59,7 @@ class TileMap {
         }
 
         if (stage === 2) {
-            if (subStage < 4) {
+            if (subStage < this.mapSpawnSettings.numberOfAgings) {
                 this.mapData.flat().forEach(tile => tile.evolveLand());
                 game.date.year += 50000;
                 subStage++;
@@ -74,11 +80,11 @@ class TileMap {
                 const country = new Country(CountryNames[index % CountryNames.length], Colors[index % Colors.length]);
                 game.countries.push(country);
                 const randomTile = availableTiles[Math.floor(Math.random() * availableTiles.length)];
-                country.gainTile(randomTile);
                 country.capitalTile = randomTile;
+                country.gainTile(randomTile);
 
                 index++;
-                availableTiles = availableTiles.filter(t => country.distanceToCapital(t) > 30);
+                availableTiles = availableTiles.filter(t => country.distanceToCapital(t) > this.mapSpawnSettings.countryFrequency);
             }
 
             console.log("Stage 3 Complete: Countries spawned");
@@ -95,7 +101,7 @@ class TileMap {
                 const randomTile = availableTiles[Math.floor(Math.random() * availableTiles.length)];
                 randomTile.buildings.push('ruins0');
                 randomTile.development = 2;
-                availableTiles = availableTiles.filter(t => t.distanceToTile(randomTile) > 30);
+                availableTiles = availableTiles.filter(t => t.distanceToTile(randomTile) > this.mapSpawnSettings.ruinFrequency);
             }
 
             console.log("Stage 4 Complete: Ruins spawned");
