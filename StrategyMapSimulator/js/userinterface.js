@@ -11,10 +11,11 @@ class UserInterface {
         this.moveButton = document.getElementById('moveButton');
 
         // select
-        this.selectButton = document.getElementById('selectButton');
         this.selectedCountry = null;
+        this.selectedCountryElement = document.getElementById('selectedCountry');
         this.selectedCountryElements = {
             name: document.getElementById('selectedCountryName'),
+            score: document.getElementById('selectedCountryScore'),
             money: document.getElementById('selectedCountryMoney'),
             size: document.getElementById('selectedCountrySize'),
             attack: document.getElementById('selectedCountryAttack'),
@@ -50,7 +51,7 @@ class UserInterface {
     buildMenues() {
         terrainMenu.innerHTML = '';
 
-        game.terrain.forEach(terrain => {
+        Terrains.forEach(terrain => {
             const button = document.createElement('button');
             button.classList.add('terrain-button');
             button.innerHTML = terrain.name;
@@ -61,21 +62,43 @@ class UserInterface {
     }
 
     draw() {
-        this.selectedCountryElements.name.innerHTML = `${this.selectedCountry?.name} (${this.selectedCountry?.color})` ?? 'None';
-        this.selectedCountryElements.money.innerHTML = '$' + (this.selectedCountry?.money ?? 0).toFixed(2);
-        this.selectedCountryElements.size.innerHTML = this.selectedCountry?.size ?? 0;
-        this.selectedCountryElements.attack.innerHTML = (this.selectedCountry?.attackChance * 100).toFixed(2) + '%';
-        this.selectedCountryElements.defense.innerHTML = (this.selectedCountry?.defenseChance * 100).toFixed(2) + '%';
-        this.selectedCountryElements.growth.innerHTML = (this.selectedCountry?.growthChance * 100).toFixed(2) + '%';
-        this.selectedCountryElements.development.innerHTML = (this.selectedCountry?.developChance * 100).toFixed(2) + '%';
-        this.selectedCountryElements.governmentalStability.innerHTML = (this.selectedCountry?.governmentalStability * 100).toFixed(2) + '%';
+        // draw selected country
+        if (this.selectedCountry) {
+            this.selectedCountryElement.style.display = 'block';
+            this.selectedCountryElements.name.innerHTML = `${this.selectedCountry?.name}` ?? 'None';
+            this.selectedCountryElements.name.style.backgroundColor = this.selectedCountry?.color;
+            this.selectedCountryElements.name.style.color = this.selectedCountry?.textColor;
+            this.selectedCountryElements.score.innerHTML = this.selectedCountry?.score.toFixed(2) ?? 0;
+            this.selectedCountryElements.money.innerHTML = '$' + (this.selectedCountry?.money ?? 0).toFixed(2);
+            this.selectedCountryElements.size.innerHTML = this.selectedCountry?.size ?? 0;
+            this.selectedCountryElements.attack.innerHTML = (this.selectedCountry?.attackChance * 100).toFixed(2) + '%';
+            this.selectedCountryElements.defense.innerHTML = (this.selectedCountry?.defenseChance * 100).toFixed(2) + '%';
+            this.selectedCountryElements.growth.innerHTML = (this.selectedCountry?.growthChance * 100).toFixed(2) + '%';
+            this.selectedCountryElements.development.innerHTML = (this.selectedCountry?.developChance * 100).toFixed(2) + '%';
+            this.selectedCountryElements.governmentalStability.innerHTML = (this.selectedCountry?.governmentalStability * 100).toFixed(2) + '%';
+        } else {
+            this.selectedCountryElement.style.display = 'none';
+        }
 
+        // draw date
         let suffix = DaySuffixes[game.date.day] ?? 'th';
         this.dateElements.day.innerHTML = game.date.day.toString() + suffix + ' of';
         this.dateElements.month.innerHTML = Months[game.date.month];
         this.dateElements.year.innerHTML = game.date.year.toString().padStart(4, '0');
 
-        this.drawScores();
+        // draw scores
+        this.scoresElement.innerHTML = '';
+
+        let countries = game.countries.sort((a, b) => b.score - a.score);
+
+        countries.forEach(country => {
+            const scoreElement = document.createElement('div');
+            scoreElement.classList.add('score-element');
+            scoreElement.innerHTML = `${country.name}: ${country.score.toFixed(2)}`;
+            scoreElement.style.backgroundColor = country.color;
+            scoreElement.style.color = country.textColor;
+            this.scoresElement.appendChild(scoreElement);
+        });
     }
 
     attachEventListeners() {
@@ -83,7 +106,6 @@ class UserInterface {
         this.moveButton.classList.add('active');
 
         this.moveButton.addEventListener('click', e => this.moveButtonListener(e));
-        this.selectButton.addEventListener('click', e => this.selectButtonListener(e));
         this.drawButton.addEventListener('click', e => this.drawButtonListener(e));
 
         this.playPauseButton.addEventListener('click', () => game.playPause());
@@ -96,7 +118,7 @@ class UserInterface {
         this.terrainButton[terrainType].classList.add('active');
 
         //store the setting
-        this.drawButtonSetting = game.terrain.find(terrain => terrain.name.toLowerCase() === terrainType.toLowerCase());
+        this.drawButtonSetting = Terrains.find(terrain => terrain.name.toLowerCase() === terrainType.toLowerCase());
     }
 
     moveButtonListener(e) {
@@ -107,7 +129,7 @@ class UserInterface {
 
         game.eventListeners.mouseDownListener = (e) => game.tileMap.startDraggingMap(e);
         game.eventListeners.mouseMoveListener = (e) => game.tileMap.draggingMap(e);
-        game.eventListeners.mouseUpListener = () => game.tileMap.stopDraggingMap();
+        game.eventListeners.mouseUpListener = (e) => game.tileMap.stopDraggingMap(e);
     }
 
     selectButtonListener(e) {
@@ -129,19 +151,6 @@ class UserInterface {
 
         game.eventListeners.mouseDownListener = (e) => game.tileMap.startDrawingOnMap(e);
         game.eventListeners.mouseMoveListener = (e) => game.tileMap.drawingOnMap(e);
-        game.eventListeners.mouseUpListener = () => game.tileMap.stopDrawingOnMap();
-    }
-
-    drawScores() {
-        this.scoresElement.innerHTML = '';
-
-        let countries = game.countries.sort((a, b) => b.score - a.score);
-
-        countries.forEach(country => {
-            const scoreElement = document.createElement('div');
-            scoreElement.classList.add('score-element');
-            scoreElement.innerHTML = `${country.name} (${country.color}): ${country.score.toFixed(2)}`
-            this.scoresElement.appendChild(scoreElement);
-        });
+        game.eventListeners.mouseUpListener = (e) => game.tileMap.stopDrawingOnMap();
     }
 }

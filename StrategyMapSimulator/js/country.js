@@ -1,203 +1,217 @@
 class Country {
     constructor(name, color) {
+        // Country name and color
         this.name = name;
         this.color = color;
+        this.textColor = findContrastingTextColor(color);
+
+        // Country size is the number of tiles it controls
         this.size = 1;
 
+        // Money is the amount of resources the country has
         this.money = 0;
+
+        // Score is the prosperity of the country's controlled tiles
         this.score = 0;
 
+        // Stats are the governmental stability, growth chance, attack chance, defense chance and development chance
         this.growthChance = Math.random() / 2;
         this.attackChance = Math.random() / 2;
         this.defenseChance = Math.random() / 2;
         this.developChance = Math.random() / 2;
-        this.governmentalStability = 1 - Math.random()/100;
+        this.governmentalStability = 1 - Math.random() / 100;
 
+        // Capital tile is the tile that is the capital of the country
         this.capitalTile = null;
-        this.tiles = [];
-        this.neighbouringTiles = [];
+
+        // Tiles is a set of tiles controlled by the country
+        this.tiles = new Set();
+
+        // Neighbouring tiles is a set of tiles that are not controlled by the country but are adjacent to the country's tiles
+        this.neighbouringTiles = new Set();
     }
 
     updateTiles(tileMap = game.tileMap) {
-        // get all tiles that are owned by this country
-        this.tiles = [];
-
-        for (let y = 0; y < tileMap.mapHeight; y++) {
-            for (let x = 0; x < tileMap.mapWidth; x++) {
-                const tile = tileMap.mapData[y][x];
+        // Update the country's tiles
+        this.tiles.clear();
+        for (let row of tileMap.mapData) {
+            for (let tile of row) {
                 if (tile.belongsTo(this)) {
-                    this.tiles.push(tile);
+                    this.tiles.add(tile);
                 }
             }
         }
     }
 
     updateNeighbouringTiles(tileMap = game.tileMap) {
-        // get all tiles that are adjacent to tiles owned by this country
-        this.neighbouringTiles = [];
-
-        this.tiles.forEach(tile => {
-            tile.getNeighbours(tileMap).forEach(neighbour => {
-                this.neighbouringTiles.push(neighbour);
-            });
-        });
+        // Update the country's neighbouring tiles
+        this.neighbouringTiles.clear();
+        for (let tile of this.tiles) {
+            for (let neighbour of tile.getNeighbours(tileMap)) {
+                if (!this.tiles.has(neighbour)) {
+                    this.neighbouringTiles.add(neighbour);
+                }
+            }
+        }
     }
 
     refresh() {
+        // Update the country's tiles and neighbouring tiles
         this.updateTiles();
         this.updateNeighbouringTiles();
     }
 
     update() {
-        if (this.tiles.length === 0) return;
+        // Update the country's money
+        if (this.tiles.size === 0) return;
         if (this.capitalTile.country !== this) this.shrink();
-        if (this.neighbouringTiles.length === 0) this.refresh();
 
         this.getTaxes();
         this.governmentalChange();
 
-        const developableTiles = this.tiles.filter(tile => tile.isAccessible() && tile.development < 1);
-        const accessibleTiles = this.neighbouringTiles.filter(tile => tile.isAccessible() && tile.country === null);
-        const enemyTiles = this.neighbouringTiles.filter(tile => tile.country !== null);
+        // Get developable and accessible tiles
+        
 
-        const canDevelop = developableTiles.length > 0 && this.money >= this.size;
-        const canExpand = accessibleTiles.length > 0 && this.money >= 2*this.size;
-        const canAttack = enemyTiles.length > 0 && this.money >= 3*this.size;
-        const canReclaimLand = !canExpand && !canAttack && this.money >= 4*this.size;
+        // Check if country can develop, then develop
+        this.develop();
 
-        if (canAttack && this.attackChance > Math.random()) this.attack(enemyTiles);
-        else if (canDevelop && this.developChance > Math.random()) this.develop(developableTiles);
-        else if (canExpand && this.growthChance > Math.random()) this.expand(accessibleTiles);
-        else if (canReclaimLand) this.reclaimLand();
+        // Check if country expand, attack or reclaim land
+        
+        
+        
+        // Choose an action
+        if (this.attack());
+        else if (this.expand());
+        else if (this.reclaimLand());
 
-        this.size = this.tiles.length;
+        // Update country size and score
+        this.size = this.tiles.size;
         this.calculateScore();
     }
 
-    attack(attackableTiles = this.neighbouringTiles.filter(tile => tile.country !== null && tile.country !== this)) {
-        if (attackableTiles.length > 0) {
-            const tileToAttack = attackableTiles.reduce((mostProsperousTileSoFar, currentTile) => {
-                return currentTile.calculateProsperity(this) > mostProsperousTileSoFar.calculateProsperity(this) ? currentTile : mostProsperousTileSoFar;
-            }, attackableTiles[0]);
+    attack() {
+        const attackableTiles = [...this.neighbouringTiles].filter(tile => tile.country !== null);
+        const canAttack = attackableTiles.length > 0 && this.money >= 2*this.size;
 
-            if (tileToAttack.country.defenseChance + tileToAttack.development/2 < Math.random()) {
+        // Attack a random enemy tile
+        if (canAttack && this.attackChance > Math.random()) {
+            const tileToAttack = attackableTiles.reduce((mostProsperousTile, currentTile) =>
+                currentTile.calculateProsperity(this) > mostProsperousTile.calculateProsperity(this) ? currentTile : mostProsperousTile, attackableTiles[0]);
+
+            if (tileToAttack.country.defenseChance + tileToAttack.development / 8 < Math.random()) {
                 tileToAttack.country.loseTile(tileToAttack);
                 this.gainTile(tileToAttack);
-                this.money -= 3*this.size;
+                this.money -= 2*this.size;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    develop() {
+        const developableTiles = [...this.tiles].filter(tile => tile.isAccessible() && tile.development < 4);
+        const canDevelop = developableTiles.length > 0 && this.money >= this.size/2;
+
+        if (canDevelop && this.developChance > Math.random()) {
+            // Develop a random developable tile
+            if (developableTiles.length > 0) {
+                developableTiles.sort((a, b) => b.prosperity - a.prosperity);
+                const tileToDevelop = developableTiles[0];
+                this.money -= this.size/2;
+                tileToDevelop.develop();
             }
         }
     }
 
-    develop(developableTiles = this.tiles.filter(tile => tile.isAccessible() && tile.development < 1)) {
-        developableTiles.sort((a, b) => b.terrain.prosperity - a.terrain.prosperity);
+    expand() {
+        const unclaimedTiles = [...this.neighbouringTiles].filter(tile => tile.isAccessible() && tile.country === null);
+        const canExpand = unclaimedTiles.length > 0 && this.money >= 4*this.size;
 
-        const tileToDevelop = developableTiles[0];
-        this.money -= 1*this.size;
-        tileToDevelop.develop();
-    }
-
-    expand(unclaimedTiles = this.neighbouringTiles.filter(tile => tile.isUnclaimed())) {
-
-        if (unclaimedTiles.length > 0) {
-            const mostProsperousTile = unclaimedTiles.reduce((mostProsperousTileSoFar, currentTile) => {
-                return currentTile.calculateProsperity(this) > mostProsperousTileSoFar.calculateProsperity(this) ? currentTile : mostProsperousTileSoFar;
-            }, unclaimedTiles[0]);
+        // Expand to a random unclaimed tile
+        if (canExpand && this.growthChance > Math.random()) {
+            const mostProsperousTile = unclaimedTiles.reduce((mostProsperousTile, currentTile) =>
+                currentTile.calculateProsperity(this) > mostProsperousTile.calculateProsperity(this) ? currentTile : mostProsperousTile, unclaimedTiles[0]);
 
             this.gainTile(mostProsperousTile);
-            this.money -= 2*this.size;
+            this.money -= 4*this.size;
+            return true;
         }
+
+        return false;
     }
 
     reclaimLand() {
-        const tileToReclaim = this.neighbouringTiles[Math.floor(Math.random() * this.neighbouringTiles.length)];
-        tileToReclaim.buildings.push('dock');
+        const canExpand = [...this.neighbouringTiles].filter(tile => tile.isAccessible() && tile.country === null).length > 0;
+        const canAttack = [...this.neighbouringTiles].filter(tile => tile.country !== null).length > 0;
+        const canReclaimLand = !canExpand && !canAttack && this.money >= 4*this.size;
 
-        this.gainTile(tileToReclaim);
-        this.money -= 4*this.size;
-    }
-
-    shrink() {
-        this.tiles.sort((a, b) => b.calculateProsperity(this) - a.calculateProsperity(this));
-
-        const tileToShrink = this.tiles[0];
-        this.loseTile(tileToShrink);
-    }
-
-    governmentalChange() {
-        if (Math.random() > this.governmentalStability) {
-            this.growthChance += Math.random() / 10 - 0.05;
-            this.attackChance += Math.random() / 10 - 0.05;
-            this.defenseChance += Math.random() / 10 - 0.05;
-            this.developChance += Math.random() / 10 - 0.05;
-
-            this.growthChance = this.growthChance < 0 ? 0 : this.growthChance;
-            this.attackChance = this.attackChance < 0 ? 0 : this.attackChance;
-            this.defenseChance = this.defenseChance < 0 ? 0 : this.defenseChance;
-            this.developChance = this.developChance < 0 ? 0 : this.developChance;
-
-            this.growthChance = this.growthChance > 1 ? 1 : this.growthChance;
-            this.attackChance = this.attackChance > 1 ? 1 : this.attackChance;
-            this.defenseChance = this.defenseChance > 1 ? 1 : this.defenseChance;
-            this.developChance = this.developChance > 1 ? 1 : this.developChance;
+        if (canReclaimLand) {
+            // Reclaim a random unclaimed tile
+            const tileToReclaim = [...this.neighbouringTiles][Math.floor(Math.random() * this.neighbouringTiles.size)];
+            if (tileToReclaim) {
+                tileToReclaim.buildings.push('dock');
+                this.gainTile(tileToReclaim);
+                this.money -= 4*this.size;
+            }
         }
     }
 
-    gainTile(tile) {
-        // inefficient method - redo everything
-        // tile.country = this;
-        // this.refresh();
+    shrink() {
+        // Shrink the country if its governmental stability is low
+        if (Math.random() > this.defenseChance) {
+            const tileToShrink = [...this.tiles].sort((a, b) => b.calculateProsperity(this) - a.calculateProsperity(this))[0];
+            this.loseTile(tileToShrink);
+        }
+    }
 
-        // efficient method
-        // update the tile
+    governmentalChange() {
+        // Change the country's stats based on governmental stability
+        if (Math.random() > this.governmentalStability) {
+            const changeAmount = () => Math.random() / 10 - 0.05;
+            this.growthChance = Math.min(1, Math.max(0, this.growthChance + changeAmount()));
+            this.attackChance = Math.min(1, Math.max(0, this.attackChance + changeAmount()));
+            this.defenseChance = Math.min(1, Math.max(0, this.defenseChance + changeAmount()));
+            this.developChance = Math.min(1, Math.max(0, this.developChance + changeAmount()));
+        }
+
+        const changeAmount = () => Math.random() / 1000 - 0.0005;
+        this.governmentalStability = Math.min(1, Math.max(0, this.governmentalStability + changeAmount()));
+    }
+
+    gainTile(tile) {
+        // Add the tile to the country's tiles
         tile.country = this;
-        // remove from neighbouring tiles
-        this.neighbouringTiles = this.neighbouringTiles.filter(t => t !== tile);
-        // add to tiles
-        this.tiles.push(tile);
-        // add it's neighbouring tiles to neighbouring tiles
-        this.neighbouringTiles.push(...tile.getNeighbours().filter(t => !t.belongsTo(this)));
+        tile.hasChanged = true;
+        this.neighbouringTiles.delete(tile);
+        this.tiles.add(tile);
+        for (let neighbour of tile.getNeighbours()) {
+            if (!neighbour.belongsTo(this)) {
+                this.neighbouringTiles.add(neighbour);
+            }
+        }
     }
 
     loseTile(tile) {
-        // inefficient method - redo everything
+        // Remove the tile from the country's tiles
         tile.country = null;
-        this.refresh()
-
-        // efficient method
-        // remove from tiles
-        // this.tiles = this.tiles.filter(t => t !== tile);
-        // remove from neighbouring tiles if they are not neighbouring another of this country's tiles
-            // too difficult?
+        tile.hasChanged = true;
+        this.tiles.delete(tile);
+        this.refresh();
     }
 
     getTaxes() {
-        // add the prosperity of every tile owned by this country
-        this.tiles.forEach(t => {
-            this.money += t.prosperity;
-        });
+        // Calculate the taxes from the country's tiles
+        this.money += [...this.tiles].reduce((total, tile) => total + tile.prosperity, 0);
     }
 
     distanceToCapital(tile) {
-        const xDistanceNormal = Math.abs(this.capitalTile.x - tile.x);
-        const yDistanceNormal = Math.abs(this.capitalTile.y - tile.y);
-
-        const xDistanceCrossingBorder = Math.abs(game.tileMap.mapWidth + this.capitalTile.x - tile.x);
-        const yDistanceCrossingBorder = Math.abs(game.tileMap.mapHeight + this.capitalTile.y - tile.y);
-
-
-        const xDistance = xDistanceNormal < xDistanceCrossingBorder ? xDistanceNormal : xDistanceCrossingBorder;
-        const yDistance = yDistanceNormal < yDistanceCrossingBorder ? yDistanceNormal : yDistanceCrossingBorder;
-
-        return xDistance + yDistance + 1;
+        // Calculate the distance between a tile and the capital tile
+        return this.capitalTile.distanceToTile(tile) + 1;
     }
 
     calculateScore() {
-        let score = 0;
-
-        this.tiles.forEach(tile => {
-            score += tile.prosperity;
-        });
-
-        this.score = score > this.score ? score : this.score;
+        // Calculate the country's score
+        this.score = Math.max(this.score, [...this.tiles].reduce((total, tile) => total + tile.prosperity, 0));
     }
 }

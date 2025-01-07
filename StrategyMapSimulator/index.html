@@ -3,6 +3,9 @@
 <head>
     <title>Strategy Map Simulator</title>
 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="assets/capital.png">    
 </head>
@@ -25,42 +28,62 @@
     </div>
 
 
-    <div id="userInterface">
+    <div id="selectedCountry">
         <h1 id="selectedCountryName">faction</h1>
-        <div>
-            <span>money:</span> <span id="selectedCountryMoney">0</span>
-        </div>
-        <div>
-            <span>size:</span> <span id="selectedCountrySize">0</span>
-        </div>
-        <div>
-            <span>attack:</span> <span id="selectedCountryAttack">0</span>
-        </div>
-        <div>
-            <span>defense:</span> <span id="selectedCountryDefense">0</span>
-        </div>
-        <div>
-            <span>growth:</span> <span id="selectedCountryGrowth">0</span>
-        </div>
-        <div>
-            <span>development:</span> <span id="selectedCountryDevelopment">0</span>
-        </div>
-        <div>
-            <span>governmental stability:</span> <span id="selectedCountryGovernmentalStability">0</span>
-        </div>
-    </div>
 
-    <div id="date">
-        <span id="day">1st</span>
-        <span id="month">January</span>
-        <span id="year">0000</span>
+        <table>
+            <tr>
+                <th colspan="2"><u>Country Score</u></th>
+            </tr>
+            <tr>
+                <th>Score</th>
+                <td id="selectedCountryScore">0</td>
+            </tr>
+            <tr>
+                <th>Money</th>
+                <td id="selectedCountryMoney">0</td>
+            </tr>
+            <tr>
+                <th>Size</th>
+                <td id="selectedCountrySize">0</td>
+            </tr>
+            <tr>
+                <th colspan="2"><u>Government Values</u></th>
+            </tr>
+            <tr>
+                <th>Stability</th>
+                <td id="selectedCountryGovernmentalStability">0</td>
+            </tr>
+            <tr>
+                <th>Attack</th>
+                <td id="selectedCountryAttack">0</td>
+            </tr>
+            <tr>
+                <th>Defense</th>
+                <td id="selectedCountryDefense">0</td>
+            </tr>
+            <tr>
+                <th>Growth</th>
+                <td id="selectedCountryGrowth">0</td>
+            </tr>
+            <tr>
+                <th>Development</th>
+                <td id="selectedCountryDevelopment">0</td>
+            </tr>
+            
+        </table>
     </div>
 
     <div id="speedControls">
+        <div id="date">
+            <span id="day">1st</span>
+            <span id="month">January</span>
+            <span id="year">0000</span>
+        </div>
         <div>
-            <button id="speedButton0" class="active">I</button>
-            <button id="speedButton1" class="active">II</button>
-            <button id="speedButton2" class="active">III</button>
+            <button id="speedButton0">I</button>
+            <button id="speedButton1">II</button>
+            <button id="speedButton2">III</button>
             <button id="speedButton3">IV</button>
             <button id="speedButton4">V</button>
         </div>
@@ -72,30 +95,19 @@
     <div id="controls">
         <div>
             <button id="moveButton" class="control-button active">Move</button>
-            <button id="selectButton" class="control-button">Select</button>
             <button id="drawButton" class="control-button">Draw</button>
         </div>
-        <div id="terrainMenu" class="hidden">
-            <span>Terrain to draw:</span>
-            <button id="deepWaterButton" class="terrain-button">DeepWater</button>
-            <button id="waterButton" class="terrain-button">Water</button>
-            <button id="beachButton" class="terrain-button">Beach</button>
-            <button id="dirtButton" class="terrain-button">Dirt</button>
-            <button id="grassButton" class="terrain-button">Grass</button>
-            <button id="mountainButton" class="terrain-button">Mountain</button>
-        </div>
+        <div id="terrainMenu" class="hidden"><!-- populated by js --></div>
     </div>
 
-    <div id="scores">
-        <!-- populated by js -->
-    </div>
-
-    <script src="js/constants.js"></script>
+    <div id="scores"><!-- populated by js --></div>
+    
     <script src="js/userinterface.js"></script>
     <script src="js/country.js"></script>
     <script src="js/terrain.js"></script>
     <script src="js/tile.js"></script>
     <script src="js/tilemap.js"></script>
+    <script src="js/constants.js"></script>
     <script src="js/game.js" defer></script>
 </body>
 </html>

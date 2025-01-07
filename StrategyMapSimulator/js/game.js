@@ -3,63 +3,87 @@ class Game {
         this.eventListeners = {};
         this.tickRates = [
             500,
-            250,
+            200,
             100,
             50,
             10
         ];
-        this.tickRate = this.tickRates[2];
-        this.terrain = [
-            new Terrain('DeepWater', 0, false, 2, '#255859'),
-            new Terrain('Water', 1, false, 2, '#5f999b'),
-            new Terrain('Beach', 2, true, 2, '#f8cd6e'),
-            new Terrain('Grass', 3, true, 3, '#899d5e'),
-            new Terrain('Hill', 4, true, 2, '#76583f'),
-            new Terrain('Mountain', 5, false, 0, '#dddddd'),
-        ];
+        this.tickRate = this.tickRates[1];
         this.countries = [];
         this.date = {
             day: 1,
             month: 0,
-            year: 0
+            year: -200000
         }
+
+        this.framerate = 60;
+        this.framerateInterval = 1000 / this.framerate;
+        this.msPrevious = 0;
 
         this.userInterface = new UserInterface();
     }
 
     attachEventListeners() {
+        // mouse
         this.tileMap.canvas.addEventListener('mousedown', e => this.eventListeners.mouseDownListener(e));
         this.tileMap.canvas.addEventListener('mousemove', e => this.eventListeners.mouseMoveListener(e));
         this.tileMap.canvas.addEventListener('mouseup', e => this.eventListeners.mouseUpListener(e));
         this.tileMap.canvas.addEventListener('mouseleave', e => this.eventListeners.mouseLeaveListener(e));
         this.tileMap.canvas.addEventListener('wheel', e => this.eventListeners.wheelListener(e));
+
+        // touch
+        this.tileMap.canvas.addEventListener('touchstart', e => { this.eventListeners.mouseDownListener(e) });
+        this.tileMap.canvas.addEventListener('touchmove', e => {
+            if (e.touches.length == 1) {
+                this.eventListeners.mouseMoveListener(e)
+            } else if (e.touches.length > 1) {
+                this.eventListeners.pinchListener(e);
+            }
+        });
+        this.tileMap.canvas.addEventListener('touchend', e => this.eventListeners.mouseUpListener(e));
+
+        //resize
         window.addEventListener('resize', e => this.eventListeners.resizeListener(e));
 
-        //add event listeners for number keys 1 2 3 4 5 to set speed
+        // key
         document.addEventListener('keydown', e => {
-            if (e.key == '1') this.changeSpeed(0);
-            if (e.key == '2') this.changeSpeed(1);
-            if (e.key == '3') this.changeSpeed(2);
-            if (e.key == '4') this.changeSpeed(3);
-            if (e.key == '5') this.changeSpeed(4);
-            if (e.key == ' ') this.playPause();
-        })
+            switch (e.key) {
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '5':
+                    this.changeSpeed(parseInt(e.key) - 1);
+                    break;
+                case ' ':
+                    this.playPause();
+                    break;
+            }
+        });
     }
 
     init() {
-        this.tileMap = new TileMap('mapCanvas', this.countries);
+        this.tileMap = new TileMap('mapCanvas');
         this.updateInterval = setInterval(() => this.updateLoop(), this.tickRate);
         this.drawLoop();
         this.attachEventListeners();
+        this.changeSpeed(1);
     }
 
     updateLoop() {
-        if (this.tileMap) {
+        if (this.countries.length > 0) {
             this.update();
         }
     }
 
     drawLoop() {
+        const msNow = window.performance.now();
+        if (msNow - this.msPrevious < this.framerateInterval) {
+            requestAnimationFrame(() => this.drawLoop());
+            return;
+        }
+        this.msPrevious = msNow;
+
         if (this.tileMap) {
             this.draw();
         }
@@ -90,21 +114,25 @@ class Game {
     
     changeSpeed(speed) {
         this.tickRate = this.tickRates[speed];
-        console.log(this.tickRate);
         clearInterval(this.updateInterval);
         this.updateInterval = setInterval(() => this.updateLoop(), this.tickRate);
 
         this.userInterface.playPauseButton.innerHTML = this.updateInterval ? '⏸︎' : '▶';
 
-        this.userInterface.speedButtons.forEach((button, index) => button.classList.remove('active'));
+        for (const button of this.userInterface.speedButtons) {
+            button.classList.remove('active');
+        }
+
         for (let i = 0; i <= speed; i++) {
             this.userInterface.speedButtons[i].classList.add('active');
         }
+
+        console.log(`${1000 / this.tickRate} ticks every second`);
     }
 
     updateDate() {
         this.date.day += 1;
-        const daysPerMonth = year % 4 == 0 ? DaysPerMonthLeapYear : DaysPerMonth;
+        const daysPerMonth = (this.date.year % 4 == 0) ? DaysPerMonthLeapYear : DaysPerMonth;
         if (this.date.day > daysPerMonth[this.date.month]) {
             this.date.day = 1;
             this.date.month += 1;

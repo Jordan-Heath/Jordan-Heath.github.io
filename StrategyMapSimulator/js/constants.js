@@ -79,14 +79,50 @@ const CountryNames = [
 const Colors = [
     'Red',
     'Green',
-    // 'Blue',
+    'Blue',
     'Yellow',
     'Magenta',
     'Aqua',
-    'Black',
+    'DarkSlateGray',
     'White',
     'Orange',
     'Purple',
     'Lime',
     'Teal'
 ];
+
+const Terrains = [
+    new Terrain('DeepWater', 0, false, 2.5, '#255859'),
+    new Terrain('Water', 1, false, 1.5, '#5f999b'),
+    new Terrain('Beach', 2, true, 3, '#f8cd6e'),
+    new Terrain('Grass', 3, true, 4, '#899d5e'),
+    new Terrain('Hill', 4, true, 3, '#76583f'),
+    new Terrain('Mountain', 5, false, 1.5, '#dddddd'),
+];
+
+function findContrastingTextColor(colorName) {
+    const colors = {
+        red: '#ff0000',
+        green: '#008000',
+        blue: '#0000ff',
+        yellow: '#ffff00',
+        magenta: '#ff00ff',
+        aqua: '#00ffff',
+        darkslategray: '#2f4f4f',
+        white: '#ffffff',
+        orange: '#ffa500',
+        purple: '#800080',
+        lime: '#00ff00',
+        teal: '#008080'
+    };
+
+    const hex = colors[colorName.toLowerCase()];
+    if (!hex) return 'black';
+
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+
+    const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+    return brightness > 128 ? 'black' : 'white';
+}

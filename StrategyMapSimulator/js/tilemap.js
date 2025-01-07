@@ -1,5 +1,5 @@
 class TileMap {
-    constructor(canvasId, countries) {
+    constructor(canvasId) {
         this.canvas = document.getElementById(canvasId);
         this.ctx = this.canvas.getContext('2d');
 
@@ -14,6 +14,12 @@ class TileMap {
         this.offsetX = 0; // current X offset of the map
         this.offsetY = 0; // current Y offset of the map
 
+        this.clickStartX = 0;
+        this.clickStartY = 0;
+
+        this.secondClickStartX = 0;
+        this.secondClickStartY = 0;
+
         this.isDragging = false;
         this.dragStartX = 0;
         this.dragStartY = 0;
@@ -22,59 +28,46 @@ class TileMap {
         this.drawStartX = 0;
         this.drawStartY = 0;
 
-        this.mapEvolutionPasses = 5;
-        this.spawnDelay = 300;
         this.mapData = [];
-        
-        this.generateRandomMap(countries);
 
-        this.initEventListeners();
+        this.init();
     }
 
-    generateRandomMap(countries, stage = 0) {
-        // STAGE 0: spawn a map of tiles
-        if (stage === 0) {
+    generateRandomMap(stage = 1, subStage = 0) {
+        const countries = game.countries;
+
+        if (stage === 1) {
             const elevationBiasMinimum = -3;
-            const elevationBiasVariance = 5
-            let elevationBias;
+            const elevationBiasVariance = 5;
 
             for (let y = 0; y < this.mapHeight; y++) {
-                // made the parabola here: https://www.desmos.com/calculator/lac2i0bgum
-                elevationBias = -(4*elevationBiasVariance)*(y/this.mapHeight)*(y/this.mapHeight) + (4*elevationBiasVariance)*(y/this.mapHeight) + elevationBiasMinimum;
+                const yRatio = y / this.mapHeight;
+                const elevationBias = -(4 * elevationBiasVariance) * yRatio * yRatio + (4 * elevationBiasVariance) * yRatio + elevationBiasMinimum;
                 
-                this.mapData[y] = new Array(this.mapWidth);
-
-                for (let x = 0; x < this.mapWidth; x++) {
-                    this.mapData[y][x] = new Tile(x, y, elevationBias);
-                }
+                this.mapData[y] = Array.from({ length: this.mapWidth }, (_, x) => new Tile(x, y, elevationBias));
             }
 
-            console.log("Stage 0 Complete: Map generated");
-            stage++;
-            setTimeout(() => {this.generateRandomMap(countries, stage)}, this.spawnDelay);
+            console.log("Stage 1 Complete: Map generated");
+            setTimeout(() => this.generateRandomMap(2), game.tickRate);
             return;
         }
 
-        // STAGE 1: evolve the map
-        if (stage === 1) {
-            if (this.mapEvolutionPasses > 1) {
-                for (let y = 0; y < this.mapHeight; y++) {
-                    for (let x = 0; x < this.mapWidth; x++) {
-                        this.mapData[y][x].evolveLand();
-                    }
-                }
-                this.mapEvolutionPasses--;
+        if (stage === 2) {
+            if (subStage < 4) {
+                this.mapData.flat().forEach(tile => tile.evolveLand());
+                game.date.year += 50000;
+                subStage++;
+                setTimeout(() => this.generateRandomMap(2, subStage), game.tickRate);
             } else {
-                console.log("Stage 1 Complete: Map flattened");
-                stage++;
-                setTimeout(() => {this.generateRandomMap(countries, stage)}, this.spawnDelay);
+                console.log("Stage 2 Complete: Map flattened");
+                setTimeout(() => this.generateRandomMap(3), game.tickRate);
                 return;
             }
         }
 
-        // STAGE 2: spawn countries
-        if (stage === 2) {
-            let availableTiles = this.mapData.flat().filter(t => t.canByTakenBy(new Country('', '')) && t.isUnclaimed());
+        if (stage === 3) {
+            const emptyCountry = new Country('', '');
+            let availableTiles = this.mapData.flat().filter(t => t.canByTakenBy(emptyCountry) && t.isUnclaimed());
             let index = 0;
 
             while (availableTiles.length > 0) {
@@ -88,19 +81,27 @@ class TileMap {
                 availableTiles = availableTiles.filter(t => country.distanceToCapital(t) > 30);
             }
 
-            console.log("Stage 2 Complete: Countries spawned");
-            stage++;
-            setTimeout(() => {this.generateRandomMap(countries, stage)}, this.spawnDelay);
+            console.log("Stage 3 Complete: Countries spawned");
             game.userInterface.selectedCountry = countries[0];
+            setTimeout(() => this.generateRandomMap(4), game.tickRate);
             return;
         }
 
-        if (stage < 3) setTimeout(() => {this.generateRandomMap(countries, stage)}, this.spawnDelay);
+        if (stage === 4) {
+            const emptyCountry = new Country('', '');
+            let availableTiles = this.mapData.flat().filter(t => t.canByTakenBy(emptyCountry) && t.isUnclaimed());
+
+            while (availableTiles.length > 0) {
+                const randomTile = availableTiles[Math.floor(Math.random() * availableTiles.length)];
+                randomTile.buildings.push('ruins0');
+                randomTile.development = 2;
+                availableTiles = availableTiles.filter(t => t.distanceToTile(randomTile) > 30);
+            }
+
+            console.log("Stage 4 Complete: Ruins spawned");
+        }
     }
 
-    /**
-     * Draws the visible portion of the map on the canvas.
-     */
     drawMap() {
         // Clear the entire canvas
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -112,76 +113,90 @@ class TileMap {
         const endRow = startRow + Math.ceil(this.canvas.height / this.tileSize) + 1;
 
         // Loop through each tile in the visible range
-        for (let y = startRow; y < endRow; y++) {
-            for (let x = startCol; x < endCol; x++) {
+        for (let mapY = startRow; mapY < endRow; mapY++) {
+            for (let mapX = startCol; mapX < endCol; mapX++) {
                 // Adjust x for wrapping horizontally across the map
-                let rollOverX = x % this.mapWidth;
-                if (rollOverX < 0) rollOverX += this.mapWidth;
+                let rolloverX = mapX % this.mapWidth;
+                if (rolloverX < 0) rolloverX += this.mapWidth;
 
                 // Retrieve the tile at the current position
-                const tile = this.mapData[y]?.[rollOverX];
+                const tile = this.mapData[mapY]?.[rolloverX];
 
                 // Draw the tile if it exists
                 tile?.draw(
-                    x * this.tileSize - this.offsetX, 
-                    y * this.tileSize - this.offsetY, 
+                    mapX * this.tileSize - this.offsetX, 
+                    mapY * this.tileSize - this.offsetY, 
                     this.tileSize
                 );
             }
         }
     }
 
-    initEventListeners() {
+    init() {
+        this.generateRandomMap();
+
         game.eventListeners.mouseDownListener = (e) => this.startDraggingMap(e);
         game.eventListeners.mouseMoveListener = (e) => this.draggingMap(e);
-        game.eventListeners.mouseUpListener = () => this.stopDraggingMap();
-        game.eventListeners.mouseLeaveListener = () => this.stopDraggingMap();
+        game.eventListeners.mouseUpListener = (e) => this.stopDraggingMap(e);
+        game.eventListeners.mouseLeaveListener = (e) => this.stopDraggingMap(e);
         game.eventListeners.wheelListener = (e) => this.zoomMap(e);
-        game.eventListeners.resizeListener = () => this.onResize();
+        game.eventListeners.pinchListener = (e) => this.zoomMapViaPinch(e);
+        game.eventListeners.resizeListener = (e) => this.onResize(e);
+
+        // adjust the position of the camera to center the map
+        this.offsetY = (this.mapHeight * this.tileSize - this.canvas.height) / 2;
     }
 
     startDraggingMap(e) {
+        const mouseX = e.clientX || e.touches[0].clientX;
+        const mouseY = e.clientY || e.touches[0].clientY;
+
         this.isDragging = true;
-        this.dragStartX = e.clientX;
-        this.dragStartY = e.clientY;
+        this.dragStartX = mouseX;
+        this.dragStartY = mouseY;
+
+        this.clickStartX = mouseX;
+        this.clickStartY = mouseY;
     }
 
     draggingMap(e) {
         if (this.isDragging) {
-            const deltaX = e.clientX - this.dragStartX;
-            const deltaY = e.clientY - this.dragStartY;
-            this.dragStartX = e.clientX;
-            this.dragStartY = e.clientY;
+            const mouseX = e.clientX === undefined ? e.changedTouches[0].clientX : e.clientX;
+            const mouseY = e.clientY === undefined ? e.changedTouches[0].clientY : e.clientY;
 
-            this.offsetX -= deltaX;
-            this.offsetY -= deltaY;
+            this.offsetX -= mouseX - this.dragStartX;
+            this.offsetY -= mouseY - this.dragStartY;
+
+            this.dragStartX = mouseX;
+            this.dragStartY = mouseY;
 
             this.drawMap();
         }
     }
 
-    stopDraggingMap() {
+    stopDraggingMap(e) {
         this.isDragging = false;
+        this.secondClickDistance = undefined;
+
+        const mouseX = e.clientX === undefined ? e.changedTouches[0].clientX : e.clientX;
+        const mouseY = e.clientY === undefined ? e.changedTouches[0].clientY : e.clientY;
+
+        if (mouseX === this.clickStartX && mouseY === this.clickStartY) {
+            this.selectCountry(e);
+        }
     }
 
     selectCountry(e) {
-        let x = Math.floor((e.clientX + this.offsetX) / this.tileSize);
-        let y = Math.floor((e.clientY + this.offsetY) / this.tileSize);
+        const mouseX = e.clientX === undefined ? e.changedTouches[0].clientX : e.clientX;
+        const mouseY = e.clientY === undefined ? e.changedTouches[0].clientY : e.clientY;
+        let mapX = Math.floor((mouseX + this.offsetX) / this.tileSize);
+        let mapY = Math.floor((mouseY + this.offsetY) / this.tileSize);
 
         //rollover x
-        while (x < 0) x += this.mapWidth;
-        while (x >= this.mapWidth) x -= this.mapWidth;
+        mapX = mapX % this.mapWidth;
+        if (mapX < 0) mapX += this.mapWidth;
 
-        // console.log(`Selected tile coordinates: (${x}, ${y})`);
-
-        const country = this.mapData[y]?.[x]?.country;
-
-        // if (country) {
-        //     console.log(`Selected country: ${country.name}`);
-        // } else {
-        //     console.log('No country selected');
-        // }
-
+        const country = this.mapData[mapY]?.[mapX]?.country;
         game.userInterface.selectedCountry = country ?? null;
     }
 
@@ -192,23 +207,24 @@ class TileMap {
 
     drawingOnMap(e) {
         if (this.isDrawing) {
-            let x = Math.floor((e.clientX + this.offsetX) / this.tileSize);
-            let y = Math.floor((e.clientY + this.offsetY) / this.tileSize);
+            const mouseX = e.clientX === undefined ? e.touches[0].clientX : e.clientX;
+            const mouseY = e.clientY === undefined ? e.touches[0].clientY : e.clientY;
+            let mapX = Math.floor((mouseX + this.offsetX) / this.tileSize);
+            let mapY = Math.floor((mouseY + this.offsetY) / this.tileSize);
 
             //rollover x
-            while (x < 0) x += this.mapWidth;
-            while (x >= this.mapWidth) x -= this.mapWidth;
+            mapX = mapX % this.mapWidth;
+            if (mapX < 0) mapX += this.mapWidth;
 
-            const tile = this.mapData[y]?.[x];
+            const tile = this.mapData[mapY]?.[mapX];
             if (tile) {
                 tile.paintTerrain(game.userInterface.drawButtonSetting);
-
                 game.countries.forEach(country => country.refresh());
             }
         }
     }
 
-    stopDrawingOnMap() {
+    stopDrawingOnMap(e) {
         this.isDrawing = false;
     }
 
@@ -219,31 +235,51 @@ class TileMap {
         const mouseX = e.clientX;
         const mouseY = e.clientY;
 
-        // Convert mouse position to map coordinates
         const mapX = (mouseX + this.offsetX) / this.tileSize;
         const mapY = (mouseY + this.offsetY) / this.tileSize;
 
         const minTileSize = 10;
         const maxTileSize = 100;
 
-        if (e.deltaY > 0 && this.tileSize > minTileSize) {
-            // Zoom in
-            this.tileSize = Math.max(minTileSize, this.tileSize / zoomFactor);
-        } else if (e.deltaY < 0 && this.tileSize < maxTileSize) {
-            // Zoom out
-            this.tileSize = Math.min(maxTileSize, this.tileSize * zoomFactor);
+        const isZoomingIn = e.deltaY > 0 && this.tileSize > minTileSize;
+        const isZoomingOut = e.deltaY < 0 && this.tileSize < maxTileSize;
+
+        if (isZoomingIn || isZoomingOut) {
+            this.tileSize = Math.max(minTileSize, Math.min(maxTileSize, this.tileSize * (isZoomingIn ? 1 / zoomFactor : zoomFactor)));
+            this.offsetX = mapX * this.tileSize - mouseX;
+            this.offsetY = mapY * this.tileSize - mouseY;
+        }
+    }
+
+    zoomMapViaPinch(e) {
+        e.preventDefault();
+
+        const centerX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+        const centerY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+        const distance = Math.sqrt((e.touches[0].clientX - e.touches[1].clientX) * (e.touches[0].clientX - e.touches[1].clientX) + (e.touches[0].clientY - e.touches[1].clientY) * (e.touches[0].clientY - e.touches[1].clientY));
+        if (!this.secondClickDistance) this.secondClickDistance = distance;
+        const zoomFactor = distance / this.secondClickDistance;
+
+        const mapX = (centerX + this.offsetX) / this.tileSize;
+        const mapY = (centerY + this.offsetY) / this.tileSize;
+
+        const minTileSize = 10;
+        const maxTileSize = 100;
+
+        const isZoomingIn = zoomFactor > 1 && this.tileSize >= minTileSize;
+        const isZoomingOut = zoomFactor < 1 && this.tileSize <= maxTileSize;
+
+        if (isZoomingIn || isZoomingOut) {
+            this.tileSize = Math.max(minTileSize, Math.min(maxTileSize, this.tileSize * zoomFactor));
+            this.offsetX = mapX * this.tileSize - centerX;
+            this.offsetY = mapY * this.tileSize - centerY;
         }
 
-        // Adjust offsets to keep the zoom centered around the mouse
-        this.offsetX = mapX * this.tileSize - mouseX;
-        this.offsetY = mapY * this.tileSize - mouseY;
-
-        this.drawMap();
+        this.secondClickDistance = distance;
     }
 
     onResize() {
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
-        this.drawMap();
     }
 }

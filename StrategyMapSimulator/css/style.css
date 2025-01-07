@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
-    --active-color: green;
-    --ui-color: rgba(255, 255, 255, 0.8);
+    --button-color: lightblue;
+    --button-hover-color: lightskyblue;
+    --active-color: lightgreen;
+    --ui-color: rgba(255, 255, 255, 0.7);
 }
 
 body {
@@ -22,6 +24,13 @@ body {
         height: 30px;
         min-width: 30px;
         padding: 5px;
+        background-color: var(--button-color);
+
+        border: none;
+
+        &:hover {
+            background-color: var(--button-hover-color);
+        }
     }
 }
 
@@ -29,7 +38,7 @@ body {
     display: none;
 }
 
-#userInterface {
+#selectedCountry {
     position: fixed;
     top: 10px;
     left: 10px;
@@ -38,19 +47,29 @@ body {
     background: var(--ui-color);
     padding: 10px;
     border-radius: 5px;
-}
 
-#date {
-    /* top centered */
-    position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
+    #selectedCountryName {
+        padding: 5px;
+        margin: 0;
+        border-radius: 5px;
+    }
 
-    background: var(--ui-color);
-    padding: 10px;
-    border-radius: 5px;
+    table {
+        min-width: 180px;
+        table-layout: fixed;
+
+        th {
+            text-align: left;
+        }
+
+        td {
+            text-align: right;
+        }
+
+        th, td {
+            width: 100px;
+        }
+    }
 }
 
 #speedControls {
@@ -64,6 +83,10 @@ body {
     border-radius: 5px;
 
     text-align: right;
+
+    #playPauseButton {
+        margin-top: 10px;
+    }
 
     .active {
         background: var(--active-color);
@@ -84,7 +107,7 @@ body {
     flex-direction: column-reverse;
 
     #terrainMenu {
-        margin-left: 100px;
+        margin-left: 50px;
     }
 
     .active {
@@ -105,4 +128,11 @@ body {
     background: var(--ui-color);
     padding: 10px;
     border-radius: 5px;
+
+    .score-element {
+        display: block;
+        padding: 2px;
+        margin: 0;
+        border-radius: 5px;
+    }
 }
