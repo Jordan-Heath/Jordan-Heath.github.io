@@ -164,6 +164,10 @@ I created this a while ago to replicate a peculiar mode of speech I was exposed 
 
 ## Incomplete Projects
 
+### [Strategy Map Simulator](StrategyMapSimulator/)
+
+PLAYABLE DEMO. A randomly generated map that simulates a number of nations in a strategy game.
+
 ### [The Great Hundred Man Fight](TheGreatHundredManFight/)
 
 PLAYABLE DEMO. 100 men enter, 1 leaves. I haven't gotten the motivation to polish it enough for the main page.
