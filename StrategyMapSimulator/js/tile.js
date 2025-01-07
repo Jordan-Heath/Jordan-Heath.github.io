@@ -143,7 +143,7 @@ class Tile {
 
     distanceToTile(tile) {
         const xDistance = Math.min(Math.abs(this.x - tile.x), game.tileMap.mapWidth - Math.abs(this.x - tile.x));
-        const yDistance = Math.min(Math.abs(this.y - tile.y), game.tileMap.mapHeight - Math.abs(this.y - tile.y));
+        const yDistance = Math.abs(this.y - tile.y);
         const diagonalDistance = Math.sqrt(xDistance * xDistance + yDistance * yDistance);
         return Math.min(diagonalDistance, xDistance + yDistance);
     }

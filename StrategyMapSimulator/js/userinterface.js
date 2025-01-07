@@ -97,6 +97,7 @@ class UserInterface {
             scoreElement.innerHTML = `${country.name}: ${country.score.toFixed(2)}`;
             scoreElement.style.backgroundColor = country.color;
             scoreElement.style.color = country.textColor;
+            if (country.size == 0) scoreElement.style.textDecoration = 'line-through';
             this.scoresElement.appendChild(scoreElement);
         });
     }

@@ -74,6 +74,10 @@ const CountryNames = [
     'Ardentia',
     'Hillside',
     'Fropland',
+    'Charnia',
+    'Upswart',
+    'Gungellow',
+    'StinkySmellow'
 ]
 CountryNames.sort((a, b) => 0.5 - Math.random());
 
@@ -102,8 +106,8 @@ const Colors = [
 Colors.sort((a, b) => 0.5 - Math.random());
 
 const Terrains = [
-    new Terrain('DeepWater', 0, false, 3, '#255859'),
-    new Terrain('Water', 1, false, 2, '#5f999b'),
+    new Terrain('DeepWater', 0, false, 1.5, '#255859'),
+    new Terrain('Water', 1, false, 1, '#5f999b'),
     new Terrain('Beach', 2, true, 3, '#f8cd6e'),
     new Terrain('Grass', 3, true, 4, '#899d5e'),
     new Terrain('Hill', 4, true, 3, '#76583f'),

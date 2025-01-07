@@ -167,6 +167,7 @@ class Country {
             if (tileToReclaim) {
                 // build a dock on the reclaimed land
                 tileToReclaim.buildings.push('dock');
+                tileToReclaim.development = 2;
                 // Add the reclaimed tile to the country's tiles
                 this.gainTile(tileToReclaim);
                 // Subtract the cost of reclaiming land from the country's money
