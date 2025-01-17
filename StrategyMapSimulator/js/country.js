@@ -15,11 +15,11 @@ class Country {
         this.score = 0;
 
         // Stats are the governmental stability, growth chance, attack chance, defense chance and development chance
-        this.growthChance = Math.random() / 2;
-        this.attackChance = Math.random() / 2;
-        this.defenseChance = Math.random() / 2;
-        this.developChance = Math.random() / 2;
-        this.governmentalStability = 1 - Math.random() / 100;
+        this.growthChance = Math.random()/2 + 0.05;
+        this.attackChance = Math.random()/2 + 0.05;
+        this.defenseChance = Math.random()/2 + 0.05;
+        this.developChance = Math.random()/2 + 0.05;
+        this.governmentalStability = 1 - Math.random() / 20;
 
         // Capital tile is the tile that is the capital of the country
         this.capitalTile = null;
@@ -96,8 +96,16 @@ class Country {
             attackableTiles.sort((a, b) => this.distanceToCapital(a) - this.distanceToCapital(b));
             const selectedTile = attackableTiles[0];
 
+            // subtract the defense cost for the defending country
+            const defenseCost = selectedTile.country.size;
+            let defenseBonus = 0;
+            if (selectedTile.country.money > defenseCost) {
+                selectedTile.country.money -= defenseCost;
+                defenseBonus = selectedTile.country.defenseChance;
+            }
+
             // If the country's defense is low enough, the attack is successful
-            if (selectedTile.country.defenseChance + selectedTile.development / 8 < Math.random()) {
+            if (defenseBonus + selectedTile.development / 8 < Math.random()) {
                 // Take the tile from the attacked country
                 selectedTile.country.loseTile(selectedTile);
                 this.gainTile(selectedTile);
@@ -156,14 +164,12 @@ class Country {
 
         // Can't expand if there are no unclaimed tiles left adjacent to the country
         const canExpand = [...this.neighbouringTiles].filter(tile => tile.isAccessible() && tile.country === null).length > 0;
-        // Can't attack if there are no foreign tiles left adjacent to the country
-        const canAttack = [...this.neighbouringTiles].filter(tile => tile.country !== null).length > 0;
         // If there are no adjacent tiles to expand into and no adjacent foreign tiles to attack, the country can reclaim land
-        const canReclaimLand = !canExpand && !canAttack && this.money >= reclaimCost;
+        const canReclaimLand = !canExpand && this.money >= reclaimCost;
 
         if (canReclaimLand) {
-            // Reclaim a random unclaimed tile
-            const tileToReclaim = [...this.neighbouringTiles][Math.floor(Math.random() * this.neighbouringTiles.size)];
+            // Reclaim the neighbouring tile closest to the country's capital
+            const tileToReclaim = [...this.neighbouringTiles].sort((a, b) => this.distanceToCapital(a) - this.distanceToCapital(b))[0];
             if (tileToReclaim) {
                 // build a dock on the reclaimed land
                 tileToReclaim.buildings.push('dock');
@@ -191,10 +197,10 @@ class Country {
         if (Math.random() > this.governmentalStability) {
             // Change the country's growth, attack, defense, and develop chances
             const changeAmount = () => Math.random() / 10 - 0.05;
-            this.growthChance = Math.min(1, Math.max(0, this.growthChance + changeAmount()));
-            this.attackChance = Math.min(1, Math.max(0, this.attackChance + changeAmount()));
-            this.defenseChance = Math.min(0.5, Math.max(0, this.defenseChance + changeAmount()));
-            this.developChance = Math.min(1, Math.max(0, this.developChance + changeAmount()));
+            this.growthChance = Math.min(1, Math.max(0.05, this.growthChance + changeAmount()));
+            this.attackChance = Math.min(1, Math.max(0.05, this.attackChance + changeAmount()));
+            this.defenseChance = Math.min(0.5, Math.max(0.05, this.defenseChance + changeAmount()));
+            this.developChance = Math.min(1, Math.max(0.05, this.developChance + changeAmount()));
         }
 
         // Change the country's governmental stability

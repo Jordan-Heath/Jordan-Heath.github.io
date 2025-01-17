@@ -31,7 +31,7 @@ class Tile {
         const { ctx } = game.tileMap;
         
         // Draw terrain
-        if (size >= 15) {
+        if (size >= 20) {
             ctx.drawImage(document.getElementById(this.terrain.name.toLowerCase()), x, y, size, size);
         } else {
             ctx.fillStyle = this.terrain.color;
@@ -131,7 +131,7 @@ class Tile {
         if (country) {
             const distanceToCapital = country.distanceToCapital(this);
             const neighbouringTilesOwned = [...this.getNeighbours()].filter(tile => tile.country === country).length;
-            this.prosperity = (this.terrain.prosperity * this.development) / distanceToCapital + neighbouringTilesOwned/100;
+            this.prosperity = (this.terrain.prosperity * this.development)/5 - distanceToCapital/25 + neighbouringTilesOwned/100;
         } else {
             this.prosperity = this.terrain.prosperity * this.development;
         }
