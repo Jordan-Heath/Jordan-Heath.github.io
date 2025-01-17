@@ -11,12 +11,14 @@
 
     --persona-3-blue: #0eb1f4;
     --persona-3-dark-blue: #001e9a;
-    --custom-grey: #333;
+    --custom-grey: rgba(50, 50, 50, 0.4);
 
     --font-color: white;
-    --button-color: #333;
+    --button-color: var(--persona-3-dark-blue);
     --button-selected-color: #555;
     --button-disabled-color: #222;
+
+    --background-gradient: linear-gradient(to bottom, #00399f, #000037);
 }
 
 @keyframes clickSelected {
@@ -24,44 +26,44 @@
         rotate: -1deg;
         scale: 1;
     }
-    /* intense twist right */
     10%, 30% {
         rotate: 3deg;
         scale: 1.1;
         transform: skewX(8deg);
     }
-    /* intense twist left */
     20%, 40% {
         rotate: -5deg;
         scale: 1.1;
     }
-    /* light twist right */
     50%, 70%, 90% {
         rotate: 0deg;
         transform: skewX(-8deg);
     }
-    /* light twist left */
     60%, 80% {
         rotate: -2deg;
     }
 }
 
-@keyframes knifeSelected {
-    0% {
-        top: -45px;
-        right: -25px;
-        opacity: 0.5;
-        scale: 2;
-    }
-    10%, 30%, 50%, 70%, 90% {
-        top: -15px;
-        right: 5px;
-        opacity: 1;
+@keyframes dateSelected {
+    0%, 100% {
+        rotate: -1deg;
         scale: 1;
-        rotate: 40deg;
     }
-    20%, 40%, 60%, 80%, 100% {
-        rotate: 45deg;
+    10%, 30% {
+        rotate: 3deg;
+        scale: 1.1;
+        transform: skewX(8deg);
+    }
+    20%, 40% {
+        rotate: -5deg;
+        scale: 1.1;
+    }
+    50%, 70%, 90% {
+        rotate: 0deg;
+        transform: skewX(-8deg);
+    }
+    60%, 80% {
+        rotate: -2deg;
     }
 }
 
@@ -71,9 +73,10 @@ html {
 }
 
 body {
-    background-color: #1a1a1a;
+    /* background-color: #1a1a1a;
     background-image: url("../assets/background.jpg");
-    background-size: cover;
+    background-size: cover; */
+    background: var(--background-gradient) no-repeat center center fixed;
     color: var(--font-color);
     font-family: "Nunito", sans-serif;
     font-weight: 600;
@@ -101,6 +104,7 @@ body {
         padding: 10px 10px;
         cursor: pointer;
         rotate: -1deg;
+        z-index: 1;
     }
 
     button:disabled {
@@ -198,28 +202,10 @@ main {
         gap: 10px;
         margin-bottom: 20px;
 
-        button {
-            position: relative;
-        }
-
-        button.selected::after {
-            /* knife */
-            content: "";
-            position: absolute;
-            top: -15px;
-            right: 5px;
-            width: 50px;
-            height: 50px;
-            rotate: 45deg;
-            background-image: url('../assets/knife.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            pointer-events: none;
-            overflow: visible;
-            animation: knifeSelected 0.5s ease-in-out forwards;
-            transform: translate(50%, -50%);
-            z-index: 6;
-            image-rendering: crisp-edges;
+        button.selected {
+            /* add a blue square behind the button */
+            animation: dateSelected 0.5s ease-in-out forwards;
+            background: var(--persona-3-blue);
         }
 
         h2 {

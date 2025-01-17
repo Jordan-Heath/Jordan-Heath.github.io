@@ -5,7 +5,7 @@ function monthButtonFunction(month) {
     if (buttonElement.classList.contains('selected')) return;
 
     // change selection to this month
-    playSelectSound(knifeSoundSrc);
+    playSelectSound(selectDateSoundSrc);
     selectElement(buttonElement, '.month-button');
 
     // save the new month, render the dates for the month
@@ -23,7 +23,7 @@ function dateButtonFunction(month, date) {
     if (buttonElement.classList.contains('selected')) return;
 
     // change selection to this date
-    playSelectSound(knifeSoundSrc);
+    playSelectSound(selectDateSoundSrc);
     selectElement(buttonElement, '.date-button');
 
     // save the new date, render the output

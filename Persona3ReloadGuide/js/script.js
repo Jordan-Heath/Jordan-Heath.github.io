@@ -90,7 +90,7 @@ function highlightOutput() {
 }
 
 function changeDate(offset) {
-    playSelectSound(knifeSoundSrc);
+    playSelectSound(selectDateSoundSrc);
 
     if (guideSave.selectedMonth == '' || guideSave.selectedDate == '') return;
 
