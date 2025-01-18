@@ -27,14 +27,14 @@ function renderMonthsContainer() {
 function renderDatesContainer() {
     datesContainer.innerHTML = '';
 
-    const dateHeading = createElement('h2', guideSave.selectedMonth);
+    const dateHeading = createElement('h2', guideSave.selectedMonth, 'month');
     dateHeading.style.gridColumn = `var(--start-on-${getFirstDayOfMonth(guideSave.selectedMonth).toLowerCase()})`;
     datesContainer.appendChild(dateHeading);
 
     Object.keys(walkthroughData[guideSave.selectedMonth]).forEach(fullDate => {
-        const [date, weekday] = fullDate.split(' ');
+        const [weekday, date] = fullDate.split(' ');
 
-        const buttonText = `${date} <span class='day-of-week'>${weekday}</span>`
+        const buttonText = `<span class='day-of-week'>${weekday}</span> ${date}`
         const dateButton = createButton(buttonText, 'date-button', () => dateButtonFunction(guideSave.selectedMonth, fullDate));
         applyDayColor(date, weekday, dateButton);
 
@@ -111,7 +111,7 @@ function changeDate(offset) {
 
 function getFirstDayOfMonth(month) {
     const firstDate = Object.keys(walkthroughData[month])[0];
-    return firstDate.split(' ')[1];
+    return firstDate.split(' ')[0];
 }
 
 function calculateNewDate(currentMonth, currentDate, offset) {

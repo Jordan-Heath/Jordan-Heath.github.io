@@ -23,11 +23,11 @@
         opacity: 80%;
         rotate: initial;
         border-radius: 5px;
-        background-color: var(--persona-5-red);
+        background-color: var(--persona-3-blue);
     }
 
     .nav-button.selected {
-        background-color: var(--persona-5-dark-red);
+        background-color: var(--persona-3-dark-blue);
     }
 
     nav {
@@ -97,13 +97,13 @@
 
 @media only screen and (max-width: 500px) {
     :root {
-        --start-on-sunday: span 1;
-        --start-on-monday: span 1;
-        --start-on-tuesday: span 1;
-        --start-on-wednesday: span 1;
-        --start-on-thursday: span 1;
-        --start-on-friday: span 1;
-        --start-on-saturday: span 1;
+        --start-on-sun: span 1;
+        --start-on-mon: span 1;
+        --start-on-tue: span 1;
+        --start-on-wed: span 1;
+        --start-on-thu: span 1;
+        --start-on-fri: span 1;
+        --start-on-sat: span 1;
 
         --month-title-span: span 1;
     }

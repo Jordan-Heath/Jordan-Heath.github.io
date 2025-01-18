@@ -1,21 +1,24 @@
 :root {
-    --start-on-sunday: span 7;
-    --start-on-monday: span 1;
-    --start-on-tuesday: span 2;
-    --start-on-wednesday: span 3;
-    --start-on-thursday: span 4;
-    --start-on-friday: span 5;
-    --start-on-saturday: span 6;
+    --start-on-sun: span 7;
+    --start-on-mon: span 1;
+    --start-on-tue: span 2;
+    --start-on-wed: span 3;
+    --start-on-thu: span 4;
+    --start-on-fri: span 5;
+    --start-on-sat: span 6;
 
     --month-title-span: span 3;
 
+    --persona-3-red: #d1132e;
     --persona-3-blue: #0eb1f4;
+    --persona-3-pink: #ff41d4;
     --persona-3-dark-blue: #001e9a;
-    --custom-grey: rgba(50, 50, 50, 0.4);
+    --custom-grey: rgba(201, 201, 201, 0.2);
 
     --font-color: white;
+    --font-color-dark: black;
     --button-color: var(--persona-3-dark-blue);
-    --button-selected-color: #555;
+    --button-selected-color: var(--persona-3-pink);
     --button-disabled-color: #222;
 
     --background-gradient: linear-gradient(to bottom, #00399f, #000037);
@@ -112,6 +115,7 @@ body {
     }
 
     button.selected {
+        color: var(--font-color-dark);
         background-color: var(--button-selected-color);
     }
 
@@ -133,12 +137,12 @@ body {
     }
 
     .red {
-        color: var(--persona-3-blue);
+        color: var(--persona-3-red);
     }
 
-    /* .blue {
-        color: var(--persona-5-blue);
-    } */
+    .blue {
+        color: var(--persona-3-blue);
+    }
 
     .title {
         height: 60px;
@@ -175,7 +179,6 @@ nav {
     }
 
     button.selected {
-        background-color: var(--persona-3-dark-blue);
         animation: clickSelected 0.5s ease-in-out forwards;
     }
 }
@@ -200,12 +203,12 @@ main {
         display: grid;
         grid-template-columns: repeat(7, 1fr);
         gap: 10px;
+        padding: 10px;
         margin-bottom: 20px;
+        background-color: var(--custom-grey);
 
         button.selected {
-            /* add a blue square behind the button */
             animation: dateSelected 0.5s ease-in-out forwards;
-            background: var(--persona-3-blue);
         }
 
         h2 {

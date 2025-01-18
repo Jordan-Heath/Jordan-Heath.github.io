@@ -84,8 +84,8 @@ function handleTabKey(e) {
 
 //applies red/blue color to {element} based on {date} and {weekday}
 function applyDayColor(date, weekday, element) {
-    if (weekday === 'Saturday') element.classList.add('blue');
-    if (weekday === 'Sunday') element.classList.add('red');
+    if (weekday === 'Sat') element.classList.add('blue');
+    if (weekday === 'Sun') element.classList.add('red');
     if (holidays.includes(date)) element.classList.add('red');
 }
 
