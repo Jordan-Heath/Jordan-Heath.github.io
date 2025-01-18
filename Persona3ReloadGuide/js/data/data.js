@@ -1,6 +1,6 @@
-const clickSoundSrc = 'assets/clicksound.wav';
+const clickSoundSrc = 'assets/selectSound.mp3';
 
-const selectDateSoundSrc = 'assets/clicksound.wav';
+const selectDateSoundSrc = 'assets/clickSound.mp3';
 
 const notepadData = `
     <textarea 
