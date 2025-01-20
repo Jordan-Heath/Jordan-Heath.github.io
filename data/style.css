@@ -11,8 +11,21 @@
     --drop-shadow: rgba(0, 0, 0, 0.2);
 
     --dithering: radial-gradient(rgba(0, 0, 0, 0.5) 0.5px,transparent 0.5px) 0   0   /3px 3px,
-                radial-gradient(rgba(0, 0, 0, 0.5) 0.5px,transparent 0.5px) 1px 1px /3px 3px,
-                radial-gradient(rgba(0, 0, 0, 0.5) 0.5px,transparent 0.5px) 2px 2px /3px 3px;
+                 radial-gradient(rgba(0, 0, 0, 0.5) 0.5px,transparent 0.5px) 1px 1px /3px 3px,
+                 radial-gradient(rgba(0, 0, 0, 0.5) 0.5px,transparent 0.5px) 2px 2px /3px 3px;
+}
+
+@keyframes titleAnimation {
+    0%,
+    100% {
+        transform: scale(0.95);
+        color: var(--heading-text1);
+    }
+
+    50% {
+        transform: scale(1);
+        color: var(--heading-text2);
+    }
 }
 
 body {
@@ -24,60 +37,69 @@ body {
     background-attachment: fixed;
     color: var(--body-text);
     font-family: monaco, Consolas, Lucida Console, monospace;
+
+    
+
+    h3 {
+        font-family: monaco, Consolas, Lucida Console, monospace;
+        text-decoration: underline;
+        margin-top: 40px;
+    }
+
+    button {
+        margin: 5px 5px;
+        border: none;
+        border-radius: 15px;
+        height: 50px;
+        color: white;
+        background-color: var(--button-background1);
+        font-family: monaco, Consolas, Lucida Console, monospace;
+        font-size: 14pt;
+        transition: all 100ms ease-in-out;
+
+        &:hover {
+            cursor: pointer;
+            scale: 1.05;
+            background-color: var(--button-background2);
+        }
+    }
 }
 
-/* Header */
 header {
-    /* background image? */
     margin: 0 auto;
     max-width: 1200px;
-}
 
-header h1 {
-    text-align: center;
-    font-family: 'Verdana', sans-serif;
-    color: var(--text-secondary);
-    font-size: 3.5em;
-    animation: titleAnimation 2s ease-in-out infinite;
-    cursor: pointer;
-}
-
-@keyframes titleAnimation {
-
-    0%,
-    100% {
-        transform: scale(0.9);
-        color: var(--heading-text1);
-    }
-
-    50% {
-        transform: scale(1);
-        color: var(--heading-text2);
+    h1 {
+        text-align: center;
+        font-family: 'Verdana', sans-serif;
+        color: var(--text-secondary);
+        font-size: 3.5em;
+        animation: titleAnimation 4s ease-in-out infinite;
+        cursor: pointer;
     }
 }
 
-/* Main */
-#projectsGrid {
+.projectsGrid {
     width: 100%;
     margin: 0 auto;
     max-width: 1200px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-template-rows: auto;
     grid-gap: 20px;
     box-sizing: border-box;
-}
 
-#projectsGrid .link-img {
-    width: 100%;
-    border-radius: 5%;
-    transition: all 200ms ease-in-out;
-}
+    .link-img {
+        width: 100%;
+        border-radius: 15px;
+        transition: all 200ms ease-in-out;
 
-#projectsGrid .link-img:hover {
-    cursor: pointer;
-    scale: 1.05;
-    box-shadow: 5px 5px var(--drop-shadow);
+        &:hover {
+            cursor: pointer;
+            scale: 1.05;
+            box-shadow: 5px 5px var(--drop-shadow);
+        }
+    }
 }
 
 main {
@@ -88,60 +110,30 @@ main {
     margin: 0 auto;
     border-radius: 8px;
     box-shadow: 4px 4px 4px var(--drop-shadow);
-}
-main h1, main h2 {
-    text-align: center;
-    color: var(--heading-text1);
-}
-main a {
-    color: var(--heading-text1);
-}
-main a:hover {
-    color: var(--heading-text2);
-}
 
+    h1, h2 {
+        text-align: center;
+        color: var(--heading-text1);
+    }
 
-@media screen and (max-width: 900px) {
-    #projectsGrid {
-        grid-template-columns: 1fr 1fr;
-        max-width: 900px;
-        grid-gap: 15px
+    a {
+        color: var(--heading-text1);
+
+        &:hover {
+            color: var(--heading-text2);
+        }
     }
 }
 
-@media screen and (max-width: 600px) {
-    #projectsGrid {
-        grid-template-columns: repeat(1, 1fr);
-        max-width: 600px;
-        grid-gap: 15px;
-    }
-}
-
-
-/* footer */
 footer {
     margin: 0 auto;
     max-width: 1200px;
-}
 
-footer button {
-    margin: 5px 5px;
-    border: none;
-    border-radius: 15px;
-    width: 200px;
-    height: 50px;
-    color: white;
-    background-color: var(--button-background1);
-    font-family: monaco, Consolas, Lucida Console, monospace;
-    font-size: 14pt;
-}
+    button {
+        width: 200px;
+    }
 
-footer button:hover {
-    cursor: pointer;
-    scale: 1.05;
-    background-color: var(--button-background2);
-}
-
-footer a {
-    color: rgba(255, 255, 255, 0.250);
+    a {
+        color: rgba(255, 255, 255, 0.250);
+    }
 }

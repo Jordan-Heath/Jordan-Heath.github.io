@@ -172,6 +172,11 @@ Fairly raw copy of the Persona 5 Guide by for Persona 3.
 
 PLAYABLE DEMO. A randomly generated map that simulates a number of nations in a strategy game.
 
+
+### [Kaiju Battle Bracket](KaijuBattleBracket/)
+
+PLAYABLE DEMO. A bracket for a game of Kaiju Battle.
+
 ### [The Great Hundred Man Fight](TheGreatHundredManFight/)
 
 PLAYABLE DEMO. 100 men enter, 1 leaves. I haven't gotten the motivation to polish it enough for the main page.
@@ -208,15 +213,6 @@ Assets:
 - [Knife Image source](https://www.spriters-resource.com/playstation_3/persona5/sheet/92802/)
 - [Web Icon](https://tcrf.net/Persona_5_Royal/Unused_Graphics)
 
-### Character Generator
-- [Background Image](https://www.pexels.com/photo/empty-brown-canvas-235985/)
-- [Paper Texture](https://pixabay.com/photos/paper-old-texture-parchment-1074131/)
-- Races, Classes and some backgrounds are from D&D.
-
-### Manticore Generator
-- Original Concept : Brin
-- [Original Animal List](https://gist.github.com/atduskgreg/3cf8ef48cb0d29cf151bedad81553a54)
-
 ### Story Teller
 Music sourced from [fesliyanstudios](https://www.fesliyanstudios.com/):
 - Fantasy: Rolling Hills Of Ireland by Alex Zachariou
@@ -226,3 +222,12 @@ Music sourced from [fesliyanstudios](https://www.fesliyanstudios.com/):
 - Western: Prairie Evening by Steve Oxen
 - Non-Fiction: Retro News At Nine by Steve Oxen
 - Other: Mediterranean Underscore by Steve Oxen
+
+### Manticore Generator
+- Original Concept : Brin
+- [Original Animal List](https://gist.github.com/atduskgreg/3cf8ef48cb0d29cf151bedad81553a54)
+
+### Character Generator
+- [Background Image](https://www.pexels.com/photo/empty-brown-canvas-235985/)
+- [Paper Texture](https://pixabay.com/photos/paper-old-texture-parchment-1074131/)
+- Races, Classes and some backgrounds are from D&D.
