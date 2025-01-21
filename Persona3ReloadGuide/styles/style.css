@@ -76,9 +76,6 @@ html {
 }
 
 body {
-    /* background-color: #1a1a1a;
-    background-image: url("../assets/background.jpg");
-    background-size: cover; */
     background: var(--background-gradient) no-repeat center center fixed;
     color: var(--font-color);
     font-family: "Nunito", sans-serif;
@@ -320,7 +317,7 @@ main {
     }
 
     .highlight {
-        background-color: var(--persona-3-dark-blue);
+        background-color: var(--persona-3-blue);
     }
 }
 
