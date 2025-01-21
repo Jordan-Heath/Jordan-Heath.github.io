@@ -213,6 +213,9 @@ Assets:
 - [Knife Image source](https://www.spriters-resource.com/playstation_3/persona5/sheet/92802/)
 - [Web Icon](https://tcrf.net/Persona_5_Royal/Unused_Graphics)
 
+### Meal Planner
+- [Recipes](https://www.themealdb.com/api.php)
+
 ### Story Teller
 Music sourced from [fesliyanstudios](https://www.fesliyanstudios.com/):
 - Fantasy: Rolling Hills Of Ireland by Alex Zachariou

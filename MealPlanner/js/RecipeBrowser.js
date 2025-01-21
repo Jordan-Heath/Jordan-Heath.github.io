@@ -1,4 +1,3 @@
-const recipesJSON = "https://jordan-heath.github.io/MealPlanner/data/recipes.json";
 const tagSelect = document.getElementById("tagSelect");
 const recipeSelect = document.getElementById("recipeSelect");
 const recipeDetailsDiv = document.getElementById("recipeDetails");
@@ -8,41 +7,23 @@ let recipesData; // Store recipes data globally
 
 // Function to fetch and load data
 function loadData() {
-    fetch(recipesJSON)
-        .then(response => response.json())
-        .then(data => {
-            recipesData = data; // Save data globally
+    recipesData = recipesJSON;
 
-            // Sort recipesData alphabetically by recipe.title
-            sortRecipesByTitle();
+    const allTags = recipesData.flatMap(recipe => recipe.tags);
+    const uniqueSortedTags = Array.from(new Set(allTags)).sort();
 
-            // Extract all tags from recipes
-            const allTags = recipesData.recipes.flatMap(recipe => recipe.tags);
+    // Populate the tag select menu
+    const tagsWithViewAll = ["VIEW ALL", ...uniqueSortedTags];
+    populateTagsSelect(tagsWithViewAll);
 
-            // Remove duplicates and sort tags alphabetically (without "VIEW ALL")
-            const uniqueSortedTags = Array.from(new Set(allTags)).sort();
+    // Populate the recipe select menu with "VIEW ALL" option and all recipes
+    populateRecipeSelect(recipesData);
 
-            // Add "VIEW ALL" at the beginning
-            const tagsWithViewAll = ["VIEW ALL", ...uniqueSortedTags];
+    // Add event listeners
+    tagSelect.addEventListener("change", displayRecipesByTag);
+    recipeSelect.addEventListener("change", displayRecipeDetails);
 
-            // Populate the tag select menu
-            populateTagsSelect(tagsWithViewAll);
-
-            // Populate the recipe select menu with "VIEW ALL" option and all recipes
-            populateRecipeSelect(recipesData.recipes);
-
-            // Add event listeners
-            tagSelect.addEventListener("change", displayRecipesByTag);
-            recipeSelect.addEventListener("change", displayRecipeDetails);
-
-            displayRecipeDetails();
-        })
-        .catch(error => console.error("Error fetching recipes:", error));
-}
-
-// Function to sort recipes alphabetically by title
-function sortRecipesByTitle() {
-    recipesData.recipes.sort((a, b) => a.title.localeCompare(b.title));
+    displayRecipeDetails();
 }
 
 // Function to populate the tag select menu
@@ -66,11 +47,11 @@ function populateRecipeSelect(recipes) {
     viewAllOption.textContent = "VIEW ALL";
     recipeSelect.appendChild(viewAllOption);
 
-    // Populate the recipe select menu with recipe titles
+    // Populate the recipe select menu with recipe names
     recipes.forEach(recipe => {
         const option = document.createElement("option");
-        option.value = recipe.title;
-        option.textContent = recipe.title;
+        option.value = recipe.name;
+        option.textContent = recipe.name;
         recipeSelect.appendChild(option);
     });
 }
@@ -80,10 +61,10 @@ function displayRecipesByTag() {
 
     if (selectedTag === "VIEW ALL") {
         // Display all recipes
-        populateRecipeSelect(recipesData.recipes);
+        populateRecipeSelect(recipesData);
     } else {
         // Filter recipes that contain the selected tag
-        const filteredRecipes = recipesData.recipes.filter(recipe => recipe.tags.includes(selectedTag));
+        const filteredRecipes = recipesData.filter(recipe => recipe.tags.includes(selectedTag));
 
         // Populate the recipe select menu with filtered recipes
         populateRecipeSelect(filteredRecipes);
@@ -94,21 +75,21 @@ function displayRecipesByTag() {
 }
 
 function displayRecipeDetails() {
-    const selectedRecipeTitle = recipeSelect.value;
+    const selectedRecipeName = recipeSelect.value;
 
     // Clear previous recipe details
     recipeDetailsDiv.innerHTML = "";
 
-    if (selectedRecipeTitle === "VIEW ALL") {
+    if (selectedRecipeName === "VIEW ALL") {
         const selectedTag = tagSelect.value;
 
         if (selectedTag === "VIEW ALL") {
             // Display all recipes
-            populateRecipeSelect(recipesData.recipes);
-            recipesData.recipes.forEach(recipe => displaySingleRecipeDetails(recipe));
+            populateRecipeSelect(recipesData);
+            recipesData.forEach(recipe => displaySingleRecipeDetails(recipe));
         } else {
             // Filter recipes that contain the selected tag
-            const filteredRecipes = recipesData.recipes.filter(recipe => recipe.tags.includes(selectedTag));
+            const filteredRecipes = recipesData.filter(recipe => recipe.tags.includes(selectedTag));
 
             // Populate the recipe select menu with filtered recipes
             populateRecipeSelect(filteredRecipes);
@@ -117,7 +98,7 @@ function displayRecipeDetails() {
             filteredRecipes.forEach(recipe => displaySingleRecipeDetails(recipe));
         }
     } else {
-        const selectedRecipe = recipesData.recipes.find(recipe => recipe.title === selectedRecipeTitle);
+        const selectedRecipe = recipesData.find(recipe => recipe.name === selectedRecipeName);
         // Display details for the selected recipe
         displaySingleRecipeDetails(selectedRecipe);
     }
@@ -129,8 +110,8 @@ function displaySingleRecipeDetails(recipe) {
     const recipeContainerElement = document.createElement("div");
     recipeContainerElement.classList.add("recipe-container");
 
-    const recipeTitleElement = document.createElement("h2");
-    recipeTitleElement.textContent = recipe.title;
+    const recipeNameElement = document.createElement("h2");
+    recipeNameElement.textContent = recipe.name;
 
     const recipeDescriptionElement = document.createElement("p");
     recipeDescriptionElement.textContent = recipe.description;
@@ -147,7 +128,7 @@ function displaySingleRecipeDetails(recipe) {
     const ingredientsList = document.createElement("ul");
     recipe.ingredients.forEach(ingredient => {
         const li = document.createElement("li");
-        li.textContent = Object.keys(ingredient)[0] + ": " + Object.values(ingredient)[0];
+        li.textContent = ingredient.ingredient + ": " + ingredient.measurement;
         ingredientsList.appendChild(li);
     });
     recipeIngredientsElement.appendChild(ingredientsList);
@@ -167,7 +148,7 @@ function displaySingleRecipeDetails(recipe) {
     recipeMethodElement.appendChild(methodList);
 
     // Append the new recipe details to the recipeDetailsDiv
-    recipeContainerElement.appendChild(recipeTitleElement);
+    recipeContainerElement.appendChild(recipeNameElement);
     recipeContainerElement.appendChild(recipeDescriptionElement);
     recipeContainerElement.appendChild(recipeTagsElement);
     recipeContainerElement.appendChild(recipeIngredientsElement);
@@ -176,5 +157,6 @@ function displaySingleRecipeDetails(recipe) {
     recipeDetailsDiv.appendChild(recipeContainerElement);
 }
 
-
-loadData();
+document.addEventListener("DOMContentLoaded", () => {
+    loadData();
+});

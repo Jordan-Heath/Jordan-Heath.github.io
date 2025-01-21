@@ -1,5 +1,15 @@
 class Recipe {
+    // constructor() {
+    //     // this.mealID = null;
+    //     this.title = "";
+    //     this.description = "";
+    //     this.tags = [];
+    //     this.ingredients = [];
+    //     this.method = [];
+    // }
+
     constructor(title, description, tags, ingredients, method) {
+        // this.mealID = null;
         this.title = title;
         this.description = description;
         this.tags = tags;
@@ -14,7 +24,11 @@ class Recipe {
                     <p>Tags: ${this.tags.join(", ")}</p>
                     <h3>Ingredients:</h3>
                     <ul>
-                        ${this.ingredients.map(ingredient => `<li>${Object.keys(ingredient)[0]}: ${ingredient[Object.keys(ingredient)[0]]}</li>`).join('')}
+                        ${
+                            this.ingredients.map(ingredient => 
+                                `<li>${ingredient.ingredient}: ${ingredient.measurement}</li>`
+                            ).join('')
+                        }
                     </ul>
                     <h3>Method:</h3>
                     <ol>

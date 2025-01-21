@@ -1,5 +1,4 @@
 // Replace "YOUR_JSON_FILE_URL" with the actual URL of your JSON file
-const recipesJSON = "https://jordan-heath.github.io/MealPlanner/data/recipes.json";
 const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
 const mealPlan = new MealPlan();
@@ -7,22 +6,14 @@ var recipes = [];
 
 // Function to load recipes
 function loadRecipes() {
-    fetch(recipesJSON)
-        .then(response => response.json())
-        .then(data => {
-            data.recipes.forEach(jsonRecipe => {
-                var recipe = new Recipe(jsonRecipe.title, jsonRecipe.description, jsonRecipe.tags, jsonRecipe.ingredients, jsonRecipe.method);
-                recipes.push(recipe);
-            });
-        })
-        .catch(error => {
-            console.error("Error fetching recipes:", error);
-            alert("Failed to load recipes. Please try again later.");
-        });
+    recipesJSON.forEach(jsonRecipe => {
+        var recipe = new Recipe(jsonRecipe.name, jsonRecipe.description, jsonRecipe.tags, jsonRecipe.ingredients, jsonRecipe.method);
+        recipes.push(recipe);
+    });
 }
 
 function getRandomRecipe() {
-    return recipes[Math.floor(Math.random() * recipes.length)]
+    return recipes[Math.floor(Math.random() * recipes.length)];
 }
 
 // Function to generate a random meal plan
@@ -61,13 +52,9 @@ function toggleRecipeView(mealNumber) {
     if (mealNumber !== undefined) {
         document.getElementById("recipeView").innerHTML = mealPlan.savedMeals[mealNumber].meal.generateRecipeHTML();
         displayWindow.style.display = "block";
-        mealPlannerForm.style.display = "none";
     } else {
         displayWindow.style.display = "none";
-        mealPlannerForm.style.display = "block";
     }
-
-    
 }
 
 function changeBackgroundColor(row) {
@@ -76,4 +63,6 @@ function changeBackgroundColor(row) {
 }
 
 // Initial load of recipes
-loadRecipes();
+document.addEventListener("DOMContentLoaded", () => {
+    loadRecipes();
+})

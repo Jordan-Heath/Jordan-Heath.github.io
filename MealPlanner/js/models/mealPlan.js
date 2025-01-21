@@ -44,8 +44,8 @@ class MealPlan {
     
         this.savedMeals.forEach(savedMeal => {
             savedMeal.meal.ingredients.forEach(ingredient => {
-                const ingredientName = Object.keys(ingredient)[0];
-                const measurement = ingredient[ingredientName];
+                const ingredientName = ingredient.ingredient;
+                const measurement = ingredient.measurement
     
                 // Check if the ingredientRecipesMap already has this ingredient
                 if (ingredientRecipesMap.has(ingredientName)) {
