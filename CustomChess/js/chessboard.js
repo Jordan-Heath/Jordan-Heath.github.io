@@ -11,10 +11,14 @@ class Chessboard {
                 cell.addEventListener('click', Chessboard.handleCellClick);
     
                 // Add row and column numbers
-                if (row === 0) {
-                    cell.innerHTML = `<p>${col}</p>`; // Top row
-                } else if (col === 0) {
-                    cell.innerHTML = `<p>${row}</p>`; // Left column
+                if (row === Player.boardSize - 1) {
+                    const columnLetter = String.fromCharCode('A'.charCodeAt(0) + col);
+                    cell.innerHTML += `<p class='column-number'>${columnLetter}</p>`; // Top row
+                } 
+                if (col === 0) {
+                    // number goes from 8 to 1
+                    let rowNumber = Player.boardSize - row;
+                    cell.innerHTML += `<p class='row-number'>${rowNumber}</p>`; // Left column
                 }
     
                 chessboardElement.appendChild(cell);

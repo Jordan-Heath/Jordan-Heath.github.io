@@ -25,7 +25,7 @@ function debugPopup() {
 
     // Create and add content to the popup
     popupElement.innerHTML = `
-        <div class="debugMenu">
+        <div id="debugMenu" class="sub-menu">
             ${debugFunctionsHTML}
         </div>
     `;

@@ -1,5 +1,8 @@
 //elements
 //#region elements
+//general
+const darkModeStyleSheet = document.getElementById('darkModeStyleSheet');
+
 //startMenu
 const startMenuElement = document.getElementById('startMenu');
     const profileButtonElement = document.getElementById('profileButton');
@@ -64,7 +67,7 @@ class ViewHandler {
         matchMenuElement.style.display = 'none';
         profileMenuElement.innerHTML = `
             <h2>Stats</h2>
-            <div id="stats">
+            <div class="sub-menu" id="stats">
                 <table>
                     <tr><th class='table-divider' colspan='2'>Pieces</th></tr>
                     <tr><th>Pieces Taken</th><td>${Player.piecesTaken}</td></tr>
@@ -93,24 +96,37 @@ class ViewHandler {
             </div>
     
             <h2>Prestige</h2>
-            <div id="prestige">
+            <div class="sub-menu" id="prestige">
                 ${Player.timesPrestiged > 0 ? `<p>Prestige Rank ${Player.timesPrestiged}</p>` : ''}
                 <p>If your highest streak is ${(Player.timesPrestiged + 1) * 10} you can prestige.</p>
                 <p>Prestiging will cost all your upgrades, all your gold, and reset your current Match Streak.</p>
                 <p>As a reward, your teamsize will be permanently raised by 1</p>
-                <button onclick="Player.prestige()"
-                            ${(Player.highestStreak >= (Player.timesPrestiged + 1) * 10) //must have high streak
-                            // && (Player.upgrades.length === UpgradeData.length) //must have all upgrades
-                            ? '' : 'disabled'}>
-                    Prestige
-                </button>
+                <button onclick="Player.prestige()" ${Player.canPrestige() ? '' : 'disabled'}>Prestige</button>
+            </div>
+
+            <h2>Settings</h2>
+            <div class="sub-menu" id="settings">
+                <div>
+                    <input type="checkbox" id="audioEnabledCheckbox" 
+                        ${Player.settings.audioEnabled ? 'checked' : ''} 
+                        onclick="Player.toggleSetting('audioEnabled', this.checked)"/>
+                    <label for="audioEnabledCheckbox">Enable Audio</label>
+                </div>
+                <div>
+                    <label for="darkModeSetting">Dark Mode Setting:</label>
+                    <select id="darkModeSetting"
+                            onchange="Player.toggleSetting('darkMode', this.value); ViewHandler.loadDarkMode()">
+                        <option value="auto" ${Player.settings.darkMode === 'auto' ? 'selected' : ''}>Auto</option>
+                        <option value="light" ${Player.settings.darkMode === 'light' ? 'selected' : ''}>Light</option>
+                        <option value="dark" ${Player.settings.darkMode === 'dark' ? 'selected' : ''}>Dark</option>
+                    </select>
+                </div>
             </div>
     
             <h2>Save Management</h2>
-            <div id="save-management">
-                <p>Not Implemented</p>
-                <button disabled>Export Save</button>
-                <button disabled>Import Save</button>
+            <div class="sub-menu" id="save-management">
+                <button onclick="Player.exportSave()">Export Save</button>
+                <button onclick="Player.importSave()">Import Save</button>
                 <button onclick="Player.deleteSave()">Delete Save</button>
             </div>
             <button class="close-button" onclick="ViewHandler.closeMenu(profileMenu)">Close</button>
@@ -136,12 +152,10 @@ class ViewHandler {
             Player.upgrades.forEach(upgradeID => {
                 const upgrade = UpgradeData.find(u => u.id == upgradeID);
                 upgradesHTML += `
-                <div class="upgrade">
+                <div class="upgrade ${upgrade.rarity}">
                     <h3>${upgrade.name}</h3>
-                    <div class="row">
-                        <p>${upgrade.description}</p>
-                        <button onclick="Player.sellUpgrade('${upgradeID}')">Sell (${upgrade.cost}g)</button>
-                    </div>
+                    <p>${upgrade.description}</p>
+                    <button onclick="Player.sellUpgrade('${upgradeID}')">Sell (${upgrade.cost}g)</button>
                 </div>
                 `
             });
@@ -149,10 +163,13 @@ class ViewHandler {
     
         collectionMenuElement.innerHTML = `
             <h2>Loadout</h2>
-            <div id="loadout">${loadoutHTML}</div>
+            <div class="sub-menu" id="loadout">${loadoutHTML}</div>
     
             <h2>Upgrades</h2>
-            <div id="upgrades">${upgradesHTML}</div>
+            <h3>Available</h3>
+            ${ViewHandler.getShopItems()}
+            <h3>Owned</h3>
+            <div class="sub-menu" id="upgrades">${upgradesHTML}</div>
     
             <button class="close-button" onclick="ViewHandler.closeMenu(collectionMenuElement)">Close</button>
         `;
@@ -163,13 +180,24 @@ class ViewHandler {
         menuElement.style.display = 'none';
     }
 
-    static promptEndGameMessage(result, message) {
+    static promptEndGameMessage(result, goldEarned) {
         popupElement.innerHTML = `
         <h2>${result}</h2>
-        <p id='endGameMessageParagraph'>${message}</p>
+        <p id='endGameMessageParagraph'>You earned ${goldEarned}g</p>
         ${ViewHandler.getShopItems()}
         <button onclick="Match.newMatch()">New Match</button>
         `;
+
+        if (Player.canPrestige()) {
+            popupElement.innerHTML += `
+            <div class="sub-menu">
+                <p>You are eligible to prestige!</p>
+                <p>Prestiging will cost all your upgrades, all your gold, and reset your current Match Streak.</p>
+                <p>As a reward, your teamsize will be permanently raised by 1</p>
+                <button onclick="Player.prestige()" ${Player.canPrestige() ? '' : 'disabled'}>Prestige</button>
+            </div>
+            `;
+        }
     
         popupElement.style.display = 'block';
     
@@ -177,32 +205,33 @@ class ViewHandler {
     }
 
     static getShopItems() {
-        let shopItemsHTML = '';
+        const shopItemsElement = document.createElement('div');
+        shopItemsElement.className = 'shop-items sub-menu';
 
         for (const shopItemID of Player.shopItems) {
             const upgrade = UpgradeData.find(u => u.id == shopItemID);
-            shopItemsHTML += `
-            <div class="upgrade">
+            shopItemsElement.innerHTML += `
+            <div class="upgrade ${upgrade.rarity}">
                 <h3>${upgrade.name}</h3>
                 <div class="row">
                     <p>${upgrade.description}</p>
                     <button id="${upgrade.id}Button" 
-                            ${upgrade.cost > Player.gold || Player.hasUpgrade(upgrade.id) ? 'disabled="true"' : ''}
-                            onclick="Player.buyUpgrade('${upgrade.id}')">
-                            Buy ($${upgrade.cost})
+                        ${upgrade.cost > Player.gold || Player.hasUpgrade(upgrade.id) ? 'disabled="true"' : ''}
+                        onclick="Player.buyUpgrade('${upgrade.id}')">
+                            ${Player.hasUpgrade(upgrade.id) ? 'Enjoy!' : upgrade.cost > Player.gold ? `Cannot Afford ($${upgrade.cost})` : `Buy ($${upgrade.cost})`}
                     </button>
                 </div>
             </div>
             `
         }
+
+        if (shopItemsElement.innerHTML === '') shopItemsElement.innerHTML = '<h3>All upgrades purchased!</h3>';
+
+        shopItemsElement.innerHTML += `<p>Gold: ${Player.gold}</p>`;
+
+        document.querySelectorAll('.shop-items').forEach(shopItems => shopItems.innerHTML = shopItemsElement.innerHTML);
     
-        let shopHTML = `
-        <div class="shop">
-            ${shopItemsHTML === '' ? 'All upgrades purchased!' : shopItemsHTML}
-        </div>
-        `;
-    
-        return shopHTML;
+        return shopItemsElement.outerHTML;
     }
 
     static promptEnemyForfeit() {
@@ -314,17 +343,26 @@ class ViewHandler {
 
         //if new player
         if (localStorage.getItem("CustomChessSave") === null) {
-            profileButtonElement.disabled = true;
-            collectionButtonElement.disabled = true;
             playButtonParagraph.innerText = 'New Game';
+        } else if (Player.timesPrestiged > 0) {
+            playButtonParagraph.innerText = `Continue (Match ${Player.matchStreak} : Prestige ${Player.timesPrestiged})`;
         } else {
-            profileButtonElement.disabled = false;
-            collectionButtonElement.disabled = false;
-            playButtonParagraph.innerText = `Continue (Match Streak ${Player.matchStreak})`
+            playButtonParagraph.innerText = `Continue (Match ${Player.matchStreak})`
         }
     }
 
     static toggleMatchMenu() {
         matchMenuElement.style.display = matchMenuElement.style.display == 'none' ? 'flex' : 'none';
+    }
+
+    static loadDarkMode() {
+        // add or remove dark mode stylesheet from head
+        if (Player.settings.darkMode === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            darkModeStyleSheet.href = 'styles/darkmode.css';
+        } else if (Player.settings.darkMode === 'dark') {
+            darkModeStyleSheet.href = 'styles/darkmode.css';
+        } else {
+            darkModeStyleSheet.href = '';
+        }
     }
 }

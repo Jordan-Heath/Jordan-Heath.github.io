@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom Chess</title>
     <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/mobilestyle.css">
-    <link rel="stylesheet" href="styles/darkmode.css">
+    <link rel="stylesheet" href="styles/darkmode.css" id="darkModeStyleSheet">
     <link rel="icon" type="image/x-icon" href="assets/white/pawn.png">
 
     <script src="js/misc/utils.js"></script>
@@ -26,20 +25,29 @@
 </head>
 <body>
     <div id="startMenu">
-        <h1 id="title">Custom Chess</h1>
+        
+        <h1 id="title">
+            <span id="title-white-piece"></span>
+            Custom Chess
+            <span id="title-black-piece"></span>
+        </h1>
+        
+
         <div id="menu-button-container">
-            <div id="playButtonContainer">
-                <p id="playButtonParagraph"></p>
-                <button id="playButton">Play</button>
-            </div>
+            <p id="playButtonParagraph"></p>
+            <button id="playButton">Play</button>
             <button id="profileButton">Profile</button>
             <button id="collectionButton">Collection</button>
             <button id="quitButton">Quit</button>
         </div>
     </div>
 
-    <div id="profileMenu" class="menu" style="display: none;"></div>
-    <div id="collectionMenu" class="menu" style="display: none;"></div>
+    <div id="profileMenu" class="menu" style="display: none;">
+        <!-- content -->
+    </div>
+    <div id="collectionMenu" class="menu" style="display: none;">
+        <!-- content -->
+    </div>
 
     <div id="match" style="display: none;">
         <button id="match-menu-button">≡</button>

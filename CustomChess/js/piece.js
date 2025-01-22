@@ -65,6 +65,13 @@ class Piece {
             this.div.style.transition = 'transform 0.4s ease';
             this.div.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
 
+            //play sound
+            if (Player.settings.audioEnabled) {
+                const soundChosen = Math.floor(Math.random() * ChessSounds.length)
+                console.log(`playing "chess-sound-${soundChosen}.mp3`)
+                ChessSounds[soundChosen].play();
+            }
+
             //killed Piece
             const killedPiece = Chessboard.getPieceFromPos(endPos);
             if (killedPiece) {
@@ -74,7 +81,7 @@ class Piece {
                 if (this.player === 1
                     && this.pieceType === "queen"
                     && Player.hasUpgrade("queenEarnsGoldFromKills")) {
-                        Player.gold += 1;
+                        Player.gold += 5;
                 }
             }
 
@@ -374,7 +381,7 @@ const pieceRules = {
             const deltaX = Math.abs(endPos.x - piece.pos.x);
 
             if (piece.player == 2
-                && Player.hasUpgrade("rookImuneToPawns")
+                && Player.hasUpgrade("rookImmuneToPawns")
                 && Chessboard.getPieceFromPos(endPos).pieceType === 'rook') {
                 return false;
             }

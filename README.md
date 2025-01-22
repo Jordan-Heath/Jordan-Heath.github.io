@@ -198,6 +198,11 @@ PLAYABLE DEMO. A digimon/tamogotchi clone with my own spin.
 - Pokemon is a product of GameFreak
 - Assets Sourced from [here](https://github.com/waydelyle/pokemon-assets)
 
+### Custom Chess
+- [Chess Piece Art](https://opengameart.org/content/8x13-chess-pieces)
+- [Skull Image](https://opengameart.org/content/pixel-art-skull)
+- [Chess Piece Sounds](https://pixabay.com/sound-effects/chess-pieces-60890/)
+
 ### Persona 5 Royal Guide
 Guides:
 - [Walkthrough by aqiu384.github.io](https://aqiu384.github.io/p5r-walkthrough/ace-walkthrough)

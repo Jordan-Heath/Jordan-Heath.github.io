@@ -29,6 +29,11 @@ class PlayerObj {
         
         this.highestStreak = 0; //
         this.timesPrestiged = 0; //
+
+        this.settings = {
+            audioEnabled: true,
+            darkMode: "System",
+        }
     }
 
     saveToLocalStorage() {
@@ -69,9 +74,14 @@ class PlayerObj {
             this.gold -= upgrade.cost;
             this.upgrades.push(upgrade.id);
             this.upgradesPurchased += 1;
-            document.getElementById('endGameMessageParagraph').innerHTML = `Enjoy your upgrade! You now have ${this.gold} gold`
+
+            Player.refreshUpgrades();
+            Player.saveToLocalStorage();
+
+            const endGameMessageParagraph = document.getElementById('endGameMessageParagraph')
+            if (endGameMessageParagraph) endGameMessageParagraph.innerHTML = `Enjoy your upgrade! You now have ${this.gold} gold`
+            ViewHandler.getShopItems();
             buyButton.innerText = "Enjoy!"
-            ViewHandler.printMatchUI('');
         } else {
             buyButton.innerText = "Cannot Afford"
         }
@@ -100,11 +110,9 @@ class PlayerObj {
         this.promotionDiscount = 1;
 
         //handle chessboard size
-        if (this.upgrades.includes('largerChessboard')) {
-            this.boardSize += 1;
-            chessboardElement.style.gridTemplateColumns = `repeat(${this.boardSize}, 1fr)`
-            chessboardElement.style.gridTemplateRows = `repeat(${this.boardSize}, 1fr)`
-        }
+        if (this.upgrades.includes('largerChessboard')) this.boardSize += 1;
+        chessboardElement.style.gridTemplateColumns = `repeat(${this.boardSize}, 1fr)`
+        chessboardElement.style.gridTemplateRows = `repeat(${this.boardSize}, 1fr)`
 
         //handle team size
         if (this.upgrades.includes('extraTeamSlot')) this.teamSize += 1;
@@ -116,8 +124,12 @@ class PlayerObj {
         }
     }
 
+    canPrestige() {
+        return this.highestStreak >= (this.timesPrestiged + 1) * 10
+    }
+
     prestige() { //TODO
-        if (Player.highestStreak < (Player.timesPrestiged + 1) * 10) return; //must have high streak
+        if (!this.canPrestige()) return; //must have high streak
         // if (Player.upgrades.length != UpgradeData.length) return; //must have all upgrades
 
         this.upgrades = [];
@@ -125,15 +137,43 @@ class PlayerObj {
         this.matchStreak = 0;
         this.gold = 0;
         
-        this.refreshUpgrades();
-        this.saveToLocalStorage();
+        Player.refreshUpgrades();
+        Player.saveToLocalStorage();
 
         ViewHandler.loadStartMenu();
-        ViewHandler.printProfileMenu();
     }
 
     hasUpgrade(upgradeID) {
         return this.upgrades.includes(upgradeID);
+    }
+
+    exportSave() {
+        const data = JSON.stringify(this);
+        const blob = new Blob([data], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'CustomChessSave.json';
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
+    importSave() {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.json';
+        input.onchange = () => {
+            const file = input.files[0];
+            const reader = new FileReader();
+            reader.onload = () => {
+                const data = JSON.parse(reader.result);
+                Object.assign(this, data);
+                this.saveToLocalStorage();
+                location.reload();
+            };
+            reader.readAsText(file);
+        };
+        input.click();
     }
 
     deleteSave() {
@@ -141,5 +181,10 @@ class PlayerObj {
             localStorage.removeItem("CustomChessSave");
             location.reload();
         }
+    }
+
+    toggleSetting(setting, value) {
+        this.settings[setting] = value;
+        this.saveToLocalStorage();
     }
 }

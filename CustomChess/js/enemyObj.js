@@ -115,10 +115,7 @@ class EnemyObj {
         const loadOut = [];
     
         // Calculate the number of kings based on match streak
-        const numberOfKings = 1 + Math.floor(Player.matchStreak / 20);
-        for (let i = 0; i < numberOfKings; i++) {
-            loadOut.push('king');
-        }
+        loadOut.push('king');
     
         // Initialize team size and promoted units
         let teamSize = 8;  // Start with base team size
@@ -128,7 +125,7 @@ class EnemyObj {
         for (let i = 0; i < Player.matchStreak; i++) {
             promotedUnits++;
     
-            if (promotedUnits > (teamSize - numberOfKings)) {
+            if (promotedUnits > (teamSize - 1)) {
                 promotedUnits = Math.floor(promotedUnits / 3);
                 teamSize++;
             }

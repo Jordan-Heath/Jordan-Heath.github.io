@@ -94,7 +94,7 @@ class Match {
             if (!Player.hasUpgrade(remainingUpgrades[i].id)) Player.shopItems.push(remainingUpgrades[i].id);
         }
 
-        ViewHandler.promptEndGameMessage(matchResult, `You earned ${goldEarned} gold - giving you a total of ${Player.gold} gold.`);
+        ViewHandler.promptEndGameMessage(matchResult, goldEarned);
         currentTurn = 0; //pause
         Chessboard.clearHighlights();
         Player.saveToLocalStorage();

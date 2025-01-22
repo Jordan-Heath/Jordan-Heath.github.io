@@ -1,34 +1,32 @@
-@media (prefers-color-scheme: dark) {
-    :root {
-        /* General Colors */
-        --background-color: #222;
-        --text-color: #ffd;
+:root {
+    /* General Colors */
+    --background-color: #222;
+    --text-color: #ffd;
 
-        --button-color: #338588;
-        --button-hover-color: #226d77;
+    --button-color: #338588;
+    --button-hover-color: #226d77;
 
-        --alt-button-color: #55e;
-        --alt-button-hover-color: #55a;
+    --alt-button-color: #55e;
+    --alt-button-hover-color: #55a;
 
-        /* Start Menu Colors */
-        --menu-button-container-color: #555;
-    
-        /* Chessboard Colors */
-        --cell-white: #988;
-        --cell-black: #556;
-        --cell-highlight: #a77;
+    /* Start Menu Colors */
+    --menu-button-container-color: #555;
 
-        /* Piece Colors */
-        --piece-available: #b4c;
-        --piece-selected: #a6a;
-        --piece-highlight: #d88;
+    /* Chessboard Colors */
+    --cell-white: #988;
+    --cell-black: #556;
+    --cell-highlight: #a77;
 
-        /* Other UI Colors */
-        --menu-primary-color: #334;
-        --menu-secondary-color: #447;
-        --menu-tertiary-color: #54b;
+    /* Piece Colors */
+    --piece-available: #b4c;
+    --piece-selected: #a6a;
+    --piece-highlight: #d88;
 
-        --popup-color: #334;
-        --popup-secondary-color: #447;
-    }
+    /* Other UI Colors */
+    --menu-primary-color: #334;
+    --menu-secondary-color: #447;
+    --menu-tertiary-color: #54b;
+
+    --popup-color: #334;
+    --popup-secondary-color: #447;
 }
