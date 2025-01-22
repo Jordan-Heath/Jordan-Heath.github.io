@@ -164,26 +164,44 @@ I created this a while ago to replicate a peculiar mode of speech I was exposed 
 
 ## Incomplete Projects
 
-### [Persona 3 Reload Guide](Persona3ReloadGuide/)
+### [King Sim](KingSim/)
 
-Fairly raw copy of the Persona 5 Guide by for Persona 3.
+PLAYABLE DEMO. A game about choices leading a kingdom.
+
+
+### [DND Auto Battler](DNDAutoBattler/)
+
+PLAYABLE DEMO. A Dungeons and Dragons themed auto battler.
+
+
+### [Top Down RPG](TopDownRPG/)
+
+PLAYABLE DEMO. A top down RPG with a few features.
+
 
 ### [Strategy Map Simulator](StrategyMapSimulator/)
 
 PLAYABLE DEMO. A randomly generated map that simulates a number of nations in a strategy game.
 
 
-### [Kaiju Battle Bracket](KaijuBattleBracket/)
+### [Persona 3 Reload Guide](Persona3ReloadGuide/)
 
-PLAYABLE DEMO. A bracket for a game of Kaiju Battle.
+Fairly raw copy of the Persona 5 Guide by for Persona 3.
 
-### [The Great Hundred Man Fight](TheGreatHundredManFight/)
-
-PLAYABLE DEMO. 100 men enter, 1 leaves. I haven't gotten the motivation to polish it enough for the main page.
 
 ### [Pet Game](PetGame/)
 
 PLAYABLE DEMO. A digimon/tamogotchi clone with my own spin.
+
+
+### [Kaiju Battle Bracket](KaijuBattleBracket/)
+
+PLAYABLE DEMO. A bracket for a game of Kaiju Battle.
+
+
+### [The Great Hundred Man Fight](TheGreatHundredManFight/)
+
+PLAYABLE DEMO. 100 men enter, 1 leaves. I haven't gotten the motivation to polish it enough for the main page.
 
 
 
