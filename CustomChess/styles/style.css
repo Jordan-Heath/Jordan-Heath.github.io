@@ -173,31 +173,41 @@ body {
     flex-direction: column;
     justify-content: space-around;
 
-    #title-white-piece,
-    #title-black-piece {
-        display: inline-block;
-        /* image-rendering: pixelated; */
-        height: 100px;
-        width: 100px;
-
-        &#title-white-piece {
-            animation: whiteHover ease-in-out 1s infinite;
-            background: url('../assets/white/king.png') no-repeat center/contain;
-            rotate: -30deg;
-        }
-
-        &#title-black-piece {
-            animation: blackHover ease-in-out 1s infinite;
-            background: url('../assets/black/king.png') no-repeat center/contain;
-            rotate: 30deg;
-        }
-    }
+    
 
     h1 {
+        position: relative;
         display: inline;
-        font-size: min(100px, 50vw);
+        font-size: min(100px, 10vw);
         text-align: center;
         color: var(--text-color);
+        width: fit-content;
+        text-wrap: nowrap;
+        padding: min(100px, 10vw);
+        margin: auto;
+
+        #title-white-piece,
+        #title-black-piece {
+            display: inline-block;
+            /* image-rendering: pixelated; */
+            height: min(100px, 10vw);
+            width: min(100px, 10vw);
+            position: absolute;
+
+            &#title-white-piece {
+                animation: whiteHover ease-in-out 1s infinite;
+                background: url('../assets/white/king.png') no-repeat center/contain;
+                rotate: -30deg;
+                left: 0;
+            }
+
+            &#title-black-piece {
+                animation: blackHover ease-in-out 1s infinite;
+                background: url('../assets/black/king.png') no-repeat center/contain;
+                rotate: 30deg;
+                right: 0;
+            }
+        }
     }
 
     #menu-button-container {
@@ -208,7 +218,7 @@ body {
 
         padding: 20px;
         gap: 10px;
-        width: 400px;
+        width: fit-content;
         margin: auto;
 
         background-color: var(--menu-button-container-color);
