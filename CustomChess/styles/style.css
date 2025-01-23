@@ -176,7 +176,7 @@ body {
     #title-white-piece,
     #title-black-piece {
         display: inline-block;
-        image-rendering: pixelated;
+        /* image-rendering: pixelated; */
         height: 100px;
         width: 100px;
 
@@ -338,7 +338,7 @@ body {
         img {
             height: 100%;
             width: 100%;
-            image-rendering: pixelated;
+            /* image-rendering: pixelated; */
         }
     }
 
@@ -474,7 +474,7 @@ body {
                     z-index: var(--z-index-piece-middle);
                     background-image: url(../assets/Skull.png);
                     background-size: contain;
-                    image-rendering: pixelated;
+                    /* image-rendering: pixelated; */
                     opacity: 0.3;
                 }
             }
@@ -501,7 +501,7 @@ body {
 
                 background-image: url(../assets/Arrow.png);
                 background-size: 100% 100%;
-                image-rendering: pixelated;
+                /* image-rendering: pixelated; */
                 overflow: visible;
                 opacity: 0.5;
 
@@ -532,7 +532,7 @@ body {
                     width: 95%;
                     height: 95%;
                     object-fit: contain;
-                    image-rendering: pixelated;
+                    /* image-rendering: pixelated; */
                 }
 
                 /* Available pieces get a border and wiggle */
@@ -560,7 +560,7 @@ body {
                     z-index: var(--z-index-piece-upper);
                     background-image: url(../assets/Tear.png);
                     background-size: contain;
-                    image-rendering: pixelated;
+                    /* image-rendering: pixelated; */
 
                     animation: fear linear 1s infinite;
                 }
@@ -603,6 +603,7 @@ body {
         #matchInfo {
             min-width: 130px;
             text-align: left;
+            text-wrap: nowrap;
         }
 
         #turnIndicator {
