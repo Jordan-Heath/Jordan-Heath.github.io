@@ -1,14 +1,27 @@
-function initialise() {
-    renderMonthsContainer();
+function initialize() {
+    const selectDateAudio = new Audio(selectDateSoundSrc);
+    const clickAudio = new Audio(clickSoundSrc);
 
+    document.addEventListener('keydown', (event) => {
+        const action = keyActions[event.code];
+        if (action) {
+            action();
+        }
+    });
+
+    window.addEventListener('resize', resizePage);
+
+    renderMonthsContainer();
     guideSave.loadFromLocalStorage();
 
-    if (guideSave.selectedMonth != '') {
-        selectElement(findButtonByText(monthsContainer, guideSave.selectedMonth), '.month-button')
+    const selectedMonth = guideSave.selectedMonth;
+    if (selectedMonth) {
+        selectElement(findButtonByText(monthsContainer, selectedMonth), '.month-button');
         renderDatesContainer();
 
-        if (guideSave.selectedDate != '') {
-            selectElement(findButtonByText(datesContainer, guideSave.selectedDate), '.date-button')
+        const selectedDate = guideSave.selectedDate;
+        if (selectedDate) {
+            selectElement(findButtonByText(datesContainer, selectedDate), '.date-button');
             renderOutput();
         }
     }
@@ -34,7 +47,7 @@ function renderDatesContainer() {
     Object.keys(walkthroughData[guideSave.selectedMonth]).forEach(fullDate => {
         const [weekday, date] = fullDate.split(' ');
 
-        const buttonText = `<span class='day-of-week'>${weekday}</span> ${date}`
+        const buttonText = `<span class='day-of-week'>${weekday}</span> ${date}`;
         const dateButton = createButton(buttonText, 'date-button', () => dateButtonFunction(guideSave.selectedMonth, fullDate));
         applyDayColor(date, weekday, dateButton);
 
@@ -47,44 +60,38 @@ function renderOutput() {
     const details = walkthroughData[guideSave.selectedMonth][guideSave.selectedDate];
     const [date, weekday] = guideSave.selectedDate.split(' ');
 
-    //headings
     output.appendChild(createElement('h1', date));
     const dateSubHeading = createElement('h2', weekday);
     applyDayColor(date, weekday, dateSubHeading);
     output.appendChild(dateSubHeading);
 
-    //details
     Object.entries(details).forEach(([time, events]) => {
-        output.appendChild(createElement('h3', time))
-        output.appendChild(createElement('div', events))
+        output.appendChild(createElement('h3', time));
+        output.appendChild(createElement('div', events));
     });
 
-    //highlight output
     highlightOutput();
 
-    //progressbar and buttons
     output.appendChild(createProgressBar(guideSave.selectedMonth, guideSave.selectedDate));
     output.appendChild(createButton('Previous Day', 'previous-day-button', () => changeDate(-1)));
     output.appendChild(createButton('Next Day', 'next-day-button', () => changeDate(1)));
 
-    //highlight and display
-    output.style.display = 'block'; // Show output when date details are displayed
+    output.style.display = 'block';
 }
 
 function highlightOutput() {
     if (guideSave.highlightedWordsContent) {
         const words = guideSave.highlightedWordsContent.split('\n').map(word => word.trim());
         const originalText = output.innerHTML;
-    
         let highlightedText = originalText;
-    
+
         words.forEach(word => {
             if (word) {
                 const regex = new RegExp(`(${word})`, 'gi');
                 highlightedText = highlightedText.replace(regex, '<span class="highlight">$1</span>');
             }
         });
-    
+
         output.innerHTML = highlightedText;
     }
 }
@@ -92,17 +99,14 @@ function highlightOutput() {
 function changeDate(offset) {
     playSelectSound(selectDateSoundSrc);
 
-    if (guideSave.selectedMonth == '' || guideSave.selectedDate == '') return;
+    if (!guideSave.selectedMonth || !guideSave.selectedDate) return;
 
-    //determine date
     const { newMonth, newDate } = calculateNewDate(guideSave.selectedMonth, guideSave.selectedDate, offset);
     guideSave.saveDate(newMonth, newDate);
 
-    //select correct month
     selectElement(findButtonByText(monthsContainer, guideSave.selectedMonth), '.month-button');
     renderDatesContainer();
 
-    //select correct date
     selectElement(findButtonByText(datesContainer, guideSave.selectedDate), '.date-button');
     renderOutput();
 
@@ -110,8 +114,7 @@ function changeDate(offset) {
 }
 
 function getFirstDayOfMonth(month) {
-    const firstDate = Object.keys(walkthroughData[month])[0];
-    return firstDate.split(' ')[0];
+    return Object.keys(walkthroughData[month])[0].split(' ')[0];
 }
 
 function calculateNewDate(currentMonth, currentDate, offset) {
@@ -134,41 +137,20 @@ function calculateNewDate(currentMonth, currentDate, offset) {
 }
 
 function calculateTotalDays(walkthroughData, monthNames) {
-    let totalDays = 0;
-    monthNames.forEach(month => {
-        totalDays += Object.keys(walkthroughData[month]).length;
-    });
-    return totalDays;
+    return monthNames.reduce((total, month) => total + Object.keys(walkthroughData[month]).length, 0);
 }
 
 function calculateCurrentDayIndex(walkthroughData, monthNames, currentMonth, currentDate) {
     let currentDayIndex = 0;
-    let foundCurrentDay = false;
     for (const monthName of monthNames) {
-        const dates = Object.keys(walkthroughData[monthName]);
-        for (const day of dates) {
+        for (const day of Object.keys(walkthroughData[monthName])) {
             if (monthName === currentMonth && day === currentDate) {
-                foundCurrentDay = true;
-                break;
+                return currentDayIndex;
             }
             currentDayIndex++;
-        }
-        if (foundCurrentDay) {
-            break;
         }
     }
     return currentDayIndex;
 }
 
-//hotkey handler
-document.addEventListener('keydown', (event) => {
-    const action = keyActions[event.code];
-    if (action) {
-        action();
-    }
-});
-
-//change nav behaviour on screen resize
-window.addEventListener('resize', resizePage)
-
-initialise();
+document.addEventListener('DOMContentLoaded', () => initialize());

@@ -21,10 +21,8 @@ const credits = `
 
     <h2>Assets</h2>
     <ul>
-        <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2948225096&insideModal=0">Background source</a></li>
-        <li><a href="https://www.sounds-resource.com/playstation_3/persona5/sound/30366/">Knife Sound source</a></li>
-        <li><a href="https://www.spriters-resource.com/playstation_3/persona5/sheet/92802/">Knife Image source</a></li>
         <li><a href="https://megatenwiki.com/wiki/Persona_3_Reload">Web Icon</a></li>
+        <li><a href="https://www.youtube.com/watch?v=QjDwTf-i2TQ">Select Sounds</a></li>
     </ul>
 `;
 
