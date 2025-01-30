@@ -58,12 +58,15 @@ function renderDatesContainer() {
 function renderOutput() {
     output.innerHTML = '';
     const details = walkthroughData[guideSave.selectedMonth][guideSave.selectedDate];
-    const [date, weekday] = guideSave.selectedDate.split(' ');
+    const [weekday, date] = guideSave.selectedDate.split(' ');
 
-    output.appendChild(createElement('h1', date));
+    const dateHeading = createElement('div', '', 'date-heading');
+    output.appendChild(dateHeading);
+
+    dateHeading.appendChild(createElement('h1', date));
     const dateSubHeading = createElement('h2', weekday);
     applyDayColor(date, weekday, dateSubHeading);
-    output.appendChild(dateSubHeading);
+    dateHeading.appendChild(dateSubHeading);
 
     Object.entries(details).forEach(([time, events]) => {
         output.appendChild(createElement('h3', time));

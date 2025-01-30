@@ -230,17 +230,16 @@ main {
     color: var(--font-color);
     border-radius: 5px;
 
-    h1 {
+    .date-heading {
         z-index: 5;
-        height: 30px;
+        height: 40px;
         width: 120px;
         text-align: center;
-    }
+        left: 0;
 
-    h2 {
-        z-index: 5;
-        width: 120px;
-        text-align: center;
+        h1, h2 {
+            display: inline-block;
+        }
     }
 
     h3 {

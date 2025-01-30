@@ -10,7 +10,7 @@ function playSelectSound(soundeffect) {
 function createElement(tag, html, className) {
     const element = document.createElement(tag);
     element.innerHTML = html;
-    element.className = className;
+    if (className) element.className = className;
     return element;
 }
 
