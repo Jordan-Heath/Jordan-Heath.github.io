@@ -110,6 +110,69 @@ const data = {
                 }
             ],
             isCustom: false
+        },
+        { // Quiz 2: Effective Verbal & Non-verbal Communication
+            "name": "Quiz 2: Effective Verbal & Non-verbal Communication​",
+            "author": "Jordan Heath",
+            "description": "Revision Quiz for BSBCMM211 Apply communication skils - session 2",
+            "difficulty": "Easy",
+            "duration": "Unlimited",
+            "correctAnswersRequired": "3",
+            "questions": [
+                {
+                    "question": "What is the most important factor to consider when planning verbal communication?",
+                    "type": "single choice",
+                    "correctAnswer": [
+                        "Identifying the purpose and audience"
+                    ],
+                    "answers": [
+                        "Speaking loudly",
+                        "Identifying the purpose and audience",
+                        "Using complex words",
+                        "Avoiding eye contact"
+                    ]
+                },
+                {
+                    "question": "Which of the following is an example of effective non-verbal communication?",
+                    "type": "single choice",
+                    "correctAnswer": [
+                        "Using an open posture and nodding"
+                    ],
+                    "answers": [
+                        "Crossing your arms while speaking",
+                        "Avoiding eye contact",
+                        "Using an open posture and nodding",
+                        "Speaking very fast"
+                    ]
+                },
+                {
+                    "question": "Which of these is the best way to ask for useful feedback on your communication?",
+                    "type": "single choice",
+                    "correctAnswer": [
+                        "“Was there anything unclear in what I said?”"
+                    ],
+                    "answers": [
+                        "“Was there anything unclear in what I said?”",
+                        "“You understood me, right?”",
+                        "“I don’t need feedback.”",
+                        "“Did you like my voice?”"
+                    ]
+                },
+                {
+                    "question": "What is a key part of active listening?",
+                    "type": "single choice",
+                    "correctAnswer": [
+                        "Nodding and summarizing key points"
+                    ],
+                    "answers": [
+                        "Interrupting to share your opinion",
+                        "Nodding and summarizing key points",
+                        "Checking your phone while listening",
+                        "Planning what to say next while the person is speaking"
+                    ]
+                }
+            ],
+            "isCustom": false
         }
     ]
 };
