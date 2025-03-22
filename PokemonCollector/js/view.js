@@ -322,7 +322,6 @@ function updateMonsterCollection(monsterData = null) {
 //#endregion Collection
 
 //#region Upgrades
-
 function renderUpgrades() {
     const upgradesContainer = document.querySelector('.upgrades');
     const ownedUpgradesContainer = document.querySelector('.owned-upgrades');

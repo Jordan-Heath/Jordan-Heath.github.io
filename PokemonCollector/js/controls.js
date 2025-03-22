@@ -211,7 +211,7 @@ function saveGame() {
 
 function deleteSave() {
     if (confirm('Are you sure you want to delete your save?')) {
-        localStorage.removeItem('save');
+        localStorage.removeItem('PokemonCollectorSave');
         location.reload();
     }
 }
