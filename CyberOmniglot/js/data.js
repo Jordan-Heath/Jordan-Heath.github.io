@@ -11,18 +11,19 @@ const data = {
                             +"Things are going to take some time to get used to. "
                             +"Right now lets start with the big reveal: the date. ",
                 "Translator": "That's right, a translator. Without it theres no chance you'd be able to understand me right now. "
-                            + "I'm glad it works. I found it in an old junk drawer. "
+                            + "I'm glad it works. I picked it up a few years ago, and it has been sitting in an old junk drawer since. "
                             + "I'm afraid that the translator is going to be your only way to interface with anything for the time being.",
                 "The date": "The year is 2249 in the gregorian calendar. Specifically the date is October 2nd. "
                             +"You've been frozen in ice for at least 200 years. "
                             +"Bet you didnt think that was possible, eh? We pumped you full of <a>Goop</a>. ",
                 "Vocabulary": "You know like <a>Goop</a>, <a>Redvine</a>, <a>Octopastry</a>, or <a>Torpedont</a>. " 
                             + "You should be able to adjust your translator to understand these words. "
-                            + "You'll want to open the Dictionary, give the words a name, and define them. "
+                            + "You'll want to open the Dictionary, give the words a meaningful name, and instruct the translator of the meaning of the words. "
                             + "I'm sure that sounds like a lot of nonsense, but you'll get there. ",
                 "<a>Goop</a>": "Oh, I suspect your translator doesn't work on words you had no equivalent for. "
                             +"<a>Goop</a> is just the substance we pumped you with that saved your life. "
-                            +"It unfreezes people, but we haven't worked out how to preserve sight or hearing - hence why you're limited to the translator interface. "
+                            +"It's a liquid nutrient that we use to unfreeze people. It's a wonderful thing, but it does have a few downsides. "
+                            +"We haven't worked out how to preserve sight or hearing - hence why you're limited to the translator interface. "
                             +"You should try and learn the new vocabulary by talking to the rest of the crew. ",
                 "<a>Redvine</a>": "<a>Redvine</a> is a red plant found on the planet Mars. Its name came from a local dialect of Martian. "
                             +"It reeks to high heaven and is forbidden on this ship. " 
@@ -46,6 +47,13 @@ const data = {
                             +"I can't go a few hours, let alone 200 years without her lovely <a>Octopastry</a>.",
                 "Eating": "Oh right, I think I'll just have to hook you up with an intravenous <a>Goop</a> supply for your nutritional needs. "
                             +"Maybe if we can get you a new synthetic tongue you can start eating food again. ",
+                "Sight": "You're currently wired into a translator which presents you with a text interface. "
+                            +"If it is working correctly, you should be able to see what I am saying on something like a screen. "
+                            +"This is a lot more interesting that relying on your regular sight, as your eyesballs were melted in the thawing process. "
+                            +"Something with the <a>Goop</a> just does not agree with the eyes. ",
+                "Hearing": "Your inner ear was liquified in the thawing process meaning you can no longer naturally hear, but that shouldn't be a problem. "
+                            +"The translator you are wired into also wires into your temporal lobe enabling you to 'hear' a synthesized voice. "
+                            +"If this voice unnerves you, you can disable it in the configuration menu. ",
             }
         },
 
