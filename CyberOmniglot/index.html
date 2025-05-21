@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cyber OmniGlot</title>
+    <link rel="stylesheet" href="css/style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ancizar+Serif:ital,wght@0,300..900;1,300..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Rubik+Iso&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="background1"></div>
+    <div id="background2"></div>
+
+    <header>
+        <h1>Cyber OmniGlot</h1>
+
+        <nav>
+            <button id="crewmates-button" onclick="openMain('crewmates')" class="nav-button selected">Crewmates</button>
+            <button id="dictionary-button" onclick="openMain('dictionary')" class="nav-button">Dictionary</button>
+            <button id="configuration-button" onclick="openMain('configuration')" class="nav-button">Configuration</button>
+        </nav>
+    </header>
+
+    <main id="crewmates" style="display: none;">
+
+        <div class="npc-selector"></div>
+
+        <div class="window">
+            <div id="npc-details">
+                <div class="npc-details-column">
+                    <img id="npc-portrait">
+                </div>
+                <div class="npc-details-column">
+                    <div id="npc-name">[Name of NPC]</div>
+                    <!-- <div id="npc-job">[Job of NPC]</div> -->
+                </div>
+            </div>
+
+            <div class="content" style="flex-direction: row;">
+
+                <div id="responses">
+                    <!-- Responses will be inserted here -->
+                </div>
+
+                <div id="topics">
+                    <!-- Topics will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <main id="dictionary" style="display: none;">
+
+        <div class="window">
+
+            <div class="content" style="flex-direction: column;">
+                <!-- Dictionary terms will be inserted here -->
+            </div>
+        </div>
+    </main>
+
+    <main id="configuration" style="display: none;">
+        
+        <div class="window">
+            <div class="content" style="flex-direction: column;">
+                <div class="configuration-item">
+                    <label for="text-to-speech-setting">Text to speech:</label>
+                    <input id="text-to-speech-setting" type="checkbox" onclick="save.settings.textToSpeech = this.checked">
+                </div>
+                <div class="configuration-item">
+                    <button onclick="save.clearLocalStorage();">Reset Game</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/data.js"></script>
+    <script src="js/save.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,276 @@
+body {
+    background-color: #1c1c1c;
+    font-family: "Ancizar Serif", serif;
+    font-size: 1.2rem;
+    color: #fcebb2;
+    margin: 0;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: fade-in 3s linear;
+
+
+    button {
+        background-color: #c2b280;
+        color: #1c1c1c;
+        border: none;
+        padding: 0.5rem 1rem;
+        margin: 0.5rem;
+        cursor: pointer;
+
+        &.selected {
+            background-color: #f0e1b3;
+        }
+    }
+
+    a {
+        /* a is used for an alien language, it needs to be malformed */
+        font-family: "wingdings", monospace;
+        display: inline-block;
+        animation: malform 400ms infinite;
+    }
+
+    b {
+        display: inline-block;
+        text-decoration: underline;
+        animation: malform 400ms infinite;
+    }
+
+    input [type="text"] {
+        background-color: #c2b280;
+        color: #1c1c1c;
+        border: none;
+        padding: 0.5rem 1rem;
+        margin: 0.5rem;
+    }
+
+    #background1 {
+        /* stretch over the whole screen, but sit behind header and main */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+
+        /* strobe in and out of view */
+        animation: fadeinfadeout 2s infinite;
+
+        background-image: url("../images/stars.png");
+    }
+
+    #background2 {
+        /* stretch over the whole screen, but sit behind header and main */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+
+        /* strobe in and out of view */
+        animation: fadeinfadeout 3s infinite;
+
+        /* be rotated 180 degrees */
+        transform: rotate(180deg);
+
+        background-image: url("../images/stars.png");
+    }
+}
+
+
+@keyframes fadeinfadeout {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.25;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes flicker {
+    0% {
+        opacity: 1;
+    }
+
+    25% {
+        opacity: 0.95;
+    }
+
+    49% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.9;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes malform {
+    0% {
+        transform: skewX(0deg) translateY(0px);
+    }
+
+    20% {
+        transform: skewX(-10deg) translateY(1px);
+    }
+
+    40% {
+        transform: skewX(10deg) translateY(-1px);
+    }
+
+    60% {
+        transform: skewX(0deg) translateY(1px);
+    }
+
+    80% {
+        transform: skewX(0deg) translateY(0px);
+    }
+
+    100% {
+        transform: skewX(0deg) translateY(0px);
+    }
+}
+
+header {
+    text-align: center;
+    margin-bottom: 1rem;
+
+    h1 {
+        margin: 0;
+    }
+}
+
+main {
+    width: 100%;
+
+    .npc-selector {
+        text-align: center;
+        max-width: 1000px;
+        margin: auto;
+        margin-bottom: 10px;
+    }
+    
+
+    .window {
+        background-color: #2e2e2e;
+        border: 3px ridge #c2b280;
+        max-width: 1000px;
+        /* padding: 10px; */
+        margin: auto;
+        /* animation: flicker 1s infinite; */
+
+        #npc-details {
+            display: flex;
+            flex-direction: row;
+            border-bottom: 2px solid #c2b280;
+
+            .npc-details-column {
+                display: inline-block;
+                width: fit-content;
+
+                #npc-portrait {
+                    width: 100px;
+                    height: 100px;
+                    object-fit: cover;
+                    margin-right: 10px;
+                    image-rendering: pixelated;
+                    padding-right: 10px;
+                    border-right: 2px solid #c2b280;
+                }
+
+                #npc-name {
+                    font-size: 1.5em;
+                    margin-bottom: 10px;
+                    padding-bottom: 5px;
+                }
+            }
+        }
+
+        .content {
+            display: flex;
+            flex-direction: row;
+            height: 600px;
+            overflow: scroll;
+
+            .dictionary-term,
+            .configuration-item {
+                border-bottom: 3px ridge #c2b280;
+                padding: 10px;
+                margin: 10px;
+
+                h3 {
+                    display: inline;
+                }
+            }
+
+            #responses {
+                width: 70%;
+                padding-right: 10px;
+                overflow-y: auto;
+                line-height: 1.5em;
+
+                .response {
+                    padding-left: 10px;
+                    margin-bottom: 10px;
+                    text-align: justify;
+                }
+            }
+
+            #topics {
+                width: 30%;
+                min-width: 150px;
+                border-left: 2px solid #c2b280;
+                overflow-y: auto;
+                padding-left: 10px;
+
+                .topic {
+                    padding: 5px;
+                    cursor: pointer;
+                }
+
+                .topic:hover {
+                    color: #c2b280;
+                    background-color: #3f3f3f;
+                }
+            }
+        }
+    }
+}
+
+.new-topic {
+    background-color: #c2b280;
+    color: #1c1c1c;
+    cursor: pointer;
+}
+
+.highlight {
+    background-color: #c2b280;
+    color: #1c1c1c;
+    cursor: pointer;
+}
+
+.subtle-highlight {
+    background-color: #3f3f3f;
+    cursor: pointer;
+}
