@@ -29,8 +29,8 @@ function openMain(mainname = "crewmates") {
         case "dictionary":
             renderDictionary();
             break;
-        case "settings":
-            renderSettings();
+        case "configuration":
+            renderConfiguration();
             break;
         default:
             break;
@@ -287,13 +287,13 @@ function renderDictionary() {
 
 //#endregion Dictionary
 
-// #region Settings
-// Populate settings
-function renderSettings() {
+// #region Configuration
+// Populate Configuration
+function renderConfiguration() {
     document.getElementById("text-to-speech-setting").checked = save.settings.textToSpeech;
 }
 
-// #endregion Settings
+// #endregion Configuration
 
 // load the page
 document.addEventListener("DOMContentLoaded", () => {
