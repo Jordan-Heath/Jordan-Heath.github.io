@@ -83,7 +83,7 @@ function selectNPC(npcName = "Professor Quill") {
     save.setSelectedNPC(npcName);
 
     // Print NPC portrait
-    document.getElementById("npc-portrait").src = `images/${npcName}.png`;
+    document.getElementById("npc-portrait").src = `images/${npcName.toLowerCase()}.png`;
     document.getElementById("npc-portrait").alt = npcName;
 
     // Print NPC name - If the NPC is not unlocked, show ??? as the name
