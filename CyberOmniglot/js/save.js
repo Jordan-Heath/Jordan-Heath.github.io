@@ -37,7 +37,7 @@ class Save {
     }
     clearLocalStorage() {
         // ask the user via an alert if they want to clear the local storage
-        if (confirm("Are you sure you want to clear the local storage? This will reset your progress.")) {
+        if (confirm("Are you sure you want to delete your saved data? This cannot be undone.")) {
             localStorage.removeItem("save");
             location.reload();
         }
@@ -47,14 +47,21 @@ class Save {
     setOpenedMain(main) { this.openedMain = main; this.saveToLocalStorage(); }
 
 
-    setSelectedNPC(npcName) { this.selectedNPC = npcName; this.saveToLocalStorage(); }
-    getSelectedNPC() { return data.npcs[this.selectedNPC]; }
+    setSelectedNPC(npcName) { this.selectedNPC = npcName; this.saveToLocalStorage(); return this.getSelectedNpc(); }
+    getSelectedNpc() { return data.npcs[this.selectedNPC]; }
 
 
     addTopic(topic) {
         if (!this.hasTopic(topic)) {
             this.unlockedTopics.push(topic);
             this.saveToLocalStorage();
+
+            // if the topic is a dictionary entry, add it to the dictionary
+            const dictionaryEntry = data.dictionary[topic];
+            if (dictionaryEntry) {
+                this.addDictionaryEntry(topic);
+            }
+
             return true;
         }
         return false;
@@ -62,55 +69,53 @@ class Save {
     hasTopic(topic) { return this.unlockedTopics.includes(topic); }
 
 
-    addAskedQuestion(npc, question) {
-        if (this.askedQuestions[npc]) {
-            if (!this.askedQuestions[npc].includes(question)) {
-                this.askedQuestions[npc].push(question);
-                this.saveToLocalStorage();
-                return true;
-            }
-        } else {
-            this.askedQuestions[npc] = [question];
+    addAskedQuestion(npcName, questionText) {
+        if (!this.askedQuestions[npcName]) {
+            this.askedQuestions[npcName] = [];
         }
+        
+        if (!this.askedQuestions[npcName].includes(questionText)) {
+            this.askedQuestions[npcName].push(questionText);
+            this.saveToLocalStorage();
+            return true;
+        }
+        
         return false;
     }
-    hasAskedQuestion(npc, question) {
-        if (this.askedQuestions[npc]) {
-            return this.askedQuestions[npc].includes(question);
-        } else {
-            return false;
-        }
+    hasAskedQuestion(npcName, questionText) {
+        return this.askedQuestions[npcName]?.includes(questionText) ?? false;
     }
 
 
-    parseByDictionary(text) {
-        if (this.dictionary[text] && this.dictionary[text].term != null) {
-            // if the term is not empty, return the term
-            return `<b>${this.dictionary[text].term}</b>`;
-        } else {
-            return text;
+    parseTextByDictionary(text) {
+        const dictionaryEntry = this.dictionary[text];
+
+        if (dictionaryEntry && dictionaryEntry.term) {
+            return `<b>${dictionaryEntry.term}</b>`;
         }
+
+        return text;
     }
-    addtoDictionary(alienName, translation = null, definition = null) {
-        // if translation is null, set it to the alienName
-        if (this.dictionary[alienName] == undefined) {
-            // add to dictionary
+    addDictionaryEntry(alienName, term = null, definition = null) {
+        const existingEntry = this.dictionary[alienName];
+
+        if (existingEntry) {
+            if (term !== null && term !== "") {
+                existingEntry.term = term;
+            }
+
+            if (definition !== null && definition !== "") {
+                existingEntry.definition = definition;
+            }
+        } else {
             this.dictionary[alienName] = {
-                term: translation,
-                definition: definition,
+                "term": term,
+                "definition": definition,
+                locked: false,
             };
-        } else {
-            if ((translation == null || translation == "") && this.dictionary[alienName].term != null)
-                translation = this.dictionary[alienName].term;
-            if (definition == null && this.dictionary[alienName].definition != null)
-                definition = this.dictionary[alienName].definition;
-
-            // update dictionary
-            // if translation or definition is empty, keep the old one
-            this.dictionary[alienName].term = translation;
-            this.dictionary[alienName].definition = definition;
         }
 
+        updateDictionaryProgressBar();
         this.saveToLocalStorage();
     }
 }

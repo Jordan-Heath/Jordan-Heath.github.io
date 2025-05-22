@@ -1,28 +1,28 @@
-// open main
-function openMain(mainname = "crewmates") {
-    save.setOpenedMain(mainname);
+// Open a main element
+function openMain(mainName = "crewmates") {
+    save.setOpenedMain(mainName);
 
-    // stop any speaking
+    // Stop any speaking
     stopSpeaking();
 
-    // hide all mains, show the selected one
-    const main = document.querySelector(`#${mainname}`);
-    const mains = document.querySelectorAll("main");
-    mains.forEach(main => {
-        main.style.display = "none";
+    // Hide all main elements, show the selected one
+    const mainElements = document.querySelectorAll("main");
+    mainElements.forEach(mainElement => {
+        mainElement.style.display = "none";
     });
-    main.style.display = "block";
+    const mainElement = document.querySelector(`#${mainName}`);
+    mainElement.style.display = "block";
 
-    // remove selected class from all buttons, then add it to the selected one
+    // Remove selected class from all nav buttons, then add it to the selected one
     const navButtons = document.querySelectorAll(".nav-button");
-    navButtons.forEach(button => {
-        button.classList.remove("selected");
+    navButtons.forEach(navButton => {
+        navButton.classList.remove("selected");
     });
-    const mainButton = document.querySelector(`#${mainname}-button`);
-    mainButton.classList.add("selected");
+    const navButton = document.querySelector(`#${mainName}-button`);
+    navButton.classList.add("selected");
 
-    // trigger the render function for the selected main
-    switch (mainname) {
+    // Trigger the render function for the selected main
+    switch (mainName) {
         case "crewmates":
             renderCrewmates();
             break;
@@ -42,37 +42,37 @@ function openMain(mainname = "crewmates") {
 // render crewmates
 function renderCrewmates() {
     populateNPCSelector();
-    selectNPC(save.getSelectedNPC().name);
+    selectNPC(save.getSelectedNpc().name);
 }
 
-// build npc selector from data
+// Populate NPC selector
 function populateNPCSelector() {
-    const npcSelector = document.querySelector(".npc-selector");
-    npcSelector.innerHTML = ""; // Clear existing NPC buttons
+    const selector = document.querySelector(".npc-selector");
+    selector.innerHTML = "<p id='npc-selector-title'>Select Crewmate</p>"; // Clear existing NPC buttons
 
-    // If professor quill hasn't been unlocked, show Professor Quill as ???
-    if (!save.hasTopic("Professor Quill")) {
-        const npcButton = document.createElement("button");
-        npcButton.innerHTML = "???";
-        npcButton.classList.add("npc-button");
-        npcButton.setAttribute("data-npc", "Professor Quill");
-        npcButton.addEventListener("click", () => selectNPC("Professor Quill"));
-        npcSelector.appendChild(npcButton);
+    function createButton(npcName) {
+        const button = document.createElement("button");
+        button.textContent = npcName;
+        button.dataset.npc = npcName;
+        button.classList.add("npc-button");
+        button.addEventListener("click", () => selectNPC(npcName));
+        return button;
     }
 
+    // If Professor Quill hasn't been unlocked, show Professor Quill as ???
+    if (!save.hasTopic("Professor Quill")) {
+        selector.appendChild(createButton("???"));
+    }
+
+    // Create a button for each NPC
     Object.keys(data.npcs).forEach(npcName => {
         if (save.hasTopic(npcName)) {
-            const npcButton = document.createElement("button");
-            npcButton.innerHTML = npcName;
-            npcButton.classList.add("npc-button");
-            npcButton.setAttribute("data-npc", npcName);
-            npcButton.addEventListener("click", () => selectNPC(npcName));
-            npcSelector.appendChild(npcButton);
+            selector.appendChild(createButton(npcName));
         }
     });
 
-    // highlight the button of the selected NPC
-    const selectedButton = document.querySelector(`.npc-button[data-npc="${save.getSelectedNPC().name}"]`);
+    // Highlight the button of the selected NPC
+    const selectedButton = selector.querySelector(`.npc-button[data-npc="${save.selectedNPC}"]`);
     if (selectedButton) {
         selectedButton.classList.add("selected");
     }
@@ -80,52 +80,61 @@ function populateNPCSelector() {
 
 // Select NPC
 function selectNPC(npcName = "Professor Quill") {
-    save.setSelectedNPC(npcName);
+    const selectedNpc = save.setSelectedNPC(npcName);
+    stopSpeaking();
 
-    // Print NPC portrait
-    document.getElementById("npc-portrait").src = `images/${npcName.toLowerCase()}.png`;
-    document.getElementById("npc-portrait").alt = npcName;
+    // Set NPC portrait
+    const npcPortrait = document.getElementById("npc-portrait");
+    npcPortrait.src = `images/${npcName.toLowerCase()}.png`;
+    npcPortrait.alt = npcName;
 
-    // Print NPC name - If the NPC is not unlocked, show ??? as the name
-    document.getElementById("npc-name").innerHTML = save.hasTopic(npcName) ? save.getSelectedNPC().name : "???";
+    // Set NPC name
+    const npcNameElement = document.getElementById("npc-name");
+    npcNameElement.innerHTML = save.hasTopic(npcName) ? selectedNpc.name : "???";
+
+    // Set NPC role
+    const npcRoleElement = document.getElementById("npc-role");
+    npcRoleElement.innerHTML = save.hasTopic(npcName) ? selectedNpc.role : "???";
+
+    // Update progress bar
+    updateNpcProgressBar();
 
     // Clear responses box
-    document.getElementById("responses").innerHTML = "[Click a topic to talk.]";
+    const responsesElement = document.getElementById("responses");
+    responsesElement.innerHTML = "[Click a topic to talk.]";
 
-    // update the npc selector buttons
+    // Highlight selected NPC button
     const npcButtons = document.querySelectorAll(".npc-button");
-    npcButtons.forEach(npcButton => {
-        npcButton.classList.remove("selected");
+    npcButtons.forEach(button => {
+        button.classList.remove("selected");
     });
     const selectedButton = document.querySelector(`.npc-button[data-npc="${npcName}"]`);
-    selectedButton.classList.add("selected");
+    if (selectedButton) selectedButton.classList.add("selected");
 
-    // update the topics box
+    // Update topics box
     populateTopics();
 }
 
 // Speak
-function speak(text, voiceName = null, pitch = 1, rate = 1.2) {
-    // any words with <a> tags should be replaced with "error" text
-    text = text.replace(/<a[^>]*>(.*?)<\/a>/g, "error");
+function speak(textToSpeak, voiceName = null, pitch = 1, rate = 1.2) {
+    // clean up text by removing any words with <a> tags and any text within <> or [] brackets
+    let cleanText = textToSpeak.replace(/<a[^>]*>(.*?)<\/a>/g, "error");
+    cleanText = cleanText.replace(/<[^>]*>/g, "");
+    cleanText = cleanText.replace(/\[[^\]]*\]/g, "");
 
-    // remove any text within <> brackets
-    text = text.replace(/<[^>]*>/g, "");
-    // remove any text within [] brackets
-    text = text.replace(/\[[^\]]*\]/g, "");
+    const utterance = new SpeechSynthesisUtterance(cleanText);
 
-    const u = new SpeechSynthesisUtterance(text);
     if (voiceName) {
-        const match = speechSynthesis.getVoices().find(v => v.name === voiceName);
-        if (match) {
-            u.voice = match;
-            u.pitch = pitch;
-            u.rate = rate;
+        const voiceMatch = speechSynthesis.getVoices().find(voice => voice.name === voiceName);
+        if (voiceMatch) {
+            utterance.voice = voiceMatch;
+            utterance.pitch = pitch;
+            utterance.rate = rate;
         }
     }
 
     stopSpeaking();
-    speechSynthesis.speak(u);
+    speechSynthesis.speak(utterance);
 }
 
 // Stop speaking
@@ -134,16 +143,17 @@ function stopSpeaking() {
 }
 
 // Select topic
-function selectTopic(topic) {
+function selectTopic(topicName) {
     const responseContainer = document.getElementById("responses");
     const npcNameElement = document.getElementById("npc-name");
 
-    const selectedNPC = save.getSelectedNPC();
-    const response = selectedNPC.topics[topic];
+    const selectedNpc = save.getSelectedNpc();
+    const response = selectedNpc.topics[topicName];
 
     // Add topic to asked topics
-    if (save.addAskedQuestion(selectedNPC.name, topic)) {
+    if (save.addAskedQuestion(selectedNpc.name, topicName)) {
         populateTopics();
+        updateNpcProgressBar();
     }
 
     // Add any new topics mentioned in the response to unlocked topics
@@ -154,7 +164,7 @@ function selectTopic(topic) {
 
                 // if the topic is also the name of an NPC, update npc name and run populateNPCSelector
                 if (data.npcs[topicKey] !== undefined) {
-                    npcNameElement.innerHTML = selectedNPC.name;
+                    npcNameElement.innerHTML = selectedNpc.name;
                     populateNPCSelector();
                 }
             }
@@ -163,10 +173,10 @@ function selectTopic(topic) {
 
     // Highlight any topics found in the response by splitting
     let highlightedResponse = response;
-    Object.keys(selectedNPC.topics).forEach(topic => {
+    Object.keys(selectedNpc.topics).forEach(topic => {
         const regex = new RegExp(`(${topic})`, 'gi');
         highlightedResponse = highlightedResponse.split(regex).map(part => {
-            const matchedTextParsed = save.parseByDictionary(part);
+            const matchedTextParsed = save.parseTextByDictionary(part);
             return part.toLowerCase() === topic.toLowerCase()
                 ? `<span class='highlight' onclick='selectTopic("${part.charAt(0).toUpperCase() + part.slice(1)}")'>${matchedTextParsed}</span>`
                 : part;
@@ -177,7 +187,7 @@ function selectTopic(topic) {
     responseContainer.insertAdjacentHTML(
         "beforeend",
         `
-            <h3>${save.parseByDictionary(topic)}</h3>
+            <h3>${save.parseTextByDictionary(topicName)}</h3>
             <div class='response'>
                 ${highlightedResponse}
             </div>
@@ -186,7 +196,7 @@ function selectTopic(topic) {
 
     // Speak the response
     if (save.settings['textToSpeech'])
-        speak(highlightedResponse, selectedNPC.voice, selectedNPC.pitch, selectedNPC.rate);
+        speak(highlightedResponse, selectedNpc.voice, selectedNpc.pitch, selectedNpc.rate);
 
     // Scroll to the bottom of the response
     responseContainer.scrollTop = responseContainer.scrollHeight;
@@ -195,40 +205,54 @@ function selectTopic(topic) {
 // Populate topics
 function populateTopics() {
     const topicsContainer = document.getElementById("topics");
-    const selectedNPC = save.getSelectedNPC();
+    const selectedNpc = save.getSelectedNpc();
 
     // Clear topics container
     topicsContainer.innerHTML = "";
 
     // Loop over topics
-    for (const rawTopicName in selectedNPC.topics) {
+    for (const topicName in selectedNpc.topics) {
         // Only show unlocked topics
-        if (!save.hasTopic(rawTopicName)) continue;
+        if (!save.hasTopic(topicName)) continue;
 
-        // if the topic is in save.dictionary, replace it with the dictionary value
-        const parsedTopicName = save.parseByDictionary(rawTopicName);
+        // Replace topic name with dictionary value if available
+        const parsedTopicName = save.parseTextByDictionary(topicName);
 
         // Create topic element
         const topicElement = document.createElement("div");
         topicElement.innerHTML = parsedTopicName;
         topicElement.classList.add("topic");
 
-        // Highlight topics that have NOT been asked
-        if (save.askedQuestions[selectedNPC.name] === undefined) {
-            save.askedQuestions[selectedNPC.name] = [];
+        // Highlight topics that have not been asked
+        if (!save.askedQuestions[selectedNpc.name]) {
+            save.askedQuestions[selectedNpc.name] = [];
         }
-        if (!save.hasAskedQuestion(selectedNPC.name, rawTopicName)) {
+        if (!save.hasAskedQuestion(selectedNpc.name, topicName)) {
             topicElement.classList.add("highlight");
         }
 
         // Add "Select Topic" click event
         topicElement.addEventListener("click", () => {
-            selectTopic(rawTopicName);
+            selectTopic(topicName);
         });
 
         // Add topic to topics container
         topicsContainer.appendChild(topicElement);
     }
+}
+
+// Update Progress Bar
+function updateNpcProgressBar() {
+    const NpcProgressContainer = document.getElementById("npc-progress-container");
+
+    // progress is how many of the topics the selected NPC has been asked, out of the total number of topics they have available
+    const selectedNpc = save.getSelectedNpc();
+    const totalTopics = Object.keys(selectedNpc.topics).length;
+    const askedTopics = Object.keys(save.askedQuestions[selectedNpc.name] || {}).length;
+    const progress = (askedTopics / totalTopics) * 100;
+
+    document.getElementById("npc-progress-bar-fill").style.width = `${progress}%`;
+    document.getElementById("npc-progress-bar-text").innerHTML = `${askedTopics} of ${totalTopics} questions asked`;
 }
 
 //#endregion Crewmates
@@ -237,58 +261,109 @@ function populateTopics() {
 
 // Populate dictionary
 function renderDictionary() {
-    const dictionaryContent = document.querySelector("#dictionary .window .content");
-    dictionaryContent.innerHTML = `<p>Words the translator cannot translate will appear here. From the dictionary you can: </p>
-                                    <ol>
-                                        <li>Give a new name for the word. This will help you recognise it later. </li>
-                                        <li>Determine the meaning for the word from a list of gathered definitions. </li>
-                                    </ol>
-                                    `;
+    updateDictionaryProgressBar();
 
-    // build a select element which containts all the dictionary.definitions
+    const dictionaryTerms = document.getElementById("dictionary-terms");
+    dictionaryTerms.innerHTML = ""; // Clear existing dictionary entries
+
+    // Build a select element which contains all the dictionary definitions
     const selectElement = document.createElement("select");
     selectElement.appendChild(document.createElement("option"));
-    data.dictionary.forEach(unknownWord => {
-        const optionElement = document.createElement("option");
-        optionElement.value = unknownWord.definition;
-        optionElement.innerHTML = unknownWord.definition;
-        selectElement.appendChild(optionElement);
-    });
+    Object.values(data.dictionary).forEach(dictionaryWord => {
 
-    // add all known "unknown word"s to the dictionary
-    data.dictionary.forEach(unknownWord => {
-        if (save.hasTopic(unknownWord.term)) {
-            const savedDictionaryName = save.dictionary[unknownWord.term]?.term || "";
-
-            // create the term element
-            const termElement = document.createElement("div");
-            termElement.classList.add("dictionary-term");
-            dictionaryContent.appendChild(termElement);
-
-            // term and assigned name - assign the save.dictionary
-            termElement.innerHTML = `<strong>${unknownWord.term}</strong>: 
-                                    <input type="text" 
-                                        value="${savedDictionaryName}" 
-                                        data-term="${unknownWord.term}" 
-                                        placeholder="Enter a name" 
-                                        onkeyup="save.addtoDictionary(this.dataset.term, this.value, null)"/> 
-                                    <!-- <button class="rename-button" onclick="save.addtoDictionary('${unknownWord.term}', this.parentNode.querySelector('input').value, null)">Rename</button> -->
-                                    <br />`;
-
-            // meaning and select element
-            termElement.innerHTML += `<label>Meaning:</label><select>${selectElement.innerHTML}</select>`;
-            const newSelectElement = termElement.querySelector("select");
-            newSelectElement.value = save.dictionary[unknownWord.term]?.definition;
-            newSelectElement.addEventListener("change", (e) => {
-                save.addtoDictionary(unknownWord.term, null, e.target.value);
-            });
+        // if the word is not in the dictionary or the word is not locked
+        if (!save.dictionary[dictionaryWord.term] || !save.dictionary[dictionaryWord.term].locked) {
+            const optionElement = document.createElement("option");
+            optionElement.value = dictionaryWord.definition;
+            optionElement.innerHTML = dictionaryWord.definition;
+            selectElement.appendChild(optionElement);
         }
     });
+
+    // Add all known "unknown words" to the dictionary
+    Object.values(data.dictionary).forEach(dictionaryWord => {
+        if (save.hasTopic(dictionaryWord.term)) {
+            const existingEntry = save.dictionary[dictionaryWord.term];
+            const savedDictionaryName = existingEntry?.term || "";
+
+            // Create the term element
+            const termElement = document.createElement("div");
+            termElement.classList.add("dictionary-term");
+            dictionaryTerms.appendChild(termElement);
+
+            // Term and assigned name - assign the save.dictionary
+            termElement.innerHTML = 
+            `<strong>${dictionaryWord.term}</strong>: 
+            <input type="text" 
+                value="${savedDictionaryName}" 
+                data-term="${dictionaryWord.term}" 
+                placeholder="Enter a name" 
+                onkeyup="save.addDictionaryEntry(this.dataset.term, this.value, null)"/>
+            <br />`;
+
+            // Meaning and select element
+            if (!existingEntry || !existingEntry.locked) {
+                // add the select element if the answer has not been locked in
+                termElement.innerHTML += `<label>Meaning:</label> <select>${selectElement.innerHTML}</select>`;
+                const newSelectElement = termElement.querySelector("select");
+                newSelectElement.classList.add("dictionary-select");
+                newSelectElement.dataset.term = dictionaryWord.term;
+                newSelectElement.value = save.dictionary[dictionaryWord.term]?.definition;
+                newSelectElement.addEventListener("change", (e) => {
+                    save.addDictionaryEntry(dictionaryWord.term, null, e.target.value);
+                    checkAnswers();
+                });
+            } else {
+                // if the answer has been locked in, show the selected value
+                termElement.innerHTML += `<label>Meaning:</label> <span>${existingEntry.definition}</span>`;
+            }
+        }
+    });
+}
+
+function updateDictionaryProgressBar() {
+    const wordsFound = Object.keys(save.dictionary).length;
+    const totalWords = Object.keys(data.dictionary).length;
+    const wordsNamed = Object.keys(save.dictionary).filter(word => save.dictionary[word].term !== null).length;
+    const wordsLocked = Object.keys(save.dictionary).filter(word => save.dictionary[word].locked).length;
+
+    document.getElementById("words-found-progress-bar-fill").style.width = `${(wordsFound / totalWords) * 100}%`;
+    document.getElementById("words-named-progress-bar-fill").style.width = `${(wordsNamed / wordsFound) * 100}%`;
+    document.getElementById("words-defined-progress-bar-fill").style.width = `${(wordsLocked / wordsFound) * 100}%`;
+
+    document.getElementById("words-found-progress-bar-text").innerHTML = `${wordsFound} of ${totalWords} words found`;
+    document.getElementById("words-named-progress-bar-text").innerHTML = `${wordsNamed} of ${wordsFound} words named`;
+    document.getElementById("words-defined-progress-bar-text").innerHTML = `${wordsLocked} of ${wordsFound} words defined`;
+}
+
+function checkAnswers() {
+    // checks the selectors to see if they match the dictionary
+    let correctAnswers = [];
+    const dictionarySelectors = document.querySelectorAll(".dictionary-select");
+
+    dictionarySelectors.forEach(selector => {
+        if (data.dictionary[selector.dataset.term]?.definition === selector.value) {
+            correctAnswers.push(selector.dataset.term);
+        }
+    });
+
+    // if 3 or more are correct, lock them in.
+    if (correctAnswers.length >= 3) {
+        // lock in the correct answers
+        correctAnswers.forEach(answer => {
+            save.dictionary[answer].locked = true;
+            save.saveToLocalStorage();
+        });
+
+        // remove the dictionary selectors
+        renderDictionary();
+    }
 }
 
 //#endregion Dictionary
 
 // #region Configuration
+
 // Populate Configuration
 function renderConfiguration() {
     document.getElementById("text-to-speech-setting").checked = save.settings.textToSpeech;

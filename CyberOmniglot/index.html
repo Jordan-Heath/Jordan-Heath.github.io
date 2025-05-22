@@ -23,6 +23,7 @@
         <h1>Cyber Omniglot</h1>
 
         <nav>
+            <p id="nav-title">Translator</p>
             <button id="crewmates-button" onclick="openMain('crewmates')" class="nav-button selected">Crewmates</button>
             <button id="dictionary-button" onclick="openMain('dictionary')" class="nav-button">Dictionary</button>
             <button id="configuration-button" onclick="openMain('configuration')" class="nav-button">Configuration</button>
@@ -35,12 +36,18 @@
 
         <div class="window">
             <div id="npc-details">
-                <div class="npc-details-column">
-                    <img id="npc-portrait">
-                </div>
+                <img id="npc-portrait">
                 <div class="npc-details-column">
                     <div id="npc-name">[Name of NPC]</div>
-                    <!-- <div id="npc-job">[Job of NPC]</div> -->
+                    <div id="npc-role">[Role of NPC]</div>
+                    <div id="npc-progress-container" class="progress-bar-container">
+                        <div id="npc-progress-bar" class="progress-bar">
+                            <div id="npc-progress-bar-text" class="progress-bar-text">
+                                ??? of ??? topics asked
+                            </div>
+                            <div id="npc-progress-bar-fill" class="progress-bar-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -62,7 +69,41 @@
         <div class="window">
 
             <div class="content" style="flex-direction: column;">
-                <!-- Dictionary terms will be inserted here -->
+                <div id="dictionary-header">
+                    <p>Words the translator cannot translate will appear here. From the dictionary you can: </p>
+                    <ol>
+                        <li>Give a new name for the word. This will help you recognise it later. </li>
+                        <li>Determine the meaning for the word from a list of gathered definitions. </li>
+                        <li>For every 3 correct definitions, the definitions will be locked in. </li>
+                    </ol>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar">
+                            <div id="words-found-progress-bar-text" class="progress-bar-text">
+                                0 of Unknown words found
+                            </div>
+                            <div id="words-found-progress-bar-fill" class="progress-bar-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar">
+                            <div id="words-named-progress-bar-text" class="progress-bar-text">
+                                0 of 0 words named
+                            </div>
+                            <div id="words-named-progress-bar-fill" class="progress-bar-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar">
+                            <div id="words-defined-progress-bar-text" class="progress-bar-text">
+                                0 of 0 words defined
+                            </div>
+                            <div id="words-defined-progress-bar-fill" class="progress-bar-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="dictionary-terms">
+                    <!-- Dictionary terms will be inserted here -->
+                </div>
             </div>
         </div>
     </main>

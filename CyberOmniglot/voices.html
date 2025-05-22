@@ -10,7 +10,9 @@
     <h1>Speech Synthesis Demo</h1>
 
     <label for="voices">Select Voice:</label>
-    <select id="voices"></select>
+    <select id="voices" onchange="displayVoiceDetails()"></select>
+
+    <div id="voiceDetails"></div>
 
     <br><br>
 
@@ -23,11 +25,10 @@
 
     <script>
         const voiceSelect = document.getElementById('voices');
+        const voiceDetails = document.getElementById('voiceDetails');
 
         function populateVoiceList() {
             const voices = speechSynthesis.getVoices();
-
-            // sort voices alphabetically by name
 
             voices.sort((a, b) => {
                 const nameA = a.name.toLowerCase();
@@ -37,7 +38,6 @@
                 return 0;
             });
 
-
             voiceSelect.innerHTML = '';
             voices.forEach(voice => {
                 const option = document.createElement('option');
@@ -45,6 +45,22 @@
                 option.textContent = `${voice.name}`;
                 voiceSelect.appendChild(option);
             });
+        }
+
+        function displayVoiceDetails() {
+            const selectedVoiceName = voiceSelect.value;
+            const selectedVoice = speechSynthesis.getVoices().find(voice => voice.name === selectedVoiceName);
+
+            if (selectedVoice) {
+                voiceDetails.innerHTML = `
+                    <p><strong>Name:</strong> ${selectedVoice.name}</p>
+                    <p><strong>Lang:</strong> ${selectedVoice.lang}</p>
+                    <p><strong>Default:</strong> ${selectedVoice.default}</p>
+                    <p><strong>Voice URI:</strong> ${selectedVoice.voiceURI}</p>
+                `;
+            } else {
+                voiceDetails.innerHTML = '';
+            }
         }
 
         function speakText() {
