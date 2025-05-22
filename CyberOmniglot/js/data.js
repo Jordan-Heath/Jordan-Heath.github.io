@@ -28,7 +28,7 @@ const data = {
                 "<a>Redvine</a>": "<a>Redvine</a> is a red plant found on the planet Mars. Its name came from a local dialect of Martian. "
                             +"It reeks to high heaven and is forbidden on this ship. " 
                             +"If you suspect you've found any, report it to another crewmate. ",
-                "<a>Octopastry</a>": "<a>Octopastry</a> is a synthetic carbohydrate snack. It serves the purpose akin to bread. "
+                "<a>Octopastry</a>": "<a>Octopastry</a> is a synthetic carbohydrate snack. It serves a purpose akin to bread. "
                             +"Speaking of, I don't think anyone on the ship has eaten bread before. How interesting. "
                             +"Anyway, I'm sure you'll grow accustomed to <a>Octopastry</a>. ",
                 "<a>Torpedont</a>": "<a>Torpedont</a> is the main munition of the ship. "
@@ -40,7 +40,7 @@ const data = {
                             +"Jemima Ethyl will sort you out - I can't go a few hours, let alone 200 years without her lovely <a>Octopastry</a>. ",
                 "Professor Quill": "I'm the medical officer of the ship, Professor Quill. "
                             +"Scrapes, bumps or <a>Torpedont</a> burns, I can handle it. "
-                            +"Though, the routes we take are quiet and safe, leaving me with a lot of free time. ",
+                            +"Though, the trade routes we take are quiet and safe, leaving me with a lot of free time. ",
                 "Deputy Slough" : "You should go meet Deputy Slough so he doesn't see you as a security threat and vaporize you. "
                             +"He can be a bit paranoid, but he means well.",
                 "Jemima Ethyl": "You should go meet Jemima Ethyl. When it comes to food, she will sort you out. "
@@ -74,8 +74,8 @@ const data = {
                 "<a>Glubbos</a>": "Don't tell Jermima Ethyl, but I have hidden the store of <a>Glubbos</a> in the hold. "
                             +"I don't want to eat <a>Glubbos</a> - I want to eat <a>Octopastry</a>. ",
                 "<a>Torpedont</a>": "Beautiful munitions. I have a few in my quarters. " 
-                            +"I don't have much more room in my quarters, given the size. "
-                            +"My room is now classified as a ship magazine. ",
+                            +"I don't have much more room in my quarters, given the size of the <a>Torpedont</a>. "
+                            +"Anyway, due to the amount of explosive material, my quarters is officially classified as a ship magazine. ",
                 "The hold": "The hold is where we keep the food and supplies for the ship. We have cages for animals and stuff like that. ",
                 "Rook-7": "Rook-7 is the command droid of the ship. They're a good little guy. "
                             +"Ask them about the feeling of being crushed by a door. ",
@@ -90,13 +90,14 @@ const data = {
             rate: 1.2,
             topics: {
                 "Jemima Ethyl": "You have found the one and only! I make sure all the bellies are full so we can sail smoothly. "
-                            +"I'm not sure what I can do for you given that big chucky translator obscuring your face. ",
+                            +"I'm not sure what I can do for you given that big chunky translator obscuring your face. ",
                 "<a>Glubbos</a>": "Oh, well you see, I'm actually all out of <a>Glubbos</a>. It may not meet the same nutritional needs, but I do have <a>Octopastry</a>. ",
                 "<a>Octopastry</a>": "I have plenty of <a>Octopastry</a>! I will warn that relying entirely on <a>Octopastry</a> is not a good idea. "
                             +"I've heard it can make you a bit... loopy. ",
                 "<a>Naughty</a>": "Oh hunny, you know that's a naughty word. You should scrape your tongue out after saying that kind of thing. ",
                 "<a>Goop</a>": "Did you know that <a>Goop</a> actually contains all the nutrients you need to survive? "
-                            +"Does me a fat load of good though. It has no taste, and thats a good thing. The texture is horenndous - viscous like goop, but abrasive like sand. "
+                            +"Does me a fat load of good though. It has no taste, and that's a good thing. "
+                            +"The texture is horenndous - viscous like goop, but abrasive like sand. "
             }
         },
 

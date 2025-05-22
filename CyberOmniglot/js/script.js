@@ -106,10 +106,8 @@ function selectNPC(npcName = "Professor Quill") {
 
 // Speak
 function speak(text, voiceName = null, pitch = 1, rate = 1.2) {
-
     // any words with <a> tags should be replaced with "error" text
     text = text.replace(/<a[^>]*>(.*?)<\/a>/g, "error");
-
 
     // remove any text within <> brackets
     text = text.replace(/<[^>]*>/g, "");
@@ -119,10 +117,13 @@ function speak(text, voiceName = null, pitch = 1, rate = 1.2) {
     const u = new SpeechSynthesisUtterance(text);
     if (voiceName) {
         const match = speechSynthesis.getVoices().find(v => v.name === voiceName);
-        if (match) u.voice = match;
+        if (match) {
+            u.voice = match;
+            u.pitch = pitch;
+            u.rate = rate;
+        }
     }
-    u.pitch = pitch;
-    u.rate = rate;
+
     stopSpeaking();
     speechSynthesis.speak(u);
 }

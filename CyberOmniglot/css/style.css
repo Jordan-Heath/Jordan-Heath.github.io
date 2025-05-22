@@ -11,7 +11,6 @@ body {
     align-items: center;
     animation: fade-in 3s linear;
 
-
     button {
         background-color: #c2b280;
         color: #1c1c1c;
@@ -27,7 +26,7 @@ body {
 
     a {
         /* a is used for an alien language, it needs to be malformed */
-        font-family: "wingdings", monospace;
+        font-family: "runas",  "tribal-dragon", "wingdings", "wingdings-backup", monospace;
         display: inline-block;
         animation: malform 400ms infinite;
     }
@@ -58,7 +57,7 @@ body {
         /* strobe in and out of view */
         animation: fadeinfadeout 2s infinite;
 
-        background-image: url("../images/stars.png");
+        background-image: url("../images/stars2.png");
     }
 
     #background2 {
@@ -76,8 +75,27 @@ body {
         /* be rotated 180 degrees */
         transform: rotate(180deg);
 
-        background-image: url("../images/stars.png");
+        background-image: url("../images/stars2.png");
     }
+}
+
+
+/* Source: https://dafont.style/download/runas-font.html */
+@font-face {
+    font-family: runas;
+    src: url("../fonts/Runas-Regular.ttf") format("truetype");
+}
+
+/* Source: https://dafont.style/download/tribal-dragons-tattoo-designs-font-style.html */
+@font-face {
+    font-family: tribal-dragon;
+    src: url("../fonts/Tribal\ Dragons\ Tattoo\ Designs.ttf") format("truetype");
+}
+
+/* Source: https://dafont.style/download/wingdings-font.html */
+@font-face {
+    font-family: wingdings-backup;
+    src: url("../fonts/wingdings.ttf") format("truetype");
 }
 
 
@@ -92,7 +110,6 @@ body {
         opacity: 1;
     }
 }
-
 
 @keyframes fade-in {
     from {
@@ -226,6 +243,7 @@ main {
 
             #responses {
                 width: 70%;
+                padding: 2px;
                 padding-right: 10px;
                 overflow-y: auto;
                 line-height: 1.5em;

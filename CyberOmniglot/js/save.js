@@ -100,7 +100,7 @@ class Save {
                 definition: definition,
             };
         } else {
-            if (translation == null && this.dictionary[alienName].term != null)
+            if ((translation == null || translation == "") && this.dictionary[alienName].term != null)
                 translation = this.dictionary[alienName].term;
             if (definition == null && this.dictionary[alienName].definition != null)
                 definition = this.dictionary[alienName].definition;
