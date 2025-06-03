@@ -1,116 +1,192 @@
 const DATA = {
-    "WHS Policies & Procedures": [
+    "C++ Syntax & Structure": [
         {
-            heading: "Personal Protective Equipment (PPE)",
-            image: "1a.jpg", // https://pixabay.com/photos/chainsaw-worker-ppe-2396616/
-            paragraph: "Which item is considered Personal Protective Equipment (PPE)?",
-            a: "Fire blanket",
-            b: "High-visibility vest",
-            c: "Security badge",
-            d: "Safety instructions",
-            answer: "b",
-            score: 10,
-            answerParagraph: "PPE includes items worn to minimize workplace hazards. A high-visibility vest enhances worker visibility, reducing accident risk. Fire blankets and security badges serve different safety functions."
-        },
-        {
-            heading: "Pre-Check",
-            image: "1b.jpg", // https://pixabay.com/photos/coffee-espresso-coffee-machine-3759024/
-            paragraph: "Before operating machinery, what is the most critical first step?",
-            a: "Check recent usage reports",
-            b: "Verify last year's service sticker",
-            c: "Inspect for faults or damage",
-            d: "Assume it's safe if it powered on before",
+            heading: "Main Function",
+            image: "1a.jpg", // https://pixabay.com/photos/code-coding-programming-css-583923/
+            paragraph: "What is the correct way to declare the main function in C++?",
+            a: "void main()",
+            b: "function main()",
+            c: "int main()",
+            d: "main() void",
             answer: "c",
-            score: 20,
-            answerParagraph: "A machine may develop faults between uses, even if it was recently operated (a) or serviced last year (b). A direct inspection ensures safety before use."
+            score: 10,
+            answerParagraph: "In standard C++, the correct declaration is `int main()` because the function returns an integer exit status to the operating system."
         },
         {
-            heading: "Reporting Hazards",
-            image: "1c.jpg", // https://pixabay.com/photos/question-question-mark-help-2309038/
-            paragraph: "Upon identifying a workplace hazard, what should you do?",
-            a: "Monitor to see if it worsens",
-            b: "Report and document it immediately",
-            c: "Inform colleagues without further action",
-            d: "Address it yourself without notifying anyone",
+            heading: "Semicolons",
+            image: "1b.jpg", // https://pixabay.com/photos/keyboard-programming-code-4034208/
+            paragraph: "What happens if a semicolon is missing at the end of a statement?",
+            a: "The program will skip the line",
+            b: "It may cause a compile-time error",
+            c: "It will ignore the error",
+            d: "It runs but prints a warning",
             answer: "b",
+            score: 20,
+            answerParagraph: "C++ requires semicolons to terminate most statements. Omitting them typically results in a compile-time syntax error."
+        },
+        {
+            heading: "Comments",
+            image: "1c.jpg", // https://pixabay.com/photos/comment-opinion-message-graphic-1873548/
+            paragraph: "Which is a valid way to write a single-line comment in C++?",
+            a: "`/* comment */`",
+            b: "`# comment`",
+            c: "`// comment`",
+            d: "`-- comment`",
+            answer: "c",
             score: 30,
-            answerParagraph: "Immediate reporting and documentation of hazards align with WHS policies to prevent potential injuries and maintain a safe work environment."
+            answerParagraph: "In C++, single-line comments begin with `//`. Block comments use `/* */`."
         }
     ],
-    "Hazard Identification & Emergency Response": [
+    "Variables & Data Types": [
         {
-            heading: "Flammable Warning",
-            image: "2a.jpg", // https://pixabay.com/photos/sign-street-sign-warning-australia-288565/
-            paragraph: "Which symbol indicates a flammable substance?",
-            a: "☠️ (Skull and crossbones)",
-            b: "🔥 (Flame)",
-            c: "☣️ (Biohazard)",
-            d: "⚡ (Electrical hazard)",
+            heading: "Declaring Variables",
+            image: "2a.jpg", // https://pixabay.com/photos/computer-desk-workspace-laptop-414554/
+            paragraph: "Which line correctly declares an integer variable in C++?",
+            a: "integer x = 5;",
+            b: "int x = 5;",
+            c: "x = 5 int;",
+            d: "let x = 5;",
             answer: "b",
             score: 10,
-            answerParagraph: "The flame symbol (🔥) denotes flammable materials that can ignite easily, such as gasoline or alcohol."
+            answerParagraph: "C++ uses the keyword `int` to declare integer variables, like `int x = 5;`."
         },
         {
-            heading: "Risk vs. Hazard",
-            image: "2b.jpg", // https://pixabay.com/photos/slip-up-danger-careless-slippery-709045/
-            paragraph: "Which of the following is: 1) a hazard and 2) it's associated risk?",
-            a: "Wet floor, falling",
-            b: "Broken machine, not working",
-            c: "Electric shock, broken cable",
-            d: "Cluttered workspace, disorganization",
-            answer: "a",
+            heading: "Data Types",
+            image: "2b.jpg", // https://pixabay.com/photos/digitally-encoded-computer-data-2674849/
+            paragraph: "Which data type is used to store a true/false value?",
+            a: "int",
+            b: "char",
+            c: "bool",
+            d: "float",
+            answer: "c",
             score: 20,
-            answerParagraph: "A hazard is something that has the potential to cause harm, and a risk is the likelihood of that harm occurring. Option (a) is correct because a wet floor is a hazard, and the risk is falling. The other options describe hazards, but they don't clearly link to specific risks or consequences."
+            answerParagraph: "`bool` is used to represent Boolean values (`true` or `false`) in C++."
         },               
         {
-            heading: "Small Fire",
-            image: "2c.jpg", // https://pixabay.com/photos/question-question-mark-help-2309042/
-            paragraph: "A small fire starts in the break room. What is your first action?",
-            a: "Use the nearest fire extinguisher",
-            b: "Activate the fire alarm and evacuate",
-            c: "Ask a colleague for assistance",
-            d: "Call emergency services and wait outside",
-            answer: "b",
+            heading: "String Declaration",
+            image: "2c.jpg", // https://pixabay.com/photos/code-programming-technology-2620118/
+            paragraph: "Which statement correctly declares a string in C++?",
+            a: "char name[] = \"Alex\";",
+            b: "string name = 'Alex';",
+            c: "String name = Alex;",
+            d: "string name = \"Alex\";",
+            answer: "d",
             score: 30,
-            answerParagraph: "Activating the fire alarm and evacuating ensures everyone's safety. Attempting to extinguish the fire should only be done if trained and it's safe."
+            answerParagraph: "In C++, `string name = \"Alex\";` is correct if the `<string>` library is included. Double quotes are used for string literals."
         }
     ],
-    "WHS Responsibilities & Reporting": [
+    "Control Structures": [
         {
-            heading: "Responsibility",
-            image: "3a.jpg", // https://pixabay.com/photos/question-mark-symbol-icon-character-2309040/
-            paragraph: "Who is responsible for ensuring workplace safety?",
-            a: "Safety officer",
-            b: "Employees in hazardous roles",
-            c: "Everyone in the workplace",
-            d: "Human Resources department",
-            answer: "c",
+            heading: "If Statement",
+            image: "3a.jpg", // https://pixabay.com/photos/turn-right-road-sign-arrow-right-144577/
+            paragraph: "What is the purpose of an if statement in C++?",
+            a: "Repeat actions until false",
+            b: "Branch code execution based on a condition",
+            c: "Store multiple values",
+            d: "Create functions",
+            answer: "b",
             score: 10,
-            answerParagraph: "Under WHS laws, all individuals—workers and management—share responsibility for maintaining a safe work environment."
+            answerParagraph: "`if` statements let the program make decisions and branch execution depending on whether a condition is true or false."
         },
         {
-            heading: "WHS Non-compliance",
-            image: "3b.jpg", // https://pixabay.com/photos/white-male-3d-model-isolated-3d-1834101/
-            paragraph: "If a co-worker ignores mandatory WHS procedures despite reminders, what should you do?",
-            a: "Report to a supervisor or WHS officer",
-            b: "Confront them publicly",
-            c: "Stop reminding them",
-            d: "Do the procedure for them",
-            answer: "a",
+            heading: "Loops",
+            image: "3b.jpg", // https://pixabay.com/photos/turntable-loop-technology-circle-2974646/
+            paragraph: "Which loop is best for repeating a block of code a known number of times?",
+            a: "while",
+            b: "do-while",
+            c: "if",
+            d: "for",
+            answer: "d",
             score: 20,
-            answerParagraph: "Reporting persistent non-compliance is essential to uphold safety standards and prevent potential incidents."
+            answerParagraph: "`for` loops are commonly used when the number of iterations is known in advance, such as looping from 1 to 10."
         },
         {
-            heading: "Boss Responsibility",
-            image: "3c.jpg", //https://pixabay.com/photos/business-card-presentation-1015269/
-            paragraph: "Which is NOT a legal duty of a PCBU (Person Conducting a Business or Undertaking) under WHS laws?",
-            a: "Provide a safe work environment",
-            b: "Offer adequate training",
-            c: "Prioritize productivity over safety",
-            d: "Monitor workplace conditions",
+            heading: "Switch Case",
+            image: "3c.jpg", // https://pixabay.com/photos/switch-button-button-switch-light-503911/
+            paragraph: "What is a benefit of using a switch statement over multiple if-else conditions?",
+            a: "Better for complex boolean logic",
+            b: "Faster for comparing a variable against multiple constant values",
+            c: "Only works with float values",
+            d: "Allows function overloading",
+            answer: "b",
+            score: 30,
+            answerParagraph: "`switch` is more efficient when checking one variable against multiple fixed values (like integers or chars)."
+        }
+    ],
+    "Functions & Procedures": [
+        {
+            heading: "Function Declaration",
+            image: "4a.jpg", // https://pixabay.com/photos/development-code-coding-web-3853492/
+            paragraph: "Which line correctly declares a function that returns an integer?",
+            a: "function int myFunc()",
+            b: "int myFunc()",
+            c: "myFunc() -> int",
+            d: "return myFunc: int",
+            answer: "b",
+            score: 10,
+            answerParagraph: "In C++, a function returning an integer is declared like `int myFunc()`. The return type comes before the function name."
+        },
+        {
+            heading: "Function Parameters",
+            image: "4b.jpg", // https://pixabay.com/photos/programming-html-css-technology-1873854/
+            paragraph: "What is the purpose of parameters in a function?",
+            a: "To store return values",
+            b: "To call the function",
+            c: "To pass data into the function",
+            d: "To prevent recursion",
+            answer: "c",
+            score: 20,
+            answerParagraph: "Parameters allow data to be passed into a function for use during execution, increasing flexibility and reusability."
+        },
+        {
+            heading: "Return Values",
+            image: "4c.jpg", // https://pixabay.com/photos/computer-desk-workspace-laptop-414554/
+            paragraph: "What does the `return` keyword do in a C++ function?",
+            a: "Stops the program",
+            b: "Repeats a loop",
+            c: "Outputs a value from the function",
+            d: "Declares a variable",
             answer: "c",
             score: 30,
-            answerParagraph: "While productivity is important, a PCBU's legal duty is to prioritize health and safety over productivity concerns."
+            answerParagraph: "`return` ends the function and optionally sends a value back to the part of the program that called it."
+        }
+    ],
+    "Debugging & Errors": [
+        {
+            heading: "Compiler Errors",
+            image: "5a.jpg", // https://pixabay.com/photos/monitor-pc-computer-mac-1276944/
+            paragraph: "What is a compiler error in C++?",
+            a: "An error that occurs after the program runs",
+            b: "An error in your logic",
+            c: "A mistake in syntax detected before execution",
+            d: "A warning message that doesn't stop the program",
+            answer: "c",
+            score: 10,
+            answerParagraph: "Compiler errors occur when the syntax is incorrect and the program cannot be compiled into an executable."
+        },
+        {
+            heading: "Logic Errors",
+            image: "5b.jpg", // https://pixabay.com/photos/question-question-mark-help-2309042/
+            paragraph: "Which is an example of a logic error?",
+            a: "Using `=` instead of `==` in a condition",
+            b: "Misspelling a variable name",
+            c: "Missing a semicolon",
+            d: "Incorrect use of a library",
+            answer: "a",
+            score: 20,
+            answerParagraph: "Using `=` instead of `==` is a common logic error—it won’t cause a syntax error, but it leads to unintended behavior."
+        },
+        {
+            heading: "Debugging Tools",
+            image: "5c.jpg", // https://pixabay.com/photos/developer-computer-web-development-3461405/
+            paragraph: "Which tool helps find and fix bugs in your C++ code?",
+            a: "Debugger",
+            b: "Text editor",
+            c: "Spreadsheet",
+            d: "Compiler",
+            answer: "a",
+            score: 30,
+            answerParagraph: "A debugger lets you step through code, inspect variables, and understand why errors occur at runtime."
         }
     ]
 }
