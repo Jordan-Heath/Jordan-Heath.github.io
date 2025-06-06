@@ -1,70 +1,70 @@
 const DATA = {
     "C++ Syntax & Structure": [
         {
-            heading: "Main Function",
-            image: "1a.jpg", // https://pixabay.com/photos/code-coding-programming-css-583923/
-            paragraph: "What is the correct way to declare the main function in C++?",
-            a: "void main()",
-            b: "function main()",
-            c: "int main()",
-            d: "main() void",
-            answer: "c",
-            score: 10,
-            answerParagraph: "In standard C++, the correct declaration is `int main()` because the function returns an integer exit status to the operating system."
-        },
-        {
-            heading: "Semicolons",
-            image: "1b.jpg", // https://pixabay.com/photos/keyboard-programming-code-4034208/
-            paragraph: "What happens if a semicolon is missing at the end of a statement?",
-            a: "The program will skip the line",
-            b: "It may cause a compile-time error",
-            c: "It will ignore the error",
-            d: "It runs but prints a warning",
-            answer: "b",
-            score: 20,
-            answerParagraph: "C++ requires semicolons to terminate most statements. Omitting them typically results in a compile-time syntax error."
-        },
-        {
             heading: "Comments",
-            image: "1c.jpg", // https://pixabay.com/photos/comment-opinion-message-graphic-1873548/
+            image: "1.jpg",
             paragraph: "Which is a valid way to write a single-line comment in C++?",
             a: "`/* comment */`",
             b: "`# comment`",
             c: "`// comment`",
             d: "`-- comment`",
             answer: "c",
-            score: 30,
+            score: 10,
             answerParagraph: "In C++, single-line comments begin with `//`. Block comments use `/* */`."
-        }
+        },
+        {
+            heading: "Main Function",
+            image: "2.jpg",
+            paragraph: "What is the correct way to declare the main function in C++?",
+            a: "void main()",
+            b: "function main()",
+            c: "int main()",
+            d: "main() void",
+            answer: "c",
+            score: 20,
+            answerParagraph: "In standard C++, the correct declaration is `int main()` because the function returns an integer exit status to the operating system."
+        },
+        {
+            heading: "Semicolons",
+            image: "3.jpg",
+            paragraph: "What happens if a semicolon is missing at the end of a statement?",
+            a: "The program will skip the line",
+            b: "It may cause a compile-time error",
+            c: "It will ignore the error",
+            d: "It runs but prints a warning",
+            answer: "b",
+            score: 30,
+            answerParagraph: "C++ requires semicolons to terminate most statements. Omitting them typically results in a compile-time syntax error."
+        },
     ],
     "Variables & Data Types": [
         {
-            heading: "Declaring Variables",
-            image: "2a.jpg", // https://pixabay.com/photos/computer-desk-workspace-laptop-414554/
-            paragraph: "Which line correctly declares an integer variable in C++?",
-            a: "integer x = 5;",
-            b: "int x = 5;",
-            c: "x = 5 int;",
-            d: "let x = 5;",
-            answer: "b",
-            score: 10,
-            answerParagraph: "C++ uses the keyword `int` to declare integer variables, like `int x = 5;`."
-        },
-        {
             heading: "Data Types",
-            image: "2b.jpg", // https://pixabay.com/photos/digitally-encoded-computer-data-2674849/
+            image: "1.jpg",
             paragraph: "Which data type is used to store a true/false value?",
             a: "int",
             b: "char",
             c: "bool",
             d: "float",
             answer: "c",
-            score: 20,
+            score: 10,
             answerParagraph: "`bool` is used to represent Boolean values (`true` or `false`) in C++."
-        },               
+        },
+        {
+            heading: "Declaring Variables",
+            image: "2.jpg",
+            paragraph: "Which line correctly declares an integer variable in C++?",
+            a: "integer x = 5;",
+            b: "int x = 5;",
+            c: "x = 5 int;",
+            d: "let x = 5;",
+            answer: "b",
+            score: 20,
+            answerParagraph: "C++ uses the keyword `int` to declare integer variables, like `int x = 5;`."
+        },        
         {
             heading: "String Declaration",
-            image: "2c.jpg", // https://pixabay.com/photos/code-programming-technology-2620118/
+            image: "3.jpg",
             paragraph: "Which statement correctly declares a string in C++?",
             a: "char name[] = \"Alex\";",
             b: "string name = 'Alex';",
@@ -72,13 +72,13 @@ const DATA = {
             d: "string name = \"Alex\";",
             answer: "d",
             score: 30,
-            answerParagraph: "In C++, `string name = \"Alex\";` is correct if the `<string>` library is included. Double quotes are used for string literals."
+            answerParagraph: "In C++, `string name = \"Alex\";` is correct if the `<string>` library is included. Double quotes are used for strings, where single quotes are used for characters."
         }
     ],
     "Control Structures": [
         {
             heading: "If Statement",
-            image: "3a.jpg", // https://pixabay.com/photos/turn-right-road-sign-arrow-right-144577/
+            image: "1.jpg",
             paragraph: "What is the purpose of an if statement in C++?",
             a: "Repeat actions until false",
             b: "Branch code execution based on a condition",
@@ -90,7 +90,7 @@ const DATA = {
         },
         {
             heading: "Loops",
-            image: "3b.jpg", // https://pixabay.com/photos/turntable-loop-technology-circle-2974646/
+            image: "2.jpg",
             paragraph: "Which loop is best for repeating a block of code a known number of times?",
             a: "while",
             b: "do-while",
@@ -102,7 +102,7 @@ const DATA = {
         },
         {
             heading: "Switch Case",
-            image: "3c.jpg", // https://pixabay.com/photos/switch-button-button-switch-light-503911/
+            image: "3.jpg",
             paragraph: "What is a benefit of using a switch statement over multiple if-else conditions?",
             a: "Better for complex boolean logic",
             b: "Faster for comparing a variable against multiple constant values",
@@ -116,7 +116,7 @@ const DATA = {
     "Functions & Procedures": [
         {
             heading: "Function Declaration",
-            image: "4a.jpg", // https://pixabay.com/photos/development-code-coding-web-3853492/
+            image: "1.jpg",
             paragraph: "Which line correctly declares a function that returns an integer?",
             a: "function int myFunc()",
             b: "int myFunc()",
@@ -128,7 +128,7 @@ const DATA = {
         },
         {
             heading: "Function Parameters",
-            image: "4b.jpg", // https://pixabay.com/photos/programming-html-css-technology-1873854/
+            image: "2.jpg",
             paragraph: "What is the purpose of parameters in a function?",
             a: "To store return values",
             b: "To call the function",
@@ -140,7 +140,7 @@ const DATA = {
         },
         {
             heading: "Return Values",
-            image: "4c.jpg", // https://pixabay.com/photos/computer-desk-workspace-laptop-414554/
+            image: "3.jpg",
             paragraph: "What does the `return` keyword do in a C++ function?",
             a: "Stops the program",
             b: "Repeats a loop",
@@ -153,20 +153,20 @@ const DATA = {
     ],
     "Debugging & Errors": [
         {
-            heading: "Compiler Errors",
-            image: "5a.jpg", // https://pixabay.com/photos/monitor-pc-computer-mac-1276944/
-            paragraph: "What is a compiler error in C++?",
-            a: "An error that occurs after the program runs",
-            b: "An error in your logic",
-            c: "A mistake in syntax detected before execution",
-            d: "A warning message that doesn't stop the program",
-            answer: "c",
+            heading: "Debugging Tools",
+            image: "1.jpg",
+            paragraph: "Which tool helps find and fix bugs in your C++ code?",
+            a: "Debugger",
+            b: "Text editor",
+            c: "Spreadsheet",
+            d: "Compiler",
+            answer: "a",
             score: 10,
-            answerParagraph: "Compiler errors occur when the syntax is incorrect and the program cannot be compiled into an executable."
+            answerParagraph: "A debugger lets you step through code, inspect variables, and understand why errors occur at runtime."
         },
         {
             heading: "Logic Errors",
-            image: "5b.jpg", // https://pixabay.com/photos/question-question-mark-help-2309042/
+            image: "2.jpg",
             paragraph: "Which is an example of a logic error?",
             a: "Using `=` instead of `==` in a condition",
             b: "Misspelling a variable name",
@@ -177,16 +177,16 @@ const DATA = {
             answerParagraph: "Using `=` instead of `==` is a common logic error—it won’t cause a syntax error, but it leads to unintended behavior."
         },
         {
-            heading: "Debugging Tools",
-            image: "5c.jpg", // https://pixabay.com/photos/developer-computer-web-development-3461405/
-            paragraph: "Which tool helps find and fix bugs in your C++ code?",
-            a: "Debugger",
-            b: "Text editor",
-            c: "Spreadsheet",
-            d: "Compiler",
-            answer: "a",
+            heading: "Compiler Errors",
+            image: "3.jpg",
+            paragraph: "What is a compiler error in C++?",
+            a: "An error that occurs after the program runs",
+            b: "An error in your logic",
+            c: "A mistake in syntax detected before execution",
+            d: "A warning message that doesn't stop the program",
+            answer: "c",
             score: 30,
-            answerParagraph: "A debugger lets you step through code, inspect variables, and understand why errors occur at runtime."
+            answerParagraph: "Compiler errors occur when the syntax is incorrect and the program cannot be compiled into an executable."
         }
     ]
 }
