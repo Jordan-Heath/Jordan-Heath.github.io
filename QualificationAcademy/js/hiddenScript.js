@@ -48,8 +48,86 @@ const data = {
             ],
             isCustom: false
         },
-        { // Quiz 1: Applying Communication Skills in the Workplace
-            name: "Quiz 1: Applying Communication Skills in the Workplace",
+        {
+            // BSBWHS211 Quiz 1: Contributing to Health and Safety
+            name: "BSBWHS211 Quiz 1: Contributing to Health and Safety",
+            author: "Jordan Heath",
+            description: "Quiz for BSBWHS211 Contribute to health and safety of self and others",
+            difficulty: "Easy",
+            duration: "Unlimited",
+            correctAnswersRequired: 4,
+            questions: [
+                {
+                    question: "What is a responsibility of a worker under WHS laws?",
+                    type: "single choice",
+                    correctAnswer: [
+                        "Follow safe work procedures and report hazards"
+                    ],
+                    answers: [
+                        "Only do tasks you enjoy",
+                        "Ignore hazards if they seem small",
+                        "Follow safe work procedures and report hazards",
+                        "Rely on your supervisor to spot all hazards"
+                    ]
+                },
+                {
+                    question: "Which of the following is an example of a hazard in the workplace?",
+                    type: "single choice",
+                    correctAnswer: [
+                        "A wet floor in a hallway"
+                    ],
+                    answers: [
+                        "A working fire extinguisher",
+                        "A wet floor in a hallway",
+                        "Wearing safety gloves",
+                        "Emergency exit signs"
+                    ]
+                },
+                {
+                    question: "What should you do if you notice damaged equipment?",
+                    type: "single choice",
+                    correctAnswer: [
+                        "Stop using it and report it to your supervisor"
+                    ],
+                    answers: [
+                        "Keep using it if it still works",
+                        "Ignore it and hope someone else notices",
+                        "Stop using it and report it to your supervisor",
+                        "Try to fix it yourself without training"
+                    ]
+                },
+                {
+                    question: "Why is following safety instructions important?",
+                    type: "single choice",
+                    correctAnswer: [
+                        "It helps prevent injuries and keeps everyone safe"
+                    ],
+                    answers: [
+                        "It helps prevent injuries and keeps everyone safe",
+                        "It impresses your coworkers",
+                        "It avoids having to attend training",
+                        "It reduces your workload"
+                    ]
+                },
+                {
+                    question: "Which of the following are examples of safe work practices? Select all that apply.",
+                    type: "multiple choice",
+                    correctAnswer: [
+                        "Report hazards to your supervisor",
+                        "Wear personal protective equipment (PPE)"
+                    ],
+                    answers: [
+                        "Report hazards to your supervisor",
+                        "Wear personal protective equipment (PPE)",
+                        "Ignore safety signs if you're experienced",
+                        "Only report hazards if someone gets hurt"
+                    ]
+                }
+            ],
+            isCustom: false
+        },
+        { // BCBCMM211 Quiz 1: Applying Communication Skills in the Workplace
+            name: "BCBCMM211 Quiz 1: Applying Communication Skills in the Workplace",
             author: "Jordan Heath",
             description: "Revision Quiz for BSBCMM211 Apply communication skills - Session 1",
             difficulty: "Easy",
@@ -111,8 +189,8 @@ const data = {
             ],
             isCustom: false
         },
-        { // Quiz 2: Effective Verbal & Non-verbal Communication
-            "name": "Quiz 2: Effective Verbal & Non-verbal Communication​",
+        { // BCBCMM211 Quiz 2: Effective Verbal & Non-verbal Communication
+            "name": "BCBCMM211 Quiz 2: Effective Verbal & Non-verbal Communication​",
             "author": "Jordan Heath",
             "description": "Revision Quiz for BSBCMM211 Apply communication skils - session 2",
             "difficulty": "Easy",
@@ -216,13 +294,13 @@ function openTitle() {
 
     if (!globals.initialised) {
         loadFonts();
-    
+
         loadFromLocalStorage();
-    
+
         toggleDarkMode(save.settings.darkMode);
         toggleFasterPageChanges(save.settings.fasterPageChanges);
         toggleAudio(save.settings.audioEnabled);
-    
+
         officeSounds.loop = true;
 
         globals.initialised = true;
@@ -258,7 +336,7 @@ function openCourseSelectView() {
     }
 
     // build the course list
-    setTimeout(() => { buildCourseList(courseSelectView); }, globals.pageChangeDelay/2);
+    setTimeout(() => { buildCourseList(courseSelectView); }, globals.pageChangeDelay / 2);
 
     // transition to course list
     transitionToView(courseSelectView);
@@ -288,17 +366,17 @@ function filterCourses() {
         const courseElement = document.getElementById(`course-${index}`);
         const courseCompletionData = save.completedCourses.find(c => c.name == course.name);
 
-        if (nameFilter != "" 
+        if (nameFilter != ""
             && !course.name.toLowerCase().includes(nameFilter.toLowerCase())
             && !course.author.toLowerCase().includes(nameFilter.toLowerCase())
             && !course.description.toLowerCase().includes(nameFilter.toLowerCase())
             && !course.difficulty.toLowerCase().includes(nameFilter.toLowerCase())) {
             courseElement.classList.add("filtered");
-        } 
-        
+        }
+
         if (difficultyFilter != "All" && course.difficulty != difficultyFilter) {
             courseElement.classList.add("filtered");
-        } 
+        }
 
         switch (completedFilter) {
             case "Completed":
@@ -361,7 +439,7 @@ function openCourseTestView(courseID) {
 function submitAnswers(courseID, outOfTime = false) {
     const courseResultsView = document.getElementById("course-results-view");
     const anticipationScreen = document.getElementById("course-results-anticipation-view");
-    
+
     const course = data.courses[courseID];
     if (save.settings.audioEnabled) clickSound.play();
 
@@ -392,7 +470,7 @@ function submitAnswers(courseID, outOfTime = false) {
                 courseCompletionData.date = results.date;
                 courseCompletionData.answers = results.answers;
             }
-            
+
             saveToLocalStorage();
         }
 
@@ -441,10 +519,10 @@ function calculateCourseScore(course) {
 
     function unescapeHtml(html) {
         return html?.replace(/&amp;/g, "&")
-                    .replace(/&lt;/g, "<")
-                    .replace(/&gt;/g, ">")
-                    .replace(/&quot;/g, '"')
-                    .replace(/&#039;/g, "'");
+            .replace(/&lt;/g, "<")
+            .replace(/&gt;/g, ">")
+            .replace(/&quot;/g, '"')
+            .replace(/&#039;/g, "'");
     }
 
     for (let i = 0; i < course.questions.length; i++) {
