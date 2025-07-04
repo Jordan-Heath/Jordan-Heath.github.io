@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const header = document.createElement('header');
     header.innerHTML = `
         <h1 onclick="location.href='index.html'">Jordan's Web Portfolio</h1>
-        <h2>Games, Guides and Silly Projects</h2>
+        <h2>games, guides and silly projects</h2>
     `;
 
     // Create Nav Element

@@ -75,6 +75,17 @@ body {
             box-shadow: 5px 5px var(--drop-shadow);
         }
     }
+
+    details {
+        margin: 20px 0;
+        summary {
+            cursor: pointer;
+
+            h2 {
+                display: inline;
+            }
+        }
+    }
 }
 
 header {
