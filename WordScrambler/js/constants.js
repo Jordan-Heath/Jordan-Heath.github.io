@@ -9,7 +9,6 @@ const LOREMIPSUM = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
 
 const EXAMPLETEXT = ["Word Scrambler gave me a hernia.",
                     "Word Scrambler is a bad application.",
-                    "Word Scrambler was made in 2021.",
                     "Nothing quite like a good Word Scrambler.",
                     "This does not make a good portfolio project.",
                     "Click below to see the example text get scrambled.",
