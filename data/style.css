@@ -362,6 +362,15 @@ article {
         font-weight: 500;
     }
 
+    img {
+        display: block;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px var(--drop-shadow);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        max-width: 100%;
+        max-height: 200px;
+    }
+
     > ul, ol {
         columns: 2;
     }

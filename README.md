@@ -46,6 +46,7 @@ Inspired by the "Morrowind" coversation system, and puzzle games like "The Rise 
 
 
 ### [Strategy Map Simulator](StrategyMapSimulator/) <a name="strategy-map-simulator"></a>
+![Strategy Map Simulator](data/thumbnails/StrategyMapSimulator.png "Strategy Map Simulator")
 Inspired by Paradox Interactive games like "Victoria 3" and "Hearts of Iron IV". I wanted to experiment with a complicated canvas based game. The UI was placeholder and then I lost interest.
 
 - [x] Procedurally generated landmass
@@ -54,6 +55,7 @@ Inspired by Paradox Interactive games like "Victoria 3" and "Hearts of Iron IV".
 
 
 ### [Persona 3 Reload Guide](Persona3ReloadGuide/) <a name="persona-3-reload-guide"></a>
+![Persona 3 Reload Guide](data/thumbnails/Persona3ReloadGuide.png "Persona 3 Reload Guide")
 Fairly raw copy of the Persona 5 Guide but for Persona 3.
 
 - [x] Mobile Friendly
@@ -66,6 +68,7 @@ Fairly raw copy of the Persona 5 Guide but for Persona 3.
 
 
 ### [Tamagotchi Uni Guide](TamagotchiUniGuide/) <a name="tamagotchi-uni-guide"></a>
+![Tamagotchi Uni Guide](data/thumbnails/TamagotchiUniGuide.png "Tamagotchi Uni Guide")
 A webapp I put together for my partner to help them keep track of their Tamagotchi Uni. It was important that it had a nice mobile-friendly design, kept track of progress in the game, and informed the user in a very accessible way.
 
 - [x] Mobile Friendly
@@ -81,6 +84,7 @@ A webapp I put together for my partner to help them keep track of their Tamagotc
 
 
 ### [Qualification Academy](QualificationAcademy/) <a name="qualification-academy"></a>
+![Qualification Academy](data/thumbnails/QualificationAcademy.png "Qualification Academy")
 A game where you complete a series of questions to receive a certificate. I wanted it to be elegant and fun.
 
 - [x] 10+ Qualifications to unlock
@@ -94,6 +98,7 @@ A game where you complete a series of questions to receive a certificate. I want
 
 
 ### [Pokemon Collector](CustomChess/) <a name="pokemon-collector"></a>
+![Pokemon Collector](data/thumbnails/PokemonCollector.png "Pokemon Collector")
 I've wanted to make a card collection game for a while, but given I could not do enough good quality art to do it myself, i decided last minute to make it a fan game.
 
 - [x] 6 CardPacks to unlock pokemon
@@ -107,6 +112,7 @@ I've wanted to make a card collection game for a while, but given I could not do
 
 
 ### [Custom Chess](CustomChess/) <a name="custom-chess"></a>
+![Custom Chess](data/thumbnails/CustomChess.png "Custom Chess")
 Inspired by Balatro, but for chess. Work In Progress, but good enough to publish.
 
 - [x] Saving
@@ -117,6 +123,7 @@ Inspired by Balatro, but for chess. Work In Progress, but good enough to publish
 
 
 ### [Persona 5 Royal Guide](Persona5RoyalGuide/) <a name="persona-5-royal-guide"></a>
+![Persona 5 Royal Guide](data/thumbnails/Persona5RoyalGuide.png "Persona 5 Royal Guide")
 I wanted an elegant guide styled after the game to occupy my second screen while playing. Other guides would require you to keep track of the day you were up to by scrolling through difficult to read whole pages of text, require you to switch tabs for negotiations and part time quizes.
 
 - [x] Full 300 days of day by day guidance
@@ -132,6 +139,7 @@ I wanted an elegant guide styled after the game to occupy my second screen while
 
 
 ### [The Collector](TheCollector/) <a name="the-collector"></a>
+![The Collector](data/thumbnails/TheCollector.png "The Collector")
 Idle Collection game. To my knowledge the first of it's kind.
 
 - [x] 96 different items
@@ -143,6 +151,7 @@ Idle Collection game. To my knowledge the first of it's kind.
 
 
 ### [Meal Planner](MealPlanner/) <a name="meal-planner"></a>
+![Meal Planner](data/thumbnails/MealPlanner.png "Meal Planner")
 Intended to help me plan out my meals.
 
 - [x] 33 different meals of varying quality
@@ -155,6 +164,7 @@ Intended to help me plan out my meals.
 
 
 ### [Idle Landlord](IdleLandlord/) <a name="idle-landlord"></a>
+![Idle Landlord](data/thumbnails/IdleLandlord.png "Idle Landlord")
 I've wanted to make a clicker game for a while. The king of passive income is landlording, so I really wanted to make landlord themed clicker game. Features:
 
 - [x] Work a job and get promoted
@@ -166,6 +176,7 @@ I've wanted to make a clicker game for a while. The king of passive income is la
 
 
 ### [Story Teller](StoryTeller/) <a name="story-teller"></a>
+![Story Teller](data/thumbnails/StoryTeller.png "Story Teller")
 I developed an app that emulates the game Madlibs. Features:
 
 - [x] 16 different stories
@@ -177,6 +188,7 @@ I developed an app that emulates the game Madlibs. Features:
 
 
 ### [Manticore Generator](ManticoreGenerator/) <a name="manticore-generator"></a>
+![Manticore Generator](data/thumbnails/ManticoreGenerator.png "Manticore Generator")
 A friend of mine saw the character generator and was working on creating some manticores for a personal project. They asked if I could make something similar to assist them in the process. I added a few extra features to help them:
 
 - [x] Random chance of not adding a tail/wings
@@ -189,6 +201,7 @@ Otherwise, it is very similar to the Character Generator.
 
 
 ### [Character Generator](CharacterGenerator/) <a name="character-generator"></a>
+![Character Generator](data/thumbnails/CharacterGenerator.png "Character Generator")
 I was familiar with name generators, but I wanted to put my own spin on it by adding a few extra features.
 
 - [x] Names composed of different syllables
@@ -199,6 +212,7 @@ The characters may come out as a bit whimsical, but I found it enjoyable.
 
 
 ### [Percentage Clock](PercentageClock/) <a name="percentage-clock"></a>
+![Percentage Clock](data/thumbnails/PercentageClock.png "Percentage Clock")
 On challenging days, it's helpful to know how much of the day is left. Percentage Clock provides this information in a simple number. It might not offer much comfort as I got a bit carried away with the CSS animation library. A few features include:
 
 - [x] Indicates the current time
@@ -210,6 +224,7 @@ Wouldn't particularly recommend this one.
 
 
 ### [Word Scrambler](WordScrambler/) <a name="word-scrambler"></a>
+![Word Scrambler](data/thumbnails/WordScrambler.png "Word Scrambler")
 I created this a while ago to replicate a peculiar mode of speech I was exposed to. I just need to port it over. Features:
 
 - [x] Scrambles input text into a semi-comprehensible mess
