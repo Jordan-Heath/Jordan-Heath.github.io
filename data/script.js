@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', () => {
         const navTitle = document.querySelector('.nav-title');
 
-        if (window.scrollY > 150) {
+        if (window.scrollY > 110) {
             navTitle.style.display = 'block';
         } else {
             navTitle.style.display = 'none';

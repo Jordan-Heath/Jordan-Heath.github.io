@@ -230,7 +230,6 @@ I created this a while ago to replicate a peculiar mode of speech I was exposed 
 - [x] Scrambles input text into a semi-comprehensible mess
 
 
----
 ## Incomplete Projects <a name="incomplete"></a>
 
 ### [King Sim](KingSim/) <a name="king-sim"></a>
@@ -256,7 +255,6 @@ PLAYABLE DEMO. A bracket for a game of Kaiju Battle.
 PLAYABLE DEMO. 100 men enter, 1 leaves. I haven't gotten the motivation to polish it enough for the main page.
 
 
----
 ## Credits <a name="credits"></a>
 
 ### Main Page
