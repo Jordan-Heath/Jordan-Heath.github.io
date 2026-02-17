@@ -1,43 +1,10 @@
+let save = {
+    selectedMenu: 'home',
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Create header element
-    const header = document.createElement('header');
-    header.innerHTML = `
-        <h1 onclick="location.href='index.html'">Jordan's Web Portfolio</h1>
-        <h2>games, guides and silly projects</h2>
-    `;
+    loadAboutContents();
 
-    // Create Nav Element
-    const nav = document.createElement('nav');
-    nav.innerHTML = `
-        <div class="nav-buttons">
-            <button ${!window.location.pathname.includes('about') ? 'class="active"' : ''} onclick="location.href='index.html'">&#127968; Home</button>
-            <button ${window.location.pathname.includes('about') ? 'class="active"' : ''} onclick="location.href='about.html'">&#128214; About</button>
-            <button onclick="window.open('https://github.com/Jordan-Heath', '_blank')">&#128190; Github</button>
-            <button onclick="window.open('https://github.com/Jordan-Heath/Jordan-Heath.github.io', '_blank')">&#129531; Repo</button>
-        </div>
-        <h2 class="nav-title">Jordan's Web Portfolio</h2>
-    `;
-
-    // Determine which button to make active
-    if (window.location.pathname.includes('about')) {
-        loadAboutContents();
-    }
-
-    // Create footer element
-    const footer = document.createElement('footer');
-    footer.innerHTML = `
-        <h3>thanks for visiting!</h3>
-    `;
-
-    // Insert nav, then header at the start of the body
-    document.body.insertBefore(nav, document.body.firstChild);
-    document.body.insertBefore(header, document.body.firstChild);
-
-    // Append footer at the end of the body
-    document.body.appendChild(footer);
-
-
-    //add a listener to see if the header is visible. if it is, make the nav-title visible
     window.addEventListener('scroll', () => {
         const navTitle = document.querySelector('.nav-title');
 
@@ -47,22 +14,65 @@ document.addEventListener('DOMContentLoaded', () => {
             navTitle.style.display = 'none';
         }
     })
+
+    loadFromLocalStorage();
+    changeMenu(save.selectedMenu);
 });
+
+
+function saveToLocalStorage() {
+    // Save the selected menu to local storage
+    localStorage.setItem('jordansWebPortfolio', JSON.stringify(save));
+}
+
+function loadFromLocalStorage() {
+    // Load the selected menu from local storage
+    const savedData = localStorage.getItem('jordansWebPortfolio');
+    if (savedData) {
+        save = JSON.parse(savedData);
+        changeMenu(save.selectedMenu);
+    }
+}
+
+function changeMenu(selectedMenu) {
+    save.selectedMenu = selectedMenu;
+
+    const navButtons = document.querySelectorAll('.nav-buttons button');
+    navButtons.forEach(button => button.classList.remove('active'));
+
+    const aboutView = document.getElementById('aboutView');
+    const homeView = document.getElementById('homeView');
+    aboutView.className = 'hidden';
+    homeView.className = 'hidden';
+
+    switch (save.selectedMenu) {
+        case 'home':
+            document.getElementById('homeView').className = '';
+            navButtons[0].classList.add('active');
+            break;
+        case 'about':
+            document.getElementById('aboutView').className = '';
+            navButtons[1].classList.add('active');
+            break;
+        default:
+            break;
+    }
+
+    saveToLocalStorage();
+}
 
 
 
 function loadAboutContents() {
-    // Fetch the README.md content from GitHub using the GitHub API
+    // Fetch README.md content from GitHub
     fetch('https://raw.githubusercontent.com/Jordan-Heath/Jordan-Heath.github.io/main/README.md')
         .then(response => response.text())
         .then(markdownContent => {
-            // throw new Error('test');
-
-            // Convert Markdown to HTML using showdown.js
+            // Convert Markdown to HTML
             const converter = new showdown.Converter();
             const htmlContent = converter.makeHtml(markdownContent);
 
-            // Display the HTML content in a div
+            // Print HTML content
             document.getElementById('aboutView').innerHTML = htmlContent;
         })
         .catch(error => {

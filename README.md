@@ -1,6 +1,6 @@
 # Welcome
 
-Explore My Collection of Projects. Most of my work is not shared publicly. This collection does not comprehensively represent my work.
+Explore my collection of projects. Most of my work is not shared publicly. This collection does not comprehensively represent my work.
 
 1. [Completed Projects](#complete)
     * [Cyber Omniglot](#cyber-omniglot)
@@ -33,6 +33,7 @@ Explore My Collection of Projects. Most of my work is not shared publicly. This 
 ## Completed Projects <a name="complete"></a>
 
 ### [Cyber Omniglot](CyberOmniglot/) <a name="cyber-omniglot"></a>
+![Cyber Omniglot](data/thumbnails/CyberOmniglot.png "Cyber Omniglot")
 Inspired by the "Morrowind" coversation system, and puzzle games like "The Rise of the Golden Idol". I wanted to make a refined yet classic looking conversation puzzle game. I settled on a limited number of characters, simple translation puzzle, as the immense writing task overtook the coding practice the game was supposed to be.
 
 - [x] Text to Speech
@@ -214,7 +215,7 @@ I created this a while ago to replicate a peculiar mode of speech I was exposed 
 - [x] Scrambles input text into a semi-comprehensible mess
 
 
-
+---
 ## Incomplete Projects <a name="incomplete"></a>
 
 ### [King Sim](KingSim/) <a name="king-sim"></a>
@@ -240,7 +241,7 @@ PLAYABLE DEMO. A bracket for a game of Kaiju Battle.
 PLAYABLE DEMO. 100 men enter, 1 leaves. I haven't gotten the motivation to polish it enough for the main page.
 
 
-
+---
 ## Credits <a name="credits"></a>
 
 ### Main Page
@@ -264,6 +265,7 @@ Guides:
 - [Convenience Store Guide by samurai-gamers](https://samurai-gamers.com/persona-5/triple-seven-convenience-store-part-time-job-guide/)
 - [Confidant Guide by aqiu384.github.io](https://aqiu384.github.io/p5r-walkthrough/confidants)
 - [Negotiation Guide by joyceychen.com](https://joyceychen.com/persona5-negotiation/royal)
+
 Assets:
 - [Fusion Calculator by p5rfusioncalculator.com](https://p5rfusioncalculator.com/#/list)
 - [Title Font](https://www.reddit.com/r/Persona5/comments/kqickc/persona_5_menu_font_prototype/)
@@ -286,7 +288,7 @@ Music sourced from [fesliyanstudios](https://www.fesliyanstudios.com/):
 - Other: Mediterranean Underscore by Steve Oxen
 
 ### Manticore Generator
-- Original Concept : Brin
+- Original Concept: Brin
 - [Original Animal List](https://gist.github.com/atduskgreg/3cf8ef48cb0d29cf151bedad81553a54)
 
 ### Character Generator
