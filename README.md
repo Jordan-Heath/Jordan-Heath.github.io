@@ -3,6 +3,7 @@
 Explore my collection of projects. Most of my work is not shared publicly. This collection does not comprehensively represent my work.
 
 1. [Completed Projects](#complete)
+    * [Game Guide Checklist](#game-guide-checklist)
     * [Cyber Omniglot](#cyber-omniglot)
     * [Strategy Map Simulator](#strategy-map-simulator)
     * [Persona 3 Reload Guide](#persona-3-reload-guide)
@@ -31,6 +32,15 @@ Explore my collection of projects. Most of my work is not shared publicly. This 
 
 
 ## Completed Projects <a name="complete"></a>
+
+### [Game Guide Checklist](GameGuideChecklist/) <a name="game-guide-checklist"></a>
+![Game Guide Checklist](data/thumbnails/GameGuideChecklist.png "Game Guide Checklist")
+Convert a game guide into a checklist to help you remember all the things you need to know. I was sick of paywalling of checklisting as a feature. I also wanted a darkmode second screen guide. I made this a couple years ago as a pyflask server, but converted it to a static webapp.
+
+- [x] Functional
+- [x] Dark
+- [x] Everyone has to make a list app at some point
+- [x] A _little_ bit of polish
 
 ### [Cyber Omniglot](CyberOmniglot/) <a name="cyber-omniglot"></a>
 ![Cyber Omniglot](data/thumbnails/CyberOmniglot.png "Cyber Omniglot")
