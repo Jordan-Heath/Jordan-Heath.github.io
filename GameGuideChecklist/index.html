@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Guide Checklist</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/extra.css">
+    <link rel="icon" href="../data/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Game Guide Checklist</h1>
+        </header>
+
+        <div class="guide-selector">
+            <label for="guideSelect">Select Guide:</label>
+            <select id="guideSelect" aria-label="Select a guide">
+                <option value="">--New Guide--</option>
+            </select>
+            <div id="guideProgressContainer" class="progress-container" aria-label="Guide completion progress">
+                <div id="guideProgressBar" class="progress-bar" role="progressbar" aria-valuemin="0"
+                    aria-valuemax="100"></div>
+                <span id="guideProgressText" class="progress-text">0/0 (0%)</span>
+            </div>
+            <button id="deleteGuideButton" class="danger-button">Delete Guide</button>
+        </div>
+
+        <section id="newGuideControls" class="guide-creator" aria-label="Create new guide">
+            <h2>Create New Guide</h2>
+            <div class="form-group">
+                <input type="text" id="newGuideInput" placeholder="Guide Name" aria-label="Guide name">
+            </div>
+            <div class="form-group">
+                <textarea id="newGuideTextArea" placeholder="Guide Items (one per line)"
+                    aria-label="Guide items"></textarea>
+            </div>
+            <button id="generateAndSaveButton" class="primary-button">Generate and Save Guide</button>
+        </section>
+
+        <ul id="guideList" class="guide-list" aria-label="Guide items"></ul>
+    </div>
+
+    <details id="guideControls" class="guide-controls">
+            <summary>Guide Controls</summary>
+
+            <div class="controls-content">
+                <div class="controls-grid">
+                    <div class="control-row control-header">Visuals:</div>
+                    <div class="control-row">
+                        <label for="collapseCheckedItemsCheckbox">Collapse Checked Items:</label>
+                        <input type="checkbox" id="collapseCheckedItemsCheckbox">
+                    </div>
+                    <div class="control-row">
+                        <label for="highlightNextStepCheckbox">Highlight Next Step:</label>
+                        <input type="checkbox" id="highlightNextStepCheckbox">
+                    </div>
+
+                    <div class="control-row control-header">Click Behaviour:</div>
+                    <div class="control-row">
+                        <label for="makeItemsDraggableCheckbox">Make Items Draggable:</label>
+                        <input type="checkbox" id="makeItemsDraggableCheckbox">
+                    </div>
+                    <div class="control-row">
+                        <label for="enableEasyTickCheckbox">Enable Easy Tick:</label>
+                        <input type="checkbox" id="enableEasyTickCheckbox">
+                    </div>
+                </div>
+
+                <div class="add-item">
+                    <input type="text" id="addItemInput" placeholder="New Item" aria-label="New item text">
+                    <button id="addItemButton" class="secondary-button">Add Item</button>
+                </div>
+            </div>
+
+
+        </details>
+
+    <!-- Scripts in correct order -->
+    <script src="models/ListItem.js"></script>
+    <script src="models/Guide.js"></script>
+    <script src="services/StorageService.js"></script>
+    <script src="core/AppState.js"></script>
+    <script src="ui/ListItemRenderer.js"></script>
+    <script src="ui/GuideRenderer.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
