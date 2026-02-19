@@ -62,6 +62,8 @@ Inspired by Paradox Interactive games like "Victoria 3" and "Hearts of Iron IV".
 - [x] Procedurally generated landmass
 - [x] Map Editor
 - [x] Complicated kingdom AI
+- [x] Drawing tools
+- [x] Bad UI
 
 
 ### [Persona 3 Reload Guide](Persona3ReloadGuide/) <a name="persona-3-reload-guide"></a>
