@@ -1,415 +1,461 @@
-let save = {
+// ============================================
+// State Management
+// ============================================
+const STORAGE_KEY = 'jordansWebPortfolio';
+
+const state = {
     selectedMenu: 'home',
     featuredProjectsIndex: 1
-}
+};
 
-let featuredProjectsTimer;
+let featuredProjectsTimer = null;
 
-document.addEventListener('DOMContentLoaded', () => {
-    loadHomeContents();
-    loadAboutContents();
+// ============================================
+// Utility Functions
+// ============================================
+const slugify = (text) => text.toLowerCase().replace(/\s+/g, '-');
 
+const isCreditsValid = (credits) => {
+    if (!Array.isArray(credits)) return false;
+    
+    const cleaned = credits
+        .map(c => String(c).trim())
+        .filter(c => c.length > 0);
+    
+    if (cleaned.length === 0) return false;
+    if (cleaned.length === 1 && cleaned[0].toUpperCase() === 'TODO') return false;
+    
+    return true;
+};
 
-    window.addEventListener('scroll', () => {
-        const navTitle = document.querySelector('.nav-title');
+// ============================================
+// Local Storage Management
+// ============================================
+const saveState = () => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+};
 
-        if (window.scrollY > 110) {
-            navTitle.style.display = 'block';
-        } else {
-            navTitle.style.display = 'none';
-        }
-    })
-
-    loadFromLocalStorage();
-    changeMenu(save.selectedMenu);
-});
-
-function saveToLocalStorage() {
-    // Save the selected menu to local storage
-    localStorage.setItem('jordansWebPortfolio', JSON.stringify(save));
-}
-
-function loadFromLocalStorage() {
-    // Load the selected menu from local storage
-    const savedData = localStorage.getItem('jordansWebPortfolio');
+const loadState = () => {
+    const savedData = localStorage.getItem(STORAGE_KEY);
     if (savedData) {
-        save = JSON.parse(savedData);
-        changeMenu(save.selectedMenu);
+        Object.assign(state, JSON.parse(savedData));
+        changeMenu(state.selectedMenu);
     }
-}
+};
 
-function changeMenu(selectedMenu) {
-    save.selectedMenu = selectedMenu;
+// ============================================
+// Navigation
+// ============================================
+const changeMenu = (selectedMenu) => {
+    state.selectedMenu = selectedMenu;
+    
+    // Update navigation buttons
+    document.querySelectorAll('.nav-buttons button').forEach(button => 
+        button.classList.remove('active')
+    );
+    
+    // Hide all views
+    document.getElementById('aboutView').classList.add('hidden');
+    document.getElementById('homeView').classList.add('hidden');
+    
+    // Show selected view and activate corresponding button
+    const viewMap = {
+        'home': { viewId: 'homeView', buttonIndex: 0 },
+        'about': { viewId: 'aboutView', buttonIndex: 1 }
+    };
+    
+    const { viewId, buttonIndex } = viewMap[selectedMenu];
+    document.getElementById(viewId).classList.remove('hidden');
+    document.querySelectorAll('.nav-buttons button')[buttonIndex].classList.add('active');
+    
+    saveState();
+};
 
-    const navButtons = document.querySelectorAll('.nav-buttons button');
-    navButtons.forEach(button => button.classList.remove('active'));
+// ============================================
+// Featured Projects Carousel
+// ============================================
+const showFeaturedProjects = (n = 1) => {
+    state.featuredProjectsIndex = n;
+    
+    const slides = document.getElementsByClassName('featuredProject');
+    const dots = document.getElementsByClassName('dot');
+    
+    // Handle boundary conditions
+    if (n > slides.length) state.featuredProjectsIndex = 1;
+    if (n < 1) state.featuredProjectsIndex = slides.length;
+    
+    // Update slides
+    Array.from(slides).forEach(slide => slide.style.display = 'none');
+    slides[state.featuredProjectsIndex - 1].style.display = 'flex';
+    
+    // Update dots
+    Array.from(dots).forEach(dot => dot.classList.remove('active'));
+    dots[state.featuredProjectsIndex - 1]?.classList.add('active');
+    
+    // Reset timer
+    clearInterval(featuredProjectsTimer);
+    featuredProjectsTimer = setInterval(
+        () => showFeaturedProjects(state.featuredProjectsIndex + 1), 
+        10000
+    );
+};
 
-    const aboutView = document.getElementById('aboutView');
-    const homeView = document.getElementById('homeView');
-    aboutView.className = 'hidden';
-    homeView.className = 'hidden';
-
-    switch (save.selectedMenu) {
-        case 'home':
-            document.getElementById('homeView').className = '';
-            navButtons[0].classList.add('active');
-            break;
-        case 'about':
-            document.getElementById('aboutView').className = '';
-            navButtons[1].classList.add('active');
-            break;
-        default:
-            break;
-    }
-
-    saveToLocalStorage();
-}
-
-function loadAboutContents() {
-    const aboutView = document.getElementById('aboutView');
-    aboutView.innerHTML = '';
-
-    const title = document.createElement('h1');
-    title.textContent = 'About';
-    aboutView.appendChild(title);
-
-    const intro = document.createElement('p');
-    intro.textContent = 'Explore my collection of projects. Most of my work is not shared publicly. This collection does not comprehensively represent my work.';
-    aboutView.appendChild(intro);
-
-    function creditsValid(credits) {
-        if (!credits) return false;
-        if (Array.isArray(credits)) {
-            const cleaned = credits.map(String).map(s => s.trim()).filter(s => s);
-            if (!cleaned.length) return false;
-            if (cleaned.length === 1 && cleaned[0].toUpperCase() === 'TODO') return false;
-            return true;
-        }
-        return false;
-    }
-
-    // Completed vs incomplete
-    const completed = projects.filter(p => (p.releaseyear || 0) !== 0);
-    const incomplete = projects.filter(p => (p.releaseyear || 0) === 0);
-
-    // build table of contents
-    const tableOfContents = document.createElement('div');
-    tableOfContents.className = 'table-of-contents';
-    aboutView.appendChild(tableOfContents);
-
-    const tableOfContentsTitle = document.createElement('h2');
-    tableOfContentsTitle.textContent = 'Table of Contents';
-    tableOfContents.appendChild(tableOfContentsTitle);
-
-    const tableOfContentsList = document.createElement('ul');
-    tableOfContents.appendChild(tableOfContentsList);
-
-    // add completed projects
-    tableOfContentsList.innerHTML += `<li class="toc-item"><a href="#completed-projects-title">Completed Projects</a></li>`;
-    const completedProjectsList = document.createElement('ul');
-    tableOfContentsList.appendChild(completedProjectsList);
-    completed.forEach(project => {
-        const completedProject = document.createElement('li');
-        completedProject.className = 'toc-item';
-        completedProject.innerHTML = `<a href="#about-${project.name.replace(/\s+/g, '-').toLowerCase()}-title">${project.name}</a>`;
-        completedProjectsList.appendChild(completedProject);
+const createFeaturedProjectsElement = () => {
+    const container = document.createElement('div');
+    container.className = 'FeaturedProjects';
+    
+    const grid = document.createElement('div');
+    grid.className = 'featuredProjectsGrid';
+    container.appendChild(grid);
+    
+    const featuredProjects = projects.filter(p => p.featured);
+    
+    // Create project slides
+    featuredProjects.forEach(project => {
+        grid.appendChild(createFeaturedProjectSlide(project));
     });
+    
+    // Add navigation arrows
+    grid.appendChild(createCarouselArrow('leftArrow', '❮', () => 
+        showFeaturedProjects(state.featuredProjectsIndex - 1)
+    ));
+    grid.appendChild(createCarouselArrow('rightArrow', '❯', () => 
+        showFeaturedProjects(state.featuredProjectsIndex + 1)
+    ));
+    
+    // Add dots
+    grid.appendChild(createCarouselDots(featuredProjects.length));
+    
+    return container;
+};
 
-    // add incomplete projects
-    tableOfContentsList.innerHTML += `<li class="toc-item"><a href="#incomplete-projects-title">Incomplete Projects</a></li>`;
-    const incompleteProjectsList = document.createElement('ul');
-    tableOfContentsList.appendChild(incompleteProjectsList);
-    incomplete.forEach(project => {
-        const incompleteProject = document.createElement('li');
-        incompleteProject.className = 'toc-item';
-        incompleteProject.innerHTML = `<a href="#about-${project.name.replace(/\s+/g, '-').toLowerCase()}-title">${project.name}</a>`;
-        incompleteProjectsList.appendChild(incompleteProject);
+const createFeaturedProjectSlide = (project) => {
+    const slide = document.createElement('div');
+    slide.className = 'featuredProject';
+    
+    // Details section
+    const details = document.createElement('div');
+    details.className = 'featuredProjectDetails';
+    
+    details.appendChild(createElement('h2', {}, project.name));
+    details.appendChild(createProjectMeta(project));
+    details.appendChild(createElement('p', {}, project.description));
+    details.appendChild(createFeatureList(project.features));
+    
+    slide.appendChild(details);
+    
+    // Screenshot section
+    const screenshotContainer = document.createElement('div');
+    screenshotContainer.className = 'featuredProjectScreenshotContainer';
+    
+    const screenshot = document.createElement('img');
+    Object.assign(screenshot, {
+        src: project.screenshot,
+        alt: project.name,
+        title: project.name
     });
+    screenshotContainer.appendChild(screenshot);
+    
+    const openButton = document.createElement('button');
+    openButton.textContent = 'Open';
+    openButton.onclick = () => window.location.href = project.link;
+    screenshotContainer.appendChild(openButton);
+    
+    slide.appendChild(screenshotContainer);
+    
+    return slide;
+};
 
-    // add credits
-    tableOfContentsList.innerHTML += `<li class="toc-item"><a href="#credits-title">Credits</a></li>`;
-    const creditsList = document.createElement('ul');
-    tableOfContentsList.appendChild(creditsList);
-    projects.forEach(project => {
-        if (creditsValid(project.credits)) {
-            const credit = document.createElement('li');
-            credit.className = 'toc-item';
-            credit.innerHTML = `<a href="#about-${project.name.replace(/\s+/g, '-').toLowerCase()}-credits-title">${project.name}</a>`;
-            creditsList.appendChild(credit);
-        }
-    })
+const createProjectMeta = (project) => {
+    const container = document.createElement('div');
+    container.className = 'featuredProjectYearCategory';
+    
+    container.appendChild(createElement('p', {}, `Release Year: ${project.releaseyear}`));
+    container.appendChild(createElement('p', {}, `Category: ${project.category}`));
+    
+    return container;
+};
 
-    function buildAboutProjectElement(project) {
-        const container = document.createElement('div');
-        container.className = 'about-project';
+const createCarouselArrow = (className, text, onClick) => {
+    const arrow = document.createElement('div');
+    arrow.className = className;
+    arrow.innerText = text;
+    arrow.onclick = onClick;
+    return arrow;
+};
 
-        // heading
-        const heading = document.createElement('h3');
-        heading.id = `about-${project.name.replace(/\s+/g, '-').toLowerCase()}-title`;
-        heading.className = 'about-project-heading';
-        const name = document.createElement('a');
-        name.href = project.link || '#';
-        name.textContent = project.name || 'Unnamed';
-        name.className = 'about-project-name';
-        heading.appendChild(name);
-        if (project.releaseyear !== 0) {
-            const year = document.createElement('span');
-            year.className = 'about-project-year';
-            year.textContent = ` (${project.releaseyear})`;
-            heading.appendChild(year);
-        }
-        container.appendChild(heading);
-
-        // thumbnail
-        if (project.thumbnail) {
-            const thumb = document.createElement('img');
-            thumb.src = project.thumbnail;
-            thumb.alt = project.name || '';
-            thumb.className = 'about-project-thumb';
-            thumb.onclick = () => location.href = project.link;
-            container.appendChild(thumb);
-        }
-
-        // description
-        if (project.description) {
-            const desc = document.createElement('p');
-            desc.textContent = project.description;
-            container.appendChild(desc);
-        }
-
-        // features
-        if (Array.isArray(project.features) && project.features.length) {
-            const ul = document.createElement('ul');
-            project.features.forEach(f => {
-                const li = document.createElement('li');
-                li.textContent = f;
-                ul.appendChild(li);
-            });
-            container.appendChild(ul);
-        }
-
-        return container;
-    }
-
-    // Completed
-    const completedTitle = document.createElement('h2');
-    completedTitle.id = 'about-completed-title';
-    completedTitle.textContent = 'Completed Projects';
-    aboutView.appendChild(completedTitle);
-    completed.forEach(project => {
-        aboutView.appendChild(buildAboutProjectElement(project));
-    });
-
-    // Incomplete
-    const incompleteTitle = document.createElement('h2');
-    incompleteTitle.id = 'about-incomplete-title';
-    incompleteTitle.textContent = 'Incomplete Projects';
-    aboutView.appendChild(incompleteTitle);
-    incomplete.forEach(p => {
-        aboutView.appendChild(buildAboutProjectElement(p));
-    });
-
-    // Credits
-    const creditsTitle = document.createElement('h2');
-    creditsTitle.id = 'about-credits-title';
-    creditsTitle.textContent = 'Credits';
-    aboutView.appendChild(creditsTitle);
-    let anyCredits = false;
-    projects.forEach(p => {
-        if (creditsValid(p.credits)) {
-            anyCredits = true;
-            const block = document.createElement('div');
-            block.className = 'about-credits-project';
-            const pname = document.createElement('h3');
-            pname.id = `about-${p.name.replace(/\s+/g, '-').toLowerCase()}-credits-title`;
-            pname.textContent = p.name || 'Unnamed';
-            block.appendChild(pname);
-            const ul = document.createElement('ul');
-            p.credits.forEach(c => {
-                const cstr = String(c || '').trim();
-                if (!cstr || cstr.toUpperCase() === 'TODO') return;
-                const li = document.createElement('li');
-                li.textContent = cstr;
-                ul.appendChild(li);
-            });
-            block.appendChild(ul);
-            aboutView.appendChild(block);
-        }
-    });
-
-    if (!anyCredits) {
-        const p = document.createElement('p');
-        p.textContent = 'Project credits and assets go here.';
-        aboutView.appendChild(p);
-    }
-}
-
-function loadHomeContents() {
-    const main = document.getElementById('homeView');
-    main.innerHTML = '';
-
-    // featured projects
-    main.appendChild(buildFeaturedProjectsElement());
-    setTimeout(() => showFeaturedProjects(save.featuredProjectsIndex), 50);
-
-    // all projects
-    main.appendChild(buildAllProjectsElement());
-}
-
-function buildFeaturedProjectsElement() {
-    const featuredProjectsElement = document.createElement('div');
-    featuredProjectsElement.className = 'FeaturedProjects';
-
-    // const featuredTitle = document.createElement('h1');
-    // featuredTitle.textContent = 'Featured Projects';
-    // featuredProjectsElement.appendChild(featuredTitle);
-
-    const featuredProjectsGrid = document.createElement('div');
-    featuredProjectsGrid.className = 'featuredProjectsGrid';
-    featuredProjectsElement.appendChild(featuredProjectsGrid);
-
-    projects.forEach(project => {
-        if (project.featured) {
-            const featuredProjectElement = document.createElement('div');
-            featuredProjectElement.className = 'featuredProject';
-
-            // project name
-            const featuredProjectName = document.createElement('h2');
-            featuredProjectName.textContent = project.name;
-
-            // project year/category
-            const featuredProjectYear = document.createElement('p');
-            featuredProjectYear.innerHTML = `Release Year: ${project.releaseyear}`
-            const featuredProjectCategory = document.createElement('p');
-            featuredProjectCategory.innerHTML = `Category: ${project.category}`;
-            const featuredProjectYearCategory = document.createElement('div');
-            featuredProjectYearCategory.className = 'featuredProjectYearCategory';
-            featuredProjectYearCategory.appendChild(featuredProjectYear);
-            featuredProjectYearCategory.appendChild(featuredProjectCategory);
-
-            // project description
-            const featuredProjectDescription = document.createElement('p');
-            featuredProjectDescription.textContent = project.description;
-
-            // project features
-            const featuredProjectFeatures = document.createElement('ul');
-            project.features.forEach(feature => {
-                const featureItem = document.createElement('li');
-                featureItem.textContent = feature;
-                featuredProjectFeatures.appendChild(featureItem);
-            });
-
-            // project button
-            const featuredProjectButton = document.createElement('button');
-            featuredProjectButton.textContent = 'Open';
-            featuredProjectButton.onclick = () => location.href = project.link;
-
-            // project details
-            const featuredProjectDetails = document.createElement('div');
-            featuredProjectDetails.className = 'featuredProjectDetails';
-            featuredProjectDetails.appendChild(featuredProjectName);
-            featuredProjectDetails.appendChild(featuredProjectYearCategory);
-            featuredProjectDetails.appendChild(featuredProjectDescription);
-            featuredProjectDetails.appendChild(featuredProjectFeatures);
-            featuredProjectDetails.appendChild(featuredProjectButton);
-            featuredProjectElement.appendChild(featuredProjectDetails);
-
-            // screnshot image
-            const featuredProjectScreenshot = document.createElement('img');
-            featuredProjectScreenshot.src = project.screenshot;
-            featuredProjectScreenshot.alt = project.name;
-            featuredProjectScreenshot.title = project.name;
-            featuredProjectElement.appendChild(featuredProjectScreenshot);
-
-            featuredProjectsGrid.appendChild(featuredProjectElement);
-        }
-    });
-
-    // carousel arrows
-    const leftArrow = document.createElement('div');
-    leftArrow.className = 'leftArrow';
-    leftArrow.innerText = '❮';
-    leftArrow.onclick = () => showFeaturedProjects(save.featuredProjectsIndex - 1);
-    featuredProjectsGrid.appendChild(leftArrow);
-
-    const rightArrow = document.createElement('div');
-    rightArrow.className = 'rightArrow';
-    rightArrow.innerText = '❯';
-    rightArrow.onclick = () => showFeaturedProjects(save.featuredProjectsIndex + 1);
-    featuredProjectsGrid.appendChild(rightArrow);
-
-    // build dots
+const createCarouselDots = (count) => {
     const dots = document.createElement('div');
     dots.className = 'dots';
-    featuredProjectsGrid.appendChild(dots);
-    for (let i = 0; i < projects.filter(project => project.featured).length; i++) {
+    
+    for (let i = 0; i < count; i++) {
         const dot = document.createElement('span');
         dot.className = 'dot';
         dot.onclick = () => showFeaturedProjects(i + 1);
         dots.appendChild(dot);
     }
+    
+    return dots;
+};
 
-    return featuredProjectsElement;
-}
-
-function buildAllProjectsElement() {
-    const allProjectsElement = document.createElement('div');
-    allProjectsElement.className = 'AllProjects';
-
-    const allProjectsTitle = document.createElement('h1');
-    allProjectsTitle.textContent = 'All Projects';
-    allProjectsElement.appendChild(allProjectsTitle);
-
-    const allProjectsGrid = document.createElement('div');
-    allProjectsGrid.className = 'projectsGrid';
-    allProjectsElement.appendChild(allProjectsGrid);
-
+// ============================================
+// All Projects Grid
+// ============================================
+const createAllProjectsElement = () => {
+    const container = document.createElement('div');
+    container.className = 'AllProjects';
+    
+    container.appendChild(createElement('h1', {}, 'All Projects'));
+    
+    const grid = document.createElement('div');
+    grid.className = 'projectsGrid';
+    
     projects.forEach(project => {
-        const projectElement = document.createElement('div');
-        projectElement.className = 'project';
-
-        const projectImage = document.createElement('img');
-        projectImage.src = project.thumbnail;
-        projectImage.alt = project.name;
-        projectImage.title = project.name;
-        projectImage.onclick = () => location.href = project.link;
-        projectElement.appendChild(projectImage);
-
-        // add year to the top left corner
-        const yearElement = document.createElement('div');
-        yearElement.className = 'year';
-        yearElement.textContent = project.releaseyear == 0 ? 'Incomplete' : project.releaseyear;
-        projectElement.appendChild(yearElement);
-
-        // add category to the top right corner
-        const categoryElement = document.createElement('div');
-        categoryElement.className = 'category';
-        categoryElement.textContent = project.category;
-        projectElement.appendChild(categoryElement);
-
-        allProjectsGrid.appendChild(projectElement);
+        grid.appendChild(createProjectCard(project));
     });
+    
+    container.appendChild(grid);
+    return container;
+};
 
-    return allProjectsElement;
-}
+const createProjectCard = (project) => {
+    const card = document.createElement('div');
+    card.className = 'project';
+    
+    const image = document.createElement('img');
+    Object.assign(image, {
+        src: project.thumbnail,
+        alt: project.name,
+        title: project.name
+    });
+    image.onclick = () => window.location.href = project.link;
+    card.appendChild(image);
+    
+    // Year badge
+    const yearBadge = document.createElement('div');
+    yearBadge.className = 'year';
+    yearBadge.textContent = project.releaseyear === 0 ? 'Incomplete' : project.releaseyear;
+    card.appendChild(yearBadge);
+    
+    // Category badge
+    const categoryBadge = document.createElement('div');
+    categoryBadge.className = 'category';
+    categoryBadge.textContent = project.category;
+    card.appendChild(categoryBadge);
+    
+    return card;
+};
 
-function showFeaturedProjects(n = 1) {
-    save.featuredProjectsIndex = n;
+// ============================================
+// About View
+// ============================================
+const loadAboutContents = () => {
+    const aboutView = document.getElementById('aboutView');
+    aboutView.innerHTML = '';
+    
+    aboutView.appendChild(createElement('h1', {}, 'About'));
+    aboutView.appendChild(createElement('p', {}, 
+        'Explore my collection of projects. Most of my work is not shared publicly. This collection does not comprehensively represent my work.'
+    ));
+    
+    const completedProjects = projects.filter(p => p.releaseyear !== 0);
+    const incompleteProjects = projects.filter(p => p.releaseyear === 0);
+    
+    aboutView.appendChild(createTableOfContents(completedProjects, incompleteProjects));
+    aboutView.appendChild(createProjectSection('Completed Projects', completedProjects, 'completed-projects-title'));
+    aboutView.appendChild(createProjectSection('Incomplete Projects', incompleteProjects, 'incomplete-projects-title'));
+    aboutView.appendChild(createCreditsSection());
+};
 
-    let i;
-    let slides = document.getElementsByClassName("featuredProject");
-    let dots = document.getElementsByClassName("dot");
-    if (n > slides.length) { save.featuredProjectsIndex = 1 }
-    if (n < 1) { save.featuredProjectsIndex = slides.length }
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
+const createTableOfContents = (completed, incomplete) => {
+    const toc = document.createElement('div');
+    toc.className = 'table-of-contents';
+    
+    toc.appendChild(createElement('h2', {}, 'Table of Contents'));
+    
+    const list = document.createElement('ul');
+    
+    // Completed projects
+    list.appendChild(createTocItem('Completed Projects', '#completed-projects-title'));
+    const completedSubList = document.createElement('ul');
+    completed.forEach(p => {
+        completedSubList.appendChild(createTocItem(p.name, `#about-${slugify(p.name)}-title`));
+    });
+    list.appendChild(completedSubList);
+    
+    // Incomplete projects
+    list.appendChild(createTocItem('Incomplete Projects', '#incomplete-projects-title'));
+    const incompleteSubList = document.createElement('ul');
+    incomplete.forEach(p => {
+        incompleteSubList.appendChild(createTocItem(p.name, `#about-${slugify(p.name)}-title`));
+    });
+    list.appendChild(incompleteSubList);
+    
+    // Credits
+    list.appendChild(createTocItem('Credits', '#credits-title'));
+    const creditsSubList = document.createElement('ul');
+    projects.forEach(p => {
+        if (isCreditsValid(p.credits)) {
+            creditsSubList.appendChild(createTocItem(p.name, `#about-${slugify(p.name)}-credits-title`));
+        }
+    });
+    list.appendChild(creditsSubList);
+    
+    toc.appendChild(list);
+    return toc;
+};
+
+const createTocItem = (text, href) => {
+    const item = document.createElement('li');
+    item.className = 'toc-item';
+    item.innerHTML = `<a href="${href}">${text}</a>`;
+    return item;
+};
+
+const createProjectSection = (title, projects, id) => {
+    const fragment = document.createDocumentFragment();
+    
+    fragment.appendChild(createElement('h2', { id }, title));
+    
+    projects.forEach(project => {
+        fragment.appendChild(createAboutProjectElement(project));
+    });
+    
+    return fragment;
+};
+
+const createAboutProjectElement = (project) => {
+    const container = document.createElement('div');
+    container.className = 'about-project';
+    
+    // Heading
+    const heading = document.createElement('h3');
+    heading.id = `about-${slugify(project.name)}-title`;
+    heading.className = 'about-project-heading';
+    
+    const nameLink = document.createElement('a');
+    nameLink.href = project.link || '#';
+    nameLink.textContent = project.name || 'Unnamed';
+    nameLink.className = 'about-project-name';
+    heading.appendChild(nameLink);
+    
+    if (project.releaseyear !== 0) {
+        const year = document.createElement('span');
+        year.className = 'about-project-year';
+        year.textContent = ` (${project.releaseyear})`;
+        heading.appendChild(year);
     }
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
+    container.appendChild(heading);
+    
+    // Thumbnail
+    if (project.thumbnail) {
+        const thumb = document.createElement('img');
+        Object.assign(thumb, {
+            src: project.thumbnail,
+            alt: project.name,
+            className: 'about-project-thumb'
+        });
+        thumb.onclick = () => window.location.href = project.link;
+        container.appendChild(thumb);
     }
-    slides[save.featuredProjectsIndex - 1].style.display = "flex";
-    dots[save.featuredProjectsIndex - 1].className += " active";
+    
+    // Description
+    if (project.description) {
+        container.appendChild(createElement('p', {}, project.description));
+    }
+    
+    // Features
+    if (project.features?.length) {
+        container.appendChild(createFeatureList(project.features));
+    }
+    
+    return container;
+};
 
-    clearInterval(featuredProjectsTimer);
-    featuredProjectsTimer = setInterval(() => { showFeaturedProjects(save.featuredProjectsIndex + 1) }, 10000);
-}
+const createCreditsSection = () => {
+    const fragment = document.createDocumentFragment();
+    
+    fragment.appendChild(createElement('h2', { id: 'credits-title' }, 'Credits'));
+    
+    let hasCredits = false;
+    
+    projects.forEach(project => {
+        if (isCreditsValid(project.credits)) {
+            hasCredits = true;
+            
+            const block = document.createElement('div');
+            block.className = 'about-credits-project';
+            
+            const title = document.createElement('h3');
+            title.id = `about-${slugify(project.name)}-credits-title`;
+            title.textContent = project.name;
+            block.appendChild(title);
+            
+            const list = document.createElement('ul');
+            project.credits.forEach(c => {
+                const credit = String(c).trim();
+                if (credit && credit.toUpperCase() !== 'TODO') {
+                    list.appendChild(createElement('li', {}, credit));
+                }
+            });
+            block.appendChild(list);
+            
+            fragment.appendChild(block);
+        }
+    });
+    
+    if (!hasCredits) {
+        fragment.appendChild(createElement('p', {}, 'Project credits and assets go here.'));
+    }
+    
+    return fragment;
+};
+
+// ============================================
+// Home View
+// ============================================
+const loadHomeContents = () => {
+    const homeView = document.getElementById('homeView');
+    homeView.innerHTML = '';
+    
+    homeView.appendChild(createFeaturedProjectsElement());
+    homeView.appendChild(createAllProjectsElement());
+    
+    // Initialize carousel
+    setTimeout(() => showFeaturedProjects(state.featuredProjectsIndex), 50);
+};
+
+// ============================================
+// Helper Functions
+// ============================================
+const createElement = (tag, attributes = {}, textContent = '') => {
+    const element = document.createElement(tag);
+    Object.assign(element, attributes);
+    if (textContent) element.textContent = textContent;
+    return element;
+};
+
+const createFeatureList = (features) => {
+    const list = document.createElement('ul');
+    features.forEach(feature => {
+        list.appendChild(createElement('li', {}, feature));
+    });
+    return list;
+};
+
+// ============================================
+// Initialization
+// ============================================
+document.addEventListener('DOMContentLoaded', () => {
+    loadHomeContents();
+    loadAboutContents();
+    
+    // Scroll handler for nav title
+    window.addEventListener('scroll', () => {
+        const navTitle = document.querySelector('.nav-title');
+        navTitle.style.display = window.scrollY > 110 ? 'block' : 'none';
+    });
+    
+    loadState();
+    changeMenu(state.selectedMenu);
+});

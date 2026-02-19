@@ -75,6 +75,8 @@ body {
     margin: 0;
     min-height: 100vh;
     background: var(--body-background);
+    background-size: cover;
+    background-position-x: center;
     background-attachment: fixed;
     color: var(--body-text);
     font-family: monaco, Consolas, Lucida Console, monospace;
@@ -158,8 +160,7 @@ header {
     flex-direction: column;
     justify-content: center;
     margin: 0 auto;
-    height: 50vh;
-    max-height: 200px;
+    min-height: 200px;
     padding-bottom: 20px;
     /* max-width: 1200px; */
     background: var(--header-background);
@@ -182,6 +183,7 @@ header {
         margin-top: -15px;
         opacity: 0.9;
         animation: loadIn 600ms ease-out 0.2s backwards;
+        border-bottom: unset;
     }
 }
 
@@ -297,6 +299,7 @@ nav {
                 overflow: hidden;
                 animation: carouselAnimation 500ms ease-out;
                 height: 500px;
+                border: 2px solid rgba(255, 255, 255, 0.2);
 
                 &::before {
                     content: '';
@@ -317,14 +320,14 @@ nav {
                     bottom: 0;
                     left: 0;
                     width: 100%;
-                    height: 10px;
+                    height: 16px;
                     background: #fff;
                     pointer-events: none;
                     opacity: 0.3;
-                    z-index: 9997;
+                    z-index: 9996;
                     animation: progressBarAnimation 10s linear;
                     border-radius: 0 0 0 16px;
-                    corner-shape: superellipse(2);
+                    /* corner-shape: superellipse(2); */
                 }
 
                 &:nth-child(even) {
@@ -338,7 +341,6 @@ nav {
 
                 .featuredProjectDetails {
                     flex: 2;
-                    position: relative;
 
                     h2 {
                         margin-bottom: 0;
@@ -357,6 +359,18 @@ nav {
                             margin: 0;
                         }
                     }
+                }
+
+                .featuredProjectScreenshotContainer {
+                    position: relative;
+
+                    img {
+                        width: 500px;
+                        height: 500px;
+                        object-fit: fill;
+                        aspect-ratio: 1 / 1;
+                        mask-image: linear-gradient(to left, var(--featured-project-background) 70%, transparent 100%);
+                    }
 
                     button {
                         position: absolute;
@@ -365,13 +379,6 @@ nav {
                         transform: translateX(-50%);
                         margin-bottom: 4px;
                     }
-                }
-
-                img {
-                    max-width: 500px;
-                    max-height: 500px;
-                    aspect-ratio: 1 / 1;
-                    mask-image: linear-gradient(to left, var(--featured-project-background) 70%, transparent 100%);
                 }
             }
 
@@ -408,12 +415,13 @@ nav {
                 translate: -50% 0;
                 display: flex;
                 justify-content: center;
-                padding-bottom: 4px;
+                padding-bottom: 8px;
+                z-index: 9997;
 
                 .dot {
                     cursor: pointer;
-                    height: 15px;
-                    width: 15px;
+                    height: 16px;
+                    width: 16px;
                     margin: 0 2px;
                     background-color: #717171;
                     border-radius: 50%;
@@ -443,7 +451,7 @@ nav {
                 aspect-ratio: 800 / 340;
                 width: 100%;
                 border-radius: 16px;
-                corner-shape: superellipse(2);
+                /* corner-shape: superellipse(2); */
                 transition: all 200ms ease-in-out;
                 border: 2px solid rgba(255, 255, 255, 0.2);
                 animation: loadIn 500ms ease-out;
@@ -462,7 +470,7 @@ nav {
                     text-align: center;
                     align-content: center;
                     z-index: 1;
-                    corner-shape: superellipse(2);
+                    /* corner-shape: superellipse(2); */
                 }
 
                 .year,
@@ -473,7 +481,7 @@ nav {
                     padding: 4px 8px;
                     background: #0a2317cc;
                     border-radius: 16px 0 8px 0;
-                    corner-shape: superellipse(2);
+                    /* corner-shape: superellipse(2); */
                     font-size: 0.8rem;
                     font-weight: 500;
                     color: var(--body-text);
@@ -502,6 +510,18 @@ nav {
                 outline: 3px solid var(--heading-text2);
                 outline-offset: 3px;
             }
+        }
+    }
+
+    @media screen and (max-width: 1200px) {
+        .FeaturedProjects .featuredProject .featuredProjectDetails {
+            overflow: scroll;
+        }
+    }
+
+    @media screen and (max-width: 900px) {
+        .FeaturedProjects {
+            display: none;
         }
     }
 }
@@ -587,7 +607,7 @@ nav {
         img {
             display: block;
             border-radius: 16px;
-            corner-shape: superellipse(2);
+            /* corner-shape: superellipse(2); */
             max-width: 100%;
             max-height: 200px;
             margin-right: 20px;
