@@ -22,13 +22,12 @@ Explore my collection of projects. Most of my work is not shared publicly. This 
     * [Word Scrambler](#word-scrambler)
 2. [Incomplete Projects](#incomplete)
     * [King Sim](#king-sim)
-    * [DNDAutoBattler](#dnd-auto-battler)
+    * [DND Auto Battler](#dnd-auto-battler)
     * [Top Down RPG](#top-down-rpg)
     * [Pet Game](#pet-game)
     * [Kaiju Battle Bracket](#kaiju-battle-bracket)
-    * [The Great Hundred Man Fight](#the-great-100-man-fight)
+    * [The Great Hundred Man Fight](#the-great-hundred-man-fight)
 3. [Credits](#credits)
-
 
 
 ## Completed Projects <a name="complete"></a>
@@ -38,9 +37,9 @@ Explore my collection of projects. Most of my work is not shared publicly. This 
 Convert a game guide into a checklist to help you remember all the things you need to know. I was sick of paywalling of checklisting as a feature. I also wanted a darkmode second screen guide. I made this a couple years ago as a pyflask server, but converted it to a static webapp.
 
 - [x] Functional
-- [x] Dark
-- [x] Everyone has to make a list app at some point
-- [x] A _little_ bit of polish
+- [x] Dark mode
+- [x] Checklist system
+- [x] Light polish
 
 ### [Cyber Omniglot](CyberOmniglot/) <a name="cyber-omniglot"></a>
 ![Cyber Omniglot](data/thumbnails/CyberOmniglot.png "Cyber Omniglot")
@@ -48,262 +47,210 @@ Inspired by the "Morrowind" coversation system, and puzzle games like "The Rise 
 
 - [x] Text to Speech
 - [x] Retro UI
-- [x] Simple Translation Puzzle
+- [x] Simple translation puzzle
 - [x] 5 unique characters
 - [x] 80 lines of dialogue
-- [x] 9 Words to Translate
-- [x] Once a word is given a translation, it is replaced in game.
-
+- [x] 9 words to translate
+- [x] Dynamic word replacement
 
 ### [Strategy Map Simulator](StrategyMapSimulator/) <a name="strategy-map-simulator"></a>
 ![Strategy Map Simulator](data/thumbnails/StrategyMapSimulator.png "Strategy Map Simulator")
 Inspired by Paradox Interactive games like "Victoria 3" and "Hearts of Iron IV". I wanted to experiment with a complicated canvas based game. The UI was placeholder and then I lost interest.
 
 - [x] Procedurally generated landmass
-- [x] Map Editor
-- [x] Complicated kingdom AI
+- [x] Map editor
+- [x] Kingdom AI
 - [x] Drawing tools
 - [x] Bad UI
 
-
 ### [Persona 3 Reload Guide](Persona3ReloadGuide/) <a name="persona-3-reload-guide"></a>
 ![Persona 3 Reload Guide](data/thumbnails/Persona3ReloadGuide.png "Persona 3 Reload Guide")
-Fairly raw copy of the Persona 5 Guide but for Persona 3.
+Fairly raw copy of the Persona 5 Royal Guide but for Persona 3 Reload.
 
-- [x] Mobile Friendly
-- [x] Full day to day guide
-- [x] Notepad for saving notes
-- [x] Notepad for highlighing text in the guide
-- [x] Link to Fusion Calculator
-- [x] Press numpad +/- to go to next/prev day
-- [x] Personalised graphic design to match Persona 3
-
+- [x] Mobile friendly
+- [x] Full day-by-day guide
+- [x] Integrated notepad
+- [x] Fusion calculator link
+- [x] Keyboard shortcuts
+- [x] Persona-themed design
 
 ### [Tamagotchi Uni Guide](TamagotchiUniGuide/) <a name="tamagotchi-uni-guide"></a>
 ![Tamagotchi Uni Guide](data/thumbnails/TamagotchiUniGuide.png "Tamagotchi Uni Guide")
 A webapp I put together for my partner to help them keep track of their Tamagotchi Uni. It was important that it had a nice mobile-friendly design, kept track of progress in the game, and informed the user in a very accessible way.
 
-- [x] Mobile Friendly
-- [x] Tamagotchi inspired design
-- [x] Saves progress / settings to local storage
-- [x] Completion Stats
-- [x] Evolution Chart
-- [x] Completion Diary
-- [x] DLC Tamas
-- [x] Likes & Dislikes
-- [x] Pets
-- [x] Care Icons
-
+- [x] Mobile friendly
+- [x] Local storage saves
+- [x] Completion stats
+- [x] Evolution chart
+- [x] DLC support
+- [x] Care tracking
 
 ### [Qualification Academy](QualificationAcademy/) <a name="qualification-academy"></a>
 ![Qualification Academy](data/thumbnails/QualificationAcademy.png "Qualification Academy")
 A game where you complete a series of questions to receive a certificate. I wanted it to be elegant and fun.
 
-- [x] 10+ Qualifications to unlock
-- [x] Custom Courses
-- [x] Elegant UI Design
+- [x] 10+ unlockable qualifications
+- [x] Custom courses
+- [x] Elegant UI
 - [x] Sound effects
-- [x] Mobile Friendly
-- [x] Dark Mode
-- [x] Saving to local storage
-- [x] Importing/Exporting courses to JSON
+- [x] Dark mode
+- [x] JSON import/export
 
-
-### [Pokemon Collector](CustomChess/) <a name="pokemon-collector"></a>
+### [Pokemon Collector](PokemonCollector/) <a name="pokemon-collector"></a>
 ![Pokemon Collector](data/thumbnails/PokemonCollector.png "Pokemon Collector")
 I've wanted to make a card collection game for a while, but given I could not do enough good quality art to do it myself, i decided last minute to make it a fan game.
 
-- [x] 6 CardPacks to unlock pokemon
-- [x] 151 Pokemon to collect/evolve
-- [x] 151 Shiny Pokemon with a base 0.1% shiny rate
-- [x] 16 Upgrades to unlock
-- [x] 6 Jobs to earn passive income
-- [x] Disable Challenges Setting - removes the challenges and turns the game into a pure clicker game
-- [x] Cheat mode - provides a CardPack with busted odds and money rewards
-- [x] Optimised Card rendering
-
+- [x] 6 card packs
+- [x] 151 Pokemon + 151 shiny variants
+- [x] Upgrades and jobs
+- [x] Cheat mode
+- [x] Optimized rendering
 
 ### [Custom Chess](CustomChess/) <a name="custom-chess"></a>
 ![Custom Chess](data/thumbnails/CustomChess.png "Custom Chess")
-Inspired by Balatro, but for chess. Work In Progress, but good enough to publish.
+A chess variant inspired by Balatro featuring progression and AI opponents.
 
-- [x] Saving
-- [x] All pieces working
+- [x] Save system
+- [x] Working chess pieces
 - [x] Reckless AI
-- [x] Build a streak to earn greater prizes
-- [x] Carry your pieces over to the next round
-
+- [x] Streak rewards
+- [x] Carry-over progression
 
 ### [Persona 5 Royal Guide](Persona5RoyalGuide/) <a name="persona-5-royal-guide"></a>
 ![Persona 5 Royal Guide](data/thumbnails/Persona5RoyalGuide.png "Persona 5 Royal Guide")
 I wanted an elegant guide styled after the game to occupy my second screen while playing. Other guides would require you to keep track of the day you were up to by scrolling through difficult to read whole pages of text, require you to switch tabs for negotiations and part time quizes.
 
-- [x] Full 300 days of day by day guidance
-- [x] Guide for selecting Flowers
-- [x] Guide for finding barcodes in convenience store
-- [x] Guide for confidants
-- [x] Guide for shadow negotiations
-- [x] Guide for fusion (implemented via embed)
-- [x] Saves date you are up to
-- [x] Neato little knife animation / sound effect when selected date
-- [x] Press numpad +/- to go to next/prev day
-- [x] Mobile Friendly
-
+- [x] 300-day guide
+- [x] Confidant and negotiation guides
+- [x] Fusion embed
+- [x] Date saving
+- [x] Keyboard shortcuts
+- [x] Mobile friendly
 
 ### [The Collector](TheCollector/) <a name="the-collector"></a>
 ![The Collector](data/thumbnails/TheCollector.png "The Collector")
-Idle Collection game. To my knowledge the first of it's kind.
+An idle collection game featuring item combos, zones, and upgrade systems.
 
-- [x] 96 different items
-- [x] 32 different combos
+- [x] 96 items
+- [x] 32 combos
 - [x] Upgrade store
-- [x] 4 different zones
-- [x] Sound effects
-- [x] Automatic Save system with manual, import and export saves
-
+- [x] 4 zones
+- [x] Save system
 
 ### [Meal Planner](MealPlanner/) <a name="meal-planner"></a>
 ![Meal Planner](data/thumbnails/MealPlanner.png "Meal Planner")
-Intended to help me plan out my meals.
+A shitty meal planning tool that generates plans, recipes, and shopping lists.
 
-- [x] 33 different meals of varying quality
-- [x] Creates a Meal Plan
-- [x] Can view full recipes by selecting the meals
-- [x] Creates a Shopping list
-- [x] Can tick off items on the shopping list
-- [x] Includes [Recipe Maker](MealPlanner/RecipeMaker.html) - a tool for making the json recipes the app uses.
-- [x] Includes [Recipe Browser](MealPlanner/RecipeBrowser.html) - for if you want to search for a recipe instead of being assigned.
-
+- [x] 33 meals
+- [x] Auto meal plan generation
+- [x] Shopping list
+- [x] Recipe maker
+- [x] Recipe browser
 
 ### [Idle Landlord](IdleLandlord/) <a name="idle-landlord"></a>
 ![Idle Landlord](data/thumbnails/IdleLandlord.png "Idle Landlord")
-I've wanted to make a clicker game for a while. The king of passive income is landlording, so I really wanted to make landlord themed clicker game. Features:
+A landlord-themed clicker game focused on passive income and progression.
 
-- [x] Work a job and get promoted
-- [x] 7 properties you can buy
-- [x] Upgrade Properties to earn more
-- [x] Auto-save and manual saving to cookies
-- [x] Importing/Exporting saves to JSON
-- [x] Unique mobile layout
-
+- [x] Job promotions
+- [x] 7 properties
+- [x] Property upgrades
+- [x] Auto-save
+- [x] JSON import/export
 
 ### [Story Teller](StoryTeller/) <a name="story-teller"></a>
 ![Story Teller](data/thumbnails/StoryTeller.png "Story Teller")
-I developed an app that emulates the game Madlibs. Features:
+A Madlibs-style storytelling app with music and customizable stories.
 
-- [x] 16 different stories
-- [x] Page design to match the mood of the story
-- [x] Complete the story by filling in the missing words
-- [x] Watch as the story unfolds keystroke at a time accompanied by 7 different musical tracks
-- [x] Adjustable Text-speed and audio fade
-- [x] support for making and importing custom stories via the [Story Maker](StoryTeller/StoryMaker.html)
-
+- [x] 16 stories
+- [x] Dynamic text reveal
+- [x] 7 music tracks
+- [x] Adjustable text speed
+- [x] Custom story import
 
 ### [Manticore Generator](ManticoreGenerator/) <a name="manticore-generator"></a>
 ![Manticore Generator](data/thumbnails/ManticoreGenerator.png "Manticore Generator")
-A friend of mine saw the character generator and was working on creating some manticores for a personal project. They asked if I could make something similar to assist them in the process. I added a few extra features to help them:
+A friend of mine saw the character generator and was working on creating some manticores for a personal project. They asked if I could make something similar to assist them in the process.
 
-- [x] Random chance of not adding a tail/wings
-- [x] Settings to decide the chance of tail/wings
-- [x] Ability to lock body parts to prevent randomization
-- [x] 461 Animals!
-- [x] Click the name of an animal to be redirected to Bing images in a new tab!
-
-Otherwise, it is very similar to the Character Generator.
-
+- [x] 461 animals
+- [x] Tail/wing probability settings
+- [x] Lockable body parts
+- [x] Image search integration
 
 ### [Character Generator](CharacterGenerator/) <a name="character-generator"></a>
 ![Character Generator](data/thumbnails/CharacterGenerator.png "Character Generator")
-I was familiar with name generators, but I wanted to put my own spin on it by adding a few extra features.
+A whimsical character generator with names, demographics, and stats.
 
-- [x] Names composed of different syllables
-- [x] Demographic details about the character
-- [x] A stat list for each character
-
-The characters may come out as a bit whimsical, but I found it enjoyable.
-
+- [x] Syllable-based names
+- [x] Demographic details
+- [x] Character stats
 
 ### [Percentage Clock](PercentageClock/) <a name="percentage-clock"></a>
 ![Percentage Clock](data/thumbnails/PercentageClock.png "Percentage Clock")
-On challenging days, it's helpful to know how much of the day is left. Percentage Clock provides this information in a simple number. It might not offer much comfort as I got a bit carried away with the CSS animation library. A few features include:
+On challenging days, it's helpful to know how much of the day is left. Percentage Clock provides this information in a simple number. It might not offer much comfort as I got a bit carried away with the CSS animation library.
 
-- [x] Indicates the current time
-- [x] Transitions from red to green throughout the day
-- [x] Pulses like your heart
-- [x] You can press on the number, and it produces an annoying noise that increases in pitch, creating a sense of unease
-
-Wouldn't particularly recommend this one.
-
+- [x] Current time indicator
+- [x] Color transition
+- [x] Heartbeat pulse animation
+- [x] Interactive sound effect
 
 ### [Word Scrambler](WordScrambler/) <a name="word-scrambler"></a>
 ![Word Scrambler](data/thumbnails/WordScrambler.png "Word Scrambler")
-I created this a while ago to replicate a peculiar mode of speech I was exposed to. I just need to port it over. Features:
+Scrambles input text into a semi-comprehensible format.
 
-- [x] Scrambles input text into a semi-comprehensible mess
-
+- [x] Text scrambling
+- [x] Lightweight tool
 
 ## Incomplete Projects <a name="incomplete"></a>
 
 ### [King Sim](KingSim/) <a name="king-sim"></a>
-PLAYABLE DEMO. A game about choices leading a kingdom.
-
+PLAYABLE DEMO.
 
 ### [DND Auto Battler](DNDAutoBattler/) <a name="dnd-auto-battler"></a>
-PLAYABLE DEMO. A Dungeons and Dragons themed auto battler.
-
+PLAYABLE DEMO.
 
 ### [Top Down RPG](TopDownRPG/) <a name="top-down-rpg"></a>
-PLAYABLE DEMO. A top down RPG with a few features.
+PLAYABLE DEMO.
 
 ### [Pet Game](PetGame/) <a name="pet-game"></a>
-PLAYABLE DEMO. A digimon/tamogotchi clone with my own spin.
-
+PLAYABLE DEMO.
 
 ### [Kaiju Battle Bracket](KaijuBattleBracket/) <a name="kaiju-battle-bracket"></a>
-PLAYABLE DEMO. A bracket for a game of Kaiju Battle.
+PLAYABLE DEMO.
 
-
-### [The Great Hundred Man Fight](TheGreatHundredManFight/) <a name="the-great-100-man-fight"></a>
-PLAYABLE DEMO. 100 men enter, 1 leaves. I haven't gotten the motivation to polish it enough for the main page.
-
+### [The Great Hundred Man Fight](TheGreatHundredManFight/) <a name="the-great-hundred-man-fight"></a>
+PLAYABLE DEMO.
 
 ## Credits <a name="credits"></a>
 
-### Main Page
-- Manticore Image by Brin
-- [Reference Images from Pixabay](https://pixabay.com)
-- [Graphic Design Help by FrostedMonster](https://www.frostedmonster.com/)
-
 ### Pokemon Collector
 - Pokemon is a product of GameFreak
-- Assets Sourced from [here](https://github.com/waydelyle/pokemon-assets)
+- Assets Sourced from https://github.com/waydelyle/pokemon-assets
 
 ### Custom Chess
-- [Chess Piece Art](https://opengameart.org/content/8x13-chess-pieces)
-- [Skull Image](https://opengameart.org/content/pixel-art-skull)
-- [Chess Piece Sounds](https://pixabay.com/sound-effects/chess-pieces-60890/)
+- Chess Piece Art: https://opengameart.org/content/8x13-chess-pieces
+- Skull Image: https://opengameart.org/content/pixel-art-skull
+- Chess Piece Sounds: https://pixabay.com/sound-effects/chess-pieces-60890/
 
 ### Persona 5 Royal Guide
-Guides:
-- [Walkthrough by aqiu384.github.io](https://aqiu384.github.io/p5r-walkthrough/ace-walkthrough)
-- [Flower Guide by samurai-gamers](https://samurai-gamers.com/persona-5/flower-shop-part-time-guide/)
-- [Convenience Store Guide by samurai-gamers](https://samurai-gamers.com/persona-5/triple-seven-convenience-store-part-time-job-guide/)
-- [Confidant Guide by aqiu384.github.io](https://aqiu384.github.io/p5r-walkthrough/confidants)
-- [Negotiation Guide by joyceychen.com](https://joyceychen.com/persona5-negotiation/royal)
-
-Assets:
-- [Fusion Calculator by p5rfusioncalculator.com](https://p5rfusioncalculator.com/#/list)
-- [Title Font](https://www.reddit.com/r/Persona5/comments/kqickc/persona_5_menu_font_prototype/)
-- [Background source](https://steamcommunity.com/sharedfiles/filedetails/?id=2948225096&insideModal=0)
-- [Knife Sound source](https://www.sounds-resource.com/playstation_3/persona5/sound/30366/)
-- [Knife Image source](https://www.spriters-resource.com/playstation_3/persona5/sheet/92802/)
-- [Web Icon](https://tcrf.net/Persona_5_Royal/Unused_Graphics)
+- Guides:
+- Walkthrough by aqiu384.github.io: https://aqiu384.github.io/p5r-walkthrough/ace-walkthrough
+- Flower Guide by samurai-gamers: https://samurai-gamers.com/persona-5/flower-shop-part-time-guide/
+- Convenience Store Guide by samurai-gamers: https://samurai-gamers.com/persona-5/triple-seven-convenience-store-part-time-job-guide/
+- Confidant Guide by aqiu384.github.io: https://aqiu384.github.io/p5r-walkthrough/confidants
+- Negotiation Guide by joyceychen.com: https://joyceychen.com/persona5-negotiation/royal
+- Assets:
+- Fusion Calculator by p5rfusioncalculator.com: https://p5rfusioncalculator.com/#/list)
+- Title Font: https://www.reddit.com/r/Persona5/comments/kqickc/persona_5_menu_font_prototype/
+- Background source: https://steamcommunity.com/sharedfiles/filedetails/?id=2948225096&insideModal=0
+- Knife Sound source: https://www.sounds-resource.com/playstation_3/persona5/sound/30366/
+- Knife Image source: https://www.spriters-resource.com/playstation_3/persona5/sheet/92802/
+- Web Icon: https://tcrf.net/Persona_5_Royal/Unused_Graphics
 
 ### Meal Planner
-- [Recipes](https://www.themealdb.com/api.php)
+- Recipes: https://www.themealdb.com/api.php
 
 ### Story Teller
-Music sourced from [fesliyanstudios](https://www.fesliyanstudios.com/):
+- Music sourced from https://www.fesliyanstudios.com/
 - Fantasy: Rolling Hills Of Ireland by Alex Zachariou
 - Science Fiction: Final Descent by David Robson
 - Mystery: Shady Business by David Renda
@@ -314,9 +261,12 @@ Music sourced from [fesliyanstudios](https://www.fesliyanstudios.com/):
 
 ### Manticore Generator
 - Original Concept: Brin
-- [Original Animal List](https://gist.github.com/atduskgreg/3cf8ef48cb0d29cf151bedad81553a54)
+- Original Animal List: https://gist.github.com/atduskgreg/3cf8ef48cb0d29cf151bedad81553a54
 
 ### Character Generator
-- [Background Image](https://www.pexels.com/photo/empty-brown-canvas-235985/)
-- [Paper Texture](https://pixabay.com/photos/paper-old-texture-parchment-1074131/)
+- Background Image: https://www.pexels.com/photo/empty-brown-canvas-235985/
+- Paper Texture: https://pixabay.com/photos/paper-old-texture-parchment-1074131/
 - Races, Classes and some backgrounds are from D&D.
+
+### Top Down RPG
+- Caves of Qud
