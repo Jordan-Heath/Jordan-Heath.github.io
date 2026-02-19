@@ -66,25 +66,182 @@ function changeMenu(selectedMenu) {
 }
 
 function loadAboutContents() {
-    // Fetch README.md content from GitHub
-    fetch('https://raw.githubusercontent.com/Jordan-Heath/Jordan-Heath.github.io/main/README.md')
-        .then(response => response.text())
-        .then(markdownContent => {
-            // Convert Markdown to HTML
-            const converter = new showdown.Converter();
-            const htmlContent = converter.makeHtml(markdownContent);
+    const aboutView = document.getElementById('aboutView');
+    aboutView.innerHTML = '';
 
-            // Print HTML content
-            document.getElementById('aboutView').innerHTML = htmlContent;
-        })
-        .catch(error => {
-            console.error('Error fetching README:', error)
-            document.getElementById('aboutView').innerHTML = `
-                <h1>Error loading page</h1>
-                <p>Page was unable to load, but do not worry.</p>
-                <p>The content of the page can be found here: <a href="https://github.com/Jordan-Heath/Jordan-Heath.github.io/blob/main/README.md">https://github.com/Jordan-Heath/Jordan-Heath.github.io/blob/main/README.md</a></p>
-                `;
-        });
+    const title = document.createElement('h1');
+    title.textContent = 'About';
+    aboutView.appendChild(title);
+
+    const intro = document.createElement('p');
+    intro.textContent = 'Explore my collection of projects. Most of my work is not shared publicly. This collection does not comprehensively represent my work.';
+    aboutView.appendChild(intro);
+
+    function creditsValid(credits) {
+        if (!credits) return false;
+        if (Array.isArray(credits)) {
+            const cleaned = credits.map(String).map(s => s.trim()).filter(s => s);
+            if (!cleaned.length) return false;
+            if (cleaned.length === 1 && cleaned[0].toUpperCase() === 'TODO') return false;
+            return true;
+        }
+        return false;
+    }
+
+    // Completed vs incomplete
+    const completed = projects.filter(p => (p.releaseyear || 0) !== 0);
+    const incomplete = projects.filter(p => (p.releaseyear || 0) === 0);
+
+    // build table of contents
+    const tableOfContents = document.createElement('div');
+    tableOfContents.className = 'table-of-contents';
+    aboutView.appendChild(tableOfContents);
+
+    const tableOfContentsTitle = document.createElement('h2');
+    tableOfContentsTitle.textContent = 'Table of Contents';
+    tableOfContents.appendChild(tableOfContentsTitle);
+
+    const tableOfContentsList = document.createElement('ul');
+    tableOfContents.appendChild(tableOfContentsList);
+
+    // add completed projects
+    tableOfContentsList.innerHTML += `<li class="toc-item"><a href="#completed-projects-title">Completed Projects</a></li>`;
+    const completedProjectsList = document.createElement('ul');
+    tableOfContentsList.appendChild(completedProjectsList);
+    completed.forEach(project => {
+        const completedProject = document.createElement('li');
+        completedProject.className = 'toc-item';
+        completedProject.innerHTML = `<a href="#about-${project.name.replace(/\s+/g, '-').toLowerCase()}-title">${project.name}</a>`;
+        completedProjectsList.appendChild(completedProject);
+    });
+
+    // add incomplete projects
+    tableOfContentsList.innerHTML += `<li class="toc-item"><a href="#incomplete-projects-title">Incomplete Projects</a></li>`;
+    const incompleteProjectsList = document.createElement('ul');
+    tableOfContentsList.appendChild(incompleteProjectsList);
+    incomplete.forEach(project => {
+        const incompleteProject = document.createElement('li');
+        incompleteProject.className = 'toc-item';
+        incompleteProject.innerHTML = `<a href="#about-${project.name.replace(/\s+/g, '-').toLowerCase()}-title">${project.name}</a>`;
+        incompleteProjectsList.appendChild(incompleteProject);
+    });
+
+    // add credits
+    tableOfContentsList.innerHTML += `<li class="toc-item"><a href="#credits-title">Credits</a></li>`;
+    const creditsList = document.createElement('ul');
+    tableOfContentsList.appendChild(creditsList);
+    projects.forEach(project => {
+        if (creditsValid(project.credits)) {
+            const credit = document.createElement('li');
+            credit.className = 'toc-item';
+            credit.innerHTML = `<a href="#about-${project.name.replace(/\s+/g, '-').toLowerCase()}-credits-title">${project.name}</a>`;
+            creditsList.appendChild(credit);
+        }
+    })
+
+    function buildAboutProjectElement(project) {
+        const container = document.createElement('div');
+        container.className = 'about-project';
+
+        // heading
+        const heading = document.createElement('h3');
+        heading.id = `about-${project.name.replace(/\s+/g, '-').toLowerCase()}-title`;
+        heading.className = 'about-project-heading';
+        const name = document.createElement('a');
+        name.href = project.link || '#';
+        name.textContent = project.name || 'Unnamed';
+        name.className = 'about-project-name';
+        heading.appendChild(name);
+        if (project.releaseyear !== 0) {
+            const year = document.createElement('span');
+            year.className = 'about-project-year';
+            year.textContent = ` (${project.releaseyear})`;
+            heading.appendChild(year);
+        }
+        container.appendChild(heading);
+
+        // thumbnail
+        if (project.thumbnail) {
+            const thumb = document.createElement('img');
+            thumb.src = project.thumbnail;
+            thumb.alt = project.name || '';
+            thumb.className = 'about-project-thumb';
+            thumb.onclick = () => location.href = project.link;
+            container.appendChild(thumb);
+        }
+
+        // description
+        if (project.description) {
+            const desc = document.createElement('p');
+            desc.textContent = project.description;
+            container.appendChild(desc);
+        }
+
+        // features
+        if (Array.isArray(project.features) && project.features.length) {
+            const ul = document.createElement('ul');
+            project.features.forEach(f => {
+                const li = document.createElement('li');
+                li.textContent = f;
+                ul.appendChild(li);
+            });
+            container.appendChild(ul);
+        }
+
+        return container;
+    }
+
+    // Completed
+    const completedTitle = document.createElement('h2');
+    completedTitle.id = 'about-completed-title';
+    completedTitle.textContent = 'Completed Projects';
+    aboutView.appendChild(completedTitle);
+    completed.forEach(project => {
+        aboutView.appendChild(buildAboutProjectElement(project));
+    });
+
+    // Incomplete
+    const incompleteTitle = document.createElement('h2');
+    incompleteTitle.id = 'about-incomplete-title';
+    incompleteTitle.textContent = 'Incomplete Projects';
+    aboutView.appendChild(incompleteTitle);
+    incomplete.forEach(p => {
+        aboutView.appendChild(buildAboutProjectElement(p));
+    });
+
+    // Credits
+    const creditsTitle = document.createElement('h2');
+    creditsTitle.id = 'about-credits-title';
+    creditsTitle.textContent = 'Credits';
+    aboutView.appendChild(creditsTitle);
+    let anyCredits = false;
+    projects.forEach(p => {
+        if (creditsValid(p.credits)) {
+            anyCredits = true;
+            const block = document.createElement('div');
+            block.className = 'about-credits-project';
+            const pname = document.createElement('h3');
+            pname.id = `about-${p.name.replace(/\s+/g, '-').toLowerCase()}-credits-title`;
+            pname.textContent = p.name || 'Unnamed';
+            block.appendChild(pname);
+            const ul = document.createElement('ul');
+            p.credits.forEach(c => {
+                const cstr = String(c || '').trim();
+                if (!cstr || cstr.toUpperCase() === 'TODO') return;
+                const li = document.createElement('li');
+                li.textContent = cstr;
+                ul.appendChild(li);
+            });
+            block.appendChild(ul);
+            aboutView.appendChild(block);
+        }
+    });
+
+    if (!anyCredits) {
+        const p = document.createElement('p');
+        p.textContent = 'Project credits and assets go here.';
+        aboutView.appendChild(p);
+    }
 }
 
 function loadHomeContents() {
@@ -115,14 +272,14 @@ function buildFeaturedProjectsElement() {
         if (project.featured) {
             const featuredProjectElement = document.createElement('div');
             featuredProjectElement.className = 'featuredProject';
-            
+
             // project name
             const featuredProjectName = document.createElement('h2');
             featuredProjectName.textContent = project.name;
 
             // project year/category
             const featuredProjectYear = document.createElement('p');
-            featuredProjectYear.innerHTML = `Release Year: ${project.releaseyear}` 
+            featuredProjectYear.innerHTML = `Release Year: ${project.releaseyear}`
             const featuredProjectCategory = document.createElement('p');
             featuredProjectCategory.innerHTML = `Category: ${project.category}`;
             const featuredProjectYearCategory = document.createElement('div');
@@ -156,14 +313,14 @@ function buildFeaturedProjectsElement() {
             featuredProjectDetails.appendChild(featuredProjectFeatures);
             featuredProjectDetails.appendChild(featuredProjectButton);
             featuredProjectElement.appendChild(featuredProjectDetails);
-            
+
             // screnshot image
             const featuredProjectScreenshot = document.createElement('img');
             featuredProjectScreenshot.src = project.screenshot;
             featuredProjectScreenshot.alt = project.name;
             featuredProjectScreenshot.title = project.name;
             featuredProjectElement.appendChild(featuredProjectScreenshot);
-            
+
             featuredProjectsGrid.appendChild(featuredProjectElement);
         }
     });

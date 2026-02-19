@@ -57,6 +57,16 @@
     }
 }
 
+@keyframes progressBarAnimation {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
 html {
     height: 100%;
 }
@@ -79,7 +89,7 @@ body {
         background: var(--dithering);
         pointer-events: none;
         opacity: 0.3;
-        z-index: 9999;
+        z-index: 9998;
     }
 
     a {
@@ -138,7 +148,7 @@ body {
     }
 
     p {
-        line-height: 1.8;
+        line-height: 1.4;
         font-size: 1.1rem;
     }
 }
@@ -233,7 +243,7 @@ nav {
     }
 }
 
-main {
+#homeView {
     background: var(--article-background);
     backdrop-filter: blur(2px);
     max-width: 1200px;
@@ -299,6 +309,22 @@ main {
                     pointer-events: none;
                     opacity: 0.3;
                     z-index: 9999;
+                }
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 10px;
+                    background: #fff;
+                    pointer-events: none;
+                    opacity: 0.3;
+                    z-index: 9997;
+                    animation: progressBarAnimation 10s linear;
+                    border-radius: 0 0 0 16px;
+                    corner-shape: superellipse(2);
                 }
 
                 &:nth-child(even) {
@@ -480,7 +506,7 @@ main {
     }
 }
 
-article {
+#aboutView {
     background: var(--article-background);
     max-width: 1200px;
     padding: 40px;
@@ -513,28 +539,8 @@ article {
         }
     }
 
-    h3 {
-        font-size: 1.5rem;
-        margin: 30px 0 15px;
-        font-weight: 500;
-    }
-
-    img {
-        display: block;
-        border-radius: 16px;
-        corner-shape: superellipse(2);
-        max-width: 100%;
-        max-height: 200px;
-        margin-right: 20px;
-        margin-bottom: 10px;
-    }
-
-    >ul,
-    ol {
-        columns: 2;
-    }
-
-    >ol:first-of-type {
+    .table-of-contents>ul {
+        margin: 30px 0;
         background: rgba(0, 0, 0, 0.2);
         padding: 30px 30px 30px 50px;
         border-radius: 16px;
@@ -549,25 +555,48 @@ article {
             &::marker {
                 color: var(--heading-text2);
             }
+        }
 
-            ul {
-                margin-top: 10px;
-                columns: 2;
+        ul {
+            margin-top: 10px;
+            columns: 2;
 
-                li {
-                    font-weight: normal;
-                    font-size: 1rem;
+            li {
+                font-weight: normal;
+                font-size: 1rem;
 
-                    a {
-                        color: var(--body-text);
+                a {
+                    color: var(--body-text);
 
-                        &:hover {
-                            color: var(--heading-text1);
-                            padding-left: 5px;
-                        }
+                    &:hover {
+                        color: var(--heading-text1);
+                        padding-left: 5px;
                     }
                 }
             }
+        }
+    }
+
+    .about-project {
+        h3 {
+            font-size: 1.5rem;
+            margin: 30px 0 15px;
+            font-weight: 500;
+        }
+
+        img {
+            display: block;
+            border-radius: 16px;
+            corner-shape: superellipse(2);
+            max-width: 100%;
+            max-height: 200px;
+            margin-right: 20px;
+            margin-bottom: 10px;
+        }
+
+        ul,
+        ol {
+            columns: 2;
         }
     }
 
@@ -637,7 +666,7 @@ footer {
     }
 }
 
-main .projectsGrid .link-img {
+#homeView .projectsGrid .link-img {
     &:nth-child(1) {
         animation-delay: 0s;
     }
