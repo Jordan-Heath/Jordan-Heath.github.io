@@ -4,13 +4,14 @@ const projects = [
     "link": "GameGuideChecklist/",
     "thumbnail": "data/thumbnails/GameGuideChecklist.png",
     "screenshot": "data/screenshots/screenshot.png",
-    "description": "Convert a game guide into a checklist with dark mode support and a second screen friendly design.",
+    "description": "Convert a game guide into a checklist to help you remember all the things you need to know. I was sick of paywalling of checklisting as a feature. I also wanted a darkmode second screen guide. I made this a couple years ago as a pyflask server, but converted it to a static webapp.",
     "features": [
       "Functional",
       "Dark mode",
       "Checklist system",
       "Light polish"
     ],
+    "credits": [],
     "featured": false,
     "category": "Utility",
     "releaseyear": 2026,
@@ -21,7 +22,7 @@ const projects = [
     "link": "CyberOmniglot/",
     "thumbnail": "data/thumbnails/CyberOmniglot.png",
     "screenshot": "data/screenshots/CyberOmniglot.png",
-    "description": "A retro-styled conversation puzzle game inspired by Morrowind and The Rise of the Golden Idol, featuring translation mechanics.",
+    "description": "Inspired by the \"Morrowind\" coversation system, and puzzle games like \"The Rise of the Golden Idol\". I wanted to make a refined yet classic looking conversation puzzle game. I settled on a limited number of characters, simple translation puzzle, as the immense writing task overtook the coding practice the game was supposed to be.",
     "features": [
       "Text to Speech",
       "Retro UI",
@@ -31,6 +32,7 @@ const projects = [
       "9 words to translate",
       "Dynamic word replacement"
     ],
+    "credits": ["TODO"],
     "featured": true,
     "category": "Game",
     "releaseyear": 2025,
@@ -41,7 +43,7 @@ const projects = [
     "link": "StrategyMapSimulator/",
     "thumbnail": "data/thumbnails/StrategyMapSimulator.png",
     "screenshot": "data/screenshots/StrategyMapSimulator.png",
-    "description": "A canvas-based strategy simulation inspired by Paradox Interactive games.",
+    "description": "Inspired by Paradox Interactive games like \"Victoria 3\" and \"Hearts of Iron IV\". I wanted to experiment with a complicated canvas based game. The UI was placeholder and then I lost interest.",
     "features": [
       "Procedurally generated landmass",
       "Map editor",
@@ -49,6 +51,7 @@ const projects = [
       "Drawing tools",
       "Bad UI"
     ],
+    "credits": [],
     "featured": true,
     "category": "Game",
     "releaseyear": 2025,
@@ -59,7 +62,7 @@ const projects = [
     "link": "Persona3ReloadGuide/",
     "thumbnail": "data/thumbnails/Persona3ReloadGuide.png",
     "screenshot": "data/screenshots/screenshot.png",
-    "description": "A mobile-friendly day-by-day guide for Persona 3 Reload with integrated tools and shortcuts.",
+    "description": "Fairly raw copy of the Persona 5 Royal Guide but for Persona 3 Reload.",
     "features": [
       "Mobile friendly",
       "Full day-by-day guide",
@@ -68,6 +71,7 @@ const projects = [
       "Keyboard shortcuts",
       "Persona-themed design"
     ],
+    "credits": ["TODO"],
     "featured": false,
     "category": "Guide",
     "releaseyear": 2025,
@@ -78,7 +82,7 @@ const projects = [
     "link": "TamagotchiUniGuide/",
     "thumbnail": "data/thumbnails/TamagotchiUniGuide.png",
     "screenshot": "data/screenshots/screenshot.png",
-    "description": "A mobile-friendly webapp to track progress and features in Tamagotchi Uni.",
+    "description": "A webapp I put together for my partner to help them keep track of their Tamagotchi Uni. It was important that it had a nice mobile-friendly design, kept track of progress in the game, and informed the user in a very accessible way.",
     "features": [
       "Mobile friendly",
       "Local storage saves",
@@ -87,6 +91,7 @@ const projects = [
       "DLC support",
       "Care tracking"
     ],
+    "credits": ["TODO"],
     "featured": false,
     "category": "Guide",
     "releaseyear": 2024,
@@ -97,7 +102,7 @@ const projects = [
     "link": "QualificationAcademy/",
     "thumbnail": "data/thumbnails/QualificationAcademy.png",
     "screenshot": "data/screenshots/screenshot.png",
-    "description": "A quiz-based game where players complete courses to unlock certificates.",
+    "description": "A game where you complete a series of questions to receive a certificate. I wanted it to be elegant and fun.",
     "features": [
       "10+ unlockable qualifications",
       "Custom courses",
@@ -106,6 +111,7 @@ const projects = [
       "Dark mode",
       "JSON import/export"
     ],
+    "credits": ["TODO"],
     "featured": false,
     "category": "Game",
     "releaseyear": 2024,
@@ -116,13 +122,17 @@ const projects = [
     "link": "PokemonCollector/",
     "thumbnail": "data/thumbnails/PokemonCollector.png",
     "screenshot": "data/screenshots/screenshot.png",
-    "description": "A fan-made card collection and clicker hybrid game featuring collectible Pokemon and upgrades.",
+    "description": "I've wanted to make a card collection game for a while, but given I could not do enough good quality art to do it myself, i decided last minute to make it a fan game.",
     "features": [
       "6 card packs",
       "151 Pokemon + 151 shiny variants",
       "Upgrades and jobs",
       "Cheat mode",
       "Optimized rendering"
+    ],
+    "credits": [
+      "Pokemon is a product of GameFreak",
+      "Assets Sourced from https://github.com/waydelyle/pokemon-assets"
     ],
     "featured": false,
     "category": "Game",
@@ -142,6 +152,11 @@ const projects = [
       "Streak rewards",
       "Carry-over progression"
     ],
+    "credits": [
+      "Chess Piece Art: https://opengameart.org/content/8x13-chess-pieces",
+      "Skull Image: https://opengameart.org/content/pixel-art-skull",
+      "Chess Piece Sounds: https://pixabay.com/sound-effects/chess-pieces-60890/"
+    ],
     "featured": true,
     "category": "Game",
     "releaseyear": 2024,
@@ -152,7 +167,7 @@ const projects = [
     "link": "Persona5RoyalGuide/",
     "thumbnail": "data/thumbnails/Persona5RoyalGuide.png",
     "screenshot": "data/screenshots/screenshot.png",
-    "description": "An elegant second-screen companion guide for Persona 5 Royal with comprehensive day tracking.",
+    "description": "I wanted an elegant guide styled after the game to occupy my second screen while playing. Other guides would require you to keep track of the day you were up to by scrolling through difficult to read whole pages of text, require you to switch tabs for negotiations and part time quizes.",
     "features": [
       "300-day guide",
       "Confidant and negotiation guides",
@@ -160,6 +175,21 @@ const projects = [
       "Date saving",
       "Keyboard shortcuts",
       "Mobile friendly"
+    ],
+    "credits": [
+      "Guides:",
+      "Walkthrough by aqiu384.github.io: https://aqiu384.github.io/p5r-walkthrough/ace-walkthrough",
+      "Flower Guide by samurai-gamers: https://samurai-gamers.com/persona-5/flower-shop-part-time-guide/",
+      "Convenience Store Guide by samurai-gamers: https://samurai-gamers.com/persona-5/triple-seven-convenience-store-part-time-job-guide/",
+      "Confidant Guide by aqiu384.github.io: https://aqiu384.github.io/p5r-walkthrough/confidants",
+      "Negotiation Guide by joyceychen.com: https://joyceychen.com/persona5-negotiation/royal",
+      "Assets:",
+      "Fusion Calculator by p5rfusioncalculator.com: https://p5rfusioncalculator.com/#/list)",
+      "Title Font: https://www.reddit.com/r/Persona5/comments/kqickc/persona_5_menu_font_prototype/",
+      "Background source: https://steamcommunity.com/sharedfiles/filedetails/?id=2948225096&insideModal=0",
+      "Knife Sound source: https://www.sounds-resource.com/playstation_3/persona5/sound/30366/",
+      "Knife Image source: https://www.spriters-resource.com/playstation_3/persona5/sheet/92802/",
+      "Web Icon: https://tcrf.net/Persona_5_Royal/Unused_Graphics"
     ],
     "featured": false,
     "category": "Guide",
@@ -179,6 +209,7 @@ const projects = [
       "4 zones",
       "Save system"
     ],
+    "credits": [],
     "featured": false,
     "category": "Game",
     "releaseyear": 2024,
@@ -189,7 +220,7 @@ const projects = [
     "link": "MealPlanner/",
     "thumbnail": "data/thumbnails/MealPlanner.png",
     "screenshot": "data/screenshots/screenshot.png",
-    "description": "A meal planning tool that generates plans, recipes, and shopping lists.",
+    "description": "A shitty meal planning tool that generates plans, recipes, and shopping lists.",
     "features": [
       "33 meals",
       "Auto meal plan generation",
@@ -197,8 +228,11 @@ const projects = [
       "Recipe maker",
       "Recipe browser"
     ],
+    "credits": [
+      "Recipes: https://www.themealdb.com/api.php"
+    ],
     "featured": false,
-    "category": "utiliy",
+    "category": "Utility",
     "releaseyear": 2024,
     "rating": 5
   },
@@ -215,6 +249,7 @@ const projects = [
       "Auto-save",
       "JSON import/export"
     ],
+    "credits": [],
     "featured": false,
     "category": "Game",
     "releaseyear": 2024,
@@ -233,6 +268,16 @@ const projects = [
       "Adjustable text speed",
       "Custom story import"
     ],
+    "credits": [
+      "Music sourced from https://www.fesliyanstudios.com/",
+      "Fantasy: Rolling Hills Of Ireland by Alex Zachariou",
+      "Science Fiction: Final Descent by David Robson",
+      "Mystery: Shady Business by David Renda",
+      "Horror: Ghost stories by Steve Oxen",
+      "Western: Prairie Evening by Steve Oxen",
+      "Non-Fiction: Retro News At Nine by Steve Oxen",
+      "Other: Mediterranean Underscore by Steve Oxen"
+    ],
     "featured": false,
     "category": "Game",
     "releaseyear": 2024,
@@ -243,12 +288,16 @@ const projects = [
     "link": "ManticoreGenerator/",
     "thumbnail": "data/thumbnails/ManticoreGenerator.png",
     "screenshot": "data/screenshots/screenshot.png",
-    "description": "A creature generator tool with customizable body parts and probability settings.",
+    "description": "A friend of mine saw the character generator and was working on creating some manticores for a personal project. They asked if I could make something similar to assist them in the process.",
     "features": [
       "461 animals",
       "Tail/wing probability settings",
       "Lockable body parts",
       "Image search integration"
+    ],
+    "credits": [
+      "Original Concept: Brin",
+      "Original Animal List: https://gist.github.com/atduskgreg/3cf8ef48cb0d29cf151bedad81553a54"
     ],
     "featured": false,
     "category": "Utility",
@@ -266,6 +315,11 @@ const projects = [
       "Demographic details",
       "Character stats"
     ],
+    "credits": [
+      "Background Image: https://www.pexels.com/photo/empty-brown-canvas-235985/",
+      "Paper Texture: https://pixabay.com/photos/paper-old-texture-parchment-1074131/",
+      "Races, Classes and some backgrounds are from D&D."
+    ],
     "featured": false,
     "category": "Utility",
     "releaseyear": 2023,
@@ -276,13 +330,14 @@ const projects = [
     "link": "PercentageClock/",
     "thumbnail": "data/thumbnails/PercentageClock.png",
     "screenshot": "data/screenshots/screenshot.png",
-    "description": "Displays the percentage of the day remaining with animated visual effects.",
+    "description": "On challenging days, it's helpful to know how much of the day is left. Percentage Clock provides this information in a simple number. It might not offer much comfort as I got a bit carried away with the CSS animation library.",
     "features": [
       "Current time indicator",
       "Color transition",
       "Heartbeat pulse animation",
       "Interactive sound effect"
     ],
+    "credits": [],
     "featured": false,
     "category": "Utility",
     "releaseyear": 2023,
@@ -298,6 +353,7 @@ const projects = [
       "Text scrambling",
       "Lightweight tool"
     ],
+    "credits": [],
     "featured": false,
     "category": "Utility",
     "releaseyear": 2023,
@@ -313,6 +369,7 @@ const projects = [
       "Choice-based gameplay",
       "Playable demo"
     ],
+    "credits": [],
     "featured": false,
     "category": "Game",
     "releaseyear": 0,
@@ -328,6 +385,7 @@ const projects = [
       "Auto battler mechanics",
       "Playable demo"
     ],
+    "credits": [],
     "featured": false,
     "category": "Game",
     "releaseyear": 0,
@@ -342,6 +400,9 @@ const projects = [
     "features": [
       "Top-down gameplay",
       "Playable demo"
+    ],
+    "credits": [
+      "Caves of Qud"
     ],
     "featured": false,
     "category": "Game",
@@ -358,6 +419,7 @@ const projects = [
       "Virtual pet mechanics",
       "Playable demo"
     ],
+    "credits": [],
     "featured": false,
     "category": "Game",
     "releaseyear": 0,
@@ -373,6 +435,7 @@ const projects = [
       "Bracket system",
       "Playable demo"
     ],
+    "credits": [],
     "featured": false,
     "category": "Game",
     "releaseyear": 0,
@@ -388,6 +451,7 @@ const projects = [
       "Mass battle concept",
       "Playable demo"
     ],
+    "credits": [],
     "featured": false,
     "category": "Game",
     "releaseyear": 0,
