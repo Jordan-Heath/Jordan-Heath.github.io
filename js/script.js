@@ -205,18 +205,34 @@ const createAllProjectsElement = () => {
     const container = document.createElement('div');
     container.className = 'AllProjects';
     
-    container.appendChild(createElement('h1', {}, 'All Projects'));
+    // first add games
+    const gameProjects = projects.filter(p => p.category === 'Game');
+    container.appendChild(createElement('h2', {}, 'Games'));
+    container.appendChild(createProjectsGrid(gameProjects));
+
+    // then add guides
+    const guideProjects = projects.filter(p => p.category === 'Guide');
+    container.appendChild(createElement('h2', {}, 'Guides'));
+    container.appendChild(createProjectsGrid(guideProjects));
     
+    // then add utilities
+    const utilityProjects = projects.filter(p => p.category === 'Utility');
+    container.appendChild(createElement('h2', {}, 'Utilities'));
+    container.appendChild(createProjectsGrid(utilityProjects));
+    
+    return container;
+};
+
+const createProjectsGrid = (projects) => {
     const grid = document.createElement('div');
     grid.className = 'projectsGrid';
     
     projects.forEach(project => {
         grid.appendChild(createProjectCard(project));
     });
-    
-    container.appendChild(grid);
-    return container;
-};
+
+    return grid;
+}
 
 const createProjectCard = (project) => {
     const card = document.createElement('div');

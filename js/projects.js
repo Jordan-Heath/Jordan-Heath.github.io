@@ -1,9 +1,63 @@
 const projects = [
   {
+    "name": "Jeopardy",
+    "link": "https://jordan-heath.github.io/Jeopardy/",
+    "thumbnail": "thumbnails/Jeopardy.png",
+    "screenshot": "screenshots/Jeopardy.png",
+    "description": "I made this back in 2024 and never got around to releasing it. I converted it from a mixed bag of questions to a basic C++ programming quiz.",
+    "features": [
+      "15 questions, spanning 5 categories",
+      "Images to accompany questions",
+      "Up to 6 players",
+      "Name your players",
+      "Everyone gets a turn to answer the questions"
+    ],
+    "credits": ["TODO"],
+    "featured": true,
+    "category": "Game",
+    "releaseyear": 2026,
+    "rating": 5
+  },
+  {
+    "name": "Ants",
+    "link": "https://jordan-heath.github.io/Ants/",
+    "thumbnail": "thumbnails/Ants.png",
+    "screenshot": "",
+    "description": "I was looking to make a wallpaper and was inspired by the classic DVD screensaver. I wanted to add a little more flare so I chose to make it ants and have them pivot direction.",
+    "features": [
+      "Seemingly limitless ants",
+      "They bounce off the walls",
+      "They're clever enough to face where they are going I guess"
+    ],
+    "credits": ["TODO"],
+    "featured": false,
+    "category": "Utility",
+    "releaseyear": 2026,
+    "rating": 5
+  },
+  {
+    "name": "CoughTTS",
+    "link": "https://jordan-heath.github.io/CoughTTS/",
+    "thumbnail": "thumbnails/CoughTTS.png",
+    "screenshot": "",
+    "description": "Started as a joke because I had a chest infection and couldn't speak. Experiementing with text-to-speech and implementing \"then\" events.",
+    "features": [
+      "8 different coughs",
+      "Text-to-speech",
+      "Imports TTS voices from your browser",
+      "Dial to adjust cough frequency"
+    ],
+    "credits": ["Cough audio source: https://pixabay.com/sound-effects/cough-voice-12330/"],
+    "featured": false,
+    "category": "Utility",
+    "releaseyear": 2026,
+    "rating": 5
+  },
+  {
     "name": "Game Guide Checklist",
     "link": "https://jordan-heath.github.io/GameGuideChecklist/",
     "thumbnail": "thumbnails/GameGuideChecklist.png",
-    "screenshot": "screenshots/screenshot.png",
+    "screenshot": "",
     "description": "Convert a game guide into a checklist to help you remember all the things you need to know. I was sick of paywalling of checklisting as a feature. I also wanted a darkmode second screen guide. I made this a couple years ago as a pyflask server, but converted it to a static webapp.",
     "features": [
       "Functional",
@@ -13,7 +67,7 @@ const projects = [
     ],
     "credits": [],
     "featured": false,
-    "category": "Utility",
+    "category": "Guide",
     "releaseyear": 2026,
     "rating": 5
   },
@@ -61,7 +115,7 @@ const projects = [
     "name": "Persona 3 Reload Guide",
     "link": "https://jordan-heath.github.io/Persona3ReloadGuide/",
     "thumbnail": "thumbnails/Persona3ReloadGuide.png",
-    "screenshot": "screenshots/screenshot.png",
+    "screenshot": "",
     "description": "Fairly raw copy of the Persona 5 Royal Guide but for Persona 3 Reload.",
     "features": [
       "Mobile friendly",
@@ -81,7 +135,7 @@ const projects = [
     "name": "Tamagotchi Uni Guide",
     "link": "https://jordan-heath.github.io/TamagotchiUniGuide/",
     "thumbnail": "thumbnails/TamagotchiUniGuide.png",
-    "screenshot": "screenshots/screenshot.png",
+    "screenshot": "",
     "description": "A webapp I put together for my partner to help them keep track of their Tamagotchi Uni. It was important that it had a nice mobile-friendly design, kept track of progress in the game, and informed the user in a very accessible way.",
     "features": [
       "Mobile friendly",
@@ -101,7 +155,7 @@ const projects = [
     "name": "Qualification Academy",
     "link": "https://jordan-heath.github.io/QualificationAcademy/",
     "thumbnail": "thumbnails/QualificationAcademy.png",
-    "screenshot": "screenshots/screenshot.png",
+    "screenshot": "",
     "description": "A game where you complete a series of questions to receive a certificate. I wanted it to be elegant and fun.",
     "features": [
       "10+ unlockable qualifications",
@@ -121,7 +175,7 @@ const projects = [
     "name": "Pokemon Collector",
     "link": "https://jordan-heath.github.io/PokemonCollector/",
     "thumbnail": "thumbnails/PokemonCollector.png",
-    "screenshot": "screenshots/screenshot.png",
+    "screenshot": "",
     "description": "I've wanted to make a card collection game for a while, but given I could not do enough good quality art to do it myself, i decided last minute to make it a fan game.",
     "features": [
       "6 card packs",
@@ -166,7 +220,7 @@ const projects = [
     "name": "Persona 5 Royal Guide",
     "link": "https://jordan-heath.github.io/Persona5RoyalGuide/",
     "thumbnail": "thumbnails/Persona5RoyalGuide.png",
-    "screenshot": "screenshots/screenshot.png",
+    "screenshot": "",
     "description": "I wanted an elegant guide styled after the game to occupy my second screen while playing. Other guides would require you to keep track of the day you were up to by scrolling through difficult to read whole pages of text, require you to switch tabs for negotiations and part time quizes.",
     "features": [
       "300-day guide",
@@ -200,7 +254,7 @@ const projects = [
     "name": "The Collector",
     "link": "https://jordan-heath.github.io/TheCollector/",
     "thumbnail": "thumbnails/TheCollector.png",
-    "screenshot": "screenshots/screenshot.png",
+    "screenshot": "",
     "description": "An idle collection game featuring item combos, zones, and upgrade systems.",
     "features": [
       "96 items",
@@ -219,7 +273,7 @@ const projects = [
     "name": "Meal Planner",
     "link": "https://jordan-heath.github.io/MealPlanner/",
     "thumbnail": "thumbnails/MealPlanner.png",
-    "screenshot": "screenshots/screenshot.png",
+    "screenshot": "",
     "description": "A shitty meal planning tool that generates plans, recipes, and shopping lists.",
     "features": [
       "33 meals",
@@ -240,7 +294,7 @@ const projects = [
     "name": "Idle Landlord",
     "link": "https://jordan-heath.github.io/IdleLandlord/",
     "thumbnail": "thumbnails/IdleLandlord.png",
-    "screenshot": "screenshots/screenshot.png",
+    "screenshot": "",
     "description": "A landlord-themed clicker game focused on passive income and progression.",
     "features": [
       "Job promotions",
@@ -259,7 +313,7 @@ const projects = [
     "name": "Story Teller",
     "link": "https://jordan-heath.github.io/StoryTeller/",
     "thumbnail": "thumbnails/StoryTeller.png",
-    "screenshot": "screenshots/screenshot.png",
+    "screenshot": "",
     "description": "A Madlibs-style storytelling app with music and customizable stories.",
     "features": [
       "16 stories",
@@ -287,7 +341,7 @@ const projects = [
     "name": "Manticore Generator",
     "link": "https://jordan-heath.github.io/ManticoreGenerator/",
     "thumbnail": "thumbnails/ManticoreGenerator.png",
-    "screenshot": "screenshots/screenshot.png",
+    "screenshot": "",
     "description": "A friend of mine saw the character generator and was working on creating some manticores for a personal project. They asked if I could make something similar to assist them in the process.",
     "features": [
       "461 animals",
@@ -308,7 +362,7 @@ const projects = [
     "name": "Character Generator",
     "link": "https://jordan-heath.github.io/CharacterGenerator/",
     "thumbnail": "thumbnails/CharacterGenerator.png",
-    "screenshot": "screenshots/screenshot.png",
+    "screenshot": "",
     "description": "A whimsical character generator with names, demographics, and stats.",
     "features": [
       "Syllable-based names",
@@ -329,7 +383,7 @@ const projects = [
     "name": "Percentage Clock",
     "link": "https://jordan-heath.github.io/PercentageClock/",
     "thumbnail": "thumbnails/PercentageClock.png",
-    "screenshot": "screenshots/screenshot.png",
+    "screenshot": "",
     "description": "On challenging days, it's helpful to know how much of the day is left. Percentage Clock provides this information in a simple number. It might not offer much comfort as I got a bit carried away with the CSS animation library.",
     "features": [
       "Current time indicator",
@@ -347,7 +401,7 @@ const projects = [
     "name": "Word Scrambler",
     "link": "https://jordan-heath.github.io/WordScrambler/",
     "thumbnail": "thumbnails/WordScrambler.png",
-    "screenshot": "screenshots/screenshot.png",
+    "screenshot": "",
     "description": "Scrambles input text into a semi-comprehensible format.",
     "features": [
       "Text scrambling",
@@ -362,11 +416,13 @@ const projects = [
   {
     "name": "Top Down RPG",
     "link": "https://jordan-heath.github.io/TopDownRPG/",
-    "thumbnail": "",
-    "screenshot": "screenshots/screenshot.png",
+    "thumbnail": "thumbnails/TopDownRPG.png",
+    "screenshot": "",
     "description": "Playable demo of a top-down RPG prototype.",
     "features": [
       "Top-down gameplay",
+      "Click or arrow controls",
+      "Collisions and interaction with long grass",
       "Playable demo"
     ],
     "credits": [
@@ -380,8 +436,8 @@ const projects = [
   {
     "name": "Pet Game",
     "link": "https://jordan-heath.github.io/PetGame/",
-    "thumbnail": "",
-    "screenshot": "screenshots/screenshot.png",
+    "thumbnail": "thumbnails/PetGame.png",
+    "screenshot": "",
     "description": "Playable demo of a Digimon/Tamagotchi-inspired pet game.",
     "features": [
       "Virtual pet mechanics",
