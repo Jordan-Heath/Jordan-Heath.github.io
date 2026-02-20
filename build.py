@@ -122,9 +122,9 @@ def make_readme(projects):
 
 def main():
     repo_root = Path(__file__).resolve().parent
-    projects_js = repo_root / 'data' / 'projects.js'
+    projects_js = repo_root / 'js' / 'projects.js'
     if not projects_js.exists():
-        print('Error: data/projects.js not found', file=sys.stderr)
+        print('Error: js/projects.js not found', file=sys.stderr)
         sys.exit(2)
 
     projects = load_projects(projects_js)
