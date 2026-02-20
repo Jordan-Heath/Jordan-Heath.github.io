@@ -3,6 +3,9 @@
 Explore my collection of projects. Most of my work is not shared publicly. This collection does not comprehensively represent my work.
 
 1. [Completed Projects](#complete)
+    * [Jeopardy](#jeopardy)
+    * [Ants](#ants)
+    * [CoughTTS](#coughtts)
     * [Game Guide Checklist](#game-guide-checklist)
     * [Cyber Omniglot](#cyber-omniglot)
     * [Strategy Map Simulator](#strategy-map-simulator)
@@ -21,19 +24,42 @@ Explore my collection of projects. Most of my work is not shared publicly. This 
     * [Percentage Clock](#percentage-clock)
     * [Word Scrambler](#word-scrambler)
 2. [Incomplete Projects](#incomplete)
-    * [King Sim](#king-sim)
-    * [DND Auto Battler](#dnd-auto-battler)
     * [Top Down RPG](#top-down-rpg)
     * [Pet Game](#pet-game)
-    * [Kaiju Battle Bracket](#kaiju-battle-bracket)
-    * [The Great Hundred Man Fight](#the-great-hundred-man-fight)
 3. [Credits](#credits)
 
 
 ## Completed Projects <a name="complete"></a>
 
-### [Game Guide Checklist](GameGuideChecklist/) <a name="game-guide-checklist"></a>
-![Game Guide Checklist](data/thumbnails/GameGuideChecklist.png "Game Guide Checklist")
+### [Jeopardy](https://jordan-heath.github.io/Jeopardy/) <a name="jeopardy"></a>
+![Jeopardy](thumbnails/Jeopardy.png "Jeopardy")
+I made this back in 2024 and never got around to releasing it. I converted it from a mixed bag of questions to a basic C++ programming quiz.
+
+- [x] 15 questions, spanning 5 categories
+- [x] Images to accompany questions
+- [x] Up to 6 players
+- [x] Name your players
+- [x] Everyone gets a turn to answer the questions
+
+### [Ants](https://jordan-heath.github.io/Ants/) <a name="ants"></a>
+![Ants](thumbnails/Ants.png "Ants")
+I was looking to make a wallpaper and was inspired by the classic DVD screensaver. I wanted to add a little more flare so I chose to make it ants and have them pivot direction.
+
+- [x] Seemingly limitless ants
+- [x] They bounce off the walls
+- [x] They're clever enough to face where they are going I guess
+
+### [CoughTTS](https://jordan-heath.github.io/CoughTTS/) <a name="coughtts"></a>
+![CoughTTS](thumbnails/CoughTTS.png "CoughTTS")
+Started as a joke because I had a chest infection and couldn't speak. Experiementing with text-to-speech and implementing "then" events.
+
+- [x] 8 different coughs
+- [x] Text-to-speech
+- [x] Imports TTS voices from your browser
+- [x] Dial to adjust cough frequency
+
+### [Game Guide Checklist](https://jordan-heath.github.io/GameGuideChecklist/) <a name="game-guide-checklist"></a>
+![Game Guide Checklist](thumbnails/GameGuideChecklist.png "Game Guide Checklist")
 Convert a game guide into a checklist to help you remember all the things you need to know. I was sick of paywalling of checklisting as a feature. I also wanted a darkmode second screen guide. I made this a couple years ago as a pyflask server, but converted it to a static webapp.
 
 - [x] Functional
@@ -41,8 +67,8 @@ Convert a game guide into a checklist to help you remember all the things you ne
 - [x] Checklist system
 - [x] Light polish
 
-### [Cyber Omniglot](CyberOmniglot/) <a name="cyber-omniglot"></a>
-![Cyber Omniglot](data/thumbnails/CyberOmniglot.png "Cyber Omniglot")
+### [Cyber Omniglot](https://jordan-heath.github.io/CyberOmniglot/) <a name="cyber-omniglot"></a>
+![Cyber Omniglot](thumbnails/CyberOmniglot.png "Cyber Omniglot")
 Inspired by the "Morrowind" coversation system, and puzzle games like "The Rise of the Golden Idol". I wanted to make a refined yet classic looking conversation puzzle game. I settled on a limited number of characters, simple translation puzzle, as the immense writing task overtook the coding practice the game was supposed to be.
 
 - [x] Text to Speech
@@ -53,8 +79,8 @@ Inspired by the "Morrowind" coversation system, and puzzle games like "The Rise 
 - [x] 9 words to translate
 - [x] Dynamic word replacement
 
-### [Strategy Map Simulator](StrategyMapSimulator/) <a name="strategy-map-simulator"></a>
-![Strategy Map Simulator](data/thumbnails/StrategyMapSimulator.png "Strategy Map Simulator")
+### [Strategy Map Simulator](https://jordan-heath.github.io/StrategyMapSimulator/) <a name="strategy-map-simulator"></a>
+![Strategy Map Simulator](thumbnails/StrategyMapSimulator.png "Strategy Map Simulator")
 Inspired by Paradox Interactive games like "Victoria 3" and "Hearts of Iron IV". I wanted to experiment with a complicated canvas based game. The UI was placeholder and then I lost interest.
 
 - [x] Procedurally generated landmass
@@ -63,8 +89,8 @@ Inspired by Paradox Interactive games like "Victoria 3" and "Hearts of Iron IV".
 - [x] Drawing tools
 - [x] Bad UI
 
-### [Persona 3 Reload Guide](Persona3ReloadGuide/) <a name="persona-3-reload-guide"></a>
-![Persona 3 Reload Guide](data/thumbnails/Persona3ReloadGuide.png "Persona 3 Reload Guide")
+### [Persona 3 Reload Guide](https://jordan-heath.github.io/Persona3ReloadGuide/) <a name="persona-3-reload-guide"></a>
+![Persona 3 Reload Guide](thumbnails/Persona3ReloadGuide.png "Persona 3 Reload Guide")
 Fairly raw copy of the Persona 5 Royal Guide but for Persona 3 Reload.
 
 - [x] Mobile friendly
@@ -74,8 +100,8 @@ Fairly raw copy of the Persona 5 Royal Guide but for Persona 3 Reload.
 - [x] Keyboard shortcuts
 - [x] Persona-themed design
 
-### [Tamagotchi Uni Guide](TamagotchiUniGuide/) <a name="tamagotchi-uni-guide"></a>
-![Tamagotchi Uni Guide](data/thumbnails/TamagotchiUniGuide.png "Tamagotchi Uni Guide")
+### [Tamagotchi Uni Guide](https://jordan-heath.github.io/TamagotchiUniGuide/) <a name="tamagotchi-uni-guide"></a>
+![Tamagotchi Uni Guide](thumbnails/TamagotchiUniGuide.png "Tamagotchi Uni Guide")
 A webapp I put together for my partner to help them keep track of their Tamagotchi Uni. It was important that it had a nice mobile-friendly design, kept track of progress in the game, and informed the user in a very accessible way.
 
 - [x] Mobile friendly
@@ -85,8 +111,8 @@ A webapp I put together for my partner to help them keep track of their Tamagotc
 - [x] DLC support
 - [x] Care tracking
 
-### [Qualification Academy](QualificationAcademy/) <a name="qualification-academy"></a>
-![Qualification Academy](data/thumbnails/QualificationAcademy.png "Qualification Academy")
+### [Qualification Academy](https://jordan-heath.github.io/QualificationAcademy/) <a name="qualification-academy"></a>
+![Qualification Academy](thumbnails/QualificationAcademy.png "Qualification Academy")
 A game where you complete a series of questions to receive a certificate. I wanted it to be elegant and fun.
 
 - [x] 10+ unlockable qualifications
@@ -96,8 +122,8 @@ A game where you complete a series of questions to receive a certificate. I want
 - [x] Dark mode
 - [x] JSON import/export
 
-### [Pokemon Collector](PokemonCollector/) <a name="pokemon-collector"></a>
-![Pokemon Collector](data/thumbnails/PokemonCollector.png "Pokemon Collector")
+### [Pokemon Collector](https://jordan-heath.github.io/PokemonCollector/) <a name="pokemon-collector"></a>
+![Pokemon Collector](thumbnails/PokemonCollector.png "Pokemon Collector")
 I've wanted to make a card collection game for a while, but given I could not do enough good quality art to do it myself, i decided last minute to make it a fan game.
 
 - [x] 6 card packs
@@ -106,8 +132,8 @@ I've wanted to make a card collection game for a while, but given I could not do
 - [x] Cheat mode
 - [x] Optimized rendering
 
-### [Custom Chess](CustomChess/) <a name="custom-chess"></a>
-![Custom Chess](data/thumbnails/CustomChess.png "Custom Chess")
+### [Custom Chess](https://jordan-heath.github.io/CustomChess/) <a name="custom-chess"></a>
+![Custom Chess](thumbnails/CustomChess.png "Custom Chess")
 A chess variant inspired by Balatro featuring progression and AI opponents.
 
 - [x] Save system
@@ -116,8 +142,8 @@ A chess variant inspired by Balatro featuring progression and AI opponents.
 - [x] Streak rewards
 - [x] Carry-over progression
 
-### [Persona 5 Royal Guide](Persona5RoyalGuide/) <a name="persona-5-royal-guide"></a>
-![Persona 5 Royal Guide](data/thumbnails/Persona5RoyalGuide.png "Persona 5 Royal Guide")
+### [Persona 5 Royal Guide](https://jordan-heath.github.io/Persona5RoyalGuide/) <a name="persona-5-royal-guide"></a>
+![Persona 5 Royal Guide](thumbnails/Persona5RoyalGuide.png "Persona 5 Royal Guide")
 I wanted an elegant guide styled after the game to occupy my second screen while playing. Other guides would require you to keep track of the day you were up to by scrolling through difficult to read whole pages of text, require you to switch tabs for negotiations and part time quizes.
 
 - [x] 300-day guide
@@ -127,8 +153,8 @@ I wanted an elegant guide styled after the game to occupy my second screen while
 - [x] Keyboard shortcuts
 - [x] Mobile friendly
 
-### [The Collector](TheCollector/) <a name="the-collector"></a>
-![The Collector](data/thumbnails/TheCollector.png "The Collector")
+### [The Collector](https://jordan-heath.github.io/TheCollector/) <a name="the-collector"></a>
+![The Collector](thumbnails/TheCollector.png "The Collector")
 An idle collection game featuring item combos, zones, and upgrade systems.
 
 - [x] 96 items
@@ -137,8 +163,8 @@ An idle collection game featuring item combos, zones, and upgrade systems.
 - [x] 4 zones
 - [x] Save system
 
-### [Meal Planner](MealPlanner/) <a name="meal-planner"></a>
-![Meal Planner](data/thumbnails/MealPlanner.png "Meal Planner")
+### [Meal Planner](https://jordan-heath.github.io/MealPlanner/) <a name="meal-planner"></a>
+![Meal Planner](thumbnails/MealPlanner.png "Meal Planner")
 A shitty meal planning tool that generates plans, recipes, and shopping lists.
 
 - [x] 33 meals
@@ -147,8 +173,8 @@ A shitty meal planning tool that generates plans, recipes, and shopping lists.
 - [x] Recipe maker
 - [x] Recipe browser
 
-### [Idle Landlord](IdleLandlord/) <a name="idle-landlord"></a>
-![Idle Landlord](data/thumbnails/IdleLandlord.png "Idle Landlord")
+### [Idle Landlord](https://jordan-heath.github.io/IdleLandlord/) <a name="idle-landlord"></a>
+![Idle Landlord](thumbnails/IdleLandlord.png "Idle Landlord")
 A landlord-themed clicker game focused on passive income and progression.
 
 - [x] Job promotions
@@ -157,8 +183,8 @@ A landlord-themed clicker game focused on passive income and progression.
 - [x] Auto-save
 - [x] JSON import/export
 
-### [Story Teller](StoryTeller/) <a name="story-teller"></a>
-![Story Teller](data/thumbnails/StoryTeller.png "Story Teller")
+### [Story Teller](https://jordan-heath.github.io/StoryTeller/) <a name="story-teller"></a>
+![Story Teller](thumbnails/StoryTeller.png "Story Teller")
 A Madlibs-style storytelling app with music and customizable stories.
 
 - [x] 16 stories
@@ -167,8 +193,8 @@ A Madlibs-style storytelling app with music and customizable stories.
 - [x] Adjustable text speed
 - [x] Custom story import
 
-### [Manticore Generator](ManticoreGenerator/) <a name="manticore-generator"></a>
-![Manticore Generator](data/thumbnails/ManticoreGenerator.png "Manticore Generator")
+### [Manticore Generator](https://jordan-heath.github.io/ManticoreGenerator/) <a name="manticore-generator"></a>
+![Manticore Generator](thumbnails/ManticoreGenerator.png "Manticore Generator")
 A friend of mine saw the character generator and was working on creating some manticores for a personal project. They asked if I could make something similar to assist them in the process.
 
 - [x] 461 animals
@@ -176,16 +202,16 @@ A friend of mine saw the character generator and was working on creating some ma
 - [x] Lockable body parts
 - [x] Image search integration
 
-### [Character Generator](CharacterGenerator/) <a name="character-generator"></a>
-![Character Generator](data/thumbnails/CharacterGenerator.png "Character Generator")
+### [Character Generator](https://jordan-heath.github.io/CharacterGenerator/) <a name="character-generator"></a>
+![Character Generator](thumbnails/CharacterGenerator.png "Character Generator")
 A whimsical character generator with names, demographics, and stats.
 
 - [x] Syllable-based names
 - [x] Demographic details
 - [x] Character stats
 
-### [Percentage Clock](PercentageClock/) <a name="percentage-clock"></a>
-![Percentage Clock](data/thumbnails/PercentageClock.png "Percentage Clock")
+### [Percentage Clock](https://jordan-heath.github.io/PercentageClock/) <a name="percentage-clock"></a>
+![Percentage Clock](thumbnails/PercentageClock.png "Percentage Clock")
 On challenging days, it's helpful to know how much of the day is left. Percentage Clock provides this information in a simple number. It might not offer much comfort as I got a bit carried away with the CSS animation library.
 
 - [x] Current time indicator
@@ -193,8 +219,8 @@ On challenging days, it's helpful to know how much of the day is left. Percentag
 - [x] Heartbeat pulse animation
 - [x] Interactive sound effect
 
-### [Word Scrambler](WordScrambler/) <a name="word-scrambler"></a>
-![Word Scrambler](data/thumbnails/WordScrambler.png "Word Scrambler")
+### [Word Scrambler](https://jordan-heath.github.io/WordScrambler/) <a name="word-scrambler"></a>
+![Word Scrambler](thumbnails/WordScrambler.png "Word Scrambler")
 Scrambles input text into a semi-comprehensible format.
 
 - [x] Text scrambling
@@ -202,25 +228,16 @@ Scrambles input text into a semi-comprehensible format.
 
 ## Incomplete Projects <a name="incomplete"></a>
 
-### [King Sim](KingSim/) <a name="king-sim"></a>
+### [Top Down RPG](https://jordan-heath.github.io/TopDownRPG/) <a name="top-down-rpg"></a>
 PLAYABLE DEMO.
 
-### [DND Auto Battler](DNDAutoBattler/) <a name="dnd-auto-battler"></a>
-PLAYABLE DEMO.
-
-### [Top Down RPG](TopDownRPG/) <a name="top-down-rpg"></a>
-PLAYABLE DEMO.
-
-### [Pet Game](PetGame/) <a name="pet-game"></a>
-PLAYABLE DEMO.
-
-### [Kaiju Battle Bracket](KaijuBattleBracket/) <a name="kaiju-battle-bracket"></a>
-PLAYABLE DEMO.
-
-### [The Great Hundred Man Fight](TheGreatHundredManFight/) <a name="the-great-hundred-man-fight"></a>
+### [Pet Game](https://jordan-heath.github.io/PetGame/) <a name="pet-game"></a>
 PLAYABLE DEMO.
 
 ## Credits <a name="credits"></a>
+
+### CoughTTS
+- Cough audio source: https://pixabay.com/sound-effects/cough-voice-12330/
 
 ### Pokemon Collector
 - Pokemon is a product of GameFreak
