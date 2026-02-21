@@ -1,5 +1,22 @@
 const projects = [
   {
+    "name": "Vue Picross",
+    "link": "https://jordan-heath.github.io/VuePicross/",
+    "thumbnail": "thumbnails/VuePicross.png",
+    "screenshot": "screenshots/VuePicross.png",
+    "description": "I wanted to experiment with web dev frameworks. This app is made in Vue. It's a picross game with minimal bells and whistles. Just wanted a basic polished Picross.",
+    "features": [
+      "It's Picross!",
+      "Lift click and drag to fill, Right click to mark incorrect",
+      "Animations and sounds"
+    ],
+    "credits": [],
+    "featured": true,
+    "category": "Game",
+    "releaseyear": 2026,
+    "rating": 5
+  },
+  {
     "name": "Jeopardy",
     "link": "https://jordan-heath.github.io/Jeopardy/",
     "thumbnail": "thumbnails/Jeopardy.png",
@@ -13,7 +30,7 @@ const projects = [
       "Everyone gets a turn to answer the questions"
     ],
     "credits": ["TODO"],
-    "featured": true,
+    "featured": false,
     "category": "Game",
     "releaseyear": 2026,
     "rating": 5
