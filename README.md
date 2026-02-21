@@ -3,6 +3,7 @@
 Explore my collection of projects. Most of my work is not shared publicly. This collection does not comprehensively represent my work.
 
 1. [Completed Projects](#complete)
+    * [Vue Picross](#vue-picross)
     * [Jeopardy](#jeopardy)
     * [Ants](#ants)
     * [CoughTTS](#coughtts)
@@ -30,6 +31,14 @@ Explore my collection of projects. Most of my work is not shared publicly. This 
 
 
 ## Completed Projects <a name="complete"></a>
+
+### [Vue Picross](https://jordan-heath.github.io/VuePicross/) <a name="vue-picross"></a>
+![Vue Picross](thumbnails/VuePicross.png "Vue Picross")
+I wanted to experiment with web dev frameworks. This app is made in Vue. It's a picross game with minimal bells and whistles. Just wanted a basic polished Picross.
+
+- [x] It's Picross!
+- [x] Lift click and drag to fill, Right click to mark incorrect
+- [x] Animations and sounds
 
 ### [Jeopardy](https://jordan-heath.github.io/Jeopardy/) <a name="jeopardy"></a>
 ![Jeopardy](thumbnails/Jeopardy.png "Jeopardy")
