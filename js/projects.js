@@ -14,6 +14,7 @@ const projects = [
     "featured": true,
     "category": "Game",
     "releaseyear": 2026,
+    "releasedate": "Feb 21, 2026",
     "rating": 5
   },
   {
@@ -33,6 +34,7 @@ const projects = [
     "featured": false,
     "category": "Game",
     "releaseyear": 2026,
+    "releasedate": "Feb 20, 2026",
     "rating": 5
   },
   {
@@ -50,6 +52,7 @@ const projects = [
     "featured": false,
     "category": "Utility",
     "releaseyear": 2026,
+    "releasedate": "Feb 20, 2026",
     "rating": 5
   },
   {
@@ -68,6 +71,7 @@ const projects = [
     "featured": false,
     "category": "Utility",
     "releaseyear": 2026,
+    "releasedate": "Feb 20, 2026",
     "rating": 5
   },
   {
@@ -86,6 +90,7 @@ const projects = [
     "featured": false,
     "category": "Guide",
     "releaseyear": 2026,
+    "releasedate": "Feb 18, 2026",
     "rating": 5
   },
   {
@@ -107,25 +112,7 @@ const projects = [
     "featured": true,
     "category": "Game",
     "releaseyear": 2025,
-    "rating": 5
-  },
-  {
-    "name": "Strategy Map Simulator",
-    "link": "https://jordan-heath.github.io/StrategyMapSimulator/",
-    "thumbnail": "thumbnails/StrategyMapSimulator.png",
-    "screenshot": "screenshots/StrategyMapSimulator.png",
-    "description": "Inspired by Paradox Interactive games like \"Victoria 3\" and \"Hearts of Iron IV\". I wanted to experiment with a complicated canvas based game. The UI was placeholder and then I lost interest.",
-    "features": [
-      "Procedurally generated landmass",
-      "Map editor",
-      "Kingdom AI",
-      "Drawing tools",
-      "Bad UI"
-    ],
-    "credits": [],
-    "featured": true,
-    "category": "Game",
-    "releaseyear": 2025,
+    "releasedate": "May 21, 2025",
     "rating": 5
   },
   {
@@ -146,6 +133,27 @@ const projects = [
     "featured": false,
     "category": "Guide",
     "releaseyear": 2025,
+    "releasedate": "Jan 18, 2025",
+    "rating": 5
+  },
+  {
+    "name": "Strategy Map Simulator",
+    "link": "https://jordan-heath.github.io/StrategyMapSimulator/",
+    "thumbnail": "thumbnails/StrategyMapSimulator.png",
+    "screenshot": "screenshots/StrategyMapSimulator.png",
+    "description": "Inspired by Paradox Interactive games like \"Victoria 3\" and \"Hearts of Iron IV\". I wanted to experiment with a complicated canvas based game. The UI was placeholder and then I lost interest.",
+    "features": [
+      "Procedurally generated landmass",
+      "Map editor",
+      "Kingdom AI",
+      "Drawing tools",
+      "Bad UI"
+    ],
+    "credits": [],
+    "featured": true,
+    "category": "Game",
+    "releaseyear": 2025,
+    "releasedate": "Jan 6, 2025",
     "rating": 5
   },
   {
@@ -166,6 +174,7 @@ const projects = [
     "featured": false,
     "category": "Guide",
     "releaseyear": 2024,
+    "releasedate": "Dec 15, 2024",
     "rating": 5
   },
   {
@@ -186,6 +195,7 @@ const projects = [
     "featured": false,
     "category": "Game",
     "releaseyear": 2024,
+    "releasedate": "Dec 9, 2024",
     "rating": 5
   },
   {
@@ -208,6 +218,7 @@ const projects = [
     "featured": false,
     "category": "Game",
     "releaseyear": 2024,
+    "releasedate": "Nov 22, 2024",
     "rating": 5
   },
   {
@@ -231,6 +242,7 @@ const projects = [
     "featured": true,
     "category": "Game",
     "releaseyear": 2024,
+    "releasedate": "Aug 8, 2024",
     "rating": 5
   },
   {
@@ -265,6 +277,7 @@ const projects = [
     "featured": false,
     "category": "Guide",
     "releaseyear": 2024,
+    "releasedate": "Jul 21, 2024",
     "rating": 5
   },
   {
@@ -284,6 +297,7 @@ const projects = [
     "featured": false,
     "category": "Game",
     "releaseyear": 2024,
+    "releasedate": "Feb 14, 2024",
     "rating": 5
   },
   {
@@ -305,6 +319,7 @@ const projects = [
     "featured": false,
     "category": "Utility",
     "releaseyear": 2024,
+    "releasedate": "Feb 3, 2024",
     "rating": 5
   },
   {
@@ -324,6 +339,7 @@ const projects = [
     "featured": false,
     "category": "Game",
     "releaseyear": 2024,
+    "releasedate": "Jan 23, 2024",
     "rating": 5
   },
   {
@@ -352,6 +368,24 @@ const projects = [
     "featured": false,
     "category": "Game",
     "releaseyear": 2024,
+    "releasedate": "Jan 19, 2024",
+    "rating": 5
+  },
+  {
+    "name": "Word Scrambler",
+    "link": "https://jordan-heath.github.io/WordScrambler/",
+    "thumbnail": "thumbnails/WordScrambler.png",
+    "screenshot": "",
+    "description": "Scrambles input text into a semi-comprehensible format.",
+    "features": [
+      "Text scrambling",
+      "Lightweight tool"
+    ],
+    "credits": [],
+    "featured": false,
+    "category": "Utility",
+    "releaseyear": 2023,
+    "releasedate": "Dec 8, 2023",
     "rating": 5
   },
   {
@@ -373,6 +407,26 @@ const projects = [
     "featured": false,
     "category": "Utility",
     "releaseyear": 2023,
+    "releasedate": "Sep 21, 2023",
+    "rating": 5
+  },
+  {
+    "name": "Percentage Clock",
+    "link": "https://jordan-heath.github.io/PercentageClock/",
+    "thumbnail": "thumbnails/PercentageClock.png",
+    "screenshot": "",
+    "description": "On challenging days, it's helpful to know how much of the day is left. Percentage Clock provides this information in a simple number. It might not offer much comfort as I got a bit carried away with the CSS animation library.",
+    "features": [
+      "Current time indicator",
+      "Color transition",
+      "Heartbeat pulse animation",
+      "Interactive sound effect"
+    ],
+    "credits": [],
+    "featured": false,
+    "category": "Utility",
+    "releaseyear": 2023,
+    "releasedate": "Aug 31, 2023",
     "rating": 5
   },
   {
@@ -394,40 +448,7 @@ const projects = [
     "featured": false,
     "category": "Utility",
     "releaseyear": 2023,
-    "rating": 5
-  },
-  {
-    "name": "Percentage Clock",
-    "link": "https://jordan-heath.github.io/PercentageClock/",
-    "thumbnail": "thumbnails/PercentageClock.png",
-    "screenshot": "",
-    "description": "On challenging days, it's helpful to know how much of the day is left. Percentage Clock provides this information in a simple number. It might not offer much comfort as I got a bit carried away with the CSS animation library.",
-    "features": [
-      "Current time indicator",
-      "Color transition",
-      "Heartbeat pulse animation",
-      "Interactive sound effect"
-    ],
-    "credits": [],
-    "featured": false,
-    "category": "Utility",
-    "releaseyear": 2023,
-    "rating": 5
-  },
-  {
-    "name": "Word Scrambler",
-    "link": "https://jordan-heath.github.io/WordScrambler/",
-    "thumbnail": "thumbnails/WordScrambler.png",
-    "screenshot": "",
-    "description": "Scrambles input text into a semi-comprehensible format.",
-    "features": [
-      "Text scrambling",
-      "Lightweight tool"
-    ],
-    "credits": [],
-    "featured": false,
-    "category": "Utility",
-    "releaseyear": 2023,
+    "releasedate": "Aug 30, 2023",
     "rating": 5
   },
   {
@@ -448,6 +469,7 @@ const projects = [
     "featured": false,
     "category": "Game",
     "releaseyear": 0,
+    "releasedate": "",
     "rating": 5
   },
   {
@@ -464,6 +486,7 @@ const projects = [
     "featured": false,
     "category": "Game",
     "releaseyear": 0,
+    "releasedate": "",
     "rating": 5
   }
 ]
