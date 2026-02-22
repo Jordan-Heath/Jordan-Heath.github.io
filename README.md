@@ -9,8 +9,8 @@ Explore my collection of projects. Most of my work is not shared publicly. This 
     * [CoughTTS](#coughtts)
     * [Game Guide Checklist](#game-guide-checklist)
     * [Cyber Omniglot](#cyber-omniglot)
-    * [Strategy Map Simulator](#strategy-map-simulator)
     * [Persona 3 Reload Guide](#persona-3-reload-guide)
+    * [Strategy Map Simulator](#strategy-map-simulator)
     * [Tamagotchi Uni Guide](#tamagotchi-uni-guide)
     * [Qualification Academy](#qualification-academy)
     * [Pokemon Collector](#pokemon-collector)
@@ -20,10 +20,10 @@ Explore my collection of projects. Most of my work is not shared publicly. This 
     * [Meal Planner](#meal-planner)
     * [Idle Landlord](#idle-landlord)
     * [Story Teller](#story-teller)
-    * [Manticore Generator](#manticore-generator)
-    * [Character Generator](#character-generator)
-    * [Percentage Clock](#percentage-clock)
     * [Word Scrambler](#word-scrambler)
+    * [Manticore Generator](#manticore-generator)
+    * [Percentage Clock](#percentage-clock)
+    * [Character Generator](#character-generator)
 2. [Incomplete Projects](#incomplete)
     * [Top Down RPG](#top-down-rpg)
     * [Pet Game](#pet-game)
@@ -88,16 +88,6 @@ Inspired by the "Morrowind" coversation system, and puzzle games like "The Rise 
 - [x] 9 words to translate
 - [x] Dynamic word replacement
 
-### [Strategy Map Simulator](https://jordan-heath.github.io/StrategyMapSimulator/) <a name="strategy-map-simulator"></a>
-![Strategy Map Simulator](thumbnails/StrategyMapSimulator.png "Strategy Map Simulator")
-Inspired by Paradox Interactive games like "Victoria 3" and "Hearts of Iron IV". I wanted to experiment with a complicated canvas based game. The UI was placeholder and then I lost interest.
-
-- [x] Procedurally generated landmass
-- [x] Map editor
-- [x] Kingdom AI
-- [x] Drawing tools
-- [x] Bad UI
-
 ### [Persona 3 Reload Guide](https://jordan-heath.github.io/Persona3ReloadGuide/) <a name="persona-3-reload-guide"></a>
 ![Persona 3 Reload Guide](thumbnails/Persona3ReloadGuide.png "Persona 3 Reload Guide")
 Fairly raw copy of the Persona 5 Royal Guide but for Persona 3 Reload.
@@ -108,6 +98,16 @@ Fairly raw copy of the Persona 5 Royal Guide but for Persona 3 Reload.
 - [x] Fusion calculator link
 - [x] Keyboard shortcuts
 - [x] Persona-themed design
+
+### [Strategy Map Simulator](https://jordan-heath.github.io/StrategyMapSimulator/) <a name="strategy-map-simulator"></a>
+![Strategy Map Simulator](thumbnails/StrategyMapSimulator.png "Strategy Map Simulator")
+Inspired by Paradox Interactive games like "Victoria 3" and "Hearts of Iron IV". I wanted to experiment with a complicated canvas based game. The UI was placeholder and then I lost interest.
+
+- [x] Procedurally generated landmass
+- [x] Map editor
+- [x] Kingdom AI
+- [x] Drawing tools
+- [x] Bad UI
 
 ### [Tamagotchi Uni Guide](https://jordan-heath.github.io/TamagotchiUniGuide/) <a name="tamagotchi-uni-guide"></a>
 ![Tamagotchi Uni Guide](thumbnails/TamagotchiUniGuide.png "Tamagotchi Uni Guide")
@@ -202,6 +202,13 @@ A Madlibs-style storytelling app with music and customizable stories.
 - [x] Adjustable text speed
 - [x] Custom story import
 
+### [Word Scrambler](https://jordan-heath.github.io/WordScrambler/) <a name="word-scrambler"></a>
+![Word Scrambler](thumbnails/WordScrambler.png "Word Scrambler")
+Scrambles input text into a semi-comprehensible format.
+
+- [x] Text scrambling
+- [x] Lightweight tool
+
 ### [Manticore Generator](https://jordan-heath.github.io/ManticoreGenerator/) <a name="manticore-generator"></a>
 ![Manticore Generator](thumbnails/ManticoreGenerator.png "Manticore Generator")
 A friend of mine saw the character generator and was working on creating some manticores for a personal project. They asked if I could make something similar to assist them in the process.
@@ -210,14 +217,6 @@ A friend of mine saw the character generator and was working on creating some ma
 - [x] Tail/wing probability settings
 - [x] Lockable body parts
 - [x] Image search integration
-
-### [Character Generator](https://jordan-heath.github.io/CharacterGenerator/) <a name="character-generator"></a>
-![Character Generator](thumbnails/CharacterGenerator.png "Character Generator")
-A whimsical character generator with names, demographics, and stats.
-
-- [x] Syllable-based names
-- [x] Demographic details
-- [x] Character stats
 
 ### [Percentage Clock](https://jordan-heath.github.io/PercentageClock/) <a name="percentage-clock"></a>
 ![Percentage Clock](thumbnails/PercentageClock.png "Percentage Clock")
@@ -228,12 +227,13 @@ On challenging days, it's helpful to know how much of the day is left. Percentag
 - [x] Heartbeat pulse animation
 - [x] Interactive sound effect
 
-### [Word Scrambler](https://jordan-heath.github.io/WordScrambler/) <a name="word-scrambler"></a>
-![Word Scrambler](thumbnails/WordScrambler.png "Word Scrambler")
-Scrambles input text into a semi-comprehensible format.
+### [Character Generator](https://jordan-heath.github.io/CharacterGenerator/) <a name="character-generator"></a>
+![Character Generator](thumbnails/CharacterGenerator.png "Character Generator")
+A whimsical character generator with names, demographics, and stats.
 
-- [x] Text scrambling
-- [x] Lightweight tool
+- [x] Syllable-based names
+- [x] Demographic details
+- [x] Character stats
 
 ## Incomplete Projects <a name="incomplete"></a>
 
